@@ -221,7 +221,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Customizable muted / label color from theme settings */
-.eyebrow, .label, .caption, .nav-numeral { color: var(--color-muted, #A0826D); }
+.eyebrow, .label, .caption, .nav-numeral { color: var(--color-muted, #766356); }
 
 .lead { font-size: var(--text-md); line-height: var(--leading-relaxed); }
 
@@ -488,9 +488,14 @@ h1, h2, h3, h4, h5, h6 {
 }
 .input::placeholder,
 .textarea::placeholder { color: var(--color-muted); }
+/* Quiet border shift on pointer focus; a real 2px ring on keyboard focus
+   (never suppress the global :focus-visible ring from a11y). */
 .input:focus,
 .textarea:focus,
-.select select:focus { outline: none; border-color: var(--color-text); }
+.select select:focus { border-color: var(--color-text); }
+.input:focus-visible,
+.textarea:focus-visible,
+.select select:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; border-color: var(--color-text); }
 .textarea { min-height: 8rem; resize: vertical; line-height: var(--leading-normal); }
 .select { position: relative; }
 .select select { appearance: none; -webkit-appearance: none; padding-right: 2.5em; cursor: pointer; }

@@ -157,8 +157,11 @@
     display: block;
     width: 100%;
     max-width: 52rem;
-    outline: none;
   }
+  /* Keyboard focus must stay visible on this focusable carousel; only suppress
+     the ring for mouse/programmatic focus. */
+  .testimonials__carousel:focus:not(:focus-visible) { outline: none; }
+  .testimonials__carousel:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
   .testimonials__track {
     position: relative;
     display: grid;
