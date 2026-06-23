@@ -59,7 +59,9 @@
 <div
   class="hero color-scheme--{{ scheme }} hero--pos-{{ section.settings.text_position }} hero--align-{{ section.settings.text_align }}{% if image == blank %} hero--no-image{% endif %}"
 >
-  <span class="edition-number" aria-hidden="true">001</span>
+  {%- if section.settings.show_edition_number -%}
+    <span class="edition-number" aria-hidden="true">001</span>
+  {%- endif -%}
   <div class="hero__media">
     {%- if image != blank -%}
       {%- liquid
@@ -476,6 +478,12 @@
     {
       "type": "header",
       "content": "Section"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_edition_number",
+      "label": "Show edition number",
+      "default": true
     },
     {
       "type": "select",

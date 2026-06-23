@@ -1,0 +1,98 @@
+{%- comment -%}
+  Editorial statement — a single large serif manifesto, centered in a narrow
+  column, no heading. Mirrors the theme pattern: inline <style> carries only
+  per-instance values, a color-scheme--* wrapper paints the background, and
+  {% stylesheet %} holds component CSS with no Liquid.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="editorial-statement color-scheme--{{ scheme }}">
+  <div class="editorial-statement__inner page-width">
+    {%- if section.settings.statement != blank -%}
+      <div class="editorial-statement__text">{{ section.settings.statement }}</div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .editorial-statement {
+    padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
+  }
+  .editorial-statement__inner {
+    display: flex;
+    justify-content: center;
+  }
+  .editorial-statement__text {
+    max-width: 700px;
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 300;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.4;
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-heading, #2C1810);
+  }
+  .editorial-statement__text p { margin: 0; }
+  .editorial-statement__text p + p { margin-top: var(--space-5); }
+  .editorial-statement__text em { font-style: italic; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Editorial statement",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "richtext",
+      "id": "statement",
+      "label": "Statement",
+      "default": "<p>We believe good objects should be useful, honest, and quietly beautiful.</p>"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 200,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 120
+    }
+  ],
+  "presets": [
+    { "name": "Editorial statement" }
+  ]
+}
+{% endschema %}

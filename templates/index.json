@@ -1,272 +1,122 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
+        "show_edition_number": false,
         "image_height": "90svh",
-        "overlay_opacity": 30,
-        "overlay_color": "#C8C8C8",
+        "color_scheme": "cream",
         "text_position": "center",
         "text_align": "left",
         "eyebrow": "New season",
         "heading": "Considered\nobjects for the\nmodern home",
-        "heading_size": "medium",
-        "heading_tag": "h1",
         "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
-        "trust_line": "4.9 ★ · 2,000+ reviews · Free shipping over $150",
         "cta_label": "Shop the collection",
-        "cta_url": "",
-        "cta_style": "solid",
-        "cta_secondary_label": "Read our story",
-        "cta_secondary_url": "",
-        "color_scheme": "invert",
-        "padding_top": 0,
-        "padding_bottom": 0
+        "cta_secondary_label": "Read our story"
       }
     },
     "marquee": {
       "type": "marquee",
       "settings": {
-        "text": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·",
-        "speed": 30,
-        "direction": "left",
-        "size": "md",
-        "color_scheme": "cream",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "text": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·"
       }
     },
     "featured": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured",
+        "title": "New arrivals",
         "subtitle": "A few of our favourites this month.",
-        "collection": "frontpage",
         "products_to_show": 4,
-        "columns_desktop": "4",
-        "columns_mobile": "2",
-        "show_vendor": false,
-        "show_view_all": true,
-        "view_all_label": "View all",
-        "view_all_style": "link",
-        "color_scheme": "cream",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "columns_desktop": "4"
       }
     },
-    "image_with_text": {
+    "statement": {
+      "type": "editorial-statement",
+      "settings": {
+        "statement": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</p>"
+      }
+    },
+    "image_text": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify://shop_images/self-serve-coffee-shop.jpg",
-        "image_ratio": "portrait",
-        "layout": "image-left",
+        "layout": "image-right",
         "eyebrow": "Our craft",
-        "title": "Crafted with intention",
-        "text": "<p>Every piece begins with a material and a question: how do we make something that lasts? The answer shapes everything we do.</p>",
-        "cta_label": "Learn more",
-        "cta_url": "",
-        "cta_style": "solid",
-        "color_scheme": "cream",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "title": "Made with intention",
+        "text": "<p>Every piece begins with a material and a question: how do we make something that lasts?</p>"
       }
     },
-    "collection_list": {
+    "full_bleed": {
+      "type": "full-bleed-image",
+      "settings": {
+        "image_height": "large",
+        "overlay_opacity": 0
+      }
+    },
+    "split": {
+      "type": "split-media",
+      "settings": {
+        "eyebrow": "Process",
+        "heading": "Designed in studio",
+        "text": "<p>Each object passes through our studio before it reaches you — reviewed, refined, considered.</p>"
+      }
+    },
+    "collections": {
       "type": "collection-list",
       "blocks": {
-        "c1": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "c2": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        },
-        "c3": {
-          "type": "collection",
-          "settings": {
-            "collection": ""
-          }
-        }
+        "c1": { "type": "collection", "settings": {} },
+        "c2": { "type": "collection", "settings": {} },
+        "c3": { "type": "collection", "settings": {} }
       },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+      "block_order": ["c1", "c2", "c3"],
       "settings": {
-        "eyebrow": "",
         "heading": "Shop by collection",
-        "heading_alignment": "left",
-        "image_ratio": "portrait",
-        "show_product_count": false,
-        "columns_desktop": "3",
-        "columns_mobile": "2",
-        "color_scheme": "cream",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "heading_alignment": "left"
       }
     },
     "gallery": {
       "type": "gallery",
       "blocks": {
-        "g1": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/a-bridge-sitting-in-thick-pink-and-purple-fog.jpg",
-            "caption": "",
-            "url": ""
-          }
-        },
-        "g2": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/two-people-surfing-in-blue-choppy-water.jpg",
-            "caption": "",
-            "url": ""
-          }
-        },
-        "g3": {
-          "type": "image",
-          "settings": {
-            "image": "shopify://shop_images/orange-poles-create-a-tunnel.jpg",
-            "caption": "",
-            "url": ""
-          }
-        }
+        "g1": { "type": "image", "settings": {} },
+        "g2": { "type": "image", "settings": {} },
+        "g3": { "type": "image", "settings": {} }
       },
-      "block_order": [
-        "g1",
-        "g2",
-        "g3"
-      ],
+      "block_order": ["g1", "g2", "g3"],
       "settings": {
         "heading": "In the wild",
-        "layout": "grid-3col",
-        "image_ratio": "square",
-        "show_captions": false,
-        "caption_position": "below",
-        "color_scheme": "cream",
-        "padding_top": 80,
-        "padding_bottom": 80
-      }
-    },
-    "rich_text": {
-      "type": "rich-text",
-      "blocks": {
-        "eyebrow": {
-          "type": "eyebrow",
-          "settings": {
-            "text": "Our story"
-          }
-        },
-        "heading": {
-          "type": "heading",
-          "settings": {
-            "heading": "Designed in studio, made to be lived with",
-            "heading_tag": "h2"
-          }
-        },
-        "text": {
-          "type": "text",
-          "settings": {
-            "text": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision, from the materials we choose to the people we partner with.</p>"
-          }
-        },
-        "button": {
-          "type": "button",
-          "settings": {
-            "label": "About Atelier",
-            "url": "",
-            "style": "outline"
-          }
-        }
-      },
-      "block_order": [
-        "eyebrow",
-        "heading",
-        "text",
-        "button"
-      ],
-      "settings": {
-        "content_width": "narrow",
-        "text_alignment": "center",
-        "color_scheme": "parchment",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "layout": "grid-3col"
       }
     },
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "t1": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": "",
-            "image": "shopify://shop_images/welcome-to-my-business.jpg"
-          }
-        },
-        "testimonial_LCJ4BR": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": "",
-            "image": "shopify://shop_images/welcome-to-my-business.jpg"
-          }
-        },
-        "testimonial_KcFzCF": {
-          "type": "testimonial",
-          "settings": {
-            "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": "",
-            "image": "shopify://shop_images/welcome-to-my-business.jpg"
-          }
-        }
+        "t1": { "type": "testimonial", "settings": {} },
+        "t2": { "type": "testimonial", "settings": {} },
+        "t3": { "type": "testimonial", "settings": {} }
       },
-      "block_order": [
-        "t1",
-        "testimonial_LCJ4BR",
-        "testimonial_KcFzCF"
-      ],
+      "block_order": ["t1", "t2", "t3"],
       "settings": {
-        "heading": "What people say",
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "show_images": true,
-        "pause_label": "Pause testimonials",
-        "color_scheme": "cream",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "heading": "What people say"
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Our philosophy" } },
+        "heading": { "type": "heading", "settings": { "heading": "Designed in studio,\nmade to be lived with", "heading_tag": "h2" } },
+        "text": { "type": "text", "settings": { "text": "<p>We believe good objects should be useful, honest, and quietly beautiful.</p>" } }
+      },
+      "block_order": ["eyebrow", "heading", "text"],
+      "settings": {
+        "content_width": "narrow",
+        "text_alignment": "center",
+        "color_scheme": "parchment"
       }
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
         "heading": "Join the list",
-        "subtext": "<p>New arrivals, stories, and the occasional offer.</p>",
-        "input_placeholder": "Email address",
-        "button_label": "Subscribe",
-        "color_scheme": "invert",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "subtext": "<p>New arrivals, stories, and the occasional offer.</p>"
       }
     }
   },
@@ -274,11 +124,14 @@
     "hero",
     "marquee",
     "featured",
-    "image_with_text",
-    "collection_list",
+    "statement",
+    "image_text",
+    "full_bleed",
+    "split",
+    "collections",
     "gallery",
-    "rich_text",
     "testimonials",
+    "rich_text",
     "newsletter"
   ]
 }

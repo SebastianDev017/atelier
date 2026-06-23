@@ -1,0 +1,140 @@
+{%- comment -%}
+  Full-bleed image — edge-to-edge (no horizontal padding), selectable height,
+  optional caption rendered bottom-left over the image, and an optional dark
+  overlay. Mirrors the theme pattern: inline <style> for per-instance values,
+  {% stylesheet %} for component CSS with no Liquid.
+{%- endcomment -%}
+{%- liquid
+  assign image = section.settings.image
+  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+
+  assign fbi_height = '55svh'
+  case section.settings.image_height
+    when 'compact'
+      assign fbi_height = '40svh'
+    when 'medium'
+      assign fbi_height = '55svh'
+    when 'large'
+      assign fbi_height = '70svh'
+    when 'cinematic'
+      assign fbi_height = '85svh'
+  endcase
+
+  assign fbi_alt = image.alt | default: section.settings.caption | escape
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --fbi-height: {{ fbi_height }};
+    --fbi-overlay: {{ overlay }};
+  }
+</style>
+
+<div class="full-bleed-image">
+  <div class="full-bleed-image__media">
+    {%- if image != blank -%}
+      {{
+        image
+        | image_url: width: 3000
+        | image_tag:
+          loading: 'lazy',
+          widths: '750, 1100, 1500, 2000, 2600, 3000',
+          sizes: '100vw',
+          alt: fbi_alt,
+          class: 'full-bleed-image__img'
+      }}
+    {%- else -%}
+      <div class="full-bleed-image__placeholder">
+        {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder' }}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.overlay_opacity > 0 -%}
+      <div class="full-bleed-image__overlay" aria-hidden="true"></div>
+    {%- endif -%}
+
+    {%- if section.settings.caption != blank -%}
+      <p class="full-bleed-image__caption">{{ section.settings.caption | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .full-bleed-image__media {
+    position: relative;
+    width: 100%;
+    height: var(--fbi-height, 55svh);
+    overflow: hidden;
+    background-color: var(--color-subtle);
+  }
+  .full-bleed-image__img,
+  .full-bleed-image__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .full-bleed-image__placeholder svg { width: 100%; height: 100%; object-fit: cover; }
+  .full-bleed-image__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: #000;
+    opacity: var(--fbi-overlay, 0);
+  }
+  .full-bleed-image__caption {
+    position: absolute;
+    left: var(--page-margin, 1.5rem);
+    bottom: var(--page-margin, 1.5rem);
+    z-index: 2;
+    margin: 0;
+    color: var(--color-overlay-text, #FAF7F2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Full bleed image",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Image"
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Image height",
+      "options": [
+        { "value": "compact", "label": "Compact (40vh)" },
+        { "value": "medium", "label": "Medium (55vh)" },
+        { "value": "large", "label": "Large (70vh)" },
+        { "value": "cinematic", "label": "Cinematic (85vh)" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "text",
+      "id": "caption",
+      "label": "Caption",
+      "info": "Optional. Shown bottom-left over the image."
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 60,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "Full bleed image" }
+  ]
+}
+{% endschema %}
