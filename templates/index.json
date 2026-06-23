@@ -49,6 +49,7 @@
     "featured": {
       "type": "featured-collection",
       "settings": {
+        "eyebrow": "",
         "title": "New arrivals",
         "subtitle": "A few of our favourites this month.",
         "collection": "danny-kaplan",
@@ -67,7 +68,7 @@
     "statement": {
       "type": "editorial-statement",
       "settings": {
-        "statement": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</p>",
+        "statement": "<h6>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</h6>",
         "color_scheme": "invert",
         "padding_top": 140,
         "padding_bottom": 140
