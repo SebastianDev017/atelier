@@ -15,7 +15,7 @@
         "image": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
         "image_height": "90svh",
         "overlay_opacity": 20,
-        "overlay_color": "#2e3030",
+        "overlay_color": "#DCDCDC",
         "text_position": "bottom",
         "text_align": "left",
         "eyebrow": "New season",
@@ -127,6 +127,7 @@
         "g1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/a-bridge-sitting-in-thick-pink-and-purple-fog.jpg",
             "caption": "",
             "url": ""
           }
@@ -134,6 +135,7 @@
         "g2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/two-people-surfing-in-blue-choppy-water.jpg",
             "caption": "",
             "url": ""
           }
@@ -141,13 +143,7 @@
         "g3": {
           "type": "image",
           "settings": {
-            "caption": "",
-            "url": ""
-          }
-        },
-        "g4": {
-          "type": "image",
-          "settings": {
+            "image": "shopify://shop_images/orange-poles-create-a-tunnel.jpg",
             "caption": "",
             "url": ""
           }
@@ -156,8 +152,7 @@
       "block_order": [
         "g1",
         "g2",
-        "g3",
-        "g4"
+        "g3"
       ],
       "settings": {
         "heading": "In the wild",
@@ -223,30 +218,33 @@
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
             "author": "Customer name",
-            "role": ""
+            "role": "",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
           }
         },
-        "t2": {
+        "testimonial_LCJ4BR": {
           "type": "testimonial",
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
             "author": "Customer name",
-            "role": ""
+            "role": "",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
           }
         },
-        "t3": {
+        "testimonial_KcFzCF": {
           "type": "testimonial",
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
             "author": "Customer name",
-            "role": ""
+            "role": "",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
           }
         }
       },
       "block_order": [
         "t1",
-        "t2",
-        "t3"
+        "testimonial_LCJ4BR",
+        "testimonial_KcFzCF"
       ],
       "settings": {
         "heading": "What people say",
