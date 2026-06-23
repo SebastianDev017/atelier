@@ -53,8 +53,8 @@
       "settings": {
         "show_payment_icons": true,
         "show_policy_links": true,
-        "enable_country_selector": false,
-        "enable_language_selector": false,
+        "enable_country_selector": true,
+        "enable_language_selector": true,
         "color_scheme": "invert"
       }
     }

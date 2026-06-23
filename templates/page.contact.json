@@ -11,8 +11,21 @@
   "sections": {
     "main": {
       "type": "contact-form",
-      "settings": {}
+      "settings": {
+        "heading": "Get in touch",
+        "subtext": "<p>Questions, custom requests, or wholesale enquiries — send us a note and we'll get back to you.</p>",
+        "label_name": "Name",
+        "label_email": "Email",
+        "label_phone": "Phone",
+        "label_message": "Message",
+        "success_message": "Thanks for reaching out. We'll reply soon.",
+        "color_scheme": "cream",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
-  "order": ["main"]
+  "order": [
+    "main"
+  ]
 }
