@@ -13,6 +13,12 @@
       height: 100svh;
       overflow-y: auto;
       overscroll-behavior: contain;
+      /* position:sticky creates a stacking context; without a z-index it sits
+         below .site-main (a later grid item), which would trap the fixed
+         search takeover behind page content. Lift the whole header context
+         above main content, but keep it below the cart overlay (--z-overlay
+         200) so an open cart still dims the sidebar. */
+      z-index: var(--z-header);
     }
   }
 </style>
