@@ -789,3 +789,88 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   body::after { display: none; }
 }
+
+/* ---------- Page loading screen ---------- */
+.site-loader {
+  position: fixed;
+  inset: 0;
+  background-color: var(--color-bg, #FAF7F2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.site-loader.is-done {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.site-loader__letters {
+  display: flex;
+  gap: 0.05em;
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 6vw, 5rem);
+  font-weight: 300;
+  letter-spacing: 0.15em;
+  color: var(--color-text, #2E3030);
+}
+.site-loader__letters span {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: loader-letter 0.5s ease forwards;
+  animation-delay: calc(var(--i) * 60ms);
+}
+@keyframes loader-letter {
+  to { opacity: 1; transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .site-loader { display: none; }
+}
+
+/* ---------- Custom cursor ---------- */
+.custom-cursor {
+  position: fixed;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--color-text, #2E3030);
+  pointer-events: none;
+  z-index: 99997;
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, opacity 0.3s ease;
+  mix-blend-mode: multiply;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
+.custom-cursor__label {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: var(--color-bg, #FAF7F2);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.custom-cursor.is-hovering-image {
+  width: 64px;
+  height: 64px;
+}
+.custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
+.custom-cursor.is-hovering-btn {
+  width: 40px;
+  height: 2px;
+  border-radius: 0;
+}
+@media (hover: none), (pointer: coarse) {
+  .custom-cursor { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor { display: none; }
+}

@@ -41,6 +41,8 @@
     class="template-{{ request.page_type | handle }}"
     data-scroll-animations="{{ settings.enable_scroll_animations }}"
   >
+    {% render 'loader' %}
+
     <a class="skip-link" href="#main-content">{{ 'general.skip_to_content' | t }}</a>
 
     <div class="site-layout">
@@ -60,6 +62,8 @@
     {%- if settings.cart_type == 'drawer' -%}
       {% render 'cart-drawer' %}
     {%- endif -%}
+
+    {% render 'cursor' %}
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>

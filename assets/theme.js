@@ -373,17 +373,71 @@
     return FacetForm;
   })();
 
+  /* ---------- Page loading screen ----------
+     Shows once per session. Defensive around sessionStorage so a storage
+     exception can never leave the overlay stuck. Reduced-motion hides it
+     via CSS; this still flips is-done so state stays consistent. */
+  function initLoader() {
+    var loader = document.getElementById('site-loader');
+    if (!loader) return;
+    var seen = false;
+    try { seen = sessionStorage.getItem('atelier-loaded') === '1'; } catch (e) {}
+    if (seen) {
+      loader.classList.add('is-done');
+      return;
+    }
+    var count = loader.querySelectorAll('.site-loader__letters span').length;
+    var duration = count * 60 + 600;
+    setTimeout(function () {
+      loader.classList.add('is-done');
+      try { sessionStorage.setItem('atelier-loaded', '1'); } catch (e) {}
+    }, duration);
+  }
+
+  /* ---------- Custom cursor ----------
+     Lerp-follow dot that grows to a VIEW badge over images and becomes a
+     short rule over buttons. Skipped on touch and reduced-motion. */
+  function CursorComponent() {
+    this.el = document.getElementById('custom-cursor');
+    if (!this.el) return;
+    if (window.matchMedia('(hover: none)').matches || reducedMotion.matches) return;
+    var self = this;
+    this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
+    this.tick = this.tick.bind(this);
+    document.addEventListener('mousemove', function (e) { self.x = e.clientX; self.y = e.clientY; });
+    this.tick();
+    this.querySelectorAllSafe('a[href*="/products"] img, .product-card__media, .gallery__item img').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { self.el.classList.add('is-hovering-image'); });
+      el.addEventListener('mouseleave', function () { self.el.classList.remove('is-hovering-image'); });
+    });
+    this.querySelectorAllSafe('.btn, button[type="submit"]').forEach(function (el) {
+      el.addEventListener('mouseenter', function () { self.el.classList.add('is-hovering-btn'); });
+      el.addEventListener('mouseleave', function () { self.el.classList.remove('is-hovering-btn'); });
+    });
+  }
+  CursorComponent.prototype.querySelectorAllSafe = function (selector) {
+    return Array.prototype.slice.call(document.querySelectorAll(selector));
+  };
+  CursorComponent.prototype.tick = function () {
+    this.cx += (this.x - this.cx) * 0.12;
+    this.cy += (this.y - this.cy) * 0.12;
+    this.el.style.transform = 'translate(' + (this.cx - this.el.offsetWidth / 2) + 'px, ' + (this.cy - this.el.offsetHeight / 2) + 'px)';
+    requestAnimationFrame(this.tick);
+  };
+
   /* ---------- Register ---------- */
   function define(name, ctor) {
     if (!customElements.get(name)) customElements.define(name, ctor);
   }
 
   function boot() {
+    initLoader();
     new ScrollAnimator();
     define('quantity-input', QuantityInput);
     define('header-component', HeaderComponent);
     define('localization-form', LocalizationForm);
     define('facet-form', FacetForm);
+    new CursorComponent();
   }
 
   if (document.readyState === 'loading') {

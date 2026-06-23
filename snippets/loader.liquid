@@ -1,0 +1,8 @@
+<div class="site-loader" id="site-loader" aria-hidden="true" aria-live="off">
+  <div class="site-loader__letters">
+    {%- assign brand = shop.name | upcase | split: '' -%}
+    {%- for letter in brand -%}
+      <span style="--i: {{ forloop.index }}">{{ letter }}</span>
+    {%- endfor -%}
+  </div>
+</div>
