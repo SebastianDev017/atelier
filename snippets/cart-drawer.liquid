@@ -25,16 +25,22 @@
     pointer-events: none;
   }
   .cart-drawer.is-open { visibility: visible; pointer-events: auto; }
-  .cart-drawer__overlay { position: absolute; }
+  /* Overlay and panel are siblings inside .cart-drawer. The overlay inherits
+     z-index:var(--z-overlay) from .overlay, which would paint ABOVE the panel
+     and swallow its clicks — so pin the stack explicitly: overlay below, panel
+     above. This is what makes the panel's buttons clickable. */
+  .cart-drawer__overlay { position: absolute; z-index: 1; }
   .cart-drawer.is-open .cart-drawer__overlay { opacity: 1; visibility: visible; }
 
   .cart-drawer__panel {
     position: absolute;
     top: 0; right: 0; bottom: 0;
+    z-index: 2;
     width: min(92vw, 28rem);
     display: flex;
     flex-direction: column;
-    background-color: var(--color-bg);
+    /* Hardcoded cream so the panel is always solid even if a color setting resolves nil. */
+    background-color: #FAF7F2;
     color: var(--color-text);
     transform: translateX(100%);
     transition: transform var(--duration-base) var(--ease-editorial);
