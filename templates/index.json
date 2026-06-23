@@ -12,14 +12,11 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/person-stands-on-rocks-poking-out-of-the-ocean-shoreline.jpg",
         "image_height": "90svh",
-        "overlay_opacity": 20,
-        "overlay_color": "#DCDCDC",
-        "text_position": "bottom",
+        "text_position": "center",
         "text_align": "left",
         "eyebrow": "New season",
-        "heading": "Considered objects for the modern home",
+        "heading": "Considered\nobjects for the\nmodern home",
         "heading_size": "large",
         "heading_tag": "h1",
         "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
@@ -29,7 +26,7 @@
         "cta_style": "solid",
         "cta_secondary_label": "Read our story",
         "cta_secondary_url": "",
-        "color_scheme": "invert",
+        "color_scheme": "cream",
         "padding_top": 0,
         "padding_bottom": 0
       }

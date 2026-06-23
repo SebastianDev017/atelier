@@ -8,6 +8,7 @@
 
 <footer class="footer color-scheme--{{ scheme }} section">
   <div class="page-width">
+    <div class="footer-wordmark" aria-hidden="true">{{ shop.name | upcase }}</div>
     {%- if section.blocks.size > 0 -%}
       <div class="footer__top">
         {%- for block in section.blocks -%}
@@ -120,6 +121,19 @@
 </footer>
 
 {% stylesheet %}
+  .footer-wordmark {
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 9vw, 11rem);
+    font-weight: 300;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    opacity: 0.1;
+    padding-bottom: clamp(2rem, 4vw, 4rem);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: clip;
+    color: currentColor;
+  }
   .footer__top {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));

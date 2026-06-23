@@ -91,10 +91,6 @@
             class: 'hero__image hero__image--mobile'
         }}
       {%- endif -%}
-    {%- else -%}
-      <div class="hero__placeholder">
-        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
-      </div>
     {%- endif -%}
   </div>
 
@@ -145,10 +141,15 @@
     position: relative;
     display: flex;
     width: 100%;
-    min-height: var(--hero-height, 70svh);
+    min-height: var(--hero-height, 90svh);
     padding-block: var(--pt, 0) var(--pb, 0);
     overflow: hidden;
   }
+  /* No-image editorial hero: clean cream ground, full-height, oversized type */
+  .hero--no-image,
+  .hero--no-image .hero__media { background-color: var(--color-bg); }
+  .hero--no-image { min-height: 90svh; }
+  .hero--no-image .hero__content { max-width: none; }
 
   .hero__media {
     position: absolute;
@@ -212,7 +213,14 @@
   .hero--align-right .hero__content { text-align: right; align-items: flex-end; margin-inline-start: auto; }
 
   .hero__eyebrow { color: var(--color-overlay-text); opacity: 0.85; }
-  .hero__heading { color: var(--color-overlay-text); max-width: 18ch; }
+  .hero__heading {
+    color: var(--color-overlay-text);
+    max-width: none;
+    font-size: clamp(4rem, 10vw, 13rem);
+    font-weight: 300;
+    line-height: 0.92;
+    letter-spacing: -0.03em;
+  }
   .hero__subtext {
     max-width: 52ch;
     color: var(--color-overlay-text);
@@ -388,7 +396,7 @@
       "type": "textarea",
       "id": "heading",
       "label": "Heading",
-      "default": "Considered objects for the modern home"
+      "default": "Considered\nobjects for the\nmodern home"
     },
     {
       "type": "select",
@@ -480,7 +488,7 @@
         { "value": "white", "label": "White" },
         { "value": "invert", "label": "Inverted" }
       ],
-      "default": "invert"
+      "default": "cream"
     },
     {
       "type": "range",
