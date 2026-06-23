@@ -2,14 +2,11 @@
   assign scheme = section.settings.color_scheme | default: 'cream'
 -%}
 
-<style>
-  #shopify-section-{{ section.id }} {
-    --pt: {{ section.settings.padding_top }}px;
-    --pb: {{ section.settings.padding_bottom }}px;
-  }
-</style>
-
-<cart-page class="cart color-scheme--{{ scheme }}" data-section-id="{{ section.id }}">
+<cart-page
+  class="cart color-scheme--{{ scheme }}"
+  style="padding-top: {{ section.settings.padding_top | default: 64 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;"
+  data-section-id="{{ section.id }}"
+>
   <div class="page-width">
     <h1 class="cart__title h2" data-animate>{{ 'cart.title' | t }}</h1>
 
@@ -70,7 +67,8 @@
 </cart-page>
 
 {% stylesheet %}
-  .cart { padding-block: var(--pt, var(--space-16)) var(--pb, var(--space-24)); }
+  /* Section padding is applied as an inline style on <cart-page> so the
+     merchant's padding_top/bottom settings always win. */
   .cart__title { margin-bottom: var(--space-10); }
   .cart__layout { display: grid; gap: var(--space-12); align-items: start; }
   .cart__list { display: flex; flex-direction: column; gap: var(--space-8); }

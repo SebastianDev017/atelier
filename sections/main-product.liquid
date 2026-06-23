@@ -7,14 +7,13 @@
 
 <style>
   #shopify-section-{{ section.id }} {
-    --pt: {{ section.settings.padding_top }}px;
-    --pb: {{ section.settings.padding_bottom }}px;
     --product-media-width: {{ section.settings.media_width }}%;
   }
 </style>
 
 <product-info
   class="product color-scheme--{{ scheme }}"
+  style="padding-top: {{ section.settings.padding_top | default: 64 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;"
   data-product-info
   data-section-id="{{ section.id }}"
   data-url="{{ product.url }}"
@@ -221,7 +220,9 @@
 <script src="{{ 'product.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
-  .product { padding-block: var(--pt, var(--space-12)) var(--pb, var(--space-16)); }
+  /* Section padding is applied as an inline style on <product-info> so the
+     merchant's padding_top/bottom settings always win (no CSS-var inheritance
+     or cache dependency). */
   .product__grid { display: grid; gap: var(--space-8); align-items: start; }
   .product__details { display: flex; flex-direction: column; gap: var(--space-5); }
   .product__title { letter-spacing: var(--tracking-tight); }
