@@ -51,7 +51,7 @@
       "settings": {
         "title": "New arrivals",
         "subtitle": "A few of our favourites this month.",
-        "collection": "",
+        "collection": "danny-kaplan",
         "products_to_show": 4,
         "columns_desktop": "4",
         "columns_mobile": "2",
