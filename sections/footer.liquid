@@ -6,9 +6,19 @@
   endif
 -%}
 
-<footer class="footer color-scheme--{{ scheme }} section">
+<footer
+  class="footer color-scheme--{{ scheme }}"
+  style="padding-top: {{ section.settings.padding_top | default: 64 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;"
+>
   <div class="page-width">
-    <div class="footer-wordmark" aria-hidden="true">{{ shop.name | upcase }}</div>
+    {%- if section.settings.show_wordmark -%}
+      {%- assign wordmark = section.settings.wordmark_text | default: shop.name | upcase -%}
+      <div
+        class="footer-wordmark"
+        aria-hidden="true"
+        style="opacity: {{ section.settings.wordmark_opacity | divided_by: 100.0 }};"
+      >{{ wordmark }}</div>
+    {%- endif -%}
     {%- if section.blocks.size > 0 -%}
       <div class="footer__top">
         {%- for block in section.blocks -%}
@@ -101,11 +111,28 @@
       </div>
 
       <div class="footer__bottom-right">
-        {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
-          {% render 'country-selector',
-            show_country: section.settings.enable_country_selector,
-            show_language: section.settings.enable_language_selector,
-            id: 'footer' | append: section.id %}
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- form 'localization', id: 'FooterCountryForm' -%}
+            <div class="footer-localization">
+              <select name="country_code" onchange="this.form.submit()" aria-label="{{ 'localization.country_label' | t }}">
+                {%- for country in localization.available_countries -%}
+                  <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} ({{ country.currency.iso_code }})</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endform -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_language_selector and localization.available_languages.size > 1 -%}
+          {%- form 'localization', id: 'FooterLanguageForm' -%}
+            <div class="footer-localization">
+              <select name="locale_code" onchange="this.form.submit()" aria-label="{{ 'localization.language_label' | t }}">
+                {%- for language in localization.available_languages -%}
+                  <option value="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>{{ language.endonym_name }}</option>
+                {%- endfor -%}
+              </select>
+            </div>
+          {%- endform -%}
         {%- endif -%}
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
@@ -173,6 +200,38 @@
   .footer__bottom-right { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
   .footer__payment { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
   .footer__payment-icon { width: 2.2rem; height: auto; }
+
+  /* Native localization selectors (country / language) */
+  .footer-localization { position: relative; display: inline-block; }
+  .footer-localization::after {
+    content: '';
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 8px;
+    height: 5px;
+    background-color: currentColor;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+    pointer-events: none;
+    opacity: 0.6;
+  }
+  .footer-localization select {
+    background: transparent;
+    border: 1px solid currentColor;
+    border-radius: 0;
+    color: inherit;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 0.4rem 2.5rem 0.4rem 0.75rem;
+    appearance: none;
+    -webkit-appearance: none;
+    opacity: 0.7;
+    transition: opacity var(--duration-fast) var(--ease-editorial);
+  }
+  .footer-localization select:hover { opacity: 1; }
 {% endstylesheet %}
 
 {% schema %}
@@ -217,6 +276,56 @@
   ],
   "settings": [
     {
+      "type": "header",
+      "content": "Wordmark"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_wordmark",
+      "label": "Show large wordmark",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "wordmark_opacity",
+      "min": 0,
+      "max": 30,
+      "step": 1,
+      "unit": "%",
+      "label": "Wordmark opacity",
+      "default": 10
+    },
+    {
+      "type": "text",
+      "id": "wordmark_text",
+      "label": "Wordmark text",
+      "info": "Leave blank to use shop name"
+    },
+    {
+      "type": "header",
+      "content": "Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 64
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 120,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 64
+    },
+    {
       "type": "checkbox",
       "id": "show_payment_icons",
       "label": "Show payment icons",
@@ -234,14 +343,14 @@
     },
     {
       "type": "checkbox",
-      "id": "enable_country_selector",
-      "label": "Enable country/region selector",
+      "id": "show_country_selector",
+      "label": "Show country/region selector",
       "default": false
     },
     {
       "type": "checkbox",
-      "id": "enable_language_selector",
-      "label": "Enable language selector",
+      "id": "show_language_selector",
+      "label": "Show language selector",
       "default": false
     },
     {
