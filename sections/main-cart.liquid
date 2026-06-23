@@ -74,6 +74,8 @@
   .cart__title { margin-bottom: var(--space-10); }
   .cart__layout { display: grid; gap: var(--space-12); align-items: start; }
   .cart__list { display: flex; flex-direction: column; gap: var(--space-8); }
+  /* Busy state during a line-item update (cart.js toggles .is-loading on <cart-page class="cart">). */
+  .cart.is-loading .cart__list { opacity: 0.55; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-editorial); }
   .cart__list-item { padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-border); }
   .cart__list-item:last-child { border-bottom: 0; }
   .cart__list .cart-item { grid-template-columns: 7rem 1fr; gap: var(--space-5); }

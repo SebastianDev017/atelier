@@ -348,6 +348,7 @@ h1, h2, h3, h4, h5, h6 {
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
@@ -374,6 +375,34 @@ h1, h2, h3, h4, h5, h6 {
 .btn:active { transform: translateY(1px); }
 .btn[disabled],
 .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
+
+/* Loading state — cart.js toggles .is-loading on the add/checkout buttons during
+   the fetch. Hide the label and show a centered spinner so the buy path never
+   looks frozen. The circular spinner is functional feedback, exempt from the
+   zero-radius rule. */
+.btn.is-loading { color: transparent !important; pointer-events: none; }
+.btn.is-loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 1.1em;
+  height: 1.1em;
+  margin: -0.55em 0 0 -0.55em;
+  border: 2px solid color-mix(in srgb, var(--color-button-text, var(--color-bg)) 35%, transparent);
+  border-top-color: var(--color-button-text, var(--color-bg));
+  border-radius: 50%;
+  animation: btn-spin 0.6s linear infinite;
+}
+.btn--outline.is-loading::after,
+.btn--link.is-loading::after {
+  border-color: color-mix(in srgb, var(--color-text) 35%, transparent);
+  border-top-color: var(--color-text);
+}
+@keyframes btn-spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) {
+  .btn.is-loading::after { animation-duration: 1.4s; }
+}
 
 .btn--outline {
   background-color: transparent;

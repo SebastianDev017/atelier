@@ -67,6 +67,10 @@
     margin: 0;
   }
 
+  /* Busy state during a line-item update (cart.js toggles .is-loading on <cart-drawer>).
+     0.55 keeps the cream ground reading solid; subtotal/footer stay legible. */
+  .cart-drawer.is-loading .cart-drawer__items { opacity: 0.55; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-editorial); }
+
   /* Free-shipping bar visuals live in snippets/cart-shipping-bar.liquid; the drawer only positions it. */
   .cart-drawer__contents .cart-shipping { padding: var(--space-4) var(--space-6) 0; }
 
