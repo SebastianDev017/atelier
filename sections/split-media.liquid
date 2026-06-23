@@ -66,7 +66,7 @@
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-        <h2 class="split-media__heading h3">{{ section.settings.heading | escape }}</h2>
+        <h2 class="split-media__heading h3 reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></h2>
       {%- endif -%}
 
       {%- if section.settings.text != blank -%}

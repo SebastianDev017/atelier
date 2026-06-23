@@ -34,6 +34,7 @@
 </style>
 
 <div class="image-with-text color-scheme--{{ scheme }} {{ layout_class }}">
+  <span class="edition-number" aria-hidden="true">003</span>
   <div class="image-with-text__inner page-width">
     <div class="image-with-text__media-col">
       <div class="media media--{{ ratio }} image-with-text__media" data-animate-scale>
@@ -54,9 +55,7 @@
         {%- endif -%}
 
         {%- if section.settings.title != blank -%}
-          <h2 class="image-with-text__title h3" data-animate data-animate-delay="2">
-            {{- section.settings.title | escape -}}
-          </h2>
+          <h2 class="image-with-text__title h3 reveal-lines"><span class="line">{{- section.settings.title | escape -}}</span></h2>
         {%- endif -%}
 
         {%- if section.settings.text != blank -%}
@@ -79,6 +78,7 @@
 
 {% stylesheet %}
   .image-with-text {
+    position: relative;
     padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
   }
   .image-with-text__inner {

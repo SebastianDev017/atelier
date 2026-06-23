@@ -159,29 +159,38 @@
 
   /* ---------- Numbered index navigation ---------- */
   .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-6); }
-  .sidebar-nav__head { display: flex; align-items: baseline; gap: var(--space-3); }
-  .sidebar-nav__index {
-    flex: none;
-    min-width: 1.7em;
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    letter-spacing: var(--tracking-wide);
-    color: var(--color-muted);
-  }
-  .sidebar-nav__label {
+  .nav-link {
     display: inline-flex;
-    align-items: center;
-    min-height: 40px;
-    font-family: var(--font-heading);
-    font-size: var(--text-md);
-    font-weight: var(--font-heading-weight);
-    letter-spacing: var(--tracking-label);
-    text-transform: var(--uppercase-nav);
-    line-height: var(--leading-snug);
+    flex-direction: column;
+    gap: 2px;
+    color: var(--color-text);
     transition: color var(--duration-fast) var(--ease-editorial);
   }
-  .sidebar-nav__label:hover,
-  .sidebar-nav__label[aria-current="page"] { color: var(--color-accent-local); }
+  .nav-link:hover { color: var(--color-accent-local); }
+  .nav-link::after {
+    content: '';
+    display: block;
+    height: 1px;
+    width: 0;
+    background-color: currentColor;
+    transition: width 0.6s cubic-bezier(0.25, 0.1, 0, 1);
+  }
+  .nav-link:hover::after,
+  .nav-link[aria-current="page"]::after { width: 100%; }
+  .nav-numeral {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    opacity: 0.4;
+    font-family: var(--font-mono, monospace);
+    margin-bottom: 2px;
+  }
+  .nav-link__text {
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
 
   .sidebar-nav__sub {
     display: flex;
@@ -320,7 +329,7 @@
     .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
 
     /* Meet the 44px touch-target minimum in the off-canvas drawer */
-    .sidebar-nav__label,
+    .nav-link,
     .sidebar-nav__sublink { min-height: 44px; }
   }
 {% endstylesheet %}

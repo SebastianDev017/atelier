@@ -32,6 +32,7 @@
 </style>
 
 <div class="featured-collection color-scheme--{{ scheme }}">
+  <span class="edition-number" aria-hidden="true">002</span>
   <div class="featured-collection__inner page-width">
     {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
       <div class="section-header section-header--center">
@@ -82,6 +83,7 @@
 
 {% stylesheet %}
   .featured-collection {
+    position: relative;
     padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
   }
   .featured-collection__inner {

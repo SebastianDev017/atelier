@@ -138,7 +138,7 @@
 
   /* ---------- Scroll reveal ---------- */
   function ScrollAnimator() {
-    this.selector = '[data-animate], [data-animate-scale], [data-animate-left], [data-animate-right]';
+    this.selector = '[data-animate], [data-animate-scale], [data-animate-left], [data-animate-right], .reveal-lines';
     this.enabled =
       document.body.getAttribute('data-scroll-animations') !== 'false' &&
       !reducedMotion.matches &&

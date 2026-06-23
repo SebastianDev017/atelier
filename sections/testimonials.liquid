@@ -20,9 +20,10 @@
 </style>
 
 <div class="testimonials color-scheme--{{ scheme }}">
+  <span class="edition-number" aria-hidden="true">005</span>
   <div class="testimonials__inner page-width">
     {%- if section.settings.heading != blank -%}
-      <h2 class="testimonials__heading h3" data-animate>{{ section.settings.heading | escape }}</h2>
+      <h2 class="testimonials__heading h3 reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></h2>
     {%- endif -%}
 
     {%- if block_count > 0 -%}
@@ -139,6 +140,7 @@
 
 {% stylesheet %}
   .testimonials {
+    position: relative;
     padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
   }
   .testimonials__inner {

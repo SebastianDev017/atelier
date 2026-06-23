@@ -32,6 +32,7 @@
 </style>
 
 <div class="rich-text color-scheme--{{ scheme }} {{ align_class }}">
+  <span class="edition-number" aria-hidden="true">004</span>
   <div class="rich-text__inner page-width {{ width_class }}">
     {%- for block in section.blocks -%}
       {%- case block.type -%}
@@ -40,9 +41,7 @@
             {{- block.settings.text | escape -}}
           </p>
         {%- when 'heading' -%}
-          <{{ block.settings.heading_tag }} class="rich-text__heading h2" data-animate data-animate-delay="2" {{ block.shopify_attributes }}>
-            {{- block.settings.heading | escape -}}
-          </{{ block.settings.heading_tag }}>
+          <{{ block.settings.heading_tag }} class="rich-text__heading h2 reveal-lines" {{ block.shopify_attributes }}><span class="line">{{- block.settings.heading | escape -}}</span></{{ block.settings.heading_tag }}>
         {%- when 'text' -%}
           <div class="rich-text__text prose" data-animate data-animate-delay="3" {{ block.shopify_attributes }}>
             {{ block.settings.text }}
@@ -62,7 +61,7 @@
 </div>
 
 {% stylesheet %}
-  .rich-text { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .rich-text { position: relative; padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
   .rich-text__inner {
     display: flex;
     flex-direction: column;

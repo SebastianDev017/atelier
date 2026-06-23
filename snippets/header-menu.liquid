@@ -13,14 +13,14 @@
   {%- for link in menu.links -%}
     {%- assign roman = romans[forloop.index0] | default: forloop.index -%}
     <li class="sidebar-nav__group">
-      <div class="sidebar-nav__head">
-        <span class="sidebar-nav__index" aria-hidden="true">{{ roman }}</span>
-        <a
-          class="sidebar-nav__label"
-          href="{{ link.url }}"
-          {% if link.current %}aria-current="page"{% endif %}
-        >{{ link.title | escape }}</a>
-      </div>
+      <a
+        class="nav-link"
+        href="{{ link.url }}"
+        {% if link.current %}aria-current="page"{% endif %}
+      >
+        <span class="nav-numeral" aria-hidden="true">{{ roman }}</span>
+        <span class="nav-link__text">{{ link.title | escape }}</span>
+      </a>
       {%- if link.links.size > 0 -%}
         <ul class="sidebar-nav__sub">
           {%- for child in link.links -%}

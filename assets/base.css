@@ -874,3 +874,51 @@ body::after {
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor { display: none; }
 }
+
+/* ---------- Text reveal on scroll ----------
+   Heading text masked behind overflow:hidden, slides up when its wrapper
+   gains .is-visible (ScrollAnimator) or via scroll-timeline where supported. */
+.reveal-lines { overflow: hidden; }
+.reveal-lines .line {
+  display: block;
+  transform: translateY(105%);
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-lines.is-visible .line { transform: translateY(0); }
+.reveal-lines .line:nth-child(2) { transition-delay: 80ms; }
+.reveal-lines .line:nth-child(3) { transition-delay: 160ms; }
+.reveal-lines .line:nth-child(4) { transition-delay: 240ms; }
+@supports (animation-timeline: scroll()) {
+  .reveal-lines .line {
+    animation: reveal-line linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+  .reveal-lines .line:nth-child(2) { animation-range: entry 5% entry 40%; }
+  .reveal-lines .line:nth-child(3) { animation-range: entry 10% entry 45%; }
+}
+@keyframes reveal-line {
+  from { transform: translateY(105%); }
+  to   { transform: translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .reveal-lines .line { transform: none; animation: none; }
+}
+
+/* ---------- Section edition numbers ----------
+   Faint monospace counter in each section's top-right. z-index clears the
+   hero's layered media. --section-padding-sm/--page-gutter fall back since
+   they aren't theme tokens; colour uses the real --color-muted. */
+.edition-number {
+  position: absolute;
+  top: var(--section-padding-sm, 2.5rem);
+  right: var(--page-gutter, 1.5rem);
+  z-index: var(--z-raised, 10);
+  font-size: 10px;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: 0.2em;
+  opacity: 0.2;
+  color: var(--color-muted);
+  user-select: none;
+  pointer-events: none;
+}
