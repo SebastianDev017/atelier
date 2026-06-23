@@ -9,6 +9,30 @@
  */
 {
   "sections": {
+    "rich_text_wNmVex": {
+      "type": "rich-text",
+      "blocks": {
+        "heading_L7N8GB": {
+          "type": "heading",
+          "settings": {
+            "heading": "Cart",
+            "heading_tag": "h1",
+            "heading_size": "display"
+          }
+        }
+      },
+      "block_order": [
+        "heading_L7N8GB"
+      ],
+      "name": "Rich text",
+      "settings": {
+        "content_width": "narrow",
+        "text_alignment": "center",
+        "color_scheme": "cream",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "main": {
       "type": "main-cart",
       "settings": {
@@ -19,6 +43,7 @@
     }
   },
   "order": [
+    "rich_text_wNmVex",
     "main"
   ]
 }
