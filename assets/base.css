@@ -322,14 +322,19 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color-bg);
   color: var(--color-text);
 }
-.color-scheme--cream { --color-bg: var(--color-background); --color-text: var(--color-foreground); --color-accent-local: var(--color-accent); }
-.color-scheme--parchment { --color-bg: color-mix(in srgb, var(--color-background) 93%, var(--color-foreground)); --color-text: var(--color-foreground); --color-accent-local: var(--color-accent); }
-.color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background) 86%, var(--color-foreground)); --color-text: var(--color-foreground); --color-accent-local: var(--color-accent); }
-.color-scheme--white { --color-bg: color-mix(in srgb, var(--color-background) 30%, var(--color-white)); --color-text: var(--color-foreground); --color-accent-local: var(--color-accent); }
+/* Every scheme re-derives --color-bg/--color-text from the brand setting
+   vars. Those settings resolve to nil through Shopify's GitHub sync, so each
+   value carries a hardcoded fallback — without it the scheme paints
+   transparent (e.g. the mobile drawer showed through, invert sections lost
+   their dark background). */
+.color-scheme--cream { --color-bg: var(--color-background, #FAF7F2); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
+.color-scheme--parchment { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 93%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
+.color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 86%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
+.color-scheme--white { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 30%, var(--color-white)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
 .color-scheme--invert {
-  --color-bg: var(--color-foreground);
-  --color-text: var(--color-background);
-  --color-accent-local: var(--color-background);
+  --color-bg: var(--color-foreground, #2C1810);
+  --color-text: var(--color-background, #FAF7F2);
+  --color-accent-local: var(--color-background, #FAF7F2);
   /* Re-derive border + reset buttons so fixed light/dark tokens stay legible on the inverted scheme */
   --color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
   --color-button: var(--color-background);
