@@ -23,7 +23,6 @@
   --color-accent-local: var(--color-accent, #766356);
   --color-border: var(--color-border-setting, color-mix(in srgb, var(--color-text) 12%, transparent));
   --color-border-strong: color-mix(in srgb, var(--color-text) 32%, transparent);
-  --color-muted: color-mix(in srgb, var(--color-text) 58%, transparent);
   --color-subtle: color-mix(in srgb, var(--color-text) 6%, transparent);
   --color-sale: #B23A2E;
   --color-overlay-text: var(--color-background, #FAF7F2);
@@ -142,7 +141,7 @@ body {
   min-height: 100vh;
   min-height: 100svh;
   background-color: var(--color-bg);
-  color: var(--color-text);
+  color: var(--color-body, #5C3D2E);
   font-family: var(--font-body);
   font-weight: var(--font-body-weight);
   font-size: calc(var(--text-base) * var(--body-scale));
@@ -189,12 +188,13 @@ table { border-collapse: collapse; width: 100%; }
 
 /* ---------- Typography ---------- */
 .h0, .h1, .h2, .h3, .h4, .h5,
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-heading-weight);
   line-height: var(--leading-tight);
   letter-spacing: var(--tracking-tight);
   text-transform: var(--uppercase-headings);
+  color: var(--color-heading, #2C1810);
 }
 .h0 { font-size: calc(var(--text-6xl) * var(--heading-scale)); letter-spacing: -0.02em; }
 .h1 { font-size: calc(var(--text-5xl) * var(--heading-scale)); letter-spacing: -0.02em; }
@@ -219,6 +219,9 @@ h1, h2, h3, h4, h5 {
   color: var(--color-muted);
   letter-spacing: var(--tracking-wide);
 }
+
+/* Customizable muted / label color from theme settings */
+.eyebrow, .label, .caption, .nav-numeral { color: var(--color-muted, #A0826D); }
 
 .lead { font-size: var(--text-md); line-height: var(--leading-relaxed); }
 
@@ -325,6 +328,10 @@ h1, h2, h3, h4, h5 {
   --color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
   --color-button: var(--color-background);
   --color-button-text: var(--color-foreground);
+  /* Flip the customizable type colors so headings/body/muted stay legible on dark */
+  --color-heading: var(--color-text);
+  --color-body: var(--color-text);
+  --color-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
 
 /* ---------- Buttons ---------- */

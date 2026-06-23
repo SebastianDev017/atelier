@@ -116,6 +116,25 @@
         "id": "button_text_color",
         "default": "#FBF8F2",
         "label": "Button label"
+      },
+      {
+        "type": "color",
+        "id": "color_text_heading",
+        "label": "Heading color",
+        "default": "#2C1810",
+        "info": "Overrides the color scheme heading color"
+      },
+      {
+        "type": "color",
+        "id": "color_text_body",
+        "label": "Body text color",
+        "default": "#5C3D2E"
+      },
+      {
+        "type": "color",
+        "id": "color_text_muted",
+        "label": "Muted / label color",
+        "default": "#A0826D"
       }
     ]
   },

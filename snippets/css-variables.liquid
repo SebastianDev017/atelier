@@ -36,6 +36,9 @@
     --color-background: {{ settings.background_color | default: '#FAF7F2' }};
     --color-foreground: {{ settings.text_color | default: '#2C1810' }};
     --color-accent: {{ settings.accent_color | default: '#766356' }};
+    --color-heading: {{ settings.color_text_heading | default: '#2C1810' }};
+    --color-body: {{ settings.color_text_body | default: '#5C3D2E' }};
+    --color-muted: {{ settings.color_text_muted | default: '#A0826D' }};
     {% if settings.border_color != blank %}--color-border-setting: {{ settings.border_color }};{% endif %}
     {% if settings.button_color != blank %}--color-button: {{ settings.button_color }};{% endif %}
     {% if settings.button_text_color != blank %}--color-button-text: {{ settings.button_text_color }};{% endif %}
