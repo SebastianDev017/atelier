@@ -32,12 +32,13 @@
     justify-content: center;
   }
   .editorial-statement__text {
-    max-width: 700px;
+    max-width: 880px;
     text-align: center;
     font-family: var(--font-heading);
     font-weight: 300;
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    line-height: 1.4;
+    /* Monumental manifesto tier — uses the real display token, not a one-off clamp. */
+    font-size: calc(var(--text-4xl) * var(--heading-scale));
+    line-height: var(--leading-snug);
     letter-spacing: var(--tracking-tight);
     color: var(--color-heading, #2C1810);
   }

@@ -6,15 +6,18 @@
 {%- liquid
   assign heading_font = settings.heading_font
   assign body_font = settings.body_font
-  assign heading_bold = heading_font | font_modify: 'weight', '600'
   assign body_medium = body_font | font_modify: 'weight', '500'
   assign body_semibold = body_font | font_modify: 'weight', '600'
   assign body_italic = body_font | font_modify: 'style', 'italic'
+  comment
+    Clamp the heading weight into the editorial 300-400 range so a heavier
+    font_picker choice can never break the austere identity.
+  endcomment
+  assign heading_weight = heading_font.weight | at_most: 400 | at_least: 300
 -%}
 {% style %}
   {% if heading_font %}
     {{ heading_font | font_face: font_display: 'swap' }}
-    {% if heading_bold %}{{ heading_bold | font_face: font_display: 'swap' }}{% endif %}
   {% endif %}
   {% if body_font %}
     {{ body_font | font_face: font_display: 'swap' }}
@@ -26,7 +29,7 @@
   :root {
     {% if heading_font %}
       --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
-      --font-heading-weight: {{ heading_font.weight }};
+      --font-heading-weight: {{ heading_weight }};
     {% endif %}
     {% if body_font %}
       --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};

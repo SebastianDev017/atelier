@@ -34,8 +34,11 @@
 <div class="featured-collection color-scheme--{{ scheme }}">
   <span class="edition-number" aria-hidden="true">002</span>
   <div class="featured-collection__inner page-width">
-    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+    {%- if section.settings.eyebrow != blank or section.settings.title != blank or section.settings.subtitle != blank -%}
       <div class="section-header section-header--center">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
         {%- if section.settings.title != blank -%}
           <h2 class="h3" data-animate>{{ section.settings.title | escape }}</h2>
         {%- endif -%}
@@ -120,6 +123,12 @@
 {
   "name": "Featured collection",
   "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "info": "Small mono label above the heading."
+    },
     {
       "type": "text",
       "id": "title",
