@@ -42,7 +42,7 @@
   endif
 -%}
 <div class="product-card" data-product-card>
-  <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+  <div class="product-card__media">
     {%- if primary -%}
       {{
         primary
@@ -85,24 +85,26 @@
         {%- endif -%}
       {%- endunless -%}
     </span>
-  </a>
 
-  {%- if quick_add and product.available -%}
-    {%- if product.variants.size == 1 -%}
-      <product-form class="product-card__quick">
-        {%- form 'product', product -%}
-          <input type="hidden" name="id" value="{{ variant.id }}">
-          <button type="submit" name="add" class="btn btn--small btn--full" data-add-button>
-            <span data-add-label>{{ 'products.add_to_cart' | t }}</span>
-          </button>
-        {%- endform -%}
-      </product-form>
-    {%- else -%}
-      <a href="{{ product.url }}" class="btn btn--small btn--full product-card__quick">
-        {{- 'products.choose_options' | t -}}
-      </a>
+    {%- comment -%} Quick-add lives INSIDE the media so it slides up from the bottom of the
+      image (clipped by the media's overflow:hidden) and never covers the info text below. {%- endcomment -%}
+    {%- if quick_add and product.available -%}
+      {%- if product.variants.size == 1 -%}
+        <product-form class="product-card__quick">
+          {%- form 'product', product -%}
+            <input type="hidden" name="id" value="{{ variant.id }}">
+            <button type="submit" name="add" class="btn btn--small btn--full" data-add-button>
+              <span data-add-label>{{ 'products.add_to_cart' | t }}</span>
+            </button>
+          {%- endform -%}
+        </product-form>
+      {%- else -%}
+        <a href="{{ product.url }}" class="btn btn--small btn--full product-card__quick">
+          {{- 'products.choose_options' | t -}}
+        </a>
+      {%- endif -%}
     {%- endif -%}
-  {%- endif -%}
+  </div>
 
   <div class="product-card__info">
     {%- if show_vendor and product.vendor != blank -%}
