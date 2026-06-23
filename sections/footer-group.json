@@ -18,6 +18,7 @@
           "type": "brand",
           "settings": {
             "text": "<p>Considered objects for the modern home, made to last.</p>",
+            "logo_width": 140,
             "show_social": true
           }
         },
@@ -25,7 +26,7 @@
           "type": "menu",
           "settings": {
             "heading": "Shop",
-            "menu": "footer"
+            "menu": "main-menu"
           }
         },
         "about": {
@@ -43,9 +44,22 @@
           }
         }
       },
-      "block_order": ["brand", "menu", "about", "newsletter"],
-      "settings": {}
+      "block_order": [
+        "brand",
+        "menu",
+        "about",
+        "newsletter"
+      ],
+      "settings": {
+        "show_payment_icons": true,
+        "show_policy_links": true,
+        "enable_country_selector": false,
+        "enable_language_selector": false,
+        "color_scheme": "invert"
+      }
     }
   },
-  "order": ["footer"]
+  "order": [
+    "footer"
+  ]
 }
