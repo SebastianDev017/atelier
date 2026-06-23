@@ -109,7 +109,7 @@
   {%- comment -%} Search modal — slides down as a top sheet, mutually exclusive with the menu {%- endcomment -%}
   {%- if section.settings.show_search -%}
     <div class="sidebar__search" id="SearchModal-{{ section.id }}" data-search-modal>
-      <div class="sidebar__search-inner page-width">
+      <div class="sidebar__search-inner">
         {% render 'predictive-search', id: section.id %}
         <button
           type="button"
@@ -264,26 +264,46 @@
   .sidebar__toggle,
   .sidebar__close { display: none; }
 
-  /* ---------- Search top sheet ---------- */
+  /* ---------- Search full-screen takeover ----------
+     Sits above the sidebar and everything else (but below the custom cursor
+     at z 99997 so the cursor stays visible). Opaque ground, centred input. */
   .sidebar__search {
     position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    background-color: var(--color-bg);
-    border-bottom: 1px solid var(--color-border);
-    padding-block: var(--space-8);
-    z-index: var(--z-drawer);
+    inset: 0;
+    z-index: 9990;
+    background-color: var(--color-bg, #FAF7F2);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 6rem;
+    padding-inline: var(--page-margin, 1.5rem);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(-0.75rem);
+    transform: translateY(-0.5rem);
     transition: opacity var(--duration-base) var(--ease-editorial),
                 transform var(--duration-base) var(--ease-editorial),
                 visibility var(--duration-base);
   }
   .sidebar.header--search-open .sidebar__search { opacity: 1; visibility: visible; transform: translateY(0); }
-  .sidebar__search-inner { display: flex; align-items: flex-start; gap: var(--space-4); }
+  .sidebar__search-inner {
+    width: min(640px, 100%);
+    max-width: 640px;
+    display: flex;
+    align-items: center;
+    gap: var(--space-4);
+  }
   .sidebar__search-inner predictive-search { flex: 1; }
+  /* Editorial search field: large serif input on the open canvas. */
+  .sidebar__search .search__input {
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    padding-block: var(--space-4);
+  }
+  .sidebar__search-close {
+    position: absolute;
+    top: 2rem;
+    right: var(--page-margin, 1.5rem);
+  }
 
   /* ---------- Overlay ---------- */
   .sidebar__overlay { z-index: var(--z-overlay); }
