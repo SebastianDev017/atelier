@@ -12,7 +12,10 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "image": "shopify://shop_images/silhouetted-couples-look-out-at-a-city-at-night.jpg",
         "image_height": "90svh",
+        "overlay_opacity": 30,
+        "overlay_color": "#DCDCDC",
         "text_position": "center",
         "text_align": "left",
         "eyebrow": "New season",
@@ -26,7 +29,7 @@
         "cta_style": "solid",
         "cta_secondary_label": "Read our story",
         "cta_secondary_url": "",
-        "color_scheme": "cream",
+        "color_scheme": "invert",
         "padding_top": 0,
         "padding_bottom": 0
       }
