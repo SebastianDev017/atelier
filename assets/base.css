@@ -895,6 +895,15 @@ body::after {
 }
 
 /* ---------- Custom cursor ---------- */
+/* Hide the OS cursor on pointer-fine devices so only the custom dot shows
+   (prevents the double-cursor). Restored to the native cursor on touch /
+   coarse pointers, where the custom cursor is itself hidden. */
+html, body, *, *::before, *::after { cursor: none !important; }
+@media (hover: none), (pointer: coarse) {
+  html, body, *, *::before, *::after { cursor: auto !important; }
+}
+.custom-cursor { cursor: none !important; pointer-events: none; }
+
 .custom-cursor {
   position: fixed;
   width: 10px;
