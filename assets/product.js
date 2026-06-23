@@ -106,13 +106,16 @@
         .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
         .then(function (text) {
           var doc = new DOMParser().parseFromString(text, 'text/html');
-          var incoming = doc.querySelectorAll('[data-price-target]');
-          var current = self.querySelectorAll('[data-price-target]');
-          Array.prototype.forEach.call(current, function (node, i) {
-            if (incoming[i]) node.innerHTML = incoming[i].innerHTML;
+          // Swap per-variant regions: price and low-stock inventory line.
+          ['[data-price-target]', '[data-inventory-target]'].forEach(function (sel) {
+            var incoming = doc.querySelectorAll(sel);
+            var current = self.querySelectorAll(sel);
+            Array.prototype.forEach.call(current, function (node, i) {
+              if (incoming[i]) node.innerHTML = incoming[i].innerHTML;
+            });
           });
         })
-        .catch(function () { /* keep client-side price */ });
+        .catch(function () { /* keep client-side values */ });
     };
 
     ProductInfo.prototype.initSticky = function () {

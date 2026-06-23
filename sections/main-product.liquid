@@ -49,6 +49,17 @@
                 <p class="product__taxes caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
               </div>
 
+            {%- when 'inventory' -%}
+              {%- liquid
+                assign show_inventory = false
+                if settings.low_stock_threshold > 0 and selected_variant.inventory_management != blank and selected_variant.inventory_quantity > 0 and selected_variant.inventory_quantity <= settings.low_stock_threshold
+                  assign show_inventory = true
+                endif
+              -%}
+              <p class="product__inventory caption" data-inventory-target {{ block.shopify_attributes }}>
+                {%- if show_inventory -%}{{ 'products.low_stock_count' | t: count: selected_variant.inventory_quantity }}{%- endif -%}
+              </p>
+
             {%- when 'rating' -%}
               {%- if product.metafields.reviews.rating.value != blank -%}
                 {%- assign rating = product.metafields.reviews.rating.value -%}
@@ -213,6 +224,8 @@
   .product__details { display: flex; flex-direction: column; gap: var(--space-5); }
   .product__title { letter-spacing: var(--tracking-tight); }
   .product__price { display: flex; flex-direction: column; gap: var(--space-1); }
+  .product__inventory { color: var(--color-muted); letter-spacing: var(--tracking-wide); }
+  .product__inventory:empty { display: none; }
   .product__rating { display: inline-flex; align-items: center; gap: var(--space-2); }
   .product__description { color: var(--color-muted); }
 
@@ -300,6 +313,7 @@
     { "type": "title", "name": "Title", "limit": 1 },
     { "type": "rating", "name": "Rating", "limit": 1 },
     { "type": "price", "name": "Price", "limit": 1 },
+    { "type": "inventory", "name": "Inventory status", "limit": 1 },
     { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
     {
       "type": "buy_buttons",
