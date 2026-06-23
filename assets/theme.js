@@ -442,4 +442,39 @@
   } else {
     boot();
   }
+
+  /* ---------- Smooth scroll (Lenis) ----------
+     Initialised on window load so the deferred lenis.min.js has executed.
+     Disabled in the theme editor (designMode) where Lenis fights the editor. */
+  function SmoothScroll() {
+    if (window.Shopify && window.Shopify.designMode) return;
+    if (!window.Lenis) return;
+    var lenis = new window.Lenis({
+      duration: 1.1,
+      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+      smoothWheel: true,
+      wheelMultiplier: 0.9,
+      touchMultiplier: 1.5,
+      infinite: false
+    });
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+    // Exposed for future GSAP ScrollTrigger integration.
+    window.lenis = lenis;
+  }
+  window.addEventListener('load', SmoothScroll);
+
+  /* In-page anchor links route through Lenis (delegated so it also covers
+     links injected after load). Falls back to native scroll without Lenis. */
+  document.addEventListener('click', function (e) {
+    var anchor = e.target.closest('a[href^="#"]');
+    if (!anchor) return;
+    var hash = anchor.getAttribute('href');
+    if (!hash || hash.length < 2) return;
+    var target = document.querySelector(hash);
+    if (target && window.lenis) {
+      e.preventDefault();
+      window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+    }
+  });
 })();

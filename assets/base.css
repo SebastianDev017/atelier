@@ -922,6 +922,15 @@ body::after {
   .site-loader { display: none; }
 }
 
+/* ---------- Lenis smooth scroll ----------
+   Vendored from lenis@1.1.14 (loaded locally, not from a CDN, to avoid a
+   remote-asset dependency). Lenis toggles .lenis/.lenis-smooth on <html>. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }
+
 /* ---------- Custom cursor ---------- */
 /* Hide the OS cursor on pointer-fine devices so only the custom dot shows
    (prevents the double-cursor). Restored to the native cursor on touch /
