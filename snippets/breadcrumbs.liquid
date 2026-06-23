@@ -1,0 +1,52 @@
+{%- comment -%}
+  Editorial breadcrumb trail: Home · (parent collection) · current.
+  Mono eyebrow voice, middot separator (never pipes/slashes), link-underline links,
+  >=44px touch targets. On a product page the parent collection is derived
+  automatically; pass it explicitly to override.
+
+  @param {string} current - the current page title (e.g. product.title / collection.title)
+  @param {object} [collection] - optional parent collection (defaults to product.collections.first)
+{%- endcomment -%}
+{%- liquid
+  assign parent = collection | default: product.collections.first
+-%}
+<nav class="breadcrumbs" aria-label="Breadcrumb">
+  <a class="breadcrumbs__link" href="{{ routes.root_url }}">Home</a>
+  {%- if parent != blank and parent.url != blank -%}
+    <span class="breadcrumbs__sep" aria-hidden="true">·</span>
+    <a class="breadcrumbs__link" href="{{ parent.url }}">{{ parent.title | escape }}</a>
+  {%- endif -%}
+  {%- if current != blank -%}
+    <span class="breadcrumbs__sep" aria-hidden="true">·</span>
+    <span class="breadcrumbs__current" aria-current="page">{{ current | escape }}</span>
+  {%- endif -%}
+</nav>
+
+{% stylesheet %}
+  .breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--space-2);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  .breadcrumbs__link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-muted);
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .breadcrumbs__link:hover { color: var(--color-text); }
+  .breadcrumbs__sep { color: var(--color-muted); opacity: 0.6; }
+  .breadcrumbs__current {
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    color: var(--color-text);
+  }
+{% endstylesheet %}

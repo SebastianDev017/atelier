@@ -14,6 +14,7 @@
 
 <div class="collection color-scheme--{{ scheme }}">
   <div class="page-width">
+    {% render 'breadcrumbs', current: collection.title %}
     {%- if section.settings.show_title -%}
       <header class="collection__head" data-animate>
         <h2 class="collection__title h2">{{ collection.title | escape }}</h2>

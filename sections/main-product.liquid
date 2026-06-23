@@ -30,6 +30,7 @@
 
     <div class="product__details-col">
       <div class="product__details">
+        {% render 'breadcrumbs', current: product.title %}
         {%- for block in section.blocks -%}
           {%- case block.type -%}
             {%- when 'vendor' -%}
