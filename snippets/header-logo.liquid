@@ -1,0 +1,26 @@
+{%- comment -%} Renders the shop logo image or the shop name as a serif wordmark. {%- endcomment -%}
+{%- if settings.logo != blank -%}
+  {%- liquid
+    assign logo_2x = settings.logo_width | times: 2
+    assign logo_alt = shop.name | escape
+    assign logo_style = '--logo-width: ' | append: settings.logo_width | append: 'px;'
+    assign logo_sizes = settings.logo_width | append: 'px'
+  -%}
+  <a class="header__logo" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+    {{
+      settings.logo
+      | image_url: width: logo_2x
+      | image_tag:
+        loading: 'eager',
+        fetchpriority: 'high',
+        widths: '120, 160, 200, 240, 320, 480, 640',
+        sizes: logo_sizes,
+        alt: logo_alt,
+        style: logo_style
+    }}
+  </a>
+{%- else -%}
+  <a class="header__logo" href="{{ routes.root_url }}">
+    <span class="header__logo-text">{{ shop.name | escape }}</span>
+  </a>
+{%- endif -%}

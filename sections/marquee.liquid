@@ -1,0 +1,168 @@
+{%- comment -%}
+  Scrolling text marquee — pure-CSS infinite horizontal scroll.
+  Mirrors rich-text.liquid: inline <style> carries instance values only,
+  a color-scheme--* wrapper paints the background, {% stylesheet %} holds
+  all component CSS (no Liquid), and motion is disabled for
+  prefers-reduced-motion. The text is repeated for a seamless -50% loop;
+  duplicate copies are aria-hidden so it is read once.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'invert'
+  assign marquee_text = section.settings.text | escape
+
+  assign marquee_direction = 'normal'
+  if section.settings.direction == 'right'
+    assign marquee_direction = 'reverse'
+  endif
+
+  assign marquee_size = 'var(--text-2xl)'
+  case section.settings.size
+    when 'sm'
+      assign marquee_size = 'var(--text-lg)'
+    when 'lg'
+      assign marquee_size = 'var(--text-4xl)'
+  endcase
+-%}
+
+{%- if section.settings.text != blank -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      --pt: {{ section.settings.padding_top }}px;
+      --pb: {{ section.settings.padding_bottom }}px;
+      --marquee-speed: {{ section.settings.speed }}s;
+      --marquee-direction: {{ marquee_direction }};
+      --marquee-size: {{ marquee_size }};
+    }
+  </style>
+
+  <div class="marquee color-scheme--{{ scheme }}">
+    <div class="marquee__clip">
+      <div class="marquee__track">
+        <span class="marquee__item">{{ marquee_text }}</span>
+        <span class="marquee__item" aria-hidden="true">{{ marquee_text }}</span>
+        <span class="marquee__item" aria-hidden="true">{{ marquee_text }}</span>
+        <span class="marquee__item" aria-hidden="true">{{ marquee_text }}</span>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .marquee {
+    padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
+  }
+  .marquee__clip {
+    overflow: hidden;
+  }
+  .marquee__track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll var(--marquee-speed) linear infinite;
+    animation-direction: var(--marquee-direction);
+  }
+  .marquee__track:hover {
+    animation-play-state: paused;
+  }
+  .marquee__item {
+    flex: 0 0 auto;
+    padding-inline: var(--space-6);
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: var(--marquee-size);
+    line-height: var(--leading-tight);
+    letter-spacing: var(--tracking-tight);
+    white-space: nowrap;
+  }
+  @keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .marquee__track {
+      animation: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Marquee",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "text",
+      "label": "Text",
+      "default": "Editorial — Considered — Made to last"
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "s",
+      "label": "Scroll duration",
+      "info": "Higher is slower.",
+      "default": 30
+    },
+    {
+      "type": "select",
+      "id": "direction",
+      "label": "Direction",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "size",
+      "label": "Text size",
+      "options": [
+        { "value": "sm", "label": "Small" },
+        { "value": "md", "label": "Medium" },
+        { "value": "lg", "label": "Large" }
+      ],
+      "default": "md"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "invert"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 48
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 48
+    }
+  ],
+  "presets": [
+    { "name": "Marquee" }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,93 @@
+{%- comment -%}
+  Standard page template "main" section. Renders page.title as the page
+  heading and page.content as a rich-text block. Mirrors the structure of
+  rich-text.liquid (gold standard): inline <style> carries instance values,
+  a color-scheme--* wrapper paints the background, {% stylesheet %} holds all
+  component CSS with no Liquid, and data-animate drives the global scroll reveal.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign width_class = ''
+  if section.settings.narrow_content
+    assign width_class = 'page-width--narrow'
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="main-page color-scheme--{{ scheme }}">
+  <div class="main-page__inner page-width {{ width_class }}">
+    <h1 class="main-page__title h2" data-animate>
+      {{- page.title | escape -}}
+    </h1>
+    {%- if page.content != blank -%}
+      <div class="main-page__content rte prose" data-animate data-animate-delay="2">
+        {{ page.content }}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .main-page { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .main-page__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-6);
+  }
+  .main-page__title { max-width: 24ch; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Page",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "narrow_content",
+      "label": "Narrow content width",
+      "info": "Constrains the page content to a comfortable reading measure.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ]
+}
+{% endschema %}

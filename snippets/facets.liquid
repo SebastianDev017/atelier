@@ -1,0 +1,126 @@
+{%- comment -%}
+  Filter + sort form for collection and search results. Wrapped in
+  <facet-form> which auto-submits on change (real submit buttons remain
+  for JS-off). Keeps facets visible (not collapsed) per the brief.
+
+  @param {object} results - collection or search object
+  @param {string} context - 'collection' or 'search'
+  @param {boolean} [enable_sorting]
+{%- endcomment -%}
+{%- liquid
+  assign active_count = 0
+  for filter in results.filters
+    assign active_count = active_count | plus: filter.active_values.size
+    if filter.type == 'price_range'
+      if filter.min_value.value != nil or filter.max_value.value != nil
+        assign active_count = active_count | plus: 1
+      endif
+    endif
+  endfor
+-%}
+<facet-form class="facets-panel">
+  <form data-facet-form>
+    {%- if context == 'search' -%}
+      <input type="hidden" name="q" value="{{ results.terms | escape }}">
+      <input type="hidden" name="type" value="product">
+      <input type="hidden" name="options[prefix]" value="last">
+    {%- endif -%}
+
+    {%- if enable_sorting and context == 'collection' -%}
+      {%- assign sort_by = results.sort_by | default: results.default_sort_by -%}
+      <div class="facets-panel__sort field">
+        <label class="field__label" for="SortBy">{{ 'collections.sort_by' | t }}</label>
+        <div class="select">
+          <select name="sort_by" id="SortBy">
+            {%- for option in results.sort_options -%}
+              <option value="{{ option.value }}"{% if option.value == sort_by %} selected{% endif %}>{{ option.name | escape }}</option>
+            {%- endfor -%}
+          </select>
+          {% render 'icon', name: 'chevron-down' %}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- if active_count > 0 -%}
+      <div class="facets-panel__active">
+        <span class="eyebrow">{{ 'collections.filters' | t }}</span>
+        <a class="link-underline facets-panel__clear" href="{{ results.url | default: request.path }}{% if context == 'search' %}?q={{ results.terms | url_encode }}&type=product{% endif %}">{{ 'collections.clear_all' | t }}</a>
+      </div>
+    {%- endif -%}
+
+    {%- for filter in results.filters -%}
+      <details class="facets__group" open>
+        <summary class="facets__summary">
+          <span>{{ filter.label | escape }}</span>
+          {% render 'icon', name: 'chevron-down' %}
+        </summary>
+
+        {%- case filter.type -%}
+          {%- when 'boolean', 'list' -%}
+            <ul class="facets__list">
+              {%- for value in filter.values -%}
+                <li>
+                  <label class="facets__option{% if value.active %} facets__option--active{% endif %}">
+                    <input
+                      type="checkbox"
+                      name="{{ value.param_name }}"
+                      value="{{ value.value }}"
+                      {% if value.active %}checked{% endif %}
+                      {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                    >
+                    <span>{{ value.label | escape }} ({{ value.count }})</span>
+                  </label>
+                </li>
+              {%- endfor -%}
+            </ul>
+
+          {%- when 'price_range' -%}
+            <div class="facets__price">
+              <div class="field">
+                <label class="field__label" for="Filter-{{ filter.label | handle }}-min">Min</label>
+                <input
+                  class="input"
+                  type="number"
+                  inputmode="decimal"
+                  id="Filter-{{ filter.label | handle }}-min"
+                  name="{{ filter.min_value.param_name }}"
+                  value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                  placeholder="0"
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                >
+              </div>
+              <span class="facets__price-sep" aria-hidden="true">–</span>
+              <div class="field">
+                <label class="field__label" for="Filter-{{ filter.label | handle }}-max">Max</label>
+                <input
+                  class="input"
+                  type="number"
+                  inputmode="decimal"
+                  id="Filter-{{ filter.label | handle }}-max"
+                  name="{{ filter.max_value.param_name }}"
+                  value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
+                  placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  min="0"
+                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                >
+              </div>
+            </div>
+        {%- endcase -%}
+      </details>
+    {%- endfor -%}
+
+    <noscript>
+      <button type="submit" class="btn btn--small btn--full">{{ 'collections.apply' | t }}</button>
+    </noscript>
+  </form>
+</facet-form>
+
+{% stylesheet %}
+  .facets-panel { display: flex; flex-direction: column; gap: var(--space-4); }
+  .facets-panel__sort { margin-bottom: var(--space-2); }
+  .facets-panel__active { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
+  .facets__price { display: flex; align-items: flex-end; gap: var(--space-3); padding-bottom: var(--space-4); }
+  .facets__price .field { flex: 1; }
+  .facets__price-sep { padding-bottom: 0.8em; }
+{% endstylesheet %}

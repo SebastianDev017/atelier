@@ -1,20 +1,110 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin theme editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "sections": {
-    "main": {
-      "type": "hello-world",
-      "settings": {}
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "image_height": "90svh",
+        "overlay_opacity": 20,
+        "text_position": "bottom",
+        "text_align": "left",
+        "eyebrow": "New season",
+        "heading": "Considered objects for the modern home",
+        "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
+        "cta_label": "Shop the collection",
+        "cta_secondary_label": "Read our story"
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "text": "Editorial — Considered — Made to last"
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "title": "Featured",
+        "subtitle": "A few of our favourites this month.",
+        "products_to_show": 4
+      }
+    },
+    "image_with_text": {
+      "type": "image-with-text",
+      "settings": {
+        "eyebrow": "Our craft",
+        "title": "Crafted with intention",
+        "text": "<p>Every piece begins with a material and a question: how do we make something that lasts? The answer shapes everything we do.</p>",
+        "cta_label": "Learn more"
+      }
+    },
+    "collection_list": {
+      "type": "collection-list",
+      "settings": {
+        "heading": "Shop by collection",
+        "heading_alignment": "left"
+      },
+      "blocks": {
+        "c1": { "type": "collection", "settings": {} },
+        "c2": { "type": "collection", "settings": {} },
+        "c3": { "type": "collection", "settings": {} }
+      },
+      "block_order": ["c1", "c2", "c3"]
+    },
+    "gallery": {
+      "type": "gallery",
+      "settings": {
+        "heading": "In the wild"
+      },
+      "blocks": {
+        "g1": { "type": "image", "settings": {} },
+        "g2": { "type": "image", "settings": {} },
+        "g3": { "type": "image", "settings": {} },
+        "g4": { "type": "image", "settings": {} }
+      },
+      "block_order": ["g1", "g2", "g3", "g4"]
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "settings": {
+        "color_scheme": "parchment"
+      },
+      "blocks": {
+        "eyebrow": { "type": "eyebrow", "settings": { "text": "Our story" } },
+        "heading": { "type": "heading", "settings": { "heading": "Designed in studio, made to be lived with", "heading_tag": "h2" } },
+        "text": { "type": "text", "settings": { "text": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision, from the materials we choose to the people we partner with.</p>" } },
+        "button": { "type": "button", "settings": { "label": "About Atelier", "style": "outline" } }
+      },
+      "block_order": ["eyebrow", "heading", "text", "button"]
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "settings": {
+        "heading": "What people say"
+      },
+      "blocks": {
+        "t1": { "type": "testimonial", "settings": {} },
+        "t2": { "type": "testimonial", "settings": {} },
+        "t3": { "type": "testimonial", "settings": {} }
+      },
+      "block_order": ["t1", "t2", "t3"]
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join the list",
+        "subtext": "<p>New arrivals, stories, and the occasional offer.</p>"
+      }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "marquee",
+    "featured",
+    "image_with_text",
+    "collection_list",
+    "gallery",
+    "rich_text",
+    "testimonials",
+    "newsletter"
   ]
 }

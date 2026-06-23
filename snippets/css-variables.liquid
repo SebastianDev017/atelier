@@ -1,18 +1,57 @@
+{%- comment -%}
+  Bridges theme settings to the CSS custom properties consumed by base.css
+  and every section. Fonts are loaded with the font_face filter (never
+  font_url) and guarded so a missing font never breaks the cascade.
+{%- endcomment -%}
+{%- liquid
+  assign heading_font = settings.heading_font
+  assign body_font = settings.body_font
+  assign heading_bold = heading_font | font_modify: 'weight', '600'
+  assign body_medium = body_font | font_modify: 'weight', '500'
+  assign body_semibold = body_font | font_modify: 'weight', '600'
+  assign body_italic = body_font | font_modify: 'style', 'italic'
+-%}
 {% style %}
-  {% # Loads all font variantions with display: swap %}
-  {{ settings.type_primary_font | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'weight', 'bold' | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
-  {{ settings.type_primary_font | font_modify: 'style', 'italic' | font_face: font_display: 'swap' }}
+  {% if heading_font %}
+    {{ heading_font | font_face: font_display: 'swap' }}
+    {% if heading_bold %}{{ heading_bold | font_face: font_display: 'swap' }}{% endif %}
+  {% endif %}
+  {% if body_font %}
+    {{ body_font | font_face: font_display: 'swap' }}
+    {% if body_medium %}{{ body_medium | font_face: font_display: 'swap' }}{% endif %}
+    {% if body_semibold %}{{ body_semibold | font_face: font_display: 'swap' }}{% endif %}
+    {% if body_italic %}{{ body_italic | font_face: font_display: 'swap' }}{% endif %}
+  {% endif %}
 
   :root {
-    --font-primary--family: {{ settings.type_primary_font.family }}, {{ settings.type_primary_font.fallback_families }};
-    --font-primary--style: {{ settings.type_primary_font.style }};
-    --font-primary--weight: {{ settings.type_primary_font.weight }};
-    --page-width: {{ settings.max_page_width }};
-    --page-margin: {{ settings.min_page_margin }}px;
+    {% if heading_font %}
+      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      --font-heading-weight: {{ heading_font.weight }};
+    {% endif %}
+    {% if body_font %}
+      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+      --font-body-weight: {{ body_font.weight }};
+    {% endif %}
+
     --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.foreground_color }};
-    --style-border-radius-inputs: {{ settings.input_corner_radius }}px;
+    --color-foreground: {{ settings.text_color }};
+    --color-accent: {{ settings.accent_color }};
+    {% if settings.border_color != blank %}--color-border-setting: {{ settings.border_color }};{% endif %}
+    {% if settings.button_color != blank %}--color-button: {{ settings.button_color }};{% endif %}
+    {% if settings.button_text_color != blank %}--color-button-text: {{ settings.button_text_color }};{% endif %}
+
+    --page-width: {{ settings.page_width }}px;
+    --page-margin: {{ settings.page_margin }}px;
+    --header-height: {{ settings.header_height }}px;
+    --sidebar-width: {{ settings.sidebar_width }}px;
+    --section-spacing: {{ settings.section_spacing }}px;
+    --radius-inputs: {{ settings.input_corner_radius }}px;
+
+    --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
+    --body-scale: {{ settings.body_scale | divided_by: 100.0 }};
+
+    --uppercase-headings: {% if settings.uppercase_headings %}uppercase{% else %}none{% endif %};
+    --uppercase-nav: {% if settings.uppercase_nav %}uppercase{% else %}none{% endif %};
+    --uppercase-buttons: {% if settings.uppercase_buttons %}uppercase{% else %}none{% endif %};
   }
 {% endstyle %}

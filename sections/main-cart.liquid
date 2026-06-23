@@ -1,0 +1,115 @@
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<cart-page class="cart color-scheme--{{ scheme }}" data-section-id="{{ section.id }}">
+  <div class="page-width">
+    <h1 class="cart__title h2" data-animate>{{ 'cart.title' | t }}</h1>
+
+    <div data-cart-page-contents>
+      {%- if cart.item_count > 0 -%}
+        <form action="{{ routes.cart_url }}" method="post" class="cart__layout" data-cart-page-form>
+          <div class="cart__items">
+            <ul class="cart__list">
+              {%- for item in cart.items -%}
+                <li class="cart__list-item">{% render 'cart-item', item: item, line: forloop.index %}</li>
+              {%- endfor -%}
+            </ul>
+          </div>
+
+          <aside class="cart__summary">
+            <h2 class="cart__summary-title eyebrow">{{ 'cart.subtotal' | t }}</h2>
+            <div class="cart__summary-row">
+              <span>{{ 'cart.subtotal' | t }}</span>
+              <span class="cart__summary-value">{{ cart.total_price | money }}</span>
+            </div>
+
+            {% render 'cart-shipping-bar' %}
+
+            {%- if cart.cart_level_discount_applications.size > 0 -%}
+              <ul class="cart__discounts">
+                {%- for discount in cart.cart_level_discount_applications -%}
+                  <li class="caption">{{ discount.title | escape }} (−{{ discount.total_allocated_amount | money }})</li>
+                {%- endfor -%}
+              </ul>
+            {%- endif -%}
+
+            {%- if settings.cart_show_note -%}
+              <div class="field cart__note">
+                <label class="field__label" for="CartPageNote">{{ 'cart.note' | t }}</label>
+                <textarea class="textarea" id="CartPageNote" name="note" data-cart-note placeholder="{{ 'cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+              </div>
+            {%- endif -%}
+
+            <p class="caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
+
+            <div class="cart__actions">
+              <button type="submit" name="checkout" class="btn btn--full btn--large">{{ 'cart.checkout' | t }}</button>
+              <noscript><button type="submit" name="update" class="btn btn--outline btn--full">{{ 'cart.update' | t }}</button></noscript>
+            </div>
+
+            <a href="{{ routes.all_products_collection_url }}" class="link-underline cart__continue">{{ 'cart.continue_shopping' | t }}</a>
+          </aside>
+        </form>
+      {%- else -%}
+        <div class="cart__empty">
+          <p class="cart__empty-title h3">{{ 'cart.empty' | t }}</p>
+          <p class="lead">{{ 'cart.empty_subtext' | t }}</p>
+          <a href="{{ routes.all_products_collection_url }}" class="btn btn--large">{{ 'cart.continue_shopping' | t }}</a>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</cart-page>
+
+{% stylesheet %}
+  .cart { padding-block: var(--pt, var(--space-16)) var(--pb, var(--space-24)); }
+  .cart__title { margin-bottom: var(--space-10); }
+  .cart__layout { display: grid; gap: var(--space-12); align-items: start; }
+  .cart__list { display: flex; flex-direction: column; gap: var(--space-8); }
+  .cart__list-item { padding-bottom: var(--space-8); border-bottom: 1px solid var(--color-border); }
+  .cart__list-item:last-child { border-bottom: 0; }
+  .cart__list .cart-item { grid-template-columns: 7rem 1fr; gap: var(--space-5); }
+
+  .cart__summary { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--color-border); }
+  .cart__summary-row { display: flex; align-items: baseline; justify-content: space-between; font-size: var(--text-md); }
+  .cart__summary-value { font-family: var(--font-heading); font-size: var(--text-2xl); }
+  .cart__actions { display: flex; flex-direction: column; gap: var(--space-3); }
+  .cart__continue { align-self: flex-start; }
+
+  .cart__empty { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-5); padding-block: var(--space-24); }
+
+  @media (min-width: 750px) {
+    .cart__layout { grid-template-columns: 1fr 22rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Cart",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ]
+}
+{% endschema %}

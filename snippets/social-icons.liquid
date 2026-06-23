@@ -1,0 +1,33 @@
+{%- comment -%} Renders configured social links as icon buttons. {%- endcomment -%}
+<ul class="social-icons" aria-label="{{ 'general.social_label' | t }}">
+  {%- if settings.social_instagram_link != blank -%}
+    <li><a class="social-icons__link" href="{{ settings.social_instagram_link }}" target="_blank" rel="noopener noreferrer" aria-label="Instagram">{% render 'icon', name: 'instagram' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_facebook_link != blank -%}
+    <li><a class="social-icons__link" href="{{ settings.social_facebook_link }}" target="_blank" rel="noopener noreferrer" aria-label="Facebook">{% render 'icon', name: 'facebook' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_pinterest_link != blank -%}
+    <li><a class="social-icons__link" href="{{ settings.social_pinterest_link }}" target="_blank" rel="noopener noreferrer" aria-label="Pinterest">{% render 'icon', name: 'pinterest' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_tiktok_link != blank -%}
+    <li><a class="social-icons__link" href="{{ settings.social_tiktok_link }}" target="_blank" rel="noopener noreferrer" aria-label="TikTok">{% render 'icon', name: 'tiktok' %}</a></li>
+  {%- endif -%}
+  {%- if settings.social_youtube_link != blank -%}
+    <li><a class="social-icons__link" href="{{ settings.social_youtube_link }}" target="_blank" rel="noopener noreferrer" aria-label="YouTube">{% render 'icon', name: 'youtube' %}</a></li>
+  {%- endif -%}
+</ul>
+
+{% stylesheet %}
+  .social-icons { display: flex; align-items: center; gap: var(--space-1); flex-wrap: wrap; }
+  .social-icons__link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    color: currentColor;
+    opacity: 0.8;
+    transition: opacity var(--duration-fast) var(--ease-editorial);
+  }
+  .social-icons__link:hover { opacity: 1; }
+{% endstylesheet %}

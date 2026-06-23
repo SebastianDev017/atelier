@@ -1,0 +1,40 @@
+{%- comment -%}
+  Renders a price block with sale + unit price support.
+
+  @param {object} product - the product (for varies / "From" prefix)
+  @param {object} [variant] - a specific variant; overrides product price
+  @param {boolean} [show_from] - prefix with "From" when the price varies
+  @param {string} [class] - extra classes for the wrapper
+{%- endcomment -%}
+{%- liquid
+  assign target = variant | default: product.selected_or_first_available_variant | default: product
+  assign price = target.price | default: product.price
+  assign compare_at = target.compare_at_price
+
+  assign on_sale = false
+  if compare_at and compare_at > price
+    assign on_sale = true
+  endif
+
+  assign show_from = show_from | default: false
+-%}
+<div class="price{% if on_sale %} price--on-sale{% endif %} {{ class }}" data-price-target>
+  {%- if show_from and product.price_varies -%}
+    <span class="price__from">{{ 'products.from_price_html' | t: price: product.price_min | money }}</span>
+  {%- else -%}
+    {%- if on_sale -%}
+      <span class="visually-hidden">{{ 'products.sale_price' | t }}</span>
+      <span class="price__sale">{{ price | money }}</span>
+      <span class="visually-hidden">{{ 'products.regular_price' | t }}</span>
+      <s class="price__regular">{{ compare_at | money }}</s>
+    {%- else -%}
+      <span class="price__regular">{{ price | money }}</span>
+    {%- endif -%}
+  {%- endif -%}
+
+  {%- if target.unit_price_measurement -%}
+    <span class="price__unit">
+      {{ target.unit_price | money }}{{ 'products.unit_price_separator' | t }}{% if target.unit_price_measurement.reference_value != 1 %}{{ target.unit_price_measurement.reference_value }}{% endif %}{{ target.unit_price_measurement.reference_unit }}
+    </span>
+  {%- endif -%}
+</div>

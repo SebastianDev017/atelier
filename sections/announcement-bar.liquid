@@ -1,0 +1,345 @@
+{%- comment -%}
+  Announcement bar — full-bleed, own colors (not a color scheme).
+  One message: centered + static. Multiple messages: seamless CSS marquee
+  (rendered twice, translateX(0)->-50%), pause on hover, reduced-motion safe.
+  Optional dismiss persists in localStorage keyed by section.id. No-JS safe.
+{%- endcomment -%}
+{%- liquid
+  assign show = section.settings.show_announcement
+  assign blocks = section.blocks
+
+  assign message_count = 0
+  for block in blocks
+    if block.type == 'message' and block.settings.text != blank
+      assign message_count = message_count | plus: 1
+    endif
+  endfor
+-%}
+
+{%- if show -%}
+  <style>
+    #shopify-section-{{ section.id }} {
+      --bar-bg: {{ section.settings.bar_color }};
+      --bar-text: {{ section.settings.bar_text_color }};
+      --marquee-speed: {{ section.settings.marquee_speed }}s;
+    }
+  </style>
+
+  <announcement-bar
+    class="announcement-bar"
+    data-section-id="{{ section.id }}"
+    {% if section.settings.dismissible %}data-dismissible{% endif %}
+  >
+    <div class="announcement-bar__inner">
+      {%- if message_count > 1 -%}
+        <div class="announcement-bar__marquee">
+          <div class="announcement-bar__track" aria-hidden="false">
+            {%- for block in blocks -%}
+              {%- if block.type == 'message' and block.settings.text != blank -%}
+                <span class="announcement-bar__item" {{ block.shopify_attributes }}>
+                  {%- if block.settings.url != blank -%}
+                    <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                  {%- else -%}
+                    {{- block.settings.text | escape -}}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+            {%- endfor -%}
+            {%- comment -%} Duplicate set for a seamless -50% loop {%- endcomment -%}
+            {%- for block in blocks -%}
+              {%- if block.type == 'message' and block.settings.text != blank -%}
+                <span class="announcement-bar__item" aria-hidden="true">
+                  {%- if block.settings.url != blank -%}
+                    <a class="announcement-bar__link" href="{{ block.settings.url }}" tabindex="-1">{{ block.settings.text | escape }}</a>
+                  {%- else -%}
+                    {{- block.settings.text | escape -}}
+                  {%- endif -%}
+                </span>
+              {%- endif -%}
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- else -%}
+        <div class="announcement-bar__single page-width">
+          {%- for block in blocks -%}
+            {%- if block.type == 'message' and block.settings.text != blank -%}
+              <span class="announcement-bar__item" {{ block.shopify_attributes }}>
+                {%- if block.settings.url != blank -%}
+                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                {%- else -%}
+                  {{- block.settings.text | escape -}}
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if message_count > 1 or section.settings.dismissible -%}
+        <div class="announcement-bar__controls">
+          {%- if message_count > 1 -%}
+            <button
+              type="button"
+              class="announcement-bar__control"
+              data-announcement-toggle
+              aria-pressed="false"
+              aria-label="{{ 'accessibility.pause' | t }}"
+              data-label-pause="{{ 'accessibility.pause' | t | escape }}"
+              data-label-play="{{ 'accessibility.play' | t | escape }}"
+            >
+              {%- render 'icon', name: 'pause' -%}
+            </button>
+          {%- endif -%}
+          {%- if section.settings.dismissible -%}
+            <button
+              type="button"
+              class="announcement-bar__control"
+              data-announcement-close
+              aria-label="{{ 'general.close' | t }}"
+            >
+              {%- render 'icon', name: 'close' -%}
+            </button>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </announcement-bar>
+{%- endif -%}
+
+{% stylesheet %}
+  .announcement-bar {
+    display: block;
+    width: 100%;
+    background: var(--bar-bg);
+    color: var(--bar-text);
+    font-size: var(--text-sm);
+    letter-spacing: var(--tracking-wide);
+  }
+
+  .announcement-bar[hidden] { display: none; }
+
+  .announcement-bar__inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+  }
+
+  .announcement-bar__single {
+    flex: 1 1 auto;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-12);
+  }
+
+  .announcement-bar__marquee {
+    flex: 1 1 auto;
+    overflow: hidden;
+    padding-block: var(--space-2);
+  }
+
+  .announcement-bar__track {
+    display: flex;
+    width: max-content;
+    gap: var(--space-8);
+    padding-inline: var(--space-4);
+    will-change: transform;
+    animation: announcement-bar-scroll var(--marquee-speed, 40s) linear infinite;
+  }
+
+  .announcement-bar__marquee:hover .announcement-bar__track,
+  .announcement-bar.is-paused .announcement-bar__track {
+    animation-play-state: paused;
+  }
+
+  .announcement-bar__item {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+
+  .announcement-bar__link {
+    color: inherit;
+    text-decoration: none;
+    transition: opacity var(--duration-fast) var(--ease-editorial);
+  }
+
+  .announcement-bar__link:hover { opacity: 0.7; }
+  .announcement-bar__link:focus-visible { outline: 1px solid currentColor; outline-offset: 2px; }
+
+  .announcement-bar__controls {
+    flex: none;
+    display: inline-flex;
+    align-items: center;
+  }
+
+  .announcement-bar__control {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    transition: opacity var(--duration-fast) var(--ease-editorial);
+  }
+
+  .announcement-bar__control:hover { opacity: 0.7; }
+  .announcement-bar__control[aria-pressed="true"] { opacity: 0.6; }
+  .announcement-bar__control:focus-visible { outline: 1px solid currentColor; outline-offset: -2px; }
+  .announcement-bar__control .icon { width: 14px; height: 14px; }
+
+  @keyframes announcement-bar-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .announcement-bar[data-editor] .announcement-bar__track {
+    animation-play-state: paused;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .announcement-bar__track { animation: none; }
+  }
+{% endstylesheet %}
+
+{% javascript %}
+  class AnnouncementBar extends HTMLElement {
+    connectedCallback() {
+      this.sectionId = this.dataset.sectionId || '';
+      this.storageKey = 'announcement-dismissed-' + this.sectionId;
+
+      if (window.Shopify && window.Shopify.designMode) {
+        this.setAttribute('data-editor', '');
+      } else if (this.isDismissed()) {
+        this.hidden = true;
+        return;
+      }
+
+      this.closeButton = this.querySelector('[data-announcement-close]');
+      if (this.closeButton) {
+        this.onClose = this.dismiss.bind(this);
+        this.closeButton.addEventListener('click', this.onClose);
+      }
+
+      this.toggleButton = this.querySelector('[data-announcement-toggle]');
+      if (this.toggleButton) {
+        this.onToggle = this.toggleMotion.bind(this);
+        this.toggleButton.addEventListener('click', this.onToggle);
+      }
+    }
+
+    disconnectedCallback() {
+      if (this.closeButton && this.onClose) {
+        this.closeButton.removeEventListener('click', this.onClose);
+      }
+      if (this.toggleButton && this.onToggle) {
+        this.toggleButton.removeEventListener('click', this.onToggle);
+      }
+    }
+
+    toggleMotion() {
+      const paused = this.classList.toggle('is-paused');
+      this.toggleButton.setAttribute('aria-pressed', String(paused));
+      const label = paused ? this.toggleButton.dataset.labelPlay : this.toggleButton.dataset.labelPause;
+      if (label) this.toggleButton.setAttribute('aria-label', label);
+    }
+
+    isDismissed() {
+      try {
+        return window.localStorage.getItem(this.storageKey) === '1';
+      } catch (e) {
+        return false;
+      }
+    }
+
+    dismiss() {
+      this.hidden = true;
+      try {
+        window.localStorage.setItem(this.storageKey, '1');
+      } catch (e) {
+        // storage unavailable; bar simply reappears next load
+      }
+    }
+  }
+
+  if (!customElements.get('announcement-bar')) {
+    customElements.define('announcement-bar', AnnouncementBar);
+  }
+{% endjavascript %}
+
+{% schema %}
+{
+  "name": "Announcement bar",
+  "limit": 1,
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_announcement",
+      "label": "Show announcement bar",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "dismissible",
+      "label": "Allow shoppers to dismiss",
+      "info": "Adds a close button. The bar stays hidden for that visitor until they clear their browser storage.",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "bar_color",
+      "label": "Bar background",
+      "default": "#2E3030"
+    },
+    {
+      "type": "color",
+      "id": "bar_text_color",
+      "label": "Bar text",
+      "default": "#FBF8F2"
+    },
+    {
+      "type": "range",
+      "id": "marquee_speed",
+      "min": 20,
+      "max": 100,
+      "step": 10,
+      "unit": "s",
+      "label": "Scroll duration",
+      "info": "Only used when there is more than one message. Higher is slower.",
+      "default": 40
+    }
+  ],
+  "blocks": [
+    {
+      "type": "message",
+      "name": "Message",
+      "settings": [
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Complimentary shipping on orders over $150"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement bar",
+      "blocks": [
+        { "type": "message" }
+      ]
+    }
+  ]
+}
+{% endschema %}

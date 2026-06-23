@@ -1,13 +1,7 @@
-# This file contains a list of files that will be excluded from Shopify CLI
-# operations such as push, pull, dev, etc.
-#
-# Examples:
-#
-# Ignore a specific file:
-#   templates/product.json
-#
-# Ignore templates with a wildcard pattern:
-#   templates/*.json
-#
-# Ignore templates and sections with a regular expression:
-#   /(templates|sections)/.*\.json/
+# Files excluded from Shopify sync (CLI push/pull/dev + GitHub integration).
+# These are repo/design artifacts, not part of the live theme.
+preview.html
+DESIGN.md
+TOKENS.md
+listings/
+*.zip

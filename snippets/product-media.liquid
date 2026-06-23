@@ -1,0 +1,119 @@
+{%- comment -%}
+  Product media gallery. Main stage with one active media + a thumbnail
+  strip. <product-media-gallery> (product.js) switches the active media
+  on thumbnail click and on variant change.
+
+  @param {object} product
+  @param {object} section
+{%- endcomment -%}
+<product-media-gallery class="product-media" data-product-media>
+  <div class="product-media__stage">
+    {%- if product.media.size > 0 -%}
+      {%- for media in product.media -%}
+        {%- liquid
+          assign is_active = false
+          if product.selected_or_first_available_variant.featured_media
+            if media.id == product.selected_or_first_available_variant.featured_media.id
+              assign is_active = true
+            endif
+          elsif forloop.first
+            assign is_active = true
+          endif
+
+          if forloop.first
+            assign img_loading = 'eager'
+            assign img_priority = 'high'
+          else
+            assign img_loading = 'lazy'
+            assign img_priority = 'auto'
+          endif
+
+          assign media_alt = media.alt | default: product.title | escape
+        -%}
+        <div
+          class="product-media__item{% if is_active %} is-active{% endif %}"
+          data-media-id="{{ media.id }}"
+        >
+          {%- case media.media_type -%}
+            {%- when 'image' -%}
+              {{
+                media
+                | image_url: width: 1500
+                | image_tag:
+                  loading: img_loading,
+                  fetchpriority: img_priority,
+                  widths: '400, 600, 800, 1000, 1200, 1500',
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  alt: media_alt,
+                  class: 'product-media__image'
+              }}
+            {%- when 'video' -%}
+              {{ media | video_tag: image_size: '1000x', controls: true, loop: false, class: 'product-media__video' }}
+            {%- when 'external_video' -%}
+              {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy' }}
+            {%- when 'model' -%}
+              {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
+            {%- else -%}
+              {{ media | media_tag: image_size: '1000x' }}
+          {%- endcase -%}
+        </div>
+      {%- endfor -%}
+    {%- else -%}
+      <div class="product-media__item is-active media media--product">
+        {{ 'product-1' | placeholder_svg_tag: 'placeholder' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if product.media.size > 1 -%}
+    <div class="product-media__thumbs" role="group" aria-label="{{ product.title | escape }} media">
+      {%- for media in product.media -%}
+        <button
+          type="button"
+          class="product-media__thumb{% if forloop.first %} is-active{% endif %}"
+          data-media-thumb="{{ media.id }}"
+          aria-label="{{ media.alt | default: product.title | escape }} — {{ forloop.index }}"
+        >
+          {{
+            media.preview_image
+            | image_url: width: 200
+            | image_tag:
+              loading: 'lazy',
+              widths: '100, 160, 200',
+              sizes: '80px',
+              alt: '',
+              class: 'product-media__thumb-image'
+          }}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</product-media-gallery>
+
+{% stylesheet %}
+  .product-media { display: flex; flex-direction: column; gap: var(--space-3); }
+  .product-media__stage { position: relative; }
+  .product-media__item { display: none; aspect-ratio: var(--ratio-product); overflow: hidden; background-color: var(--color-subtle); }
+  .product-media__item.is-active { display: block; }
+  .product-media__image { width: 100%; height: 100%; object-fit: cover; }
+  .product-media__video { width: 100%; height: 100%; object-fit: contain; background-color: var(--color-black); }
+
+  .product-media__thumbs {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    gap: var(--space-2);
+  }
+  .product-media__thumb {
+    aspect-ratio: var(--ratio-square);
+    overflow: hidden;
+    border: 1px solid transparent;
+    background-color: var(--color-subtle);
+    transition: border-color var(--duration-fast) var(--ease-editorial);
+  }
+  .product-media__thumb-image { width: 100%; height: 100%; object-fit: cover; }
+  .product-media__thumb.is-active { border-color: var(--color-text); }
+
+  @media (min-width: 750px) {
+    .product-media__thumbs { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }
+  }
+{% endstylesheet %}

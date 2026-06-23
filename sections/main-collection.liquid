@@ -1,0 +1,129 @@
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign per_page = section.settings.products_per_page
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --grid-columns: {{ section.settings.columns_desktop }};
+    --grid-columns-mobile: {{ section.settings.columns_mobile }};
+  }
+</style>
+
+<div class="collection color-scheme--{{ scheme }}">
+  <div class="page-width">
+    {%- if section.settings.show_title -%}
+      <header class="collection__head" data-animate>
+        <h2 class="collection__title h2">{{ collection.title | escape }}</h2>
+        {%- if section.settings.show_description and collection.description != blank -%}
+          <div class="collection__description prose">{{ collection.description }}</div>
+        {%- endif -%}
+      </header>
+    {%- endif -%}
+
+    {%- paginate collection.products by per_page -%}
+      <div class="collection__toolbar">
+        <p class="collection__count caption">{{ 'collections.product_count' | t: count: collection.products_count }}</p>
+      </div>
+
+      <div class="collection__layout">
+        {%- if section.settings.enable_filtering or section.settings.enable_sorting -%}
+          <aside class="collection__sidebar">
+            <details class="collection__facets" open>
+              <summary class="collection__facets-toggle btn btn--outline btn--small">
+                {% render 'icon', name: 'filter' %}
+                <span>{{ 'collections.filter_and_sort' | t }}</span>
+              </summary>
+              {% render 'facets', results: collection, context: 'collection', enable_sorting: section.settings.enable_sorting %}
+            </details>
+          </aside>
+        {%- endif -%}
+
+        <div class="collection__results">
+          {%- if collection.products.size > 0 -%}
+            <div class="product-grid" data-product-grid>
+              {%- for product in collection.products -%}
+                <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
+                  {% render 'product-card', product: product, index: forloop.index %}
+                </div>
+              {%- endfor -%}
+            </div>
+            {% render 'pagination', paginate: paginate %}
+          {%- else -%}
+            <div class="collection__empty">
+              <p class="h4">{{ 'collections.empty_filters' | t }}</p>
+              <a class="link-underline" href="{{ collection.url }}">{{ 'collections.clear_all' | t }}</a>
+            </div>
+          {%- endif -%}
+        </div>
+      </div>
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .collection { padding-block: var(--pt, var(--space-12)) var(--pb, var(--space-24)); }
+  .collection__head { max-width: 46rem; margin-bottom: var(--space-10); display: flex; flex-direction: column; gap: var(--space-4); }
+  .collection__description { color: var(--color-muted); }
+  .collection__toolbar { display: flex; align-items: center; justify-content: space-between; padding-bottom: var(--space-5); border-bottom: 1px solid var(--color-border); margin-bottom: var(--space-8); }
+  .collection__empty { display: flex; flex-direction: column; align-items: center; gap: var(--space-4); text-align: center; padding-block: var(--space-20); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection",
+  "tag": "section",
+  "settings": [
+    { "type": "checkbox", "id": "show_title", "label": "Show collection title", "info": "Turn off if you add a Collection banner section above.", "default": false },
+    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "min": 8,
+      "max": 36,
+      "step": 4,
+      "label": "Products per page",
+      "default": 16
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns (mobile)",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "info": "Manage filters in Search & Discovery.", "default": true },
+    { "type": "checkbox", "id": "enable_sorting", "label": "Enable sorting", "default": true },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ]
+}
+{% endschema %}

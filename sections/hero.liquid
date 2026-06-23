@@ -1,0 +1,510 @@
+{%- comment -%}
+  Editorial hero — full-bleed banner with overlay, entrance animation on
+  page load (CSS @keyframes, reduced-motion guarded), and up to two CTAs.
+  Mirrors rich-text.liquid: inline <style> carries instance values only,
+  a color-scheme--* class paints the no-image fallback, {% stylesheet %}
+  holds all component CSS with NO Liquid.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+
+  assign image = section.settings.image
+  assign image_mobile = section.settings.image_mobile
+  assign heading = section.settings.heading
+  assign hero_alt = image.alt | default: heading | escape
+
+  assign overlay = section.settings.overlay_opacity | divided_by: 100.0
+
+  assign heading_size_class = 'h1'
+  case section.settings.heading_size
+    when 'small'
+      assign heading_size_class = 'h3'
+    when 'medium'
+      assign heading_size_class = 'h2'
+    when 'large'
+      assign heading_size_class = 'h1'
+  endcase
+
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+
+  assign cta_class = 'btn'
+  case section.settings.cta_style
+    when 'outline'
+      assign cta_class = 'btn btn--outline'
+    when 'link'
+      assign cta_class = 'link-underline'
+  endcase
+
+  assign show_primary = false
+  if section.settings.cta_label != blank and section.settings.cta_url != blank
+    assign show_primary = true
+  endif
+
+  assign show_secondary = false
+  if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank
+    assign show_secondary = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --hero-height: {{ section.settings.image_height }};
+    --hero-overlay: {{ overlay }};
+    --hero-overlay-color: {{ section.settings.overlay_color }};
+  }
+</style>
+
+<div
+  class="hero color-scheme--{{ scheme }} hero--pos-{{ section.settings.text_position }} hero--align-{{ section.settings.text_align }}{% if image == blank %} hero--no-image{% endif %}"
+>
+  <div class="hero__media">
+    {%- if image != blank -%}
+      {%- liquid
+        assign desktop_class = 'hero__image'
+        if image_mobile != blank
+          assign desktop_class = 'hero__image hero__image--desktop'
+        endif
+      -%}
+      {{
+        image
+        | image_url: width: 2400
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '750, 1100, 1500, 2000, 2400',
+          sizes: '100vw',
+          alt: hero_alt,
+          class: desktop_class
+      }}
+      {%- if image_mobile != blank -%}
+        {{
+          image_mobile
+          | image_url: width: 1100
+          | image_tag:
+            loading: 'eager',
+            fetchpriority: 'high',
+            widths: '450, 750, 1100',
+            sizes: '100vw',
+            alt: hero_alt,
+            class: 'hero__image hero__image--mobile'
+        }}
+      {%- endif -%}
+    {%- else -%}
+      <div class="hero__placeholder">
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+      </div>
+    {%- endif -%}
+  </div>
+
+  {%- if image != blank -%}
+    <div class="hero__overlay" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="hero__inner page-width">
+    <div class="hero__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="hero__eyebrow eyebrow">{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+
+      {%- if heading != blank -%}
+        <{{ heading_tag }} class="hero__heading {{ heading_size_class }}">
+          {{- heading | escape | newline_to_br -}}
+        </{{ heading_tag }}>
+      {%- endif -%}
+
+      {%- if section.settings.subtext != blank -%}
+        <div class="hero__subtext lead">{{ section.settings.subtext }}</div>
+      {%- endif -%}
+
+      {%- if show_primary or show_secondary -%}
+        <div class="hero__actions">
+          {%- if show_primary -%}
+            <a class="hero__cta {{ cta_class }}" href="{{ section.settings.cta_url }}">
+              {{- section.settings.cta_label | escape -}}
+            </a>
+          {%- endif -%}
+          {%- if show_secondary -%}
+            <a class="hero__cta link-underline" href="{{ section.settings.cta_secondary_url }}">
+              {{- section.settings.cta_secondary_label | escape -}}
+            </a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
+      {%- if section.settings.trust_line != blank -%}
+        <p class="hero__trust caption">{{ section.settings.trust_line | escape }}</p>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .hero {
+    position: relative;
+    display: flex;
+    width: 100%;
+    min-height: var(--hero-height, 70svh);
+    padding-block: var(--pt, 0) var(--pb, 0);
+    overflow: hidden;
+  }
+
+  .hero__media {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-base);
+    background-color: var(--color-subtle);
+  }
+  .hero__image,
+  .hero__placeholder {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .hero__placeholder {
+    color: color-mix(in srgb, var(--color-text) 12%, transparent);
+  }
+  .hero__placeholder svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Two-image swap: desktop default, mobile under 750px */
+  .hero__image--mobile { display: none; }
+  @media (max-width: 749px) {
+    .hero__image--desktop { display: none; }
+    .hero__image--mobile { display: block; }
+  }
+
+  .hero__overlay {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-raised);
+    background-color: var(--hero-overlay-color);
+    opacity: var(--hero-overlay, 0.3);
+  }
+
+  .hero__inner {
+    position: relative;
+    z-index: var(--z-sticky);
+    display: flex;
+    width: 100%;
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 46rem;
+    color: var(--color-overlay-text);
+  }
+
+  /* Vertical position (via flex on .hero__inner) */
+  .hero--pos-top .hero__inner { align-items: flex-start; }
+  .hero--pos-center .hero__inner { align-items: center; }
+  .hero--pos-bottom .hero__inner { align-items: flex-end; }
+
+  /* Horizontal alignment */
+  .hero--align-left .hero__content { text-align: left; align-items: flex-start; }
+  .hero--align-center .hero__content { text-align: center; align-items: center; margin-inline: auto; }
+  .hero--align-right .hero__content { text-align: right; align-items: flex-end; margin-inline-start: auto; }
+
+  .hero__eyebrow { color: var(--color-overlay-text); opacity: 0.85; }
+  .hero__heading { color: var(--color-overlay-text); max-width: 18ch; }
+  .hero__subtext {
+    max-width: 52ch;
+    color: var(--color-overlay-text);
+    opacity: 0.9;
+  }
+  .hero--align-center .hero__heading,
+  .hero--align-center .hero__subtext { margin-inline: auto; }
+
+  .hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-4);
+    align-items: center;
+    margin-top: var(--space-2);
+  }
+  .hero--align-center .hero__actions { justify-content: center; }
+  .hero--align-right .hero__actions { justify-content: flex-end; }
+
+  .hero__trust {
+    margin-top: var(--space-1);
+    color: var(--color-overlay-text);
+    opacity: 0.8;
+    letter-spacing: var(--tracking-wide);
+  }
+  .hero--no-image .hero__trust { color: var(--color-muted); opacity: 1; }
+
+  /* Buttons sit on imagery — keep them in the overlay-text palette */
+  .hero__cta.btn {
+    background-color: var(--color-overlay-text);
+    border-color: var(--color-overlay-text);
+    color: var(--color-foreground);
+  }
+  .hero__cta.btn:hover {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-overlay-text);
+  }
+  .hero__cta.btn--outline {
+    background-color: transparent;
+    border-color: var(--color-overlay-text);
+    color: var(--color-overlay-text);
+  }
+  .hero__cta.btn--outline:hover {
+    background-color: var(--color-overlay-text);
+    border-color: var(--color-overlay-text);
+    color: var(--color-text);
+  }
+  .hero__cta.link-underline { color: var(--color-overlay-text); }
+
+  /* No-image fallback: paint text from the color scheme so light schemes stay legible */
+  .hero--no-image .hero__content,
+  .hero--no-image .hero__eyebrow,
+  .hero--no-image .hero__heading,
+  .hero--no-image .hero__subtext { color: var(--color-text); }
+  .hero--no-image .hero__eyebrow { color: var(--color-muted); }
+  .hero--no-image .hero__cta.btn { background-color: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+  .hero--no-image .hero__cta.btn:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); color: var(--color-bg); }
+  .hero--no-image .hero__cta.btn--outline { background-color: transparent; border-color: var(--color-border-strong); color: var(--color-text); }
+  .hero--no-image .hero__cta.btn--outline:hover { background-color: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
+  .hero--no-image .hero__cta.link-underline { color: var(--color-text); }
+
+  /* Entrance animation on page load */
+  .hero__eyebrow,
+  .hero__heading,
+  .hero__subtext,
+  .hero__actions,
+  .hero__trust {
+    animation: hero-rise var(--duration-slower) var(--ease-out) both;
+  }
+  .hero__eyebrow { animation-delay: 200ms; }
+  .hero__heading { animation-delay: 400ms; }
+  .hero__subtext { animation-delay: 700ms; }
+  .hero__actions { animation-delay: 900ms; }
+  .hero__trust { animation-delay: 1050ms; }
+
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(1.5rem); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__eyebrow,
+    .hero__heading,
+    .hero__subtext,
+    .hero__actions,
+    .hero__trust {
+      animation: none;
+      opacity: 1;
+      transform: none;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Hero",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Background image"
+    },
+    {
+      "type": "image_picker",
+      "id": "image_mobile",
+      "label": "Mobile image",
+      "info": "Optional. Shown on small screens instead of the background image."
+    },
+    {
+      "type": "select",
+      "id": "image_height",
+      "label": "Height",
+      "options": [
+        { "value": "50svh", "label": "Half screen" },
+        { "value": "70svh", "label": "Two thirds" },
+        { "value": "90svh", "label": "Nearly full" },
+        { "value": "100svh", "label": "Full screen" }
+      ],
+      "default": "70svh"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 80,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#2E3030"
+    },
+    {
+      "type": "header",
+      "content": "Text"
+    },
+    {
+      "type": "select",
+      "id": "text_position",
+      "label": "Vertical position",
+      "options": [
+        { "value": "top", "label": "Top" },
+        { "value": "center", "label": "Center" },
+        { "value": "bottom", "label": "Bottom" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "text_align",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow"
+    },
+    {
+      "type": "textarea",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Considered objects for the modern home"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "large"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading tag",
+      "info": "Use H1 when this is the main page heading.",
+      "options": [
+        { "value": "h1", "label": "H1" },
+        { "value": "h2", "label": "H2" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext"
+    },
+    {
+      "type": "text",
+      "id": "trust_line",
+      "label": "Trust line",
+      "info": "Short reassurance shown under the buttons. Use the · character to separate items.",
+      "default": "4.9 ★ · 2,000+ reviews · Free shipping over $150"
+    },
+    {
+      "type": "header",
+      "content": "Primary button"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Label",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Link"
+    },
+    {
+      "type": "select",
+      "id": "cta_style",
+      "label": "Style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "outline", "label": "Outline" },
+        { "value": "link", "label": "Link" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "header",
+      "content": "Secondary button"
+    },
+    {
+      "type": "text",
+      "id": "cta_secondary_label",
+      "label": "Label"
+    },
+    {
+      "type": "url",
+      "id": "cta_secondary_url",
+      "label": "Link"
+    },
+    {
+      "type": "header",
+      "content": "Section"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "info": "Used as the background when no image is set.",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "invert"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 0
+    }
+  ],
+  "presets": [
+    { "name": "Hero" }
+  ]
+}
+{% endschema %}

@@ -1,36 +1,67 @@
 <!doctype html>
-<html lang="{{ request.locale.iso_code }}">
+<html class="no-js" lang="{{ request.locale.iso_code }}">
   <head>
-    {% # Inlined CSS Variables %}
+    <script>
+      document.documentElement.classList.remove('no-js');
+      document.documentElement.classList.add('js');
+    </script>
+
     {% render 'css-variables' %}
 
-    {% comment %}
-      Font preloading:
-      1. Preconnect to font CDN for faster connection
-      2. Preload only the critical font variant (base weight)
-      3. Additional variants load on-demand via @font-face
-    {% endcomment %}
-    {% unless settings.type_primary_font.system? %}
+    {%- if settings.body_font.system? == false -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
+    {%- endif -%}
 
-      {% comment %} Preload the base font variant for initial page render {% endcomment %}
-      {{ settings.type_primary_font | font_url | preload_tag: as: 'font', crossorigin: 'anonymous' }}
-    {% endunless %}
+    {% if settings.favicon %}
+      <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
+    {% endif %}
 
-    {% # Load and preload the critical CSS %}
-    {{ 'critical.css' | asset_url | stylesheet_tag: preload: true }}
+    {{ 'base.css' | asset_url | stylesheet_tag }}
 
-    {% # Social, title, etc. %}
     {% render 'meta-tags' %}
+
+    {%- if settings.enable_view_transitions -%}
+      <style>
+        @view-transition { navigation: auto; }
+        ::view-transition-old(root) { animation: 200ms ease both atelier-vt-out; }
+        ::view-transition-new(root) { animation: 250ms ease both atelier-vt-in; }
+        @keyframes atelier-vt-out { to { opacity: 0; } }
+        @keyframes atelier-vt-in { from { opacity: 0; } }
+        @media (prefers-reduced-motion: reduce) {
+          ::view-transition-old(root),
+          ::view-transition-new(root) { animation: none; }
+        }
+      </style>
+    {%- endif -%}
 
     {{ content_for_header }}
   </head>
 
-  <body>
-    {% sections 'header-group' %}
+  <body
+    class="template-{{ request.page_type | handle }}"
+    data-scroll-animations="{{ settings.enable_scroll_animations }}"
+  >
+    <a class="skip-link" href="#main-content">{{ 'general.skip_to_content' | t }}</a>
 
-    {{ content_for_layout }}
+    <div class="site-layout">
+      {% sections 'header-group' %}
 
-    {% sections 'footer-group' %}
+      <div class="site-main">
+        {% sections 'announcement-group' %}
+
+        <main id="main-content" tabindex="-1">
+          {{ content_for_layout }}
+        </main>
+
+        {% sections 'footer-group' %}
+      </div>
+    </div>
+
+    {%- if settings.cart_type == 'drawer' -%}
+      {% render 'cart-drawer' %}
+    {%- endif -%}
+
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    <script src="{{ 'cart.js' | asset_url }}" defer></script>
   </body>
 </html>

@@ -1,0 +1,261 @@
+{%- comment -%}
+  Collection banner — sits above the product grid on collection pages.
+  Reads the {{ collection }} object. With a collection image it becomes a
+  full-bleed media banner with an overlay + inverted text; without one it
+  falls back to a simple centered text banner painted by the color scheme.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+
+  assign banner_title = collection.title | default: shop.name
+
+  assign align_class = 'collection-banner--center'
+  case section.settings.text_alignment
+    when 'left'
+      assign align_class = 'collection-banner--left'
+    when 'right'
+      assign align_class = 'collection-banner--right'
+  endcase
+
+  assign banner_height = '45svh'
+  case section.settings.banner_height
+    when 'small'
+      assign banner_height = '30svh'
+    when 'large'
+      assign banner_height = '60svh'
+  endcase
+
+  assign overlay_alpha = section.settings.overlay_opacity | divided_by: 100.0
+
+  assign has_image = false
+  if section.settings.show_collection_image and collection.image
+    assign has_image = true
+  endif
+
+  assign image_alt = collection.image.alt | default: banner_title | escape
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --banner-height: {{ banner_height }};
+    --banner-overlay-color: {{ section.settings.overlay_color }};
+    --banner-overlay-alpha: {{ overlay_alpha }};
+  }
+</style>
+
+{%- if has_image -%}
+  <div class="collection-banner collection-banner--media color-scheme--invert {{ align_class }}">
+    <div class="collection-banner__media" data-animate-scale>
+      {{
+        collection.image
+        | image_url: width: 2200
+        | image_tag:
+          loading: 'eager',
+          fetchpriority: 'high',
+          widths: '600, 900, 1200, 1600, 2000, 2200',
+          sizes: '100vw',
+          alt: image_alt,
+          class: 'collection-banner__image'
+      }}
+      <span class="collection-banner__overlay" aria-hidden="true"></span>
+    </div>
+    <div class="collection-banner__inner page-width">
+      <div class="collection-banner__content">
+        <h1 class="collection-banner__title h1" data-animate>{{ banner_title | escape }}</h1>
+        {%- if section.settings.show_description and collection.description != blank -%}
+          <div class="collection-banner__description prose" data-animate data-animate-delay="2">
+            {{ collection.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- else -%}
+  <div class="collection-banner collection-banner--plain color-scheme--{{ scheme }} {{ align_class }}">
+    <div class="collection-banner__inner page-width">
+      <div class="collection-banner__content">
+        <h1 class="collection-banner__title h1" data-animate>{{ banner_title | escape }}</h1>
+        {%- if section.settings.show_description and collection.description != blank -%}
+          <div class="collection-banner__description prose" data-animate data-animate-delay="2">
+            {{ collection.description }}
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .collection-banner {
+    padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
+  }
+
+  .collection-banner__inner {
+    position: relative;
+    z-index: var(--z-raised);
+  }
+
+  .collection-banner__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    max-width: 52rem;
+  }
+
+  .collection-banner__title {
+    max-width: 20ch;
+  }
+
+  .collection-banner__description {
+    max-width: 60ch;
+    color: var(--color-muted);
+  }
+
+  /* Alignment modifiers */
+  .collection-banner--center .collection-banner__content {
+    align-items: center;
+    text-align: center;
+    margin-inline: auto;
+  }
+  .collection-banner--left .collection-banner__content {
+    align-items: flex-start;
+    text-align: left;
+  }
+  .collection-banner--right .collection-banner__content {
+    align-items: flex-end;
+    text-align: right;
+    margin-inline: auto 0;
+  }
+
+  /* Media variant — full-bleed image with overlay + inverted text */
+  .collection-banner--media {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: var(--banner-height);
+    overflow: hidden;
+  }
+  .collection-banner--media .collection-banner__description {
+    color: color-mix(in srgb, var(--color-text) 82%, transparent);
+  }
+
+  .collection-banner__media {
+    position: absolute;
+    inset: 0;
+    z-index: var(--z-base);
+  }
+  .collection-banner__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .collection-banner__overlay {
+    position: absolute;
+    inset: 0;
+    background-color: var(--banner-overlay-color);
+    opacity: var(--banner-overlay-alpha);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collection banner",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "show_collection_image",
+      "label": "Show collection image",
+      "info": "Uses the collection's featured image as a full-width background. Falls back to a plain text banner when no image is set.",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "banner_height",
+      "label": "Banner height",
+      "info": "Only applies when a collection image is shown.",
+      "options": [
+        { "value": "small", "label": "Small" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "large", "label": "Large" }
+      ],
+      "default": "medium"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "min": 0,
+      "max": 70,
+      "step": 5,
+      "unit": "%",
+      "label": "Overlay opacity",
+      "info": "Darkens the image so the heading stays readable.",
+      "default": 30
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay color",
+      "default": "#2E3030"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show collection description",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "info": "Used for the plain text banner (when no image is shown).",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    { "name": "Collection banner" }
+  ]
+}
+{% endschema %}

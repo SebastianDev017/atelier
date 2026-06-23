@@ -1,0 +1,82 @@
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="main-404 color-scheme--{{ scheme }}">
+  <div class="main-404__inner page-width page-width--narrow">
+    <h1 class="h1" data-animate>
+      {{- '404.title' | t -}}
+    </h1>
+    <p class="main-404__text lead" data-animate data-animate-delay="2">
+      {{- '404.not_found' | t -}}
+    </p>
+    <div class="main-404__actions" data-animate data-animate-delay="3">
+      <a class="btn" href="{{ routes.root_url }}">{{ '404.back_to_shopping' | t }}</a>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .main-404 { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .main-404__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    text-align: center;
+  }
+  .main-404__text { max-width: 52ch; color: var(--color-muted); }
+  .main-404__actions { margin-top: var(--space-3); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "404",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 120
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 120
+    }
+  ],
+  "presets": [
+    { "name": "404" }
+  ]
+}
+{% endschema %}

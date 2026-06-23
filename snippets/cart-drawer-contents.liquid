@@ -1,0 +1,44 @@
+{%- comment -%}
+  The swappable inner contents of the cart drawer. Rendered by the drawer
+  shell (snippet) and by sections/cart-drawer.liquid (Section Rendering
+  target). The root [data-cart-contents] carries data-count so JS can
+  update the header badge after an AJAX update.
+{%- endcomment -%}
+<div class="cart-drawer__contents{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-contents data-count="{{ cart.item_count }}" data-count-text="{{ 'cart.item_count' | t: count: cart.item_count }}">
+  {%- if cart.item_count > 0 -%}
+    {% render 'cart-shipping-bar' %}
+
+    <ul class="cart-drawer__items" data-cart-items>
+      {%- for item in cart.items -%}
+        <li>{% render 'cart-item', item: item, line: forloop.index %}</li>
+      {%- endfor -%}
+    </ul>
+
+    <div class="cart-drawer__footer">
+      {%- if settings.cart_show_note -%}
+        <details class="cart-drawer__note">
+          <summary class="label">{{ 'cart.note' | t }}</summary>
+          <label class="visually-hidden" for="CartNote">{{ 'cart.note' | t }}</label>
+          <textarea class="textarea" id="CartNote" name="note" data-cart-note placeholder="{{ 'cart.note_placeholder' | t }}">{{ cart.note }}</textarea>
+        </details>
+      {%- endif -%}
+
+      <div class="cart-drawer__subtotal">
+        <span class="label">{{ 'cart.subtotal' | t }}</span>
+        <span class="cart-drawer__subtotal-value">{{ cart.total_price | money }}</span>
+      </div>
+      <p class="caption cart-drawer__taxes">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
+
+      <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__actions">
+        <button type="submit" name="checkout" class="btn btn--full btn--large">{{ 'cart.checkout' | t }}</button>
+        <a href="{{ routes.cart_url }}" class="link-underline cart-drawer__view">{{ 'cart.view_cart' | t }}</a>
+      </form>
+    </div>
+  {%- else -%}
+    <div class="cart-drawer__empty">
+      <p class="cart-drawer__empty-title h4">{{ 'cart.empty' | t }}</p>
+      <p class="caption">{{ 'cart.empty_subtext' | t }}</p>
+      <a href="{{ routes.all_products_collection_url }}" class="btn" data-drawer-close>{{ 'cart.continue_shopping' | t }}</a>
+    </div>
+  {%- endif -%}
+</div>

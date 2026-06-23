@@ -1,0 +1,13 @@
+{%- comment -%}
+  Section Rendering target for the cart drawer. Requested via the cart
+  AJAX `sections` parameter; outputs only the swappable contents so
+  <cart-drawer> can replace [data-cart-contents] in place. Not placed in
+  any template — it has no presets and never appears in the editor.
+{%- endcomment -%}
+{% render 'cart-drawer-contents' %}
+
+{% schema %}
+{
+  "name": "Cart drawer"
+}
+{% endschema %}

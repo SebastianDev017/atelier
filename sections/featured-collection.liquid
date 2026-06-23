@@ -1,0 +1,234 @@
+{%- comment -%}
+  Featured collection grid. Renders a section header plus a responsive
+  product grid sourced from the chosen collection. Falls back to onboarding
+  placeholders so the editor preview looks complete before a collection is set.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign collection = section.settings.collection
+  assign limit = section.settings.products_to_show
+
+  assign has_products = false
+  if collection != blank and collection.products_count > 0
+    assign has_products = true
+  endif
+
+  assign view_all_class = 'link-underline'
+  case section.settings.view_all_style
+    when 'solid'
+      assign view_all_class = 'btn'
+    when 'outline'
+      assign view_all_class = 'btn btn--outline'
+  endcase
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --grid-columns: {{ section.settings.columns_desktop }};
+    --grid-columns-mobile: {{ section.settings.columns_mobile }};
+  }
+</style>
+
+<div class="featured-collection color-scheme--{{ scheme }}">
+  <div class="featured-collection__inner page-width">
+    {%- if section.settings.title != blank or section.settings.subtitle != blank -%}
+      <div class="section-header section-header--center">
+        {%- if section.settings.title != blank -%}
+          <h2 class="h3" data-animate>{{ section.settings.title | escape }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtitle != blank -%}
+          <p class="caption" data-animate data-animate-delay="2">{{ section.settings.subtitle | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if has_products -%}
+      <div class="product-grid">
+        {%- for product in collection.products limit: limit -%}
+          <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
+            {% render 'product-card', product: product, show_vendor: section.settings.show_vendor, heading_tag: 'h3' %}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="product-grid">
+        {%- for i in (1..limit) -%}
+          <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
+            <div class="featured-collection__placeholder">
+              <span class="media media--product placeholder">
+                {{- 'product-1' | placeholder_svg_tag: 'placeholder' -}}
+              </span>
+              <div class="featured-collection__placeholder-info">
+                <span class="featured-collection__placeholder-line"></span>
+                <span class="featured-collection__placeholder-line featured-collection__placeholder-line--short"></span>
+              </div>
+            </div>
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.settings.show_view_all and has_products and collection.url != blank and section.settings.view_all_label != blank -%}
+      <div class="featured-collection__view-all" data-animate>
+        <a class="{{ view_all_class }}" href="{{ collection.url }}">
+          {{- section.settings.view_all_label | escape -}}
+        </a>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .featured-collection {
+    padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
+  }
+  .featured-collection__inner {
+    display: flex;
+    flex-direction: column;
+  }
+  .featured-collection__view-all {
+    display: flex;
+    justify-content: center;
+    margin-top: var(--space-10);
+  }
+  .featured-collection__placeholder {
+    display: flex;
+    flex-direction: column;
+  }
+  .featured-collection__placeholder-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+    margin-top: var(--space-4);
+  }
+  .featured-collection__placeholder-line {
+    display: block;
+    height: var(--text-base);
+    width: 70%;
+    background-color: var(--color-border);
+  }
+  .featured-collection__placeholder-line--short {
+    width: 35%;
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Featured collection",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured"
+    },
+    {
+      "type": "text",
+      "id": "subtitle",
+      "label": "Subheading"
+    },
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    },
+    {
+      "type": "range",
+      "id": "products_to_show",
+      "min": 2,
+      "max": 12,
+      "step": 1,
+      "label": "Products to show",
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns on desktop",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "4"
+    },
+    {
+      "type": "select",
+      "id": "columns_mobile",
+      "label": "Columns on mobile",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_vendor",
+      "label": "Show product vendor",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "show_view_all",
+      "label": "Show \"view all\" link",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "view_all_label",
+      "label": "\"View all\" label",
+      "default": "View all"
+    },
+    {
+      "type": "select",
+      "id": "view_all_style",
+      "label": "\"View all\" style",
+      "options": [
+        { "value": "solid", "label": "Solid button" },
+        { "value": "outline", "label": "Outline button" },
+        { "value": "link", "label": "Text link" }
+      ],
+      "default": "link"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    { "name": "Featured collection" }
+  ]
+}
+{% endschema %}

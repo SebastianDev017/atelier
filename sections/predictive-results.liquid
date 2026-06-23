@@ -1,0 +1,91 @@
+{%- comment -%}
+  Section Rendering target for predictive search. Requested by
+  <predictive-search> as `?q=…&section_id=predictive-results`. The
+  predictive_search object is provided by the suggest endpoint.
+{%- endcomment -%}
+<div data-predictive-results>
+  {%- if predictive_search.performed -%}
+    {%- liquid
+      assign products = predictive_search.resources.products
+      assign pages = predictive_search.resources.pages
+      assign articles = predictive_search.resources.articles
+      assign total = products.size | plus: pages.size | plus: articles.size
+    -%}
+    {%- if total > 0 -%}
+      <div class="predictive">
+        {%- if products.size > 0 -%}
+          <div class="predictive__group">
+            <p class="predictive__heading eyebrow">{{ 'search.products' | t }}</p>
+            <ul>
+              {%- for product in products -%}
+                <li role="option">
+                  <a class="predictive__product" href="{{ product.url }}" tabindex="-1">
+                    {%- if product.featured_media -%}
+                      {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60, 90, 120', sizes: '48px', alt: '' }}
+                    {%- else -%}
+                      <span class="placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
+                    {%- endif -%}
+                    <span>
+                      <span class="predictive__product-title">{{ product.title | escape }}</span>
+                      {% render 'price', product: product %}
+                    </span>
+                  </a>
+                </li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if articles.size > 0 -%}
+          <div class="predictive__group">
+            <p class="predictive__heading eyebrow">{{ 'search.articles' | t }}</p>
+            <ul>
+              {%- for article in articles -%}
+                <li role="option"><a class="predictive__link" href="{{ article.url }}" tabindex="-1">{{ article.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        {%- if pages.size > 0 -%}
+          <div class="predictive__group">
+            <p class="predictive__heading eyebrow">{{ 'search.pages' | t }}</p>
+            <ul>
+              {%- for page in pages -%}
+                <li role="option"><a class="predictive__link" href="{{ page.url }}" tabindex="-1">{{ page.title | escape }}</a></li>
+              {%- endfor -%}
+            </ul>
+          </div>
+        {%- endif -%}
+
+        <a class="predictive__all link-underline" href="{{ routes.search_url }}?q={{ predictive_search.terms | url_encode }}&type=product" tabindex="-1">
+          {{ 'search.view_all_results' | t }}
+        </a>
+      </div>
+    {%- else -%}
+      <p class="predictive__empty">{{ 'search.no_results_html' | t: terms: predictive_search.terms }}</p>
+    {%- endif -%}
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .predictive { display: flex; flex-direction: column; gap: var(--space-5); padding: var(--space-5); }
+  .predictive__group { display: flex; flex-direction: column; gap: var(--space-3); }
+  .predictive__heading { color: var(--color-muted); }
+  .predictive__product { display: flex; align-items: center; gap: var(--space-4); padding: var(--space-2); min-height: 44px; }
+  .predictive__product:hover,
+  .predictive__product[aria-selected="true"] { background-color: var(--color-subtle); }
+  .predictive__product img { width: 3rem; height: 3.75rem; object-fit: cover; background-color: var(--color-subtle); flex: none; }
+  .predictive__product-title { font-size: var(--text-sm); display: block; }
+  .predictive__link { display: block; padding: var(--space-2); min-height: 44px; font-size: var(--text-sm); }
+  .predictive__link:hover,
+  .predictive__link[aria-selected="true"] { background-color: var(--color-subtle); }
+  .predictive__all { display: inline-flex; padding: 0 var(--space-2); }
+  .predictive__empty { padding: var(--space-6); color: var(--color-muted); font-size: var(--text-sm); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Predictive search results"
+}
+{% endschema %}

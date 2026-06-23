@@ -1,0 +1,196 @@
+{%- comment -%}
+  Image with text — editorial 42/58 split (content is the wider column).
+  Never a 50/50 split. layout=image-right flips column order via CSS order.
+  Mirrors rich-text.liquid: inline <style> carries instance vars only,
+  color-scheme--* wrapper paints the background, {% stylesheet %} holds all
+  component CSS with NO Liquid, data-animate drives the global scroll reveal.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign ratio = section.settings.image_ratio | default: 'portrait'
+  assign image = section.settings.image
+
+  assign layout_class = 'image-with-text--image-left'
+  if section.settings.layout == 'image-right'
+    assign layout_class = 'image-with-text--image-right'
+  endif
+
+  assign cta_class = 'btn'
+  case section.settings.cta_style
+    when 'outline'
+      assign cta_class = 'btn btn--outline'
+    when 'link'
+      assign cta_class = 'link-underline'
+  endcase
+
+  assign img_alt = image.alt | default: section.settings.title | escape
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="image-with-text color-scheme--{{ scheme }} {{ layout_class }}">
+  <div class="image-with-text__inner page-width">
+    <div class="image-with-text__media-col">
+      <div class="media media--{{ ratio }} image-with-text__media" data-animate-scale>
+        {%- if image != blank -%}
+          {{ image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '375, 550, 750, 900, 1200', sizes: '(min-width: 750px) 42vw, 100vw', alt: img_alt }}
+        {%- else -%}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="image-with-text__content-col">
+      <div class="image-with-text__content">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="image-with-text__eyebrow eyebrow" data-animate data-animate-delay="1">
+            {{- section.settings.eyebrow | escape -}}
+          </p>
+        {%- endif -%}
+
+        {%- if section.settings.title != blank -%}
+          <h2 class="image-with-text__title h3" data-animate data-animate-delay="2">
+            {{- section.settings.title | escape -}}
+          </h2>
+        {%- endif -%}
+
+        {%- if section.settings.text != blank -%}
+          <div class="image-with-text__text prose" data-animate data-animate-delay="3">
+            {{ section.settings.text }}
+          </div>
+        {%- endif -%}
+
+        {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+          <div class="image-with-text__cta" data-animate data-animate-delay="4">
+            <a class="{{ cta_class }}" href="{{ section.settings.cta_url }}">
+              {{- section.settings.cta_label | escape -}}
+            </a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .image-with-text {
+    padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing));
+  }
+  .image-with-text__inner {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-8);
+    align-items: center;
+  }
+  .image-with-text__media {
+    width: 100%;
+  }
+  .image-with-text__media img {
+    transition: transform var(--duration-slow) var(--ease-editorial);
+  }
+  .image-with-text__media:hover img {
+    transform: scale(1.03);
+  }
+  .image-with-text__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+  }
+  .image-with-text__title {
+    max-width: 22ch;
+  }
+  .image-with-text__text {
+    max-width: 56ch;
+    color: var(--color-muted);
+  }
+  .image-with-text__cta {
+    margin-top: var(--space-2);
+  }
+
+  @media (min-width: 750px) {
+    .image-with-text__inner {
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: var(--space-12);
+    }
+    .image-with-text--image-left .image-with-text__media-col { order: 1; }
+    .image-with-text--image-left .image-with-text__content-col { order: 2; }
+    .image-with-text--image-right .image-with-text__media-col { order: 2; }
+    .image-with-text--image-right .image-with-text__content-col { order: 1; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Image with text",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "select",
+      "id": "image_ratio",
+      "label": "Image ratio",
+      "options": [
+        { "value": "portrait", "label": "Portrait" },
+        { "value": "square", "label": "Square" },
+        { "value": "landscape", "label": "Landscape" },
+        { "value": "wide", "label": "Wide" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "Layout",
+      "options": [
+        { "value": "image-left", "label": "Image left" },
+        { "value": "image-right", "label": "Image right" }
+      ],
+      "default": "image-left"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
+    { "type": "textarea", "id": "title", "label": "Heading", "default": "Crafted with intention" },
+    {
+      "type": "richtext",
+      "id": "text",
+      "label": "Text",
+      "default": "<p>Every piece begins with a considered material and an honest process. Share the story behind your work in a sentence or two.</p>"
+    },
+    { "type": "text", "id": "cta_label", "label": "Button label" },
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    {
+      "type": "select",
+      "id": "cta_style",
+      "label": "Button style",
+      "options": [
+        { "value": "solid", "label": "Solid" },
+        { "value": "outline", "label": "Outline" },
+        { "value": "link", "label": "Link" }
+      ],
+      "default": "solid"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 80 }
+  ],
+  "presets": [
+    { "name": "Image with text" }
+  ]
+}
+{% endschema %}

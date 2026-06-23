@@ -1,0 +1,56 @@
+{%- comment -%}
+  Search input with live predictive results. The <predictive-search>
+  element (search.js) fetches sections/predictive-results.liquid and
+  injects it into the results panel.
+
+  @param {string} id - unique suffix
+{%- endcomment -%}
+<predictive-search class="search" data-predictive-search data-search-url="{{ routes.predictive_search_url }}">
+  <form action="{{ routes.search_url }}" method="get" role="search" class="search__form">
+    <input type="hidden" name="options[prefix]" value="last">
+    <label class="visually-hidden" for="Search-{{ id }}">{{ 'search.title' | t }}</label>
+    <input
+      type="search"
+      id="Search-{{ id }}"
+      name="q"
+      class="search__input input"
+      placeholder="{{ 'search.placeholder' | t }}"
+      autocomplete="off"
+      autocorrect="off"
+      spellcheck="false"
+      role="combobox"
+      aria-expanded="false"
+      aria-haspopup="listbox"
+      aria-controls="SearchResults-{{ id }}"
+      aria-autocomplete="list"
+      data-search-input
+    >
+    <button type="submit" class="search__submit" aria-label="{{ 'search.submit' | t }}">
+      {% render 'icon', name: 'search' %}
+    </button>
+    <button type="reset" class="search__reset" aria-label="{{ 'search.reset' | t }}" data-search-reset hidden>
+      {% render 'icon', name: 'close' %}
+    </button>
+  </form>
+  <div class="search__results" id="SearchResults-{{ id }}" data-search-results role="listbox" aria-label="{{ 'search.suggestions' | t }}" hidden></div>
+</predictive-search>
+
+{% stylesheet %}
+  .search { position: relative; width: 100%; }
+  .search__form { position: relative; display: flex; align-items: center; }
+  .search__input { padding-right: 5rem; border-width: 0 0 1px; }
+  .search__submit,
+  .search__reset { position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; display: inline-flex; align-items: center; justify-content: center; color: var(--color-text); }
+  .search__submit { right: 0; }
+  .search__reset { right: 44px; }
+  .search__results {
+    position: absolute;
+    top: calc(100% + var(--space-2));
+    left: 0; right: 0;
+    max-height: 70svh;
+    overflow-y: auto;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    z-index: var(--z-raised);
+  }
+{% endstylesheet %}

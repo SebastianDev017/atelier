@@ -1,0 +1,131 @@
+{%- comment -%}
+  Editorial product card. 3:4 media, second image on hover, sale +
+  low-stock badges, quick add.
+
+  @param {object} product - the product to render
+  @param {string} [heading_tag] - h2/h3, default h3
+  @param {boolean} [show_vendor] - overrides the global setting
+  @param {boolean} [quick_add] - overrides the global setting
+  @param {string} [sizes] - the image sizes attribute
+  @param {number} [index] - forloop index (eager-loads the first few)
+{%- endcomment -%}
+{%- liquid
+  assign heading_tag = heading_tag | default: 'h3'
+  assign sizes = sizes | default: '(min-width: 990px) 24vw, (min-width: 750px) 32vw, 48vw'
+
+  assign show_vendor = show_vendor | default: settings.card_show_vendor
+  assign quick_add = quick_add
+  if quick_add == nil
+    assign quick_add = settings.card_quick_add
+  endif
+
+  assign variant = product.selected_or_first_available_variant
+  assign compare_at = variant.compare_at_price | default: product.compare_at_price
+  assign on_sale = false
+  if compare_at and compare_at > variant.price
+    assign on_sale = true
+  endif
+
+  assign images = product.media | where: 'media_type', 'image'
+  assign primary = product.featured_media
+  assign secondary = images[1].preview_image | default: product.images[1]
+
+  assign low_stock = false
+  if settings.low_stock_threshold > 0 and variant.inventory_management != blank and variant.inventory_quantity > 0 and variant.inventory_quantity <= settings.low_stock_threshold
+    assign low_stock = true
+  endif
+
+  assign loading = 'lazy'
+  assign fetchpriority = 'auto'
+  if index and index < 5
+    assign fetchpriority = 'auto'
+  endif
+-%}
+<div class="product-card" data-product-card>
+  <a class="product-card__media" href="{{ product.url }}" tabindex="-1" aria-hidden="true">
+    {%- if primary -%}
+      {{
+        primary
+        | image_url: width: 800
+        | image_tag:
+          loading: loading,
+          fetchpriority: fetchpriority,
+          widths: '200, 300, 400, 500, 600, 700, 800',
+          sizes: sizes,
+          class: 'product-card__image product-card__image--primary',
+          alt: primary.alt | default: product.title | escape
+      }}
+      {%- if settings.card_show_secondary_image and secondary -%}
+        {{
+          secondary
+          | image_url: width: 800
+          | image_tag:
+            loading: 'lazy',
+            widths: '200, 300, 400, 500, 600, 700, 800',
+            sizes: sizes,
+            class: 'product-card__image product-card__image--secondary',
+            alt: ''
+        }}
+      {%- endif -%}
+    {%- else -%}
+      <span class="product-card__image product-card__image--primary product-card__image--only placeholder">
+        {{- 'product-1' | placeholder_svg_tag: 'placeholder' -}}
+      </span>
+    {%- endif -%}
+
+    <span class="product-card__badges">
+      {%- unless product.available -%}
+        <span class="badge badge--soldout">{{ 'products.sold_out' | t }}</span>
+      {%- else -%}
+        {%- if on_sale -%}
+          <span class="badge badge--sale">{{ 'products.on_sale' | t }}</span>
+        {%- endif -%}
+        {%- if low_stock -%}
+          <span class="badge badge--low">{{ 'products.low_stock_count' | t: count: variant.inventory_quantity }}</span>
+        {%- endif -%}
+      {%- endunless -%}
+    </span>
+  </a>
+
+  {%- if quick_add and product.available -%}
+    {%- if product.variants.size == 1 -%}
+      <product-form class="product-card__quick">
+        {%- form 'product', product -%}
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <button type="submit" name="add" class="btn btn--small btn--full" data-add-button>
+            <span data-add-label>{{ 'products.add_to_cart' | t }}</span>
+          </button>
+        {%- endform -%}
+      </product-form>
+    {%- else -%}
+      <a href="{{ product.url }}" class="btn btn--small btn--full product-card__quick">
+        {{- 'products.choose_options' | t -}}
+      </a>
+    {%- endif -%}
+  {%- endif -%}
+
+  <div class="product-card__info">
+    {%- if show_vendor and product.vendor != blank -%}
+      <span class="product-card__vendor">{{ product.vendor | escape }}</span>
+    {%- endif -%}
+
+    <{{ heading_tag }} class="product-card__title">
+      <a href="{{ product.url }}">{{ product.title | escape }}</a>
+    </{{ heading_tag }}>
+
+    {%- if settings.card_show_rating and product.metafields.reviews.rating.value != blank -%}
+      {%- assign rating = product.metafields.reviews.rating.value -%}
+      <span class="product-card__rating" role="img" aria-label="{{ 'accessibility.star_rating_html' | t: rating: rating.rating, scale: rating.scale_max }}">
+        {%- assign rounded = rating.rating | round -%}
+        {%- for i in (1..5) -%}
+          {%- if i <= rounded -%}{% render 'icon', name: 'star' %}{%- else -%}{% render 'icon', name: 'star-outline' %}{%- endif -%}
+        {%- endfor -%}
+        {%- if product.metafields.reviews.rating_count -%}
+          <span class="caption">({{ product.metafields.reviews.rating_count }})</span>
+        {%- endif -%}
+      </span>
+    {%- endif -%}
+
+    {% render 'price', product: product, show_from: true %}
+  </div>
+</div>

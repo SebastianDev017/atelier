@@ -1,0 +1,200 @@
+{%- comment -%}
+  GOLD-STANDARD SECTION — mirror this structure in every other section:
+  - inline <style> on #shopify-section-{{ section.id }} carries instance
+    values (padding + any per-instance vars) only.
+  - a color-scheme--* wrapper class paints the background.
+  - {% stylesheet %} holds ALL component CSS, contains NO Liquid, and
+    references only base.css tokens + classes defined in this file.
+  - data-animate / data-animate-delay drive the (global) scroll reveal.
+  - every block's outer element carries {{ block.shopify_attributes }}.
+  - schema uses plain-English labels and ends with a "presets" array.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign width_class = 'page-width--narrow'
+  case section.settings.content_width
+    when 'medium'
+      assign width_class = ''
+    when 'wide'
+      assign width_class = 'page-width--wide'
+  endcase
+  assign align_class = ''
+  if section.settings.text_alignment == 'left'
+    assign align_class = 'rich-text--left'
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="rich-text color-scheme--{{ scheme }} {{ align_class }}">
+  <div class="rich-text__inner page-width {{ width_class }}">
+    {%- for block in section.blocks -%}
+      {%- case block.type -%}
+        {%- when 'eyebrow' -%}
+          <p class="rich-text__eyebrow eyebrow" data-animate data-animate-delay="1" {{ block.shopify_attributes }}>
+            {{- block.settings.text | escape -}}
+          </p>
+        {%- when 'heading' -%}
+          <{{ block.settings.heading_tag }} class="rich-text__heading h2" data-animate data-animate-delay="2" {{ block.shopify_attributes }}>
+            {{- block.settings.heading | escape -}}
+          </{{ block.settings.heading_tag }}>
+        {%- when 'text' -%}
+          <div class="rich-text__text prose" data-animate data-animate-delay="3" {{ block.shopify_attributes }}>
+            {{ block.settings.text }}
+          </div>
+        {%- when 'button' -%}
+          {%- if block.settings.label != blank and block.settings.url != blank -%}
+            {%- assign btn_class = 'btn' -%}
+            {%- if block.settings.style == 'outline' -%}{%- assign btn_class = 'btn btn--outline' -%}{%- endif -%}
+            {%- if block.settings.style == 'link' -%}{%- assign btn_class = 'link-underline' -%}{%- endif -%}
+            <div class="rich-text__buttons" data-animate data-animate-delay="4" {{ block.shopify_attributes }}>
+              <a class="{{ btn_class }}" href="{{ block.settings.url }}">{{ block.settings.label | escape }}</a>
+            </div>
+          {%- endif -%}
+      {%- endcase -%}
+    {%- endfor -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .rich-text { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .rich-text__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    text-align: center;
+    align-items: center;
+  }
+  .rich-text--left .rich-text__inner { text-align: left; align-items: flex-start; }
+  .rich-text__heading { max-width: 20ch; }
+  .rich-text__text { max-width: 60ch; color: var(--color-muted); }
+  .rich-text__buttons { display: flex; flex-wrap: wrap; gap: var(--space-3); margin-top: var(--space-3); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Rich text",
+  "tag": "section",
+  "blocks": [
+    {
+      "type": "eyebrow",
+      "name": "Eyebrow",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "text", "label": "Text", "default": "Our story" }
+      ]
+    },
+    {
+      "type": "heading",
+      "name": "Heading",
+      "limit": 1,
+      "settings": [
+        { "type": "textarea", "id": "heading", "label": "Heading", "default": "Considered objects, made to last" },
+        {
+          "type": "select",
+          "id": "heading_tag",
+          "label": "Heading tag",
+          "info": "Use h2 unless this is the main page heading.",
+          "options": [
+            { "value": "h1", "label": "H1" },
+            { "value": "h2", "label": "H2" },
+            { "value": "h3", "label": "H3" }
+          ],
+          "default": "h2"
+        }
+      ]
+    },
+    {
+      "type": "text",
+      "name": "Text",
+      "limit": 1,
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "Text", "default": "<p>Use this space to share what makes your store different. Keep it short, warm, and human.</p>" }
+      ]
+    },
+    {
+      "type": "button",
+      "name": "Button",
+      "settings": [
+        { "type": "text", "id": "label", "label": "Label", "default": "Shop the collection" },
+        { "type": "url", "id": "url", "label": "Link" },
+        {
+          "type": "select",
+          "id": "style",
+          "label": "Style",
+          "options": [
+            { "value": "solid", "label": "Solid" },
+            { "value": "outline", "label": "Outline" },
+            { "value": "link", "label": "Link" }
+          ],
+          "default": "solid"
+        }
+      ]
+    }
+  ],
+  "settings": [
+    {
+      "type": "select",
+      "id": "content_width",
+      "label": "Content width",
+      "options": [
+        { "value": "narrow", "label": "Narrow" },
+        { "value": "medium", "label": "Medium" },
+        { "value": "wide", "label": "Wide" }
+      ],
+      "default": "narrow"
+    },
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text alignment",
+      "options": [
+        { "value": "center", "label": "Center" },
+        { "value": "left", "label": "Left" }
+      ],
+      "default": "center"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 80
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 80
+    }
+  ],
+  "presets": [
+    { "name": "Rich text" }
+  ]
+}
+{% endschema %}

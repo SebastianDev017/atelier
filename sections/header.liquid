@@ -1,76 +1,391 @@
-<header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign menu = section.settings.menu
+-%}
 
-  <div class="header__menu">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
+{%- comment -%} Sticky + full-height column rules live on the section wrapper (the real grid item of .site-layout), using the raw style-tag pattern every other section uses. {%- endcomment -%}
+<style>
+  #shopify-section-{{ section.id }} { grid-column: 1; }
+  @media (min-width: 769px) {
+    #shopify-section-{{ section.id }} {
+      position: sticky;
+      top: 0;
+      height: 100svh;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+    }
+  }
+</style>
+
+<header-component
+  class="sidebar color-scheme--{{ scheme }}{% if section.settings.show_border %} sidebar--bordered{% endif %}"
+>
+  {%- comment -%}
+    Mobile-only trigger. Lives outside the sliding panel and is fixed to the
+    top-left so it stays put while the panel translates off-canvas.
+  {%- endcomment -%}
+  <button
+    type="button"
+    class="sidebar__toggle header__icon-btn"
+    data-menu-toggle
+    aria-expanded="false"
+    aria-controls="SidebarPanel-{{ section.id }}"
+    aria-label="{{ 'accessibility.open_menu' | t }}"
+  >
+    {% render 'icon', name: 'menu' %}
+  </button>
+
+  <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
+    <div class="sidebar__head">
+      {% render 'header-logo' %}
+      <button
+        type="button"
+        class="sidebar__close header__icon-btn"
+        data-menu-close
+        aria-label="{{ 'accessibility.close_menu' | t }}"
+      >
+        {% render 'icon', name: 'close' %}
+      </button>
+    </div>
+
+    {%- if menu != blank -%}
+      <nav class="sidebar__nav" aria-label="{{ 'general.menu' | t }}">
+        {% render 'header-menu', menu: menu, section_id: section.id %}
+      </nav>
+    {%- endif -%}
+
+    <div class="sidebar__foot">
+      <div class="sidebar__actions">
+        {%- if section.settings.show_search -%}
+          <button
+            type="button"
+            class="header__icon-btn"
+            data-search-toggle
+            aria-expanded="false"
+            aria-controls="SearchModal-{{ section.id }}"
+            aria-label="{{ 'general.search' | t }}"
+          >
+            {% render 'icon', name: 'search' %}
+          </button>
+        {%- endif -%}
+
+        {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
+          <a
+            class="header__icon-btn sidebar__account"
+            href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+            aria-label="{{ 'general.account' | t }}"
+          >
+            {% render 'icon', name: 'account' %}
+          </a>
+        {%- endif -%}
+
+        <a
+          class="header__icon-btn sidebar__cart"
+          href="{{ routes.cart_url }}"
+          data-cart-toggle
+          aria-label="{{ 'general.cart' | t }}"
+        >
+          {% render 'icon', name: 'cart' %}
+          <span
+            class="sidebar__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}"
+            data-cart-count
+            aria-hidden="true"
+          >{{ cart.item_count }}</span>
+          <span class="visually-hidden" data-cart-count-text aria-live="polite">{{ 'cart.item_count' | t: count: cart.item_count }}</span>
+        </a>
+      </div>
+
+      {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
+        <div class="sidebar__locale">
+          {% render 'country-selector',
+            show_country: section.settings.enable_country_selector,
+            show_language: section.settings.enable_language_selector,
+            id: section.id %}
+        </div>
+      {%- endif -%}
+    </div>
   </div>
 
-  <div class="header__icons">
-    {% if shop.customer_accounts_enabled %}
-      <shopify-account menu="{{ section.settings.customer_account_menu }}">
-        {{ 'icon-account.svg' | inline_asset_content }}
-      </shopify-account>
-    {% endif %}
+  {%- comment -%} Search modal — slides down as a top sheet, mutually exclusive with the menu {%- endcomment -%}
+  {%- if section.settings.show_search -%}
+    <div class="sidebar__search" id="SearchModal-{{ section.id }}" data-search-modal>
+      <div class="sidebar__search-inner page-width">
+        {% render 'predictive-search', id: section.id %}
+        <button
+          type="button"
+          class="header__icon-btn sidebar__search-close"
+          data-menu-close
+          aria-label="{{ 'accessibility.close_search' | t }}"
+        >
+          {% render 'icon', name: 'close' %}
+        </button>
+      </div>
+    </div>
+  {%- endif -%}
 
-    <a href="{{ routes.cart_url }}">
-      {% if cart.item_count > 0 %}
-        <sup>{{ cart.item_count }}</sup>
-      {% endif %}
+  <div class="overlay sidebar__overlay" data-header-overlay tabindex="-1"></div>
+</header-component>
 
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </a>
-  </div>
-</header>
+{%- if section.settings.show_search -%}
+  <script src="{{ 'search.js' | asset_url }}" defer></script>
+{%- endif -%}
 
 {% stylesheet %}
-  header {
-    height: 5rem;
+  /* ---------- Sidebar shell ---------- */
+  .sidebar {
+    display: block;
+    min-height: 100%;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+  }
+
+  .sidebar__panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+    min-height: 100%;
+    padding: var(--sidebar-pad, 28px);
+    background-color: var(--color-bg);
+  }
+
+  .sidebar__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: var(--space-3);
+  }
+
+  .sidebar__nav { flex: 1 1 auto; }
+
+  /* ---------- Numbered index navigation ---------- */
+  .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-6); }
+  .sidebar-nav__head { display: flex; align-items: baseline; gap: var(--space-3); }
+  .sidebar-nav__index {
+    flex: none;
+    min-width: 1.7em;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-wide);
+    color: var(--color-muted);
+  }
+  .sidebar-nav__label {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    font-family: var(--font-heading);
+    font-size: var(--text-md);
+    font-weight: var(--font-heading-weight);
+    letter-spacing: var(--tracking-label);
+    text-transform: var(--uppercase-nav);
+    line-height: var(--leading-snug);
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .sidebar-nav__label:hover,
+  .sidebar-nav__label[aria-current="page"] { color: var(--color-accent-local); }
+
+  .sidebar-nav__sub {
+    display: flex;
+    flex-direction: column;
+    margin-top: var(--space-1);
+    padding-left: calc(1.7em + var(--space-3));
+  }
+  .sidebar-nav__sublink {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    color: var(--color-muted);
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .sidebar-nav__sublink:hover,
+  .sidebar-nav__sublink[aria-current="page"] { color: var(--color-text); }
+
+  .sidebar__foot {
+    margin-top: auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    padding-top: var(--space-6);
+  }
+  .sidebar--bordered .sidebar__foot { border-top: 1px solid var(--color-border); }
+
+  .sidebar__actions {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: var(--space-2);
+    margin-inline-start: -10px;
   }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-    display: flex;
+
+  /* ---------- Logo ---------- */
+  .header__logo { display: inline-flex; align-items: center; line-height: 1; }
+  .header__logo-text {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: var(--text-lg);
+    letter-spacing: var(--tracking-wide);
+    text-transform: var(--uppercase-headings);
+  }
+  .header__logo img { width: var(--logo-width, 150px); height: auto; }
+
+  /* ---------- Cart count ---------- */
+  .sidebar__cart { position: relative; }
+  .sidebar__cart-count {
+    position: absolute;
+    top: 4px;
+    right: 2px;
+    min-width: 1.05rem;
+    height: 1.05rem;
+    padding: 0 0.25rem;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
+    background-color: var(--color-text);
+    color: var(--color-bg);
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    font-weight: 600;
+    line-height: 1;
   }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
+  .sidebar__cart-count.is-empty { display: none; }
+
+  .sidebar__locale { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+
+  /* ---------- Mobile trigger + close (hidden on desktop) ---------- */
+  .sidebar__toggle,
+  .sidebar__close { display: none; }
+
+  /* ---------- Search top sheet ---------- */
+  .sidebar__search {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding-block: var(--space-8);
+    z-index: var(--z-drawer);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-0.75rem);
+    transition: opacity var(--duration-base) var(--ease-editorial),
+                transform var(--duration-base) var(--ease-editorial),
+                visibility var(--duration-base);
   }
-  header svg {
-    width: 2rem;
+  .sidebar.header--search-open .sidebar__search { opacity: 1; visibility: visible; transform: translateY(0); }
+  .sidebar__search-inner { display: flex; align-items: flex-start; gap: var(--space-4); }
+  .sidebar__search-inner predictive-search { flex: 1; }
+
+  /* ---------- Overlay ---------- */
+  .sidebar__overlay { z-index: var(--z-overlay); }
+  .sidebar.header--menu-open .sidebar__overlay,
+  .sidebar.header--search-open .sidebar__overlay { opacity: 1; visibility: visible; }
+
+  /* ---------- Desktop divider ----------
+     The sticky and full-height rules are applied to the section wrapper
+     element in the style block at the top of this file, so they sit on the
+     real grid column. .sidebar fills that column (min-height:100%), so its
+     right border spans the full height. */
+  @media (min-width: 769px) {
+    .sidebar--bordered { border-right: 1px solid var(--color-border); }
   }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
+
+  /* ---------- Mobile: off-canvas drawer ---------- */
+  @media (max-width: 768px) {
+    .sidebar { display: contents; }
+
+    .sidebar__toggle {
+      display: inline-flex;
+      position: fixed;
+      top: var(--space-3);
+      left: var(--space-3);
+      z-index: var(--z-header);
+      background-color: var(--color-background);
+      color: var(--color-foreground);
+      box-shadow: 0 0 0 1px var(--color-border);
+    }
+    .sidebar__close { display: inline-flex; }
+
+    .sidebar__panel {
+      position: fixed;
+      top: 0;
+      left: 0;
+      bottom: 0;
+      width: min(86vw, 22rem);
+      z-index: var(--z-drawer);
+      overflow-y: auto;
+      transform: translateX(-100%);
+      transition: transform var(--duration-base) var(--ease-editorial);
+    }
+    .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
+
+    /* Meet the 44px touch-target minimum in the off-canvas drawer */
+    .sidebar-nav__label,
+    .sidebar-nav__sublink { min-height: 44px; }
   }
 {% endstylesheet %}
 
 {% schema %}
 {
-  "name": "t:general.header",
+  "name": "Header",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
-      "label": "t:labels.menu"
+      "label": "Menu",
+      "default": "main-menu",
+      "info": "Top-level items become numbered index sections; their child links appear beneath each one."
     },
     {
-      "type": "link_list",
-      "id": "customer_account_menu",
-      "label": "t:labels.customer_account_menu",
-      "default": "customer-account-main-menu"
+      "type": "checkbox",
+      "id": "show_search",
+      "label": "Show search",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_account",
+      "label": "Show account link",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_border",
+      "label": "Show divider line",
+      "default": true
+    },
+    {
+      "type": "header",
+      "content": "Localization"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_country_selector",
+      "label": "Enable country/region selector",
+      "default": false
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_language_selector",
+      "label": "Enable language selector",
+      "default": false
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
     }
   ]
 }

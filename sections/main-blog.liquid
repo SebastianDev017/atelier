@@ -1,0 +1,156 @@
+{%- comment -%}
+  Blog listing "main" section. Renders blog.title as the page heading and
+  paginates blog.articles into the base .product-grid. Mirrors the structure
+  of rich-text.liquid (gold standard): inline <style> carries instance values
+  only, a color-scheme--* wrapper paints the background, {% stylesheet %} holds
+  all component CSS with no Liquid, and data-animate drives the global reveal.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign columns = section.settings.columns_desktop | plus: 0
+  assign image_vw = 100 | divided_by: columns
+  assign image_sizes = '(min-width: 750px) ' | append: image_vw | append: 'vw, 100vw'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --grid-columns: {{ section.settings.columns_desktop }};
+    --grid-columns-mobile: 1;
+  }
+</style>
+
+<div class="blog color-scheme--{{ scheme }}">
+  <div class="page-width">
+    <header class="blog__head">
+      <h1 class="h2" data-animate>{{ blog.title | escape }}</h1>
+    </header>
+
+    {%- paginate blog.articles by section.settings.posts_per_page -%}
+      <div class="product-grid">
+        {%- for article in blog.articles -%}
+          {%- liquid
+            assign delay = forloop.index | modulo: 5 | plus: 1
+            assign img_alt = article.title | escape
+          -%}
+          <article class="blog__article" data-animate data-animate-delay="{{ delay }}">
+            {%- if section.settings.show_image -%}
+              <a class="blog__media-link" href="{{ article.url }}" tabindex="-1" aria-hidden="true">
+                <div class="media media--landscape blog__media">
+                  {%- if article.image -%}
+                    {{
+                      article.image
+                      | image_url: width: 1200
+                      | image_tag:
+                        loading: 'lazy',
+                        widths: '300, 450, 600, 750, 900, 1200',
+                        sizes: image_sizes,
+                        alt: img_alt
+                    }}
+                  {%- else -%}
+                    {{ 'image' | placeholder_svg_tag: 'placeholder' }}
+                  {%- endif -%}
+                </div>
+              </a>
+            {%- endif -%}
+
+            <div class="blog__body">
+              {%- if section.settings.show_date or section.settings.show_author -%}
+                {%- liquid
+                  assign meta_date = article.published_at | date: '%B %e, %Y'
+                  if section.settings.show_date and section.settings.show_author
+                    assign meta = 'blog.article_metadata_html' | t: date: meta_date, author: article.author
+                  elsif section.settings.show_date
+                    assign meta = meta_date
+                  else
+                    assign meta = article.author
+                  endif
+                -%}
+                <p class="blog__meta eyebrow">{{ meta }}</p>
+              {%- endif -%}
+
+              <h2 class="blog__article-title h4">
+                <a class="blog__article-link" href="{{ article.url }}">{{ article.title | escape }}</a>
+              </h2>
+
+              {%- if section.settings.show_excerpt -%}
+                {%- assign excerpt = article.excerpt_or_content | strip_html | truncatewords: 24 -%}
+                {%- if excerpt != blank -%}
+                  <p class="blog__excerpt">{{ excerpt }}</p>
+                {%- endif -%}
+              {%- endif -%}
+
+              <a class="blog__read-more link-underline" href="{{ article.url }}">{{ 'blog.read_more' | t }}</a>
+            </div>
+          </article>
+        {%- endfor -%}
+      </div>
+
+      {% render 'pagination', paginate: paginate %}
+    {%- endpaginate -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .blog { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .blog__head { max-width: 46rem; margin-bottom: var(--space-12); }
+  .blog__media-link { display: block; }
+  .blog__media { margin-bottom: var(--space-5); }
+  .blog__media img { transition: transform var(--duration-slow) var(--ease-editorial); }
+  .blog__article:hover .blog__media img { transform: scale(1.04); }
+  .blog__body { display: flex; flex-direction: column; gap: var(--space-3); }
+  .blog__meta { margin-bottom: var(--space-1); }
+  .blog__article-title { max-width: 28ch; }
+  .blog__article-link { transition: color var(--duration-fast) var(--ease-editorial); }
+  .blog__article-link:hover { color: var(--color-accent-local); }
+  .blog__excerpt { color: var(--color-muted); line-height: var(--leading-normal); max-width: 56ch; }
+  .blog__read-more { margin-top: var(--space-2); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Blog posts",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "range",
+      "id": "posts_per_page",
+      "min": 6,
+      "max": 24,
+      "step": 3,
+      "label": "Posts per page",
+      "default": 9
+    },
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" }
+      ],
+      "default": "3"
+    },
+    { "type": "checkbox", "id": "show_image", "label": "Show featured image", "default": true },
+    { "type": "checkbox", "id": "show_date", "label": "Show date", "default": true },
+    { "type": "checkbox", "id": "show_author", "label": "Show author", "default": false },
+    { "type": "checkbox", "id": "show_excerpt", "label": "Show excerpt", "default": true },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ]
+}
+{% endschema %}

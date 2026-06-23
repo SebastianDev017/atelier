@@ -1,0 +1,131 @@
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign columns = section.settings.columns_desktop | default: 3
+  assign desktop_vw = 100 | divided_by: columns
+  assign image_sizes = '(min-width: 990px) ' | append: desktop_vw | append: 'vw, (min-width: 750px) 33vw, 50vw'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --grid-columns: {{ columns }};
+    --grid-columns-mobile: 2;
+  }
+</style>
+
+<div class="list-collections color-scheme--{{ scheme }}">
+  <div class="page-width">
+    <h1 class="list-collections__title h2" data-animate>{{ 'collections.title' | t }}</h1>
+
+    {%- if collections.size == 0 -%}
+      <p class="caption">{{ 'collections.empty' | t }}</p>
+    {%- else -%}
+      <div class="product-grid">
+        {%- for collection in collections -%}
+          <a
+            class="list-collections__item"
+            href="{{ collection.url }}"
+            data-animate-scale
+            data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}"
+          >
+            <div class="media media--product">
+              {%- liquid
+                assign collection_image = collection.image
+                if collection_image == blank and collection.products.first != blank
+                  assign collection_image = collection.products.first.featured_image
+                endif
+                if forloop.first
+                  assign img_loading = 'eager'
+                  assign img_priority = 'high'
+                else
+                  assign img_loading = 'lazy'
+                  assign img_priority = 'auto'
+                endif
+                assign col_alt = collection.image.alt | default: collection.title | escape
+              -%}
+              {%- if collection_image != blank -%}
+                {{
+                  collection_image
+                  | image_url: width: 800
+                  | image_tag:
+                    loading: img_loading,
+                    fetchpriority: img_priority,
+                    widths: '300, 400, 600, 800, 1000, 1200',
+                    sizes: image_sizes,
+                    alt: col_alt
+                }}
+              {%- else -%}
+                {{ 'collection-1' | placeholder_svg_tag: 'placeholder' }}
+              {%- endif -%}
+            </div>
+
+            <div class="list-collections__info">
+              <h2 class="list-collections__name h5">{{ collection.title | escape }}</h2>
+              {%- if section.settings.show_product_count -%}
+                <p class="list-collections__count caption">
+                  {{- 'collections.product_count' | t: count: collection.products_count -}}
+                </p>
+              {%- endif -%}
+            </div>
+          </a>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .list-collections { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .list-collections__title { margin-bottom: var(--space-10); }
+  .list-collections__item { display: flex; flex-direction: column; gap: var(--space-4); }
+  .list-collections__item .media img { transition: transform var(--duration-slow) var(--ease-editorial); }
+  .list-collections__item:hover .media img { transform: scale(1.04); }
+  .list-collections__info { display: flex; flex-direction: column; gap: var(--space-1); }
+  .list-collections__name {
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .list-collections__item:hover .list-collections__name { color: var(--color-accent-local); }
+  .list-collections__count { color: var(--color-muted); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Collections list",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "columns_desktop",
+      "label": "Columns (desktop)",
+      "options": [
+        { "value": "2", "label": "2" },
+        { "value": "3", "label": "3" },
+        { "value": "4", "label": "4" }
+      ],
+      "default": "3"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_product_count",
+      "label": "Show product count",
+      "default": true
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ]
+}
+{% endschema %}

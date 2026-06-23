@@ -1,0 +1,240 @@
+{%- comment -%}
+  Contact form — heading + subtext over a {% form 'contact' %}.
+  Mirrors rich-text.liquid: inline <style> carries instance values only,
+  color-scheme--* wrapper paints the background, {% stylesheet %} holds all
+  component CSS (no Liquid), data-animate drives the global scroll reveal.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign heading = section.settings.heading | escape
+  assign label_name = section.settings.label_name | default: 'Name' | escape
+  assign label_email = section.settings.label_email | default: 'Email' | escape
+  assign label_phone = section.settings.label_phone | default: 'Phone' | escape
+  assign label_message = section.settings.label_message | default: 'Message' | escape
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="contact-form color-scheme--{{ scheme }}">
+  <div class="contact-form__inner page-width page-width--narrow">
+    {%- if heading != blank or section.settings.subtext != blank -%}
+      <div class="section-header section-header--center" data-animate>
+        {%- if heading != blank -%}
+          <h2 class="contact-form__heading h2">{{ heading }}</h2>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <div class="contact-form__subtext prose">{{ section.settings.subtext }}</div>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- form 'contact', class: 'contact-form__form', data-animate: '' -%}
+      {%- if form.posted_successfully? -%}
+        <p class="form-status form-status--success" role="status">
+          {{- section.settings.success_message | default: 'Thanks for reaching out. We will reply soon.' | escape -}}
+        </p>
+      {%- endif -%}
+
+      {%- if form.errors -%}
+        <div class="form-status form-status--error contact-form__errors" role="alert">
+          <ul class="contact-form__error-list">
+            {%- for field in form.errors -%}
+              <li>{{ form.errors.messages[field] | escape }}</li>
+            {%- endfor -%}
+          </ul>
+        </div>
+      {%- endif -%}
+
+      <div class="contact-form__fields">
+        <div class="field">
+          <label class="field__label" for="ContactName-{{ section.id }}">{{ label_name }}</label>
+          <input
+            class="input"
+            type="text"
+            id="ContactName-{{ section.id }}"
+            name="contact[Name]"
+            autocomplete="name"
+            value="{{ form.name }}"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="ContactEmail-{{ section.id }}">{{ label_email }}</label>
+          <input
+            class="input"
+            type="email"
+            id="ContactEmail-{{ section.id }}"
+            name="contact[email]"
+            autocomplete="email"
+            required
+            value="{{ form.email }}"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="ContactPhone-{{ section.id }}">{{ label_phone }}</label>
+          <input
+            class="input"
+            type="tel"
+            id="ContactPhone-{{ section.id }}"
+            name="contact[Phone]"
+            autocomplete="tel"
+            value="{{ form.phone }}"
+          >
+        </div>
+
+        <div class="field">
+          <label class="field__label" for="ContactMessage-{{ section.id }}">{{ label_message }}</label>
+          <textarea
+            class="textarea"
+            id="ContactMessage-{{ section.id }}"
+            name="contact[Body]"
+            required
+          >{{- form.body -}}</textarea>
+        </div>
+      </div>
+
+      <div class="contact-form__actions">
+        <button type="submit" class="btn btn--large">{{ 'contact.send' | t }}</button>
+      </div>
+    {%- endform -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .contact-form { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .contact-form__inner {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-8);
+  }
+  .contact-form__heading { max-width: 24ch; }
+  .contact-form__subtext { max-width: 60ch; color: var(--color-muted); }
+  .contact-form__form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .contact-form__fields {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+  }
+  .contact-form__errors { margin-top: 0; }
+  .contact-form__error-list {
+    list-style: none;
+    margin: var(--space-2) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-1);
+  }
+  .contact-form__actions { display: flex; }
+  @media (min-width: 750px) {
+    .contact-form__actions { justify-content: flex-start; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Get in touch"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>Questions, custom requests, or wholesale enquiries — send us a note and we'll get back to you.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Field labels"
+    },
+    {
+      "type": "text",
+      "id": "label_name",
+      "label": "Name label",
+      "default": "Name"
+    },
+    {
+      "type": "text",
+      "id": "label_email",
+      "label": "Email label",
+      "default": "Email"
+    },
+    {
+      "type": "text",
+      "id": "label_phone",
+      "label": "Phone label",
+      "default": "Phone"
+    },
+    {
+      "type": "text",
+      "id": "label_message",
+      "label": "Message label",
+      "default": "Message"
+    },
+    {
+      "type": "header",
+      "content": "Messages"
+    },
+    {
+      "type": "text",
+      "id": "success_message",
+      "label": "Success message",
+      "default": "Thanks for reaching out. We'll reply soon."
+    },
+    {
+      "type": "header",
+      "content": "Appearance"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ],
+  "presets": [
+    { "name": "Contact form" }
+  ]
+}
+{% endschema %}

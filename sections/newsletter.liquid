@@ -1,0 +1,171 @@
+{%- comment -%}
+  Newsletter signup. Centered editorial form on a narrow column.
+  Mirrors rich-text.liquid: inline <style> carries instance values only,
+  a color-scheme--* wrapper paints the background, {% stylesheet %} holds
+  all component CSS with no Liquid, and data-animate drives global reveal.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'invert'
+  assign placeholder = section.settings.input_placeholder | escape
+  assign button_label = section.settings.button_label | escape
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="newsletter color-scheme--{{ scheme }}">
+  <div class="newsletter__inner page-width page-width--narrow">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="newsletter__heading h3" data-animate>
+        {{- section.settings.heading | escape -}}
+      </h2>
+    {%- endif -%}
+
+    {%- if section.settings.subtext != blank -%}
+      <div class="newsletter__subtext prose" data-animate data-animate-delay="2">
+        {{ section.settings.subtext }}
+      </div>
+    {%- endif -%}
+
+    {%- form 'customer', class: 'newsletter__form', data-animate: true, data-animate-delay: '3' -%}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+
+      {%- if form.posted_successfully? -%}
+        <p class="form-status form-status--success" role="status">
+          {{- 'newsletter.success' | t -}}
+        </p>
+      {%- else -%}
+        <div class="newsletter__row">
+          <label class="visually-hidden" for="NewsletterEmail-{{ section.id }}">
+            {{- 'newsletter.label' | t -}}
+          </label>
+          <input
+            type="email"
+            name="contact[email]"
+            id="NewsletterEmail-{{ section.id }}"
+            class="input newsletter__input"
+            placeholder="{{ placeholder }}"
+            autocomplete="email"
+            required
+          >
+          <button type="submit" class="btn newsletter__button">
+            {{- button_label -}}
+          </button>
+        </div>
+
+        {%- if form.errors -%}
+          <p class="form-status form-status--error" role="alert">
+            {{- form.errors | default_errors -}}
+          </p>
+        {%- endif -%}
+      {%- endif -%}
+    {%- endform -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .newsletter { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
+  .newsletter__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-5);
+    text-align: center;
+  }
+  .newsletter__heading { max-width: 24ch; }
+  .newsletter__subtext { max-width: 52ch; color: var(--color-muted); }
+  .newsletter__form { width: 100%; }
+  .newsletter__row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+    width: 100%;
+    max-width: 32rem;
+    margin-inline: auto;
+    text-align: left;
+  }
+  .newsletter__input { flex: 1 1 auto; }
+  .newsletter__button { flex: 0 0 auto; }
+  .newsletter .form-status { text-align: center; }
+
+  @media (min-width: 750px) {
+    .newsletter__row {
+      flex-direction: row;
+      align-items: stretch;
+    }
+    .newsletter__button { width: auto; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Newsletter",
+  "tag": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Join the list"
+    },
+    {
+      "type": "richtext",
+      "id": "subtext",
+      "label": "Subtext",
+      "default": "<p>Quiet updates, new arrivals, and the occasional note. No noise.</p>"
+    },
+    {
+      "type": "text",
+      "id": "input_placeholder",
+      "label": "Email placeholder",
+      "default": "Email address"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Subscribe"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ],
+      "default": "invert"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Top padding",
+      "default": 96
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 160,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom padding",
+      "default": 96
+    }
+  ],
+  "presets": [
+    { "name": "Newsletter" }
+  ]
+}
+{% endschema %}
