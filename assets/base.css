@@ -18,15 +18,15 @@
      Scheme classes set --color-bg / --color-text / --color-accent-local.
      Border + muted derive from --color-text lazily, so they adapt
      to whichever scheme is in scope at the point of use. */
-  --color-bg: var(--color-background);
-  --color-text: var(--color-foreground);
-  --color-accent-local: var(--color-accent);
+  --color-bg: var(--color-background, #FAF7F2);
+  --color-text: var(--color-foreground, #2C1810);
+  --color-accent-local: var(--color-accent, #766356);
   --color-border: var(--color-border-setting, color-mix(in srgb, var(--color-text) 12%, transparent));
   --color-border-strong: color-mix(in srgb, var(--color-text) 32%, transparent);
   --color-muted: color-mix(in srgb, var(--color-text) 58%, transparent);
   --color-subtle: color-mix(in srgb, var(--color-text) 6%, transparent);
   --color-sale: #B23A2E;
-  --color-overlay-text: var(--color-background);
+  --color-overlay-text: var(--color-background, #FAF7F2);
   --color-media: color-mix(in srgb, var(--color-text) 5%, var(--color-bg));
 
   /* Brand constants — shared by every preset (from the fieldstudiesflora scrape) */

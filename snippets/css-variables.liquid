@@ -33,9 +33,9 @@
       --font-body-weight: {{ body_font.weight }};
     {% endif %}
 
-    --color-background: {{ settings.background_color }};
-    --color-foreground: {{ settings.text_color }};
-    --color-accent: {{ settings.accent_color }};
+    --color-background: {{ settings.background_color | default: '#FAF7F2' }};
+    --color-foreground: {{ settings.text_color | default: '#2C1810' }};
+    --color-accent: {{ settings.accent_color | default: '#766356' }};
     {% if settings.border_color != blank %}--color-border-setting: {{ settings.border_color }};{% endif %}
     {% if settings.button_color != blank %}--color-button: {{ settings.button_color }};{% endif %}
     {% if settings.button_text_color != blank %}--color-button-text: {{ settings.button_text_color }};{% endif %}
