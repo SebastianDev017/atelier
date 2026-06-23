@@ -283,6 +283,19 @@ h1, h2, h3, h4, h5, h6 {
 }
 .site-main > #main-content { flex: 1 0 auto; }
 
+/* Breathing room between the left sidebar and page content (desktop only —
+   on mobile the sidebar is an off-canvas drawer, so no gutter is needed and
+   doubling it against .page-width's own padding would crush small screens).
+   Full-bleed sections escape this gutter to stay edge-to-edge. */
+@media (min-width: 769px) {
+  .site-main > #main-content { padding-inline: clamp(1.5rem, 3vw, 3rem); }
+  #main-content .section--full-bleed {
+    width: auto;
+    max-width: none;
+    margin-inline: calc(-1 * clamp(1.5rem, 3vw, 3rem));
+  }
+}
+
 @media (max-width: 768px) {
   .site-layout { grid-template-columns: 1fr; }
   .site-main { min-height: 0; }
