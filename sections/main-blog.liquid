@@ -10,6 +10,8 @@
   assign columns = section.settings.columns_desktop | plus: 0
   assign image_vw = 100 | divided_by: columns
   assign image_sizes = '(min-width: 750px) ' | append: image_vw | append: 'vw, 100vw'
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -24,7 +26,7 @@
 <div class="blog color-scheme--{{ scheme }}">
   <div class="page-width">
     <header class="blog__head">
-      <h1 class="h2" data-animate>{{ blog.title | escape }}</h1>
+      <{{ heading_tag }} class="section-heading heading--{{ heading_size }}" data-animate>{{ blog.title | escape }}</{{ heading_tag }}>
     </header>
 
     {%- paginate blog.articles by section.settings.posts_per_page -%}
@@ -113,6 +115,36 @@
   "name": "Blog posts",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title (default)" },
+        { "value": "h2", "label": "H2 — Section title" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
+    },
     {
       "type": "range",
       "id": "posts_per_page",

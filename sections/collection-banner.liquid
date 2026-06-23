@@ -33,6 +33,9 @@
   endif
 
   assign image_alt = collection.image.alt | default: banner_title | escape
+
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+  assign heading_size = section.settings.heading_size | default: 'display'
 -%}
 
 <style>
@@ -63,7 +66,7 @@
     </div>
     <div class="collection-banner__inner page-width">
       <div class="collection-banner__content">
-        <h1 class="collection-banner__title h1" data-animate>{{ banner_title | escape }}</h1>
+        <{{ heading_tag }} class="collection-banner__title section-heading heading--{{ heading_size }}" data-animate>{{ banner_title | escape }}</{{ heading_tag }}>
         {%- if section.settings.show_description and collection.description != blank -%}
           <div class="collection-banner__description prose" data-animate data-animate-delay="2">
             {{ collection.description }}
@@ -76,7 +79,7 @@
   <div class="collection-banner collection-banner--plain color-scheme--{{ scheme }} {{ align_class }}">
     <div class="collection-banner__inner page-width">
       <div class="collection-banner__content">
-        <h1 class="collection-banner__title h1" data-animate>{{ banner_title | escape }}</h1>
+        <{{ heading_tag }} class="collection-banner__title section-heading heading--{{ heading_size }}" data-animate>{{ banner_title | escape }}</{{ heading_tag }}>
         {%- if section.settings.show_description and collection.description != blank -%}
           <div class="collection-banner__description prose" data-animate data-animate-delay="2">
             {{ collection.description }}
@@ -166,6 +169,36 @@
   "name": "Collection banner",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title (default)" },
+        { "value": "h2", "label": "H2 — Section title" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "display"
+    },
     {
       "type": "checkbox",
       "id": "show_collection_image",

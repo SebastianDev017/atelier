@@ -31,6 +31,9 @@
     when 'link'
       assign cta_class = 'link-underline'
   endcase
+
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -66,7 +69,7 @@
       {%- endif -%}
 
       {%- if section.settings.heading != blank -%}
-        <h2 class="split-media__heading h3 reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></h2>
+        <{{ heading_tag }} class="split-media__heading section-heading heading--{{ heading_size }} reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></{{ heading_tag }}>
       {%- endif -%}
 
       {%- if section.settings.text != blank -%}
@@ -176,6 +179,36 @@
       "id": "heading",
       "label": "Heading",
       "default": "Two halves of one story"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title" },
+        { "value": "h2", "label": "H2 — Section title (default)" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
     },
     {
       "type": "richtext",

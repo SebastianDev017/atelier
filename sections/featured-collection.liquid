@@ -20,6 +20,9 @@
     when 'outline'
       assign view_all_class = 'btn btn--outline'
   endcase
+
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -40,7 +43,7 @@
           <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
         {%- endif -%}
         {%- if section.settings.title != blank -%}
-          <h2 class="h3" data-animate>{{ section.settings.title | escape }}</h2>
+          <{{ heading_tag }} class="section-heading heading--{{ heading_size }}" data-animate>{{ section.settings.title | escape }}</{{ heading_tag }}>
         {%- endif -%}
         {%- if section.settings.subtitle != blank -%}
           <p class="caption" data-animate data-animate-delay="2">{{ section.settings.subtitle | escape }}</p>
@@ -134,6 +137,36 @@
       "id": "title",
       "label": "Heading",
       "default": "Featured"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title" },
+        { "value": "h2", "label": "H2 — Section title (default)" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
     },
     {
       "type": "text",

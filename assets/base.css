@@ -203,6 +203,25 @@ h1, h2, h3, h4, h5, h6 {
 .h4 { font-size: calc(var(--text-xl) * var(--heading-scale)); }
 .h5 { font-size: calc(var(--text-lg) * var(--heading-scale)); }
 
+/* ---------- Heading size system ----------
+   Decouples a heading's visual size from its semantic element. Render as
+   `<{tag} class="section-heading heading--{size}">` so merchants can pick the
+   HTML tag (h1–h4 / p) and the visual size independently. Sizes track the
+   type scale (× --heading-scale, the merchant heading-size control). The
+   common font/colour live on .section-heading so a <p> heading matches too. */
+.section-heading {
+  font-family: var(--font-heading);
+  font-weight: var(--font-heading-weight);
+  color: var(--color-heading, #2C1810);
+}
+.heading--display { font-size: calc(var(--text-5xl) * var(--heading-scale)); line-height: 0.9; letter-spacing: -0.03em; }
+.heading--xl      { font-size: calc(var(--text-4xl) * var(--heading-scale)); line-height: 0.92; letter-spacing: -0.025em; }
+.heading--lg      { font-size: calc(var(--text-3xl) * var(--heading-scale)); line-height: 1; letter-spacing: -0.02em; }
+.heading--md      { font-size: calc(var(--text-2xl) * var(--heading-scale)); line-height: 1.1; letter-spacing: -0.015em; }
+.heading--sm      { font-size: calc(var(--text-xl)  * var(--heading-scale)); line-height: 1.2; letter-spacing: -0.01em; }
+.heading--xs      { font-size: calc(var(--text-lg)  * var(--heading-scale)); line-height: 1.3; letter-spacing: 0; }
+.heading--body    { font-size: var(--text-base); line-height: 1.5; letter-spacing: 0; }
+
 .eyebrow,
 .label {
   font-family: var(--font-mono);

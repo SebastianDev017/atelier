@@ -1,6 +1,8 @@
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
   assign per_page = section.settings.products_per_page
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -15,7 +17,7 @@
 <div class="search-page color-scheme--{{ scheme }}">
   <div class="page-width">
     <header class="search-page__head" data-animate>
-      <h1 class="search-page__title h2">{{ 'search.title' | t }}</h1>
+      <{{ heading_tag }} class="search-page__title section-heading heading--{{ heading_size }}">{{ 'search.title' | t }}</{{ heading_tag }}>
       <div class="search-page__search">{% render 'predictive-search', id: 'main' %}</div>
     </header>
 
@@ -94,6 +96,36 @@
   "name": "Search",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title (default)" },
+        { "value": "h2", "label": "H2 — Section title" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
+    },
     { "type": "range", "id": "products_per_page", "min": 8, "max": 36, "step": 4, "label": "Results per page", "default": 16 },
     {
       "type": "select",

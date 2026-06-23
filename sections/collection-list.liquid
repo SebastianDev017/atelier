@@ -1,5 +1,7 @@
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -18,7 +20,7 @@
         {%- if section.settings.eyebrow != blank -%}
           <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
         {%- endif -%}
-        <h2 class="h3" data-animate data-animate-delay="2">{{ section.settings.heading | escape }}</h2>
+        <{{ heading_tag }} class="section-heading heading--{{ heading_size }}" data-animate data-animate-delay="2">{{ section.settings.heading | escape }}</{{ heading_tag }}>
       </div>
     {%- endif -%}
 
@@ -70,6 +72,36 @@
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "Eyebrow" },
     { "type": "text", "id": "heading", "label": "Heading", "default": "Shop by collection" },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title" },
+        { "value": "h2", "label": "H2 — Section title (default)" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
+    },
     {
       "type": "select",
       "id": "heading_alignment",

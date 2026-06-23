@@ -15,15 +15,7 @@
 
   assign overlay = section.settings.overlay_opacity | divided_by: 100.0
 
-  assign heading_size_class = 'h1'
-  case section.settings.heading_size
-    when 'small'
-      assign heading_size_class = 'h3'
-    when 'medium'
-      assign heading_size_class = 'h2'
-    when 'large'
-      assign heading_size_class = 'h1'
-  endcase
+  assign heading_size = section.settings.heading_size | default: 'display'
 
   assign heading_tag = section.settings.heading_tag | default: 'h1'
 
@@ -108,7 +100,7 @@
       {%- endif -%}
 
       {%- if heading != blank -%}
-        <{{ heading_tag }} class="hero__heading {{ heading_size_class }}">
+        <{{ heading_tag }} class="hero__heading section-heading heading--{{ heading_size }}">
           {{- heading | escape | newline_to_br -}}
         </{{ heading_tag }}>
       {%- endif -%}
@@ -219,8 +211,12 @@
   .hero__heading {
     color: var(--color-overlay-text);
     max-width: none;
-    font-size: clamp(4rem, 10vw, 13rem);
     font-weight: 300;
+  }
+  /* Hero keeps its signature oversized scale for the default 'display' size;
+     any other chosen size falls back to the standard heading scale. */
+  .hero__heading.heading--display {
+    font-size: clamp(4rem, 10vw, 13rem);
     line-height: 0.92;
     letter-spacing: -0.03em;
   }
@@ -403,25 +399,33 @@
     },
     {
       "type": "select",
-      "id": "heading_size",
-      "label": "Heading size",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
       "options": [
-        { "value": "small", "label": "Small" },
-        { "value": "medium", "label": "Medium" },
-        { "value": "large", "label": "Large" }
+        { "value": "h1", "label": "H1 — Main page title (default)" },
+        { "value": "h2", "label": "H2 — Section title" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
       ],
-      "default": "large"
+      "default": "h1"
     },
     {
       "type": "select",
-      "id": "heading_tag",
-      "label": "Heading tag",
-      "info": "Use H1 when this is the main page heading.",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element. Hero defaults to the oversized editorial display scale.",
       "options": [
-        { "value": "h1", "label": "H1" },
-        { "value": "h2", "label": "H2" }
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
       ],
-      "default": "h1"
+      "default": "display"
     },
     {
       "type": "richtext",

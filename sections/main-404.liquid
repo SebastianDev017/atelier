@@ -1,5 +1,7 @@
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
+  assign heading_tag = section.settings.heading_tag | default: 'h1'
+  assign heading_size = section.settings.heading_size | default: 'display'
 -%}
 
 <style>
@@ -11,9 +13,9 @@
 
 <div class="main-404 color-scheme--{{ scheme }}">
   <div class="main-404__inner page-width page-width--narrow">
-    <h1 class="h1" data-animate>
+    <{{ heading_tag }} class="section-heading heading--{{ heading_size }}" data-animate>
       {{- '404.title' | t -}}
-    </h1>
+    </{{ heading_tag }}>
     <p class="main-404__text lead" data-animate data-animate-delay="2">
       {{- '404.not_found' | t -}}
     </p>
@@ -41,6 +43,36 @@
   "name": "404",
   "tag": "section",
   "settings": [
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title (default)" },
+        { "value": "h2", "label": "H2 — Section title" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h1"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "display"
+    },
     {
       "type": "select",
       "id": "color_scheme",

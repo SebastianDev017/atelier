@@ -41,7 +41,7 @@
             {{- block.settings.text | escape -}}
           </p>
         {%- when 'heading' -%}
-          <{{ block.settings.heading_tag }} class="rich-text__heading h2 reveal-lines" {{ block.shopify_attributes }}><span class="line">{{- block.settings.heading | escape -}}</span></{{ block.settings.heading_tag }}>
+          <{{ block.settings.heading_tag }} class="rich-text__heading section-heading heading--{{ block.settings.heading_size | default: 'lg' }} reveal-lines" {{ block.shopify_attributes }}><span class="line">{{- block.settings.heading | escape -}}</span></{{ block.settings.heading_tag }}>
         {%- when 'text' -%}
           <div class="rich-text__text prose" data-animate data-animate-delay="3" {{ block.shopify_attributes }}>
             {{ block.settings.text }}
@@ -97,14 +97,32 @@
         {
           "type": "select",
           "id": "heading_tag",
-          "label": "Heading tag",
-          "info": "Use h2 unless this is the main page heading.",
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
           "options": [
-            { "value": "h1", "label": "H1" },
-            { "value": "h2", "label": "H2" },
-            { "value": "h3", "label": "H3" }
+            { "value": "h1", "label": "H1 — Main page title" },
+            { "value": "h2", "label": "H2 — Section title (default)" },
+            { "value": "h3", "label": "H3 — Subsection" },
+            { "value": "h4", "label": "H4 — Minor heading" },
+            { "value": "p", "label": "Paragraph — no heading" }
           ],
           "default": "h2"
+        },
+        {
+          "type": "select",
+          "id": "heading_size",
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options": [
+            { "value": "display", "label": "Display — oversized editorial" },
+            { "value": "xl", "label": "XL — hero scale" },
+            { "value": "lg", "label": "Large — section title" },
+            { "value": "md", "label": "Medium — standard" },
+            { "value": "sm", "label": "Small — card heading" },
+            { "value": "xs", "label": "Extra small — caption scale" },
+            { "value": "body", "label": "Body — same as body text" }
+          ],
+          "default": "lg"
         }
       ]
     },

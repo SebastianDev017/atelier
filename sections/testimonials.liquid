@@ -10,6 +10,8 @@
   assign autoplay = section.settings.autoplay
   assign show_images = section.settings.show_images
   assign block_count = section.blocks.size
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -23,7 +25,7 @@
   <span class="edition-number" aria-hidden="true">005</span>
   <div class="testimonials__inner page-width">
     {%- if section.settings.heading != blank -%}
-      <h2 class="testimonials__heading h3 reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></h2>
+      <{{ heading_tag }} class="testimonials__heading section-heading heading--{{ heading_size }} reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></{{ heading_tag }}>
     {%- endif -%}
 
     {%- if block_count > 0 -%}
@@ -477,6 +479,36 @@
       "id": "heading",
       "label": "Heading",
       "default": "What people say"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title" },
+        { "value": "h2", "label": "H2 — Section title (default)" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
     },
     {
       "type": "checkbox",

@@ -8,6 +8,8 @@
   assign scheme = section.settings.color_scheme | default: 'invert'
   assign placeholder = section.settings.input_placeholder | escape
   assign button_label = section.settings.button_label | escape
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
 <style>
@@ -21,9 +23,9 @@
   <span class="edition-number" aria-hidden="true">006</span>
   <div class="newsletter__inner page-width page-width--narrow">
     {%- if section.settings.heading != blank -%}
-      <h2 class="newsletter__heading h3" data-animate>
+      <{{ heading_tag }} class="newsletter__heading section-heading heading--{{ heading_size }}" data-animate>
         {{- section.settings.heading | escape -}}
-      </h2>
+      </{{ heading_tag }}>
     {%- endif -%}
 
     {%- if section.settings.subtext != blank -%}
@@ -112,6 +114,36 @@
       "id": "heading",
       "label": "Heading",
       "default": "Join the list"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "Heading element",
+      "info": "Choose the HTML tag for SEO and accessibility",
+      "options": [
+        { "value": "h1", "label": "H1 — Main page title" },
+        { "value": "h2", "label": "H2 — Section title (default)" },
+        { "value": "h3", "label": "H3 — Subsection" },
+        { "value": "h4", "label": "H4 — Minor heading" },
+        { "value": "p", "label": "Paragraph — no heading" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select",
+      "id": "heading_size",
+      "label": "Heading size",
+      "info": "Visual size, independent of the element",
+      "options": [
+        { "value": "display", "label": "Display — oversized editorial" },
+        { "value": "xl", "label": "XL — hero scale" },
+        { "value": "lg", "label": "Large — section title" },
+        { "value": "md", "label": "Medium — standard" },
+        { "value": "sm", "label": "Small — card heading" },
+        { "value": "xs", "label": "Extra small — caption scale" },
+        { "value": "body", "label": "Body — same as body text" }
+      ],
+      "default": "lg"
     },
     {
       "type": "richtext",
