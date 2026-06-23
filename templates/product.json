@@ -12,17 +12,63 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "vendor": { "type": "vendor", "settings": {} },
-        "title": { "type": "title", "settings": {} },
-        "rating": { "type": "rating", "settings": {} },
-        "price": { "type": "price", "settings": {} },
-        "inventory": { "type": "inventory", "settings": {} },
-        "variant_picker": { "type": "variant_picker", "settings": {} },
-        "buy_buttons": { "type": "buy_buttons", "settings": {} },
-        "trust_badges": { "type": "trust_badges", "settings": {} },
-        "description": { "type": "description", "settings": {} },
-        "share": { "type": "share", "settings": {} },
-        "collapsible": { "type": "collapsible", "settings": {} }
+        "vendor": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title": {
+          "type": "title",
+          "settings": {}
+        },
+        "rating": {
+          "type": "rating",
+          "settings": {}
+        },
+        "price": {
+          "type": "price",
+          "settings": {}
+        },
+        "inventory": {
+          "type": "inventory",
+          "settings": {}
+        },
+        "variant_picker": {
+          "type": "variant_picker",
+          "settings": {}
+        },
+        "buy_buttons": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_quantity": true,
+            "show_dynamic_checkout": true,
+            "show_shipping_note": true,
+            "shipping_note": "Free shipping over $150 · 30-day returns"
+          }
+        },
+        "trust_badges": {
+          "type": "trust_badges",
+          "settings": {
+            "badge_1": "Secure checkout",
+            "badge_2": "Free shipping over $150",
+            "badge_3": "30-day returns",
+            "badge_4": "Made to order"
+          }
+        },
+        "description": {
+          "type": "description",
+          "settings": {}
+        },
+        "share": {
+          "type": "share",
+          "settings": {}
+        },
+        "collapsible": {
+          "type": "collapsible",
+          "settings": {
+            "heading": "Shipping & returns",
+            "content": "<p>Add shipping, returns, or care details here.</p>"
+          }
+        }
       },
       "block_order": [
         "vendor",
@@ -37,12 +83,28 @@
         "share",
         "collapsible"
       ],
-      "settings": {}
+      "settings": {
+        "media_width": 55,
+        "update_url": true,
+        "color_scheme": "cream",
+        "padding_top": 64,
+        "padding_bottom": 64
+      }
     },
     "recommendations": {
       "type": "product-recommendations",
-      "settings": {}
+      "settings": {
+        "heading": "You may also like",
+        "products_to_show": 4,
+        "columns_desktop": "4",
+        "color_scheme": "cream",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
-  "order": ["main", "recommendations"]
+  "order": [
+    "main",
+    "recommendations"
+  ]
 }
