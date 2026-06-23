@@ -300,20 +300,12 @@ h1, h2, h3, h4, h5, h6 {
      position:sticky still works. */
   overflow-x: clip;
 }
-.site-main > #main-content { flex: 1 0 auto; }
-
-/* Breathing room between the left sidebar and page content (desktop only —
-   on mobile the sidebar is an off-canvas drawer, so no gutter is needed and
-   doubling it against .page-width's own padding would crush small screens).
-   Full-bleed sections escape this gutter to stay edge-to-edge. */
-@media (min-width: 769px) {
-  .site-main > #main-content { padding-inline: clamp(1.5rem, 3vw, 3rem); }
-  #main-content .section--full-bleed {
-    width: auto;
-    max-width: none;
-    margin-inline: calc(-1 * clamp(1.5rem, 3vw, 3rem));
-  }
-}
+/* #main-content carries NO horizontal padding, so each section's
+   color-scheme background paints edge-to-edge across the content column (no
+   cream side bars on invert/parchment sections). The sidebar breathing room
+   and content constraint come from each section's inner gutter
+   (.section__inner / .page-width), not from this wrapper. */
+.site-main > #main-content { flex: 1 0 auto; width: 100%; }
 
 @media (max-width: 768px) {
   .site-layout { grid-template-columns: 1fr; }
@@ -321,14 +313,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* ---------- Layout ---------- */
+/* Inner content gutter. Responsive clamp keeps content off the sidebar
+   divider on desktop without crushing small screens. .page-width and
+   .section__inner are equivalent two-layer "inner" constraints — a section's
+   color-scheme outer paints full-width; the inner re-constrains + gutters. */
 .page-width {
   width: 100%;
   max-width: var(--page-width);
   margin-inline: auto;
-  padding-inline: var(--page-margin);
+  padding-inline: clamp(1.5rem, 3vw, 3rem);
 }
 .page-width--narrow { max-width: var(--page-width-narrow); }
 .page-width--wide { max-width: calc(var(--page-width) + 8rem); }
+
+/* Two-layer section structure: full-width background + constrained content. */
+.section-wrapper { width: 100%; }
+.section__inner {
+  width: 100%;
+  max-width: var(--page-width);
+  margin-inline: auto;
+  padding-inline: clamp(1.5rem, 3vw, 3rem);
+}
+.section--full-bleed > .section__inner {
+  max-width: none;
+  padding-inline: 0;
+}
 
 .section { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
 .section--tight { padding-block: var(--space-12); }
