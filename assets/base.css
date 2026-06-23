@@ -274,6 +274,12 @@ h1, h2, h3, h4, h5, h6 {
   min-width: 0;
   min-height: 100vh;
   min-height: 100svh;
+  /* Clip horizontal overflow so a section's pre-reveal transform
+     (data-animate-left/right shift the box ±2rem before it scrolls
+     into view) can never create a horizontal page scroll. `clip`
+     (not hidden) does NOT create a scroll container, so descendant
+     position:sticky still works. */
+  overflow-x: clip;
 }
 .site-main > #main-content { flex: 1 0 auto; }
 
