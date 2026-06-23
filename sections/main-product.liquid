@@ -237,6 +237,25 @@
   .product__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
   .product-form__error { color: var(--color-sale); font-size: var(--text-sm); margin-top: var(--space-2); }
   .shopify-payment-button { margin-top: var(--space-2); }
+  /* Match the dynamic-checkout ("Buy it now") button to the editorial Add-to-cart
+     button: espresso fill, zero radius, uppercase 11px mono label (the theme's
+     button voice). !important is required to beat Shopify's injected styles. */
+  .shopify-payment-button__button--unbranded {
+    background-color: #2C1810 !important;
+    color: #FAF7F2 !important;
+    border-radius: 0 !important;
+    min-height: 48px !important;
+    padding: 0.85em 2em !important;
+    font-family: var(--font-mono) !important;
+    font-size: 11px !important;
+    font-weight: 400 !important;
+    letter-spacing: var(--tracking-label) !important;
+    text-transform: uppercase !important;
+    transition: background-color var(--duration-fast) var(--ease-editorial) !important;
+  }
+  .shopify-payment-button__button--unbranded:hover:not([disabled]) {
+    background-color: var(--color-accent-local, #766356) !important;
+  }
   .product__shipping-note { color: var(--color-muted); margin-top: var(--space-1); text-align: center; }
 
   .product__share { display: inline-flex; align-items: center; gap: var(--space-3); }
