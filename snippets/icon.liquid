@@ -62,6 +62,12 @@
       <path d="M8 5v14M16 5v14"/>
     {%- when 'play' -%}
       <path d="M7 4v16l13-8z" fill="currentColor" stroke="none"/>
+    {%- when 'lock' -%}
+      <rect x="5" y="11" width="14" height="9"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/>
+    {%- when 'return' -%}
+      <path d="M3 9h11a6 6 0 0 1 0 12h-4"/><path d="m7 5-4 4 4 4"/>
+    {%- when 'sparkle' -%}
+      <path d="M12 3l1.9 5.6L19.5 10l-5.6 1.9L12 17l-1.9-5.1L4.5 10l5.6-1.4z"/>
     {%- else -%}
       <path d="M4 12h16M14 6l6 6-6 6"/>
   {%- endcase -%}

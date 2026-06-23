@@ -18,6 +18,7 @@
         "price": { "type": "price", "settings": {} },
         "variant_picker": { "type": "variant_picker", "settings": {} },
         "buy_buttons": { "type": "buy_buttons", "settings": {} },
+        "trust_badges": { "type": "trust_badges", "settings": {} },
         "description": { "type": "description", "settings": {} },
         "share": { "type": "share", "settings": {} },
         "collapsible": { "type": "collapsible", "settings": {} }
@@ -29,6 +30,7 @@
         "price",
         "variant_picker",
         "buy_buttons",
+        "trust_badges",
         "description",
         "share",
         "collapsible"

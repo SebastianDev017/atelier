@@ -149,6 +149,9 @@
                 </product-form>
               </div>
 
+            {%- when 'trust_badges' -%}
+              {% render 'trust-badges', block: block %}
+
             {%- when 'share' -%}
               <share-button class="product__share" data-share-url="{{ shop.url }}{{ product.url }}" {{ block.shopify_attributes }}>
                 <button type="button" class="link-underline" data-share-trigger>
@@ -306,6 +309,17 @@
         { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "default": true },
         { "type": "checkbox", "id": "show_shipping_note", "label": "Show shipping reassurance line", "default": true },
         { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Free shipping over $150 · 30-day returns" }
+      ]
+    },
+    {
+      "type": "trust_badges",
+      "name": "Trust badges",
+      "limit": 1,
+      "settings": [
+        { "type": "text", "id": "badge_1", "label": "Badge 1", "default": "Secure checkout" },
+        { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "Free shipping over $150" },
+        { "type": "text", "id": "badge_3", "label": "Badge 3", "default": "30-day returns" },
+        { "type": "text", "id": "badge_4", "label": "Badge 4", "default": "Made to order" }
       ]
     },
     { "type": "description", "name": "Description", "limit": 1 },
