@@ -82,13 +82,13 @@
       {
         "type": "color",
         "id": "background_color",
-        "default": "#FBF8F2",
+        "default": "#FAF7F2",
         "label": "Background"
       },
       {
         "type": "color",
         "id": "text_color",
-        "default": "#2E3030",
+        "default": "#2C1810",
         "label": "Text"
       },
       {
@@ -108,13 +108,13 @@
       {
         "type": "color",
         "id": "button_color",
-        "default": "#2E3030",
+        "default": "#2C1810",
         "label": "Button background"
       },
       {
         "type": "color",
         "id": "button_text_color",
-        "default": "#FBF8F2",
+        "default": "#FAF7F2",
         "label": "Button label"
       },
       {
