@@ -67,10 +67,11 @@
     flex: 0 0 auto;
     padding-inline: var(--space-6);
     font-family: var(--font-heading);
-    font-weight: var(--font-heading-weight);
-    font-size: var(--marquee-size);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     line-height: var(--leading-tight);
-    letter-spacing: var(--tracking-tight);
+    letter-spacing: 0.02em;
     white-space: nowrap;
   }
   @keyframes marquee-scroll {
@@ -93,7 +94,7 @@
       "type": "text",
       "id": "text",
       "label": "Text",
-      "default": "Editorial — Considered — Made to last"
+      "default": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·"
     },
     {
       "type": "range",

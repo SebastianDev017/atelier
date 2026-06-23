@@ -15,3 +15,7 @@ node_modules/
 ## Release files
 release
 *.zip
+
+## Local-only design reference (not part of the theme)
+preview.html
+.playwright-mcp/
