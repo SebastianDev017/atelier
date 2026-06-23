@@ -51,10 +51,11 @@
         "newsletter"
       ],
       "settings": {
+        "show_wordmark": false,
         "show_payment_icons": true,
         "show_policy_links": true,
-        "enable_country_selector": true,
-        "enable_language_selector": true,
+        "show_country_selector": true,
+        "show_language_selector": true,
         "color_scheme": "invert"
       }
     }
