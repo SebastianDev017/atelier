@@ -835,12 +835,11 @@ body::after {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: var(--color-text, #2E3030);
+  background-color: var(--color-text, #2C1810);
   pointer-events: none;
   z-index: 99997;
   transform: translate(-50%, -50%);
   transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, opacity 0.3s ease;
-  mix-blend-mode: multiply;
   top: 0;
   left: 0;
   will-change: transform;
@@ -869,9 +868,6 @@ body::after {
   border-radius: 0;
 }
 @media (hover: none), (pointer: coarse) {
-  .custom-cursor { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
   .custom-cursor { display: none; }
 }
 

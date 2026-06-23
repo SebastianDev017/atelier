@@ -396,28 +396,25 @@
 
   /* ---------- Custom cursor ----------
      Lerp-follow dot that grows to a VIEW badge over images and becomes a
-     short rule over buttons. Skipped on touch and reduced-motion. */
+     short rule over buttons. Shown on all pointer devices; hidden only on
+     touch / coarse pointers (via CSS). Hover detection is delegated at the
+     document level so it works for sections loaded after init too. */
   function CursorComponent() {
     this.el = document.getElementById('custom-cursor');
     if (!this.el) return;
-    if (window.matchMedia('(hover: none)').matches || reducedMotion.matches) return;
+    if (window.matchMedia('(hover: none)').matches) return;
     var self = this;
     this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
     this.tick = this.tick.bind(this);
     document.addEventListener('mousemove', function (e) { self.x = e.clientX; self.y = e.clientY; });
     this.tick();
-    this.querySelectorAllSafe('a[href*="/products"] img, .product-card__media, .gallery__item img').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { self.el.classList.add('is-hovering-image'); });
-      el.addEventListener('mouseleave', function () { self.el.classList.remove('is-hovering-image'); });
-    });
-    this.querySelectorAllSafe('.btn, button[type="submit"]').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { self.el.classList.add('is-hovering-btn'); });
-      el.addEventListener('mouseleave', function () { self.el.classList.remove('is-hovering-btn'); });
+    document.addEventListener('mouseover', function (e) {
+      var img = e.target.closest('.product-card__media, .gallery__item, figure');
+      var btn = e.target.closest('.btn, button[type="submit"], a.btn');
+      self.el.classList.toggle('is-hovering-image', !!img);
+      self.el.classList.toggle('is-hovering-btn', !!btn);
     });
   }
-  CursorComponent.prototype.querySelectorAllSafe = function (selector) {
-    return Array.prototype.slice.call(document.querySelectorAll(selector));
-  };
   CursorComponent.prototype.tick = function () {
     this.cx += (this.x - this.cx) * 0.12;
     this.cy += (this.y - this.cy) * 0.12;
