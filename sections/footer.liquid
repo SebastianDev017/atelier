@@ -147,10 +147,13 @@
   .footer__logo { width: var(--logo-width, 150px); height: auto; }
   .footer__brand-text { font-size: var(--text-sm); color: var(--color-muted); max-width: 28ch; }
   .footer__heading { color: color-mix(in srgb, var(--color-text) 70%, transparent); }
-  .footer__menu { display: flex; flex-direction: column; gap: var(--space-3); }
+  .footer__menu { display: flex; flex-direction: column; gap: var(--space-1); }
   .footer__link,
   .footer__text a { font-size: var(--text-sm); color: var(--color-text); opacity: 0.85; transition: opacity var(--duration-fast) var(--ease-editorial); }
+  /* 44px tap target for footer links (gap reduced above to offset the added height). */
+  .footer__link { display: inline-flex; align-items: center; min-height: 44px; }
   .footer__link:hover { opacity: 1; }
+  .footer__bottom-link { display: inline-flex; align-items: center; min-height: 44px; }
   .footer__text { font-size: var(--text-sm); color: var(--color-muted); }
 
   .footer__newsletter-row { display: flex; gap: var(--space-2); flex-wrap: wrap; }
