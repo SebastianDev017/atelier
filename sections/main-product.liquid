@@ -12,7 +12,7 @@
 </style>
 
 <product-info
-  class="product color-scheme--{{ scheme }}"
+  class="product section-wrapper color-scheme--{{ scheme }}"
   style="padding-top: {{ section.settings.padding_top | default: 64 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;"
   data-product-info
   data-section-id="{{ section.id }}"
@@ -22,7 +22,7 @@
   data-sold-out-text="{{ 'products.sold_out' | t | escape }}"
   data-unavailable-text="{{ 'products.unavailable' | t | escape }}"
 >
-  <div class="product__grid page-width">
+  <div class="product__grid section__inner">
     <div class="product__media-col">
       {% render 'product-media', product: product, section: section %}
     </div>
