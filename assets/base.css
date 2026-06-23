@@ -925,17 +925,19 @@ html, body, *, *::before, *::after { cursor: none !important; }
 
 .custom-cursor {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
-  background-color: var(--color-text, #2C1810);
+  background-color: #ffffff;
+  /* difference blend = white on dark backgrounds, dark on light ones, so the
+     dot stays visible over any section (cream content or espresso footer). */
+  mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 99997;
-  transform: translate(-50%, -50%);
-  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease, opacity 0.3s ease;
+  z-index: 99999;
   top: 0;
   left: 0;
   will-change: transform;
+  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
 }
 .custom-cursor__label {
   position: absolute;
