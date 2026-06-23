@@ -309,8 +309,10 @@
       top: var(--space-3);
       left: var(--space-3);
       z-index: var(--z-header);
-      background-color: var(--color-background);
-      color: var(--color-foreground);
+      /* Use the scheme-resolved tokens (which carry fallbacks) so the button
+         keeps a solid background even when the brand color settings are nil. */
+      background-color: var(--color-bg);
+      color: var(--color-text);
       box-shadow: 0 0 0 1px var(--color-border);
     }
     .sidebar__close { display: inline-flex; }
@@ -320,7 +322,8 @@
       top: 0;
       left: 0;
       bottom: 0;
-      width: min(86vw, 22rem);
+      /* Full-screen drawer on mobile with a solid scheme background. */
+      width: 100%;
       z-index: var(--z-drawer);
       overflow-y: auto;
       transform: translateX(-100%);
