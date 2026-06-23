@@ -68,7 +68,7 @@
       "type": "editorial-statement",
       "settings": {
         "statement": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</p>",
-        "color_scheme": "cream",
+        "color_scheme": "invert",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -76,6 +76,7 @@
     "image_text": {
       "type": "image-with-text",
       "settings": {
+        "image": "shopify://shop_images/two-people-surfing-in-blue-choppy-water.jpg",
         "image_ratio": "portrait",
         "layout": "image-right",
         "eyebrow": "Our craft",
@@ -92,6 +93,7 @@
     "full_bleed": {
       "type": "full-bleed-image",
       "settings": {
+        "image": "shopify://shop_images/woman-and-two-children-stand-in-a-gold-colored-field.jpg",
         "image_height": "large",
         "caption": "",
         "overlay_opacity": 0
@@ -100,6 +102,7 @@
     "split": {
       "type": "split-media",
       "settings": {
+        "image": "shopify://shop_images/flatlay-of-jade-face-roller-laying-on-a-grey-stone.jpg",
         "media_position": "left",
         "image_ratio": "portrait",
         "eyebrow": "Process",
@@ -109,7 +112,7 @@
         "cta_url": "",
         "cta_style": "outline",
         "color_scheme": "cream",
-        "padding_top": 0,
+        "padding_top": 60,
         "padding_bottom": 0
       }
     },
