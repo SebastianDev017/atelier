@@ -114,7 +114,7 @@
         "cta_label": "",
         "cta_url": "",
         "cta_style": "solid",
-        "color_scheme": "cream",
+        "color_scheme": "white",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -148,25 +148,6 @@
         "image_height": "cinematic",
         "caption": "Objects for the modern home",
         "overlay_opacity": 30
-      }
-    },
-    "split": {
-      "type": "split-media",
-      "settings": {
-        "image": "shopify://shop_images/flatlay-of-jade-face-roller-laying-on-a-grey-stone.jpg",
-        "media_position": "left",
-        "image_ratio": "portrait",
-        "eyebrow": "Process",
-        "heading": "Designed in studio",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "text": "<p>Each object passes through our studio before it reaches you — reviewed, refined, considered.</p>",
-        "cta_label": "Discover more",
-        "cta_url": "",
-        "cta_style": "outline",
-        "color_scheme": "cream",
-        "padding_top": 60,
-        "padding_bottom": 0
       }
     },
     "collections": {
@@ -367,7 +348,6 @@
     "image_text",
     "featured_collection_XLkfCY",
     "full_bleed",
-    "split",
     "collections",
     "gallery",
     "testimonials",
