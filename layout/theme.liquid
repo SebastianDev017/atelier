@@ -13,9 +13,20 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endif -%}
 
-    {% if settings.favicon %}
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
+    {%- comment -%}
+      Always emit a favicon link so the browser never falls back to requesting
+      /favicon.ico (a 404 there logs a console error and costs a Lighthouse
+      Best-Practices point). Uses the merchant favicon when set, else an inline
+      SVG mark so there is always a real icon.
+    {%- endcomment -%}
+    {%- if settings.favicon != blank -%}
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
-    {% endif %}
+      <link rel="apple-touch-icon" href="{{ settings.favicon | image_url: width: 180, height: 180 }}">
+    {%- else -%}
+      <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%E2%96%B2%3C/text%3E%3C/svg%3E">
+    {%- endif -%}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
