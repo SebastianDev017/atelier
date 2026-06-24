@@ -315,32 +315,32 @@
 
 {% schema %}
 {
-  "name": "Hero",
+  "name": "t:sections.hero.name",
   "settings": [
     {
       "type": "header",
-      "content": "Image"
+      "content": "t:sections.hero.settings.header__1.content"
     },
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Background image"
+      "label": "t:sections.hero.settings.image.label"
     },
     {
       "type": "image_picker",
       "id": "image_mobile",
-      "label": "Mobile image",
-      "info": "Optional. Shown on small screens instead of the background image."
+      "label": "t:sections.hero.settings.image_mobile.label",
+      "info": "t:sections.hero.settings.image_mobile.info"
     },
     {
       "type": "select",
       "id": "image_height",
-      "label": "Height",
+      "label": "t:sections.hero.settings.image_height.label",
       "options": [
-        { "value": "50svh", "label": "Half screen" },
-        { "value": "70svh", "label": "Two thirds" },
-        { "value": "90svh", "label": "Nearly full" },
-        { "value": "100svh", "label": "Full screen" }
+        { "value": "50svh", "label": "t:sections.hero.settings.image_height.options__1.label" },
+        { "value": "70svh", "label": "t:sections.hero.settings.image_height.options__2.label" },
+        { "value": "90svh", "label": "t:sections.hero.settings.image_height.options__3.label" },
+        { "value": "100svh", "label": "t:sections.hero.settings.image_height.options__4.label" }
       ],
       "default": "70svh"
     },
@@ -351,155 +351,155 @@
       "max": 80,
       "step": 5,
       "unit": "%",
-      "label": "Overlay opacity",
+      "label": "t:sections.hero.settings.overlay_opacity.label",
       "default": 30
     },
     {
       "type": "color",
       "id": "overlay_color",
-      "label": "Overlay color",
+      "label": "t:sections.hero.settings.overlay_color.label",
       "default": "#0A0705"
     },
     {
       "type": "header",
-      "content": "Text"
+      "content": "t:sections.hero.settings.header__2.content"
     },
     {
       "type": "select",
       "id": "text_position",
-      "label": "Vertical position",
+      "label": "t:sections.hero.settings.text_position.label",
       "options": [
-        { "value": "top", "label": "Top" },
-        { "value": "center", "label": "Center" },
-        { "value": "bottom", "label": "Bottom" }
+        { "value": "top", "label": "t:sections.hero.settings.text_position.options__1.label" },
+        { "value": "center", "label": "t:sections.hero.settings.text_position.options__2.label" },
+        { "value": "bottom", "label": "t:sections.hero.settings.text_position.options__3.label" }
       ],
       "default": "center"
     },
     {
       "type": "select",
       "id": "text_align",
-      "label": "Text alignment",
+      "label": "t:sections.hero.settings.text_align.label",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "center", "label": "Center" },
-        { "value": "right", "label": "Right" }
+        { "value": "left", "label": "t:sections.hero.settings.text_align.options__1.label" },
+        { "value": "center", "label": "t:sections.hero.settings.text_align.options__2.label" },
+        { "value": "right", "label": "t:sections.hero.settings.text_align.options__3.label" }
       ],
       "default": "center"
     },
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow"
+      "label": "t:sections.hero.settings.eyebrow.label"
     },
     {
       "type": "textarea",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:sections.hero.settings.heading.label",
       "default": "Considered\nobjects for the\nmodern home"
     },
     {
       "type": "select",
       "id": "heading_tag",
-      "label": "Heading element",
-      "info": "Choose the HTML tag for SEO and accessibility",
+      "label": "t:sections.hero.settings.heading_tag.label",
+      "info": "t:sections.hero.settings.heading_tag.info",
       "options": [
-        { "value": "h1", "label": "H1 — Main page title (default)" },
-        { "value": "h2", "label": "H2 — Section title" },
-        { "value": "h3", "label": "H3 — Subsection" },
-        { "value": "h4", "label": "H4 — Minor heading" },
-        { "value": "p", "label": "Paragraph — no heading" }
+        { "value": "h1", "label": "t:sections.hero.settings.heading_tag.options__1.label" },
+        { "value": "h2", "label": "t:sections.hero.settings.heading_tag.options__2.label" },
+        { "value": "h3", "label": "t:sections.hero.settings.heading_tag.options__3.label" },
+        { "value": "h4", "label": "t:sections.hero.settings.heading_tag.options__4.label" },
+        { "value": "p", "label": "t:sections.hero.settings.heading_tag.options__5.label" }
       ],
       "default": "h1"
     },
     {
       "type": "select",
       "id": "heading_size",
-      "label": "Heading size",
-      "info": "Visual size, independent of the element. Hero defaults to the oversized editorial display scale.",
+      "label": "t:sections.hero.settings.heading_size.label",
+      "info": "t:sections.hero.settings.heading_size.info",
       "options": [
-        { "value": "display", "label": "Display — oversized editorial" },
-        { "value": "xl", "label": "XL — hero scale" },
-        { "value": "lg", "label": "Large — section title" },
-        { "value": "md", "label": "Medium — standard" },
-        { "value": "sm", "label": "Small — card heading" },
-        { "value": "xs", "label": "Extra small — caption scale" },
-        { "value": "body", "label": "Body — same as body text" }
+        { "value": "display", "label": "t:sections.hero.settings.heading_size.options__1.label" },
+        { "value": "xl", "label": "t:sections.hero.settings.heading_size.options__2.label" },
+        { "value": "lg", "label": "t:sections.hero.settings.heading_size.options__3.label" },
+        { "value": "md", "label": "t:sections.hero.settings.heading_size.options__4.label" },
+        { "value": "sm", "label": "t:sections.hero.settings.heading_size.options__5.label" },
+        { "value": "xs", "label": "t:sections.hero.settings.heading_size.options__6.label" },
+        { "value": "body", "label": "t:sections.hero.settings.heading_size.options__7.label" }
       ],
       "default": "display"
     },
     {
       "type": "richtext",
       "id": "subtext",
-      "label": "Subtext"
+      "label": "t:sections.hero.settings.subtext.label"
     },
     {
       "type": "text",
       "id": "trust_line",
-      "label": "Trust line",
-      "info": "Short reassurance shown under the buttons. Use the · character to separate items.",
+      "label": "t:sections.hero.settings.trust_line.label",
+      "info": "t:sections.hero.settings.trust_line.info",
       "default": "4.9 ★ · 2,000+ reviews · Free shipping over $150"
     },
     {
       "type": "header",
-      "content": "Primary button"
+      "content": "t:sections.hero.settings.header__3.content"
     },
     {
       "type": "text",
       "id": "cta_label",
-      "label": "Label",
+      "label": "t:sections.hero.settings.cta_label.label",
       "default": "Shop the collection"
     },
     {
       "type": "url",
       "id": "cta_url",
-      "label": "Link"
+      "label": "t:sections.hero.settings.cta_url.label"
     },
     {
       "type": "select",
       "id": "cta_style",
-      "label": "Style",
+      "label": "t:sections.hero.settings.cta_style.label",
       "options": [
-        { "value": "solid", "label": "Solid" },
-        { "value": "outline", "label": "Outline" },
-        { "value": "link", "label": "Link" }
+        { "value": "solid", "label": "t:sections.hero.settings.cta_style.options__1.label" },
+        { "value": "outline", "label": "t:sections.hero.settings.cta_style.options__2.label" },
+        { "value": "link", "label": "t:sections.hero.settings.cta_style.options__3.label" }
       ],
       "default": "solid"
     },
     {
       "type": "header",
-      "content": "Secondary button"
+      "content": "t:sections.hero.settings.header__4.content"
     },
     {
       "type": "text",
       "id": "cta_secondary_label",
-      "label": "Label"
+      "label": "t:sections.hero.settings.cta_secondary_label.label"
     },
     {
       "type": "url",
       "id": "cta_secondary_url",
-      "label": "Link"
+      "label": "t:sections.hero.settings.cta_secondary_url.label"
     },
     {
       "type": "header",
-      "content": "Section"
+      "content": "t:sections.hero.settings.header__5.content"
     },
     {
       "type": "checkbox",
       "id": "show_edition_number",
-      "label": "Show edition number",
+      "label": "t:sections.hero.settings.show_edition_number.label",
       "default": true
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
-      "info": "Used as the background when no image is set.",
+      "label": "t:sections.hero.settings.color_scheme.label",
+      "info": "t:sections.hero.settings.color_scheme.info",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.hero.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.hero.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.hero.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.hero.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.hero.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
@@ -510,7 +510,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.hero.settings.padding_top.label",
       "default": 0
     },
     {
@@ -520,12 +520,12 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.hero.settings.padding_bottom.label",
       "default": 0
     }
   ],
   "presets": [
-    { "name": "Hero" }
+    { "name": "t:sections.hero.presets.name" }
   ]
 }
 {% endschema %}

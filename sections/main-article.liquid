@@ -242,43 +242,43 @@
 
 {% schema %}
 {
-  "name": "Article",
+  "name": "t:sections.main-article.name",
   "tag": "section",
   "settings": [
     {
       "type": "checkbox",
       "id": "show_featured_image",
-      "label": "Show featured image",
+      "label": "t:sections.main-article.settings.show_featured_image.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_date",
-      "label": "Show date",
+      "label": "t:sections.main-article.settings.show_date.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_author",
-      "label": "Show author",
+      "label": "t:sections.main-article.settings.show_author.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_share",
-      "label": "Show share button",
+      "label": "t:sections.main-article.settings.show_share.label",
       "default": true
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.main-article.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.main-article.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.main-article.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.main-article.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.main-article.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.main-article.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
@@ -289,7 +289,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.main-article.settings.padding_top.label",
       "default": 96
     },
     {
@@ -299,7 +299,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.main-article.settings.padding_bottom.label",
       "default": 96
     }
   ]

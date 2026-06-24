@@ -274,32 +274,32 @@
 
 {% schema %}
 {
-  "name": "Announcement bar",
+  "name": "t:sections.announcement-bar.name",
   "limit": 1,
   "settings": [
     {
       "type": "checkbox",
       "id": "show_announcement",
-      "label": "Show announcement bar",
+      "label": "t:sections.announcement-bar.settings.show_announcement.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "dismissible",
-      "label": "Allow shoppers to dismiss",
-      "info": "Adds a close button. The bar stays hidden for that visitor until they clear their browser storage.",
+      "label": "t:sections.announcement-bar.settings.dismissible.label",
+      "info": "t:sections.announcement-bar.settings.dismissible.info",
       "default": true
     },
     {
       "type": "color",
       "id": "bar_color",
-      "label": "Bar background",
+      "label": "t:sections.announcement-bar.settings.bar_color.label",
       "default": "#2C1810"
     },
     {
       "type": "color",
       "id": "bar_text_color",
-      "label": "Bar text",
+      "label": "t:sections.announcement-bar.settings.bar_text_color.label",
       "default": "#FAF7F2"
     },
     {
@@ -309,33 +309,33 @@
       "max": 100,
       "step": 10,
       "unit": "s",
-      "label": "Scroll duration",
-      "info": "Only used when there is more than one message. Higher is slower.",
+      "label": "t:sections.announcement-bar.settings.marquee_speed.label",
+      "info": "t:sections.announcement-bar.settings.marquee_speed.info",
       "default": 40
     }
   ],
   "blocks": [
     {
       "type": "message",
-      "name": "Message",
+      "name": "t:sections.announcement-bar.blocks.message.name",
       "settings": [
         {
           "type": "text",
           "id": "text",
-          "label": "Text",
+          "label": "t:sections.announcement-bar.blocks.message.settings.text.label",
           "default": "Complimentary shipping on orders over $150"
         },
         {
           "type": "url",
           "id": "url",
-          "label": "Link"
+          "label": "t:sections.announcement-bar.blocks.message.settings.url.label"
         }
       ]
     }
   ],
   "presets": [
     {
-      "name": "Announcement bar",
+      "name": "t:sections.announcement-bar.presets.name",
       "blocks": [
         { "type": "message" }
       ]

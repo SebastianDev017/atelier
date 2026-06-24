@@ -142,73 +142,73 @@
 
 {% schema %}
 {
-  "name": "Contact form",
+  "name": "t:sections.contact-form.name",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:sections.contact-form.settings.heading.label",
       "default": "Get in touch"
     },
     {
       "type": "richtext",
       "id": "subtext",
-      "label": "Subtext",
+      "label": "t:sections.contact-form.settings.subtext.label",
       "default": "<p>Questions, custom requests, or wholesale enquiries — send us a note and we'll get back to you.</p>"
     },
     {
       "type": "header",
-      "content": "Field labels"
+      "content": "t:sections.contact-form.settings.header__1.content"
     },
     {
       "type": "text",
       "id": "label_name",
-      "label": "Name label",
+      "label": "t:sections.contact-form.settings.label_name.label",
       "default": "Name"
     },
     {
       "type": "text",
       "id": "label_email",
-      "label": "Email label",
+      "label": "t:sections.contact-form.settings.label_email.label",
       "default": "Email"
     },
     {
       "type": "text",
       "id": "label_phone",
-      "label": "Phone label",
+      "label": "t:sections.contact-form.settings.label_phone.label",
       "default": "Phone"
     },
     {
       "type": "text",
       "id": "label_message",
-      "label": "Message label",
+      "label": "t:sections.contact-form.settings.label_message.label",
       "default": "Message"
     },
     {
       "type": "header",
-      "content": "Messages"
+      "content": "t:sections.contact-form.settings.header__2.content"
     },
     {
       "type": "text",
       "id": "success_message",
-      "label": "Success message",
+      "label": "t:sections.contact-form.settings.success_message.label",
       "default": "Thanks for reaching out. We'll reply soon."
     },
     {
       "type": "header",
-      "content": "Appearance"
+      "content": "t:sections.contact-form.settings.header__3.content"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.contact-form.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.contact-form.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.contact-form.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.contact-form.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.contact-form.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.contact-form.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
@@ -219,7 +219,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.contact-form.settings.padding_top.label",
       "default": 96
     },
     {
@@ -229,12 +229,12 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.contact-form.settings.padding_bottom.label",
       "default": 96
     }
   ],
   "presets": [
-    { "name": "Contact form" }
+    { "name": "t:sections.contact-form.presets.name" }
   ]
 }
 {% endschema %}

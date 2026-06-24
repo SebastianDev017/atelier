@@ -236,60 +236,60 @@
 
 {% schema %}
 {
-  "name": "About page",
+  "name": "t:sections.page-about.name",
   "tag": "section",
   "class": "shopify-section",
   "settings": [
-    { "type": "select", "id": "color_scheme", "label": "Color scheme",
+    { "type": "select", "id": "color_scheme", "label": "t:sections.page-about.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" }
+        { "value": "cream", "label": "t:sections.page-about.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.page-about.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.page-about.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.page-about.settings.color_scheme.options__4.label" }
       ], "default": "cream" },
-    { "type": "header", "content": "Hero" },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our story" },
-    { "type": "header", "content": "Opening statement" },
-    { "type": "textarea", "id": "statement", "label": "Statement",
+    { "type": "header", "content": "t:sections.page-about.settings.header__1.content" },
+    { "type": "text", "id": "eyebrow", "label": "t:sections.page-about.settings.eyebrow.label", "default": "Our story" },
+    { "type": "header", "content": "t:sections.page-about.settings.header__2.content" },
+    { "type": "textarea", "id": "statement", "label": "t:sections.page-about.settings.statement.label",
       "default": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with." },
-    { "type": "header", "content": "Values" },
-    { "type": "text", "id": "values_heading", "label": "Values label", "default": "What we believe" },
-    { "type": "header", "content": "Studio" },
-    { "type": "text", "id": "studio_eyebrow", "label": "Studio eyebrow", "default": "The studio" },
-    { "type": "image_picker", "id": "studio_image", "label": "Studio image" },
-    { "type": "text", "id": "studio_title", "label": "Studio heading",
+    { "type": "header", "content": "t:sections.page-about.settings.header__3.content" },
+    { "type": "text", "id": "values_heading", "label": "t:sections.page-about.settings.values_heading.label", "default": "What we believe" },
+    { "type": "header", "content": "t:sections.page-about.settings.header__4.content" },
+    { "type": "text", "id": "studio_eyebrow", "label": "t:sections.page-about.settings.studio_eyebrow.label", "default": "The studio" },
+    { "type": "image_picker", "id": "studio_image", "label": "t:sections.page-about.settings.studio_image.label" },
+    { "type": "text", "id": "studio_title", "label": "t:sections.page-about.settings.studio_title.label",
       "default": "Made in small batches, designed to last" },
-    { "type": "richtext", "id": "studio_text", "label": "Studio description",
+    { "type": "richtext", "id": "studio_text", "label": "t:sections.page-about.settings.studio_text.label",
       "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>" },
-    { "type": "header", "content": "Process" },
-    { "type": "text", "id": "process_heading", "label": "Process label", "default": "How we work" },
-    { "type": "header", "content": "Closing" },
-    { "type": "textarea", "id": "closing_text", "label": "Closing statement",
+    { "type": "header", "content": "t:sections.page-about.settings.header__5.content" },
+    { "type": "text", "id": "process_heading", "label": "t:sections.page-about.settings.process_heading.label", "default": "How we work" },
+    { "type": "header", "content": "t:sections.page-about.settings.header__6.content" },
+    { "type": "textarea", "id": "closing_text", "label": "t:sections.page-about.settings.closing_text.label",
       "default": "Objects considered for the modern home, made to last a lifetime." },
-    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop the collection" },
-    { "type": "url", "id": "cta_url", "label": "CTA link" }
+    { "type": "text", "id": "cta_label", "label": "t:sections.page-about.settings.cta_label.label", "default": "Shop the collection" },
+    { "type": "url", "id": "cta_url", "label": "t:sections.page-about.settings.cta_url.label" }
   ],
   "blocks": [
     {
-      "type": "value", "name": "Value",
+      "type": "value", "name": "t:sections.page-about.blocks.value.name",
       "settings": [
-        { "type": "text", "id": "title", "label": "Title", "default": "Considered" },
-        { "type": "textarea", "id": "text", "label": "Description",
+        { "type": "text", "id": "title", "label": "t:sections.page-about.blocks.value.settings.title.label", "default": "Considered" },
+        { "type": "textarea", "id": "text", "label": "t:sections.page-about.blocks.value.settings.text.label",
           "default": "Every object begins with a question: is this worth making?" }
       ]
     },
     {
-      "type": "process_step", "name": "Process step",
+      "type": "process_step", "name": "t:sections.page-about.blocks.process_step.name",
       "settings": [
-        { "type": "text", "id": "title", "label": "Step title", "default": "Material" },
-        { "type": "textarea", "id": "text", "label": "Step description",
+        { "type": "text", "id": "title", "label": "t:sections.page-about.blocks.process_step.settings.title.label", "default": "Material" },
+        { "type": "textarea", "id": "text", "label": "t:sections.page-about.blocks.process_step.settings.text.label",
           "default": "Every piece begins with the material — its weight, texture, and origin." }
       ]
     }
   ],
   "presets": [
     {
-      "name": "About page",
+      "name": "t:sections.page-about.presets.name",
       "blocks": [
         { "type": "value", "settings": { "title": "Considered", "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist." } },
         { "type": "value", "settings": { "title": "Honest", "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish." } },

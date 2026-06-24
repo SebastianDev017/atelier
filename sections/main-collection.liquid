@@ -74,24 +74,24 @@
 
 {% schema %}
 {
-  "name": "Collection",
+  "name": "t:sections.main-collection.name",
   "tag": "section",
   "settings": [
-    { "type": "checkbox", "id": "show_title", "label": "Show collection title", "info": "Turn off if you add a Collection banner section above.", "default": false },
-    { "type": "checkbox", "id": "show_description", "label": "Show collection description", "default": true },
+    { "type": "checkbox", "id": "show_title", "label": "t:sections.main-collection.settings.show_title.label", "info": "t:sections.main-collection.settings.show_title.info", "default": false },
+    { "type": "checkbox", "id": "show_description", "label": "t:sections.main-collection.settings.show_description.label", "default": true },
     {
       "type": "range",
       "id": "products_per_page",
       "min": 8,
       "max": 36,
       "step": 4,
-      "label": "Products per page",
+      "label": "t:sections.main-collection.settings.products_per_page.label",
       "default": 16
     },
     {
       "type": "select",
       "id": "columns_desktop",
-      "label": "Columns (desktop)",
+      "label": "t:sections.main-collection.settings.columns_desktop.label",
       "options": [
         { "value": "2", "label": "2" },
         { "value": "3", "label": "3" },
@@ -102,39 +102,39 @@
     {
       "type": "select",
       "id": "columns_mobile",
-      "label": "Columns (mobile)",
+      "label": "t:sections.main-collection.settings.columns_mobile.label",
       "options": [
         { "value": "1", "label": "1" },
         { "value": "2", "label": "2" }
       ],
       "default": "2"
     },
-    { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "info": "Manage filters in Search & Discovery.", "default": true },
-    { "type": "checkbox", "id": "enable_sorting", "label": "Enable sorting", "default": true },
+    { "type": "checkbox", "id": "enable_filtering", "label": "t:sections.main-collection.settings.enable_filtering.label", "info": "t:sections.main-collection.settings.enable_filtering.info", "default": true },
+    { "type": "checkbox", "id": "enable_sorting", "label": "t:sections.main-collection.settings.enable_sorting.label", "default": true },
     {
       "type": "select",
       "id": "quick_add_style",
-      "label": "Add to cart button",
+      "label": "t:sections.main-collection.settings.quick_add_style.label",
       "options": [
-        { "value": "hover", "label": "Reveal on hover" },
-        { "value": "always", "label": "Always visible" }
+        { "value": "hover", "label": "t:sections.main-collection.settings.quick_add_style.options__1.label" },
+        { "value": "always", "label": "t:sections.main-collection.settings.quick_add_style.options__2.label" }
       ],
       "default": "hover"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.main-collection.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" }
+        { "value": "cream", "label": "t:sections.main-collection.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.main-collection.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.main-collection.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.main-collection.settings.color_scheme.options__4.label" }
       ],
       "default": "cream"
     },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 48 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-collection.settings.padding_top.label", "default": 48 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-collection.settings.padding_bottom.label", "default": 96 }
   ]
 }
 {% endschema %}

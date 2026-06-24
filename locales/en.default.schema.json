@@ -73,5 +73,2789 @@
       "subtitle": "Subtitle",
       "normal": "Normal text"
     }
+  },
+  "sections": {
+    "hero": {
+      "name": "Hero",
+      "settings": {
+        "header__1": {
+          "content": "Image"
+        },
+        "image": {
+          "label": "Background image"
+        },
+        "image_mobile": {
+          "label": "Mobile image",
+          "info": "Optional. Shown on small screens instead of the background image."
+        },
+        "image_height": {
+          "label": "Height",
+          "options__1": {
+            "label": "Half screen"
+          },
+          "options__2": {
+            "label": "Two thirds"
+          },
+          "options__3": {
+            "label": "Nearly full"
+          },
+          "options__4": {
+            "label": "Full screen"
+          }
+        },
+        "overlay_opacity": {
+          "label": "Overlay opacity"
+        },
+        "overlay_color": {
+          "label": "Overlay color"
+        },
+        "header__2": {
+          "content": "Text"
+        },
+        "text_position": {
+          "label": "Vertical position",
+          "options__1": {
+            "label": "Top"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Bottom"
+          }
+        },
+        "text_align": {
+          "label": "Text alignment",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title (default)"
+          },
+          "options__2": {
+            "label": "H2 — Section title"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element. Hero defaults to the oversized editorial display scale.",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "subtext": {
+          "label": "Subtext"
+        },
+        "trust_line": {
+          "label": "Trust line",
+          "info": "Short reassurance shown under the buttons. Use the · character to separate items."
+        },
+        "header__3": {
+          "content": "Primary button"
+        },
+        "cta_label": {
+          "label": "Label"
+        },
+        "cta_url": {
+          "label": "Link"
+        },
+        "cta_style": {
+          "label": "Style",
+          "options__1": {
+            "label": "Solid"
+          },
+          "options__2": {
+            "label": "Outline"
+          },
+          "options__3": {
+            "label": "Link"
+          }
+        },
+        "header__4": {
+          "content": "Secondary button"
+        },
+        "cta_secondary_label": {
+          "label": "Label"
+        },
+        "cta_secondary_url": {
+          "label": "Link"
+        },
+        "header__5": {
+          "content": "Section"
+        },
+        "show_edition_number": {
+          "label": "Show edition number"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "info": "Used as the background when no image is set.",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Hero"
+      }
+    },
+    "header": {
+      "name": "Header",
+      "settings": {
+        "menu": {
+          "label": "Menu",
+          "info": "Top-level items become numbered index sections; their child links appear beneath each one."
+        },
+        "show_search": {
+          "label": "Show search"
+        },
+        "show_account": {
+          "label": "Show account link"
+        },
+        "show_border": {
+          "label": "Show divider line"
+        },
+        "header__1": {
+          "content": "Localization"
+        },
+        "show_country_selector": {
+          "label": "Show country/currency selector"
+        },
+        "show_language_selector": {
+          "label": "Show language selector"
+        },
+        "localization_position": {
+          "label": "Selector position",
+          "options__1": {
+            "label": "Bottom of sidebar (below icons)"
+          },
+          "options__2": {
+            "label": "Top of sidebar (below logo)"
+          }
+        },
+        "header__2": {
+          "content": "Appearance"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        }
+      }
+    },
+    "footer": {
+      "name": "Footer",
+      "blocks": {
+        "brand": {
+          "name": "Brand",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "logo_width": {
+              "label": "Logo width"
+            },
+            "show_social": {
+              "label": "Show social icons"
+            }
+          }
+        },
+        "menu": {
+          "name": "Menu",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "menu": {
+              "label": "Menu"
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "newsletter": {
+          "name": "Newsletter",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "settings": {
+        "header__1": {
+          "content": "Wordmark"
+        },
+        "show_wordmark": {
+          "label": "Show large wordmark"
+        },
+        "wordmark_opacity": {
+          "label": "Wordmark opacity"
+        },
+        "wordmark_text": {
+          "label": "Wordmark text",
+          "info": "Leave blank to use shop name"
+        },
+        "header__2": {
+          "content": "Spacing"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        },
+        "show_payment_icons": {
+          "label": "Show payment icons"
+        },
+        "show_policy_links": {
+          "label": "Show policy links"
+        },
+        "header__3": {
+          "content": "Localization"
+        },
+        "show_country_selector": {
+          "label": "Show country/region selector"
+        },
+        "show_language_selector": {
+          "label": "Show language selector"
+        },
+        "header__4": {
+          "content": "Appearance"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        }
+      }
+    },
+    "featured-collection": {
+      "name": "Featured collection",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow",
+          "info": "Small mono label above the heading."
+        },
+        "title": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "subtitle": {
+          "label": "Subheading"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "products_to_show": {
+          "label": "Products to show"
+        },
+        "columns_desktop": {
+          "label": "Columns on desktop",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "columns_mobile": {
+          "label": "Columns on mobile",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
+        },
+        "show_vendor": {
+          "label": "Show product vendor"
+        },
+        "quick_add_style": {
+          "label": "Add to cart button",
+          "options__1": {
+            "label": "Reveal on hover"
+          },
+          "options__2": {
+            "label": "Always visible"
+          }
+        },
+        "show_view_all": {
+          "label": "Show \"view all\" link"
+        },
+        "view_all_label": {
+          "label": "\"View all\" label"
+        },
+        "view_all_style": {
+          "label": "\"View all\" style",
+          "options__1": {
+            "label": "Solid button"
+          },
+          "options__2": {
+            "label": "Outline button"
+          },
+          "options__3": {
+            "label": "Text link"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Featured collection"
+      }
+    },
+    "marquee": {
+      "name": "Marquee",
+      "settings": {
+        "text": {
+          "label": "Text"
+        },
+        "speed": {
+          "label": "Scroll duration",
+          "info": "Higher is slower."
+        },
+        "direction": {
+          "label": "Direction",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Right"
+          }
+        },
+        "size": {
+          "label": "Text size",
+          "options__1": {
+            "label": "Small"
+          },
+          "options__2": {
+            "label": "Medium"
+          },
+          "options__3": {
+            "label": "Large"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Marquee"
+      }
+    },
+    "image-with-text": {
+      "name": "Image with text",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Landscape"
+          },
+          "options__4": {
+            "label": "Wide"
+          }
+        },
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "Image left"
+          },
+          "options__2": {
+            "label": "Image right"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "title": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
+        "cta_style": {
+          "label": "Button style",
+          "options__1": {
+            "label": "Solid"
+          },
+          "options__2": {
+            "label": "Outline"
+          },
+          "options__3": {
+            "label": "Link"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Image with text"
+      }
+    },
+    "rich-text": {
+      "name": "Rich text",
+      "settings": {
+        "content_width": {
+          "label": "Content width",
+          "options__1": {
+            "label": "Narrow"
+          },
+          "options__2": {
+            "label": "Medium"
+          },
+          "options__3": {
+            "label": "Wide"
+          }
+        },
+        "text_alignment": {
+          "label": "Text alignment",
+          "options__1": {
+            "label": "Center"
+          },
+          "options__2": {
+            "label": "Left"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "eyebrow": {
+          "name": "Eyebrow",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "heading": {
+          "name": "Heading",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "heading_tag": {
+              "label": "Heading element",
+              "info": "Choose the HTML tag for SEO and accessibility",
+              "options__1": {
+                "label": "H1 — Main page title"
+              },
+              "options__2": {
+                "label": "H2 — Section title (default)"
+              },
+              "options__3": {
+                "label": "H3 — Subsection"
+              },
+              "options__4": {
+                "label": "H4 — Minor heading"
+              },
+              "options__5": {
+                "label": "Paragraph — no heading"
+              }
+            },
+            "heading_size": {
+              "label": "Heading size",
+              "info": "Visual size, independent of the element",
+              "options__1": {
+                "label": "Display — oversized editorial"
+              },
+              "options__2": {
+                "label": "XL — hero scale"
+              },
+              "options__3": {
+                "label": "Large — section title"
+              },
+              "options__4": {
+                "label": "Medium — standard"
+              },
+              "options__5": {
+                "label": "Small — card heading"
+              },
+              "options__6": {
+                "label": "Extra small — caption scale"
+              },
+              "options__7": {
+                "label": "Body — same as body text"
+              }
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "button": {
+          "name": "Button",
+          "settings": {
+            "label": {
+              "label": "Label"
+            },
+            "url": {
+              "label": "Link"
+            },
+            "style": {
+              "label": "Style",
+              "options__1": {
+                "label": "Solid"
+              },
+              "options__2": {
+                "label": "Outline"
+              },
+              "options__3": {
+                "label": "Link"
+              }
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Rich text"
+      }
+    },
+    "testimonials": {
+      "name": "Testimonials",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "autoplay": {
+          "label": "Autoplay"
+        },
+        "autoplay_speed": {
+          "label": "Seconds between slides"
+        },
+        "show_images": {
+          "label": "Show images"
+        },
+        "pause_label": {
+          "label": "Pause button label",
+          "info": "Accessible label for the play and pause toggle."
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "testimonial": {
+          "name": "Testimonial",
+          "settings": {
+            "quote": {
+              "label": "Quote"
+            },
+            "author": {
+              "label": "Author"
+            },
+            "role": {
+              "label": "Role or location"
+            },
+            "image": {
+              "label": "Image"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Testimonials"
+      }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "subtext": {
+          "label": "Subtext"
+        },
+        "input_placeholder": {
+          "label": "Email placeholder"
+        },
+        "button_label": {
+          "label": "Button label"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Newsletter"
+      }
+    },
+    "gallery": {
+      "name": "Gallery",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "2 columns"
+          },
+          "options__2": {
+            "label": "3 columns"
+          },
+          "options__3": {
+            "label": "4 columns"
+          }
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Square"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Landscape"
+          }
+        },
+        "show_captions": {
+          "label": "Show captions"
+        },
+        "caption_position": {
+          "label": "Caption position",
+          "options__1": {
+            "label": "On hover"
+          },
+          "options__2": {
+            "label": "Below image"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "image": {
+          "name": "Image",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "caption": {
+              "label": "Caption"
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Gallery"
+      }
+    },
+    "collection-list": {
+      "name": "Collection list",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "heading_alignment": {
+          "label": "Heading alignment",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          }
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Square"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Landscape"
+          }
+        },
+        "show_product_count": {
+          "label": "Show product count"
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "columns_mobile": {
+          "label": "Columns (mobile)"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "settings": {
+            "collection": {
+              "label": "Collection"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collection list"
+      }
+    },
+    "split-media": {
+      "name": "Split media",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "media_position": {
+          "label": "Image position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Right"
+          }
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Landscape"
+          },
+          "options__4": {
+            "label": "Wide"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title"
+          },
+          "options__2": {
+            "label": "H2 — Section title (default)"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
+        "cta_style": {
+          "label": "Button style",
+          "options__1": {
+            "label": "Solid"
+          },
+          "options__2": {
+            "label": "Outline"
+          },
+          "options__3": {
+            "label": "Link"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Split media"
+      }
+    },
+    "editorial-statement": {
+      "name": "Editorial statement",
+      "settings": {
+        "statement": {
+          "label": "Statement"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Editorial statement"
+      }
+    },
+    "full-bleed-image": {
+      "name": "Full bleed image",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "image_height": {
+          "label": "Image height",
+          "options__1": {
+            "label": "Compact (40vh)"
+          },
+          "options__2": {
+            "label": "Medium (55vh)"
+          },
+          "options__3": {
+            "label": "Large (70vh)"
+          },
+          "options__4": {
+            "label": "Cinematic (85vh)"
+          }
+        },
+        "caption": {
+          "label": "Caption",
+          "info": "Optional. Shown bottom-left over the image."
+        },
+        "overlay_opacity": {
+          "label": "Overlay opacity"
+        }
+      },
+      "presets": {
+        "name": "Full bleed image"
+      }
+    },
+    "announcement-bar": {
+      "name": "Announcement bar",
+      "settings": {
+        "show_announcement": {
+          "label": "Show announcement bar"
+        },
+        "dismissible": {
+          "label": "Allow shoppers to dismiss",
+          "info": "Adds a close button. The bar stays hidden for that visitor until they clear their browser storage."
+        },
+        "bar_color": {
+          "label": "Bar background"
+        },
+        "bar_text_color": {
+          "label": "Bar text"
+        },
+        "marquee_speed": {
+          "label": "Scroll duration",
+          "info": "Only used when there is more than one message. Higher is slower."
+        }
+      },
+      "blocks": {
+        "message": {
+          "name": "Message",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Announcement bar"
+      }
+    },
+    "main-product": {
+      "name": "Product",
+      "blocks": {
+        "vendor": {
+          "name": "Vendor"
+        },
+        "title": {
+          "name": "Title"
+        },
+        "rating": {
+          "name": "Rating"
+        },
+        "price": {
+          "name": "Price"
+        },
+        "inventory": {
+          "name": "Inventory status"
+        },
+        "variant_picker": {
+          "name": "Variant picker"
+        },
+        "buy_buttons": {
+          "name": "Buy buttons",
+          "settings": {
+            "show_quantity": {
+              "label": "Show quantity selector"
+            },
+            "show_dynamic_checkout": {
+              "label": "Show dynamic checkout buttons"
+            },
+            "show_shipping_note": {
+              "label": "Show shipping reassurance line"
+            },
+            "shipping_note": {
+              "label": "Shipping note"
+            }
+          }
+        },
+        "notify_me": {
+          "name": "Notify me (sold out)",
+          "settings": {
+            "header__1": {
+              "content": "Button"
+            },
+            "trigger_label": {
+              "label": "Button label"
+            },
+            "header__2": {
+              "content": "Pop-up"
+            },
+            "eyebrow": {
+              "label": "Eyebrow text"
+            },
+            "dialog_heading": {
+              "label": "Heading"
+            },
+            "description": {
+              "label": "Description"
+            },
+            "email_label": {
+              "label": "Email label"
+            },
+            "email_placeholder": {
+              "label": "Email placeholder"
+            },
+            "consent_label": {
+              "label": "Consent text"
+            },
+            "submit_label": {
+              "label": "Submit button"
+            },
+            "success_message": {
+              "label": "Success message"
+            }
+          }
+        },
+        "trust_badges": {
+          "name": "Trust badges",
+          "settings": {
+            "badge_1": {
+              "label": "Badge 1"
+            },
+            "badge_2": {
+              "label": "Badge 2"
+            },
+            "badge_3": {
+              "label": "Badge 3"
+            },
+            "badge_4": {
+              "label": "Badge 4"
+            }
+          }
+        },
+        "description": {
+          "name": "Description"
+        },
+        "share": {
+          "name": "Share"
+        },
+        "collapsible": {
+          "name": "Collapsible row",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "content": {
+              "label": "Content"
+            }
+          }
+        },
+        "custom_liquid": {
+          "name": "Custom liquid",
+          "settings": {
+            "custom_liquid": {
+              "label": "Custom liquid"
+            }
+          }
+        }
+      },
+      "settings": {
+        "media_width": {
+          "label": "Media width (desktop)"
+        },
+        "update_url": {
+          "label": "Update URL on variant change"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-collection": {
+      "name": "Collection",
+      "settings": {
+        "show_title": {
+          "label": "Show collection title",
+          "info": "Turn off if you add a Collection banner section above."
+        },
+        "show_description": {
+          "label": "Show collection description"
+        },
+        "products_per_page": {
+          "label": "Products per page"
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "columns_mobile": {
+          "label": "Columns (mobile)"
+        },
+        "enable_filtering": {
+          "label": "Enable filtering",
+          "info": "Manage filters in Search & Discovery."
+        },
+        "enable_sorting": {
+          "label": "Enable sorting"
+        },
+        "quick_add_style": {
+          "label": "Add to cart button",
+          "options__1": {
+            "label": "Reveal on hover"
+          },
+          "options__2": {
+            "label": "Always visible"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "page-about": {
+      "name": "About page",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          }
+        },
+        "header__1": {
+          "content": "Hero"
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "header__2": {
+          "content": "Opening statement"
+        },
+        "statement": {
+          "label": "Statement"
+        },
+        "header__3": {
+          "content": "Values"
+        },
+        "values_heading": {
+          "label": "Values label"
+        },
+        "header__4": {
+          "content": "Studio"
+        },
+        "studio_eyebrow": {
+          "label": "Studio eyebrow"
+        },
+        "studio_image": {
+          "label": "Studio image"
+        },
+        "studio_title": {
+          "label": "Studio heading"
+        },
+        "studio_text": {
+          "label": "Studio description"
+        },
+        "header__5": {
+          "content": "Process"
+        },
+        "process_heading": {
+          "label": "Process label"
+        },
+        "header__6": {
+          "content": "Closing"
+        },
+        "closing_text": {
+          "label": "Closing statement"
+        },
+        "cta_label": {
+          "label": "CTA label"
+        },
+        "cta_url": {
+          "label": "CTA link"
+        }
+      },
+      "blocks": {
+        "value": {
+          "name": "Value",
+          "settings": {
+            "title": {
+              "label": "Title"
+            },
+            "text": {
+              "label": "Description"
+            }
+          }
+        },
+        "process_step": {
+          "name": "Process step",
+          "settings": {
+            "title": {
+              "label": "Step title"
+            },
+            "text": {
+              "label": "Step description"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "About page"
+      }
+    },
+    "collection-banner": {
+      "name": "Collection banner",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title (default)"
+          },
+          "options__2": {
+            "label": "H2 — Section title"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "show_collection_image": {
+          "label": "Show collection image",
+          "info": "Uses the collection's featured image as a full-width background. Falls back to a plain text banner when no image is set."
+        },
+        "banner_height": {
+          "label": "Banner height",
+          "info": "Only applies when a collection image is shown.",
+          "options__1": {
+            "label": "Small"
+          },
+          "options__2": {
+            "label": "Medium"
+          },
+          "options__3": {
+            "label": "Large"
+          }
+        },
+        "overlay_opacity": {
+          "label": "Overlay opacity",
+          "info": "Darkens the image so the heading stays readable."
+        },
+        "overlay_color": {
+          "label": "Overlay color"
+        },
+        "show_description": {
+          "label": "Show collection description"
+        },
+        "text_alignment": {
+          "label": "Text alignment",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "info": "Used for the plain text banner (when no image is shown).",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Collection banner"
+      }
+    },
+    "contact-form": {
+      "name": "Contact form",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "subtext": {
+          "label": "Subtext"
+        },
+        "header__1": {
+          "content": "Field labels"
+        },
+        "label_name": {
+          "label": "Name label"
+        },
+        "label_email": {
+          "label": "Email label"
+        },
+        "label_phone": {
+          "label": "Phone label"
+        },
+        "label_message": {
+          "label": "Message label"
+        },
+        "header__2": {
+          "content": "Messages"
+        },
+        "success_message": {
+          "label": "Success message"
+        },
+        "header__3": {
+          "content": "Appearance"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Contact form"
+      }
+    },
+    "custom-liquid": {
+      "name": "Custom Liquid",
+      "settings": {
+        "custom_liquid": {
+          "label": "Custom Liquid",
+          "info": "Add app snippets or custom code."
+        },
+        "narrow": {
+          "label": "Narrow width"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Custom Liquid"
+      }
+    },
+    "main-404": {
+      "name": "404",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title (default)"
+          },
+          "options__2": {
+            "label": "H2 — Section title"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "404"
+      }
+    },
+    "main-article": {
+      "name": "Article",
+      "settings": {
+        "show_featured_image": {
+          "label": "Show featured image"
+        },
+        "show_date": {
+          "label": "Show date"
+        },
+        "show_author": {
+          "label": "Show author"
+        },
+        "show_share": {
+          "label": "Show share button"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-blog": {
+      "name": "Blog posts",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title (default)"
+          },
+          "options__2": {
+            "label": "H2 — Section title"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "posts_per_page": {
+          "label": "Posts per page"
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "show_image": {
+          "label": "Show featured image"
+        },
+        "show_date": {
+          "label": "Show date"
+        },
+        "show_author": {
+          "label": "Show author"
+        },
+        "show_excerpt": {
+          "label": "Show excerpt"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-cart": {
+      "name": "Cart",
+      "settings": {
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-list-collections": {
+      "name": "Collections list",
+      "settings": {
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "show_product_count": {
+          "label": "Show product count"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-page": {
+      "name": "Page",
+      "settings": {
+        "narrow_content": {
+          "label": "Narrow content width",
+          "info": "Constrains the page content to a comfortable reading measure."
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "main-search": {
+      "name": "Search",
+      "settings": {
+        "heading_tag": {
+          "label": "Heading element",
+          "info": "Choose the HTML tag for SEO and accessibility",
+          "options__1": {
+            "label": "H1 — Main page title (default)"
+          },
+          "options__2": {
+            "label": "H2 — Section title"
+          },
+          "options__3": {
+            "label": "H3 — Subsection"
+          },
+          "options__4": {
+            "label": "H4 — Minor heading"
+          },
+          "options__5": {
+            "label": "Paragraph — no heading"
+          }
+        },
+        "heading_size": {
+          "label": "Heading size",
+          "info": "Visual size, independent of the element",
+          "options__1": {
+            "label": "Display — oversized editorial"
+          },
+          "options__2": {
+            "label": "XL — hero scale"
+          },
+          "options__3": {
+            "label": "Large — section title"
+          },
+          "options__4": {
+            "label": "Medium — standard"
+          },
+          "options__5": {
+            "label": "Small — card heading"
+          },
+          "options__6": {
+            "label": "Extra small — caption scale"
+          },
+          "options__7": {
+            "label": "Body — same as body text"
+          }
+        },
+        "products_per_page": {
+          "label": "Results per page"
+        },
+        "quick_add_style": {
+          "label": "Add to cart button",
+          "options__1": {
+            "label": "Reveal on hover"
+          },
+          "options__2": {
+            "label": "Always visible below info"
+          }
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "password": {
+      "name": "Password",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "subheading": {
+          "label": "Subheading"
+        }
+      }
+    },
+    "product-recommendations": {
+      "name": "Product recommendations",
+      "settings": {
+        "heading": {
+          "label": "Heading"
+        },
+        "products_to_show": {
+          "label": "Products to show"
+        },
+        "quick_add_style": {
+          "label": "Add to cart button",
+          "options__1": {
+            "label": "Reveal on hover"
+          },
+          "options__2": {
+            "label": "Always visible below info"
+          }
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      }
+    },
+    "cart-drawer": {
+      "name": "Cart drawer"
+    },
+    "predictive-results": {
+      "name": "Predictive search results"
+    }
+  },
+  "settings_schema": {
+    "typography": {
+      "name": "Typography",
+      "settings": {
+        "header__1": {
+          "content": "Fonts"
+        },
+        "heading_font": {
+          "label": "Heading font",
+          "info": "Display serif — used for headings and product titles. EB Garamond ships by default."
+        },
+        "body_font": {
+          "label": "Body font",
+          "info": "Reading serif — used for body copy and navigation. Eyebrows, prices, and buttons use a built-in monospace face."
+        },
+        "header__2": {
+          "content": "Scale"
+        },
+        "heading_scale": {
+          "label": "Heading size"
+        },
+        "body_scale": {
+          "label": "Body size"
+        },
+        "header__3": {
+          "content": "Heading sizes"
+        },
+        "h1_scale": {
+          "label": "H1 size",
+          "info": "Scales the largest display headings (hero / H1), on top of the global heading size."
+        },
+        "h2_scale": {
+          "label": "H2 size"
+        },
+        "h3_scale": {
+          "label": "H3 size"
+        },
+        "letter_spacing_headings": {
+          "label": "Heading letter spacing",
+          "info": "Value × 0.01em. Default -2 = -0.02em."
+        },
+        "header__4": {
+          "content": "Letter casing"
+        },
+        "uppercase_headings": {
+          "label": "Uppercase headings"
+        },
+        "uppercase_nav": {
+          "label": "Uppercase navigation"
+        },
+        "uppercase_buttons": {
+          "label": "Uppercase buttons & labels"
+        }
+      }
+    },
+    "colors": {
+      "name": "Colors",
+      "settings": {
+        "background_color": {
+          "label": "Background"
+        },
+        "text_color": {
+          "label": "Text"
+        },
+        "accent_color": {
+          "label": "Accent",
+          "info": "Used for hover states and emphasis."
+        },
+        "border_color": {
+          "label": "Borders & dividers",
+          "info": "Hairline rules, card edges, and input borders."
+        },
+        "button_color": {
+          "label": "Button background"
+        },
+        "button_text_color": {
+          "label": "Button label"
+        },
+        "color_text_heading": {
+          "label": "Heading color",
+          "info": "Overrides the color scheme heading color"
+        },
+        "color_text_body": {
+          "label": "Body text color"
+        },
+        "color_text_muted": {
+          "label": "Muted / label color"
+        },
+        "header__1": {
+          "content": "Extended palette"
+        },
+        "color_link": {
+          "label": "Link color",
+          "info": "Applies to links inside rich-text and prose content."
+        },
+        "color_link_hover": {
+          "label": "Link hover color"
+        }
+      }
+    },
+    "layout": {
+      "name": "Layout",
+      "settings": {
+        "page_width": {
+          "label": "Page width"
+        },
+        "page_margin": {
+          "label": "Page side margin"
+        },
+        "section_spacing": {
+          "label": "Default section spacing"
+        },
+        "header_height": {
+          "label": "Header height",
+          "info": "Used on inner elements; the navigation is a full-height left sidebar."
+        },
+        "sidebar_width": {
+          "label": "Sidebar width",
+          "info": "Width of the left navigation column on desktop."
+        },
+        "input_corner_radius": {
+          "label": "Corner radius",
+          "info": "Atelier is designed for square (0) corners."
+        }
+      }
+    },
+    "product_cards": {
+      "name": "Product cards",
+      "settings": {
+        "card_show_secondary_image": {
+          "label": "Show second image on hover"
+        },
+        "card_show_vendor": {
+          "label": "Show vendor"
+        },
+        "card_quick_add": {
+          "label": "Show quick add button"
+        },
+        "card_show_rating": {
+          "label": "Show product rating",
+          "info": "Requires a product rating app that uses the standard rating metafield."
+        },
+        "low_stock_threshold": {
+          "label": "Low stock badge threshold",
+          "info": "Show a low-stock badge at or below this quantity. Set 0 to hide."
+        }
+      }
+    },
+    "cart": {
+      "name": "Cart",
+      "settings": {
+        "cart_type": {
+          "label": "Cart type",
+          "options__1": {
+            "label": "Drawer"
+          },
+          "options__2": {
+            "label": "Page"
+          }
+        },
+        "cart_show_free_shipping_bar": {
+          "label": "Show free shipping progress bar"
+        },
+        "cart_free_shipping_threshold": {
+          "label": "Free shipping threshold",
+          "info": "In your store currency, e.g. 150. Leave blank to hide the bar."
+        },
+        "cart_show_note": {
+          "label": "Enable order notes"
+        }
+      }
+    },
+    "animations_experience": {
+      "name": "Animations & Experience",
+      "settings": {
+        "enable_smooth_scroll": {
+          "label": "Smooth scroll",
+          "info": "Enables Lenis smooth scroll throughout the site."
+        },
+        "enable_view_transitions": {
+          "label": "Page transitions",
+          "info": "Fade between pages using the View Transitions API in supported browsers."
+        },
+        "enable_custom_cursor": {
+          "label": "Custom cursor",
+          "info": "Shows editorial dot cursor on desktop. Disable for standard cursor."
+        },
+        "cursor_size": {
+          "label": "Cursor size",
+          "options__1": {
+            "label": "Small (8px)"
+          },
+          "options__2": {
+            "label": "Medium (12px)"
+          },
+          "options__3": {
+            "label": "Large (16px)"
+          }
+        },
+        "enable_scroll_animations": {
+          "label": "Scroll reveal animations",
+          "info": "Text and image reveal effects on scroll."
+        },
+        "enable_hover_image_swap": {
+          "label": "Product image swap on hover",
+          "info": "Shows the second product image when hovering product cards."
+        },
+        "animation_speed": {
+          "label": "Animation speed",
+          "options__1": {
+            "label": "Fast — 0.5× speed"
+          },
+          "options__2": {
+            "label": "Normal — default"
+          },
+          "options__3": {
+            "label": "Slow — 1.5× more deliberate"
+          }
+        },
+        "enable_grain_texture": {
+          "label": "Paper grain texture",
+          "info": "Subtle noise overlay for an editorial feel."
+        },
+        "grain_opacity": {
+          "label": "Grain intensity"
+        }
+      }
+    },
+    "images": {
+      "name": "Images",
+      "settings": {
+        "image_border_radius": {
+          "label": "Image border radius",
+          "info": "Applies to product cards and section images"
+        },
+        "image_border_enable": {
+          "label": "Show image border"
+        },
+        "image_border_width": {
+          "label": "Border width"
+        },
+        "image_border_color": {
+          "label": "Border color"
+        }
+      }
+    },
+    "social_media": {
+      "name": "Social media",
+      "settings": {
+        "header__1": {
+          "content": "Accounts"
+        },
+        "social_instagram_link": {
+          "label": "Instagram",
+          "info": "https://instagram.com/shop"
+        },
+        "social_facebook_link": {
+          "label": "Facebook"
+        },
+        "social_pinterest_link": {
+          "label": "Pinterest"
+        },
+        "social_tiktok_link": {
+          "label": "TikTok"
+        },
+        "social_youtube_link": {
+          "label": "YouTube"
+        }
+      }
+    },
+    "branding": {
+      "name": "Branding",
+      "settings": {
+        "logo": {
+          "label": "Logo"
+        },
+        "logo_width": {
+          "label": "Logo width"
+        },
+        "favicon": {
+          "label": "Favicon",
+          "info": "Will be scaled down to 32 x 32px."
+        }
+      }
+    }
   }
 }

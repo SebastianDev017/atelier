@@ -88,13 +88,13 @@
 
 {% schema %}
 {
-  "name": "Marquee",
+  "name": "t:sections.marquee.name",
   "tag": "section",
   "settings": [
     {
       "type": "text",
       "id": "text",
-      "label": "Text",
+      "label": "t:sections.marquee.settings.text.label",
       "default": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·"
     },
     {
@@ -104,41 +104,41 @@
       "max": 60,
       "step": 5,
       "unit": "s",
-      "label": "Scroll duration",
-      "info": "Higher is slower.",
+      "label": "t:sections.marquee.settings.speed.label",
+      "info": "t:sections.marquee.settings.speed.info",
       "default": 30
     },
     {
       "type": "select",
       "id": "direction",
-      "label": "Direction",
+      "label": "t:sections.marquee.settings.direction.label",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        { "value": "left", "label": "t:sections.marquee.settings.direction.options__1.label" },
+        { "value": "right", "label": "t:sections.marquee.settings.direction.options__2.label" }
       ],
       "default": "left"
     },
     {
       "type": "select",
       "id": "size",
-      "label": "Text size",
+      "label": "t:sections.marquee.settings.size.label",
       "options": [
-        { "value": "sm", "label": "Small" },
-        { "value": "md", "label": "Medium" },
-        { "value": "lg", "label": "Large" }
+        { "value": "sm", "label": "t:sections.marquee.settings.size.options__1.label" },
+        { "value": "md", "label": "t:sections.marquee.settings.size.options__2.label" },
+        { "value": "lg", "label": "t:sections.marquee.settings.size.options__3.label" }
       ],
       "default": "md"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.marquee.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.marquee.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.marquee.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.marquee.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.marquee.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.marquee.settings.color_scheme.options__5.label" }
       ],
       "default": "invert"
     },
@@ -149,7 +149,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.marquee.settings.padding_top.label",
       "default": 48
     },
     {
@@ -159,12 +159,12 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.marquee.settings.padding_bottom.label",
       "default": 48
     }
   ],
   "presets": [
-    { "name": "Marquee" }
+    { "name": "t:sections.marquee.presets.name" }
   ]
 }
 {% endschema %}

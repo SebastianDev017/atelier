@@ -328,70 +328,70 @@
 
 {% schema %}
 {
-  "name": "Product",
+  "name": "t:sections.main-product.name",
   "tag": "section",
   "blocks": [
-    { "type": "vendor", "name": "Vendor", "limit": 1 },
-    { "type": "title", "name": "Title", "limit": 1 },
-    { "type": "rating", "name": "Rating", "limit": 1 },
-    { "type": "price", "name": "Price", "limit": 1 },
-    { "type": "inventory", "name": "Inventory status", "limit": 1 },
-    { "type": "variant_picker", "name": "Variant picker", "limit": 1 },
+    { "type": "vendor", "name": "t:sections.main-product.blocks.vendor.name", "limit": 1 },
+    { "type": "title", "name": "t:sections.main-product.blocks.title.name", "limit": 1 },
+    { "type": "rating", "name": "t:sections.main-product.blocks.rating.name", "limit": 1 },
+    { "type": "price", "name": "t:sections.main-product.blocks.price.name", "limit": 1 },
+    { "type": "inventory", "name": "t:sections.main-product.blocks.inventory.name", "limit": 1 },
+    { "type": "variant_picker", "name": "t:sections.main-product.blocks.variant_picker.name", "limit": 1 },
     {
       "type": "buy_buttons",
-      "name": "Buy buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
       "limit": 1,
       "settings": [
-        { "type": "checkbox", "id": "show_quantity", "label": "Show quantity selector", "default": true },
-        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "default": true },
-        { "type": "checkbox", "id": "show_shipping_note", "label": "Show shipping reassurance line", "default": true },
-        { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Free shipping over $150 · 30-day returns" }
+        { "type": "checkbox", "id": "show_quantity", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_quantity.label", "default": true },
+        { "type": "checkbox", "id": "show_dynamic_checkout", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label", "default": true },
+        { "type": "checkbox", "id": "show_shipping_note", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_shipping_note.label", "default": true },
+        { "type": "text", "id": "shipping_note", "label": "t:sections.main-product.blocks.buy_buttons.settings.shipping_note.label", "default": "Free shipping over $150 · 30-day returns" }
       ]
     },
     {
       "type": "notify_me",
-      "name": "Notify me (sold out)",
+      "name": "t:sections.main-product.blocks.notify_me.name",
       "limit": 1,
       "settings": [
-        { "type": "header", "content": "Button" },
-        { "type": "text", "id": "trigger_label", "label": "Button label", "default": "Notify me when available" },
-        { "type": "header", "content": "Pop-up" },
-        { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Notify me" },
-        { "type": "text", "id": "dialog_heading", "label": "Heading", "default": "Back in stock notification" },
-        { "type": "textarea", "id": "description", "label": "Description", "default": "Enter your email and we will let you know as soon as this product is available again." },
-        { "type": "text", "id": "email_label", "label": "Email label", "default": "Email address" },
-        { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "your@email.com" },
-        { "type": "textarea", "id": "consent_label", "label": "Consent text", "default": "I would like to receive an email notification when this product becomes available again." },
-        { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Notify me" },
-        { "type": "textarea", "id": "success_message", "label": "Success message", "default": "You're on the list. We'll let you know when it's back." }
+        { "type": "header", "content": "t:sections.main-product.blocks.notify_me.settings.header__1.content" },
+        { "type": "text", "id": "trigger_label", "label": "t:sections.main-product.blocks.notify_me.settings.trigger_label.label", "default": "Notify me when available" },
+        { "type": "header", "content": "t:sections.main-product.blocks.notify_me.settings.header__2.content" },
+        { "type": "text", "id": "eyebrow", "label": "t:sections.main-product.blocks.notify_me.settings.eyebrow.label", "default": "Notify me" },
+        { "type": "text", "id": "dialog_heading", "label": "t:sections.main-product.blocks.notify_me.settings.dialog_heading.label", "default": "Back in stock notification" },
+        { "type": "textarea", "id": "description", "label": "t:sections.main-product.blocks.notify_me.settings.description.label", "default": "Enter your email and we will let you know as soon as this product is available again." },
+        { "type": "text", "id": "email_label", "label": "t:sections.main-product.blocks.notify_me.settings.email_label.label", "default": "Email address" },
+        { "type": "text", "id": "email_placeholder", "label": "t:sections.main-product.blocks.notify_me.settings.email_placeholder.label", "default": "your@email.com" },
+        { "type": "textarea", "id": "consent_label", "label": "t:sections.main-product.blocks.notify_me.settings.consent_label.label", "default": "I would like to receive an email notification when this product becomes available again." },
+        { "type": "text", "id": "submit_label", "label": "t:sections.main-product.blocks.notify_me.settings.submit_label.label", "default": "Notify me" },
+        { "type": "textarea", "id": "success_message", "label": "t:sections.main-product.blocks.notify_me.settings.success_message.label", "default": "You're on the list. We'll let you know when it's back." }
       ]
     },
     {
       "type": "trust_badges",
-      "name": "Trust badges",
+      "name": "t:sections.main-product.blocks.trust_badges.name",
       "limit": 1,
       "settings": [
-        { "type": "text", "id": "badge_1", "label": "Badge 1", "default": "Secure checkout" },
-        { "type": "text", "id": "badge_2", "label": "Badge 2", "default": "Free shipping over $150" },
-        { "type": "text", "id": "badge_3", "label": "Badge 3", "default": "30-day returns" },
-        { "type": "text", "id": "badge_4", "label": "Badge 4", "default": "Made to order" }
+        { "type": "text", "id": "badge_1", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_1.label", "default": "Secure checkout" },
+        { "type": "text", "id": "badge_2", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_2.label", "default": "Free shipping over $150" },
+        { "type": "text", "id": "badge_3", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_3.label", "default": "30-day returns" },
+        { "type": "text", "id": "badge_4", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_4.label", "default": "Made to order" }
       ]
     },
-    { "type": "description", "name": "Description", "limit": 1 },
-    { "type": "share", "name": "Share", "limit": 1 },
+    { "type": "description", "name": "t:sections.main-product.blocks.description.name", "limit": 1 },
+    { "type": "share", "name": "t:sections.main-product.blocks.share.name", "limit": 1 },
     {
       "type": "collapsible",
-      "name": "Collapsible row",
+      "name": "t:sections.main-product.blocks.collapsible.name",
       "settings": [
-        { "type": "text", "id": "heading", "label": "Heading", "default": "Shipping & returns" },
-        { "type": "richtext", "id": "content", "label": "Content", "default": "<p>Add shipping, returns, or care details here.</p>" }
+        { "type": "text", "id": "heading", "label": "t:sections.main-product.blocks.collapsible.settings.heading.label", "default": "Shipping & returns" },
+        { "type": "richtext", "id": "content", "label": "t:sections.main-product.blocks.collapsible.settings.content.label", "default": "<p>Add shipping, returns, or care details here.</p>" }
       ]
     },
     {
       "type": "custom_liquid",
-      "name": "Custom liquid",
+      "name": "t:sections.main-product.blocks.custom_liquid.name",
       "settings": [
-        { "type": "liquid", "id": "custom_liquid", "label": "Custom liquid" }
+        { "type": "liquid", "id": "custom_liquid", "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label" }
       ]
     }
   ],
@@ -403,30 +403,30 @@
       "max": 65,
       "step": 5,
       "unit": "%",
-      "label": "Media width (desktop)",
+      "label": "t:sections.main-product.settings.media_width.label",
       "default": 55
     },
     {
       "type": "checkbox",
       "id": "update_url",
-      "label": "Update URL on variant change",
+      "label": "t:sections.main-product.settings.update_url.label",
       "default": true
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.main-product.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.main-product.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.main-product.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.main-product.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.main-product.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.main-product.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Top padding", "default": 64 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "Bottom padding", "default": 64 }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-product.settings.padding_top.label", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-product.settings.padding_bottom.label", "default": 64 }
   ]
 }
 {% endschema %}

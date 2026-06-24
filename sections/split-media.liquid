@@ -149,115 +149,115 @@
 
 {% schema %}
 {
-  "name": "Split media",
+  "name": "t:sections.split-media.name",
   "settings": [
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
+      "label": "t:sections.split-media.settings.image.label"
     },
     {
       "type": "select",
       "id": "media_position",
-      "label": "Image position",
+      "label": "t:sections.split-media.settings.media_position.label",
       "options": [
-        { "value": "left", "label": "Left" },
-        { "value": "right", "label": "Right" }
+        { "value": "left", "label": "t:sections.split-media.settings.media_position.options__1.label" },
+        { "value": "right", "label": "t:sections.split-media.settings.media_position.options__2.label" }
       ],
       "default": "left"
     },
     {
       "type": "select",
       "id": "image_ratio",
-      "label": "Image ratio",
+      "label": "t:sections.split-media.settings.image_ratio.label",
       "options": [
-        { "value": "portrait", "label": "Portrait" },
-        { "value": "square", "label": "Square" },
-        { "value": "landscape", "label": "Landscape" },
-        { "value": "wide", "label": "Wide" }
+        { "value": "portrait", "label": "t:sections.split-media.settings.image_ratio.options__1.label" },
+        { "value": "square", "label": "t:sections.split-media.settings.image_ratio.options__2.label" },
+        { "value": "landscape", "label": "t:sections.split-media.settings.image_ratio.options__3.label" },
+        { "value": "wide", "label": "t:sections.split-media.settings.image_ratio.options__4.label" }
       ],
       "default": "portrait"
     },
     {
       "type": "text",
       "id": "eyebrow",
-      "label": "Eyebrow",
+      "label": "t:sections.split-media.settings.eyebrow.label",
       "default": "Our craft"
     },
     {
       "type": "textarea",
       "id": "heading",
-      "label": "Heading",
+      "label": "t:sections.split-media.settings.heading.label",
       "default": "Two halves of one story"
     },
     {
       "type": "select",
       "id": "heading_tag",
-      "label": "Heading element",
-      "info": "Choose the HTML tag for SEO and accessibility",
+      "label": "t:sections.split-media.settings.heading_tag.label",
+      "info": "t:sections.split-media.settings.heading_tag.info",
       "options": [
-        { "value": "h1", "label": "H1 — Main page title" },
-        { "value": "h2", "label": "H2 — Section title (default)" },
-        { "value": "h3", "label": "H3 — Subsection" },
-        { "value": "h4", "label": "H4 — Minor heading" },
-        { "value": "p", "label": "Paragraph — no heading" }
+        { "value": "h1", "label": "t:sections.split-media.settings.heading_tag.options__1.label" },
+        { "value": "h2", "label": "t:sections.split-media.settings.heading_tag.options__2.label" },
+        { "value": "h3", "label": "t:sections.split-media.settings.heading_tag.options__3.label" },
+        { "value": "h4", "label": "t:sections.split-media.settings.heading_tag.options__4.label" },
+        { "value": "p", "label": "t:sections.split-media.settings.heading_tag.options__5.label" }
       ],
       "default": "h2"
     },
     {
       "type": "select",
       "id": "heading_size",
-      "label": "Heading size",
-      "info": "Visual size, independent of the element",
+      "label": "t:sections.split-media.settings.heading_size.label",
+      "info": "t:sections.split-media.settings.heading_size.info",
       "options": [
-        { "value": "display", "label": "Display — oversized editorial" },
-        { "value": "xl", "label": "XL — hero scale" },
-        { "value": "lg", "label": "Large — section title" },
-        { "value": "md", "label": "Medium — standard" },
-        { "value": "sm", "label": "Small — card heading" },
-        { "value": "xs", "label": "Extra small — caption scale" },
-        { "value": "body", "label": "Body — same as body text" }
+        { "value": "display", "label": "t:sections.split-media.settings.heading_size.options__1.label" },
+        { "value": "xl", "label": "t:sections.split-media.settings.heading_size.options__2.label" },
+        { "value": "lg", "label": "t:sections.split-media.settings.heading_size.options__3.label" },
+        { "value": "md", "label": "t:sections.split-media.settings.heading_size.options__4.label" },
+        { "value": "sm", "label": "t:sections.split-media.settings.heading_size.options__5.label" },
+        { "value": "xs", "label": "t:sections.split-media.settings.heading_size.options__6.label" },
+        { "value": "body", "label": "t:sections.split-media.settings.heading_size.options__7.label" }
       ],
       "default": "lg"
     },
     {
       "type": "richtext",
       "id": "text",
-      "label": "Text",
+      "label": "t:sections.split-media.settings.text.label",
       "default": "<p>Pair a considered image with a few honest words. Use this space to share the thinking behind a product, a process, or a place.</p>"
     },
     {
       "type": "text",
       "id": "cta_label",
-      "label": "Button label",
+      "label": "t:sections.split-media.settings.cta_label.label",
       "default": "Discover more"
     },
     {
       "type": "url",
       "id": "cta_url",
-      "label": "Button link"
+      "label": "t:sections.split-media.settings.cta_url.label"
     },
     {
       "type": "select",
       "id": "cta_style",
-      "label": "Button style",
+      "label": "t:sections.split-media.settings.cta_style.label",
       "options": [
-        { "value": "solid", "label": "Solid" },
-        { "value": "outline", "label": "Outline" },
-        { "value": "link", "label": "Link" }
+        { "value": "solid", "label": "t:sections.split-media.settings.cta_style.options__1.label" },
+        { "value": "outline", "label": "t:sections.split-media.settings.cta_style.options__2.label" },
+        { "value": "link", "label": "t:sections.split-media.settings.cta_style.options__3.label" }
       ],
       "default": "outline"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.split-media.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.split-media.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.split-media.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.split-media.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.split-media.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.split-media.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
@@ -268,7 +268,7 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.split-media.settings.padding_top.label",
       "default": 0
     },
     {
@@ -278,12 +278,12 @@
       "max": 160,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.split-media.settings.padding_bottom.label",
       "default": 0
     }
   ],
   "presets": [
-    { "name": "Split media" }
+    { "name": "t:sections.split-media.presets.name" }
   ]
 }
 {% endschema %}

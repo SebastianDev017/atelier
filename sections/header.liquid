@@ -507,73 +507,73 @@
 
 {% schema %}
 {
-  "name": "Header",
+  "name": "t:sections.header.name",
   "settings": [
     {
       "type": "link_list",
       "id": "menu",
-      "label": "Menu",
+      "label": "t:sections.header.settings.menu.label",
       "default": "main-menu",
-      "info": "Top-level items become numbered index sections; their child links appear beneath each one."
+      "info": "t:sections.header.settings.menu.info"
     },
     {
       "type": "checkbox",
       "id": "show_search",
-      "label": "Show search",
+      "label": "t:sections.header.settings.show_search.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_account",
-      "label": "Show account link",
+      "label": "t:sections.header.settings.show_account.label",
       "default": true
     },
     {
       "type": "checkbox",
       "id": "show_border",
-      "label": "Show divider line",
+      "label": "t:sections.header.settings.show_border.label",
       "default": true
     },
     {
       "type": "header",
-      "content": "Localization"
+      "content": "t:sections.header.settings.header__1.content"
     },
     {
       "type": "checkbox",
       "id": "show_country_selector",
-      "label": "Show country/currency selector",
+      "label": "t:sections.header.settings.show_country_selector.label",
       "default": false
     },
     {
       "type": "checkbox",
       "id": "show_language_selector",
-      "label": "Show language selector",
+      "label": "t:sections.header.settings.show_language_selector.label",
       "default": false
     },
     {
       "type": "select",
       "id": "localization_position",
-      "label": "Selector position",
+      "label": "t:sections.header.settings.localization_position.label",
       "options": [
-        { "value": "bottom", "label": "Bottom of sidebar (below icons)" },
-        { "value": "top", "label": "Top of sidebar (below logo)" }
+        { "value": "bottom", "label": "t:sections.header.settings.localization_position.options__1.label" },
+        { "value": "top", "label": "t:sections.header.settings.localization_position.options__2.label" }
       ],
       "default": "bottom"
     },
     {
       "type": "header",
-      "content": "Appearance"
+      "content": "t:sections.header.settings.header__2.content"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.header.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.header.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.header.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.header.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.header.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.header.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     }

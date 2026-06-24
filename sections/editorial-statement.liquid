@@ -49,25 +49,25 @@
 
 {% schema %}
 {
-  "name": "Editorial statement",
+  "name": "t:sections.editorial-statement.name",
   "tag": "section",
   "settings": [
     {
       "type": "richtext",
       "id": "statement",
-      "label": "Statement",
+      "label": "t:sections.editorial-statement.settings.statement.label",
       "default": "<p>We believe good objects should be useful, honest, and quietly beautiful.</p>"
     },
     {
       "type": "select",
       "id": "color_scheme",
-      "label": "Color scheme",
+      "label": "t:sections.editorial-statement.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.editorial-statement.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.editorial-statement.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.editorial-statement.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.editorial-statement.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.editorial-statement.settings.color_scheme.options__5.label" }
       ],
       "default": "cream"
     },
@@ -78,7 +78,7 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Top padding",
+      "label": "t:sections.editorial-statement.settings.padding_top.label",
       "default": 120
     },
     {
@@ -88,12 +88,12 @@
       "max": 200,
       "step": 4,
       "unit": "px",
-      "label": "Bottom padding",
+      "label": "t:sections.editorial-statement.settings.padding_bottom.label",
       "default": 120
     }
   ],
   "presets": [
-    { "name": "Editorial statement" }
+    { "name": "t:sections.editorial-statement.presets.name" }
   ]
 }
 {% endschema %}

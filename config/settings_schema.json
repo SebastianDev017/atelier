@@ -8,29 +8,29 @@
     "theme_support_email": "sebas.ruizdigital@gmail.com"
   },
   {
-    "name": "Typography",
+    "name": "t:settings_schema.typography.name",
     "settings": [
       {
         "type": "header",
-        "content": "Fonts"
+        "content": "t:settings_schema.typography.settings.header__1.content"
       },
       {
         "type": "font_picker",
         "id": "heading_font",
         "default": "ebgaramond_n4",
-        "label": "Heading font",
-        "info": "Display serif — used for headings and product titles. EB Garamond ships by default."
+        "label": "t:settings_schema.typography.settings.heading_font.label",
+        "info": "t:settings_schema.typography.settings.heading_font.info"
       },
       {
         "type": "font_picker",
         "id": "body_font",
         "default": "lora_n4",
-        "label": "Body font",
-        "info": "Reading serif — used for body copy and navigation. Eyebrows, prices, and buttons use a built-in monospace face."
+        "label": "t:settings_schema.typography.settings.body_font.label",
+        "info": "t:settings_schema.typography.settings.body_font.info"
       },
       {
         "type": "header",
-        "content": "Scale"
+        "content": "t:settings_schema.typography.settings.header__2.content"
       },
       {
         "type": "range",
@@ -39,7 +39,7 @@
         "max": 150,
         "step": 5,
         "unit": "%",
-        "label": "Heading size",
+        "label": "t:settings_schema.typography.settings.heading_scale.label",
         "default": 100
       },
       {
@@ -49,12 +49,12 @@
         "max": 120,
         "step": 2,
         "unit": "%",
-        "label": "Body size",
+        "label": "t:settings_schema.typography.settings.body_scale.label",
         "default": 100
       },
       {
         "type": "header",
-        "content": "Heading sizes"
+        "content": "t:settings_schema.typography.settings.header__3.content"
       },
       {
         "type": "range",
@@ -63,9 +63,9 @@
         "max": 200,
         "step": 5,
         "unit": "%",
-        "label": "H1 size",
+        "label": "t:settings_schema.typography.settings.h1_scale.label",
         "default": 100,
-        "info": "Scales the largest display headings (hero / H1), on top of the global heading size."
+        "info": "t:settings_schema.typography.settings.h1_scale.info"
       },
       {
         "type": "range",
@@ -74,7 +74,7 @@
         "max": 160,
         "step": 5,
         "unit": "%",
-        "label": "H2 size",
+        "label": "t:settings_schema.typography.settings.h2_scale.label",
         "default": 100
       },
       {
@@ -84,7 +84,7 @@
         "max": 140,
         "step": 5,
         "unit": "%",
-        "label": "H3 size",
+        "label": "t:settings_schema.typography.settings.h3_scale.label",
         "default": 100
       },
       {
@@ -94,115 +94,115 @@
         "max": 20,
         "step": 1,
         "unit": "em×100",
-        "label": "Heading letter spacing",
+        "label": "t:settings_schema.typography.settings.letter_spacing_headings.label",
         "default": -2,
-        "info": "Value × 0.01em. Default -2 = -0.02em."
+        "info": "t:settings_schema.typography.settings.letter_spacing_headings.info"
       },
       {
         "type": "header",
-        "content": "Letter casing"
+        "content": "t:settings_schema.typography.settings.header__4.content"
       },
       {
         "type": "checkbox",
         "id": "uppercase_headings",
-        "label": "Uppercase headings",
+        "label": "t:settings_schema.typography.settings.uppercase_headings.label",
         "default": false
       },
       {
         "type": "checkbox",
         "id": "uppercase_nav",
-        "label": "Uppercase navigation",
+        "label": "t:settings_schema.typography.settings.uppercase_nav.label",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "uppercase_buttons",
-        "label": "Uppercase buttons & labels",
+        "label": "t:settings_schema.typography.settings.uppercase_buttons.label",
         "default": true
       }
     ]
   },
   {
-    "name": "Colors",
+    "name": "t:settings_schema.colors.name",
     "settings": [
       {
         "type": "color",
         "id": "background_color",
         "default": "#FAF7F2",
-        "label": "Background"
+        "label": "t:settings_schema.colors.settings.background_color.label"
       },
       {
         "type": "color",
         "id": "text_color",
         "default": "#2C1810",
-        "label": "Text"
+        "label": "t:settings_schema.colors.settings.text_color.label"
       },
       {
         "type": "color",
         "id": "accent_color",
         "default": "#766356",
-        "label": "Accent",
-        "info": "Used for hover states and emphasis."
+        "label": "t:settings_schema.colors.settings.accent_color.label",
+        "info": "t:settings_schema.colors.settings.accent_color.info"
       },
       {
         "type": "color",
         "id": "border_color",
         "default": "#E3DCCE",
-        "label": "Borders & dividers",
-        "info": "Hairline rules, card edges, and input borders."
+        "label": "t:settings_schema.colors.settings.border_color.label",
+        "info": "t:settings_schema.colors.settings.border_color.info"
       },
       {
         "type": "color",
         "id": "button_color",
         "default": "#2C1810",
-        "label": "Button background"
+        "label": "t:settings_schema.colors.settings.button_color.label"
       },
       {
         "type": "color",
         "id": "button_text_color",
         "default": "#FAF7F2",
-        "label": "Button label"
+        "label": "t:settings_schema.colors.settings.button_text_color.label"
       },
       {
         "type": "color",
         "id": "color_text_heading",
-        "label": "Heading color",
+        "label": "t:settings_schema.colors.settings.color_text_heading.label",
         "default": "#2C1810",
-        "info": "Overrides the color scheme heading color"
+        "info": "t:settings_schema.colors.settings.color_text_heading.info"
       },
       {
         "type": "color",
         "id": "color_text_body",
-        "label": "Body text color",
+        "label": "t:settings_schema.colors.settings.color_text_body.label",
         "default": "#5C3D2E"
       },
       {
         "type": "color",
         "id": "color_text_muted",
-        "label": "Muted / label color",
+        "label": "t:settings_schema.colors.settings.color_text_muted.label",
         "default": "#A0826D"
       },
       {
         "type": "header",
-        "content": "Extended palette"
+        "content": "t:settings_schema.colors.settings.header__1.content"
       },
       {
         "type": "color",
         "id": "color_link",
-        "label": "Link color",
+        "label": "t:settings_schema.colors.settings.color_link.label",
         "default": "#2C1810",
-        "info": "Applies to links inside rich-text and prose content."
+        "info": "t:settings_schema.colors.settings.color_link.info"
       },
       {
         "type": "color",
         "id": "color_link_hover",
-        "label": "Link hover color",
+        "label": "t:settings_schema.colors.settings.color_link_hover.label",
         "default": "#A0826D"
       }
     ]
   },
   {
-    "name": "Layout",
+    "name": "t:settings_schema.layout.name",
     "settings": [
       {
         "type": "range",
@@ -211,7 +211,7 @@
         "max": 1800,
         "step": 20,
         "unit": "px",
-        "label": "Page width",
+        "label": "t:settings_schema.layout.settings.page_width.label",
         "default": 1540
       },
       {
@@ -221,7 +221,7 @@
         "max": 80,
         "step": 2,
         "unit": "px",
-        "label": "Page side margin",
+        "label": "t:settings_schema.layout.settings.page_margin.label",
         "default": 40
       },
       {
@@ -231,7 +231,7 @@
         "max": 200,
         "step": 4,
         "unit": "px",
-        "label": "Default section spacing",
+        "label": "t:settings_schema.layout.settings.section_spacing.label",
         "default": 140
       },
       {
@@ -241,8 +241,8 @@
         "max": 120,
         "step": 2,
         "unit": "px",
-        "label": "Header height",
-        "info": "Used on inner elements; the navigation is a full-height left sidebar.",
+        "label": "t:settings_schema.layout.settings.header_height.label",
+        "info": "t:settings_schema.layout.settings.header_height.info",
         "default": 64
       },
       {
@@ -252,8 +252,8 @@
         "max": 300,
         "step": 2,
         "unit": "px",
-        "label": "Sidebar width",
-        "info": "Width of the left navigation column on desktop.",
+        "label": "t:settings_schema.layout.settings.sidebar_width.label",
+        "info": "t:settings_schema.layout.settings.sidebar_width.info",
         "default": 220
       },
       {
@@ -263,38 +263,38 @@
         "max": 8,
         "step": 1,
         "unit": "px",
-        "label": "Corner radius",
-        "info": "Atelier is designed for square (0) corners.",
+        "label": "t:settings_schema.layout.settings.input_corner_radius.label",
+        "info": "t:settings_schema.layout.settings.input_corner_radius.info",
         "default": 0
       }
     ]
   },
   {
-    "name": "Product cards",
+    "name": "t:settings_schema.product_cards.name",
     "settings": [
       {
         "type": "checkbox",
         "id": "card_show_secondary_image",
-        "label": "Show second image on hover",
+        "label": "t:settings_schema.product_cards.settings.card_show_secondary_image.label",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "card_show_vendor",
-        "label": "Show vendor",
+        "label": "t:settings_schema.product_cards.settings.card_show_vendor.label",
         "default": false
       },
       {
         "type": "checkbox",
         "id": "card_quick_add",
-        "label": "Show quick add button",
+        "label": "t:settings_schema.product_cards.settings.card_quick_add.label",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "card_show_rating",
-        "label": "Show product rating",
-        "info": "Requires a product rating app that uses the standard rating metafield.",
+        "label": "t:settings_schema.product_cards.settings.card_show_rating.label",
+        "info": "t:settings_schema.product_cards.settings.card_show_rating.info",
         "default": false
       },
       {
@@ -303,112 +303,112 @@
         "min": 0,
         "max": 25,
         "step": 1,
-        "label": "Low stock badge threshold",
-        "info": "Show a low-stock badge at or below this quantity. Set 0 to hide.",
+        "label": "t:settings_schema.product_cards.settings.low_stock_threshold.label",
+        "info": "t:settings_schema.product_cards.settings.low_stock_threshold.info",
         "default": 6
       }
     ]
   },
   {
-    "name": "Cart",
+    "name": "t:settings_schema.cart.name",
     "settings": [
       {
         "type": "select",
         "id": "cart_type",
-        "label": "Cart type",
+        "label": "t:settings_schema.cart.settings.cart_type.label",
         "options": [
-          { "value": "drawer", "label": "Drawer" },
-          { "value": "page", "label": "Page" }
+          { "value": "drawer", "label": "t:settings_schema.cart.settings.cart_type.options__1.label" },
+          { "value": "page", "label": "t:settings_schema.cart.settings.cart_type.options__2.label" }
         ],
         "default": "drawer"
       },
       {
         "type": "checkbox",
         "id": "cart_show_free_shipping_bar",
-        "label": "Show free shipping progress bar",
+        "label": "t:settings_schema.cart.settings.cart_show_free_shipping_bar.label",
         "default": true
       },
       {
         "type": "number",
         "id": "cart_free_shipping_threshold",
-        "label": "Free shipping threshold",
-        "info": "In your store currency, e.g. 150. Leave blank to hide the bar.",
+        "label": "t:settings_schema.cart.settings.cart_free_shipping_threshold.label",
+        "info": "t:settings_schema.cart.settings.cart_free_shipping_threshold.info",
         "default": 150
       },
       {
         "type": "checkbox",
         "id": "cart_show_note",
-        "label": "Enable order notes",
+        "label": "t:settings_schema.cart.settings.cart_show_note.label",
         "default": true
       }
     ]
   },
   {
-    "name": "Animations & Experience",
+    "name": "t:settings_schema.animations_experience.name",
     "settings": [
       {
         "type": "checkbox",
         "id": "enable_smooth_scroll",
-        "label": "Smooth scroll",
+        "label": "t:settings_schema.animations_experience.settings.enable_smooth_scroll.label",
         "default": true,
-        "info": "Enables Lenis smooth scroll throughout the site."
+        "info": "t:settings_schema.animations_experience.settings.enable_smooth_scroll.info"
       },
       {
         "type": "checkbox",
         "id": "enable_view_transitions",
-        "label": "Page transitions",
-        "info": "Fade between pages using the View Transitions API in supported browsers.",
+        "label": "t:settings_schema.animations_experience.settings.enable_view_transitions.label",
+        "info": "t:settings_schema.animations_experience.settings.enable_view_transitions.info",
         "default": true
       },
       {
         "type": "checkbox",
         "id": "enable_custom_cursor",
-        "label": "Custom cursor",
-        "info": "Shows editorial dot cursor on desktop. Disable for standard cursor.",
+        "label": "t:settings_schema.animations_experience.settings.enable_custom_cursor.label",
+        "info": "t:settings_schema.animations_experience.settings.enable_custom_cursor.info",
         "default": true
       },
       {
         "type": "select",
         "id": "cursor_size",
-        "label": "Cursor size",
+        "label": "t:settings_schema.animations_experience.settings.cursor_size.label",
         "options": [
-          { "value": "sm", "label": "Small (8px)" },
-          { "value": "md", "label": "Medium (12px)" },
-          { "value": "lg", "label": "Large (16px)" }
+          { "value": "sm", "label": "t:settings_schema.animations_experience.settings.cursor_size.options__1.label" },
+          { "value": "md", "label": "t:settings_schema.animations_experience.settings.cursor_size.options__2.label" },
+          { "value": "lg", "label": "t:settings_schema.animations_experience.settings.cursor_size.options__3.label" }
         ],
         "default": "md"
       },
       {
         "type": "checkbox",
         "id": "enable_scroll_animations",
-        "label": "Scroll reveal animations",
+        "label": "t:settings_schema.animations_experience.settings.enable_scroll_animations.label",
         "default": true,
-        "info": "Text and image reveal effects on scroll."
+        "info": "t:settings_schema.animations_experience.settings.enable_scroll_animations.info"
       },
       {
         "type": "checkbox",
         "id": "enable_hover_image_swap",
-        "label": "Product image swap on hover",
+        "label": "t:settings_schema.animations_experience.settings.enable_hover_image_swap.label",
         "default": true,
-        "info": "Shows the second product image when hovering product cards."
+        "info": "t:settings_schema.animations_experience.settings.enable_hover_image_swap.info"
       },
       {
         "type": "select",
         "id": "animation_speed",
-        "label": "Animation speed",
+        "label": "t:settings_schema.animations_experience.settings.animation_speed.label",
         "options": [
-          { "value": "fast", "label": "Fast — 0.5× speed" },
-          { "value": "normal", "label": "Normal — default" },
-          { "value": "slow", "label": "Slow — 1.5× more deliberate" }
+          { "value": "fast", "label": "t:settings_schema.animations_experience.settings.animation_speed.options__1.label" },
+          { "value": "normal", "label": "t:settings_schema.animations_experience.settings.animation_speed.options__2.label" },
+          { "value": "slow", "label": "t:settings_schema.animations_experience.settings.animation_speed.options__3.label" }
         ],
         "default": "normal"
       },
       {
         "type": "checkbox",
         "id": "enable_grain_texture",
-        "label": "Paper grain texture",
+        "label": "t:settings_schema.animations_experience.settings.enable_grain_texture.label",
         "default": true,
-        "info": "Subtle noise overlay for an editorial feel."
+        "info": "t:settings_schema.animations_experience.settings.enable_grain_texture.info"
       },
       {
         "type": "range",
@@ -417,13 +417,13 @@
         "max": 8,
         "step": 1,
         "unit": "%",
-        "label": "Grain intensity",
+        "label": "t:settings_schema.animations_experience.settings.grain_opacity.label",
         "default": 4
       }
     ]
   },
   {
-    "name": "Images",
+    "name": "t:settings_schema.images.name",
     "settings": [
       {
         "type": "range",
@@ -432,14 +432,14 @@
         "max": 24,
         "step": 2,
         "unit": "px",
-        "label": "Image border radius",
+        "label": "t:settings_schema.images.settings.image_border_radius.label",
         "default": 0,
-        "info": "Applies to product cards and section images"
+        "info": "t:settings_schema.images.settings.image_border_radius.info"
       },
       {
         "type": "checkbox",
         "id": "image_border_enable",
-        "label": "Show image border",
+        "label": "t:settings_schema.images.settings.image_border_enable.label",
         "default": false
       },
       {
@@ -449,38 +449,38 @@
         "max": 4,
         "step": 1,
         "unit": "px",
-        "label": "Border width",
+        "label": "t:settings_schema.images.settings.image_border_width.label",
         "default": 1
       },
       {
         "type": "color",
         "id": "image_border_color",
-        "label": "Border color",
+        "label": "t:settings_schema.images.settings.image_border_color.label",
         "default": "#E5DDD0"
       }
     ]
   },
   {
-    "name": "Social media",
+    "name": "t:settings_schema.social_media.name",
     "settings": [
       {
         "type": "header",
-        "content": "Accounts"
+        "content": "t:settings_schema.social_media.settings.header__1.content"
       },
-      { "type": "text", "id": "social_instagram_link", "label": "Instagram", "info": "https://instagram.com/shop" },
-      { "type": "text", "id": "social_facebook_link", "label": "Facebook" },
-      { "type": "text", "id": "social_pinterest_link", "label": "Pinterest" },
-      { "type": "text", "id": "social_tiktok_link", "label": "TikTok" },
-      { "type": "text", "id": "social_youtube_link", "label": "YouTube" }
+      { "type": "text", "id": "social_instagram_link", "label": "t:settings_schema.social_media.settings.social_instagram_link.label", "info": "t:settings_schema.social_media.settings.social_instagram_link.info" },
+      { "type": "text", "id": "social_facebook_link", "label": "t:settings_schema.social_media.settings.social_facebook_link.label" },
+      { "type": "text", "id": "social_pinterest_link", "label": "t:settings_schema.social_media.settings.social_pinterest_link.label" },
+      { "type": "text", "id": "social_tiktok_link", "label": "t:settings_schema.social_media.settings.social_tiktok_link.label" },
+      { "type": "text", "id": "social_youtube_link", "label": "t:settings_schema.social_media.settings.social_youtube_link.label" }
     ]
   },
   {
-    "name": "Branding",
+    "name": "t:settings_schema.branding.name",
     "settings": [
       {
         "type": "image_picker",
         "id": "logo",
-        "label": "Logo"
+        "label": "t:settings_schema.branding.settings.logo.label"
       },
       {
         "type": "range",
@@ -489,14 +489,14 @@
         "max": 320,
         "step": 4,
         "unit": "px",
-        "label": "Logo width",
+        "label": "t:settings_schema.branding.settings.logo_width.label",
         "default": 152
       },
       {
         "type": "image_picker",
         "id": "favicon",
-        "label": "Favicon",
-        "info": "Will be scaled down to 32 x 32px."
+        "label": "t:settings_schema.branding.settings.favicon.label",
+        "info": "t:settings_schema.branding.settings.favicon.info"
       }
     ]
   }

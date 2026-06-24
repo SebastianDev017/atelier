@@ -96,31 +96,31 @@
 
 {% schema %}
 {
-  "name": "Full bleed image",
+  "name": "t:sections.full-bleed-image.name",
   "tag": "section",
   "settings": [
     {
       "type": "image_picker",
       "id": "image",
-      "label": "Image"
+      "label": "t:sections.full-bleed-image.settings.image.label"
     },
     {
       "type": "select",
       "id": "image_height",
-      "label": "Image height",
+      "label": "t:sections.full-bleed-image.settings.image_height.label",
       "options": [
-        { "value": "compact", "label": "Compact (40vh)" },
-        { "value": "medium", "label": "Medium (55vh)" },
-        { "value": "large", "label": "Large (70vh)" },
-        { "value": "cinematic", "label": "Cinematic (85vh)" }
+        { "value": "compact", "label": "t:sections.full-bleed-image.settings.image_height.options__1.label" },
+        { "value": "medium", "label": "t:sections.full-bleed-image.settings.image_height.options__2.label" },
+        { "value": "large", "label": "t:sections.full-bleed-image.settings.image_height.options__3.label" },
+        { "value": "cinematic", "label": "t:sections.full-bleed-image.settings.image_height.options__4.label" }
       ],
       "default": "medium"
     },
     {
       "type": "text",
       "id": "caption",
-      "label": "Caption",
-      "info": "Optional. Shown bottom-left over the image."
+      "label": "t:sections.full-bleed-image.settings.caption.label",
+      "info": "t:sections.full-bleed-image.settings.caption.info"
     },
     {
       "type": "range",
@@ -129,12 +129,12 @@
       "max": 60,
       "step": 5,
       "unit": "%",
-      "label": "Overlay opacity",
+      "label": "t:sections.full-bleed-image.settings.overlay_opacity.label",
       "default": 0
     }
   ],
   "presets": [
-    { "name": "Full bleed image" }
+    { "name": "t:sections.full-bleed-image.presets.name" }
   ]
 }
 {% endschema %}
