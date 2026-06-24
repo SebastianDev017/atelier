@@ -67,7 +67,8 @@
       {% render 'cart-drawer' %}
     {%- endif -%}
 
-    {%- if settings.enable_custom_cursor -%}{% render 'cursor' %}{%- endif -%}
+    {%- comment -%} Render unless explicitly disabled: the setting is nil on a fresh/GitHub-synced theme (not in settings_data), and `{% if nil %}` would hide the cursor by default. `!= false` shows it by default while still honouring an explicit off. {%- endcomment -%}
+    {%- if settings.enable_custom_cursor != false -%}{% render 'cursor' %}{%- endif -%}
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>

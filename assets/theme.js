@@ -386,8 +386,10 @@
     this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
     this.tick = this.tick.bind(this);
     document.addEventListener('mousemove', function (e) { self.x = e.clientX; self.y = e.clientY; });
-    var img = '.product-card__media, .gallery__item, .split-media__media, .hero__media, figure, [data-gallery-image]';
-    var btn = 'a, button, [role="button"], input, textarea, select, label, summary, .btn, .nav-link, .nav-sublink, .product-card__quick-add, .trust-badge, .quantity__button, [data-share-trigger]';
+    document.addEventListener('mouseleave', function () { self.el.style.opacity = '0'; });
+    document.addEventListener('mouseenter', function () { self.el.style.opacity = '1'; });
+    var img = '.product-card__media, .product-card img, .gallery__item, .gallery__item img, .split-media__media, .split-media__media img, .hero__media, .hero__media img, .image-with-text__media, .full-bleed-image, figure, [data-gallery-image]';
+    var btn = 'a[href], button, [role="button"], input, textarea, select, label, summary, .btn, .nav-link, .sidebar-nav__sublink, .product-card__quick-add, .trust-badge, .quantity__button, [data-share-trigger], .breadcrumbs__link, footer a';
     document.addEventListener('mouseover', function (e) {
       var isImg = e.target.closest(img);
       var isBtn = !isImg && e.target.closest(btn);

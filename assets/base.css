@@ -455,9 +455,10 @@ cart-page {
   transition: background-color var(--duration-fast) var(--ease-editorial),
               border-color var(--duration-fast) var(--ease-editorial),
               color var(--duration-fast) var(--ease-editorial),
+              letter-spacing var(--duration-base) var(--ease-editorial),
               transform var(--duration-fast) var(--ease-editorial);
 }
-.btn:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); }
+.btn:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); letter-spacing: 0.18em; }
 .btn:active { transform: translateY(1px); }
 .btn[disabled],
 .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
@@ -688,6 +689,20 @@ cart-page {
 /* Hover image swap can be disabled globally from theme settings. */
 body[data-hover-swap="false"] .product-card:hover .product-card__image--secondary { opacity: 0; transform: scale(1.03); }
 .product-card:hover .product-card__image--only { transform: scale(1.04); }
+
+/* Editorial media hover — gentle scale (product-card images handled above). */
+.gallery__item img,
+.split-media__media img,
+.image-with-text__media img {
+  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0, 1);
+}
+.gallery__item:hover img,
+.split-media__media:hover img,
+.image-with-text__media:hover img { transform: scale(1.04); }
+
+/* Footer links fade on hover. */
+footer a { transition: opacity var(--duration-fast) var(--ease-editorial); }
+footer a:hover { opacity: 0.6; }
 .product-card__badges {
   position: absolute;
   top: var(--space-3);
@@ -1001,24 +1016,15 @@ html.lenis, html.lenis body { height: auto; }
    own cursor:pointer — including the higher-specificity .select select and
    .facets__option, so no native pointer leaks through as a double cursor.
    All restored to the native cursor on touch / coarse pointers. */
-body:has(.custom-cursor) { cursor: none; }
-/* Scoped to when the cursor dot exists so disabling it restores the native
-   pointer. NOT written with :is() — Shopify's CSS minifier strips :is() rules
-   on the served asset (:has survives). Keep the descendant list expanded. */
-body:has(.custom-cursor) a,
-body:has(.custom-cursor) button,
-body:has(.custom-cursor) [role="button"],
-body:has(.custom-cursor) input,
-body:has(.custom-cursor) select,
-body:has(.custom-cursor) textarea,
-body:has(.custom-cursor) label,
-body:has(.custom-cursor) summary,
-body:has(.custom-cursor) .btn,
-body:has(.custom-cursor) .select select,
-body:has(.custom-cursor) .facets__option { cursor: none; }
+/* Hide the OS cursor everywhere the custom dot is active. Gated by :has so
+   disabling the cursor (no .custom-cursor element) restores native pointers,
+   and reset on touch / coarse pointers. (:has survives Shopify minification;
+   :is does NOT — so this stays a universal selector, never :is().) */
+body:has(.custom-cursor),
+body:has(.custom-cursor) * { cursor: none !important; }
 @media (hover: none), (pointer: coarse) {
-  body, a, button, [role="button"], input, select, textarea,
-  label, summary, .btn, .select select, .facets__option { cursor: auto; }
+  body:has(.custom-cursor),
+  body:has(.custom-cursor) * { cursor: auto !important; }
 }
 
 .custom-cursor {
@@ -1058,11 +1064,13 @@ body:has(.custom-cursor) .facets__option { cursor: none; }
   justify-content: center;
   font-size: 8px;
   font-weight: 700;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: #000;
   opacity: 0;
   transition: opacity 0.2s ease;
   mix-blend-mode: normal;
+  user-select: none;
 }
 @media (hover: none), (pointer: coarse) {
   .custom-cursor { display: none !important; }
