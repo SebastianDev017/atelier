@@ -419,6 +419,17 @@
     this.cx += (this.x - this.cx) * 0.12;
     this.cy += (this.y - this.cy) * 0.12;
     this.el.style.transform = 'translate(' + (this.cx - this.el.offsetWidth / 2) + 'px, ' + (this.cy - this.el.offsetHeight / 2) + 'px)';
+
+    // Detect a dark section under the cursor (throttled to every 6th frame) and
+    // toggle .is-on-dark so CSS flips the dot espresso<->cream. Colour lives in CSS.
+    this.frameCount = (this.frameCount || 0) + 1;
+    if (this.frameCount % 6 === 0) {
+      var under = document.elementFromPoint(this.cx, this.cy);
+      if (under) {
+        this.el.classList.toggle('is-on-dark', !!under.closest('.color-scheme--invert, footer'));
+      }
+    }
+
     requestAnimationFrame(this.tick);
   };
 

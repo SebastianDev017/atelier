@@ -974,8 +974,9 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background-color: #ffffff;
-  mix-blend-mode: difference;
+  /* On-brand colours via JS background detection (theme.js toggles
+     .is-on-dark): espresso dot on light sections, cream dot on dark. */
+  background-color: #2C1810;
   pointer-events: none;
   z-index: 999999;
   top: 0;
@@ -984,8 +985,10 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   transition:
     width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    background-color 0.2s ease;
 }
+.custom-cursor.is-on-dark { background-color: #FAF7F2; }
 .custom-cursor__label {
   position: absolute;
   inset: 0;
@@ -995,10 +998,12 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  color: #000000;
+  /* Label contrasts the dot: cream on the espresso dot, espresso on the cream dot. */
+  color: #FAF7F2;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
+.custom-cursor.is-on-dark .custom-cursor__label { color: #2C1810; }
 .custom-cursor.is-hovering-image {
   width: 56px;
   height: 56px;
