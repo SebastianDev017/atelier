@@ -28,11 +28,11 @@
 
   :root {
     {% if heading_font %}
-      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
+      --font-heading: {{ heading_font.family | json }}, {{ heading_font.fallback_families }};
       --font-heading-weight: {{ heading_weight }};
     {% endif %}
     {% if body_font %}
-      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
+      --font-body: {{ body_font.family | json }}, {{ body_font.fallback_families }};
       --font-body-weight: {{ body_font.weight }};
     {% endif %}
 
