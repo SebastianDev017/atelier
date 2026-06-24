@@ -940,26 +940,36 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: hidden; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
-/* ---------- Custom cursor ---------- */
-html, body, *, *::before, *::after { cursor: none !important; }
+/* ---------- Custom cursor ----------
+   Hide the OS cursor with targeted rules (not a global !important): the body
+   (so non-interactive areas inherit none) plus every element that sets its
+   own cursor:pointer — including the higher-specificity .select select and
+   .facets__option, so no native pointer leaks through as a double cursor.
+   All restored to the native cursor on touch / coarse pointers. */
+body:has(.custom-cursor) { cursor: none; }
+a, button, [role="button"], input, select, textarea,
+label, summary, .btn, .select select, .facets__option { cursor: none; }
 @media (hover: none), (pointer: coarse) {
-  html, body, *, *::before, *::after { cursor: auto !important; }
+  body, a, button, [role="button"], input, select, textarea,
+  label, summary, .btn, .select select, .facets__option { cursor: auto; }
 }
-.custom-cursor { cursor: none !important; pointer-events: none; }
 
 .custom-cursor {
   position: fixed;
-  width: 12px;
-  height: 12px;
+  width: 10px;
+  height: 10px;
   border-radius: 50%;
   background-color: #ffffff;
   mix-blend-mode: difference;
   pointer-events: none;
-  z-index: 99999;
+  z-index: 999999;
   top: 0;
   left: 0;
   will-change: transform;
-  transition: width 0.3s ease, height 0.3s ease, border-radius 0.3s ease;
+  transition:
+    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .custom-cursor__label {
   position: absolute;
@@ -967,25 +977,28 @@ html, body, *, *::before, *::after { cursor: none !important; }
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 9px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  color: var(--color-bg, #FAF7F2);
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #000000;
   opacity: 0;
   transition: opacity 0.2s ease;
 }
 .custom-cursor.is-hovering-image {
-  width: 64px;
-  height: 64px;
+  width: 56px;
+  height: 56px;
 }
 .custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
 .custom-cursor.is-hovering-btn {
-  width: 40px;
+  width: 36px;
   height: 2px;
   border-radius: 0;
 }
 @media (hover: none), (pointer: coarse) {
-  .custom-cursor { display: none; }
+  .custom-cursor { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .custom-cursor { display: none !important; }
 }
 
 /* ---------- Text reveal on scroll ----------
