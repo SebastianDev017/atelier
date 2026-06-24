@@ -722,11 +722,32 @@ cart-page {
   transition: opacity var(--duration-slow) var(--ease-editorial),
               transform var(--duration-slower) var(--ease-editorial);
 }
-.product-card__image--secondary { opacity: 0; transform: scale(1.03); }
-.product-card:hover .product-card__image--primary { opacity: 0; }
-.product-card:hover .product-card__image--secondary { opacity: 1; transform: scale(1); }
-/* Hover image swap can be disabled globally from theme settings. */
-body[data-hover-swap="false"] .product-card:hover .product-card__image--secondary { opacity: 0; transform: scale(1.03); }
+/* Hover image: present only when the product has a 2nd image (see product-card.liquid).
+   The :has() guards mean a single-image card never fades its primary out — no blank flash. */
+.product-card__hover-img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transform: scale(1.03);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  pointer-events: none;
+}
+.product-card:has(.product-card__hover-img):hover .product-card__hover-img {
+  opacity: 1;
+  transform: scale(1);
+}
+.product-card:has(.product-card__hover-img):hover .product-card__primary-img {
+  opacity: 0;
+}
+.product-card:not(:has(.product-card__hover-img)) .product-card__primary-img {
+  opacity: 1 !important;
+}
+/* Global toggle (theme setting) can still disable the swap. */
+body[data-hover-swap="false"] .product-card:has(.product-card__hover-img):hover .product-card__hover-img { opacity: 0; transform: scale(1.03); }
+body[data-hover-swap="false"] .product-card:has(.product-card__hover-img):hover .product-card__primary-img { opacity: 1; }
 .product-card:hover .product-card__image--only { transform: scale(1.04); }
 
 /* Editorial media hover — gentle scale (product-card images handled above). */

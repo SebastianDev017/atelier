@@ -26,9 +26,7 @@
     assign on_sale = true
   endif
 
-  assign images = product.media | where: 'media_type', 'image'
   assign primary = product.featured_media
-  assign secondary = images[1].preview_image | default: product.images[1]
 
   assign low_stock = false
   if settings.low_stock_threshold > 0 and variant.inventory_management != blank and variant.inventory_quantity > 0 and variant.inventory_quantity <= settings.low_stock_threshold
@@ -75,23 +73,25 @@
           fetchpriority: fetchpriority,
           widths: '200, 300, 400, 500, 600, 700, 800',
           sizes: sizes,
-          class: 'product-card__image product-card__image--primary',
+          class: 'product-card__image product-card__primary-img',
           alt: primary.alt | default: product.title | escape
       }}
-      {%- if settings.card_show_secondary_image and secondary -%}
-        {{
-          secondary
-          | image_url: width: 800
-          | image_tag:
-            loading: 'lazy',
-            widths: '200, 300, 400, 500, 600, 700, 800',
-            sizes: sizes,
-            class: 'product-card__image product-card__image--secondary',
-            alt: ''
-        }}
+      {%- comment -%} Hover image renders only when a 2nd image exists, so single-image
+        cards never fade their primary out (the :has() guards in base.css depend on this).
+        The merchant toggle still applies; `!= false` keeps it on by default. {%- endcomment -%}
+      {%- if settings.card_show_secondary_image != false and product.images.size > 1 -%}
+        <img
+          class="product-card__hover-img"
+          src="{{ product.images[1] | image_url: width: 600 }}"
+          alt="{{ product.images[1].alt | escape }}"
+          loading="lazy"
+          width="600"
+          height="800"
+          aria-hidden="true"
+        >
       {%- endif -%}
     {%- else -%}
-      <span class="product-card__image product-card__image--primary product-card__image--only placeholder">
+      <span class="product-card__image product-card__primary-img product-card__image--only placeholder">
         {{- 'product-1' | placeholder_svg_tag: 'placeholder' -}}
       </span>
     {%- endif -%}
