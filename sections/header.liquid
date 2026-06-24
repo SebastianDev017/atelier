@@ -14,12 +14,25 @@
   assign country_list_id = 'HeaderCountryList-' | append: section.id
   assign language_form_id = 'HeaderLanguageForm-' | append: section.id
   assign language_list_id = 'HeaderLanguageList-' | append: section.id
+  comment
+    Only treat a selector as renderable when it is enabled AND the store
+    actually has more than one country / language to switch between — otherwise
+    the wrapper would paint an empty bordered box with nothing to choose.
+  endcomment
+  assign loc_show_country = false
+  if section.settings.show_country_selector and localization.available_countries.size > 1
+    assign loc_show_country = true
+  endif
+  assign loc_show_language = false
+  if section.settings.show_language_selector and localization.available_languages.size > 1
+    assign loc_show_language = true
+  endif
 -%}
 {%- capture localization_block -%}
-  {%- if section.settings.show_country_selector or section.settings.show_language_selector -%}
+  {%- if loc_show_country or loc_show_language -%}
     <localization-dropdown>
       <div class="sidebar-localization">
-        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+        {%- if loc_show_country -%}
           {%- form 'localization', id: country_form_id -%}
             <div class="localization-selector">
               <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ country_list_id }}">
@@ -39,7 +52,7 @@
           {%- endform -%}
         {%- endif -%}
 
-        {%- if section.settings.show_language_selector and localization.available_languages.size > 1 -%}
+        {%- if loc_show_language -%}
           {%- form 'localization', id: language_form_id -%}
             <div class="localization-selector">
               <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ language_list_id }}">
@@ -284,6 +297,16 @@
   .sidebar-nav__sublink[aria-current="page"] { color: var(--color-text); }
   .sidebar-nav__sublink:hover::after,
   .sidebar-nav__sublink[aria-current="page"]::after { width: 100%; }
+
+  /* Level 3 — grandchild links nested under a level-2 link: deeper indent, smaller, fainter. */
+  .sidebar-nav__sub--level-3 {
+    margin-top: 2px;
+    padding-left: var(--space-4);
+  }
+  .sidebar-nav__sublink--level-3 {
+    font-size: var(--text-xs);
+    opacity: 0.85;
+  }
 
   .sidebar__foot {
     margin-top: auto;

@@ -30,6 +30,19 @@
                 href="{{ child.url }}"
                 {% if child.current %}aria-current="page"{% endif %}
               >{{ child.title | escape }}</a>
+              {%- if child.links.size > 0 -%}
+                <ul class="sidebar-nav__sub sidebar-nav__sub--level-3">
+                  {%- for grandchild in child.links -%}
+                    <li>
+                      <a
+                        class="sidebar-nav__sublink sidebar-nav__sublink--level-3"
+                        href="{{ grandchild.url }}"
+                        {% if grandchild.current %}aria-current="page"{% endif %}
+                      >{{ grandchild.title | escape }}</a>
+                    </li>
+                  {%- endfor -%}
+                </ul>
+              {%- endif -%}
             </li>
           {%- endfor -%}
         </ul>
