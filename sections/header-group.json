@@ -18,6 +18,9 @@
         "show_search": true,
         "show_account": true,
         "show_border": true,
+        "show_country_selector": true,
+        "show_language_selector": true,
+        "localization_position": "bottom",
         "color_scheme": "cream"
       }
     }
