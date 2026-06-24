@@ -45,7 +45,7 @@
                   <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                        {% render 'product-card', product: item, index: forloop.index %}
+                        {% render 'product-card', product: item, index: forloop.index, quick_add_style: section.settings.quick_add_style %}
                       {%- when 'article' -%}
                         <a class="search-result" href="{{ item.url }}">
                           <span class="media media--landscape">
@@ -127,6 +127,16 @@
       "default": "lg"
     },
     { "type": "range", "id": "products_per_page", "min": 8, "max": 36, "step": 4, "label": "Results per page", "default": 16 },
+    {
+      "type": "select",
+      "id": "quick_add_style",
+      "label": "Add to cart button",
+      "options": [
+        { "value": "hover", "label": "Reveal on hover" },
+        { "value": "always", "label": "Always visible below info" }
+      ],
+      "default": "hover"
+    },
     {
       "type": "select",
       "id": "columns_desktop",
