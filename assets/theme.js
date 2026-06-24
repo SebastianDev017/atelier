@@ -424,6 +424,39 @@
     requestAnimationFrame(this.tick);
   };
 
+  /* ---------- <localization-dropdown> ---------- */
+  var LocalizationDropdown = (function () {
+    function LocalizationDropdown() { return Reflect.construct(HTMLElement, [], LocalizationDropdown); }
+    LocalizationDropdown.prototype = Object.create(HTMLElement.prototype);
+    LocalizationDropdown.prototype.constructor = LocalizationDropdown;
+
+    LocalizationDropdown.prototype.connectedCallback = function () {
+      this.btns = Array.prototype.slice.call(this.querySelectorAll('.localization-selector__btn'));
+      this.onDocClick = this.onDocClick.bind(this);
+      this.btns.forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          var list = document.getElementById(btn.getAttribute('aria-controls'));
+          var isOpen = btn.getAttribute('aria-expanded') === 'true';
+          btn.setAttribute('aria-expanded', String(!isOpen));
+          if (list) list.hidden = isOpen;
+        });
+      });
+      document.addEventListener('click', this.onDocClick);
+    };
+    LocalizationDropdown.prototype.onDocClick = function (event) {
+      if (this.contains(event.target)) return;
+      this.btns.forEach(function (btn) {
+        btn.setAttribute('aria-expanded', 'false');
+        var list = document.getElementById(btn.getAttribute('aria-controls'));
+        if (list) list.hidden = true;
+      });
+    };
+    LocalizationDropdown.prototype.disconnectedCallback = function () {
+      document.removeEventListener('click', this.onDocClick);
+    };
+    return LocalizationDropdown;
+  })();
+
   /* ---------- Register ---------- */
   function define(name, ctor) {
     if (!customElements.get(name)) customElements.define(name, ctor);
@@ -436,6 +469,7 @@
     define('header-component', HeaderComponent);
     define('localization-form', LocalizationForm);
     define('facet-form', FacetForm);
+    define('localization-dropdown', LocalizationDropdown);
     new CursorComponent();
   }
 

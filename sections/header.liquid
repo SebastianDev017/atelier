@@ -3,6 +3,60 @@
   assign menu = section.settings.menu
 -%}
 
+{%- comment -%}
+  Localization captured once and emitted at the position the merchant chooses
+  (top: below the logo; bottom: below the sidebar icons). Native localization
+  forms with submit buttons, enhanced by <localization-dropdown> for the
+  open/close behaviour.
+{%- endcomment -%}
+{%- capture localization_block -%}
+  {%- if section.settings.show_country_selector or section.settings.show_language_selector -%}
+    <localization-dropdown>
+      <div class="sidebar-localization">
+        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
+          {%- form 'localization', id: 'HeaderCountryForm' -%}
+            <div class="localization-selector">
+              <button type="button" class="localization-selector__btn" aria-expanded="false" aria-controls="HeaderCountryList">
+                {{ localization.country.iso_code }}
+                <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <ul id="HeaderCountryList" class="localization-selector__list" hidden>
+                {%- for country in localization.available_countries -%}
+                  <li>
+                    <button type="submit" name="country_code" value="{{ country.iso_code }}" class="localization-selector__option{% if country.iso_code == localization.country.iso_code %} is-active{% endif %}">
+                      {{ country.name }} ({{ country.currency.iso_code }})
+                    </button>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endform -%}
+        {%- endif -%}
+
+        {%- if section.settings.show_language_selector and localization.available_languages.size > 1 -%}
+          {%- form 'localization', id: 'HeaderLanguageForm' -%}
+            <div class="localization-selector">
+              <button type="button" class="localization-selector__btn" aria-expanded="false" aria-controls="HeaderLanguageList">
+                {{ localization.language.iso_code | upcase }}
+                <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+              </button>
+              <ul id="HeaderLanguageList" class="localization-selector__list" hidden>
+                {%- for language in localization.available_languages -%}
+                  <li>
+                    <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="localization-selector__option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}">
+                      {{ language.endonym_name }}
+                    </button>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            </div>
+          {%- endform -%}
+        {%- endif -%}
+      </div>
+    </localization-dropdown>
+  {%- endif -%}
+{%- endcapture -%}
+
 {%- comment -%} Sticky + full-height column rules live on the section wrapper (the real grid item of .site-layout), using the raw style-tag pattern every other section uses. {%- endcomment -%}
 <style>
   #shopify-section-{{ section.id }} { grid-column: 1; }
@@ -54,6 +108,8 @@
       </button>
     </div>
 
+    {%- if section.settings.localization_position == 'top' -%}{{ localization_block }}{%- endif -%}
+
     {%- if menu != blank -%}
       <nav class="sidebar__nav" aria-label="{{ 'general.menu' | t }}">
         {% render 'header-menu', menu: menu, section_id: section.id %}
@@ -101,14 +157,7 @@
         </a>
       </div>
 
-      {%- if section.settings.enable_country_selector or section.settings.enable_language_selector -%}
-        <div class="sidebar__locale">
-          {% render 'country-selector',
-            show_country: section.settings.enable_country_selector,
-            show_language: section.settings.enable_language_selector,
-            id: section.id %}
-        </div>
-      {%- endif -%}
+      {%- unless section.settings.localization_position == 'top' -%}{{ localization_block }}{%- endunless -%}
     </div>
   </div>
 
@@ -278,7 +327,57 @@
   }
   .sidebar__cart-count.is-empty { display: none; }
 
-  .sidebar__locale { display: flex; flex-wrap: wrap; gap: var(--space-3); }
+  /* ---------- Localization selectors ---------- */
+  .sidebar-localization {
+    padding: 1rem 0;
+    border-top: 1px solid var(--color-border, #E5DDD0);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .localization-selector { position: relative; }
+  .localization-selector__btn {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--color-muted, #A0826D);
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: none;
+    transition: color 0.2s ease;
+  }
+  .localization-selector__btn:hover { color: var(--color-text, #2C1810); }
+  .localization-selector__btn .icon { width: 12px; height: 12px; }
+  .localization-selector__list {
+    position: absolute;
+    bottom: calc(100% + 0.5rem);
+    left: 0;
+    background-color: var(--color-bg, #FAF7F2);
+    border: 1px solid var(--color-border, #E5DDD0);
+    min-width: 160px;
+    padding: 0.5rem 0;
+    z-index: 100;
+  }
+  .localization-selector__list[hidden] { display: none; }
+  .localization-selector__option {
+    display: block;
+    width: 100%;
+    padding: 0.4rem 0.875rem;
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--color-text, #2C1810);
+    background: none;
+    border: none;
+    text-align: left;
+    cursor: none;
+    transition: background-color 0.15s ease;
+  }
+  .localization-selector__option:hover { background-color: var(--color-bg-secondary, #F0EAE0); }
+  .localization-selector__option.is-active { font-weight: 600; }
 
   /* ---------- Mobile trigger + close (hidden on desktop) ---------- */
   .sidebar__toggle,
@@ -412,15 +511,25 @@
     },
     {
       "type": "checkbox",
-      "id": "enable_country_selector",
-      "label": "Enable country/region selector",
+      "id": "show_country_selector",
+      "label": "Show country/currency selector",
       "default": false
     },
     {
       "type": "checkbox",
-      "id": "enable_language_selector",
-      "label": "Enable language selector",
+      "id": "show_language_selector",
+      "label": "Show language selector",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "localization_position",
+      "label": "Selector position",
+      "options": [
+        { "value": "bottom", "label": "Bottom of sidebar (below icons)" },
+        { "value": "top", "label": "Top of sidebar (below logo)" }
+      ],
+      "default": "bottom"
     },
     {
       "type": "header",
