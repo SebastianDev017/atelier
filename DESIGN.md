@@ -127,7 +127,9 @@ Mono — all proprietary/self-hosted. The library-valid stand-ins below preserve
 > **font_picker note.** Reference fonts are proprietary; the brief's earlier
 > Cormorant Garamond + Jost are *not* in Shopify's `font_picker` library (verified
 > in the V1 build) and silently fall back. EB Garamond + Lora **are** library
-> handles (`eb_garamond_n4`, `lora_n4`). The monospace layer is a static CSS stack
+> handles (`ebgaramond_n4`, `lora_n4` — note EB Garamond's handle has no
+> underscore between "eb" and "garamond"; `eb_garamond_n4` is invalid and was the
+> cause of the theme-wide font fallback bug). The monospace layer is a static CSS stack
 > — it loads no webfont, so it can never fall back or violate the `font_face` rule.
 
 Library fonts load via the **`font_face` filter** with `font_display: swap`

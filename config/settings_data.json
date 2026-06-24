@@ -11,7 +11,7 @@
   "current": {
     "background_color": "#faf7f2",
     "input_corner_radius": 0,
-    "heading_font": "eb_garamond_n4",
+    "heading_font": "ebgaramond_n4",
     "body_font": "lora_n4",
     "heading_scale": 100,
     "body_scale": 100,
@@ -39,12 +39,12 @@
     "cart_show_note": true,
     "enable_scroll_animations": true,
     "enable_view_transitions": true,
-    "logo_width": 150,
+    "logo_width": 152,
     "content_for_index": []
   },
   "presets": {
     "Atelier": {
-      "heading_font": "eb_garamond_n4",
+      "heading_font": "ebgaramond_n4",
       "body_font": "lora_n4",
       "heading_scale": 100,
       "body_scale": 100,
@@ -134,7 +134,7 @@
       "page_margin": 40,
       "section_spacing": 140,
       "header_height": 64,
-      "sidebar_width": 250,
+      "sidebar_width": 252,
       "input_corner_radius": 0,
       "card_show_secondary_image": true,
       "card_show_vendor": false,

@@ -74,7 +74,7 @@ hover `--color-accent-local`. The `.color-scheme--invert` block re-derives
 ## 3. Type voices — three fonts, three jobs
 
 ```
---font-heading   EB Garamond (eb_garamond_n4)  → .h0–.h5, h1–h6, product titles
+--font-heading   EB Garamond (ebgaramond_n4)  → .h0–.h5, h1–h6, product titles
 --font-body      Lora (lora_n4)                → body copy, nav links, rich text
 --font-mono      ui-monospace, SFMono-Regular, 'SF Mono', 'JetBrains Mono',
                  Menlo, Consolas, monospace     → eyebrows, vendor, price, buttons,
@@ -159,8 +159,8 @@ Display `.h0/.h1` carry −0.02em tracking (Stitch h0 letter-spacing −0.02em).
 
 | Setting | Atelier (default) | Gallery | Botanic |
 |---|---|---|---|
-| heading_font | eb_garamond_n4 | playfair_display_n4 | libre_baskerville_n4 |
-| body_font | lora_n4 | lora_n4 | eb_garamond_n4 |
+| heading_font | ebgaramond_n4 | playfair_display_n4 | libre_baskerville_n4 |
+| body_font | lora_n4 | lora_n4 | ebgaramond_n4 |
 | background_color | #FBF8F2 | #FFFFFF | #EDE7DA |
 | text_color | #2E3030 | #1A1A1A | #33352F |
 | accent_color | #766356 | #5A5A5A | #6B7257 |
