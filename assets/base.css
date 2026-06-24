@@ -125,6 +125,10 @@
   --font-heading: 'EB Garamond', Georgia, 'Times New Roman', serif;
   --font-body: Lora, Georgia, 'Times New Roman', serif;
   --font-mono: ui-monospace, 'SF Mono', SFMono-Regular, 'JetBrains Mono', Menlo, Consolas, 'Liberation Mono', monospace;
+  /* In this editorial theme the small-label / utility voice (eyebrows, badges,
+     prices) IS the static mono stack. `--font-sans` is an alias so label CSS
+     can name it without falling back to a generic sans-serif. */
+  --font-sans: var(--font-mono);
   --font-heading-weight: 400;
   --font-body-weight: 400;
 }
@@ -637,21 +641,56 @@ cart-page {
 .placeholder svg { width: 100%; height: 100%; }
 
 /* ---------- Badges ---------- */
-.badge {
-  display: inline-flex;
-  align-items: center;
-  padding: 0.4em 0.7em;
-  font-size: var(--text-xs);
-  font-weight: 600;
-  letter-spacing: var(--tracking-label);
-  text-transform: uppercase;
-  line-height: 1;
-  background-color: var(--color-text);
-  color: var(--color-bg);
+.product-card__badges {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  pointer-events: none;
 }
-.badge--sale { background-color: var(--color-sale); color: var(--color-white); }
-.badge--soldout { background-color: var(--color-muted); color: var(--color-bg); }
-.badge--low { background-color: transparent; color: var(--color-sale); border: 1px solid currentColor; }
+
+.badge {
+  display: inline-block;
+  font-family: var(--font-sans, sans-serif);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 0;
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.badge--sale {
+  background-color: var(--color-text, #2C1810);
+  color: var(--color-bg, #FAF7F2);
+}
+
+.badge--stock {
+  background-color: var(--color-bg, #FAF7F2);
+  color: var(--color-text, #2C1810);
+  border: 1px solid var(--color-text, #2C1810);
+}
+
+.badge--sold-out {
+  background-color: var(--color-muted, #A0826D);
+  color: var(--color-bg, #FAF7F2);
+}
+
+/* On dark color scheme sections, invert badges */
+.color-scheme--invert .badge--sale {
+  background-color: var(--color-bg, #FAF7F2);
+  color: var(--color-text, #2C1810);
+}
+.color-scheme--invert .badge--stock {
+  background-color: transparent;
+  color: var(--color-bg, #FAF7F2);
+  border-color: var(--color-bg, #FAF7F2);
+}
 
 /* ---------- Product grid ---------- */
 .product-grid {
@@ -703,16 +742,6 @@ body[data-hover-swap="false"] .product-card:hover .product-card__image--secondar
 /* Footer links fade on hover. */
 footer a { transition: opacity var(--duration-fast) var(--ease-editorial); }
 footer a:hover { opacity: 0.6; }
-.product-card__badges {
-  position: absolute;
-  top: var(--space-3);
-  left: var(--space-3);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: var(--space-2);
-  z-index: var(--z-raised);
-}
 .product-card__quick { display: block; width: 100%; z-index: var(--z-raised); }
 
 /* Hover mode: slide up from the bottom of the image on card hover/focus. */

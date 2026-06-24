@@ -96,18 +96,17 @@
       </span>
     {%- endif -%}
 
-    <span class="product-card__badges">
+    <div class="product-card__badges">
+      {%- if on_sale -%}
+        <span class="badge badge--sale">{{ 'products.on_sale' | t }}</span>
+      {%- endif -%}
+      {%- if low_stock -%}
+        <span class="badge badge--stock">{{ 'products.low_stock_count' | t: count: variant.inventory_quantity }}</span>
+      {%- endif -%}
       {%- unless product.available -%}
-        <span class="badge badge--soldout">{{ 'products.sold_out' | t }}</span>
-      {%- else -%}
-        {%- if on_sale -%}
-          <span class="badge badge--sale">{{ 'products.on_sale' | t }}</span>
-        {%- endif -%}
-        {%- if low_stock -%}
-          <span class="badge badge--low">{{ 'products.low_stock_count' | t: count: variant.inventory_quantity }}</span>
-        {%- endif -%}
+        <span class="badge badge--sold-out">{{ 'products.sold_out' | t }}</span>
       {%- endunless -%}
-    </span>
+    </div>
 
     {%- comment -%} Hover mode: quick-add lives INSIDE the media so it slides up from the
       bottom of the image (clipped by overflow:hidden) without covering the info below. {%- endcomment -%}
