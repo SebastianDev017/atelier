@@ -172,6 +172,7 @@
         "g1": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/warm-colored-autumn-leaves.jpg",
             "caption": "",
             "url": ""
           }
@@ -179,6 +180,7 @@
         "g2": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/long-forest-path.jpg",
             "caption": "",
             "url": ""
           }
@@ -186,6 +188,7 @@
         "g3": {
           "type": "image",
           "settings": {
+            "image": "shopify://shop_images/women-drinking-tea.jpg",
             "caption": "",
             "url": ""
           }
