@@ -1,8 +1,7 @@
 {
   "name": "Maison",
-  "description": "Warm linen palette with gold accents and Playfair Display typography. Wider sidebar, no uppercase. For premium fashion, beauty, and lifestyle brands.",
-  "industries": ["clothing-and-fashion", "health-and-beauty"],
-  "catalog_size": "small",
+  "description": "Warm linen palette with gold accents and Playfair Display typography. For premium fashion, beauty, and lifestyle brands.",
   "demo_store_url": "https://sidebar-atelier.myshopify.com",
-  "support_email": "sebas.ruizdigital@gmail.com"
+  "support_email": "sebas.ruizdigital@gmail.com",
+  "documentation_url": "https://sebastiandev017.github.io/atelier/"
 }
