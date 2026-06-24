@@ -1,0 +1,448 @@
+{% stylesheet %}
+.about-hero {
+  padding: clamp(4rem, 8vw, 8rem) 0 clamp(2rem, 4vw, 4rem);
+  border-bottom: 1px solid var(--color-border, #E5DDD0);
+}
+.about-hero__eyebrow {
+  font-size: 10px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted, #A0826D);
+  margin-bottom: 1.5rem;
+  display: block;
+}
+.about-hero__title {
+  font-family: var(--font-heading);
+  font-size: clamp(3rem, 7vw, 7rem);
+  font-weight: 300;
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin: 0;
+}
+.about-statement {
+  padding: clamp(4rem, 6vw, 6rem) 0;
+  border-bottom: 1px solid var(--color-border, #E5DDD0);
+}
+.about-statement__text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.8vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  max-width: 720px;
+}
+.about-values {
+  padding: clamp(4rem, 6vw, 6rem) 0;
+  border-bottom: 1px solid var(--color-border, #E5DDD0);
+}
+.about-values__heading {
+  font-size: 10px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted, #A0826D);
+  margin-bottom: 3rem;
+  display: block;
+}
+.about-values__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(2rem, 4vw, 4rem) clamp(3rem, 6vw, 6rem);
+}
+.about-value__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.25rem, 2vw, 1.75rem);
+  font-weight: 300;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.02em;
+}
+.about-value__text {
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--color-muted, #A0826D);
+  margin: 0;
+}
+.about-studio {
+  padding: clamp(4rem, 6vw, 6rem) 0;
+  border-bottom: 1px solid var(--color-border, #E5DDD0);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(3rem, 6vw, 6rem);
+  align-items: center;
+}
+.about-studio__media img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  display: block;
+}
+.about-studio__eyebrow {
+  font-size: 10px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted, #A0826D);
+  display: block;
+  margin-bottom: 1.25rem;
+}
+.about-studio__title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3vw, 2.5rem);
+  font-weight: 300;
+  margin: 0 0 1.5rem;
+  letter-spacing: -0.02em;
+}
+.about-studio__text {
+  font-size: 15px;
+  line-height: 1.7;
+  color: var(--color-muted, #A0826D);
+}
+.about-process {
+  padding: clamp(4rem, 6vw, 6rem) 0;
+  border-bottom: 1px solid var(--color-border, #E5DDD0);
+}
+.about-process__heading {
+  font-size: 10px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-muted, #A0826D);
+  display: block;
+  margin-bottom: 3rem;
+}
+.about-process__steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: clamp(2rem, 4vw, 4rem);
+}
+.about-process__step-num {
+  font-family: var(--font-sans);
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  color: var(--color-muted, #A0826D);
+  display: block;
+  margin-bottom: 1rem;
+}
+.about-process__step-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.1rem, 1.8vw, 1.5rem);
+  font-weight: 300;
+  margin: 0 0 0.75rem;
+  letter-spacing: -0.01em;
+}
+.about-process__step-text {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--color-muted, #A0826D);
+  margin: 0;
+}
+.about-closing {
+  padding: clamp(5rem, 8vw, 8rem) 0;
+  text-align: center;
+}
+.about-closing__text {
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 3.5vw, 3rem);
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  max-width: 600px;
+  margin: 0 auto 2.5rem;
+}
+@media (max-width: 768px) {
+  .about-values__grid { grid-template-columns: 1fr; }
+  .about-studio { grid-template-columns: 1fr; }
+  .about-process__steps { grid-template-columns: 1fr; }
+}
+{% endstylesheet %}
+
+<div class="section-wrapper color-scheme--{{ section.settings.color_scheme | default: 'cream' }}">
+  <div class="section__inner">
+
+    {%- comment -%} HERO {%- endcomment -%}
+    <div class="about-hero" data-animate>
+      <span class="about-hero__eyebrow">{{ section.settings.eyebrow | default: 'Our story' }}</span>
+      <h1 class="about-hero__title">{{ page.title }}</h1>
+    </div>
+
+    {%- comment -%} OPENING STATEMENT {%- endcomment -%}
+    {%- if section.settings.statement != blank -%}
+      <div class="about-statement" data-animate>
+        <p class="about-statement__text">{{ section.settings.statement }}</p>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} VALUES {%- endcomment -%}
+    {%- if section.blocks.size > 0 -%}
+      {%- assign value_blocks = section.blocks | where: 'type', 'value' -%}
+      {%- if value_blocks.size > 0 -%}
+        <div class="about-values" data-animate>
+          <span class="about-values__heading">{{ section.settings.values_heading | default: 'What we believe' }}</span>
+          <div class="about-values__grid">
+            {%- for block in value_blocks -%}
+              <div class="about-value" {{ block.shopify_attributes }}>
+                <h3 class="about-value__title">{{ block.settings.title }}</h3>
+                <p class="about-value__text">{{ block.settings.text }}</p>
+              </div>
+            {%- endfor -%}
+          </div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
+    {%- comment -%} STUDIO {%- endcomment -%}
+    {%- if section.settings.studio_title != blank -%}
+      <div class="about-studio" data-animate>
+        <div class="about-studio__media">
+          {%- if section.settings.studio_image != blank -%}
+            {{ section.settings.studio_image | image_url: width: 800 | image_tag:
+              loading: 'lazy',
+              alt: section.settings.studio_image.alt | escape }}
+          {%- else -%}
+            {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder-svg' }}
+          {%- endif -%}
+        </div>
+        <div class="about-studio__content">
+          <span class="about-studio__eyebrow">{{ section.settings.studio_eyebrow | default: 'The studio' }}</span>
+          <h2 class="about-studio__title">{{ section.settings.studio_title }}</h2>
+          <div class="about-studio__text prose">{{ section.settings.studio_text }}</div>
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} PROCESS STEPS {%- endcomment -%}
+    {%- assign process_blocks = section.blocks | where: 'type', 'process_step' -%}
+    {%- if process_blocks.size > 0 -%}
+      <div class="about-process" data-animate>
+        <span class="about-process__heading">{{ section.settings.process_heading | default: 'How we work' }}</span>
+        <div class="about-process__steps">
+          {%- for block in process_blocks -%}
+            <div class="about-process__step" {{ block.shopify_attributes }}>
+              <span class="about-process__step-num">0{{ forloop.index }}</span>
+              <h3 class="about-process__step-title">{{ block.settings.title }}</h3>
+              <p class="about-process__step-text">{{ block.settings.text }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+    {%- endif -%}
+
+    {%- comment -%} CLOSING CTA {%- endcomment -%}
+    {%- if section.settings.closing_text != blank -%}
+      <div class="about-closing" data-animate>
+        <p class="about-closing__text">{{ section.settings.closing_text }}</p>
+        {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+          <a href="{{ section.settings.cta_url }}" class="btn btn--outline">
+            {{ section.settings.cta_label }}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "About page",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream (default)" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" }
+      ],
+      "default": "cream"
+    },
+    {
+      "type": "header",
+      "content": "Hero"
+    },
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow label",
+      "default": "Our story"
+    },
+    {
+      "type": "header",
+      "content": "Opening statement"
+    },
+    {
+      "type": "textarea",
+      "id": "statement",
+      "label": "Statement text",
+      "default": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with."
+    },
+    {
+      "type": "header",
+      "content": "Values"
+    },
+    {
+      "type": "text",
+      "id": "values_heading",
+      "label": "Values section label",
+      "default": "What we believe"
+    },
+    {
+      "type": "header",
+      "content": "Studio section"
+    },
+    {
+      "type": "text",
+      "id": "studio_eyebrow",
+      "label": "Studio eyebrow",
+      "default": "The studio"
+    },
+    {
+      "type": "image_picker",
+      "id": "studio_image",
+      "label": "Studio image"
+    },
+    {
+      "type": "text",
+      "id": "studio_title",
+      "label": "Studio heading",
+      "default": "Made in small batches, designed to last"
+    },
+    {
+      "type": "richtext",
+      "id": "studio_text",
+      "label": "Studio description",
+      "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced. We believe the time spent making something well is visible in the finished object.</p>"
+    },
+    {
+      "type": "header",
+      "content": "Process"
+    },
+    {
+      "type": "text",
+      "id": "process_heading",
+      "label": "Process section label",
+      "default": "How we work"
+    },
+    {
+      "type": "header",
+      "content": "Closing"
+    },
+    {
+      "type": "textarea",
+      "id": "closing_text",
+      "label": "Closing statement",
+      "default": "Objects considered for the modern home, made to last a lifetime."
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA button label",
+      "default": "Shop the collection"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA button link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "Value",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Considered"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Every object in our collection begins with a question: is this worth making?"
+        }
+      ]
+    },
+    {
+      "type": "process_step",
+      "name": "Process step",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Step title",
+          "default": "Material"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Step description",
+          "default": "Every piece begins with the material — its weight, texture, and origin."
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "About page",
+      "blocks": [
+        {
+          "type": "value",
+          "settings": {
+            "title": "Considered",
+            "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Honest",
+            "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Lasting",
+            "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs in the collection."
+          }
+        },
+        {
+          "type": "value",
+          "settings": {
+            "title": "Quiet",
+            "text": "Good objects do not demand attention. They earn it gradually, over years of daily use."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Material",
+            "text": "Every piece begins with the material — its weight, texture, and origin. We source as close to primary producers as possible."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Making",
+            "text": "We work with a small group of makers. Each piece passes through human hands at every stage of production."
+          }
+        },
+        {
+          "type": "process_step",
+          "settings": {
+            "title": "Review",
+            "text": "Before anything reaches the collection, it spends time in our studio — used, tested, reconsidered."
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

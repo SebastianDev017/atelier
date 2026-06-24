@@ -1,0 +1,70 @@
+{
+  "sections": {
+    "main": {
+      "type": "page-about",
+      "blocks": {
+        "value-1": {
+          "type": "value",
+          "settings": {
+            "title": "Considered",
+            "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist."
+          }
+        },
+        "value-2": {
+          "type": "value",
+          "settings": {
+            "title": "Honest",
+            "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish."
+          }
+        },
+        "value-3": {
+          "type": "value",
+          "settings": {
+            "title": "Lasting",
+            "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs."
+          }
+        },
+        "value-4": {
+          "type": "value",
+          "settings": {
+            "title": "Quiet",
+            "text": "Good objects do not demand attention. They earn it gradually, over years of daily use."
+          }
+        },
+        "step-1": {
+          "type": "process_step",
+          "settings": {
+            "title": "Material",
+            "text": "Every piece begins with the material — its weight, texture, and origin. We source as close to primary producers as possible."
+          }
+        },
+        "step-2": {
+          "type": "process_step",
+          "settings": {
+            "title": "Making",
+            "text": "We work with a small group of makers. Each piece passes through human hands at every stage of production."
+          }
+        },
+        "step-3": {
+          "type": "process_step",
+          "settings": {
+            "title": "Review",
+            "text": "Before anything reaches the collection, it spends time in our studio — used, tested, reconsidered."
+          }
+        }
+      },
+      "block_order": [
+        "value-1", "value-2", "value-3", "value-4",
+        "step-1", "step-2", "step-3"
+      ],
+      "settings": {
+        "eyebrow": "Our story",
+        "statement": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.",
+        "studio_title": "Made in small batches, designed to last",
+        "cta_label": "Shop the collection",
+        "cta_url": "/collections/all"
+      }
+    }
+  },
+  "order": ["main"]
+}
