@@ -10,6 +10,14 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    <style>
+      .gift-card { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: var(--space-16); }
+      .gift-card__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
+      .gift-card__amount { font-family: var(--font-heading); margin-block: var(--space-2); }
+      .gift-card__code-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+      .gift-card__code { font-family: var(--font-heading); font-size: var(--text-2xl); letter-spacing: 0.1em; padding: var(--space-3) var(--space-5); border: 1px dashed var(--color-border-strong); }
+      .gift-card__wallet { margin-top: var(--space-2); }
+    </style>
     <title>{{ 'gift_card.title' | t }} · {{ shop.name }}</title>
   </head>
 
@@ -61,12 +69,3 @@
     </script>
   </body>
 </html>
-
-{% stylesheet %}
-  .gift-card { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: var(--space-16); }
-  .gift-card__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
-  .gift-card__amount { font-family: var(--font-heading); margin-block: var(--space-2); }
-  .gift-card__code-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
-  .gift-card__code { font-family: var(--font-heading); font-size: var(--text-2xl); letter-spacing: 0.1em; padding: var(--space-3) var(--space-5); border: 1px dashed var(--color-border-strong); }
-  .gift-card__wallet { margin-top: var(--space-2); }
-{% endstylesheet %}
