@@ -2,6 +2,8 @@
   Bridges theme settings to the CSS custom properties consumed by base.css
   and every section. Fonts are loaded with the font_face filter (never
   font_url) and guarded so a missing font never breaks the cascade.
+  Also emits the Animations & Experience, per-level heading size, and link
+  colour variables (STEP 4).
 {%- endcomment -%}
 {%- liquid
   assign heading_font = settings.heading_font

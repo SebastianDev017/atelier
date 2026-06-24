@@ -7,6 +7,7 @@
     </script>
 
     {% render 'css-variables' %}
+    {%- comment -%} <body> carries data-* flags (smooth-scroll, custom-cursor, hover-swap) consumed by theme.js (STEP 4). {%- endcomment -%}
 
     {%- if settings.body_font.system? == false -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
