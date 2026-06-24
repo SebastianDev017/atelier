@@ -2620,7 +2620,7 @@
         },
         "letter_spacing_headings": {
           "label": "Heading letter spacing",
-          "info": "Value × 0.01em. Default -2 = -0.02em."
+          "info": "Hundredths of an em. Default -2 = -0.02em (tighter). Range -5 to 20."
         },
         "header__4": {
           "content": "Letter casing"

@@ -93,7 +93,6 @@
         "min": -5,
         "max": 20,
         "step": 1,
-        "unit": "em×100",
         "label": "t:settings_schema.typography.settings.letter_spacing_headings.label",
         "default": -2,
         "info": "t:settings_schema.typography.settings.letter_spacing_headings.info"
