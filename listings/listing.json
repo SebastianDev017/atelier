@@ -15,16 +15,16 @@
       "preview": "listings/previews/atelier.png"
     },
     {
-      "name": "Gallery",
-      "preset": "Gallery",
-      "description": "High-contrast clinical white for pure archival focus — Playfair Display + Lora.",
-      "preview": "listings/previews/gallery.png"
+      "name": "Studio",
+      "preset": "Studio",
+      "description": "Near-white canvas with high-contrast institutional typography — Libre Baskerville + DM Sans, uppercase headings.",
+      "preview": "listings/previews/studio.png"
     },
     {
-      "name": "Botanic",
-      "preset": "Botanic",
-      "description": "Muted desaturated green-cream for softer editorial moments — Libre Baskerville + EB Garamond.",
-      "preview": "listings/previews/botanic.png"
+      "name": "Maison",
+      "preset": "Maison",
+      "description": "Warm linen palette with gold accents — Playfair Display + Jost, no uppercase.",
+      "preview": "listings/previews/maison.png"
     }
   ],
   "features": [

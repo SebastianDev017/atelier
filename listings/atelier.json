@@ -1,7 +1,8 @@
 {
   "name": "Atelier",
-  "description": "Editorial minimalist preset. Warm cream palette with espresso typography. Designed for interior design studios, home goods, and lifestyle brands.",
+  "description": "Editorial minimalist preset. Warm cream palette with espresso typography. For interior design, home goods, and considered lifestyle brands.",
   "industries": ["home-and-garden", "art-and-entertainment"],
   "catalog_size": "small",
-  "demo_url": ""
+  "demo_store_url": "https://sidebar-atelier.myshopify.com",
+  "support_email": "sebas.ruizdigital@gmail.com"
 }

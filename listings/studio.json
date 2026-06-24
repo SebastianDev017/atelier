@@ -1,7 +1,8 @@
 {
   "name": "Studio",
-  "description": "Near-white canvas with maximum contrast typography. Uppercase headings, wider page width, institutional feel. For creative studios, photographers, and designers with a shop.",
+  "description": "Near-white canvas with high-contrast institutional typography. Wider page, uppercase headings. For creative studios, photographers, and designers with a shop.",
   "industries": ["art-and-entertainment", "home-and-garden"],
   "catalog_size": "small",
-  "demo_url": ""
+  "demo_store_url": "https://sidebar-atelier.myshopify.com",
+  "support_email": "sebas.ruizdigital@gmail.com"
 }
