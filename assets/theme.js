@@ -3,8 +3,8 @@
    Framework-free core. Loaded on every page (defer).
    - window.Atelier helpers
    - ScrollAnimator (scroll reveal, re-observes on section load)
-   - <quantity-input>, <header-component>, <localization-form>,
-     <facet-form>
+   - <quantity-input>, <header-component>, <facet-form>,
+     <localization-dropdown>
    All animation / autoplay is disabled in Shopify.designMode and
    when prefers-reduced-motion is set. Every component removes its
    listeners in disconnectedCallback.
@@ -327,28 +327,6 @@
     return HeaderComponent;
   })();
 
-  /* ---------- <localization-form> ---------- */
-  var LocalizationForm = (function () {
-    function LocalizationForm() { return Reflect.construct(HTMLElement, [], LocalizationForm); }
-    LocalizationForm.prototype = Object.create(HTMLElement.prototype);
-    LocalizationForm.prototype.constructor = LocalizationForm;
-
-    LocalizationForm.prototype.connectedCallback = function () {
-      this.select = this.querySelector('select');
-      this.onChange = this.onChange.bind(this);
-      if (this.select) this.select.addEventListener('change', this.onChange);
-    };
-    LocalizationForm.prototype.disconnectedCallback = function () {
-      if (this.select) this.select.removeEventListener('change', this.onChange);
-    };
-    LocalizationForm.prototype.onChange = function () {
-      var input = this.querySelector('input[name="country_code"], input[name="locale_code"]');
-      if (input) input.value = this.select.value;
-      if (this.select.form) this.select.form.submit();
-    };
-    return LocalizationForm;
-  })();
-
   /* ---------- <facet-form> ----------
      Progressive enhancement: auto-submits the filter/sort form on
      change. The form keeps real submit buttons so it works with JS
@@ -432,28 +410,44 @@
     LocalizationDropdown.prototype.constructor = LocalizationDropdown;
 
     LocalizationDropdown.prototype.connectedCallback = function () {
+      var self = this;
       this.btns = Array.prototype.slice.call(this.querySelectorAll('.localization-selector__btn'));
       this.onDocClick = this.onDocClick.bind(this);
+      this.onKeydown = this.onKeydown.bind(this);
       this.btns.forEach(function (btn) {
         btn.addEventListener('click', function () {
           var list = document.getElementById(btn.getAttribute('aria-controls'));
           var isOpen = btn.getAttribute('aria-expanded') === 'true';
-          btn.setAttribute('aria-expanded', String(!isOpen));
-          if (list) list.hidden = isOpen;
+          self.closeAll();
+          if (!isOpen) {
+            btn.setAttribute('aria-expanded', 'true');
+            if (list) list.hidden = false;
+          }
         });
       });
       document.addEventListener('click', this.onDocClick);
+      this.addEventListener('keydown', this.onKeydown);
     };
-    LocalizationDropdown.prototype.onDocClick = function (event) {
-      if (this.contains(event.target)) return;
+    LocalizationDropdown.prototype.closeAll = function () {
       this.btns.forEach(function (btn) {
         btn.setAttribute('aria-expanded', 'false');
         var list = document.getElementById(btn.getAttribute('aria-controls'));
         if (list) list.hidden = true;
       });
     };
+    LocalizationDropdown.prototype.onDocClick = function (event) {
+      if (this.contains(event.target)) return;
+      this.closeAll();
+    };
+    LocalizationDropdown.prototype.onKeydown = function (event) {
+      if (event.key !== 'Escape') return;
+      var open = this.btns.filter(function (b) { return b.getAttribute('aria-expanded') === 'true'; })[0];
+      this.closeAll();
+      if (open) open.focus();
+    };
     LocalizationDropdown.prototype.disconnectedCallback = function () {
       document.removeEventListener('click', this.onDocClick);
+      this.removeEventListener('keydown', this.onKeydown);
     };
     return LocalizationDropdown;
   })();
@@ -468,7 +462,6 @@
     new ScrollAnimator();
     define('quantity-input', QuantityInput);
     define('header-component', HeaderComponent);
-    define('localization-form', LocalizationForm);
     define('facet-form', FacetForm);
     define('localization-dropdown', LocalizationDropdown);
     new CursorComponent();

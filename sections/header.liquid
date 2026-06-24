@@ -9,21 +9,27 @@
   forms with submit buttons, enhanced by <localization-dropdown> for the
   open/close behaviour.
 {%- endcomment -%}
+{%- liquid
+  assign country_form_id = 'HeaderCountryForm-' | append: section.id
+  assign country_list_id = 'HeaderCountryList-' | append: section.id
+  assign language_form_id = 'HeaderLanguageForm-' | append: section.id
+  assign language_list_id = 'HeaderLanguageList-' | append: section.id
+-%}
 {%- capture localization_block -%}
   {%- if section.settings.show_country_selector or section.settings.show_language_selector -%}
     <localization-dropdown>
       <div class="sidebar-localization">
         {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
-          {%- form 'localization', id: 'HeaderCountryForm' -%}
+          {%- form 'localization', id: country_form_id -%}
             <div class="localization-selector">
-              <button type="button" class="localization-selector__btn" aria-expanded="false" aria-controls="HeaderCountryList">
+              <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ country_list_id }}">
                 {{ localization.country.iso_code }}
                 <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
-              <ul id="HeaderCountryList" class="localization-selector__list" hidden>
+              <ul id="{{ country_list_id }}" class="localization-selector__list" aria-label="{{ 'localization.country_label' | t }}" hidden>
                 {%- for country in localization.available_countries -%}
                   <li>
-                    <button type="submit" name="country_code" value="{{ country.iso_code }}" class="localization-selector__option{% if country.iso_code == localization.country.iso_code %} is-active{% endif %}">
+                    <button type="submit" name="country_code" value="{{ country.iso_code }}" class="localization-selector__option{% if country.iso_code == localization.country.iso_code %} is-active{% endif %}"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %}>
                       {{ country.name }} ({{ country.currency.iso_code }})
                     </button>
                   </li>
@@ -34,16 +40,16 @@
         {%- endif -%}
 
         {%- if section.settings.show_language_selector and localization.available_languages.size > 1 -%}
-          {%- form 'localization', id: 'HeaderLanguageForm' -%}
+          {%- form 'localization', id: language_form_id -%}
             <div class="localization-selector">
-              <button type="button" class="localization-selector__btn" aria-expanded="false" aria-controls="HeaderLanguageList">
+              <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ language_list_id }}">
                 {{ localization.language.iso_code | upcase }}
                 <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
-              <ul id="HeaderLanguageList" class="localization-selector__list" hidden>
+              <ul id="{{ language_list_id }}" class="localization-selector__list" aria-label="{{ 'localization.language_label' | t }}" hidden>
                 {%- for language in localization.available_languages -%}
                   <li>
-                    <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="localization-selector__option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}">
+                    <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="localization-selector__option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"{% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}>
                       {{ language.endonym_name }}
                     </button>
                   </li>

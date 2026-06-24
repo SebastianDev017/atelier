@@ -152,20 +152,6 @@ body {
   text-rendering: optimizeLegibility;
 }
 
-/* Paper grain overlay — visibility + intensity controlled from theme settings
-   (--grain-display / --grain-opacity). Sits above content, below the cursor. */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 9998;
-  display: var(--grain-display, block);
-  opacity: var(--grain-opacity, 0.04);
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-}
-
 h1, h2, h3, h4, h5, h6 { margin: 0; }
 p { margin: 0; }
 ul, ol { margin: 0; padding: 0; list-style: none; }
@@ -400,6 +386,9 @@ h1, h2, h3, h4, h5, h6 {
   --color-heading: var(--color-text);
   --color-body: var(--color-text);
   --color-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
+  /* Re-derive link colors to the light text so prose/rte links stay legible on dark */
+  --color-link: var(--color-text);
+  --color-link-hover: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
 
 /* Fixed brand-style schemes — apply a complete Studio or Maison palette to a
@@ -947,7 +936,8 @@ body::after {
   inset: 0;
   pointer-events: none;
   z-index: 9998;
-  opacity: 0.04;
+  display: var(--grain-display, block);
+  opacity: var(--grain-opacity, 0.04);
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 200px 200px;
   background-repeat: repeat;
@@ -1012,8 +1002,8 @@ html.lenis, html.lenis body { height: auto; }
    .facets__option, so no native pointer leaks through as a double cursor.
    All restored to the native cursor on touch / coarse pointers. */
 body:has(.custom-cursor) { cursor: none; }
-a, button, [role="button"], input, select, textarea,
-label, summary, .btn, .select select, .facets__option { cursor: none; }
+body:has(.custom-cursor) :is(a, button, [role="button"], input, select, textarea,
+label, summary, .btn, .select select, .facets__option) { cursor: none; }
 @media (hover: none), (pointer: coarse) {
   body, a, button, [role="button"], input, select, textarea,
   label, summary, .btn, .select select, .facets__option { cursor: auto; }
