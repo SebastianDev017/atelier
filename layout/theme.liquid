@@ -40,6 +40,9 @@
   <body
     class="template-{{ request.page_type | handle }}"
     data-scroll-animations="{{ settings.enable_scroll_animations }}"
+    data-smooth-scroll="{{ settings.enable_smooth_scroll }}"
+    data-custom-cursor="{{ settings.enable_custom_cursor }}"
+    data-hover-swap="{{ settings.enable_hover_image_swap }}"
   >
     {% render 'loader' %}
 
@@ -63,7 +66,7 @@
       {% render 'cart-drawer' %}
     {%- endif -%}
 
-    {% render 'cursor' %}
+    {%- if settings.enable_custom_cursor -%}{% render 'cursor' %}{%- endif -%}
 
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>

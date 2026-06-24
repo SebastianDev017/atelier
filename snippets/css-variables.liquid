@@ -14,6 +14,13 @@
     font_picker choice can never break the austere identity.
   endcomment
   assign heading_weight = heading_font.weight | at_most: 400 | at_least: 300
+  if settings.animation_speed == 'fast'
+    assign speed_mult = 0.5
+  elsif settings.animation_speed == 'slow'
+    assign speed_mult = 1.5
+  else
+    assign speed_mult = 1
+  endif
 -%}
 {% style %}
   {% if heading_font.family != blank %}
@@ -65,5 +72,18 @@
     --uppercase-headings: {% if settings.uppercase_headings %}uppercase{% else %}none{% endif %};
     --uppercase-nav: {% if settings.uppercase_nav %}uppercase{% else %}none{% endif %};
     --uppercase-buttons: {% if settings.uppercase_buttons %}uppercase{% else %}none{% endif %};
+
+    {%- comment -%} Per-level heading sizes compound with the global --heading-scale; tracking + link colours + experience toggles. {%- endcomment -%}
+    --h1-scale: {{ settings.h1_scale | default: 100 | divided_by: 100.0 }};
+    --h2-scale: {{ settings.h2_scale | default: 100 | divided_by: 100.0 }};
+    --h3-scale: {{ settings.h3_scale | default: 100 | divided_by: 100.0 }};
+    --heading-letter-spacing: {{ settings.letter_spacing_headings | default: -2 | times: 0.01 }}em;
+
+    --color-link: {% if settings.color_link != blank %}{{ settings.color_link }}{% else %}#2C1810{% endif %};
+    --color-link-hover: {% if settings.color_link_hover != blank %}{{ settings.color_link_hover }}{% else %}#A0826D{% endif %};
+
+    --animation-speed: {{ speed_mult }};
+    --grain-opacity: {{ settings.grain_opacity | default: 4 | divided_by: 100.0 }};
+    --grain-display: {% if settings.enable_grain_texture == false %}none{% else %}block{% endif %};
   }
 {% endstyle %}

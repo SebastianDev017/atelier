@@ -54,6 +54,52 @@
       },
       {
         "type": "header",
+        "content": "Heading sizes"
+      },
+      {
+        "type": "range",
+        "id": "h1_scale",
+        "min": 60,
+        "max": 200,
+        "step": 5,
+        "unit": "%",
+        "label": "H1 size",
+        "default": 100,
+        "info": "Scales the largest display headings (hero / H1), on top of the global heading size."
+      },
+      {
+        "type": "range",
+        "id": "h2_scale",
+        "min": 60,
+        "max": 160,
+        "step": 5,
+        "unit": "%",
+        "label": "H2 size",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "h3_scale",
+        "min": 60,
+        "max": 140,
+        "step": 5,
+        "unit": "%",
+        "label": "H3 size",
+        "default": 100
+      },
+      {
+        "type": "range",
+        "id": "letter_spacing_headings",
+        "min": -5,
+        "max": 20,
+        "step": 1,
+        "unit": "em×100",
+        "label": "Heading letter spacing",
+        "default": -2,
+        "info": "Value × 0.01em. Default -2 = -0.02em."
+      },
+      {
+        "type": "header",
         "content": "Letter casing"
       },
       {
@@ -134,6 +180,23 @@
         "type": "color",
         "id": "color_text_muted",
         "label": "Muted / label color",
+        "default": "#A0826D"
+      },
+      {
+        "type": "header",
+        "content": "Extended palette"
+      },
+      {
+        "type": "color",
+        "id": "color_link",
+        "label": "Link color",
+        "default": "#2C1810",
+        "info": "Applies to links inside rich-text and prose content."
+      },
+      {
+        "type": "color",
+        "id": "color_link_hover",
+        "label": "Link hover color",
         "default": "#A0826D"
       }
     ]
@@ -281,20 +344,70 @@
     ]
   },
   {
-    "name": "Animations",
+    "name": "Animations & Experience",
     "settings": [
       {
         "type": "checkbox",
-        "id": "enable_scroll_animations",
-        "label": "Reveal sections on scroll",
-        "default": true
+        "id": "enable_smooth_scroll",
+        "label": "Smooth scroll",
+        "default": true,
+        "info": "Enables Lenis smooth scroll throughout the site."
       },
       {
         "type": "checkbox",
         "id": "enable_view_transitions",
-        "label": "Animate page transitions",
-        "info": "Subtle cross-fade between pages in supported browsers.",
+        "label": "Page transitions",
+        "info": "Fade between pages using the View Transitions API in supported browsers.",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_custom_cursor",
+        "label": "Custom cursor",
+        "default": true,
+        "info": "Shows the editorial dot cursor on desktop."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_scroll_animations",
+        "label": "Scroll reveal animations",
+        "default": true,
+        "info": "Text and image reveal effects on scroll."
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_hover_image_swap",
+        "label": "Product image swap on hover",
+        "default": true,
+        "info": "Shows the second product image when hovering product cards."
+      },
+      {
+        "type": "select",
+        "id": "animation_speed",
+        "label": "Animation speed",
+        "options": [
+          { "value": "fast", "label": "Fast — 0.5× speed" },
+          { "value": "normal", "label": "Normal — default" },
+          { "value": "slow", "label": "Slow — 1.5× more deliberate" }
+        ],
+        "default": "normal"
+      },
+      {
+        "type": "checkbox",
+        "id": "enable_grain_texture",
+        "label": "Paper grain texture",
+        "default": true,
+        "info": "Subtle noise overlay for an editorial feel."
+      },
+      {
+        "type": "range",
+        "id": "grain_opacity",
+        "min": 0,
+        "max": 8,
+        "step": 1,
+        "unit": "%",
+        "label": "Grain intensity",
+        "default": 4
       }
     ]
   },

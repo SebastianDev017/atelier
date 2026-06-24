@@ -403,6 +403,7 @@
     this.el = document.getElementById('custom-cursor');
     if (!this.el) return;
     if (window.matchMedia('(hover: none)').matches) return;
+    if (document.body.dataset.customCursor === 'false') return;
     var self = this;
     this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
     this.tick = this.tick.bind(this);
@@ -484,6 +485,7 @@
      Disabled in the theme editor (designMode) where Lenis fights the editor. */
   function SmoothScroll() {
     if (window.Shopify && window.Shopify.designMode) return;
+    if (document.body.dataset.smoothScroll === 'false') return;
     if (!window.Lenis) return;
     var lenis = new window.Lenis({
       duration: 1.1,
