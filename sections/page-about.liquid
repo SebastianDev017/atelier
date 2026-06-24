@@ -29,7 +29,6 @@
   font-size: clamp(1.5rem, 2.8vw, 2.5rem);
   font-weight: 300;
   line-height: 1.35;
-  letter-spacing: -0.01em;
   max-width: 720px;
 }
 .about-values {
@@ -71,7 +70,8 @@
   gap: clamp(3rem, 6vw, 6rem);
   align-items: center;
 }
-.about-studio__media img {
+.about-studio__media img,
+.about-studio__media .placeholder-svg {
   width: 100%;
   aspect-ratio: 4 / 5;
   object-fit: cover;
@@ -129,7 +129,6 @@
   font-size: clamp(1.1rem, 1.8vw, 1.5rem);
   font-weight: 300;
   margin: 0 0 0.75rem;
-  letter-spacing: -0.01em;
 }
 .about-process__step-text {
   font-size: 14px;
@@ -160,38 +159,32 @@
 <div class="section-wrapper color-scheme--{{ section.settings.color_scheme | default: 'cream' }}">
   <div class="section__inner">
 
-    {%- comment -%} HERO {%- endcomment -%}
     <div class="about-hero" data-animate>
       <span class="about-hero__eyebrow">{{ section.settings.eyebrow | default: 'Our story' }}</span>
       <h1 class="about-hero__title">{{ page.title }}</h1>
     </div>
 
-    {%- comment -%} OPENING STATEMENT {%- endcomment -%}
     {%- if section.settings.statement != blank -%}
       <div class="about-statement" data-animate>
         <p class="about-statement__text">{{ section.settings.statement }}</p>
       </div>
     {%- endif -%}
 
-    {%- comment -%} VALUES {%- endcomment -%}
-    {%- if section.blocks.size > 0 -%}
-      {%- assign value_blocks = section.blocks | where: 'type', 'value' -%}
-      {%- if value_blocks.size > 0 -%}
-        <div class="about-values" data-animate>
-          <span class="about-values__heading">{{ section.settings.values_heading | default: 'What we believe' }}</span>
-          <div class="about-values__grid">
-            {%- for block in value_blocks -%}
-              <div class="about-value" {{ block.shopify_attributes }}>
-                <h3 class="about-value__title">{{ block.settings.title }}</h3>
-                <p class="about-value__text">{{ block.settings.text }}</p>
-              </div>
-            {%- endfor -%}
-          </div>
+    {%- assign value_blocks = section.blocks | where: 'type', 'value' -%}
+    {%- if value_blocks.size > 0 -%}
+      <div class="about-values" data-animate>
+        <span class="about-values__heading">{{ section.settings.values_heading | default: 'What we believe' }}</span>
+        <div class="about-values__grid">
+          {%- for block in value_blocks -%}
+            <div class="about-value" {{ block.shopify_attributes }}>
+              <h3 class="about-value__title">{{ block.settings.title }}</h3>
+              <p class="about-value__text">{{ block.settings.text }}</p>
+            </div>
+          {%- endfor -%}
         </div>
-      {%- endif -%}
+      </div>
     {%- endif -%}
 
-    {%- comment -%} STUDIO {%- endcomment -%}
     {%- if section.settings.studio_title != blank -%}
       <div class="about-studio" data-animate>
         <div class="about-studio__media">
@@ -211,7 +204,6 @@
       </div>
     {%- endif -%}
 
-    {%- comment -%} PROCESS STEPS {%- endcomment -%}
     {%- assign process_blocks = section.blocks | where: 'type', 'process_step' -%}
     {%- if process_blocks.size > 0 -%}
       <div class="about-process" data-animate>
@@ -228,7 +220,6 @@
       </div>
     {%- endif -%}
 
-    {%- comment -%} CLOSING CTA {%- endcomment -%}
     {%- if section.settings.closing_text != blank -%}
       <div class="about-closing" data-animate>
         <p class="about-closing__text">{{ section.settings.closing_text }}</p>
@@ -249,142 +240,50 @@
   "tag": "section",
   "class": "shopify-section",
   "settings": [
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "Color scheme",
+    { "type": "select", "id": "color_scheme", "label": "Color scheme",
       "options": [
-        { "value": "cream", "label": "Cream (default)" },
+        { "value": "cream", "label": "Cream" },
         { "value": "parchment", "label": "Parchment" },
         { "value": "linen", "label": "Linen" },
         { "value": "white", "label": "White" }
-      ],
-      "default": "cream"
-    },
-    {
-      "type": "header",
-      "content": "Hero"
-    },
-    {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow label",
-      "default": "Our story"
-    },
-    {
-      "type": "header",
-      "content": "Opening statement"
-    },
-    {
-      "type": "textarea",
-      "id": "statement",
-      "label": "Statement text",
-      "default": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with."
-    },
-    {
-      "type": "header",
-      "content": "Values"
-    },
-    {
-      "type": "text",
-      "id": "values_heading",
-      "label": "Values section label",
-      "default": "What we believe"
-    },
-    {
-      "type": "header",
-      "content": "Studio section"
-    },
-    {
-      "type": "text",
-      "id": "studio_eyebrow",
-      "label": "Studio eyebrow",
-      "default": "The studio"
-    },
-    {
-      "type": "image_picker",
-      "id": "studio_image",
-      "label": "Studio image"
-    },
-    {
-      "type": "text",
-      "id": "studio_title",
-      "label": "Studio heading",
-      "default": "Made in small batches, designed to last"
-    },
-    {
-      "type": "richtext",
-      "id": "studio_text",
-      "label": "Studio description",
-      "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced. We believe the time spent making something well is visible in the finished object.</p>"
-    },
-    {
-      "type": "header",
-      "content": "Process"
-    },
-    {
-      "type": "text",
-      "id": "process_heading",
-      "label": "Process section label",
-      "default": "How we work"
-    },
-    {
-      "type": "header",
-      "content": "Closing"
-    },
-    {
-      "type": "textarea",
-      "id": "closing_text",
-      "label": "Closing statement",
-      "default": "Objects considered for the modern home, made to last a lifetime."
-    },
-    {
-      "type": "text",
-      "id": "cta_label",
-      "label": "CTA button label",
-      "default": "Shop the collection"
-    },
-    {
-      "type": "url",
-      "id": "cta_url",
-      "label": "CTA button link"
-    }
+      ], "default": "cream" },
+    { "type": "header", "content": "Hero" },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our story" },
+    { "type": "header", "content": "Opening statement" },
+    { "type": "textarea", "id": "statement", "label": "Statement",
+      "default": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with." },
+    { "type": "header", "content": "Values" },
+    { "type": "text", "id": "values_heading", "label": "Values label", "default": "What we believe" },
+    { "type": "header", "content": "Studio" },
+    { "type": "text", "id": "studio_eyebrow", "label": "Studio eyebrow", "default": "The studio" },
+    { "type": "image_picker", "id": "studio_image", "label": "Studio image" },
+    { "type": "text", "id": "studio_title", "label": "Studio heading",
+      "default": "Made in small batches, designed to last" },
+    { "type": "richtext", "id": "studio_text", "label": "Studio description",
+      "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>" },
+    { "type": "header", "content": "Process" },
+    { "type": "text", "id": "process_heading", "label": "Process label", "default": "How we work" },
+    { "type": "header", "content": "Closing" },
+    { "type": "textarea", "id": "closing_text", "label": "Closing statement",
+      "default": "Objects considered for the modern home, made to last a lifetime." },
+    { "type": "text", "id": "cta_label", "label": "CTA label", "default": "Shop the collection" },
+    { "type": "url", "id": "cta_url", "label": "CTA link" }
   ],
   "blocks": [
     {
-      "type": "value",
-      "name": "Value",
+      "type": "value", "name": "Value",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Title",
-          "default": "Considered"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Description",
-          "default": "Every object in our collection begins with a question: is this worth making?"
-        }
+        { "type": "text", "id": "title", "label": "Title", "default": "Considered" },
+        { "type": "textarea", "id": "text", "label": "Description",
+          "default": "Every object begins with a question: is this worth making?" }
       ]
     },
     {
-      "type": "process_step",
-      "name": "Process step",
+      "type": "process_step", "name": "Process step",
       "settings": [
-        {
-          "type": "text",
-          "id": "title",
-          "label": "Step title",
-          "default": "Material"
-        },
-        {
-          "type": "textarea",
-          "id": "text",
-          "label": "Step description",
-          "default": "Every piece begins with the material — its weight, texture, and origin."
-        }
+        { "type": "text", "id": "title", "label": "Step title", "default": "Material" },
+        { "type": "textarea", "id": "text", "label": "Step description",
+          "default": "Every piece begins with the material — its weight, texture, and origin." }
       ]
     }
   ],
@@ -392,55 +291,13 @@
     {
       "name": "About page",
       "blocks": [
-        {
-          "type": "value",
-          "settings": {
-            "title": "Considered",
-            "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist."
-          }
-        },
-        {
-          "type": "value",
-          "settings": {
-            "title": "Honest",
-            "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish."
-          }
-        },
-        {
-          "type": "value",
-          "settings": {
-            "title": "Lasting",
-            "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs in the collection."
-          }
-        },
-        {
-          "type": "value",
-          "settings": {
-            "title": "Quiet",
-            "text": "Good objects do not demand attention. They earn it gradually, over years of daily use."
-          }
-        },
-        {
-          "type": "process_step",
-          "settings": {
-            "title": "Material",
-            "text": "Every piece begins with the material — its weight, texture, and origin. We source as close to primary producers as possible."
-          }
-        },
-        {
-          "type": "process_step",
-          "settings": {
-            "title": "Making",
-            "text": "We work with a small group of makers. Each piece passes through human hands at every stage of production."
-          }
-        },
-        {
-          "type": "process_step",
-          "settings": {
-            "title": "Review",
-            "text": "Before anything reaches the collection, it spends time in our studio — used, tested, reconsidered."
-          }
-        }
+        { "type": "value", "settings": { "title": "Considered", "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist." } },
+        { "type": "value", "settings": { "title": "Honest", "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish." } },
+        { "type": "value", "settings": { "title": "Lasting", "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs." } },
+        { "type": "value", "settings": { "title": "Quiet", "text": "Good objects do not demand attention. They earn it gradually, over years of daily use." } },
+        { "type": "process_step", "settings": { "title": "Material", "text": "Every piece begins with the material — its weight, texture, and origin. We source as close to primary producers as possible." } },
+        { "type": "process_step", "settings": { "title": "Making", "text": "We work with a small group of makers. Each piece passes through human hands at every stage." } },
+        { "type": "process_step", "settings": { "title": "Review", "text": "Before anything reaches the collection, it spends time in our studio — used, tested, reconsidered." } }
       ]
     }
   ]
