@@ -1002,8 +1002,20 @@ html.lenis, html.lenis body { height: auto; }
    .facets__option, so no native pointer leaks through as a double cursor.
    All restored to the native cursor on touch / coarse pointers. */
 body:has(.custom-cursor) { cursor: none; }
-body:has(.custom-cursor) :is(a, button, [role="button"], input, select, textarea,
-label, summary, .btn, .select select, .facets__option) { cursor: none; }
+/* Scoped to when the cursor dot exists so disabling it restores the native
+   pointer. NOT written with :is() — Shopify's CSS minifier strips :is() rules
+   on the served asset (:has survives). Keep the descendant list expanded. */
+body:has(.custom-cursor) a,
+body:has(.custom-cursor) button,
+body:has(.custom-cursor) [role="button"],
+body:has(.custom-cursor) input,
+body:has(.custom-cursor) select,
+body:has(.custom-cursor) textarea,
+body:has(.custom-cursor) label,
+body:has(.custom-cursor) summary,
+body:has(.custom-cursor) .btn,
+body:has(.custom-cursor) .select select,
+body:has(.custom-cursor) .facets__option { cursor: none; }
 @media (hover: none), (pointer: coarse) {
   body, a, button, [role="button"], input, select, textarea,
   label, summary, .btn, .select select, .facets__option { cursor: auto; }
