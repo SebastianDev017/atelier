@@ -131,7 +131,7 @@
         "c1": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "danny-kaplan"
           }
         },
         "c2": {
@@ -158,7 +158,7 @@
         "heading_tag": "h2",
         "heading_size": "lg",
         "heading_alignment": "left",
-        "image_ratio": "portrait",
+        "image_ratio": "landscape",
         "show_product_count": false,
         "columns_desktop": "3",
         "columns_mobile": "2",
