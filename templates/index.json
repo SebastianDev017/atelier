@@ -175,19 +175,19 @@
         "c1": {
           "type": "collection",
           "settings": {
-            "collection": "danny-kaplan"
+            "collection": "living"
           }
         },
         "c2": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "new-season"
           }
         },
         "c3": {
           "type": "collection",
           "settings": {
-            "collection": ""
+            "collection": "studio-objects"
           }
         }
       },
