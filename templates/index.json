@@ -55,7 +55,7 @@
         "heading_tag": "h2",
         "heading_size": "lg",
         "subtitle": "A few of our favourites this month.",
-        "collection": "",
+        "collection": "studio-objects",
         "products_to_show": 4,
         "columns_desktop": "4",
         "columns_mobile": "2",
@@ -78,6 +78,28 @@
         "padding_bottom": 140
       }
     },
+    "featured_collection_VbUTrU": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "title": "New arrivals",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtitle": "A few of our favourites this month.",
+        "collection": "new-season",
+        "products_to_show": 4,
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "view_all_style": "link",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
     "image_text": {
       "type": "image-with-text",
       "settings": {
@@ -92,6 +114,28 @@
         "cta_label": "",
         "cta_url": "",
         "cta_style": "solid",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "featured_collection_XLkfCY": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "title": "New arrivals",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtitle": "A few of our favourites this month.",
+        "collection": "living",
+        "products_to_show": 4,
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "show_view_all": true,
+        "view_all_label": "View all",
+        "view_all_style": "link",
         "color_scheme": "cream",
         "padding_top": 120,
         "padding_bottom": 120
@@ -319,7 +363,9 @@
     "marquee",
     "featured",
     "statement",
+    "featured_collection_VbUTrU",
     "image_text",
+    "featured_collection_XLkfCY",
     "full_bleed",
     "split",
     "collections",
