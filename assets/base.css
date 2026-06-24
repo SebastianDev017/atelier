@@ -386,6 +386,37 @@ h1, h2, h3, h4, h5, h6 {
   --color-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
 
+/* Fixed brand-style schemes — apply a complete Studio or Maison palette to a
+   single section regardless of the active theme style. Self-contained (own
+   background-color/color, no dependence on the --color-background setting var)
+   and carry matching accent/border/button tokens like every scheme above. */
+.color-scheme--studio {
+  background-color: #F8F8F6;
+  color: #111111;
+  --color-bg: #F8F8F6;
+  --color-text: #111111;
+  --color-accent-local: #666660;
+  --color-border: #DDDDD8;
+  --color-button: #111111;
+  --color-button-text: #F8F8F6;
+  --color-heading: #111111;
+  --color-body: #333330;
+  --color-muted: #888884;
+}
+.color-scheme--maison {
+  background-color: #F2EDE6;
+  color: #1A1208;
+  --color-bg: #F2EDE6;
+  --color-text: #1A1208;
+  --color-accent-local: #B89A6E;
+  --color-border: #D8CFBF;
+  --color-button: #1A1208;
+  --color-button-text: #F2EDE6;
+  --color-heading: #1A1208;
+  --color-body: #3D3020;
+  --color-muted: #8C7355;
+}
+
 /* Custom-element section wrappers default to display:inline, which ignores
    block padding and paints the color-scheme background only behind inline
    content. Make them block so padding + background render full-width. */
