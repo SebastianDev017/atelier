@@ -529,23 +529,27 @@ cart-page {
   width: 100%;
   min-height: 48px;
   padding: 0.75em 1em;
-  background-color: transparent;
-  border: 1px solid var(--color-border-strong);
-  border-radius: var(--radius-inputs);
-  color: var(--color-text);
+  background: transparent;
+  /* currentColor inherits the section's color-scheme text colour, so the
+     border always contrasts: espresso on light schemes, cream on dark. */
+  border: 1px solid currentColor;
+  border-radius: 0;
+  color: inherit;
   font-size: var(--text-base);
-  transition: border-color var(--duration-fast) var(--ease-editorial);
+  opacity: 0.6;
+  transition: opacity var(--duration-fast) var(--ease-editorial),
+              border-color var(--duration-fast) var(--ease-editorial);
 }
 .input::placeholder,
-.textarea::placeholder { color: var(--color-muted); }
-/* Quiet border shift on pointer focus; a real 2px ring on keyboard focus
-   (never suppress the global :focus-visible ring from a11y). */
+.textarea::placeholder { color: currentColor; opacity: 0.45; }
+/* Brighten on focus; preserve the keyboard focus-visible ring (a11y) in
+   currentColor so it stays visible on any color scheme. */
 .input:focus,
 .textarea:focus,
-.select select:focus { border-color: var(--color-text); }
+.select select:focus { opacity: 1; border-color: currentColor; }
 .input:focus-visible,
 .textarea:focus-visible,
-.select select:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; border-color: var(--color-text); }
+.select select:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
 .textarea { min-height: 8rem; resize: vertical; line-height: var(--leading-normal); }
 .select { position: relative; }
 .select select { appearance: none; -webkit-appearance: none; padding-right: 2.5em; cursor: pointer; }
