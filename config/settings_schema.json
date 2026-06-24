@@ -250,7 +250,7 @@
         "id": "sidebar_width",
         "min": 180,
         "max": 300,
-        "step": 4,
+        "step": 2,
         "unit": "px",
         "label": "Sidebar width",
         "info": "Width of the left navigation column on desktop.",
