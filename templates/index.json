@@ -12,6 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
+        "image": "shopify://shop_images/house-plant-enjoys-natural-light.jpg",
         "image_height": "90svh",
         "overlay_opacity": 30,
         "overlay_color": "#0a0705",
@@ -20,12 +21,12 @@
         "eyebrow": "New season",
         "heading": "Considered\nobjects for the\nmodern home",
         "heading_tag": "h1",
-        "heading_size": "display",
+        "heading_size": "xl",
         "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
         "trust_line": "4.9 ★ · 2,000+ reviews · Free shipping over $150",
         "cta_label": "Shop the collection",
         "cta_url": "shopify://pages/contact",
-        "cta_style": "solid",
+        "cta_style": "outline",
         "cta_secondary_label": "Read our story",
         "cta_secondary_url": "shopify://pages/contact",
         "show_edition_number": false,
