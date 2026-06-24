@@ -1079,6 +1079,37 @@ body:has(.custom-cursor) * { cursor: none !important; }
   .custom-cursor { display: none !important; }
 }
 
+/* ---------- Scroll-to-top button ---------- */
+.scroll-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 44px;
+  height: 44px;
+  background-color: var(--color-button, #2C1810);
+  color: var(--color-button-text, #FAF7F2);
+  border: none;
+  border-radius: var(--radius-none);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.25s ease;
+  pointer-events: none;
+}
+.scroll-top.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.scroll-top:hover { background-color: var(--color-accent-local, #5C3D2E); }
+.scroll-top svg { display: block; flex-shrink: 0; }
+@media (max-width: 768px) {
+  .scroll-top { bottom: 5rem; right: 1rem; width: 40px; height: 40px; }
+}
+
 /* ---------- Text reveal on scroll ----------
    Heading text masked behind overflow:hidden, slides up when its wrapper
    gains .is-visible (ScrollAnimator) or via scroll-timeline where supported. */

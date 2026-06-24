@@ -459,6 +459,27 @@
     if (!customElements.get(name)) customElements.define(name, ctor);
   }
 
+  /* ---------- Scroll-to-top button ----------
+     Appears past 400px; routes through Lenis when present, else native smooth. */
+  function ScrollTopButton() {
+    var btn = document.getElementById('scroll-top-btn');
+    if (!btn) return;
+    btn.removeAttribute('hidden');
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () {
+        btn.classList.toggle('is-visible', window.scrollY > 400);
+        ticking = false;
+      });
+    }, { passive: true });
+    btn.addEventListener('click', function () {
+      if (window.lenis) { window.lenis.scrollTo(0, { duration: 1.4 }); }
+      else { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+    });
+  }
+
   function boot() {
     initLoader();
     new ScrollAnimator();
@@ -467,6 +488,7 @@
     define('facet-form', FacetForm);
     define('localization-dropdown', LocalizationDropdown);
     new CursorComponent();
+    new ScrollTopButton();
   }
 
   if (document.readyState === 'loading') {

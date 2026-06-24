@@ -30,6 +30,7 @@
   },
   "accessibility": {
     "skip_to_content": "Skip to content",
+    "scroll_to_top": "Scroll to top",
     "previous": "Previous",
     "next": "Next",
     "close": "Close",
