@@ -47,7 +47,7 @@
             <div class="product-grid" data-product-grid>
               {%- for product in collection.products -%}
                 <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
-                  {% render 'product-card', product: product, index: forloop.index %}
+                  {% render 'product-card', product: product, index: forloop.index, quick_add_style: section.settings.quick_add_style %}
                 </div>
               {%- endfor -%}
             </div>
@@ -111,6 +111,16 @@
     },
     { "type": "checkbox", "id": "enable_filtering", "label": "Enable filtering", "info": "Manage filters in Search & Discovery.", "default": true },
     { "type": "checkbox", "id": "enable_sorting", "label": "Enable sorting", "default": true },
+    {
+      "type": "select",
+      "id": "quick_add_style",
+      "label": "Add to cart button",
+      "options": [
+        { "value": "hover", "label": "Reveal on hover" },
+        { "value": "always", "label": "Always visible" }
+      ],
+      "default": "hover"
+    },
     {
       "type": "select",
       "id": "color_scheme",

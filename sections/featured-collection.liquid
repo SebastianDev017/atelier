@@ -55,7 +55,7 @@
       <div class="product-grid">
         {%- for product in collection.products limit: limit -%}
           <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
-            {% render 'product-card', product: product, show_vendor: section.settings.show_vendor, heading_tag: 'h3' %}
+            {% render 'product-card', product: product, show_vendor: section.settings.show_vendor, heading_tag: 'h3', quick_add_style: section.settings.quick_add_style %}
           </div>
         {%- endfor -%}
       </div>
@@ -213,6 +213,16 @@
       "id": "show_vendor",
       "label": "Show product vendor",
       "default": false
+    },
+    {
+      "type": "select",
+      "id": "quick_add_style",
+      "label": "Add to cart button",
+      "options": [
+        { "value": "hover", "label": "Reveal on hover" },
+        { "value": "always", "label": "Always visible" }
+      ],
+      "default": "hover"
     },
     {
       "type": "checkbox",

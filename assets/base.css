@@ -656,19 +656,30 @@ cart-page {
   gap: var(--space-2);
   z-index: var(--z-raised);
 }
-.product-card__quick {
+.product-card__quick { display: block; width: 100%; z-index: var(--z-raised); }
+
+/* Hover mode: slide up from the bottom of the image on card hover/focus. */
+.product-card--atc-hover .product-card__quick {
   position: absolute;
   left: var(--space-3);
   right: var(--space-3);
   bottom: var(--space-3);
+  width: auto;
   opacity: 0;
   transform: translateY(100%);
   transition: opacity var(--duration-fast) var(--ease-editorial),
               transform var(--duration-slow) var(--ease-out);
-  z-index: var(--z-raised);
 }
-.product-card:hover .product-card__quick,
-.product-card:focus-within .product-card__quick { opacity: 1; transform: translateY(0); }
+.product-card--atc-hover:hover .product-card__quick,
+.product-card--atc-hover:focus-within .product-card__quick { opacity: 1; transform: translateY(0); }
+
+/* Always mode: full-width button below the info (above the card click overlay). */
+.product-card--atc-always .product-card__quick {
+  position: relative;
+  margin-top: var(--space-3);
+  opacity: 1;
+  transform: none;
+}
 .product-card__info { display: flex; flex-direction: column; gap: var(--space-1); padding-top: var(--space-4); }
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
 .product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
@@ -679,7 +690,7 @@ cart-page {
 .product-card__rating { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font-size: var(--text-sm); }
 
 @media (hover: none) {
-  .product-card__quick { opacity: 1; transform: none; }
+  .product-card--atc-hover .product-card__quick { opacity: 1; transform: none; }
 }
 
 /* ---------- Price ---------- */

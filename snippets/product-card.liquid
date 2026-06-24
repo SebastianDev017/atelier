@@ -40,8 +40,31 @@
   if index and index < 5
     assign fetchpriority = 'auto'
   endif
+
+  assign quick_add_style = quick_add_style | default: 'hover'
 -%}
-<div class="product-card" data-product-card>
+
+{%- comment -%} Build the quick-add once; placed inside the media (hover mode) or after the info (always mode). {%- endcomment -%}
+{%- capture quick_add_html -%}
+  {%- if quick_add and product.available -%}
+    {%- if product.variants.size == 1 -%}
+      <product-form class="product-card__quick">
+        {%- form 'product', product -%}
+          <input type="hidden" name="id" value="{{ variant.id }}">
+          <button type="submit" name="add" class="btn btn--small btn--full" data-add-button>
+            <span data-add-label>{{ 'products.add_to_cart' | t }}</span>
+          </button>
+        {%- endform -%}
+      </product-form>
+    {%- else -%}
+      <a href="{{ product.url }}" class="btn btn--small btn--full product-card__quick">
+        {{- 'products.choose_options' | t -}}
+      </a>
+    {%- endif -%}
+  {%- endif -%}
+{%- endcapture -%}
+
+<div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card>
   <div class="product-card__media">
     {%- if primary -%}
       {{
@@ -86,24 +109,9 @@
       {%- endunless -%}
     </span>
 
-    {%- comment -%} Quick-add lives INSIDE the media so it slides up from the bottom of the
-      image (clipped by the media's overflow:hidden) and never covers the info text below. {%- endcomment -%}
-    {%- if quick_add and product.available -%}
-      {%- if product.variants.size == 1 -%}
-        <product-form class="product-card__quick">
-          {%- form 'product', product -%}
-            <input type="hidden" name="id" value="{{ variant.id }}">
-            <button type="submit" name="add" class="btn btn--small btn--full" data-add-button>
-              <span data-add-label>{{ 'products.add_to_cart' | t }}</span>
-            </button>
-          {%- endform -%}
-        </product-form>
-      {%- else -%}
-        <a href="{{ product.url }}" class="btn btn--small btn--full product-card__quick">
-          {{- 'products.choose_options' | t -}}
-        </a>
-      {%- endif -%}
-    {%- endif -%}
+    {%- comment -%} Hover mode: quick-add lives INSIDE the media so it slides up from the
+      bottom of the image (clipped by overflow:hidden) without covering the info below. {%- endcomment -%}
+    {%- if quick_add_style != 'always' -%}{{ quick_add_html }}{%- endif -%}
   </div>
 
   <div class="product-card__info">
@@ -130,4 +138,7 @@
 
     {% render 'price', product: product, show_from: true %}
   </div>
+
+  {%- comment -%} Always mode: full-width button below the info. {%- endcomment -%}
+  {%- if quick_add_style == 'always' -%}{{ quick_add_html }}{%- endif -%}
 </div>
