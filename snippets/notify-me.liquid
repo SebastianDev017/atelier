@@ -1,0 +1,97 @@
+{%- comment -%}
+  Sold-out "Notify me" trigger + <dialog> email capture. Rendered by the
+  notify_me block of main-product.liquid, only when the product is unavailable.
+
+  @param {object} product - the sold-out product
+  @param {object} block   - the notify_me block (for its settings)
+{%- endcomment -%}
+{%- assign notify_form_id = 'notify-form-' | append: product.id -%}
+
+<div class="notify-me" data-product-id="{{ product.id }}">
+  <button
+    class="notify-me__trigger btn btn--outline"
+    type="button"
+    aria-expanded="false"
+    aria-controls="notify-dialog-{{ product.id }}"
+    data-notify-trigger
+  >
+    <svg class="icon" width="16" height="16" viewBox="0 0 24 24"
+      fill="none" stroke="currentColor" stroke-width="1.5"
+      aria-hidden="true" focusable="false">
+      <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+      <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+    </svg>
+    <span>{{ block.settings.trigger_label | default: 'Notify me when available' }}</span>
+  </button>
+
+  <dialog
+    class="notify-me__dialog"
+    id="notify-dialog-{{ product.id }}"
+    aria-label="{{ block.settings.dialog_heading | default: 'Get notified' }}"
+    data-notify-dialog
+  >
+    <div class="notify-me__dialog-inner">
+      <button class="notify-me__close" type="button" data-notify-close aria-label="{{ 'accessibility.close' | t | default: 'Close' }}">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"/>
+          <line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+
+      <p class="notify-me__eyebrow">
+        {{- block.settings.eyebrow | default: 'Notify me' -}}
+      </p>
+      <h2 class="notify-me__heading">
+        {{- block.settings.dialog_heading | default: 'Back in stock notification' -}}
+      </h2>
+      <p class="notify-me__description">
+        {{- block.settings.description | default: 'Enter your email and we will let you know as soon as this product is available again.' -}}
+      </p>
+      <p class="notify-me__product-name">{{ product.title | escape }}</p>
+
+      {%- form 'contact', id: notify_form_id, class: 'notify-me__form' -%}
+        <input type="hidden" name="contact[body]"
+          value="Back-in-stock request for: {{ product.title | escape }} — {{ shop.url }}{{ product.url }}">
+        <input type="hidden" name="contact[tags]" value="back-in-stock,{{ product.handle }}">
+
+        <div class="notify-me__field">
+          <label for="notify-email-{{ product.id }}" class="notify-me__label">
+            {{- block.settings.email_label | default: 'Email address' -}}
+          </label>
+          <input
+            type="email"
+            id="notify-email-{{ product.id }}"
+            name="contact[email]"
+            class="notify-me__input"
+            placeholder="{{ block.settings.email_placeholder | default: 'your@email.com' }}"
+            required
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="notify-me__consent">
+          <input
+            type="checkbox"
+            id="notify-consent-{{ product.id }}"
+            name="contact[accepts_marketing]"
+            value="true"
+            class="notify-me__checkbox"
+            required
+          >
+          <label for="notify-consent-{{ product.id }}" class="notify-me__consent-label">
+            {{- block.settings.consent_label | default: 'I would like to receive an email notification when this product becomes available again.' -}}
+          </label>
+        </div>
+
+        <button type="submit" class="notify-me__submit btn btn--primary">
+          {{- block.settings.submit_label | default: 'Notify me' -}}
+        </button>
+
+        <div class="notify-me__success" hidden role="status">
+          {{- block.settings.success_message | default: "You're on the list. We'll let you know when it's back." -}}
+        </div>
+      {%- endform -%}
+    </div>
+  </dialog>
+</div>

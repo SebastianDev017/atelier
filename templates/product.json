@@ -45,6 +45,10 @@
             "shipping_note": "Free shipping over $150 · 30-day returns"
           }
         },
+        "notify-me": {
+          "type": "notify_me",
+          "settings": {}
+        },
         "trust_badges": {
           "type": "trust_badges",
           "settings": {
@@ -78,6 +82,7 @@
         "inventory",
         "variant_picker",
         "buy_buttons",
+        "notify-me",
         "trust_badges",
         "description",
         "share",

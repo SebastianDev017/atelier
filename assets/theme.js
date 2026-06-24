@@ -480,6 +480,48 @@
     });
   }
 
+  /* Sold-out "Notify me" <dialog>: open/close + AJAX submit to the contact form.
+     Escape, backdrop and close-button all route through the native dialog `close`
+     event, which resets aria-expanded and restores focus to the trigger. */
+  class NotifyMe {
+    constructor(el) {
+      this.dialog = el.querySelector('[data-notify-dialog]');
+      this.trigger = el.querySelector('[data-notify-trigger]');
+      this.form = el.querySelector('.notify-me__form');
+      this.success = el.querySelector('.notify-me__success');
+      if (!this.trigger || !this.dialog) return;
+      this.trigger.addEventListener('click', () => this.open());
+      el.querySelector('[data-notify-close]')?.addEventListener('click', () => this.dialog.close());
+      this.dialog.addEventListener('click', (e) => { if (e.target === this.dialog) this.dialog.close(); });
+      this.dialog.addEventListener('close', () => {
+        this.trigger.setAttribute('aria-expanded', 'false');
+        this.trigger.focus();
+      });
+      this.form?.addEventListener('submit', (e) => { e.preventDefault(); this.submit(); });
+    }
+    open() {
+      this.dialog.showModal();
+      this.trigger.setAttribute('aria-expanded', 'true');
+      this.dialog.querySelector('input[type="email"]')?.focus();
+    }
+    async submit() {
+      try {
+        const resp = await fetch('/contact', {
+          method: 'POST',
+          headers: { 'X-Requested-With': 'XMLHttpRequest' },
+          body: new URLSearchParams(new FormData(this.form))
+        });
+        if (resp.ok && this.success) {
+          this.form.hidden = true;
+          this.success.hidden = false;
+          setTimeout(() => this.dialog.close(), 3000);
+        }
+      } catch (err) {
+        /* Network failure — leave the form in place so the shopper can retry. */
+      }
+    }
+  }
+
   function boot() {
     initLoader();
     new ScrollAnimator();
@@ -489,6 +531,7 @@
     define('localization-dropdown', LocalizationDropdown);
     new CursorComponent();
     new ScrollTopButton();
+    document.querySelectorAll('.notify-me').forEach((el) => new NotifyMe(el));
   }
 
   if (document.readyState === 'loading') {
@@ -496,6 +539,11 @@
   } else {
     boot();
   }
+
+  /* Re-init Notify me when a section is re-rendered in the theme editor. */
+  document.addEventListener('shopify:section:load', (e) => {
+    e.target.querySelectorAll('.notify-me').forEach((el) => new NotifyMe(el));
+  });
 
   /* ---------- Smooth scroll (Lenis) ----------
      Initialised on window load so the deferred lenis.min.js has executed.

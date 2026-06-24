@@ -147,7 +147,8 @@
                       </div>
                     </div>
 
-                    {%- if block.settings.show_dynamic_checkout -%}
+                    {%- comment -%} Hide the dynamic "Buy it now" button on sold-out products; the notify_me block takes over. {%- endcomment -%}
+                    {%- if block.settings.show_dynamic_checkout and product.available -%}
                       {{ form | payment_button }}
                     {%- endif -%}
 
@@ -159,6 +160,13 @@
                   {%- endform -%}
                 </product-form>
               </div>
+
+            {%- when 'notify_me' -%}
+              {%- unless product.available -%}
+                <div {{ block.shopify_attributes }}>
+                  {%- render 'notify-me', product: product, block: block -%}
+                </div>
+              {%- endunless -%}
 
             {%- when 'trust_badges' -%}
               {% render 'trust-badges', block: block %}
@@ -338,6 +346,24 @@
         { "type": "checkbox", "id": "show_dynamic_checkout", "label": "Show dynamic checkout buttons", "default": true },
         { "type": "checkbox", "id": "show_shipping_note", "label": "Show shipping reassurance line", "default": true },
         { "type": "text", "id": "shipping_note", "label": "Shipping note", "default": "Free shipping over $150 · 30-day returns" }
+      ]
+    },
+    {
+      "type": "notify_me",
+      "name": "Notify me (sold out)",
+      "limit": 1,
+      "settings": [
+        { "type": "header", "content": "Button" },
+        { "type": "text", "id": "trigger_label", "label": "Button label", "default": "Notify me when available" },
+        { "type": "header", "content": "Pop-up" },
+        { "type": "text", "id": "eyebrow", "label": "Eyebrow text", "default": "Notify me" },
+        { "type": "text", "id": "dialog_heading", "label": "Heading", "default": "Back in stock notification" },
+        { "type": "textarea", "id": "description", "label": "Description", "default": "Enter your email and we will let you know as soon as this product is available again." },
+        { "type": "text", "id": "email_label", "label": "Email label", "default": "Email address" },
+        { "type": "text", "id": "email_placeholder", "label": "Email placeholder", "default": "your@email.com" },
+        { "type": "textarea", "id": "consent_label", "label": "Consent text", "default": "I would like to receive an email notification when this product becomes available again." },
+        { "type": "text", "id": "submit_label", "label": "Submit button", "default": "Notify me" },
+        { "type": "textarea", "id": "success_message", "label": "Success message", "default": "You're on the list. We'll let you know when it's back." }
       ]
     },
     {
