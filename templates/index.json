@@ -220,24 +220,27 @@
           "type": "testimonial",
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": ""
+            "author": "Jonh Dane",
+            "role": "",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
           }
         },
         "t2": {
           "type": "testimonial",
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": ""
+            "author": "Patrick Kennedy",
+            "role": "",
+            "image": "shopify://shop_images/happy-family.jpg"
           }
         },
         "t3": {
           "type": "testimonial",
           "settings": {
             "quote": "A beautifully considered piece that anchors the whole room.",
-            "author": "Customer name",
-            "role": ""
+            "author": "Ana Romero",
+            "role": "",
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
           }
         }
       },
@@ -250,7 +253,7 @@
         "heading": "What people say",
         "heading_tag": "h2",
         "heading_size": "lg",
-        "autoplay": true,
+        "autoplay": false,
         "autoplay_speed": 5,
         "show_images": true,
         "pause_label": "Pause testimonials",
