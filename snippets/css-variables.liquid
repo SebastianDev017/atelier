@@ -87,5 +87,14 @@
     --animation-speed: {{ speed_mult }};
     --grain-opacity: {{ settings.grain_opacity | default: 4 | divided_by: 100.0 }};
     --grain-display: {% if settings.enable_grain_texture == false %}none{% else %}block{% endif %};
+
+    {%- case settings.cursor_size -%}
+      {%- when 'sm' -%}{%- assign cursor_px = 8 -%}
+      {%- when 'lg' -%}{%- assign cursor_px = 16 -%}
+      {%- else -%}{%- assign cursor_px = 12 -%}
+    {%- endcase -%}
+    --cursor-size: {{ cursor_px }}px;
+    --image-radius: {{ settings.image_border_radius | default: 0 }}px;
+    --image-border: {% if settings.image_border_enable %}{{ settings.image_border_width | default: 1 }}px solid {% if settings.image_border_color != blank %}{{ settings.image_border_color }}{% else %}#E5DDD0{% endif %}{% else %}none{% endif %};
   }
 {% endstyle %}

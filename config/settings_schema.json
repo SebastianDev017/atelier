@@ -35,8 +35,8 @@
       {
         "type": "range",
         "id": "heading_scale",
-        "min": 85,
-        "max": 140,
+        "min": 75,
+        "max": 150,
         "step": 5,
         "unit": "%",
         "label": "Heading size",
@@ -45,9 +45,9 @@
       {
         "type": "range",
         "id": "body_scale",
-        "min": 90,
+        "min": 80,
         "max": 120,
-        "step": 5,
+        "step": 2,
         "unit": "%",
         "label": "Body size",
         "default": 100
@@ -364,8 +364,19 @@
         "type": "checkbox",
         "id": "enable_custom_cursor",
         "label": "Custom cursor",
-        "default": true,
-        "info": "Shows the editorial dot cursor on desktop."
+        "info": "Shows editorial dot cursor on desktop. Disable for standard cursor.",
+        "default": true
+      },
+      {
+        "type": "select",
+        "id": "cursor_size",
+        "label": "Cursor size",
+        "options": [
+          { "value": "sm", "label": "Small (8px)" },
+          { "value": "md", "label": "Medium (12px)" },
+          { "value": "lg", "label": "Large (16px)" }
+        ],
+        "default": "md"
       },
       {
         "type": "checkbox",
@@ -408,6 +419,44 @@
         "unit": "%",
         "label": "Grain intensity",
         "default": 4
+      }
+    ]
+  },
+  {
+    "name": "Images",
+    "settings": [
+      {
+        "type": "range",
+        "id": "image_border_radius",
+        "min": 0,
+        "max": 24,
+        "step": 2,
+        "unit": "px",
+        "label": "Image border radius",
+        "default": 0,
+        "info": "Applies to product cards and section images"
+      },
+      {
+        "type": "checkbox",
+        "id": "image_border_enable",
+        "label": "Show image border",
+        "default": false
+      },
+      {
+        "type": "range",
+        "id": "image_border_width",
+        "min": 1,
+        "max": 4,
+        "step": 1,
+        "unit": "px",
+        "label": "Border width",
+        "default": 1
+      },
+      {
+        "type": "color",
+        "id": "image_border_color",
+        "label": "Border color",
+        "default": "#E5DDD0"
       }
     ]
   },

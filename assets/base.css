@@ -1089,8 +1089,8 @@ body:has(.custom-cursor) * { cursor: none !important; }
 
 .custom-cursor {
   position: fixed;
-  width: 10px;
-  height: 10px;
+  width: var(--cursor-size, 10px);
+  height: var(--cursor-size, 10px);
   border-radius: 50%;
   /* White dot with mix-blend-mode: difference inverts against whatever is
      beneath it, so it stays legible on light and dark sections with no JS. */
@@ -1107,8 +1107,8 @@ body:has(.custom-cursor) * { cursor: none !important; }
     border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
 .custom-cursor.is-hovering-image {
-  width: 58px;
-  height: 58px;
+  width: calc(var(--cursor-size, 10px) * 5.5);
+  height: calc(var(--cursor-size, 10px) * 5.5);
 }
 .custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
 .custom-cursor.is-hovering-btn {
@@ -1380,4 +1380,17 @@ body:has(.custom-cursor) * { cursor: none !important; }
   margin-top: 1rem;
   font-family: var(--font-sans);
   letter-spacing: 0.04em;
+}
+
+/* ---------- Image radius + border (theme settings → css-variables) ----------
+   Off by default (--image-radius 0, --image-border none); merchants opt in via
+   Theme settings → Images. */
+.product-card__media img,
+.product-card__media .placeholder-svg,
+.gallery__item img,
+.split-media__media img,
+.image-with-text__media img,
+.hero__media img {
+  border-radius: var(--image-radius, 0);
+  border: var(--image-border, none);
 }
