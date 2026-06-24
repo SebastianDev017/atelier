@@ -254,7 +254,18 @@
   .variant-option__value input:focus-visible + span { outline: 2px solid var(--color-text); outline-offset: 2px; }
 
   .product__purchase { display: flex; flex-direction: column; gap: var(--space-3); }
-  .product__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
+  /* Left-aligned, content-width quantity selector (the wrapper used to stretch
+     full-width as a flex-column item). Scoped to the product page so the shared
+     base.css .quantity used by the cart drawer is untouched. */
+  .product__quantity { display: flex; align-items: center; gap: 0.75rem; width: fit-content; }
+  .product__quantity .quantity { height: 40px; width: fit-content; }
+  .product__quantity .quantity__button { width: 40px; flex-shrink: 0; }
+  .product__quantity .quantity__input {
+    width: 48px;
+    font-size: 13px;
+    border-left: 1px solid var(--color-border);
+    border-right: 1px solid var(--color-border);
+  }
   .product-form__error { color: var(--color-sale); font-size: var(--text-sm); margin-top: var(--space-2); }
   .shopify-payment-button { margin-top: var(--space-2); }
   /* Match the dynamic-checkout ("Buy it now") button to the editorial Add-to-cart
