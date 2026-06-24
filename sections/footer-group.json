@@ -52,6 +52,10 @@
       ],
       "settings": {
         "show_wordmark": false,
+        "wordmark_opacity": 10,
+        "wordmark_text": "",
+        "padding_top": 32,
+        "padding_bottom": 32,
         "show_payment_icons": true,
         "show_policy_links": true,
         "show_country_selector": true,
