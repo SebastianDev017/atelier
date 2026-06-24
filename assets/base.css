@@ -1005,9 +1005,10 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  /* On-brand colours via JS background detection (theme.js toggles
-     .is-on-dark): espresso dot on light sections, cream dot on dark. */
-  background-color: #2C1810;
+  /* White dot with mix-blend-mode: difference inverts against whatever is
+     beneath it, so it stays legible on light and dark sections with no JS. */
+  background-color: #ffffff;
+  mix-blend-mode: difference;
   pointer-events: none;
   z-index: 999999;
   top: 0;
@@ -1016,10 +1017,18 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   transition:
     width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    background-color 0.2s ease;
+    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.custom-cursor.is-on-dark { background-color: #FAF7F2; }
+.custom-cursor.is-hovering-image {
+  width: 58px;
+  height: 58px;
+}
+.custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
+.custom-cursor.is-hovering-btn {
+  width: 40px;
+  height: 2px;
+  border-radius: 0;
+}
 .custom-cursor__label {
   position: absolute;
   inset: 0;
@@ -1029,21 +1038,10 @@ label, summary, .btn, .select select, .facets__option { cursor: none; }
   font-size: 8px;
   font-weight: 700;
   letter-spacing: 0.1em;
-  /* Label contrasts the dot: cream on the espresso dot, espresso on the cream dot. */
-  color: #FAF7F2;
+  color: #000;
   opacity: 0;
   transition: opacity 0.2s ease;
-}
-.custom-cursor.is-on-dark .custom-cursor__label { color: #2C1810; }
-.custom-cursor.is-hovering-image {
-  width: 56px;
-  height: 56px;
-}
-.custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
-.custom-cursor.is-hovering-btn {
-  width: 36px;
-  height: 2px;
-  border-radius: 0;
+  mix-blend-mode: normal;
 }
 @media (hover: none), (pointer: coarse) {
   .custom-cursor { display: none !important; }

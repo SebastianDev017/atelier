@@ -407,29 +407,20 @@
     this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
     this.tick = this.tick.bind(this);
     document.addEventListener('mousemove', function (e) { self.x = e.clientX; self.y = e.clientY; });
-    this.tick();
+    var img = '.product-card__media, .gallery__item, .split-media__media, .hero__media, figure, [data-gallery-image]';
+    var btn = 'a, button, [role="button"], input, textarea, select, label, summary, .btn, .nav-link, .nav-sublink, .product-card__quick-add, .trust-badge, .quantity__button, [data-share-trigger]';
     document.addEventListener('mouseover', function (e) {
-      var img = e.target.closest('.product-card__media, .gallery__item, figure');
-      var btn = e.target.closest('.btn, button[type="submit"], a.btn');
-      self.el.classList.toggle('is-hovering-image', !!img);
-      self.el.classList.toggle('is-hovering-btn', !!btn);
+      var isImg = e.target.closest(img);
+      var isBtn = !isImg && e.target.closest(btn);
+      self.el.classList.toggle('is-hovering-image', !!isImg);
+      self.el.classList.toggle('is-hovering-btn', !!isBtn);
     });
+    this.tick();
   }
   CursorComponent.prototype.tick = function () {
     this.cx += (this.x - this.cx) * 0.12;
     this.cy += (this.y - this.cy) * 0.12;
     this.el.style.transform = 'translate(' + (this.cx - this.el.offsetWidth / 2) + 'px, ' + (this.cy - this.el.offsetHeight / 2) + 'px)';
-
-    // Detect a dark section under the cursor (throttled to every 6th frame) and
-    // toggle .is-on-dark so CSS flips the dot espresso<->cream. Colour lives in CSS.
-    this.frameCount = (this.frameCount || 0) + 1;
-    if (this.frameCount % 6 === 0) {
-      var under = document.elementFromPoint(this.cx, this.cy);
-      if (under) {
-        this.el.classList.toggle('is-on-dark', !!under.closest('.color-scheme--invert, footer'));
-      }
-    }
-
     requestAnimationFrame(this.tick);
   };
 
