@@ -514,7 +514,7 @@
     });
     function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
     requestAnimationFrame(raf);
-    // Exposed for future GSAP ScrollTrigger integration.
+    // Exposed for the scroll-to-top button and in-page anchor links.
     window.lenis = lenis;
   }
   window.addEventListener('load', SmoothScroll);
