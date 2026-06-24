@@ -732,7 +732,9 @@ cart-page {
   object-fit: cover;
   opacity: 0;
   transform: scale(1.03);
-  transition: opacity 0.5s ease, transform 0.5s ease;
+  /* Match the primary image's tokens so the cross-fade stays in sync (no bg flash). */
+  transition: opacity var(--duration-slow) var(--ease-editorial),
+              transform var(--duration-slower) var(--ease-editorial);
   pointer-events: none;
 }
 .product-card:has(.product-card__hover-img):hover .product-card__hover-img {
