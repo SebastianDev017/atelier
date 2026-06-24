@@ -1,0 +1,333 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "hero": {
+      "type": "hero",
+      "settings": {
+        "image": "shopify://shop_images/house-plant-enjoys-natural-light.jpg",
+        "image_height": "90svh",
+        "overlay_opacity": 30,
+        "overlay_color": "#0a0705",
+        "text_position": "center",
+        "text_align": "left",
+        "eyebrow": "New season",
+        "heading": "Considered objects\nfor the modern home",
+        "heading_tag": "h1",
+        "heading_size": "xl",
+        "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
+        "trust_line": "4.9 ★ · Free shipping over $150",
+        "cta_label": "Shop the collection",
+        "cta_url": "/collections/all",
+        "cta_style": "outline",
+        "cta_secondary_label": "Read our story",
+        "cta_secondary_url": "/pages/about",
+        "show_edition_number": false,
+        "color_scheme": "cream",
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "marquee": {
+      "type": "marquee",
+      "settings": {
+        "text": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·",
+        "speed": 30,
+        "direction": "left",
+        "size": "sm",
+        "color_scheme": "linen",
+        "padding_top": 48,
+        "padding_bottom": 48
+      }
+    },
+    "featured": {
+      "type": "featured-collection",
+      "settings": {
+        "eyebrow": "",
+        "title": "New arrivals",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtitle": "A few of our favourites this month.",
+        "collection": "new-season",
+        "products_to_show": 4,
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "show_view_all": true,
+        "view_all_label": "View all products",
+        "view_all_style": "link",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "statement": {
+      "type": "editorial-statement",
+      "settings": {
+        "statement": "<h6>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</h6>",
+        "color_scheme": "invert",
+        "padding_top": 140,
+        "padding_bottom": 140
+      }
+    },
+    "image_text": {
+      "type": "image-with-text",
+      "settings": {
+        "image": "shopify://shop_images/two-people-surfing-in-blue-choppy-water.jpg",
+        "image_ratio": "portrait",
+        "layout": "image-right",
+        "eyebrow": "Our craft",
+        "title": "Made with intention",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text": "<p>Every piece begins with a material and a question: how do we make something that lasts? The answer shapes everything we do.</p>",
+        "cta_label": "About the studio",
+        "cta_url": "/pages/about",
+        "cta_style": "link",
+        "color_scheme": "white",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "full_bleed": {
+      "type": "full-bleed-image",
+      "settings": {
+        "image": "shopify://shop_images/woman-and-two-children-stand-in-a-gold-colored-field.jpg",
+        "image_height": "large",
+        "caption": "",
+        "overlay_opacity": 0
+      }
+    },
+    "split": {
+      "type": "split-media",
+      "settings": {
+        "image": "shopify://shop_images/women-drinking-tea.jpg",
+        "media_position": "left",
+        "image_ratio": "portrait",
+        "eyebrow": "Process",
+        "heading": "Designed in studio, made to be lived with",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text": "<p>Each object passes through our studio before it reaches you — reviewed, refined, considered. We work only with makers who share our commitment to material honesty.</p>",
+        "cta_label": "",
+        "cta_url": "",
+        "cta_style": "link",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "collections": {
+      "type": "collection-list",
+      "blocks": {
+        "c1": {
+          "type": "collection",
+          "settings": {
+            "collection": "living"
+          }
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-season"
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "studio-objects"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Shop by collection",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "heading_alignment": "left",
+        "image_ratio": "landscape",
+        "show_product_count": false,
+        "columns_desktop": "3",
+        "columns_mobile": "2",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "gallery": {
+      "type": "gallery",
+      "blocks": {
+        "g1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/warm-colored-autumn-leaves.jpg",
+            "caption": "",
+            "url": ""
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/long-forest-path.jpg",
+            "caption": "",
+            "url": ""
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/women-drinking-tea.jpg",
+            "caption": "",
+            "url": ""
+          }
+        }
+      },
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
+      "settings": {
+        "heading": "In the wild",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "layout": "grid-3col",
+        "image_ratio": "portrait",
+        "show_captions": false,
+        "caption_position": "below",
+        "color_scheme": "invert",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "testimonials": {
+      "type": "testimonials",
+      "blocks": {
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A beautifully considered piece that anchors the whole room.",
+            "author": "John Dane",
+            "role": "Interior designer",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The quality is immediately obvious — and it only gets better with use.",
+            "author": "Patrick Kennedy",
+            "role": "Architect",
+            "image": "shopify://shop_images/happy-family.jpg"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Exactly the kind of object you keep for a lifetime.",
+            "author": "Ana Romero",
+            "role": "Collector",
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+          }
+        }
+      },
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
+      "settings": {
+        "heading": "What people say",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "autoplay": false,
+        "autoplay_speed": 5,
+        "show_images": true,
+        "pause_label": "Pause testimonials",
+        "color_scheme": "cream",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "rich_text": {
+      "type": "rich-text",
+      "blocks": {
+        "heading": {
+          "type": "heading",
+          "settings": {
+            "heading": "Objects considered for the modern home",
+            "heading_tag": "h2",
+            "heading_size": "xl"
+          }
+        },
+        "text": {
+          "type": "text",
+          "settings": {
+            "text": "<p>We believe the things around you shape how you live. We take that seriously.</p>"
+          }
+        },
+        "button": {
+          "type": "button",
+          "settings": {
+            "label": "Shop now",
+            "url": "/collections/all",
+            "style": "outline"
+          }
+        }
+      },
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
+      "settings": {
+        "content_width": "narrow",
+        "text_alignment": "center",
+        "color_scheme": "parchment",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Join the list",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtext": "<p>New arrivals, stories, and the occasional offer.</p>",
+        "input_placeholder": "Email address",
+        "button_label": "Subscribe",
+        "color_scheme": "invert",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    }
+  },
+  "order": [
+    "hero",
+    "marquee",
+    "featured",
+    "statement",
+    "image_text",
+    "full_bleed",
+    "split",
+    "collections",
+    "gallery",
+    "testimonials",
+    "rich_text",
+    "newsletter"
+  ]
+}
