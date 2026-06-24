@@ -16,10 +16,10 @@
   assign heading_weight = heading_font.weight | at_most: 400 | at_least: 300
 -%}
 {% style %}
-  {% if heading_font %}
+  {% if heading_font.family != blank %}
     {{ heading_font | font_face: font_display: 'swap' }}
   {% endif %}
-  {% if body_font %}
+  {% if body_font.family != blank %}
     {{ body_font | font_face: font_display: 'swap' }}
     {% if body_medium %}{{ body_medium | font_face: font_display: 'swap' }}{% endif %}
     {% if body_semibold %}{{ body_semibold | font_face: font_display: 'swap' }}{% endif %}
@@ -27,11 +27,11 @@
   {% endif %}
 
   :root {
-    {% if heading_font %}
+    {% if heading_font.family != blank %}
       --font-heading: {{ heading_font.family | json }}, {{ heading_font.fallback_families }};
       --font-heading-weight: {{ heading_weight }};
     {% endif %}
-    {% if body_font %}
+    {% if body_font.family != blank %}
       --font-body: {{ body_font.family | json }}, {{ body_font.fallback_families }};
       --font-body-weight: {{ body_font.weight }};
     {% endif %}
