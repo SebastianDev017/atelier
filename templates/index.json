@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "sections": {
     "hero": {
@@ -63,7 +72,7 @@
     "statement": {
       "type": "editorial-statement",
       "settings": {
-        "statement": "<p>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</p>",
+        "statement": "<h6>We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.</h6>",
         "color_scheme": "invert",
         "padding_top": 140,
         "padding_bottom": 140
@@ -119,11 +128,30 @@
     "collections": {
       "type": "collection-list",
       "blocks": {
-        "c1": { "type": "collection", "settings": { "collection": "living" } },
-        "c2": { "type": "collection", "settings": { "collection": "new-season" } },
-        "c3": { "type": "collection", "settings": { "collection": "studio-objects" } }
+        "c1": {
+          "type": "collection",
+          "settings": {
+            "collection": "living"
+          }
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-season"
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "studio-objects"
+          }
+        }
       },
-      "block_order": ["c1", "c2", "c3"],
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ],
       "settings": {
         "eyebrow": "",
         "heading": "Shop by collection",
@@ -142,11 +170,36 @@
     "gallery": {
       "type": "gallery",
       "blocks": {
-        "g1": { "type": "image", "settings": { "image": "shopify://shop_images/warm-colored-autumn-leaves.jpg", "caption": "", "url": "" } },
-        "g2": { "type": "image", "settings": { "image": "shopify://shop_images/long-forest-path.jpg", "caption": "", "url": "" } },
-        "g3": { "type": "image", "settings": { "image": "shopify://shop_images/women-drinking-tea.jpg", "caption": "", "url": "" } }
+        "g1": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/warm-colored-autumn-leaves.jpg",
+            "caption": "",
+            "url": ""
+          }
+        },
+        "g2": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/long-forest-path.jpg",
+            "caption": "",
+            "url": ""
+          }
+        },
+        "g3": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/women-drinking-tea.jpg",
+            "caption": "",
+            "url": ""
+          }
+        }
       },
-      "block_order": ["g1", "g2", "g3"],
+      "block_order": [
+        "g1",
+        "g2",
+        "g3"
+      ],
       "settings": {
         "heading": "In the wild",
         "heading_tag": "h2",
@@ -163,11 +216,39 @@
     "testimonials": {
       "type": "testimonials",
       "blocks": {
-        "t1": { "type": "testimonial", "settings": { "quote": "A beautifully considered piece that anchors the whole room.", "author": "John Dane", "role": "Interior designer", "image": "shopify://shop_images/welcome-to-my-business.jpg" } },
-        "t2": { "type": "testimonial", "settings": { "quote": "The quality is immediately obvious — and it only gets better with use.", "author": "Patrick Kennedy", "role": "Architect", "image": "shopify://shop_images/happy-family.jpg" } },
-        "t3": { "type": "testimonial", "settings": { "quote": "Exactly the kind of object you keep for a lifetime.", "author": "Ana Romero", "role": "Collector", "image": "shopify://shop_images/woman-in-park-afternoon.jpeg" } }
+        "t1": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "A beautifully considered piece that anchors the whole room.",
+            "author": "John Dane",
+            "role": "Interior designer",
+            "image": "shopify://shop_images/welcome-to-my-business.jpg"
+          }
+        },
+        "t2": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "The quality is immediately obvious — and it only gets better with use.",
+            "author": "Patrick Kennedy",
+            "role": "Architect",
+            "image": "shopify://shop_images/happy-family.jpg"
+          }
+        },
+        "t3": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "Exactly the kind of object you keep for a lifetime.",
+            "author": "Ana Romero",
+            "role": "Collector",
+            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+          }
+        }
       },
-      "block_order": ["t1", "t2", "t3"],
+      "block_order": [
+        "t1",
+        "t2",
+        "t3"
+      ],
       "settings": {
         "heading": "What people say",
         "heading_tag": "h2",
@@ -207,7 +288,11 @@
           }
         }
       },
-      "block_order": ["heading", "text", "button"],
+      "block_order": [
+        "heading",
+        "text",
+        "button"
+      ],
       "settings": {
         "content_width": "narrow",
         "text_alignment": "center",
