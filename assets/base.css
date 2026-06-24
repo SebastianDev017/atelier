@@ -386,6 +386,15 @@ h1, h2, h3, h4, h5, h6 {
   --color-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
 }
 
+/* Custom-element section wrappers default to display:inline, which ignores
+   block padding and paints the color-scheme background only behind inline
+   content. Make them block so padding + background render full-width. */
+product-info,
+cart-page {
+  display: block;
+  width: 100%;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
@@ -932,9 +941,6 @@ html.lenis, html.lenis body { height: auto; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
 /* ---------- Custom cursor ---------- */
-/* Hide the OS cursor on pointer-fine devices so only the custom dot shows
-   (prevents the double-cursor). Restored to the native cursor on touch /
-   coarse pointers, where the custom cursor is itself hidden. */
 html, body, *, *::before, *::after { cursor: none !important; }
 @media (hover: none), (pointer: coarse) {
   html, body, *, *::before, *::after { cursor: auto !important; }
@@ -947,8 +953,6 @@ html, body, *, *::before, *::after { cursor: none !important; }
   height: 12px;
   border-radius: 50%;
   background-color: #ffffff;
-  /* difference blend = white on dark backgrounds, dark on light ones, so the
-     dot stays visible over any section (cream content or espresso footer). */
   mix-blend-mode: difference;
   pointer-events: none;
   z-index: 99999;
