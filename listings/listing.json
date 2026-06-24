@@ -9,10 +9,10 @@
   "industries": ["home-and-garden", "art", "furniture", "food-and-drink"],
   "styles": [
     {
-      "name": "Atelier",
-      "preset": "Atelier",
+      "name": "Side Atelier",
+      "preset": "Side Atelier",
       "description": "The signature warm-neutral balance — charcoal text on cream, EB Garamond + Lora.",
-      "preview": "listings/previews/atelier.png"
+      "preview": "listings/previews/side-atelier.png"
     },
     {
       "name": "Studio",
