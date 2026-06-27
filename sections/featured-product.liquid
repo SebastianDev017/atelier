@@ -21,7 +21,8 @@
 </style>
 
 <div class="featured-product color-scheme--{{ scheme }}" data-featured-product>
-  <div class="page-width">
+  {%- comment -%} Uses the same .page-width centering system as every section (max-width + margin-inline:auto), so margins match site-wide — no hardcoded offset. {%- endcomment -%}
+  <div class="featured-product__inner page-width">
     {%- if fp == blank -%}
       {%- if request.design_mode -%}<p class="featured-product__empty">{{ 'products.featured_empty' | t }}</p>{%- endif -%}
     {%- else -%}
