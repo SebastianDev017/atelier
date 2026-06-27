@@ -62,7 +62,7 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card>
+<div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card data-reveal>
   <div class="product-card__media">
     {%- if primary -%}
       {{
@@ -108,9 +108,10 @@
       {%- endunless -%}
     </div>
 
-    {%- comment -%} Hover mode: quick-add lives INSIDE the media so it slides up from the
-      bottom of the image (clipped by overflow:hidden) without covering the info below. {%- endcomment -%}
-    {%- if quick_add_style != 'always' -%}{{ quick_add_html }}{%- endif -%}
+    {%- comment -%} Hover mode: quick-add centered in an overlay revealed on hover. {%- endcomment -%}
+    {%- if quick_add_style != 'always' and quick_add and product.available -%}
+      <div class="product-card__overlay">{{ quick_add_html }}</div>
+    {%- endif -%}
   </div>
 
   <div class="product-card__info">
@@ -121,6 +122,10 @@
     <{{ heading_tag }} class="product-card__title">
       <a href="{{ product.url }}">{{ product.title | escape }}</a>
     </{{ heading_tag }}>
+
+    {%- if product.metafields.custom.edition_number != blank -%}
+      <span class="product-card__edition">{{ 'products.edition_number' | t: number: product.metafields.custom.edition_number }}</span>
+    {%- endif -%}
 
     {%- if settings.card_show_rating and product.metafields.reviews.rating.value != blank -%}
       {%- assign rating = product.metafields.reviews.rating.value -%}

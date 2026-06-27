@@ -30,7 +30,7 @@
 
   /* 2. Fade up — staggered on groups via ScrollTrigger.batch (no FOUC: set hidden first) */
   function initFadeUp() {
-    var targets = gsap.utils.toArray('[data-fade-up], .product-card, .section-text');
+    var targets = gsap.utils.toArray('[data-fade-up], .section-text');
     if (!targets.length) return;
     gsap.set(targets, { autoAlpha: 0, y: 40 });
     ScrollTrigger.batch(targets, {

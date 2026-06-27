@@ -50,6 +50,7 @@
   },
   "products": {
     "add_to_cart": "Add to cart",
+    "edition_number": "No. {{ number }}",
     "adding": "Adding…",
     "added": "Added",
     "sold_out": "Sold out",
