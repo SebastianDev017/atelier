@@ -104,31 +104,31 @@
 
 {% schema %}
 {
-  "name": "Horizontal scroll",
+  "name": "t:sections.horizontal-scroll.name",
   "tag": "section",
   "class": "shopify-section",
   "settings": [
-    { "type": "text", "id": "heading", "label": "Eyebrow heading", "default": "Featured pieces" },
-    { "type": "collection", "id": "collection", "label": "Collection" },
-    { "type": "range", "id": "products_count", "min": 4, "max": 8, "step": 1, "label": "Products to show", "default": 6 },
+    { "type": "text", "id": "heading", "label": "t:sections.horizontal-scroll.settings.heading.label", "default": "Featured pieces" },
+    { "type": "collection", "id": "collection", "label": "t:sections.horizontal-scroll.settings.collection.label" },
+    { "type": "range", "id": "products_count", "min": 4, "max": 8, "step": 1, "label": "t:sections.horizontal-scroll.settings.products_count.label", "default": 6 },
     {
-      "type": "select", "id": "card_aspect", "label": "Card shape",
-      "options": [ { "value": "portrait", "label": "Portrait (2:3)" }, { "value": "square", "label": "Square" } ],
+      "type": "select", "id": "card_aspect", "label": "t:sections.horizontal-scroll.settings.card_aspect.label",
+      "options": [ { "value": "portrait", "label": "t:sections.horizontal-scroll.settings.card_aspect.options__1.label" }, { "value": "square", "label": "t:sections.horizontal-scroll.settings.card_aspect.options__2.label" } ],
       "default": "portrait"
     },
     {
-      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "type": "select", "id": "color_scheme", "label": "t:sections.horizontal-scroll.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.horizontal-scroll.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.horizontal-scroll.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.horizontal-scroll.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.horizontal-scroll.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.horizontal-scroll.settings.color_scheme.options__5.label" }
       ], "default": "cream"
     },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top padding", "default": 96 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.horizontal-scroll.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.horizontal-scroll.settings.padding_bottom.label", "default": 96 }
   ],
-  "presets": [ { "name": "Horizontal scroll" } ]
+  "presets": [ { "name": "t:sections.horizontal-scroll.presets.name" } ]
 }
 {% endschema %}

@@ -53,23 +53,23 @@
 
 {% schema %}
 {
-  "name": "Brand statement",
+  "name": "t:sections.brand-statement.name",
   "tag": "section",
   "class": "shopify-section",
   "settings": [
-    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Considered objects\nfor the modern home", "info": "Line breaks are preserved." },
-    { "type": "text", "id": "subheading", "label": "Supporting line", "default": "Made in small batches, designed to last a lifetime." },
+    { "type": "textarea", "id": "heading", "label": "t:sections.brand-statement.settings.heading.label", "default": "Considered objects\nfor the modern home", "info": "t:sections.brand-statement.settings.heading.info" },
+    { "type": "text", "id": "subheading", "label": "t:sections.brand-statement.settings.subheading.label", "default": "Made in small batches, designed to last a lifetime." },
     {
-      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "type": "select", "id": "color_scheme", "label": "t:sections.brand-statement.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.brand-statement.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.brand-statement.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.brand-statement.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.brand-statement.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.brand-statement.settings.color_scheme.options__5.label" }
       ], "default": "invert"
     }
   ],
-  "presets": [ { "name": "Brand statement" } ]
+  "presets": [ { "name": "t:sections.brand-statement.presets.name" } ]
 }
 {% endschema %}

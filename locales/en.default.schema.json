@@ -1,12 +1,3 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
   "general": {
     "404": "Not found",
@@ -89,8 +80,12 @@
       "settings": {
         "layout": {
           "label": "Layout",
-          "options__1": { "label": "Full bleed (overlay)" },
-          "options__2": { "label": "Split (content + media)" }
+          "options__1": {
+            "label": "Full bleed (overlay)"
+          },
+          "options__2": {
+            "label": "Split (content + media)"
+          }
         },
         "video_url": {
           "label": "Background video URL",
@@ -2594,6 +2589,246 @@
     },
     "predictive-results": {
       "name": "Predictive search results"
+    },
+    "editorial-feature": {
+      "name": "Editorial feature",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "image_position": {
+          "label": "Image position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Right"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "description": {
+          "label": "Description"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
+        "header__1": {
+          "content": "Stats"
+        },
+        "show_stats": {
+          "label": "Show stats"
+        },
+        "stat_1_number": {
+          "label": "Stat 1 number"
+        },
+        "stat_1_label": {
+          "label": "Stat 1 label"
+        },
+        "stat_2_number": {
+          "label": "Stat 2 number"
+        },
+        "stat_2_label": {
+          "label": "Stat 2 label"
+        },
+        "stat_3_number": {
+          "label": "Stat 3 number"
+        },
+        "stat_3_label": {
+          "label": "Stat 3 label"
+        },
+        "header__2": {
+          "content": "Appearance"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Editorial feature"
+      }
+    },
+    "brand-statement": {
+      "name": "Brand statement",
+      "settings": {
+        "heading": {
+          "label": "Heading",
+          "info": "Line breaks are preserved."
+        },
+        "subheading": {
+          "label": "Supporting line"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        }
+      },
+      "presets": {
+        "name": "Brand statement"
+      }
+    },
+    "horizontal-scroll": {
+      "name": "Horizontal scroll",
+      "settings": {
+        "heading": {
+          "label": "Eyebrow heading"
+        },
+        "collection": {
+          "label": "Collection"
+        },
+        "products_count": {
+          "label": "Products to show"
+        },
+        "card_aspect": {
+          "label": "Card shape",
+          "options__1": {
+            "label": "Portrait (2:3)"
+          },
+          "options__2": {
+            "label": "Square"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Horizontal scroll"
+      }
+    },
+    "stats-bar": {
+      "name": "Stats bar",
+      "settings": {
+        "paragraph__1": {
+          "content": "Enter plain numbers (e.g. 1240) so they count up. Use the suffix for + or k or %."
+        },
+        "stat_1_number": {
+          "label": "Stat 1 number"
+        },
+        "stat_1_suffix": {
+          "label": "Stat 1 suffix"
+        },
+        "stat_1_label": {
+          "label": "Stat 1 label"
+        },
+        "stat_2_number": {
+          "label": "Stat 2 number"
+        },
+        "stat_2_suffix": {
+          "label": "Stat 2 suffix"
+        },
+        "stat_2_label": {
+          "label": "Stat 2 label"
+        },
+        "stat_3_number": {
+          "label": "Stat 3 number"
+        },
+        "stat_3_suffix": {
+          "label": "Stat 3 suffix"
+        },
+        "stat_3_label": {
+          "label": "Stat 3 label"
+        },
+        "stat_4_number": {
+          "label": "Stat 4 number"
+        },
+        "stat_4_suffix": {
+          "label": "Stat 4 suffix"
+        },
+        "stat_4_label": {
+          "label": "Stat 4 label"
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Stats bar"
+      }
     }
   },
   "settings_schema": {
@@ -2676,8 +2911,12 @@
         },
         "button_style": {
           "label": "Button style",
-          "options__1": { "label": "Filled" },
-          "options__2": { "label": "Outlined" }
+          "options__1": {
+            "label": "Filled"
+          },
+          "options__2": {
+            "label": "Outlined"
+          }
         },
         "color_text_heading": {
           "label": "Heading color",

@@ -1,4 +1,4 @@
-{%- comment -%}
+﻿{%- comment -%}
   Editorial feature — tall 3/4 portrait image (GSAP clip-path reveal + parallax)
   beside a content column that sticks while the image scrolls past. Optional
   3-stat row. image_position reverses the columns. Mobile: image first, stacked.
@@ -114,43 +114,43 @@
 
 {% schema %}
 {
-  "name": "Editorial feature",
+  "name": "t:sections.editorial-feature.name",
   "tag": "section",
   "class": "shopify-section",
   "settings": [
-    { "type": "image_picker", "id": "image", "label": "Image" },
+    { "type": "image_picker", "id": "image", "label": "t:sections.editorial-feature.settings.image.label" },
     {
-      "type": "select", "id": "image_position", "label": "Image position",
-      "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ],
+      "type": "select", "id": "image_position", "label": "t:sections.editorial-feature.settings.image_position.label",
+      "options": [ { "value": "left", "label": "t:sections.editorial-feature.settings.image_position.options__1.label" }, { "value": "right", "label": "t:sections.editorial-feature.settings.image_position.options__2.label" } ],
       "default": "left"
     },
-    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our craft" },
-    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Made in small batches, designed to last" },
-    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to material honesty.</p>" },
-    { "type": "text", "id": "cta_label", "label": "Button label", "default": "About the studio" },
-    { "type": "url", "id": "cta_url", "label": "Button link" },
-    { "type": "header", "content": "Stats" },
-    { "type": "checkbox", "id": "show_stats", "label": "Show stats", "default": true },
-    { "type": "text", "id": "stat_1_number", "label": "Stat 1 number", "default": "1,240+" },
-    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Objects" },
-    { "type": "text", "id": "stat_2_number", "label": "Stat 2 number", "default": "24" },
-    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Makers" },
-    { "type": "text", "id": "stat_3_number", "label": "Stat 3 number", "default": "4.9" },
-    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Rating" },
-    { "type": "header", "content": "Appearance" },
+    { "type": "text", "id": "eyebrow", "label": "t:sections.editorial-feature.settings.eyebrow.label", "default": "Our craft" },
+    { "type": "textarea", "id": "heading", "label": "t:sections.editorial-feature.settings.heading.label", "default": "Made in small batches, designed to last" },
+    { "type": "richtext", "id": "description", "label": "t:sections.editorial-feature.settings.description.label", "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to material honesty.</p>" },
+    { "type": "text", "id": "cta_label", "label": "t:sections.editorial-feature.settings.cta_label.label", "default": "About the studio" },
+    { "type": "url", "id": "cta_url", "label": "t:sections.editorial-feature.settings.cta_url.label" },
+    { "type": "header", "content": "t:sections.editorial-feature.settings.header__1.content" },
+    { "type": "checkbox", "id": "show_stats", "label": "t:sections.editorial-feature.settings.show_stats.label", "default": true },
+    { "type": "text", "id": "stat_1_number", "label": "t:sections.editorial-feature.settings.stat_1_number.label", "default": "1,240+" },
+    { "type": "text", "id": "stat_1_label", "label": "t:sections.editorial-feature.settings.stat_1_label.label", "default": "Objects" },
+    { "type": "text", "id": "stat_2_number", "label": "t:sections.editorial-feature.settings.stat_2_number.label", "default": "24" },
+    { "type": "text", "id": "stat_2_label", "label": "t:sections.editorial-feature.settings.stat_2_label.label", "default": "Makers" },
+    { "type": "text", "id": "stat_3_number", "label": "t:sections.editorial-feature.settings.stat_3_number.label", "default": "4.9" },
+    { "type": "text", "id": "stat_3_label", "label": "t:sections.editorial-feature.settings.stat_3_label.label", "default": "Rating" },
+    { "type": "header", "content": "t:sections.editorial-feature.settings.header__2.content" },
     {
-      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "type": "select", "id": "color_scheme", "label": "t:sections.editorial-feature.settings.color_scheme.label",
       "options": [
-        { "value": "cream", "label": "Cream" },
-        { "value": "parchment", "label": "Parchment" },
-        { "value": "linen", "label": "Linen" },
-        { "value": "white", "label": "White" },
-        { "value": "invert", "label": "Inverted" }
+        { "value": "cream", "label": "t:sections.editorial-feature.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.editorial-feature.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.editorial-feature.settings.color_scheme.options__3.label" },
+        { "value": "white", "label": "t:sections.editorial-feature.settings.color_scheme.options__4.label" },
+        { "value": "invert", "label": "t:sections.editorial-feature.settings.color_scheme.options__5.label" }
       ], "default": "cream"
     },
-    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top padding", "default": 120 },
-    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom padding", "default": 120 }
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.editorial-feature.settings.padding_top.label", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.editorial-feature.settings.padding_bottom.label", "default": 120 }
   ],
-  "presets": [ { "name": "Editorial feature" } ]
+  "presets": [ { "name": "t:sections.editorial-feature.presets.name" } ]
 }
 {% endschema %}
