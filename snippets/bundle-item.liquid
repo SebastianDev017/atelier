@@ -1,0 +1,38 @@
+{%- comment -%}
+  Compact bundle / upsell item. The [+] button adds the product's first available
+  variant via the shared [data-bundle-add] handler in cart.js (AJAX + Section
+  Rendering), flashing a check on success.
+
+  @param {object} product - the product to offer
+  @param {string} [layout] - 'row' (default, horizontal) or 'card' (vertical, cart strip)
+{%- endcomment -%}
+{%- liquid
+  assign bp = product
+  assign bv = bp.selected_or_first_available_variant
+  assign bundle_layout = layout | default: 'row'
+-%}
+{%- if bp != blank -%}
+  <div class="bundle__item bundle__item--{{ bundle_layout }}">
+    <a class="bundle__item-link" href="{{ bp.url }}">
+      {%- if bp.featured_image -%}
+        <img class="bundle__item-img" src="{{ bp.featured_image | image_url: width: 120 }}" alt="{{ bp.featured_image.alt | default: bp.title | escape }}" width="60" height="60" loading="lazy">
+      {%- else -%}
+        <span class="bundle__item-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
+      {%- endif -%}
+      <span class="bundle__item-title">{{ bp.title | escape }}</span>
+    </a>
+    <div class="bundle__item-foot">
+      <span class="bundle__item-price">{% render 'price', product: bp %}</span>
+      <button
+        type="button"
+        class="bundle__add"
+        data-bundle-add
+        {% if bv and bv.available %}data-variant-id="{{ bv.id }}"{% else %}disabled aria-disabled="true"{% endif %}
+        aria-label="{{ 'products.add_to_cart' | t }}"
+      >
+        <svg class="bundle__icon-add" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="8" y1="2.5" x2="8" y2="13.5"/><line x1="2.5" y1="8" x2="13.5" y2="8"/></svg>
+        <svg class="bundle__icon-added" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="3 8.5 6.5 12 13 4"/></svg>
+      </button>
+    </div>
+  </div>
+{%- endif -%}

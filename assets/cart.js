@@ -302,6 +302,47 @@
     return CartPage;
   })();
 
+  /* ---------- Bundle / upsell quick-add ([data-bundle-add]) ----------
+     One delegated handler shared by the featured-product bundle and the cart-drawer
+     bundle strip. Adds a single variant via /cart/add.js with Section Rendering, so
+     the drawer contents (count badge + the strip itself) re-render, then flashes a
+     check on the button. Mirrors ProductForm's add path; no per-button binding. */
+  function addBundleItem(btn) {
+    if (btn.disabled || btn.classList.contains('is-adding')) return;
+    var id = btn.getAttribute('data-variant-id');
+    if (!id) return;
+    btn.classList.add('is-adding');
+    var drawer = document.querySelector('cart-drawer');
+    var body = { id: Number(id), quantity: 1 };
+    if (drawer) { body.sections = ['cart-drawer']; body.sections_url = window.location.pathname; }
+    fetch(cartRoute('cart/add.js'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', Accept: 'application/javascript' },
+      body: JSON.stringify(body)
+    })
+      .then(function (res) { return res.json(); })
+      .then(function (data) {
+        if (data.status) return; // e.g. sold out — leave the button as-is
+        if (drawer && data.sections && data.sections['cart-drawer']) {
+          drawer.renderContents(data.sections['cart-drawer']);
+        } else {
+          fetch(cartRoute('cart.js')).then(function (r) { return r.json(); })
+            .then(function (c) { updateCartCount(c.item_count); }).catch(function () {});
+        }
+        btn.classList.add('is-added');
+        setTimeout(function () { btn.classList.remove('is-added'); }, 1500);
+      })
+      .catch(function () {})
+      .finally(function () { btn.classList.remove('is-adding'); });
+  }
+
+  document.addEventListener('click', function (event) {
+    var btn = event.target.closest('[data-bundle-add]');
+    if (!btn) return;
+    event.preventDefault();
+    addBundleItem(btn);
+  });
+
   function define(name, ctor) {
     if (!customElements.get(name)) customElements.define(name, ctor);
   }

@@ -1501,3 +1501,52 @@ body:has(.custom-cursor) * { cursor: none !important; }
   /* Avoid clashing with the product page's floating ATC bar on small screens. */
   .template-product .recently-viewed { display: none; }
 }
+
+/* ---------- Bundle / upsell items (snippets/bundle-item.liquid) ----------
+   Shared by the featured-product bundle (row) and the cart-drawer strip (card).
+   The [+] button flashes a check via .is-added (cart.js). */
+.bundle__item { display: flex; align-items: center; gap: var(--space-3); }
+.bundle__item--row { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+.bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; }
+.bundle__item-img { width: 60px; height: 60px; object-fit: cover; flex-shrink: 0; background: var(--color-media); border-radius: var(--image-radius, 0); }
+.bundle__item-title {
+  font-family: var(--font-heading);
+  font-size: var(--text-sm);
+  line-height: 1.25;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bundle__item-foot { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+.bundle__item-price { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); }
+.bundle__item-price .price__sale,
+.bundle__item-price .price { font-size: inherit; }
+
+.bundle__add {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--color-text);
+  background: transparent;
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
+}
+.bundle__add:hover { background: var(--color-text); color: var(--color-bg); }
+.bundle__add[disabled] { opacity: 0.35; cursor: not-allowed; }
+.bundle__add.is-adding { opacity: 0.6; pointer-events: none; }
+.bundle__add.is-added { background: var(--color-text); color: var(--color-bg); }
+.bundle__icon-added { display: none; }
+.bundle__add.is-added .bundle__icon-add { display: none; }
+.bundle__add.is-added .bundle__icon-added { display: block; }
+
+/* Card variant — vertical, used in the cart-drawer horizontal strip */
+.bundle__item--card { flex-direction: column; align-items: stretch; width: 140px; gap: var(--space-2); }
+.bundle__item--card .bundle__item-link { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.bundle__item--card .bundle__item-img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
+.bundle__item--card .bundle__item-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+.bundle__item--card .bundle__item-foot { justify-content: space-between; }

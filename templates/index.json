@@ -37,6 +37,19 @@
         "padding_bottom": 0
       }
     },
+    "featured_product": {
+      "type": "featured-product",
+      "settings": {
+        "heading": "In focus",
+        "show_vendor": true,
+        "show_trust_badges": true,
+        "show_bundle": true,
+        "bundle_heading": "Complete your purchase",
+        "color_scheme": "cream",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
     "marquee": {
       "type": "marquee",
       "settings": {
@@ -172,6 +185,7 @@
   },
   "order": [
     "hero",
+    "featured_product",
     "marquee",
     "featured",
     "editorial",

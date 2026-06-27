@@ -76,6 +76,12 @@
     "description": "Description",
     "recommendations_title": "You may also like",
     "complete_the_look": "Complete the look",
+    "featured_empty": "Select a product to feature.",
+    "trust": {
+      "shipping": "Free shipping over $150",
+      "returns": "30-day returns",
+      "secure": "Secure checkout"
+    },
     "share": "Share"
   },
   "cart": {

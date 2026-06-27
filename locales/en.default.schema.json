@@ -2770,6 +2770,28 @@
         }
       }
     },
+    "featured-product": {
+      "name": "Featured product",
+      "settings": {
+        "product": { "label": "Product" },
+        "heading": { "label": "Eyebrow heading" },
+        "show_vendor": { "label": "Show vendor" },
+        "show_trust_badges": { "label": "Show trust badges" },
+        "header__bundle": { "content": "Bundle upsell" },
+        "show_bundle": { "label": "Show bundle" },
+        "bundle_heading": { "label": "Bundle heading" },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": { "label": "Cream" },
+          "options__2": { "label": "Parchment" },
+          "options__3": { "label": "Linen" },
+          "options__4": { "label": "White" },
+          "options__5": { "label": "Inverted" }
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      }
+    },
     "brand-statement": {
       "name": "Brand statement",
       "settings": {
