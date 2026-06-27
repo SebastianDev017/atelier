@@ -4,10 +4,12 @@
  * Fully gated behind prefers-reduced-motion.
  */
 (function () {
-  /* 1. SplitText line reveal */
+  /* 1. SplitText line reveal — OPT-IN only ([data-split]). General section
+     headings are handled by initBlurReveal (blur-to-focus) so the two never
+     double-animate the same node. */
   function initSplitText() {
     if (!window.SplitText) return;
-    gsap.utils.toArray('[data-split], h1, h2, .section-heading').forEach(function (el) {
+    gsap.utils.toArray('[data-split]').forEach(function (el) {
       if (el.dataset.splitDone || el.closest('[data-no-split]') || el.hasAttribute('data-no-split')) return;
       el.dataset.splitDone = '1';
       var split = new SplitText(el, { type: 'lines', linesClass: 'split-line' });
@@ -25,6 +27,40 @@
         stagger: 0.08,
         scrollTrigger: { trigger: el, start: 'top 85%' }
       });
+    });
+  }
+
+  /* 1b. Blur-to-focus reveal — section headings sharpen + fade up on scroll.
+     The hero heading animates on load (with a delay); all others are scroll-
+     triggered. Owns every section heading EXCEPT those handled elsewhere
+     ([data-split] = SplitText, [data-fade-up] = initFadeUp, [data-brand-statement]
+     = initBrandStatement) and chrome (sidebar / cart drawer / sticky bar). Each
+     element gets a one-shot data-blurDone guard so a shopify:section:load re-init
+     never double-processes. will-change is cleared on complete to drop the layer. */
+  function initBlurReveal(scope) {
+    var root = scope || document;
+    if (!scope) {
+      var heroHeading = document.querySelector('.hero__heading, .hero h1');
+      if (heroHeading && !heroHeading.dataset.blurDone) {
+        heroHeading.dataset.blurDone = '1';
+        gsap.fromTo(heroHeading,
+          { opacity: 0, filter: 'blur(12px)', y: 10 },
+          { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'power2.out', delay: 0.3,
+            onComplete: function () { heroHeading.style.willChange = 'auto'; } });
+      }
+    }
+    gsap.utils.toArray(root.querySelectorAll('.shopify-section h1, .shopify-section h2, .shopify-section h3, .section-heading')).forEach(function (el) {
+      if (el.dataset.blurDone || el.dataset.splitDone) return;
+      if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up')) return;
+      if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, [data-brand-statement], .hero, [data-no-split]')) return;
+      el.dataset.blurDone = '1';
+      gsap.fromTo(el,
+        { opacity: 0, filter: 'blur(12px)', y: 10 },
+        {
+          opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'power2.out',
+          scrollTrigger: { trigger: el, start: 'top 88%', toggleActions: 'play none none none' },
+          onComplete: function () { el.style.willChange = 'auto'; }
+        });
     });
   }
 
@@ -210,6 +246,7 @@
     initBrandStatement();
     initHorizontalScroll();
     initSplitText();
+    initBlurReveal();
     initFadeUp();
     initImageReveal();
     initParallax();
@@ -222,4 +259,14 @@
   } else {
     init();
   }
+
+  /* Theme-editor live preview: re-run the blur reveal for the reloaded section
+     and recalc trigger positions. Scoped to e.target + the data-blurDone guard
+     so nothing double-binds. */
+  document.addEventListener('shopify:section:load', function (e) {
+    if (!window.gsap || !window.ScrollTrigger) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    initBlurReveal(e.target);
+    ScrollTrigger.refresh();
+  });
 })();

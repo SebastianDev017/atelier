@@ -80,7 +80,7 @@
     {%- endif -%}
 
     {%- if heading != blank -%}
-      <{{ heading_tag }} class="hero__heading section-heading heading--{{ heading_size }}" data-split>
+      <{{ heading_tag }} class="hero__heading section-heading heading--{{ heading_size }}">
         {{- heading | escape | newline_to_br -}}
       </{{ heading_tag }}>
     {%- endif -%}

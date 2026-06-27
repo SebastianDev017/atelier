@@ -1013,6 +1013,17 @@ footer a:hover { opacity: 0.6; }
 [data-animate-delay="4"] { --reveal-delay: 320ms; }
 [data-animate-delay="5"] { --reveal-delay: 400ms; }
 
+/* Blur-to-focus heading reveal (initBlurReveal). Only a will-change hint lives in
+   CSS — there is deliberately NO opacity/filter start state, so no-JS and
+   reduced-motion users always see crisp headings; the JS owns the hidden->visible
+   transition and clears will-change on complete. Gated on .js. */
+.js .shopify-section h1,
+.js .shopify-section h2,
+.js .shopify-section h3,
+.js .section-heading {
+  will-change: opacity, filter;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -1028,6 +1039,17 @@ footer a:hover { opacity: 0.6; }
   .js [data-animate-right] {
     opacity: 1 !important;
     transform: none !important;
+  }
+  /* init() bails before applying the blurred start state, so this is a safety
+     reset in case any baseline/inline state lingers. */
+  .js .shopify-section h1,
+  .js .shopify-section h2,
+  .js .shopify-section h3,
+  .js .section-heading {
+    opacity: 1 !important;
+    filter: none !important;
+    transform: none !important;
+    will-change: auto !important;
   }
 }
 
