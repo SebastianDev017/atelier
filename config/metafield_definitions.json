@@ -1,0 +1,13 @@
+{
+  "metafield_definitions": [
+    {
+      "name": "Edition Number",
+      "namespace": "custom",
+      "key": "edition_number",
+      "type": "single_line_text_field",
+      "description": "Display a limited edition number on the product card. Example: 024/100",
+      "owner_type": "PRODUCT",
+      "pin_to_resource": false
+    }
+  ]
+}
