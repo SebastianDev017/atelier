@@ -1,0 +1,171 @@
+{%- comment -%}
+  Maker spotlight — a sticky 55% image beside 45% editorial content (name,
+  pull-quote, material tags). Layout select flips the image side.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign layout = section.settings.layout | default: 'image_left'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="maker color-scheme--{{ scheme }} maker--{{ layout }}" data-maker-spotlight>
+  <div class="page-width maker__grid">
+    <div class="maker__media">
+      <div class="maker__media-inner" data-reveal>
+        {%- if section.settings.image != blank -%}
+          {{
+            section.settings.image
+            | image_url: width: 1200
+            | image_tag:
+              loading: 'lazy',
+              widths: '480, 640, 800, 1000, 1200',
+              sizes: '(min-width: 750px) 55vw, 100vw',
+              class: 'maker__img',
+              alt: section.settings.image.alt | default: section.settings.name | escape
+          }}
+        {%- else -%}
+          <span class="maker__img placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}</span>
+        {%- endif -%}
+      </div>
+    </div>
+
+    <div class="maker__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="maker__eyebrow eyebrow" data-fade-up>{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+      {%- if section.settings.name != blank -%}
+        <h2 class="maker__name h2" data-split>{{ section.settings.name | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.quote != blank -%}
+        <blockquote class="maker__quote" data-fade-up>{{ section.settings.quote }}</blockquote>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <ul class="maker__materials" data-fade-up>
+          {%- for block in section.blocks -%}
+            {%- if block.settings.label != blank -%}
+              <li class="maker__tag" {{ block.shopify_attributes }}>{{ block.settings.label | escape }}</li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+
+      {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+        <a class="btn btn--outline maker__cta" href="{{ section.settings.cta_url }}" data-fade-up>{{ section.settings.cta_label | escape }}</a>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .maker { padding-block: var(--pt, var(--space-24)) var(--pb, var(--space-24)); }
+  .maker__grid {
+    display: grid;
+    grid-template-columns: 55% 45%;
+    gap: var(--space-12);
+    align-items: start;
+  }
+  .maker--image_right .maker__media { order: 2; }
+  .maker__media-inner {
+    position: sticky;
+    top: var(--space-8);
+    overflow: hidden;
+    aspect-ratio: 4 / 5;
+    background-color: var(--color-media);
+  }
+  .maker__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .maker__content { display: flex; flex-direction: column; gap: var(--space-5); padding-block: var(--space-8); }
+  .maker__eyebrow { color: var(--color-muted); }
+  .maker__name { margin: 0; }
+  .maker__quote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.4rem, 2.4vw, 2.1rem);
+    font-weight: 300;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--color-text);
+  }
+  .maker__materials { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--space-2); }
+  .maker__tag {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 0.4em 0.8em;
+    border-radius: var(--radius-pill, 0);
+  }
+  .maker__cta { align-self: flex-start; margin-top: var(--space-2); }
+  @media (max-width: 749px) {
+    .maker__grid { grid-template-columns: 1fr; gap: var(--space-6); }
+    .maker--image_right .maker__media { order: 0; }
+    .maker__media-inner { position: relative; top: 0; }
+    .maker__content { padding-block: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.maker-spotlight.name",
+  "tag": "section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "t:sections.maker-spotlight.settings.image.label" },
+    {
+      "type": "select",
+      "id": "layout",
+      "label": "t:sections.maker-spotlight.settings.layout.label",
+      "options": [
+        { "value": "image_left", "label": "t:sections.maker-spotlight.settings.layout.options__1.label" },
+        { "value": "image_right", "label": "t:sections.maker-spotlight.settings.layout.options__2.label" }
+      ],
+      "default": "image_left"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:sections.maker-spotlight.settings.eyebrow.label", "default": "The maker" },
+    { "type": "text", "id": "name", "label": "t:sections.maker-spotlight.settings.name.label", "default": "Elsa Lindqvist" },
+    { "type": "richtext", "id": "quote", "label": "t:sections.maker-spotlight.settings.quote.label", "default": "<p>“I work the way my grandmother did — slowly, and only with what the season gives.”</p>" },
+    { "type": "text", "id": "cta_label", "label": "t:sections.maker-spotlight.settings.cta_label.label", "default": "Meet the makers" },
+    { "type": "url", "id": "cta_url", "label": "t:sections.maker-spotlight.settings.cta_url.label" },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.maker-spotlight.settings.color_scheme.label",
+      "options": [
+        { "value": "cream", "label": "t:sections.maker-spotlight.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.maker-spotlight.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.maker-spotlight.settings.color_scheme.options__3.label" },
+        { "value": "invert", "label": "t:sections.maker-spotlight.settings.color_scheme.options__4.label" }
+      ],
+      "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.maker-spotlight.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.maker-spotlight.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "material",
+      "name": "t:sections.maker-spotlight.blocks.material.name",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:sections.maker-spotlight.blocks.material.settings.label.label", "default": "Stoneware" }
+      ]
+    }
+  ],
+  "max_blocks": 8,
+  "presets": [
+    {
+      "name": "t:sections.maker-spotlight.name",
+      "blocks": [
+        { "type": "material", "settings": { "label": "Stoneware" } },
+        { "type": "material", "settings": { "label": "Hand-thrown" } },
+        { "type": "material", "settings": { "label": "Lead-free glaze" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

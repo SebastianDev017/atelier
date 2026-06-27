@@ -2700,6 +2700,39 @@
         "enabled": { "label": "Enable command palette search" }
       }
     },
+    "maker-spotlight": {
+      "name": "Maker spotlight",
+      "settings": {
+        "image": { "label": "Image" },
+        "layout": {
+          "label": "Layout",
+          "options__1": { "label": "Image left" },
+          "options__2": { "label": "Image right" }
+        },
+        "eyebrow": { "label": "Eyebrow" },
+        "name": { "label": "Maker name" },
+        "quote": { "label": "Quote" },
+        "cta_label": { "label": "Button label" },
+        "cta_url": { "label": "Button link" },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": { "label": "Cream" },
+          "options__2": { "label": "Parchment" },
+          "options__3": { "label": "Linen" },
+          "options__4": { "label": "Invert" }
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      },
+      "blocks": {
+        "material": {
+          "name": "Material tag",
+          "settings": {
+            "label": { "label": "Tag label" }
+          }
+        }
+      }
+    },
     "brand-statement": {
       "name": "Brand statement",
       "settings": {
