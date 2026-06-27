@@ -9,6 +9,7 @@
 
   gsap.registerPlugin(ScrollTrigger);
   if (window.SplitText) gsap.registerPlugin(SplitText);
+  if (window.Flip) gsap.registerPlugin(Flip);
 
   /* Smooth scroll (Lenis) — single instance, owned here. Skipped in the theme
      editor (Lenis fights the editor) and when the merchant disables it. */

@@ -133,6 +133,9 @@
     "clear_all": "Clear all",
     "apply": "Apply",
     "filter_and_sort": "Filter and sort",
+    "view_as": "View as",
+    "view_grid": "Grid view",
+    "view_list": "List view",
     "results_count": {
       "one": "{{ count }} result",
       "other": "{{ count }} results"
