@@ -163,6 +163,16 @@
         "label": "t:settings_schema.colors.settings.button_text_color.label"
       },
       {
+        "type": "select",
+        "id": "button_style",
+        "label": "t:settings_schema.colors.settings.button_style.label",
+        "options": [
+          { "value": "filled", "label": "t:settings_schema.colors.settings.button_style.options__1.label" },
+          { "value": "outlined", "label": "t:settings_schema.colors.settings.button_style.options__2.label" }
+        ],
+        "default": "filled"
+      },
+      {
         "type": "color",
         "id": "color_text_heading",
         "label": "t:settings_schema.colors.settings.color_text_heading.label",

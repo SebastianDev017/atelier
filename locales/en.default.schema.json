@@ -2674,6 +2674,11 @@
         "button_text_color": {
           "label": "Button label"
         },
+        "button_style": {
+          "label": "Button style",
+          "options__1": { "label": "Filled" },
+          "options__2": { "label": "Outlined" }
+        },
         "color_text_heading": {
           "label": "Heading color",
           "info": "Overrides the color scheme heading color"
