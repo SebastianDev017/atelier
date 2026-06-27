@@ -247,6 +247,9 @@
      wide min-content (long title word, breadcrumb, variant value), which would
      push the two-column total past the content width and overflow the right edge. */
   .product__media-col, .product__details-col { min-width: 0; }
+  /* With the columns pinned to their track, a very long title / SKU / word breaks
+     onto the next line instead of overflowing the info panel to the right. */
+  .product__title, .product__details { overflow-wrap: break-word; }
   .product__details { display: flex; flex-direction: column; gap: var(--space-5); }
   .product__title { letter-spacing: var(--tracking-tight); }
   .product__price { display: flex; flex-direction: column; gap: var(--space-1); }
