@@ -8,7 +8,7 @@
   function initSplitText() {
     if (!window.SplitText) return;
     gsap.utils.toArray('[data-split], h1, h2, .section-heading').forEach(function (el) {
-      if (el.dataset.splitDone) return;
+      if (el.dataset.splitDone || el.closest('[data-no-split]') || el.hasAttribute('data-no-split')) return;
       el.dataset.splitDone = '1';
       var split = new SplitText(el, { type: 'lines', linesClass: 'split-line' });
       /* Wrap each line in an overflow-hidden mask so the yPercent:110 start is clipped. */
@@ -120,10 +120,29 @@
     if (trust) tl.from(trust, { opacity: 0 }, 0.8);
   }
 
+  /* Brand statement — pinned, scrubbed word-by-word reveal (opacity 0.1 -> 1). */
+  function initBrandStatement() {
+    if (window.Shopify && window.Shopify.designMode) return;
+    if (!window.SplitText) return;
+    gsap.utils.toArray('[data-brand-statement]').forEach(function (section) {
+      var heading = section.querySelector('.brand-statement__heading');
+      if (!heading) return;
+      var split = new SplitText(heading, { type: 'words', wordsClass: 'bs-word' });
+      gsap.set(split.words, { opacity: 0.1 });
+      var tl = gsap.timeline({
+        scrollTrigger: { trigger: section, start: 'top top', end: '+=100%', pin: true, scrub: 1 }
+      });
+      tl.to(split.words, { opacity: 1, stagger: 0.1, ease: 'none' });
+      var sub = section.querySelector('.brand-statement__sub');
+      if (sub) { gsap.set(sub, { opacity: 0 }); tl.to(sub, { opacity: 1, duration: 0.3 }); }
+    });
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     initHero();
+    initBrandStatement();
     initSplitText();
     initFadeUp();
     initImageReveal();

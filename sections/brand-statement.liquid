@@ -1,0 +1,75 @@
+{%- comment -%}
+  Brand statement — full-viewport pinned section, pure display type. As the user
+  scrolls through, the heading reveals word-by-word (opacity 0.1 → 1) via a
+  pinned, scrubbed GSAP timeline (initBrandStatement in gsap-animations.js).
+  data-no-split keeps the generic SplitText (h2 target) off this heading.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign heading = section.settings.heading | default: 'Considered objects for the modern home'
+-%}
+
+<div class="brand-statement section--full-bleed color-scheme--{{ scheme }}" data-brand-statement>
+  <div class="brand-statement__inner page-width">
+    <h2 class="brand-statement__heading" data-no-split>{{ heading | escape | newline_to_br }}</h2>
+    {%- if section.settings.subheading != blank -%}
+      <p class="brand-statement__sub">{{ section.settings.subheading | escape }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .brand-statement {
+    min-height: 100dvh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+  }
+  .brand-statement__inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(2rem, 5vw, 4rem);
+  }
+  .brand-statement__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 12vw, 13rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.03em;
+    max-width: 16ch;
+    margin: 0;
+  }
+  .brand-statement__sub {
+    font-size: var(--text-md);
+    color: var(--color-muted);
+    max-width: 44ch;
+    margin: 0;
+  }
+  .brand-statement .bs-word { display: inline-block; }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Brand statement",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Considered objects\nfor the modern home", "info": "Line breaks are preserved." },
+    { "type": "text", "id": "subheading", "label": "Supporting line", "default": "Made in small batches, designed to last a lifetime." },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ], "default": "invert"
+    }
+  ],
+  "presets": [ { "name": "Brand statement" } ]
+}
+{% endschema %}
