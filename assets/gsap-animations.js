@@ -138,11 +138,40 @@
     });
   }
 
+  /* Horizontal-scroll rail — desktop only (gsap.matchMedia); mobile uses native
+     CSS scroll-snap. Distance is function-based + invalidateOnRefresh = resize-safe. */
+  function initHorizontalScroll() {
+    if (window.Shopify && window.Shopify.designMode) return;
+    gsap.utils.toArray('[data-horizontal-scroll]').forEach(function (section) {
+      var track = section.querySelector('.hs__track');
+      if (!track) return;
+      var mm = gsap.matchMedia();
+      mm.add('(min-width: 768px)', function () {
+        var distance = function () { return Math.max(0, track.scrollWidth - section.offsetWidth); };
+        if (distance() <= 0) return;
+        gsap.to(track, {
+          x: function () { return -distance(); },
+          ease: 'none',
+          scrollTrigger: {
+            trigger: section,
+            start: 'top top',
+            end: function () { return '+=' + distance(); },
+            pin: true,
+            scrub: 1,
+            invalidateOnRefresh: true
+          }
+        });
+        return function () { gsap.set(track, { x: 0 }); };
+      });
+    });
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     initHero();
     initBrandStatement();
+    initHorizontalScroll();
     initSplitText();
     initFadeUp();
     initImageReveal();

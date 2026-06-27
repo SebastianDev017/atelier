@@ -1,0 +1,134 @@
+{%- comment -%}
+  Horizontal-scroll collection — a product rail pinned during vertical scroll;
+  the track slides right-to-left (GSAP pin + scrub, initHorizontalScroll). On
+  mobile (<768px) GSAP is skipped and the rail becomes a native scroll-snap
+  carousel. Discovery-focused cards: image + title + price, no quick-add.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign aspect = section.settings.card_aspect | default: 'portrait'
+  assign count = section.settings.products_count | default: 6
+  assign collection = collections[section.settings.collection]
+  assign products = collection.products
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; }
+</style>
+
+<div class="section-wrapper color-scheme--{{ scheme }}">
+  <div class="hs" data-horizontal-scroll>
+    {%- if section.settings.heading != blank -%}
+      <div class="hs__head page-width"><span class="hs__eyebrow eyebrow">{{ section.settings.heading | escape }}</span></div>
+    {%- endif -%}
+
+    <div class="hs__viewport">
+      <div class="hs__track hs__track--{{ aspect }}">
+        {%- if products.size > 0 -%}
+          {%- for product in products limit: count -%}
+            {%- assign card_alt = product.featured_media.alt | default: product.title | escape -%}
+            <a class="hs-card" href="{{ product.url }}">
+              <div class="hs-card__media">
+                {%- if product.featured_media -%}
+                  {{ product.featured_media | image_url: width: 760 | image_tag:
+                    loading: 'lazy', widths: '300, 500, 760', sizes: '(min-width: 768px) 30vw, 80vw',
+                    alt: card_alt, class: 'hs-card__img' }}
+                {%- else -%}
+                  {{ 'product-1' | placeholder_svg_tag: 'hs-card__img placeholder' }}
+                {%- endif -%}
+              </div>
+              <div class="hs-card__info">
+                <h3 class="hs-card__title">{{ product.title | escape }}</h3>
+                {% render 'price', product: product %}
+              </div>
+            </a>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..count) -%}
+            <div class="hs-card">
+              <div class="hs-card__media">{{ 'product-1' | placeholder_svg_tag: 'hs-card__img placeholder' }}</div>
+              <div class="hs-card__info"><h3 class="hs-card__title">Product title</h3><span class="price">$0.00</span></div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .hs {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: clamp(2rem, 5vw, 4rem);
+    overflow: hidden;
+  }
+  .hs__eyebrow { display: block; }
+  .hs__viewport { width: 100%; overflow: hidden; }
+  .hs__track {
+    display: flex;
+    gap: clamp(1rem, 2vw, 2rem);
+    padding-inline: var(--page-gutter, 1.5rem);
+    width: max-content;
+    will-change: transform;
+  }
+  .hs-card { flex: 0 0 clamp(15rem, 30vw, 24rem); text-decoration: none; color: inherit; display: block; }
+  .hs-card__media {
+    overflow: hidden;
+    background-color: var(--color-subtle);
+    border-radius: var(--image-radius, 0);
+    transition: box-shadow 0.5s ease;
+  }
+  .hs-card__img { width: 100%; aspect-ratio: 2 / 3; object-fit: cover; display: block; transition: transform 0.6s ease; }
+  .hs__track--square .hs-card__img { aspect-ratio: 1 / 1; }
+  .hs-card:hover .hs-card__img { transform: scale(1.03); }
+  .hs-card:hover .hs-card__media { box-shadow: 0 20px 50px rgba(44, 24, 16, 0.18); }
+  .hs-card__info { display: flex; flex-direction: column; gap: var(--space-1); padding-top: var(--space-3); }
+  .hs-card__title { font-family: var(--font-heading); font-size: var(--text-md); font-weight: var(--font-heading-weight); }
+
+  /* Mobile: GSAP skipped — native scroll-snap carousel */
+  @media (max-width: 767px) {
+    .hs { min-height: auto; padding-block: var(--pt, 96px) var(--pb, 96px); }
+    .hs__viewport {
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .hs__viewport::-webkit-scrollbar { display: none; }
+    .hs-card { flex-basis: 78vw; scroll-snap-align: start; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Horizontal scroll",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "Eyebrow heading", "default": "Featured pieces" },
+    { "type": "collection", "id": "collection", "label": "Collection" },
+    { "type": "range", "id": "products_count", "min": 4, "max": 8, "step": 1, "label": "Products to show", "default": 6 },
+    {
+      "type": "select", "id": "card_aspect", "label": "Card shape",
+      "options": [ { "value": "portrait", "label": "Portrait (2:3)" }, { "value": "square", "label": "Square" } ],
+      "default": "portrait"
+    },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ], "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top padding", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom padding", "default": 96 }
+  ],
+  "presets": [ { "name": "Horizontal scroll" } ]
+}
+{% endschema %}
