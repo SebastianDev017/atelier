@@ -39,15 +39,16 @@
   <div class="page-width">
     {%- if review_count > 0 -%}
       {%- liquid
+        # Metaobject fields are accessed via .value (bare access returns a drop).
         assign rating_total = 0
+        assign valid_count = 0
         assign c5 = 0
         assign c4 = 0
         assign c3 = 0
         assign c2 = 0
         assign c1 = 0
         for review in reviews
-          assign rv = review.rating | plus: 0
-          assign rating_total = rating_total | plus: rv
+          assign rv = review.rating.value | plus: 0
           case rv
             when 5
               assign c5 = c5 | plus: 1
@@ -57,11 +58,18 @@
               assign c3 = c3 | plus: 1
             when 2
               assign c2 = c2 | plus: 1
-            else
+            when 1
               assign c1 = c1 | plus: 1
+            else
+              continue
           endcase
+          assign rating_total = rating_total | plus: rv
+          assign valid_count = valid_count | plus: 1
         endfor
-        assign average = rating_total | times: 1.0 | divided_by: review_count | round: 1
+        assign average = 0
+        if valid_count > 0
+          assign average = rating_total | times: 1.0 | divided_by: valid_count | round: 1
+        endif
       -%}
 
       <header class="reviews__header">
@@ -90,7 +98,10 @@
                 else
                   assign lc = c1
               endcase
-              assign pct = lc | times: 100 | divided_by: review_count
+              assign pct = 0
+              if valid_count > 0
+                assign pct = lc | times: 100.0 | divided_by: valid_count | round
+              endif
             -%}
             <div class="reviews__bar">
               <span class="reviews__bar-label">{{ level }}★</span>
@@ -105,13 +116,13 @@
         {%- for review in reviews limit: section.settings.reviews_per_page -%}
           <li class="review">
             <div class="review__top">
-              {% render 'stars', rating: review.rating %}
-              <span class="review__author">{{ review.author }}</span>
-              {%- if review.verified -%}<span class="review__verified">{{ 'products.reviews.verified' | t }}</span>{%- endif -%}
-              {%- if review.created_date -%}<span class="review__date">{{ review.created_date | date: '%B %Y' }}</span>{%- endif -%}
+              {% render 'stars', rating: review.rating.value %}
+              <span class="review__author">{{ review.author.value }}</span>
+              {%- if review.verified.value -%}<span class="review__verified">{{ 'products.reviews.verified' | t }}</span>{%- endif -%}
+              {%- if review.created_date.value -%}<span class="review__date">{{ review.created_date.value | date: '%B %Y' }}</span>{%- endif -%}
             </div>
-            {%- if review.body != blank -%}<p class="review__body">{{ review.body }}</p>{%- endif -%}
-            <div class="review__helpful" data-review-helpful="{{ product.id }}-{{ forloop.index }}">
+            {%- if review.body.value != blank -%}<p class="review__body">{{ review.body.value }}</p>{%- endif -%}
+            <div class="review__helpful" data-review-helpful="{{ product.id }}-{{ review.system.id | default: forloop.index }}">
               <span class="review__helpful-label">{{ 'products.reviews.helpful' | t }}</span>
               <button type="button" class="review__helpful-btn" data-helpful="yes">{{ 'products.reviews.helpful_yes' | t }}</button>
               <button type="button" class="review__helpful-btn" data-helpful="no">{{ 'products.reviews.helpful_no' | t }}</button>
