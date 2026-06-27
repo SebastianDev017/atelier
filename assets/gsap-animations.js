@@ -51,7 +51,10 @@
     }
     gsap.utils.toArray(root.querySelectorAll('.shopify-section h1, .shopify-section h2, .shopify-section h3, .section-heading')).forEach(function (el) {
       if (el.dataset.blurDone || el.dataset.splitDone) return;
-      if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up')) return;
+      /* Skip headings owned by another reveal system or that are utility labels:
+         data-split (SplitText), data-fade-up (initFadeUp), .reveal-lines (CSS
+         line-reveal), .eyebrow (small footer/section labels, not display headings). */
+      if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up') || el.classList.contains('reveal-lines') || el.classList.contains('eyebrow')) return;
       if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, [data-brand-statement], .hero, [data-no-split]')) return;
       el.dataset.blurDone = '1';
       gsap.fromTo(el,
@@ -144,7 +147,7 @@
   }
 
   /* Hero entrance timeline — tag in first, then subtext / actions / trust.
-     The headline reveals separately via initSplitText (data-split). */
+     The headline reveals separately via initBlurReveal's hero branch. */
   function initHero() {
     var hero = document.querySelector('[data-hero]');
     if (!hero) return;

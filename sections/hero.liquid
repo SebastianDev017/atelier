@@ -1,10 +1,12 @@
 {%- comment -%}
   Editorial hero — split (40% content / 60% media) or full-bleed overlay,
   configurable via the `layout` setting. Media supports image or autoplay
-  muted-loop video, with GSAP parallax + clip-path reveal. The headline uses
-  data-split for the GSAP SplitText line reveal; the entrance timeline lives in
-  assets/gsap-animations.js (initHero). Reduced-motion: GSAP is gated off there,
-  so everything stays visible.
+  muted-loop video, with a clip-path reveal + (full-bleed only) GSAP parallax.
+  Parallax is full-bleed-only because that layout buffers the media (inset:-12%)
+  to absorb the drift; the split media has no buffer, so it would expose a gap.
+  The headline reveals via initBlurReveal's hero branch (blur-to-focus on load);
+  the rest of the entrance timeline lives in assets/gsap-animations.js (initHero).
+  Reduced-motion: GSAP is gated off there, so everything stays visible.
 {%- endcomment -%}
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
@@ -50,7 +52,7 @@
 </style>
 
 {%- capture hero_media -%}
-  <div class="hero__media" data-parallax="-8" data-reveal>
+  <div class="hero__media"{% if layout != 'split' %} data-parallax="-8"{% endif %} data-reveal>
     {%- if video_url != blank -%}
       <video class="hero__video" autoplay muted loop playsinline preload="metadata"
         {% if image != blank %}poster="{{ image | image_url: width: 1500 }}"{% endif %}>
