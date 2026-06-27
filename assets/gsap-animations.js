@@ -181,11 +181,32 @@
     });
   }
 
+  /* Cursor pan — product-card images drift toward the cursor (max 6px). Delegated
+     so AJAX-filtered cards (facet-form) pick it up too. Disabled on touch. */
+  function initCursorPan() {
+    if (window.matchMedia('(pointer: coarse)').matches) return;
+    var MAX = 6;
+    document.addEventListener('mousemove', function (e) {
+      var pan = e.target.closest && e.target.closest('[data-card-pan]');
+      if (!pan) return;
+      var r = pan.parentNode.getBoundingClientRect();
+      var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
+      var ny = ((e.clientY - r.top) / r.height - 0.5) * 2;
+      gsap.to(pan, { x: nx * MAX, y: ny * MAX, duration: 0.4, ease: 'power3.out', overwrite: 'auto' });
+    });
+    document.addEventListener('mouseout', function (e) {
+      var pan = e.target.closest && e.target.closest('[data-card-pan]');
+      if (!pan || pan.contains(e.relatedTarget)) return;
+      gsap.to(pan, { x: 0, y: 0, duration: 0.5, ease: 'power3.out', overwrite: 'auto' });
+    });
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     initHero();
     initScrollProgress();
+    initCursorPan();
     initBrandStatement();
     initHorizontalScroll();
     initSplitText();

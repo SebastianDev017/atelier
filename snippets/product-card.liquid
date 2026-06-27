@@ -64,6 +64,7 @@
 
 <div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card data-reveal>
   <div class="product-card__media">
+    <div class="product-card__pan" data-card-pan>
     {%- if primary -%}
       {{
         primary
@@ -95,6 +96,7 @@
         {{- 'product-1' | placeholder_svg_tag: 'placeholder' -}}
       </span>
     {%- endif -%}
+    </div>
 
     <div class="product-card__badges">
       {%- if on_sale -%}

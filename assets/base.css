@@ -732,6 +732,18 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
   aspect-ratio: var(--ratio-product);
   background-color: var(--color-media);
 }
+/* Pan wrapper — slightly larger than the media so GSAP cursor-pan (initCursorPan)
+   can translate the images a few px without exposing the media background. The
+   scale-on-hover transforms live on the images inside, so translate (here) and
+   scale (images) never fight over the same element's transform. */
+.product-card__pan {
+  position: absolute;
+  top: -3%;
+  left: -3%;
+  width: 106%;
+  height: 106%;
+  will-change: transform;
+}
 .product-card__image {
   position: absolute;
   inset: 0;
