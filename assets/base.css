@@ -954,21 +954,20 @@ footer a:hover { opacity: 0.6; }
    Only applies when JS is on (html.js). reduced-motion + designMode
    reveal immediately. Sections add data-animate / -scale / -left /
    -right and an optional data-animate-delay 1-5. JS adds .is-visible. */
+/* Legacy IntersectionObserver reveals — DISABLED. GSAP (gsap-animations.js)
+   owns scroll reveals now; these stay visible so nothing is stuck hidden. */
 .js [data-animate],
 .js [data-animate-scale],
 .js [data-animate-left],
 .js [data-animate-right] {
-  opacity: 0;
-  transition: opacity var(--duration-slow) var(--ease-out),
-              transform var(--duration-slow) var(--ease-out);
-  transition-duration: calc(var(--duration-slow) * var(--animation-speed, 1));
-  transition-delay: var(--reveal-delay, 0ms);
-  will-change: opacity, transform;
+  opacity: 1;
+  transform: none;
 }
-.js [data-animate] { transform: translateY(1.75rem); }
-.js [data-animate-scale] { transform: scale(1.04); transition-duration: calc(var(--duration-slower) * var(--animation-speed, 1)); }
-.js [data-animate-left] { transform: translateX(-2rem); }
-.js [data-animate-right] { transform: translateX(2rem); }
+
+/* GSAP SplitText line reveal: each line sits in an overflow-hidden mask so the
+   yPercent:110 start is clipped until it animates up. */
+.line-mask { display: block; overflow: hidden; }
+.split-line { display: block; }
 
 .js [data-animate].is-visible,
 .js [data-animate-scale].is-visible,
@@ -1176,8 +1175,7 @@ body:has(.custom-cursor) * { cursor: none !important; }
 .reveal-lines { overflow: hidden; }
 .reveal-lines .line {
   display: block;
-  transform: translateY(105%);
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1);
+  transform: none;
 }
 .reveal-lines.is-visible .line { transform: translateY(0); }
 .reveal-lines .line:nth-child(2) { transition-delay: 80ms; }

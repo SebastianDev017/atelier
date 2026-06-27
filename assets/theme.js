@@ -524,7 +524,8 @@
 
   function boot() {
     initLoader();
-    new ScrollAnimator();
+    /* ScrollAnimator (IntersectionObserver reveals) disabled — GSAP
+       (assets/gsap-animations.js) owns all scroll reveals now. */
     define('quantity-input', QuantityInput);
     define('header-component', HeaderComponent);
     define('facet-form', FacetForm);
