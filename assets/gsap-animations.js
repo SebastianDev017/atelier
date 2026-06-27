@@ -93,13 +93,16 @@
   function initCounters() {
     gsap.utils.toArray('[data-counter]').forEach(function (el) {
       var target = parseFloat(el.dataset.counter) || 0;
+      var decimals = el.dataset.counter.indexOf('.') > -1 ? 1 : 0;
       var obj = { val: 0 };
       gsap.to(obj, {
         val: target,
         duration: 2,
         ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 85%' },
-        onUpdate: function () { el.textContent = Math.round(obj.val).toLocaleString(); }
+        onUpdate: function () {
+          el.textContent = decimals ? obj.val.toFixed(decimals) : Math.round(obj.val).toLocaleString();
+        }
       });
     });
   }

@@ -1,0 +1,104 @@
+{%- comment -%}
+  Stats bar — a horizontal band of 3-4 figures that count up on scroll enter
+  (data-counter, handled by initCounters in gsap-animations.js). The number is
+  rendered as its final value so reduced-motion / no-JS shows the real figure;
+  data-counter holds the comma-stripped numeric for the animation.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; }
+</style>
+
+<div class="section-wrapper color-scheme--{{ scheme }}">
+  <dl class="stats-bar section__inner">
+    {%- for i in (1..4) -%}
+      {%- liquid
+        assign num_key = 'stat_' | append: i | append: '_number'
+        assign suf_key = 'stat_' | append: i | append: '_suffix'
+        assign lab_key = 'stat_' | append: i | append: '_label'
+        assign number = section.settings[num_key]
+        assign suffix = section.settings[suf_key]
+        assign label = section.settings[lab_key]
+        assign counter_val = number | remove: ','
+      -%}
+      {%- if number != blank -%}
+        <div class="stat">
+          <dt class="stat__value">
+            <span class="stat__num" data-counter="{{ counter_val }}">{{ number | escape }}</span>
+            {%- if suffix != blank -%}<span class="stat__suffix">{{ suffix | escape }}</span>{%- endif -%}
+          </dt>
+          <dd class="stat__label">{{ label | escape }}</dd>
+        </div>
+      {%- endif -%}
+    {%- endfor -%}
+  </dl>
+</div>
+
+{% stylesheet %}
+  .stats-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 4vw, 3rem);
+    padding-block: var(--pt, 80px) var(--pb, 80px);
+    margin: 0;
+    text-align: center;
+  }
+  .stat__value { display: flex; align-items: baseline; justify-content: center; gap: 0.05em; margin: 0; }
+  .stat__num, .stat__suffix {
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -0.02em;
+  }
+  .stat__label {
+    margin: var(--space-3) 0 0;
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: var(--tracking-label);
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+  @media (max-width: 749px) {
+    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: var(--space-7) var(--space-4); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Stats bar",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "paragraph", "content": "Enter plain numbers (e.g. 1240) so they count up. Use the suffix for + or k or %." },
+    { "type": "text", "id": "stat_1_number", "label": "Stat 1 number", "default": "1240" },
+    { "type": "text", "id": "stat_1_suffix", "label": "Stat 1 suffix", "default": "+" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Objects" },
+    { "type": "text", "id": "stat_2_number", "label": "Stat 2 number", "default": "24" },
+    { "type": "text", "id": "stat_2_suffix", "label": "Stat 2 suffix" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Makers" },
+    { "type": "text", "id": "stat_3_number", "label": "Stat 3 number", "default": "98" },
+    { "type": "text", "id": "stat_3_suffix", "label": "Stat 3 suffix", "default": "%" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Recycled or natural" },
+    { "type": "text", "id": "stat_4_number", "label": "Stat 4 number", "default": "4.9" },
+    { "type": "text", "id": "stat_4_suffix", "label": "Stat 4 suffix" },
+    { "type": "text", "id": "stat_4_label", "label": "Stat 4 label", "default": "Average rating" },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ], "default": "parchment"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top padding", "default": 80 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom padding", "default": 80 }
+  ],
+  "presets": [ { "name": "Stats bar" } ]
+}
+{% endschema %}
