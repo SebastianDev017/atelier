@@ -114,6 +114,15 @@
       document.documentElement.classList.add('no-scroll');
       var focusTarget = this.querySelector('[data-drawer-close]');
       if (A.trapFocus) A.trapFocus(this.querySelector('.cart-drawer__panel'), focusTarget);
+      this.animateItems();
+    };
+
+    /* GSAP line-item stagger on open — additive polish over the CSS panel slide,
+       so it degrades gracefully without GSAP and under prefers-reduced-motion. */
+    CartDrawer.prototype.animateItems = function () {
+      if (!window.gsap || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var items = this.querySelectorAll('[data-cart-item]');
+      if (items.length) gsap.from(items, { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out', stagger: 0.06, delay: 0.1 });
     };
 
     CartDrawer.prototype.close = function () {
