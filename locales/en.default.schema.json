@@ -1749,6 +1749,9 @@
         "update_url": {
           "label": "Update URL on variant change"
         },
+        "show_floating_atc": {
+          "label": "Show floating add-to-cart bar"
+        },
         "color_scheme": {
           "label": "Color scheme",
           "options__1": {

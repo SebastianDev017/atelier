@@ -204,7 +204,8 @@
     {{ product.variants | json }}
   </script>
 
-  {%- comment -%} Mobile sticky add to cart {%- endcomment -%}
+  {%- comment -%} Floating sticky add-to-cart — appears when the main ATC scrolls out of view (product.js IntersectionObserver). {%- endcomment -%}
+  {%- if section.settings.show_floating_atc -%}
   <div class="product__sticky" data-product-sticky>
     <div class="product__sticky-inner page-width">
       <div class="product__sticky-info">
@@ -223,6 +224,7 @@
       </button>
     </div>
   </div>
+  {%- endif -%}
 </product-info>
 
 <script src="{{ 'product.js' | asset_url }}" defer></script>
@@ -322,7 +324,9 @@
   @media (min-width: 990px) {
     .product__grid { grid-template-columns: var(--product-media-width, 55%) 1fr; gap: var(--space-16); }
     .product__media-col { position: relative; }
-    .product__sticky { display: none; }
+    /* Phase H — the floating bar shows on desktop too (slim bottom bar). */
+    .product__sticky-info { flex-direction: row; align-items: baseline; gap: var(--space-4); }
+    .product__sticky .btn { min-width: 220px; }
   }
 {% endstylesheet %}
 
@@ -410,6 +414,12 @@
       "type": "checkbox",
       "id": "update_url",
       "label": "t:sections.main-product.settings.update_url.label",
+      "default": true
+    },
+    {
+      "type": "checkbox",
+      "id": "show_floating_atc",
+      "label": "t:sections.main-product.settings.show_floating_atc.label",
       "default": true
     },
     {
