@@ -131,6 +131,7 @@
 
     {%- if menu != blank -%}
       <nav class="sidebar__nav" aria-label="{{ 'general.menu' | t }}">
+        <div class="sidebar__progress-track" aria-hidden="true"><div class="sidebar__progress-fill"></div></div>
         {% render 'header-menu', menu: menu, section_id: section.id %}
       </nav>
     {%- endif -%}
@@ -229,7 +230,23 @@
     gap: var(--space-3);
   }
 
-  .sidebar__nav { flex: 1 1 auto; }
+  .sidebar__nav { flex: 1 1 auto; position: relative; padding-left: var(--space-4); }
+  /* Real-time scroll-progress line down the nav (GSAP initScrollProgress). */
+  .sidebar__progress-track {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: var(--color-border);
+  }
+  .sidebar__progress-fill {
+    position: absolute;
+    inset: 0;
+    background: var(--color-text);
+    transform: scaleY(0);
+    transform-origin: top center;
+  }
 
   /* ---------- Numbered index navigation ---------- */
   .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-6); }

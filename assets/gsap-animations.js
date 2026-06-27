@@ -169,10 +169,23 @@
     });
   }
 
+  /* Sidebar scroll-progress line — fills top->bottom with page scroll. */
+  function initScrollProgress() {
+    var fill = document.querySelector('.sidebar__progress-fill');
+    if (!fill) return;
+    gsap.to(fill, {
+      scaleY: 1,
+      ease: 'none',
+      transformOrigin: 'top center',
+      scrollTrigger: { trigger: 'body', start: 'top top', end: 'bottom bottom', scrub: 0.3 }
+    });
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
     initHero();
+    initScrollProgress();
     initBrandStatement();
     initHorizontalScroll();
     initSplitText();
