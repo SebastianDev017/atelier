@@ -1,0 +1,156 @@
+{%- comment -%}
+  Editorial feature — tall 3/4 portrait image (GSAP clip-path reveal + parallax)
+  beside a content column that sticks while the image scrolls past. Optional
+  3-stat row. image_position reverses the columns. Mobile: image first, stacked.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign pos = section.settings.image_position | default: 'left'
+  assign ef_alt = section.settings.image.alt | escape
+  assign has_cta = false
+  if section.settings.cta_label != blank and section.settings.cta_url != blank
+    assign has_cta = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; }
+</style>
+
+<div class="section-wrapper color-scheme--{{ scheme }}">
+  <div class="ef section__inner ef--img-{{ pos }}">
+    <div class="ef__media" data-reveal data-parallax="-10">
+      {%- if section.settings.image != blank -%}
+        {{ section.settings.image | image_url: width: 1200 | image_tag:
+          loading: 'lazy', widths: '450, 700, 900, 1200',
+          sizes: '(min-width: 750px) 50vw, 100vw',
+          alt: ef_alt, class: 'ef__image' }}
+      {%- else -%}
+        {{ 'lifestyle-1' | placeholder_svg_tag: 'ef__image placeholder-svg' }}
+      {%- endif -%}
+    </div>
+
+    <div class="ef__content">
+      {%- if section.settings.eyebrow != blank -%}
+        <span class="ef__eyebrow eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <h2 class="ef__heading section-heading" data-split>{{ section.settings.heading | escape }}</h2>
+      {%- endif -%}
+      {%- if section.settings.description != blank -%}
+        <div class="ef__text section-text rte">{{ section.settings.description }}</div>
+      {%- endif -%}
+      {%- if has_cta -%}
+        <a class="ef__cta btn btn--outline" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label | escape }}</a>
+      {%- endif -%}
+
+      {%- if section.settings.show_stats -%}
+        <dl class="ef__stats">
+          {%- for i in (1..3) -%}
+            {%- liquid
+              assign num_key = 'stat_' | append: i | append: '_number'
+              assign lab_key = 'stat_' | append: i | append: '_label'
+              assign num = section.settings[num_key]
+              assign lab = section.settings[lab_key]
+            -%}
+            {%- if num != blank -%}
+              <div class="ef__stat">
+                <dt class="ef__stat-num">{{ num | escape }}</dt>
+                <dd class="ef__stat-label">{{ lab | escape }}</dd>
+              </div>
+            {%- endif -%}
+          {%- endfor -%}
+        </dl>
+      {%- endif -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .ef {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(2rem, 6vw, 6rem);
+    align-items: start;
+    padding-block: var(--pt, 96px) var(--pb, 96px);
+  }
+  .ef--img-right .ef__media { order: 2; }
+  .ef__media {
+    position: relative;
+    overflow: hidden;
+    border-radius: var(--image-radius, 0);
+    background-color: var(--color-subtle);
+  }
+  .ef__image { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; display: block; }
+  .ef__content {
+    position: sticky;
+    top: clamp(2rem, 8vh, 6rem);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-5);
+    align-self: start;
+  }
+  .ef__heading { font-weight: 300; letter-spacing: -0.02em; }
+  .ef__text { max-width: 46ch; color: var(--color-muted); }
+  .ef__cta { align-self: flex-start; }
+  .ef__stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-4);
+    margin: var(--space-3) 0 0;
+    padding-top: var(--space-5);
+    border-top: 1px solid var(--color-border);
+  }
+  .ef__stat-num { font-family: var(--font-heading); font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 300; line-height: 1; }
+  .ef__stat-label { margin: 0.5rem 0 0; font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
+
+  @media (max-width: 749px) {
+    .ef { grid-template-columns: 1fr; gap: var(--space-6); }
+    .ef--img-right .ef__media { order: -1; }
+    .ef__content { position: static; top: auto; }
+    .ef__stats { grid-template-columns: repeat(3, 1fr); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Editorial feature",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "Image" },
+    {
+      "type": "select", "id": "image_position", "label": "Image position",
+      "options": [ { "value": "left", "label": "Left" }, { "value": "right", "label": "Right" } ],
+      "default": "left"
+    },
+    { "type": "text", "id": "eyebrow", "label": "Eyebrow", "default": "Our craft" },
+    { "type": "textarea", "id": "heading", "label": "Heading", "default": "Made in small batches, designed to last" },
+    { "type": "richtext", "id": "description", "label": "Description", "default": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to material honesty.</p>" },
+    { "type": "text", "id": "cta_label", "label": "Button label", "default": "About the studio" },
+    { "type": "url", "id": "cta_url", "label": "Button link" },
+    { "type": "header", "content": "Stats" },
+    { "type": "checkbox", "id": "show_stats", "label": "Show stats", "default": true },
+    { "type": "text", "id": "stat_1_number", "label": "Stat 1 number", "default": "1,240+" },
+    { "type": "text", "id": "stat_1_label", "label": "Stat 1 label", "default": "Objects" },
+    { "type": "text", "id": "stat_2_number", "label": "Stat 2 number", "default": "24" },
+    { "type": "text", "id": "stat_2_label", "label": "Stat 2 label", "default": "Makers" },
+    { "type": "text", "id": "stat_3_number", "label": "Stat 3 number", "default": "4.9" },
+    { "type": "text", "id": "stat_3_label", "label": "Stat 3 label", "default": "Rating" },
+    { "type": "header", "content": "Appearance" },
+    {
+      "type": "select", "id": "color_scheme", "label": "Color scheme",
+      "options": [
+        { "value": "cream", "label": "Cream" },
+        { "value": "parchment", "label": "Parchment" },
+        { "value": "linen", "label": "Linen" },
+        { "value": "white", "label": "White" },
+        { "value": "invert", "label": "Inverted" }
+      ], "default": "cream"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Top padding", "default": 120 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "Bottom padding", "default": 120 }
+  ],
+  "presets": [ { "name": "Editorial feature" } ]
+}
+{% endschema %}
