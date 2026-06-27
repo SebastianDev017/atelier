@@ -39,9 +39,12 @@
         ::view-transition-new(root) { animation: 250ms ease both atelier-vt-in; }
         @keyframes atelier-vt-out { to { opacity: 0; } }
         @keyframes atelier-vt-in { from { opacity: 0; } }
+        /* Fallback for browsers without cross-document View Transitions (page-transitions.js). */
+        html.is-leaving { opacity: 0; transition: opacity 0.26s ease; }
         @media (prefers-reduced-motion: reduce) {
           ::view-transition-old(root),
           ::view-transition-new(root) { animation: none; }
+          html.is-leaving { opacity: 1; transition: none; }
         }
       </style>
     {%- endif -%}
@@ -93,5 +96,6 @@
     <script src="{{ 'splittext.min.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap-init.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap-animations.js' | asset_url }}" defer></script>
+    {%- if settings.enable_view_transitions -%}<script src="{{ 'page-transitions.js' | asset_url }}" defer></script>{%- endif -%}
   </body>
 </html>
