@@ -1545,7 +1545,7 @@ body:has(.custom-cursor) * { cursor: none !important; }
 .bundle__add.is-added .bundle__icon-added { display: block; }
 
 /* Card variant — vertical, used in the cart-drawer horizontal strip */
-.bundle__item--card { flex-direction: column; align-items: stretch; width: 140px; gap: var(--space-2); }
+.bundle__item--card { flex: 0 0 140px; flex-direction: column; align-items: stretch; gap: var(--space-2); }
 .bundle__item--card .bundle__item-link { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
 .bundle__item--card .bundle__item-img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
 .bundle__item--card .bundle__item-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
