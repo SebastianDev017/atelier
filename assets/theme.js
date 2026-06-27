@@ -336,18 +336,96 @@
     FacetForm.prototype = Object.create(HTMLElement.prototype);
     FacetForm.prototype.constructor = FacetForm;
 
+    function prefersReduced() {
+      return window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
     FacetForm.prototype.connectedCallback = function () {
       this.form = this.querySelector('form');
       this.setAttribute('data-enhanced', '');
-      this.onChange = Atelier.debounce(this.submit.bind(this), 400);
+      this.onChange = Atelier.debounce(this.onInput.bind(this), 400);
+      this.onClick = this.onClick.bind(this);
+      this.onPop = this.onPop.bind(this);
       if (this.form) this.form.addEventListener('input', this.onChange);
+      this.addEventListener('click', this.onClick);
+      window.addEventListener('popstate', this.onPop);
     };
     FacetForm.prototype.disconnectedCallback = function () {
       if (this.form) this.form.removeEventListener('input', this.onChange);
+      this.removeEventListener('click', this.onClick);
+      window.removeEventListener('popstate', this.onPop);
     };
-    FacetForm.prototype.submit = function () {
-      if (this.form) this.form.submit();
+
+    /* "Clear all" / active-filter links AJAX too (else full reload). */
+    FacetForm.prototype.onClick = function (e) {
+      var link = e.target.closest('a.facets-panel__clear, a[data-facet-link]');
+      if (!link || !window.fetch) return;
+      e.preventDefault();
+      this.navigate(link.getAttribute('href'), false);
     };
+
+    FacetForm.prototype.onInput = function () { this.navigate(this.buildURL(), false); };
+    FacetForm.prototype.onPop = function () { this.navigate(window.location.pathname + window.location.search, true); };
+
+    FacetForm.prototype.buildURL = function () {
+      if (!this.form) return window.location.pathname;
+      var params = new URLSearchParams();
+      new FormData(this.form).forEach(function (v, k) {
+        if (v !== '' && v != null) params.append(k, v);
+      });
+      var qs = params.toString();
+      return window.location.pathname + (qs ? '?' + qs : '');
+    };
+
+    /* Fetch the filtered page and swap results (Flip-morphed) + facets + count +
+       URL. Any failure falls back to a normal navigation so filtering never breaks. */
+    FacetForm.prototype.navigate = function (url, isPop) {
+      var self = this;
+      var results = document.querySelector('.collection__results');
+      if (!results || !window.fetch || !window.DOMParser) { if (this.form) this.form.submit(); return; }
+      results.setAttribute('aria-busy', 'true');
+      fetch(url)
+        .then(function (r) { if (!r.ok) throw 0; return r.text(); })
+        .then(function (html) {
+          self.swap(new DOMParser().parseFromString(html, 'text/html'), results);
+          if (!isPop) history.pushState({ atelierFacet: true }, '', url);
+          results.setAttribute('aria-busy', 'false');
+        })
+        .catch(function () { window.location.href = url; });
+    };
+
+    FacetForm.prototype.swap = function (doc, results) {
+      var grid = results.querySelector('[data-product-grid]');
+      var view = grid ? grid.dataset.view : null;
+      var newResults = doc.querySelector('.collection__results');
+      var animate = window.Flip && window.gsap && !prefersReduced() && grid;
+      var state = animate ? Flip.getState('[data-product-grid] [data-flip-id]') : null;
+
+      if (newResults) results.innerHTML = newResults.innerHTML;
+      var newGrid = results.querySelector('[data-product-grid]');
+      if (newGrid && view) newGrid.dataset.view = view;
+
+      if (animate && state) {
+        Flip.from(state, {
+          duration: 0.5, ease: 'power2.inOut', absolute: true, nested: true,
+          onEnter: function (els) { return gsap.fromTo(els, { opacity: 0, scale: 0.96 }, { opacity: 1, scale: 1, duration: 0.4, ease: 'power2.out' }); },
+          onLeave: function (els) { return gsap.to(els, { opacity: 0, duration: 0.25 }); }
+        });
+      }
+
+      /* Refresh the facet panel (counts + active states); keep the form node so
+         its listeners survive. */
+      var newForm = doc.querySelector('[data-facet-form]');
+      if (newForm && this.form) this.form.innerHTML = newForm.innerHTML;
+
+      /* Refresh the product count. */
+      var newCount = doc.querySelector('.collection__count');
+      var curCount = document.querySelector('.collection__count');
+      if (newCount && curCount) curCount.innerHTML = newCount.innerHTML;
+
+      if (window.ScrollTrigger) ScrollTrigger.refresh();
+    };
+
     return FacetForm;
   })();
 

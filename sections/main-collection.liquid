@@ -54,7 +54,7 @@
           {%- if collection.products.size > 0 -%}
             <div class="product-grid" data-product-grid data-view="{{ section.settings.view_default | default: 'grid' }}">
               {%- for product in collection.products -%}
-                <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
+                <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}" data-flip-id="card-{{ product.id }}">
                   {% render 'product-card', product: product, index: forloop.index, quick_add_style: section.settings.quick_add_style %}
                 </div>
               {%- endfor -%}
