@@ -1601,6 +1601,15 @@
         "bar_text_color": {
           "label": "Bar text"
         },
+        "display_mode": {
+          "label": "Multiple messages",
+          "info": "How to display 2+ messages.",
+          "options__1": { "label": "Rotate (fade)" },
+          "options__2": { "label": "Marquee (scroll)" }
+        },
+        "rotate_interval": {
+          "label": "Rotate every"
+        },
         "marquee_speed": {
           "label": "Scroll duration",
           "info": "Only used when there is more than one message. Higher is slower."

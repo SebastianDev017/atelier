@@ -31,7 +31,21 @@
     {% if section.settings.dismissible %}data-dismissible{% endif %}
   >
     <div class="announcement-bar__inner">
-      {%- if message_count > 1 -%}
+      {%- if message_count > 1 and section.settings.display_mode == 'rotate' -%}
+        <div class="announcement-bar__rotator page-width" data-announcement-rotator data-interval="{{ section.settings.rotate_interval }}">
+          {%- for block in blocks -%}
+            {%- if block.type == 'message' and block.settings.text != blank -%}
+              <span class="announcement-bar__slide" {{ block.shopify_attributes }}>
+                {%- if block.settings.url != blank -%}
+                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                {%- else -%}
+                  {{- block.settings.text | escape -}}
+                {%- endif -%}
+              </span>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      {%- elsif message_count > 1 -%}
         <div class="announcement-bar__marquee">
           <div class="announcement-bar__track" aria-hidden="false">
             {%- for block in blocks -%}
@@ -140,6 +154,27 @@
     padding-block: var(--space-2);
   }
 
+  /* Rotating messages — slides stacked in one grid cell, cross-faded by JS. */
+  .announcement-bar__rotator {
+    flex: 1 1 auto;
+    display: grid;
+    justify-items: center;
+    text-align: center;
+    padding-block: var(--space-2);
+    padding-inline: var(--space-12);
+  }
+  .announcement-bar__slide {
+    grid-area: 1 / 1;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity var(--duration-base) var(--ease-editorial);
+  }
+  /* Before JS runs (and as the no-JS fallback) show the first message. */
+  .announcement-bar__rotator:not(.is-ready) .announcement-bar__slide:first-child,
+  .announcement-bar__slide.is-active {
+    opacity: 1;
+  }
+
   .announcement-bar__track {
     display: flex;
     width: max-content;
@@ -231,6 +266,8 @@
         this.onToggle = this.toggleMotion.bind(this);
         this.toggleButton.addEventListener('click', this.onToggle);
       }
+
+      this.initRotator();
     }
 
     disconnectedCallback() {
@@ -240,6 +277,42 @@
       if (this.toggleButton && this.onToggle) {
         this.toggleButton.removeEventListener('click', this.onToggle);
       }
+      if (this.stopRotation) this.stopRotation();
+      if (this.onVis) document.removeEventListener('visibilitychange', this.onVis);
+    }
+
+    /* Rotating-messages mode: cross-fade slides on an interval. CSS handles the
+       opacity transition; this only times the active class. Pauses on hover, when
+       the tab is hidden, and via the pause button. */
+    initRotator() {
+      this.rotator = this.querySelector('[data-announcement-rotator]');
+      if (!this.rotator) return;
+      this.slides = Array.prototype.slice.call(this.rotator.querySelectorAll('.announcement-bar__slide'));
+      if (this.slides.length < 2) return;
+
+      var self = this;
+      this.rotator.classList.add('is-ready');
+      this.rotIndex = 0;
+      this.slides[0].classList.add('is-active');
+
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+      var interval = (parseFloat(this.rotator.dataset.interval) || 5) * 1000;
+      this.stopRotation = function () { if (self.rotTimer) { clearInterval(self.rotTimer); self.rotTimer = null; } };
+      this.startRotation = function () {
+        self.stopRotation();
+        self.rotTimer = setInterval(function () {
+          self.slides[self.rotIndex].classList.remove('is-active');
+          self.rotIndex = (self.rotIndex + 1) % self.slides.length;
+          self.slides[self.rotIndex].classList.add('is-active');
+        }, interval);
+      };
+      this.startRotation();
+
+      this.rotator.addEventListener('mouseenter', this.stopRotation);
+      this.rotator.addEventListener('mouseleave', function () { if (!self.classList.contains('is-paused')) self.startRotation(); });
+      this.onVis = function () { if (document.hidden) self.stopRotation(); else if (!self.classList.contains('is-paused')) self.startRotation(); };
+      document.addEventListener('visibilitychange', this.onVis);
     }
 
     toggleMotion() {
@@ -247,6 +320,10 @@
       this.toggleButton.setAttribute('aria-pressed', String(paused));
       const label = paused ? this.toggleButton.dataset.labelPlay : this.toggleButton.dataset.labelPause;
       if (label) this.toggleButton.setAttribute('aria-label', label);
+      if (this.startRotation) {
+        if (paused) this.stopRotation();
+        else this.startRotation();
+      }
     }
 
     isDismissed() {
@@ -301,6 +378,27 @@
       "id": "bar_text_color",
       "label": "t:sections.announcement-bar.settings.bar_text_color.label",
       "default": "#FAF7F2"
+    },
+    {
+      "type": "select",
+      "id": "display_mode",
+      "label": "t:sections.announcement-bar.settings.display_mode.label",
+      "info": "t:sections.announcement-bar.settings.display_mode.info",
+      "options": [
+        { "value": "rotate", "label": "t:sections.announcement-bar.settings.display_mode.options__1.label" },
+        { "value": "marquee", "label": "t:sections.announcement-bar.settings.display_mode.options__2.label" }
+      ],
+      "default": "rotate"
+    },
+    {
+      "type": "range",
+      "id": "rotate_interval",
+      "min": 3,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "t:sections.announcement-bar.settings.rotate_interval.label",
+      "default": 5
     },
     {
       "type": "range",
