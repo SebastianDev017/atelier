@@ -8,7 +8,7 @@
   {%- if cart.item_count > 0 -%}
     {% render 'cart-shipping-bar' %}
 
-    <ul class="cart-drawer__items" data-cart-items>
+    <ul class="cart-drawer__items" data-cart-items data-lenis-prevent>
       {%- for item in cart.items -%}
         <li>{% render 'cart-item', item: item, line: forloop.index %}</li>
       {%- endfor -%}

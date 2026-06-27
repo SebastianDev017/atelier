@@ -112,6 +112,10 @@
       this.classList.add('is-open');
       this.setAttribute('aria-hidden', 'false');
       document.documentElement.classList.add('no-scroll');
+      document.body.style.overflow = 'hidden';
+      /* Freeze Lenis too — without this it keeps driving page scroll behind the
+         drawer, so wheel/touch over the drawer bleeds through to the page. */
+      if (window.lenis) window.lenis.stop();
       var focusTarget = this.querySelector('[data-drawer-close]');
       if (A.trapFocus) A.trapFocus(this.querySelector('.cart-drawer__panel'), focusTarget);
       this.animateItems();
@@ -129,6 +133,8 @@
       this.classList.remove('is-open');
       this.setAttribute('aria-hidden', 'true');
       document.documentElement.classList.remove('no-scroll');
+      document.body.style.overflow = '';
+      if (window.lenis) window.lenis.start();
       if (A.removeTrapFocus) A.removeTrapFocus(this.activeTrigger);
     };
 

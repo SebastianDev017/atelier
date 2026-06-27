@@ -29,7 +29,7 @@
      z-index:var(--z-overlay) from .overlay, which would paint ABOVE the panel
      and swallow its clicks — so pin the stack explicitly: overlay below, panel
      above. This is what makes the panel's buttons clickable. */
-  .cart-drawer__overlay { position: absolute; z-index: 1; }
+  .cart-drawer__overlay { position: absolute; z-index: 1; overscroll-behavior: none; }
   .cart-drawer.is-open .cart-drawer__overlay { opacity: 1; visibility: visible; }
 
   .cart-drawer__panel {
@@ -64,6 +64,8 @@
     min-height: 0;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+    /* Stop the scroll from chaining to the page (body) at the list's top/bottom. */
+    overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
