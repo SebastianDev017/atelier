@@ -1,0 +1,32 @@
+{%- comment -%}
+  Floating "recently viewed" pill. On product pages it emits the current product
+  as JSON for recently-viewed.js to record; the pill itself renders on every page
+  and is shown by JS once 2+ products have been viewed. Rendered once in theme.liquid.
+{%- endcomment -%}
+{%- if template.name == 'product' and product -%}
+  {%- liquid
+    assign rv_image = ''
+    if product.featured_image
+      assign rv_image = product.featured_image | image_url: width: 200
+    endif
+  -%}
+  <script type="application/json" data-rv-current>
+    {
+      "handle": {{ product.handle | json }},
+      "title": {{ product.title | json }},
+      "url": {{ product.url | json }},
+      "image": {{ rv_image | json }},
+      "price": {{ product.price | money | strip_html | json }}
+    }
+  </script>
+{%- endif -%}
+
+<aside class="recently-viewed" data-recently-viewed hidden aria-label="{{ 'general.recently_viewed' | t }}">
+  <button type="button" class="recently-viewed__toggle" data-rv-toggle aria-expanded="false">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>
+    </svg>
+    <span class="recently-viewed__label">{{ 'general.recently_viewed' | t }}</span>
+  </button>
+  <div class="recently-viewed__panel" data-rv-panel hidden></div>
+</aside>
