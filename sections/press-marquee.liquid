@@ -1,0 +1,130 @@
+{%- comment -%}
+  Press marquee — two rows of press quotes scrolling in opposite directions.
+  GSAP drives the seamless xPercent loop (assets/press-marquee.js); each row
+  renders its items twice so the wrap is seamless. Pauses on hover.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme | default: 'parchment'
+  assign speed = section.settings.speed | default: 40
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+{%- capture items -%}
+  {%- for block in section.blocks -%}
+    <div class="press-item">
+      {%- if block.settings.quote != blank -%}<span class="press-item__quote">{{ block.settings.quote | escape }}</span>{%- endif -%}
+      {%- if block.settings.source != blank -%}<span class="press-item__source">{{ block.settings.source | escape }}</span>{%- endif -%}
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+{%- capture items_rev -%}
+  {%- for block in section.blocks reversed -%}
+    <div class="press-item">
+      {%- if block.settings.quote != blank -%}<span class="press-item__quote">{{ block.settings.quote | escape }}</span>{%- endif -%}
+      {%- if block.settings.source != blank -%}<span class="press-item__source">{{ block.settings.source | escape }}</span>{%- endif -%}
+    </div>
+  {%- endfor -%}
+{%- endcapture -%}
+
+<div class="press-marquee color-scheme--{{ scheme }}" data-press-marquee>
+  {%- if section.settings.heading != blank -%}
+    <div class="page-width"><h2 class="press-marquee__heading eyebrow" data-fade-up>{{ section.settings.heading | escape }}</h2></div>
+  {%- endif -%}
+
+  {%- if section.blocks.size > 0 -%}
+    <div class="press-marquee__row">
+      <div class="press-marquee__track" data-press-track data-direction="left" data-speed="{{ speed }}">
+        <div class="press-marquee__set">{{ items }}</div>
+        <div class="press-marquee__set" aria-hidden="true">{{ items }}</div>
+      </div>
+    </div>
+    <div class="press-marquee__row">
+      <div class="press-marquee__track" data-press-track data-direction="right" data-speed="{{ speed }}">
+        <div class="press-marquee__set">{{ items_rev }}</div>
+        <div class="press-marquee__set" aria-hidden="true">{{ items_rev }}</div>
+      </div>
+    </div>
+  {%- endif -%}
+</div>
+
+{% stylesheet %}
+  .press-marquee { padding-block: var(--pt, var(--space-16)) var(--pb, var(--space-16)); overflow: hidden; }
+  .press-marquee__heading { margin-bottom: var(--space-8); color: var(--color-muted); }
+  .press-marquee__row { overflow: hidden; }
+  .press-marquee__row + .press-marquee__row { margin-top: var(--space-4); }
+  .press-marquee__track { display: flex; width: max-content; will-change: transform; }
+  .press-marquee__set { display: flex; flex-shrink: 0; }
+  .press-item {
+    display: inline-flex;
+    align-items: baseline;
+    gap: var(--space-3);
+    padding-inline: var(--space-8);
+    border-right: 1px solid var(--color-border);
+    white-space: nowrap;
+  }
+  .press-item__quote {
+    font-family: var(--font-heading);
+    font-size: clamp(1.25rem, 2.4vw, 2rem);
+    font-weight: 300;
+  }
+  .press-item__source {
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.press-marquee.name",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "heading", "label": "t:sections.press-marquee.settings.heading.label", "default": "As seen in" },
+    { "type": "range", "id": "speed", "min": 15, "max": 80, "step": 5, "unit": "s", "label": "t:sections.press-marquee.settings.speed.label", "default": 40 },
+    {
+      "type": "select",
+      "id": "color_scheme",
+      "label": "t:sections.press-marquee.settings.color_scheme.label",
+      "options": [
+        { "value": "cream", "label": "t:sections.press-marquee.settings.color_scheme.options__1.label" },
+        { "value": "parchment", "label": "t:sections.press-marquee.settings.color_scheme.options__2.label" },
+        { "value": "linen", "label": "t:sections.press-marquee.settings.color_scheme.options__3.label" },
+        { "value": "invert", "label": "t:sections.press-marquee.settings.color_scheme.options__4.label" }
+      ],
+      "default": "parchment"
+    },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.press-marquee.settings.padding_top.label", "default": 64 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.press-marquee.settings.padding_bottom.label", "default": 64 }
+  ],
+  "blocks": [
+    {
+      "type": "quote",
+      "name": "t:sections.press-marquee.blocks.quote.name",
+      "settings": [
+        { "type": "text", "id": "quote", "label": "t:sections.press-marquee.blocks.quote.settings.quote.label", "default": "“Quietly redefining the modern home.”" },
+        { "type": "text", "id": "source", "label": "t:sections.press-marquee.blocks.quote.settings.source.label", "default": "Kinfolk" }
+      ]
+    }
+  ],
+  "max_blocks": 12,
+  "presets": [
+    {
+      "name": "t:sections.press-marquee.name",
+      "blocks": [
+        { "type": "quote", "settings": { "quote": "“Quietly redefining the modern home.”", "source": "Kinfolk" } },
+        { "type": "quote", "settings": { "quote": "“Objects with a soul.”", "source": "Cereal" } },
+        { "type": "quote", "settings": { "quote": "“Considered, durable, beautiful.”", "source": "Monocle" } },
+        { "type": "quote", "settings": { "quote": "“The new standard for slow design.”", "source": "Dwell" } }
+      ]
+    }
+  ]
+}
+{% endschema %}
