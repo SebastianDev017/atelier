@@ -20,16 +20,21 @@
     btn.dataset.open = willOpen ? 'true' : 'false';
     btn.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
     hidden.setAttribute('aria-hidden', willOpen ? 'false' : 'true');
+    /* inert removes the collapsed subtree from the tab order AND the a11y tree, so
+       its links/buttons aren't focusable while hidden (WCAG 4.1.2). */
+    hidden.inert = !willOpen;
     textEl.textContent = (willOpen ? '▲ ' + btn.dataset.labelClose : '▼ ' + btn.dataset.labelOpen);
 
     if (window.gsap && !reduced()) {
+      gsap.killTweensOf(hidden); // cancel any in-flight tween so rapid toggles don't fight
       if (willOpen) {
         gsap.fromTo(hidden, { height: 0 }, {
-          height: hidden.scrollHeight, duration: 0.4, ease: 'expo.out',
-          onComplete: function () { hidden.style.height = 'auto'; }
+          height: hidden.scrollHeight, duration: 0.4, ease: 'expo.out', overwrite: true,
+          /* Guard: a stale completion must not re-open a panel the user just closed. */
+          onComplete: function () { if (btn.dataset.open === 'true') hidden.style.height = 'auto'; }
         });
       } else {
-        gsap.fromTo(hidden, { height: hidden.scrollHeight }, { height: 0, duration: 0.3, ease: 'expo.in' });
+        gsap.fromTo(hidden, { height: hidden.scrollHeight }, { height: 0, duration: 0.3, ease: 'expo.in', overwrite: true });
       }
     } else {
       hidden.style.height = willOpen ? 'auto' : '0px';

@@ -333,7 +333,9 @@
         if (data.status) return; // e.g. sold out — leave the button as-is
         if (drawer && data.sections && data.sections['cart-drawer']) {
           drawer.renderContents(data.sections['cart-drawer']);
-          drawer.open(); // open to confirm the item was added
+          // Open to confirm the add — but not if it's already open (e.g. the in-drawer
+          // bundle strip), which would re-flash the item stagger and steal focus.
+          if (!drawer.classList.contains('is-open')) drawer.open();
         } else {
           fetch(cartRoute('cart.js')).then(function (r) { return r.json(); })
             .then(function (c) { updateCartCount(c.item_count); }).catch(function () {});

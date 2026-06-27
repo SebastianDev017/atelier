@@ -816,19 +816,21 @@ footer a:hover { opacity: 0.6; }
 }
 .product-card--atc-hover:hover .product-card__overlay,
 .product-card--atc-hover:focus-within .product-card__overlay { opacity: 1; }
-/* The overlay tint stays click-through so the whole-card link works under it on
-   hover; only the interactive children capture clicks. */
+/* The overlay tint stays click-through so the whole-card link (.product-card__title
+   a::after) works under it. The quick-add button captures clicks ONLY while the card
+   is hovered / keyboard-focused — at rest it must NOT intercept center-of-image
+   clicks (that would swallow navigation, or add single-variant products to cart). */
 .product-card__overlay .product-card__quick,
 .product-card__overlay product-form,
-.product-card__overlay .btn { pointer-events: auto; }
+.product-card__overlay .btn { pointer-events: none; }
+.product-card--atc-hover:hover .product-card__overlay .product-card__quick,
+.product-card--atc-hover:hover .product-card__overlay product-form,
+.product-card--atc-hover:hover .product-card__overlay .btn,
+.product-card--atc-hover:focus-within .product-card__overlay .product-card__quick,
+.product-card--atc-hover:focus-within .product-card__overlay product-form,
+.product-card--atc-hover:focus-within .product-card__overlay .btn { pointer-events: auto; }
 .product-card__overlay .product-card__quick,
 .product-card__overlay .btn { width: auto; min-width: 9rem; }
-
-/* Whole-card click target (snippets/product-card.liquid). Fills the card; the
-   title link and quick-add buttons sit above it via z-index so they stay
-   independently clickable, and cursor-pan reads the pan via the card (not e.target). */
-.product-card__link { position: absolute; inset: 0; z-index: 1; }
-.product-card__title a { position: relative; z-index: 2; }
 
 /* Always mode: full-width button below the info (above the card click overlay). */
 .product-card--atc-always .product-card__quick {
@@ -850,6 +852,10 @@ footer a:hover { opacity: 0.6; }
 
 @media (hover: none) {
   .product-card--atc-hover .product-card__quick { opacity: 1; transform: none; }
+  /* No hover on touch — the quick-add is always shown, so keep it tappable. */
+  .product-card--atc-hover .product-card__overlay .product-card__quick,
+  .product-card--atc-hover .product-card__overlay product-form,
+  .product-card--atc-hover .product-card__overlay .btn { pointer-events: auto; }
 }
 
 /* ---------- Price ---------- */

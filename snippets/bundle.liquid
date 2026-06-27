@@ -60,7 +60,7 @@
 
     {%- if bundle_handles.size > 1 -%}
       <div class="bundle__accordion">
-        <div class="bundle__hidden-items" data-bundle-hidden aria-hidden="true">
+        <div class="bundle__hidden-items" data-bundle-hidden inert aria-hidden="true">
           {%- for i in (1..2) -%}
             {%- assign h = bundle_handles[i] -%}
             {%- if h != blank -%}
