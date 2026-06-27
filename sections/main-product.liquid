@@ -308,7 +308,10 @@
 
   .product__sticky {
     position: fixed;
-    left: 0; right: 0; bottom: 0;
+    /* Offset by the left navigation column so the bar (and its price) clears the
+       fixed sidebar. Binds to the live --sidebar-width var (settings.sidebar_width,
+       180-300px) — not a hardcoded value. Reset to 0 below the 768px breakpoint. */
+    left: var(--sidebar-width, 220px); right: 0; bottom: 0;
     z-index: var(--z-sticky);
     background-color: var(--color-bg);
     border-top: 1px solid var(--color-border);
@@ -320,6 +323,12 @@
   .product__sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .product__sticky-info { display: flex; flex-direction: column; min-width: 0; }
   .product__sticky-title { font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  /* At the sidebar's collapse breakpoint the grid becomes a single column and the
+     sidebar is an off-canvas drawer, so the bar spans the full viewport again. */
+  @media (max-width: 768px) {
+    .product__sticky { left: 0; }
+  }
 
   @media (min-width: 990px) {
     .product__grid { grid-template-columns: var(--product-media-width, 55%) 1fr; gap: var(--space-16); }
