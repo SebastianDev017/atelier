@@ -1,0 +1,16 @@
+{%- comment -%}
+  Star rating display. Renders whole stars (rounded) from filled/outline icons.
+
+  @param {number} rating - the rating value (e.g. 4.5)
+  @param {number} [scale] - maximum number of stars (default 5)
+{%- endcomment -%}
+{%- liquid
+  assign star_scale = scale | default: 5
+  assign star_rating = rating | plus: 0.0
+  assign rounded = star_rating | round
+-%}
+<span class="stars" role="img" aria-label="{{ 'accessibility.star_rating_html' | t: rating: star_rating, scale: star_scale }}">
+  {%- for i in (1..star_scale) -%}
+    {%- if i <= rounded -%}{% render 'icon', name: 'star' %}{%- else -%}{% render 'icon', name: 'star-outline' %}{%- endif -%}
+  {%- endfor -%}
+</span>

@@ -96,6 +96,17 @@
         "padding_bottom": 64
       }
     },
+    "reviews": {
+      "type": "product-reviews",
+      "settings": {
+        "show_summary_bars": true,
+        "show_write_form": true,
+        "reviews_per_page": 6,
+        "color_scheme": "cream",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
+    },
     "recommendations": {
       "type": "product-recommendations",
       "settings": {
@@ -110,6 +121,7 @@
   },
   "order": [
     "main",
+    "reviews",
     "recommendations"
   ]
 }
