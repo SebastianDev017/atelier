@@ -58,14 +58,25 @@
 
   .cart-drawer__contents { display: flex; flex-direction: column; flex: 1; min-height: 0; }
   .cart-drawer__items {
-    flex: 1;
+    flex: 1 1 auto;
+    /* min-height:0 lets this flex child shrink below its content height so it
+       actually scrolls when the cart (plus the bundle strip + footer) overflows. */
+    min-height: 0;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
     display: flex;
     flex-direction: column;
     gap: var(--space-6);
     padding: var(--space-6);
     margin: 0;
   }
+
+  /* Bundle suggestions strip — flex:none so it sits between the scrollable items
+     and the footer without stealing scroll height. Card styles live in base.css. */
+  .cart-bundle { flex: none; padding: var(--space-5) var(--space-6); border-top: 1px solid var(--color-border); }
+  .cart-bundle__heading { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+  .cart-bundle__track { display: flex; gap: var(--space-3); overflow-x: auto; scrollbar-width: none; }
+  .cart-bundle__track::-webkit-scrollbar { display: none; }
 
   /* Busy state during a line-item update (cart.js toggles .is-loading on <cart-drawer>).
      0.55 keeps the cream ground reading solid; subtotal/footer stay legible. */

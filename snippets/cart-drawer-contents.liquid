@@ -14,6 +14,52 @@
       {%- endfor -%}
     </ul>
 
+    {%- comment -%}
+      Bundle suggestions — pulled from the first cart item's collection, excluding
+      products already in the cart, filled from collections.all if short. Lives
+      inside [data-cart-contents], so it re-renders automatically on every cart
+      AJAX update (add / qty / remove) via cart.js renderContents — no extra JS.
+    {%- endcomment -%}
+    {%- assign first_product = cart.items.first.product -%}
+    {%- if first_product -%}
+      {%- assign cart_handles = ',' -%}
+      {%- for item in cart.items -%}
+        {%- assign cart_handles = cart_handles | append: item.product.handle | append: ',' -%}
+      {%- endfor -%}
+      {%- assign cb_count = 0 -%}
+      {%- capture cart_bundle_items -%}
+        {%- for collection in first_product.collections -%}
+          {%- for p in collection.products -%}
+            {%- if cb_count >= 3 -%}{%- break -%}{%- endif -%}
+            {%- assign hk = p.handle | prepend: ',' | append: ',' -%}
+            {%- unless cart_handles contains hk -%}
+              {%- assign cart_handles = cart_handles | append: p.handle | append: ',' -%}
+              {%- assign cb_count = cb_count | plus: 1 -%}
+              {%- render 'bundle-item', product: p, layout: 'card' -%}
+            {%- endunless -%}
+          {%- endfor -%}
+          {%- if cb_count >= 3 -%}{%- break -%}{%- endif -%}
+        {%- endfor -%}
+        {%- if cb_count < 3 -%}
+          {%- for p in collections.all.products -%}
+            {%- if cb_count >= 3 -%}{%- break -%}{%- endif -%}
+            {%- assign hk = p.handle | prepend: ',' | append: ',' -%}
+            {%- unless cart_handles contains hk -%}
+              {%- assign cart_handles = cart_handles | append: p.handle | append: ',' -%}
+              {%- assign cb_count = cb_count | plus: 1 -%}
+              {%- render 'bundle-item', product: p, layout: 'card' -%}
+            {%- endunless -%}
+          {%- endfor -%}
+        {%- endif -%}
+      {%- endcapture -%}
+      {%- if cb_count > 0 -%}
+        <div class="cart-bundle">
+          <p class="cart-bundle__heading">{{ 'cart.bundle_heading' | t }}</p>
+          <div class="cart-bundle__track">{{ cart_bundle_items }}</div>
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
     <div class="cart-drawer__footer">
       {%- if settings.cart_show_note -%}
         <details class="cart-drawer__note">
