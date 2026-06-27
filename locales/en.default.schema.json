@@ -2695,6 +2695,12 @@
         "subheading": {
           "label": "Supporting line"
         },
+        "heading_size_vw": {
+          "label": "Heading size (desktop)"
+        },
+        "heading_size_mobile": {
+          "label": "Heading size (mobile)"
+        },
         "color_scheme": {
           "label": "Color scheme",
           "options__1": {

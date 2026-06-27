@@ -18,6 +18,13 @@
   </div>
 </div>
 
+<style>
+  #shopify-section-{{ section.id }} {
+    --bs-size: {{ section.settings.heading_size_vw | default: 10 }}vw;
+    --bs-size-mobile: {{ section.settings.heading_size_mobile | default: 13 }}vw;
+  }
+</style>
+
 {% stylesheet %}
   .brand-statement {
     min-height: 100dvh;
@@ -35,12 +42,15 @@
   }
   .brand-statement__heading {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 12vw, 13rem);
+    font-size: var(--bs-size, 10vw);
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.03em;
     max-width: 16ch;
     margin: 0;
+  }
+  @media (max-width: 767px) {
+    .brand-statement__heading { font-size: var(--bs-size-mobile, 13vw); }
   }
   .brand-statement__sub {
     font-size: var(--text-md);
@@ -59,6 +69,8 @@
   "settings": [
     { "type": "textarea", "id": "heading", "label": "t:sections.brand-statement.settings.heading.label", "default": "Considered objects\nfor the modern home", "info": "t:sections.brand-statement.settings.heading.info" },
     { "type": "text", "id": "subheading", "label": "t:sections.brand-statement.settings.subheading.label", "default": "Made in small batches, designed to last a lifetime." },
+    { "type": "range", "id": "heading_size_vw", "label": "t:sections.brand-statement.settings.heading_size_vw.label", "min": 5, "max": 16, "step": 1, "default": 10, "unit": "vw" },
+    { "type": "range", "id": "heading_size_mobile", "label": "t:sections.brand-statement.settings.heading_size_mobile.label", "min": 8, "max": 20, "step": 1, "default": 13, "unit": "vw" },
     {
       "type": "select", "id": "color_scheme", "label": "t:sections.brand-statement.settings.color_scheme.label",
       "options": [
