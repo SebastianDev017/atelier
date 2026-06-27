@@ -2811,6 +2811,33 @@
         "padding_bottom": { "label": "Bottom padding" }
       }
     },
+    "related-products": {
+      "name": "Related products",
+      "settings": {
+        "heading": { "label": "Heading" },
+        "products_count": { "label": "Products to show" },
+        "columns_desktop": { "label": "Columns (desktop)" },
+        "fallback_to_recommendations": {
+          "label": "Top up from recommendations",
+          "info": "When the collection has too few products, fill the rest with Shopify's product recommendations."
+        },
+        "quick_add_style": {
+          "label": "Add to cart button",
+          "options__1": { "label": "Reveal on hover" },
+          "options__2": { "label": "Always visible below info" }
+        },
+        "color_scheme": {
+          "label": "Color scheme",
+          "options__1": { "label": "Cream" },
+          "options__2": { "label": "Parchment" },
+          "options__3": { "label": "Linen" },
+          "options__4": { "label": "White" },
+          "options__5": { "label": "Inverted" }
+        },
+        "padding_top": { "label": "Top padding" },
+        "padding_bottom": { "label": "Bottom padding" }
+      }
+    },
     "brand-statement": {
       "name": "Brand statement",
       "settings": {
