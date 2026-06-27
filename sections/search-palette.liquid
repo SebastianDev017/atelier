@@ -1,0 +1,124 @@
+{%- comment -%}
+  Command palette — a global product search overlay opened with "/" (or the
+  sidebar hint button). Uses Shopify Predictive Search (/search/suggest.json).
+  Logic in assets/search-palette.js. Rendered once via {% section %} in theme.liquid.
+{%- endcomment -%}
+{%- if section.settings.enabled -%}
+  <div id="search-palette" class="search-palette" aria-hidden="true" role="dialog" aria-modal="true" aria-label="{{ 'search.title' | t }}">
+    <div class="search-palette__backdrop" data-palette-close></div>
+    <div class="search-palette__panel">
+      <div class="search-palette__input-wrap">
+        <svg class="search-palette__icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="search" id="search-palette-input" class="search-palette__input"
+          placeholder="{{ 'search.placeholder' | t }}" autocomplete="off" spellcheck="false"
+          aria-controls="search-palette-results" aria-label="{{ 'search.placeholder' | t }}">
+        <kbd class="search-palette__esc">ESC</kbd>
+      </div>
+      <div class="search-palette__results" id="search-palette-results" role="listbox" data-no-results="{{ 'search.no_results' | t }}">
+        <div class="search-palette__empty">{{ 'search.start_typing' | t }}</div>
+      </div>
+    </div>
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .search-palette {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: none;
+    align-items: flex-start;
+    justify-content: center;
+    padding: 12vh 1.5rem 2rem;
+  }
+  .search-palette[aria-hidden="false"] { display: flex; }
+  .search-palette__backdrop {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in srgb, var(--color-text) 28%, transparent);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+  }
+  .search-palette__panel {
+    position: relative;
+    width: min(640px, 100%);
+    max-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    background: var(--color-bg);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 30px 80px rgba(44, 24, 16, 0.25);
+    overflow: hidden;
+  }
+  .search-palette__input-wrap {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 1.1rem 1.25rem;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .search-palette__icon { color: var(--color-muted); flex-shrink: 0; }
+  .search-palette__input {
+    flex: 1 1 auto;
+    border: 0;
+    background: transparent;
+    color: var(--color-text);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 300;
+    outline: none;
+  }
+  .search-palette__esc {
+    font-family: var(--font-mono);
+    font-size: 0.625rem;
+    letter-spacing: 0.08em;
+    color: var(--color-muted);
+    border: 1px solid var(--color-border);
+    padding: 2px 6px;
+    flex-shrink: 0;
+  }
+  .search-palette__results { overflow-y: auto; padding: 0.5rem; }
+  .search-palette__empty,
+  .search-palette__no-results {
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--color-muted);
+    font-size: 0.875rem;
+  }
+  .search-result-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0.75rem;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+  }
+  .search-result-item.is-active,
+  .search-result-item:hover { background: color-mix(in srgb, var(--color-text) 7%, transparent); }
+  .search-result-item__img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    background: var(--color-subtle);
+    flex-shrink: 0;
+  }
+  .search-result-item__title { font-family: var(--font-heading); font-size: 1rem; font-weight: var(--font-heading-weight); }
+  .search-result-item__price { margin-left: auto; font-family: var(--font-mono); font-size: 0.8125rem; color: var(--color-muted); }
+  @media (max-width: 749px) {
+    .search-palette { padding-top: 6vh; }
+    .search-palette__input { font-size: 1.1rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.search-palette.name",
+  "settings": [
+    { "type": "checkbox", "id": "enabled", "label": "t:sections.search-palette.settings.enabled.label", "default": true }
+  ]
+}
+{% endschema %}

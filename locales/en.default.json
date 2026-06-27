@@ -101,6 +101,8 @@
   "search": {
     "title": "Search",
     "placeholder": "Search products, journal, pages…",
+    "start_typing": "Start typing to search…",
+    "no_results": "No results found",
     "submit": "Search",
     "reset": "Clear",
     "results_with_count": {

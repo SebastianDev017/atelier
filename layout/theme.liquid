@@ -82,6 +82,8 @@
       {% render 'cart-drawer' %}
     {%- endif -%}
 
+    {% section 'search-palette' %}
+
     {%- comment -%} Render unless explicitly disabled: the setting is nil on a fresh/GitHub-synced theme (not in settings_data), and `{% if nil %}` would hide the cursor by default. `!= false` shows it by default while still honouring an explicit off. {%- endcomment -%}
     {%- if settings.enable_custom_cursor != false -%}{% render 'cursor' %}{%- endif -%}
 
@@ -96,6 +98,7 @@
     <script src="{{ 'splittext.min.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap-init.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap-animations.js' | asset_url }}" defer></script>
+    <script src="{{ 'search-palette.js' | asset_url }}" defer></script>
     {%- if settings.enable_view_transitions -%}<script src="{{ 'page-transitions.js' | asset_url }}" defer></script>{%- endif -%}
   </body>
 </html>

@@ -2685,6 +2685,12 @@
         "name": "Editorial feature"
       }
     },
+    "search-palette": {
+      "name": "Search palette",
+      "settings": {
+        "enabled": { "label": "Enable command palette search" }
+      }
+    },
     "brand-statement": {
       "name": "Brand statement",
       "settings": {

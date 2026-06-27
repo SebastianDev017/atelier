@@ -117,6 +117,9 @@
   <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
     <div class="sidebar__head">
       {% render 'header-logo' %}
+      <button type="button" class="sidebar__search-hint" data-search-palette-open aria-label="{{ 'search.title' | t }}">
+        {% render 'icon', name: 'search' %}<kbd>/</kbd>
+      </button>
       <button
         type="button"
         class="sidebar__close header__icon-btn"
@@ -229,6 +232,19 @@
     justify-content: space-between;
     gap: var(--space-3);
   }
+
+  .sidebar__search-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--color-muted);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .sidebar__search-hint svg { width: 16px; height: 16px; }
+  .sidebar__search-hint kbd { border: 1px solid var(--color-border); padding: 0 5px; line-height: 1.4; }
+  .sidebar__search-hint:hover { color: var(--color-text); }
 
   .sidebar__nav { flex: 1 1 auto; position: relative; padding-left: var(--space-4); }
   /* Real-time scroll-progress line down the nav (GSAP initScrollProgress). */
