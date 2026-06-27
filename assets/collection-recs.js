@@ -41,13 +41,22 @@
         var seen = {};
         self.grid.querySelectorAll('[data-rec-card]').forEach(function (c) { seen[c.getAttribute('data-rec-card')] = true; });
         var incoming = doc.querySelectorAll('[data-rec-card]');
+        var added = [];
         Array.prototype.forEach.call(incoming, function (card) {
           if (self.grid.children.length >= want) return;
           var handle = card.getAttribute('data-rec-card');
           if (seen[handle]) return;
           seen[handle] = true;
-          self.grid.appendChild(document.importNode(card, true));
+          var node = document.importNode(card, true);
+          self.grid.appendChild(node);
+          added.push(node);
         });
+        /* Match the fade-up the at-load cards got (init* already ran before these
+           existed). Guarded by reduced-motion like the rest of the motion layer. */
+        if (added.length && window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          window.gsap.from(added, { autoAlpha: 0, y: 40, duration: 0.9, ease: 'power3.out', stagger: 0.08 });
+          window.ScrollTrigger.refresh();
+        }
       })
       .catch(function () {})
       .finally(function () { self.finish(); });

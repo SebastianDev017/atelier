@@ -78,9 +78,12 @@
                   <div class="fp__option-values">
                     {%- for value in option.values -%}
                       {%- liquid
+                        # Check availability at THIS option's position (not membership
+                        # anywhere in v.options) to avoid cross-option false positives.
+                        assign opt_index = option.position | minus: 1
                         assign value_available = false
                         for v in fp.variants
-                          if v.available and v.options contains value
+                          if v.available and v.options[opt_index] == value
                             assign value_available = true
                             break
                           endif
