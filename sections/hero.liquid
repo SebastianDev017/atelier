@@ -50,7 +50,7 @@
 </style>
 
 {%- capture hero_media -%}
-  <div class="hero__media" data-parallax="-20" data-reveal>
+  <div class="hero__media" data-parallax="-8" data-reveal>
     {%- if video_url != blank -%}
       <video class="hero__video" autoplay muted loop playsinline preload="metadata"
         {% if image != blank %}poster="{{ image | image_url: width: 1500 }}"{% endif %}>
@@ -139,8 +139,13 @@
   }
   .hero--no-image { background-color: var(--color-bg); }
 
-  /* ---- Full-bleed layout ---- */
-  .hero--fullbleed .hero__media { position: absolute; inset: 0; z-index: var(--z-base); background-color: var(--color-subtle); }
+  /* ---- Full-bleed layout ----
+     The media is buffered 12% above and below the section (inset: -12% 0) and the
+     section keeps overflow:hidden, so the GSAP parallax drift (data-parallax="-8")
+     can never uncover the section edge — this is what eliminates the gray gap at
+     the hero bottom. Background is --color-bg (not the gray --color-subtle) as a
+     final safety net so any sub-pixel seam blends instead of reading as a band. */
+  .hero--fullbleed .hero__media { position: absolute; inset: -12% 0; z-index: var(--z-base); background-color: var(--color-bg); }
   .hero--fullbleed .hero__overlay {
     position: absolute; inset: 0; z-index: var(--z-raised);
     background-color: var(--hero-overlay-color); opacity: var(--hero-overlay, 0.3); pointer-events: none;
