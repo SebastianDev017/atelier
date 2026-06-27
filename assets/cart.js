@@ -317,9 +317,11 @@
     if (btn.disabled || btn.classList.contains('is-adding')) return;
     var id = btn.getAttribute('data-variant-id');
     if (!id) return;
+    var variantId = parseInt(id, 10);
+    if (!variantId) return; // guard against undefined/NaN
     btn.classList.add('is-adding');
     var drawer = document.querySelector('cart-drawer');
-    var body = { id: Number(id), quantity: 1 };
+    var body = { items: [{ id: variantId, quantity: 1 }] };
     if (drawer) { body.sections = ['cart-drawer']; body.sections_url = window.location.pathname; }
     fetch(cartRoute('cart/add.js'), {
       method: 'POST',
@@ -331,6 +333,7 @@
         if (data.status) return; // e.g. sold out — leave the button as-is
         if (drawer && data.sections && data.sections['cart-drawer']) {
           drawer.renderContents(data.sections['cart-drawer']);
+          drawer.open(); // open to confirm the item was added
         } else {
           fetch(cartRoute('cart.js')).then(function (r) { return r.json(); })
             .then(function (c) { updateCartCount(c.item_count); }).catch(function () {});
