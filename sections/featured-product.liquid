@@ -142,38 +142,9 @@
             </ul>
           {%- endif -%}
 
-          {%- comment -%} ---- Bundle upsell ---- {%- endcomment -%}
+          {%- comment -%} ---- Bundle upsell — shared snippet (single source of truth, same as the product page). ---- {%- endcomment -%}
           {%- if section.settings.show_bundle -%}
-            <div class="featured-product__bundle">
-              <p class="featured-product__bundle-heading">{{ section.settings.bundle_heading | default: 'Complete your purchase' | escape }}</p>
-              <div class="featured-product__bundle-list">
-                {%- assign shown = ',' -%}
-                {%- assign bcount = 0 -%}
-                {%- for collection in fp.collections -%}
-                  {%- for p in collection.products -%}
-                    {%- if bcount >= 3 -%}{%- break -%}{%- endif -%}
-                    {%- assign hk = p.handle | prepend: ',' | append: ',' -%}
-                    {%- unless p.handle == fp.handle or shown contains hk -%}
-                      {%- assign shown = shown | append: p.handle | append: ',' -%}
-                      {%- assign bcount = bcount | plus: 1 -%}
-                      {%- render 'bundle-item', product: p, layout: 'row' -%}
-                    {%- endunless -%}
-                  {%- endfor -%}
-                  {%- if bcount >= 3 -%}{%- break -%}{%- endif -%}
-                {%- endfor -%}
-                {%- if bcount < 3 -%}
-                  {%- for p in collections.all.products -%}
-                    {%- if bcount >= 3 -%}{%- break -%}{%- endif -%}
-                    {%- assign hk = p.handle | prepend: ',' | append: ',' -%}
-                    {%- unless p.handle == fp.handle or shown contains hk -%}
-                      {%- assign shown = shown | append: p.handle | append: ',' -%}
-                      {%- assign bcount = bcount | plus: 1 -%}
-                      {%- render 'bundle-item', product: p, layout: 'row' -%}
-                    {%- endunless -%}
-                  {%- endfor -%}
-                {%- endif -%}
-              </div>
-            </div>
+            {% render 'bundle', current_product: fp, heading: section.settings.bundle_heading %}
           {%- endif -%}
         </div>
       </div>
@@ -237,10 +208,7 @@
   .fp__trust-item { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--color-muted); }
   .fp__trust-item svg { flex-shrink: 0; }
 
-  .featured-product__bundle { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
-  .featured-product__bundle-heading { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
-  .featured-product__bundle-list { display: flex; flex-direction: column; }
-  .featured-product__bundle-list .bundle__item--row:last-child { border-bottom: 0; }
+  /* Bundle styles live in base.css (.bundle*), shared with the product page. */
 
   @media (max-width: 749px) {
     .featured-product__grid { grid-template-columns: 1fr; gap: var(--space-6); }

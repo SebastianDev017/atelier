@@ -27,8 +27,9 @@
         type="button"
         class="bundle__add"
         data-bundle-add
+        data-product-title="{{ bp.title | escape }}"
         {% if bv and bv.available %}data-variant-id="{{ bv.id }}"{% else %}disabled aria-disabled="true"{% endif %}
-        aria-label="{{ 'products.add_to_cart' | t }}"
+        aria-label="{{ 'bundle.add' | t: title: bp.title }}"
       >
         <svg class="bundle__icon-add" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="8" y1="2.5" x2="8" y2="13.5"/><line x1="2.5" y1="8" x2="13.5" y2="8"/></svg>
         <svg class="bundle__icon-added" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="3 8.5 6.5 12 13 4"/></svg>

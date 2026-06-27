@@ -166,6 +166,10 @@
                 </product-form>
               </div>
 
+              <div class="product-bundle-wrap">
+                {% render 'bundle', current_product: product %}
+              </div>
+
             {%- when 'notify_me' -%}
               {%- unless product.available -%}
                 <div {{ block.shopify_attributes }}>

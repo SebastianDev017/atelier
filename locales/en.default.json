@@ -106,6 +106,12 @@
     "continue_shopping": "Continue shopping",
     "bundle_heading": "Pairs well with"
   },
+  "bundle": {
+    "heading": "Complete your purchase",
+    "see_more": "See more suggestions",
+    "see_less": "Show less",
+    "add": "Add {{ title }} to cart"
+  },
   "search": {
     "title": "Search",
     "placeholder": "Search products, journal, pages…",

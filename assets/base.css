@@ -1514,11 +1514,34 @@ body:has(.custom-cursor) * { cursor: none !important; }
   .template-product .recently-viewed { display: none; }
 }
 
+/* ---------- Bundle accordion (snippets/bundle.liquid) ----------
+   Wrapper used on the product page + featured-product. Item 1 visible; items 2-3
+   in the GSAP height-animated accordion (assets/bundle.js). */
+.bundle { margin-top: var(--space-6); padding-top: var(--space-6); border-top: 1px solid var(--color-border); }
+.bundle__heading { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+.bundle__hidden-items { height: 0; overflow: hidden; }
+.bundle__toggle {
+  width: 100%;
+  text-align: left;
+  padding: var(--space-3) 0;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.05em;
+  color: var(--color-text);
+  opacity: 0.6;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: opacity var(--duration-fast) var(--ease-editorial);
+}
+.bundle__toggle:hover { opacity: 1; }
+
 /* ---------- Bundle / upsell items (snippets/bundle-item.liquid) ----------
    Shared by the featured-product bundle (row) and the cart-drawer strip (card).
    The [+] button flashes a check via .is-added (cart.js). */
 .bundle__item { display: flex; align-items: center; gap: var(--space-3); }
 .bundle__item--row { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
+.bundle .bundle__item--row:last-child { border-bottom: 0; }
 .bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; }
 .bundle__item-img { width: 60px; height: 60px; object-fit: cover; flex-shrink: 0; background: var(--color-media); border-radius: var(--image-radius, 0); }
 .bundle__item-title {

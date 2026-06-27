@@ -1,0 +1,85 @@
+{%- comment -%}
+  Unified product bundle — "Complete your purchase". Single source of truth, used
+  on the product page (main-product) and the featured-product section. Shows up to
+  3 available products from current_product's first collection (filled from
+  collections.all if short), excluding current_product. Item 1 is always visible;
+  items 2-3 sit in a GSAP height-animated accordion (assets/bundle.js). Each [+]
+  adds via the shared [data-bundle-add] handler (cart.js).
+
+  @param {object} current_product - product to exclude + use for the collection lookup
+  @param {string} [heading] - overrides the default 'bundle.heading' label
+{%- endcomment -%}
+{%- liquid
+  assign handles = ','
+  assign bcount = 0
+  assign source = current_product.collections.first
+  if source
+    for p in source.products
+      if bcount >= 3
+        break
+      endif
+      unless p.handle == current_product.handle
+        if p.available
+          assign hk = p.handle | prepend: ',' | append: ','
+          unless handles contains hk
+            assign handles = handles | append: p.handle | append: ','
+            assign bcount = bcount | plus: 1
+          endunless
+        endif
+      endunless
+    endfor
+  endif
+  if bcount < 3
+    for p in collections.all.products
+      if bcount >= 3
+        break
+      endif
+      unless p.handle == current_product.handle
+        if p.available
+          assign hk = p.handle | prepend: ',' | append: ','
+          unless handles contains hk
+            assign handles = handles | append: p.handle | append: ','
+            assign bcount = bcount | plus: 1
+          endunless
+        endif
+      endunless
+    endfor
+  endif
+  assign bundle_handles = handles | remove_first: ',' | split: ','
+  assign bundle_heading = heading | default: blank
+-%}
+
+{%- if bundle_handles.size > 0 -%}
+  <div class="bundle">
+    <p class="bundle__heading">
+      {%- if bundle_heading != blank -%}{{ bundle_heading | escape }}{%- else -%}{{ 'bundle.heading' | t }}{%- endif -%}
+    </p>
+
+    {%- assign h0 = bundle_handles[0] -%}
+    {% render 'bundle-item', product: all_products[h0] %}
+
+    {%- if bundle_handles.size > 1 -%}
+      <div class="bundle__accordion">
+        <div class="bundle__hidden-items" data-bundle-hidden aria-hidden="true">
+          {%- for i in (1..2) -%}
+            {%- assign h = bundle_handles[i] -%}
+            {%- if h != blank -%}
+              {% render 'bundle-item', product: all_products[h] %}
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+        <button
+          type="button"
+          class="bundle__toggle"
+          data-bundle-toggle
+          data-open="false"
+          aria-expanded="false"
+          data-label-open="{{ 'bundle.see_more' | t | escape }}"
+          data-label-close="{{ 'bundle.see_less' | t | escape }}"
+        >
+          <span data-bundle-toggle-text>▼ {{ 'bundle.see_more' | t }}</span>
+        </button>
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
