@@ -87,6 +87,21 @@
     "hero": {
       "name": "Hero",
       "settings": {
+        "layout": {
+          "label": "Layout",
+          "options__1": { "label": "Full bleed (overlay)" },
+          "options__2": { "label": "Split (content + media)" }
+        },
+        "video_url": {
+          "label": "Background video URL",
+          "info": "Optional direct video file URL (.mp4). Autoplays muted + looped and overrides the image."
+        },
+        "show_trust_bar": {
+          "label": "Show trust line"
+        },
+        "header__trust": {
+          "content": "Trust line"
+        },
         "header__1": {
           "content": "Image"
         },

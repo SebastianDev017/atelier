@@ -104,9 +104,26 @@
     });
   }
 
+  /* Hero entrance timeline — tag in first, then subtext / actions / trust.
+     The headline reveals separately via initSplitText (data-split). */
+  function initHero() {
+    var hero = document.querySelector('[data-hero]');
+    if (!hero) return;
+    var tl = gsap.timeline({ defaults: { ease: 'expo.out', duration: 0.9 } });
+    var tag = hero.querySelector('.hero__tag');
+    var sub = hero.querySelector('.hero__subtext');
+    var actions = hero.querySelector('.hero__actions');
+    var trust = hero.querySelector('.hero__trust');
+    if (tag) tl.from(tag, { opacity: 0, y: -10 }, 0);
+    if (sub) tl.from(sub, { opacity: 0, y: 20 }, 0.45);
+    if (actions) tl.from(actions, { opacity: 0, y: 20 }, 0.6);
+    if (trust) tl.from(trust, { opacity: 0 }, 0.8);
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    initHero();
     initSplitText();
     initFadeUp();
     initImageReveal();
