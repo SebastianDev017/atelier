@@ -832,6 +832,17 @@ footer a:hover { opacity: 0.6; }
 .product-card__overlay .product-card__quick,
 .product-card__overlay .btn { width: auto; min-width: 9rem; }
 
+/* Whole-card click target (snippets/product-card.liquid). A real anchor filling the
+   card — the title's stretched ::after can't be used because the blur-reveal's
+   will-change:filter on the h3 title makes it a containing block (so the ::after
+   only covers the heading). The title link + quick-add sit above this via z-index;
+   cursor-pan resolves the pan via the card, not e.target. */
+.product-card__link { position: absolute; inset: 0; z-index: 1; }
+/* Card titles are excluded from blur-reveal (gsap-animations.js), so drop the
+   will-change the heading baseline would otherwise leave on every card title
+   (it also created a containing block that broke the title's stretched ::after). */
+.js .shopify-section .product-card__title { will-change: auto; }
+
 /* Always mode: full-width button below the info (above the card click overlay). */
 .product-card--atc-always .product-card__quick {
   position: relative;
@@ -844,8 +855,7 @@ footer a:hover { opacity: 0.6; }
 .product-card__edition { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
 .product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
-.product-card__title a { display: inline; }
-.product-card__title a::after { content: ""; position: absolute; inset: 0; z-index: var(--z-base); }
+.product-card__title a { display: inline; position: relative; z-index: 2; }
 .product-card__info .price { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.02em; }
 .product-card__info .price__unit { font-family: var(--font-mono); font-size: var(--text-xs); }
 .product-card__rating { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font-size: var(--text-sm); }

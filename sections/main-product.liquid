@@ -243,6 +243,10 @@
      merchant's padding_top/bottom settings always win (no CSS-var inheritance
      or cache dependency). */
   .product__grid { display: grid; gap: var(--space-8); align-items: start; }
+  /* min-width:0 lets each column shrink to its track instead of growing to fit
+     wide min-content (long title word, breadcrumb, variant value), which would
+     push the two-column total past the content width and overflow the right edge. */
+  .product__media-col, .product__details-col { min-width: 0; }
   .product__details { display: flex; flex-direction: column; gap: var(--space-5); }
   .product__title { letter-spacing: var(--tracking-tight); }
   .product__price { display: flex; flex-direction: column; gap: var(--space-1); }

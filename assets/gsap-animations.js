@@ -55,7 +55,7 @@
          data-split (SplitText), data-fade-up (initFadeUp), .reveal-lines (CSS
          line-reveal), .eyebrow (small footer/section labels, not display headings). */
       if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up') || el.classList.contains('reveal-lines') || el.classList.contains('eyebrow')) return;
-      if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, [data-brand-statement], .hero, [data-no-split]')) return;
+      if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, [data-brand-statement], .hero, [data-no-split], [data-product-card]')) return;
       el.dataset.blurDone = '1';
       gsap.fromTo(el,
         { opacity: 0, filter: 'blur(12px)', y: 10 },

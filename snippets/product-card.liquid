@@ -145,8 +145,11 @@
     {% render 'price', product: product, show_from: true %}
   </div>
 
-  {%- comment -%} Whole-card click target is the title link's stretched ::after
-    (.product-card__title a::after in base.css) — keeps a single accessible link. {%- endcomment -%}
+  {%- comment -%} Whole-card click target. A real anchor (not a title ::after — the
+    blur-reveal's will-change:filter on the h3 title makes its ::after only cover the
+    heading). Decorative: the title <a> stays the accessible/keyboard link; the
+    quick-add and title sit above this via z-index. {%- endcomment -%}
+  <a class="product-card__link" href="{{ product.url }}" aria-label="{{ product.title | escape }}" tabindex="-1" aria-hidden="true"></a>
 
   {%- comment -%} Always mode: full-width button below the info. {%- endcomment -%}
   {%- if quick_add_style == 'always' -%}{{ quick_add_html }}{%- endif -%}
