@@ -815,13 +815,25 @@ footer a:hover { opacity: 0.6; }
   transition: opacity var(--duration-base) var(--ease-editorial);
 }
 .product-card--atc-hover:hover .product-card__overlay,
-.product-card--atc-hover:focus-within .product-card__overlay { opacity: 1; pointer-events: auto; }
+.product-card--atc-hover:focus-within .product-card__overlay { opacity: 1; }
+/* The overlay tint stays click-through so the whole-card link works under it on
+   hover; only the interactive children capture clicks. */
+.product-card__overlay .product-card__quick,
+.product-card__overlay product-form,
+.product-card__overlay .btn { pointer-events: auto; }
 .product-card__overlay .product-card__quick,
 .product-card__overlay .btn { width: auto; min-width: 9rem; }
+
+/* Whole-card click target (snippets/product-card.liquid). Fills the card; the
+   title link and quick-add buttons sit above it via z-index so they stay
+   independently clickable, and cursor-pan reads the pan via the card (not e.target). */
+.product-card__link { position: absolute; inset: 0; z-index: 1; }
+.product-card__title a { position: relative; z-index: 2; }
 
 /* Always mode: full-width button below the info (above the card click overlay). */
 .product-card--atc-always .product-card__quick {
   position: relative;
+  z-index: 2;
   margin-top: var(--space-3);
   opacity: 1;
   transform: none;

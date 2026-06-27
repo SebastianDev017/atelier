@@ -145,6 +145,11 @@
     {% render 'price', product: product, show_from: true %}
   </div>
 
+  {%- comment -%} Whole-card click target. Decorative (aria-hidden + tabindex=-1) —
+    the title <a> remains the accessible/keyboard link; the quick-add button and
+    title sit above this via z-index so they stay independently clickable. {%- endcomment -%}
+  <a class="product-card__link" href="{{ product.url }}" tabindex="-1" aria-hidden="true"></a>
+
   {%- comment -%} Always mode: full-width button below the info. {%- endcomment -%}
   {%- if quick_add_style == 'always' -%}{{ quick_add_html }}{%- endif -%}
 </div>

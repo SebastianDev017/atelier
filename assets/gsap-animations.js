@@ -225,8 +225,11 @@
   function initCursorPan() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
     var MAX = 6;
+    /* Resolve the pan via the CARD, not e.target — the whole-card stretched link
+       sits above the media, so e.target there is the <a>, not the pan. */
     document.addEventListener('mousemove', function (e) {
-      var pan = e.target.closest && e.target.closest('[data-card-pan]');
+      var card = e.target.closest && e.target.closest('[data-product-card]');
+      var pan = card && card.querySelector('[data-card-pan]');
       if (!pan) return;
       var r = pan.parentNode.getBoundingClientRect();
       var nx = ((e.clientX - r.left) / r.width - 0.5) * 2;
@@ -234,8 +237,9 @@
       gsap.to(pan, { x: nx * MAX, y: ny * MAX, duration: 0.4, ease: 'power3.out', overwrite: 'auto' });
     });
     document.addEventListener('mouseout', function (e) {
-      var pan = e.target.closest && e.target.closest('[data-card-pan]');
-      if (!pan || pan.contains(e.relatedTarget)) return;
+      var card = e.target.closest && e.target.closest('[data-product-card]');
+      var pan = card && card.querySelector('[data-card-pan]');
+      if (!pan || (e.relatedTarget && card.contains(e.relatedTarget))) return;
       gsap.to(pan, { x: 0, y: 0, duration: 0.5, ease: 'power3.out', overwrite: 'auto' });
     });
   }
