@@ -546,26 +546,9 @@
   });
 
   /* ---------- Smooth scroll (Lenis) ----------
-     Initialised on window load so the deferred lenis.min.js has executed.
-     Disabled in the theme editor (designMode) where Lenis fights the editor. */
-  function SmoothScroll() {
-    if (window.Shopify && window.Shopify.designMode) return;
-    if (document.body.dataset.smoothScroll === 'false') return;
-    if (!window.Lenis) return;
-    var lenis = new window.Lenis({
-      duration: 1.1,
-      easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
-      smoothWheel: true,
-      wheelMultiplier: 0.9,
-      touchMultiplier: 1.5,
-      infinite: false
-    });
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-    // Exposed for the scroll-to-top button and in-page anchor links.
-    window.lenis = lenis;
-  }
-  window.addEventListener('load', SmoothScroll);
+     Lenis is now created + driven in assets/gsap-init.js, where it shares ONE
+     rAF loop with the GSAP ticker / ScrollTrigger and exposes window.lenis.
+     (Driving it here too would double-advance Lenis and break scrolling.) */
 
   /* In-page anchor links route through Lenis (delegated so it also covers
      links injected after load). Falls back to native scroll without Lenis. */

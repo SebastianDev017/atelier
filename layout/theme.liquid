@@ -86,5 +86,10 @@
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
     <script src="{{ 'lenis.min.js' | asset_url }}" defer></script>
+    {%- comment -%} GSAP 3.13 motion stack — self-hosted (Theme Store disallows external script CDNs). Deferred scripts execute in order, so gsap-init runs after the libs are defined. {%- endcomment -%}
+    <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'splittext.min.js' | asset_url }}" defer></script>
+    <script src="{{ 'gsap-init.js' | asset_url }}" defer></script>
   </body>
 </html>
