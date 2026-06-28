@@ -44,7 +44,11 @@
     "cart_show_note": true,
     "enable_view_transitions": true,
     "enable_scroll_animations": true,
-    "social_instagram_link": "https://www.instagram.com/mueblerialuxor/",
+    "social_instagram_link": "#",
+    "social_facebook_link": "#",
+    "social_pinterest_link": "#",
+    "social_tiktok_link": "#",
+    "social_youtube_link": "#",
     "logo_width": 152,
     "favicon": "shopify://shop_images/logo_luxor.png",
     "sections": {
