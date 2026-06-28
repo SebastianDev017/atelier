@@ -7,7 +7,16 @@
   Localization captured once and emitted at the position the merchant chooses
   (top: below the logo; bottom: below the sidebar icons). Native localization
   forms with submit buttons, enhanced by <localization-dropdown> for the
-  open/close behaviour.
+  open/close behaviour. A matching language/country selector also lives in the
+  footer (sections/footer.liquid), so the picker is reachable from both places.
+
+  Merchant setup — to offer additional languages:
+    1. Shopify Admin → Settings → Languages → Add language (publish each one).
+    2. Online Store → Themes → ⋯ → Edit default theme content to review
+       translations (this theme ships en/es/fr/de/it locale files).
+    3. Toggle "Show language selector" on in this section (and/or the footer).
+  The selector renders only when the store has more than one published
+  language, so it stays hidden until step 1 is done.
 {%- endcomment -%}
 {%- liquid
   assign country_form_id = 'HeaderCountryForm-' | append: section.id
@@ -581,7 +590,7 @@
       "type": "checkbox",
       "id": "show_language_selector",
       "label": "t:sections.header.settings.show_language_selector.label",
-      "default": false
+      "default": true
     },
     {
       "type": "select",

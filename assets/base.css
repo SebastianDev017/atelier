@@ -318,6 +318,21 @@ h1, h2, h3, h4, h5, h6 {
   .site-main { min-height: 0; }
 }
 
+/* ---------- RTL future-proofing ----------
+   None of the five bundled languages (en/es/fr/de/it) are RTL, but the shell
+   is readied for Arabic/Hebrew if ever added. Setting dir="rtl" on <html>
+   reverses the grid's inline axis, so the sidebar column naturally moves to
+   the right; we only need to flip the side-specific pieces (border side, the
+   off-canvas drawer direction, and the cart drawer's slide-in edge). */
+[dir="rtl"] .sidebar--bordered { border-right: 0; border-left: 1px solid var(--color-border); }
+[dir="rtl"] .cart-drawer__panel { right: auto; left: 0; transform: translateX(-100%); }
+[dir="rtl"] .cart-drawer.is-open .cart-drawer__panel { transform: translateX(0); }
+@media (max-width: 768px) {
+  [dir="rtl"] .sidebar__toggle { left: auto; right: var(--space-3); }
+  [dir="rtl"] .sidebar__panel { left: auto; right: 0; transform: translateX(100%); }
+  [dir="rtl"] .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
+}
+
 /* ---------- Layout ---------- */
 /* Inner content gutter. Responsive clamp keeps content off the sidebar
    divider on desktop without crushing small screens. .page-width and

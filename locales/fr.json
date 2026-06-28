@@ -1,0 +1,219 @@
+{
+  "general": {
+    "skip_to_content": "Aller au contenu",
+    "menu": "Menu",
+    "close": "Fermer",
+    "search": "Rechercher",
+    "cart": "Panier",
+    "account": "Compte",
+    "home": "Accueil",
+    "continue_shopping": "Continuer mes achats",
+    "view_all": "Tout voir",
+    "loading": "Chargement",
+    "page": "Page",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "newsletter_label": "E-mail",
+    "share": "Partager",
+    "copied": "Lien copié",
+    "copy_link": "Copier le lien",
+    "social_label": "Suivez-nous",
+    "recently_viewed": "Récemment consultés"
+  },
+  "accessibility": {
+    "skip_to_content": "Aller au contenu",
+    "scroll_to_top": "Revenir en haut",
+    "previous": "Précédent",
+    "next": "Suivant",
+    "close": "Fermer",
+    "loading": "Chargement",
+    "open_cart": "Ouvrir le panier",
+    "close_cart": "Fermer le panier",
+    "open_menu": "Ouvrir le menu",
+    "close_menu": "Fermer le menu",
+    "open_search": "Ouvrir la recherche",
+    "close_search": "Fermer la recherche",
+    "pause": "Mettre en pause",
+    "play": "Lire",
+    "decrease_quantity": "Diminuer la quantité",
+    "increase_quantity": "Augmenter la quantité",
+    "star_rating_html": "{{ rating }} étoiles sur {{ scale }}",
+    "selection_help": "Utilisez les flèches gauche et droite pour naviguer"
+  },
+  "products": {
+    "add_to_cart": "Ajouter au panier",
+    "edition_number": "N° {{ number }}",
+    "adding": "Ajout en cours…",
+    "added": "Ajouté",
+    "sold_out": "Épuisé",
+    "unavailable": "Indisponible",
+    "choose_options": "Choisir les options",
+    "view_details": "Voir les détails",
+    "quantity": "Quantité",
+    "vendor": "Fournisseur",
+    "on_sale": "Solde",
+    "new": "Nouveau",
+    "save_html": "Économisez {{ amount }}",
+    "from_price_html": "À partir de {{ price }}",
+    "regular_price": "Prix habituel",
+    "sale_price": "Prix soldé",
+    "unit_price_separator": "/",
+    "in_stock": "En stock",
+    "low_stock": "Stock limité",
+    "low_stock_count": "Plus que {{ count }} en stock",
+    "out_of_stock": "Rupture de stock",
+    "pickup_available": "Retrait disponible",
+    "pickup_unavailable": "Retrait actuellement indisponible",
+    "description": "Description",
+    "recommendations_title": "Vous aimerez aussi",
+    "complete_the_look": "Complétez le décor",
+    "featured_empty": "Sélectionnez un produit à mettre en avant.",
+    "trust": {
+      "shipping": "Livraison offerte dès 150 $",
+      "returns": "Retours sous 30 jours",
+      "secure": "Paiement sécurisé"
+    },
+    "share": "Partager"
+  },
+  "cart": {
+    "title": "Votre panier",
+    "empty": "Votre panier est vide",
+    "empty_subtext": "Parcourez la collection pour trouver une pièce qui vous séduit.",
+    "subtotal": "Sous-total",
+    "total": "Total",
+    "checkout": "Passer à la caisse",
+    "update": "Mettre à jour",
+    "remove": "Supprimer",
+    "view_cart": "Voir le panier",
+    "item_count": {
+      "one": "{{ count }} article",
+      "other": "{{ count }} articles"
+    },
+    "taxes_and_shipping_at_checkout": "Taxes et frais de livraison calculés au moment du paiement",
+    "free_shipping_progress_html": "Plus que {{ remaining }} pour bénéficier de la livraison offerte",
+    "free_shipping_reached": "Vous bénéficiez de la livraison offerte",
+    "note": "Note de commande",
+    "note_placeholder": "Instructions particulières pour votre commande",
+    "continue_shopping": "Continuer mes achats",
+    "bundle_heading": "Se marie à merveille avec"
+  },
+  "bundle": {
+    "heading": "Complétez votre achat",
+    "see_more": "Voir plus de suggestions",
+    "see_less": "Réduire",
+    "add": "Ajouter {{ title }} au panier"
+  },
+  "search": {
+    "title": "Rechercher",
+    "placeholder": "Rechercher des produits, le journal, des pages…",
+    "start_typing": "Commencez à saisir pour rechercher…",
+    "no_results": "Aucun résultat",
+    "submit": "Rechercher",
+    "reset": "Effacer",
+    "results_with_count": {
+      "one": "{{ count }} résultat pour « {{ terms }} »",
+      "other": "{{ count }} résultats pour « {{ terms }} »"
+    },
+    "no_results_html": "Aucun résultat pour « {{ terms }} ». Essayez une autre recherche.",
+    "suggestions": "Suggestions",
+    "products": "Produits",
+    "pages": "Pages",
+    "articles": "Journal",
+    "view_all_results": "Voir tous les résultats"
+  },
+  "collections": {
+    "title": "Collections",
+    "all": "Tous les produits",
+    "empty": "Aucun produit trouvé",
+    "empty_filters": "Aucun produit ne correspond à ces filtres.",
+    "view_all_products": "Voir tous les produits",
+    "product_count": {
+      "one": "{{ count }} produit",
+      "other": "{{ count }} produits"
+    },
+    "sort_by": "Trier par",
+    "filter": "Filtrer",
+    "filters": "Filtres",
+    "clear": "Effacer",
+    "clear_all": "Tout effacer",
+    "apply": "Appliquer",
+    "filter_and_sort": "Filtrer et trier",
+    "view_as": "Afficher en",
+    "view_grid": "Vue en grille",
+    "view_list": "Vue en liste",
+    "results_count": {
+      "one": "{{ count }} résultat",
+      "other": "{{ count }} résultats"
+    }
+  },
+  "blog": {
+    "all_articles": "Tous les articles",
+    "read_more": "Lire la suite",
+    "article_metadata_html": "{{ date }} · {{ author }}",
+    "tags": "Mots-clés",
+    "comments_count": {
+      "one": "{{ count }} commentaire",
+      "other": "{{ count }} commentaires"
+    },
+    "comment_form_title": "Laisser un commentaire",
+    "comment_form_name": "Nom",
+    "comment_form_email": "E-mail",
+    "comment_form_body": "Commentaire",
+    "comment_form_submit": "Publier le commentaire",
+    "comment_success": "Votre commentaire a bien été publié. Merci !",
+    "comment_moderated": "Votre commentaire a bien été enregistré. Nous le publierons sous peu, car notre blog est modéré."
+  },
+  "newsletter": {
+    "label": "E-mail",
+    "success": "Merci de votre inscription.",
+    "submit": "S'abonner"
+  },
+  "contact": {
+    "name": "Nom",
+    "email": "E-mail",
+    "phone": "Téléphone",
+    "message": "Message",
+    "send": "Envoyer",
+    "success": "Merci de nous avoir contactés. Nous vous répondrons très prochainement."
+  },
+  "customers": {
+    "login": {
+      "title": "Connexion",
+      "email": "E-mail",
+      "password": "Mot de passe",
+      "submit": "Se connecter"
+    }
+  },
+  "localization": {
+    "country_label": "Pays/région",
+    "language_label": "Langue",
+    "update": "Mettre à jour"
+  },
+  "404": {
+    "title": "Page introuvable",
+    "not_found": "La page que vous recherchez n’existe pas. Elle a peut-être été déplacée, ou le lien est peut-être rompu.",
+    "back_to_shopping": "Retour à la boutique"
+  },
+  "gift_card": {
+    "title": "Carte cadeau",
+    "subtitle": "Voici votre carte cadeau.",
+    "expired": "Cette carte cadeau a expiré",
+    "expires_on_html": "Expire le {{ date }}",
+    "code_label": "Code de la carte cadeau",
+    "copy_code": "Copier le code",
+    "copied": "Copié",
+    "use_at_checkout": "Utilisez ce code lors du paiement",
+    "add_to_apple_wallet": "Ajouter à Apple Wallet",
+    "shop_link": "Visiter la boutique"
+  },
+  "password": {
+    "title": "Ouverture prochaine",
+    "subtext": "Saisissez le mot de passe de la boutique pour continuer.",
+    "password_label": "Mot de passe",
+    "password_placeholder": "Votre mot de passe",
+    "enter": "Entrer",
+    "powered_by": "Cette boutique sera propulsée par",
+    "admin_link_html": "Vous êtes le propriétaire de la boutique ? {{ link }}",
+    "login": "Connectez-vous ici"
+  }
+}

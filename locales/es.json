@@ -1,17 +1,109 @@
-/*
- * ------------------------------------------------------------
- * IMPORTANT: The contents of this file are auto-generated.
- *
- * This file may be updated by the Shopify admin language editor
- * or related systems. Please exercise caution as any changes
- * made to this file may be overwritten.
- * ------------------------------------------------------------
- */
 {
+  "general": {
+    "skip_to_content": "Saltar al contenido",
+    "menu": "Menú",
+    "close": "Cerrar",
+    "search": "Buscar",
+    "cart": "Cesta",
+    "account": "Cuenta",
+    "home": "Inicio",
+    "continue_shopping": "Seguir comprando",
+    "view_all": "Ver todo",
+    "loading": "Cargando",
+    "page": "Página",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "newsletter_label": "Correo electrónico",
+    "share": "Compartir",
+    "copied": "Enlace copiado",
+    "copy_link": "Copiar enlace",
+    "social_label": "Síguenos",
+    "recently_viewed": "Visto recientemente"
+  },
+  "accessibility": {
+    "skip_to_content": "Saltar al contenido",
+    "scroll_to_top": "Desplazarse hacia arriba",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "close": "Cerrar",
+    "loading": "Cargando",
+    "open_cart": "Abrir el carrito",
+    "close_cart": "Cerrar carrito",
+    "open_menu": "Abrir menú",
+    "close_menu": "Cerrar menú",
+    "open_search": "Abrir búsqueda",
+    "close_search": "Cerrar búsqueda",
+    "pause": "Pausa",
+    "play": "Reproducir",
+    "decrease_quantity": "Disminuir cantidad",
+    "increase_quantity": "Aumentar cantidad",
+    "star_rating_html": "{{ rating }} de {{ scale }} estrellas",
+    "selection_help": "Usa las teclas de flecha izquierda y derecha para navegar"
+  },
+  "products": {
+    "add_to_cart": "Añadir al carrito",
+    "edition_number": "N.º {{ number }}",
+    "adding": "Agregando…",
+    "added": "Añadido",
+    "sold_out": "Agotado",
+    "unavailable": "No disponible",
+    "choose_options": "Escoja opciones",
+    "view_details": "Ver detalles",
+    "quantity": "Cantidad",
+    "vendor": "Vendedor",
+    "on_sale": "Rebajas",
+    "new": "Nuevo",
+    "save_html": "Ahorre {{ amount }}",
+    "from_price_html": "Desde {{ price }}",
+    "regular_price": "Precio regular",
+    "sale_price": "Precio de oferta",
+    "unit_price_separator": "/",
+    "in_stock": "En stock",
+    "low_stock": "Pocas existencias",
+    "low_stock_count": "Solo quedan {{ count }}",
+    "out_of_stock": "Sin existencias",
+    "pickup_available": "Recogida disponible",
+    "pickup_unavailable": "Recogida no disponible actualmente",
+    "description": "Descripción",
+    "recommendations_title": "También te puede interesar",
+    "complete_the_look": "Completa el look",
+    "featured_empty": "Seleccione un producto para destacar.",
+    "trust": {
+      "shipping": "Envío gratis en compras superiores a $150",
+      "returns": "Devoluciones en 30 días",
+      "secure": "Pago seguro"
+    },
+    "share": "Compartir"
+  },
+  "cart": {
+    "title": "Tu carrito",
+    "empty": "Tu carrito está vacío",
+    "empty_subtext": "Explora la colección para encontrar algo que te encante.",
+    "subtotal": "Subtotal",
+    "total": "Total",
+    "checkout": "Pagar",
+    "update": "Actualizar",
+    "remove": "Eliminar",
+    "view_cart": "Ver carrito",
+    "item_count": {
+      "one": "{{ count }} artículo",
+      "other": "{{ count }} artículos"
+    },
+    "taxes_and_shipping_at_checkout": "Impuestos y envío calculados al finalizar la compra",
+    "free_shipping_progress_html": "Estás a {{ remaining }} del envío gratis",
+    "free_shipping_reached": "Has desbloqueado el envío gratuito",
+    "note": "Nota del pedido",
+    "note_placeholder": "Instrucciones especiales para tu pedido",
+    "continue_shopping": "Seguir comprando",
+    "bundle_heading": "Combina bien con"
+  },
+  "bundle": {
+    "heading": "Finaliza tu compra",
+    "see_more": "Ver más sugerencias",
+    "see_less": "Mostrar menos",
+    "add": "Añadir {{ title }} al carrito"
+  },
   "search": {
-    "pages": "Páginas",
-    "articles": "Diario",
-    "view_all_results": "Ver todos los resultados",
     "title": "Buscar",
     "placeholder": "Buscar productos, diario, páginas…",
     "start_typing": "Empiece a escribir para buscar...",
@@ -24,7 +116,10 @@
     },
     "no_results_html": "No se encontraron resultados para \"{{ terms }}\". Intenta con otra búsqueda.",
     "suggestions": "Sugerencias",
-    "products": "Productos"
+    "products": "Productos",
+    "pages": "Páginas",
+    "articles": "Diario",
+    "view_all_results": "Ver todos los resultados"
   },
   "collections": {
     "title": "Colecciones",
@@ -54,6 +149,7 @@
   "blog": {
     "all_articles": "Todos los artículos",
     "read_more": "Leer más",
+    "article_metadata_html": "{{ date }} · {{ author }}",
     "tags": "Etiquetas",
     "comments_count": {
       "one": "{{ count }} comentario",
@@ -119,105 +215,5 @@
     "powered_by": "Esta tienda funcionará con",
     "admin_link_html": "¿Es usted el dueño de la tienda? {{ link }}",
     "login": "Inicia sesión aquí"
-  },
-  "general": {
-    "skip_to_content": "Saltar al contenido",
-    "menu": "Menú",
-    "close": "Cerrar",
-    "search": "Buscar",
-    "cart": "Cesta",
-    "account": "Cuenta",
-    "home": "Inicio",
-    "continue_shopping": "Seguir comprando",
-    "view_all": "Ver todo",
-    "loading": "Cargando",
-    "page": "Página",
-    "previous": "Anterior",
-    "next": "Siguiente",
-    "newsletter_label": "Correo electrónico",
-    "share": "Compartir",
-    "copied": "Enlace copiado",
-    "copy_link": "Copiar enlace",
-    "social_label": "Síguenos",
-    "recently_viewed": "Visto recientemente"
-  },
-  "accessibility": {
-    "skip_to_content": "Saltar al contenido",
-    "scroll_to_top": "Desplazarse hacia arriba",
-    "previous": "Anterior",
-    "next": "Siguiente",
-    "close": "Cerrar",
-    "loading": "Cargando",
-    "open_cart": "Abrir el carrito",
-    "close_cart": "Cerrar carrito",
-    "open_menu": "Abrir menú",
-    "close_menu": "Cerrar menú",
-    "open_search": "Abrir búsqueda",
-    "close_search": "Cerrar búsqueda",
-    "pause": "Pausa",
-    "play": "Reproducir",
-    "decrease_quantity": "Disminuir cantidad",
-    "increase_quantity": "Aumentar cantidad",
-    "star_rating_html": "{{ rating }} de {{ scale }} estrellas",
-    "selection_help": "Usa las teclas de flecha izquierda y derecha para navegar"
-  },
-  "products": {
-    "add_to_cart": "Añadir al carrito",
-    "adding": "Agregando…",
-    "added": "Añadido",
-    "sold_out": "Agotado",
-    "unavailable": "No disponible",
-    "choose_options": "Escoja opciones",
-    "view_details": "Ver detalles",
-    "quantity": "Cantidad",
-    "vendor": "Vendedor",
-    "on_sale": "Rebajas",
-    "new": "Nuevo",
-    "save_html": "Ahorre {{ amount }}",
-    "from_price_html": "Desde {{ price }}",
-    "regular_price": "Precio regular",
-    "sale_price": "Precio de oferta",
-    "in_stock": "En stock",
-    "low_stock": "Pocas existencias",
-    "low_stock_count": "Solo quedan {{ count }}",
-    "out_of_stock": "Sin existencias",
-    "pickup_available": "Recogida disponible",
-    "pickup_unavailable": "Recogida no disponible actualmente",
-    "description": "Descripción",
-    "recommendations_title": "También te puede interesar",
-    "complete_the_look": "Completa el look",
-    "featured_empty": "Seleccione un producto para destacar.",
-    "trust": {
-      "shipping": "Envío gratis en compras superiores a $150",
-      "returns": "Devoluciones en 30 días",
-      "secure": "Pago seguro"
-    },
-    "share": "Compartir"
-  },
-  "cart": {
-    "title": "Tu carrito",
-    "empty": "Tu carrito está vacío",
-    "empty_subtext": "Explora la colección para encontrar algo que te encante.",
-    "checkout": "Pagar",
-    "update": "Actualizar",
-    "remove": "Eliminar",
-    "view_cart": "Ver carrito",
-    "item_count": {
-      "one": "{{ count }} artículo",
-      "other": "{{ count }} artículos"
-    },
-    "taxes_and_shipping_at_checkout": "Impuestos y envío calculados al finalizar la compra",
-    "free_shipping_progress_html": "Estás a {{ remaining }} del envío gratis",
-    "free_shipping_reached": "Has desbloqueado el envío gratuito",
-    "note": "Nota del pedido",
-    "note_placeholder": "Instrucciones especiales para tu pedido",
-    "continue_shopping": "Seguir comprando",
-    "bundle_heading": "Combina bien con"
-  },
-  "bundle": {
-    "heading": "Finaliza tu compra",
-    "see_more": "Ver más sugerencias",
-    "see_less": "Mostrar menos",
-    "add": "Añadir {{ title }} al carrito"
   }
 }

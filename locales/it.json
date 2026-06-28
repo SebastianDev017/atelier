@@ -1,0 +1,219 @@
+{
+  "general": {
+    "skip_to_content": "Vai al contenuto",
+    "menu": "Menu",
+    "close": "Chiudi",
+    "search": "Cerca",
+    "cart": "Carrello",
+    "account": "Account",
+    "home": "Home",
+    "continue_shopping": "Continua lo shopping",
+    "view_all": "Vedi tutto",
+    "loading": "Caricamento",
+    "page": "Pagina",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "newsletter_label": "Email",
+    "share": "Condividi",
+    "copied": "Link copiato",
+    "copy_link": "Copia link",
+    "social_label": "Seguici",
+    "recently_viewed": "Visti di recente"
+  },
+  "accessibility": {
+    "skip_to_content": "Vai al contenuto",
+    "scroll_to_top": "Torna su",
+    "previous": "Precedente",
+    "next": "Successivo",
+    "close": "Chiudi",
+    "loading": "Caricamento",
+    "open_cart": "Apri il carrello",
+    "close_cart": "Chiudi il carrello",
+    "open_menu": "Apri menu",
+    "close_menu": "Chiudi menu",
+    "open_search": "Apri la ricerca",
+    "close_search": "Chiudi la ricerca",
+    "pause": "Pausa",
+    "play": "Riproduci",
+    "decrease_quantity": "Riduci la quantità",
+    "increase_quantity": "Aumenta la quantità",
+    "star_rating_html": "{{ rating }} su {{ scale }} stelle",
+    "selection_help": "Utilizzi i tasti freccia sinistra e destra per navigare"
+  },
+  "products": {
+    "add_to_cart": "Aggiungi al carrello",
+    "edition_number": "N. {{ number }}",
+    "adding": "Aggiunta in corso…",
+    "added": "Aggiunto",
+    "sold_out": "Esaurito",
+    "unavailable": "Non disponibile",
+    "choose_options": "Scegli le opzioni",
+    "view_details": "Vedi i dettagli",
+    "quantity": "Quantità",
+    "vendor": "Marchio",
+    "on_sale": "Offerta",
+    "new": "Novità",
+    "save_html": "Risparmi {{ amount }}",
+    "from_price_html": "Da {{ price }}",
+    "regular_price": "Prezzo di listino",
+    "sale_price": "Prezzo scontato",
+    "unit_price_separator": "/",
+    "in_stock": "Disponibile",
+    "low_stock": "Scorte limitate",
+    "low_stock_count": "Solo {{ count }} rimasti",
+    "out_of_stock": "Non disponibile",
+    "pickup_available": "Ritiro disponibile",
+    "pickup_unavailable": "Ritiro al momento non disponibile",
+    "description": "Descrizione",
+    "recommendations_title": "Potrebbe interessarle anche",
+    "complete_the_look": "Completi l'ambiente",
+    "featured_empty": "Selezioni un prodotto da mettere in evidenza.",
+    "trust": {
+      "shipping": "Spedizione gratuita oltre 150 $",
+      "returns": "Reso entro 30 giorni",
+      "secure": "Pagamento sicuro"
+    },
+    "share": "Condividi"
+  },
+  "cart": {
+    "title": "Il tuo carrello",
+    "empty": "Il tuo carrello è vuoto",
+    "empty_subtext": "Esplori la collezione per trovare ciò che ama.",
+    "subtotal": "Subtotale",
+    "total": "Totale",
+    "checkout": "Procedi all'acquisto",
+    "update": "Aggiorna",
+    "remove": "Rimuovi",
+    "view_cart": "Vedi carrello",
+    "item_count": {
+      "one": "{{ count }} articolo",
+      "other": "{{ count }} articoli"
+    },
+    "taxes_and_shipping_at_checkout": "Imposte e spedizione calcolate al momento del pagamento",
+    "free_shipping_progress_html": "Le mancano {{ remaining }} per la spedizione gratuita",
+    "free_shipping_reached": "Ha sbloccato la spedizione gratuita",
+    "note": "Nota dell'ordine",
+    "note_placeholder": "Istruzioni speciali per il suo ordine",
+    "continue_shopping": "Continua lo shopping",
+    "bundle_heading": "Si abbina bene a"
+  },
+  "bundle": {
+    "heading": "Completa il tuo acquisto",
+    "see_more": "Vedi altri suggerimenti",
+    "see_less": "Mostra meno",
+    "add": "Aggiungi {{ title }} al carrello"
+  },
+  "search": {
+    "title": "Cerca",
+    "placeholder": "Cerca prodotti, journal, pagine…",
+    "start_typing": "Inizi a digitare per cercare…",
+    "no_results": "Nessun risultato trovato",
+    "submit": "Cerca",
+    "reset": "Cancella",
+    "results_with_count": {
+      "one": "{{ count }} risultato per “{{ terms }}”",
+      "other": "{{ count }} risultati per “{{ terms }}”"
+    },
+    "no_results_html": "Nessun risultato trovato per “{{ terms }}”. Provi un'altra ricerca.",
+    "suggestions": "Suggerimenti",
+    "products": "Prodotti",
+    "pages": "Pagine",
+    "articles": "Journal",
+    "view_all_results": "Vedi tutti i risultati"
+  },
+  "collections": {
+    "title": "Collezioni",
+    "all": "Tutti i prodotti",
+    "empty": "Nessun prodotto trovato",
+    "empty_filters": "Nessun prodotto corrisponde a questi filtri.",
+    "view_all_products": "Vedi tutti i prodotti",
+    "product_count": {
+      "one": "{{ count }} prodotto",
+      "other": "{{ count }} prodotti"
+    },
+    "sort_by": "Ordina per",
+    "filter": "Filtra",
+    "filters": "Filtri",
+    "clear": "Cancella",
+    "clear_all": "Cancella tutto",
+    "apply": "Applica",
+    "filter_and_sort": "Filtra e ordina",
+    "view_as": "Visualizza come",
+    "view_grid": "Vista a griglia",
+    "view_list": "Vista a elenco",
+    "results_count": {
+      "one": "{{ count }} risultato",
+      "other": "{{ count }} risultati"
+    }
+  },
+  "blog": {
+    "all_articles": "Tutti gli articoli",
+    "read_more": "Leggi di più",
+    "article_metadata_html": "{{ date }} · {{ author }}",
+    "tags": "Tag",
+    "comments_count": {
+      "one": "{{ count }} commento",
+      "other": "{{ count }} commenti"
+    },
+    "comment_form_title": "Lascia un commento",
+    "comment_form_name": "Nome",
+    "comment_form_email": "Email",
+    "comment_form_body": "Commento",
+    "comment_form_submit": "Pubblica commento",
+    "comment_success": "Il Suo commento è stato pubblicato con successo. Grazie!",
+    "comment_moderated": "Il Suo commento è stato inviato con successo. Lo pubblicheremo a breve, poiché il nostro blog è moderato."
+  },
+  "newsletter": {
+    "label": "Email",
+    "success": "Grazie per l'iscrizione.",
+    "submit": "Iscriviti"
+  },
+  "contact": {
+    "name": "Nome",
+    "email": "Email",
+    "phone": "Telefono",
+    "message": "Messaggio",
+    "send": "Invia",
+    "success": "Grazie per averci contattato. Le risponderemo al più presto."
+  },
+  "customers": {
+    "login": {
+      "title": "Accedi",
+      "email": "Email",
+      "password": "Password",
+      "submit": "Accedi"
+    }
+  },
+  "localization": {
+    "country_label": "Paese/regione",
+    "language_label": "Lingua",
+    "update": "Aggiorna"
+  },
+  "404": {
+    "title": "Pagina non trovata",
+    "not_found": "La pagina che cercava non esiste. Potrebbe essere stata spostata oppure il link potrebbe non essere più valido.",
+    "back_to_shopping": "Torna allo shopping"
+  },
+  "gift_card": {
+    "title": "Carta regalo",
+    "subtitle": "Ecco la Sua carta regalo.",
+    "expired": "Questa carta regalo è scaduta",
+    "expires_on_html": "Scade il {{ date }}",
+    "code_label": "Codice carta regalo",
+    "copy_code": "Copia codice",
+    "copied": "Copiato",
+    "use_at_checkout": "Utilizzi questo codice al momento del pagamento",
+    "add_to_apple_wallet": "Aggiungi ad Apple Wallet",
+    "shop_link": "Visita il negozio"
+  },
+  "password": {
+    "title": "Apertura a breve",
+    "subtext": "Inserisca la password del negozio per continuare.",
+    "password_label": "Password",
+    "password_placeholder": "La Sua password",
+    "enter": "Entra",
+    "powered_by": "Questo negozio sarà supportato da",
+    "admin_link_html": "È Lei il titolare del negozio? {{ link }}",
+    "login": "Acceda qui"
+  }
+}

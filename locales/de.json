@@ -1,0 +1,219 @@
+{
+  "general": {
+    "skip_to_content": "Zum Inhalt springen",
+    "menu": "Menü",
+    "close": "Schließen",
+    "search": "Suchen",
+    "cart": "Warenkorb",
+    "account": "Konto",
+    "home": "Startseite",
+    "continue_shopping": "Weiter einkaufen",
+    "view_all": "Alle anzeigen",
+    "loading": "Wird geladen",
+    "page": "Seite",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "newsletter_label": "E-Mail",
+    "share": "Teilen",
+    "copied": "Link kopiert",
+    "copy_link": "Link kopieren",
+    "social_label": "Folgen Sie uns",
+    "recently_viewed": "Zuletzt angesehen"
+  },
+  "accessibility": {
+    "skip_to_content": "Zum Inhalt springen",
+    "scroll_to_top": "Nach oben scrollen",
+    "previous": "Zurück",
+    "next": "Weiter",
+    "close": "Schließen",
+    "loading": "Wird geladen",
+    "open_cart": "Warenkorb öffnen",
+    "close_cart": "Warenkorb schließen",
+    "open_menu": "Menü öffnen",
+    "close_menu": "Menü schließen",
+    "open_search": "Suche öffnen",
+    "close_search": "Suche schließen",
+    "pause": "Pausieren",
+    "play": "Abspielen",
+    "decrease_quantity": "Menge verringern",
+    "increase_quantity": "Menge erhöhen",
+    "star_rating_html": "{{ rating }} von {{ scale }} Sternen",
+    "selection_help": "Verwenden Sie die linke und rechte Pfeiltaste zur Navigation"
+  },
+  "products": {
+    "add_to_cart": "In den Warenkorb",
+    "edition_number": "Nr. {{ number }}",
+    "adding": "Wird hinzugefügt…",
+    "added": "Hinzugefügt",
+    "sold_out": "Ausverkauft",
+    "unavailable": "Nicht verfügbar",
+    "choose_options": "Optionen wählen",
+    "view_details": "Details ansehen",
+    "quantity": "Menge",
+    "vendor": "Anbieter",
+    "on_sale": "Angebot",
+    "new": "Neu",
+    "save_html": "{{ amount }} sparen",
+    "from_price_html": "Ab {{ price }}",
+    "regular_price": "Regulärer Preis",
+    "sale_price": "Sale-Preis",
+    "unit_price_separator": "/",
+    "in_stock": "Auf Lager",
+    "low_stock": "Geringer Bestand",
+    "low_stock_count": "Nur noch {{ count }} verfügbar",
+    "out_of_stock": "Nicht auf Lager",
+    "pickup_available": "Abholung verfügbar",
+    "pickup_unavailable": "Abholung derzeit nicht verfügbar",
+    "description": "Beschreibung",
+    "recommendations_title": "Das könnte Ihnen auch gefallen",
+    "complete_the_look": "Den Look vervollständigen",
+    "featured_empty": "Wählen Sie ein Produkt zum Hervorheben aus.",
+    "trust": {
+      "shipping": "Kostenloser Versand ab 150 $",
+      "returns": "30 Tage Rückgaberecht",
+      "secure": "Sicherer Bezahlvorgang"
+    },
+    "share": "Teilen"
+  },
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "empty_subtext": "Stöbern Sie durch die Kollektion und finden Sie etwas, das Sie lieben.",
+    "subtotal": "Zwischensumme",
+    "total": "Gesamtsumme",
+    "checkout": "Zur Kasse",
+    "update": "Aktualisieren",
+    "remove": "Entfernen",
+    "view_cart": "Warenkorb ansehen",
+    "item_count": {
+      "one": "{{ count }} Artikel",
+      "other": "{{ count }} Artikel"
+    },
+    "taxes_and_shipping_at_checkout": "Steuern und Versand werden an der Kasse berechnet",
+    "free_shipping_progress_html": "Ihnen fehlen noch {{ remaining }} bis zum kostenlosen Versand",
+    "free_shipping_reached": "Sie haben den kostenlosen Versand freigeschaltet",
+    "note": "Bestellnotiz",
+    "note_placeholder": "Besondere Hinweise zu Ihrer Bestellung",
+    "continue_shopping": "Weiter einkaufen",
+    "bundle_heading": "Passt gut dazu"
+  },
+  "bundle": {
+    "heading": "Vervollständigen Sie Ihren Einkauf",
+    "see_more": "Weitere Vorschläge anzeigen",
+    "see_less": "Weniger anzeigen",
+    "add": "{{ title }} in den Warenkorb legen"
+  },
+  "search": {
+    "title": "Suchen",
+    "placeholder": "Produkte, Journal, Seiten durchsuchen…",
+    "start_typing": "Tippen Sie, um zu suchen…",
+    "no_results": "Keine Ergebnisse gefunden",
+    "submit": "Suchen",
+    "reset": "Löschen",
+    "results_with_count": {
+      "one": "{{ count }} Ergebnis für „{{ terms }}“",
+      "other": "{{ count }} Ergebnisse für „{{ terms }}“"
+    },
+    "no_results_html": "Keine Ergebnisse für „{{ terms }}“ gefunden. Versuchen Sie eine andere Suche.",
+    "suggestions": "Vorschläge",
+    "products": "Produkte",
+    "pages": "Seiten",
+    "articles": "Journal",
+    "view_all_results": "Alle Ergebnisse anzeigen"
+  },
+  "collections": {
+    "title": "Kollektionen",
+    "all": "Alle Produkte",
+    "empty": "Keine Produkte gefunden",
+    "empty_filters": "Keine Produkte entsprechen diesen Filtern.",
+    "view_all_products": "Alle Produkte anzeigen",
+    "product_count": {
+      "one": "{{ count }} Produkt",
+      "other": "{{ count }} Produkte"
+    },
+    "sort_by": "Sortieren nach",
+    "filter": "Filtern",
+    "filters": "Filter",
+    "clear": "Löschen",
+    "clear_all": "Alle löschen",
+    "apply": "Anwenden",
+    "filter_and_sort": "Filtern und sortieren",
+    "view_as": "Anzeigen als",
+    "view_grid": "Rasteransicht",
+    "view_list": "Listenansicht",
+    "results_count": {
+      "one": "{{ count }} Ergebnis",
+      "other": "{{ count }} Ergebnisse"
+    }
+  },
+  "blog": {
+    "all_articles": "Alle Artikel",
+    "read_more": "Weiterlesen",
+    "article_metadata_html": "{{ date }} · {{ author }}",
+    "tags": "Schlagwörter",
+    "comments_count": {
+      "one": "{{ count }} Kommentar",
+      "other": "{{ count }} Kommentare"
+    },
+    "comment_form_title": "Kommentar hinterlassen",
+    "comment_form_name": "Name",
+    "comment_form_email": "E-Mail",
+    "comment_form_body": "Kommentar",
+    "comment_form_submit": "Kommentar veröffentlichen",
+    "comment_success": "Ihr Kommentar wurde erfolgreich veröffentlicht. Vielen Dank!",
+    "comment_moderated": "Ihr Kommentar wurde erfolgreich übermittelt. Wir veröffentlichen ihn in Kürze, da unser Blog moderiert wird."
+  },
+  "newsletter": {
+    "label": "E-Mail",
+    "success": "Vielen Dank für Ihre Anmeldung.",
+    "submit": "Abonnieren"
+  },
+  "contact": {
+    "name": "Name",
+    "email": "E-Mail",
+    "phone": "Telefon",
+    "message": "Nachricht",
+    "send": "Senden",
+    "success": "Vielen Dank für Ihre Nachricht. Wir melden uns in Kürze bei Ihnen."
+  },
+  "customers": {
+    "login": {
+      "title": "Anmeldung",
+      "email": "E-Mail",
+      "password": "Passwort",
+      "submit": "Anmelden"
+    }
+  },
+  "localization": {
+    "country_label": "Land/Region",
+    "language_label": "Sprache",
+    "update": "Aktualisieren"
+  },
+  "404": {
+    "title": "Seite nicht gefunden",
+    "not_found": "Die von Ihnen gesuchte Seite existiert nicht. Möglicherweise wurde sie verschoben oder der Link ist nicht mehr gültig.",
+    "back_to_shopping": "Zurück zum Einkaufen"
+  },
+  "gift_card": {
+    "title": "Geschenkkarte",
+    "subtitle": "Hier ist Ihre Geschenkkarte.",
+    "expired": "Diese Geschenkkarte ist abgelaufen",
+    "expires_on_html": "Gültig bis {{ date }}",
+    "code_label": "Geschenkkarten-Code",
+    "copy_code": "Code kopieren",
+    "copied": "Kopiert",
+    "use_at_checkout": "Verwenden Sie diesen Code an der Kasse",
+    "add_to_apple_wallet": "Zu Apple Wallet hinzufügen",
+    "shop_link": "Zum Shop"
+  },
+  "password": {
+    "title": "Eröffnung in Kürze",
+    "subtext": "Geben Sie das Shop-Passwort ein, um fortzufahren.",
+    "password_label": "Passwort",
+    "password_placeholder": "Ihr Passwort",
+    "enter": "Eingeben",
+    "powered_by": "Dieser Shop wird betrieben mit",
+    "admin_link_html": "Sind Sie der Shop-Inhaber? {{ link }}",
+    "login": "Hier anmelden"
+  }
+}
