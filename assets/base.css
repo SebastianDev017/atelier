@@ -908,7 +908,7 @@ footer a:hover { opacity: 0.6; }
 .quantity__input::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
 /* ---------- Cart item (shared by drawer + cart page) ---------- */
-.cart-item { display: grid; grid-template-columns: 5.5rem 1fr; gap: var(--space-4); align-items: start; }
+.cart-item { display: grid; grid-template-columns: 4rem 1fr; gap: var(--space-3); align-items: start; }
 .cart-item__media { display: block; width: 100%; aspect-ratio: var(--ratio-product); background-color: var(--color-subtle); overflow: hidden; }
 .cart-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .cart-item__details { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
@@ -1165,6 +1165,13 @@ body:has(.custom-cursor) * { cursor: none !important; }
   body:has(.custom-cursor),
   body:has(.custom-cursor) * { cursor: auto !important; }
 }
+/* The cart drawer is a modal surface. The custom cursor is a fixed 10px dot
+   (mix-blend-mode: difference) — over the drawer it reads as a stray
+   indicator, so hide it and restore the native pointer while the drawer is
+   open. Placed after the rule above so it wins on equal specificity. */
+body:has(.cart-drawer.is-open) .custom-cursor { opacity: 0; }
+body:has(.cart-drawer.is-open),
+body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 
 .custom-cursor {
   position: fixed;
@@ -1595,9 +1602,14 @@ body:has(.custom-cursor) * { cursor: none !important; }
 .bundle__add.is-added .bundle__icon-add { display: none; }
 .bundle__add.is-added .bundle__icon-added { display: block; }
 
-/* Card variant — vertical, used in the cart-drawer horizontal strip */
-.bundle__item--card { flex: 0 0 140px; flex-direction: column; align-items: stretch; gap: var(--space-2); }
-.bundle__item--card .bundle__item-link { flex-direction: column; align-items: flex-start; gap: var(--space-2); }
-.bundle__item--card .bundle__item-img { width: 100%; height: auto; aspect-ratio: 1 / 1; }
-.bundle__item--card .bundle__item-title { white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
-.bundle__item--card .bundle__item-foot { justify-content: space-between; }
+/* Card variant — vertical, used in the cart-drawer horizontal strip. Kept
+   compact (narrow card + short 4:3 image) so the upsell reads as a secondary
+   suggestion strip, not a second storefront. */
+.bundle__item--card { flex: 0 0 104px; flex-direction: column; align-items: stretch; gap: var(--space-1, 0.25rem); }
+.bundle__item--card .bundle__item-link { flex-direction: column; align-items: flex-start; gap: var(--space-1, 0.25rem); }
+.bundle__item--card .bundle__item-img { width: 100%; height: auto; aspect-ratio: 4 / 3; }
+.bundle__item--card .bundle__item-title { font-size: var(--text-xs); white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
+.bundle__item--card .bundle__item-foot { justify-content: space-between; gap: var(--space-2); }
+.bundle__item--card .bundle__add { width: 26px; height: 26px; }
+.bundle__item--card .bundle__icon-add,
+.bundle__item--card .bundle__icon-added { width: 13px; height: 13px; }

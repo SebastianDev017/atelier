@@ -12,7 +12,7 @@
       {{
         item.image
         | image_url: width: 220
-        | image_tag: loading: 'lazy', widths: '110, 160, 220', sizes: '88px', alt: item.image.alt | default: item.product.title | escape
+        | image_tag: loading: 'lazy', widths: '110, 160, 220', sizes: '64px', alt: item.image.alt | default: item.product.title | escape
       }}
     {%- else -%}
       <span class="placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>

@@ -51,7 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-5) var(--space-6);
+    padding: var(--space-4) var(--space-5);
     border-bottom: 1px solid var(--color-border);
     flex: none;
   }
@@ -68,15 +68,15 @@
     overscroll-behavior: contain;
     display: flex;
     flex-direction: column;
-    gap: var(--space-6);
-    padding: var(--space-6);
+    gap: var(--space-4);
+    padding: var(--space-4) var(--space-5);
     margin: 0;
   }
 
   /* Bundle suggestions strip — flex:none so it sits between the scrollable items
      and the footer without stealing scroll height. Card styles live in base.css. */
-  .cart-bundle { flex: none; padding: var(--space-5) var(--space-6); border-top: 1px solid var(--color-border); }
-  .cart-bundle__heading { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-3); }
+  .cart-bundle { flex: none; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--color-border); }
+  .cart-bundle__heading { font-family: var(--font-mono); font-size: 0.6875rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-muted); margin: 0 0 var(--space-2); }
   .cart-bundle__track { display: flex; gap: var(--space-3); overflow-x: auto; scrollbar-width: none; }
   .cart-bundle__track::-webkit-scrollbar { display: none; }
 
@@ -85,10 +85,14 @@
   .cart-drawer.is-loading .cart-drawer__items { opacity: 0.55; pointer-events: none; transition: opacity var(--duration-fast) var(--ease-editorial); }
 
   /* Free-shipping bar visuals live in snippets/cart-shipping-bar.liquid; the drawer only positions it. */
-  .cart-drawer__contents .cart-shipping { padding: var(--space-4) var(--space-6) 0; }
+  .cart-drawer__contents .cart-shipping { padding: var(--space-3) var(--space-5) 0; }
 
-  .cart-drawer__footer { flex: none; padding: var(--space-6); border-top: 1px solid var(--color-border); display: flex; flex-direction: column; gap: var(--space-4); }
-  .cart-drawer__note summary { min-height: 44px; display: inline-flex; align-items: center; }
+  .cart-drawer__footer { flex: none; padding: var(--space-4) var(--space-5); border-top: 1px solid var(--color-border); display: flex; flex-direction: column; gap: var(--space-3); }
+  /* Order note kept minimal: a small underlined text trigger and, when opened,
+     a short input rather than a tall bordered block. */
+  .cart-drawer__note summary { min-height: 32px; display: inline-flex; align-items: center; gap: var(--space-2); text-decoration: underline; text-underline-offset: 3px; }
+  .cart-drawer__note summary:hover { color: var(--color-text); }
+  .cart-drawer__note .textarea { min-height: 3.5rem; margin-top: var(--space-2); padding: var(--space-2) var(--space-3); font-size: var(--text-sm); }
   .cart-drawer__subtotal { display: flex; align-items: baseline; justify-content: space-between; font-size: var(--text-md); }
   .cart-drawer__subtotal-value { font-family: var(--font-heading); font-size: var(--text-xl); }
   .cart-drawer__taxes { margin-top: calc(var(--space-2) * -1); }
