@@ -7,4 +7,104 @@
  * made to this file may be overwritten.
  * ------------------------------------------------------------
  */
-{}
+{
+  "search": {
+    "pages": "Páginas",
+    "articles": "Diario",
+    "view_all_results": "Ver todos los resultados"
+  },
+  "collections": {
+    "title": "Colecciones",
+    "all": "Todos los productos",
+    "empty": "No se encontraron productos",
+    "empty_filters": "Ningún producto coincide con estos filtros.",
+    "view_all_products": "Ver todos los productos",
+    "product_count": {
+      "one": "{{ count }} producto",
+      "other": "{{ count }} productos"
+    },
+    "sort_by": "Ordenar por",
+    "filter": "Filtro",
+    "filters": "Filtros",
+    "clear": "Claro",
+    "clear_all": "Borrar todo",
+    "apply": "Aplicar",
+    "filter_and_sort": "Filtrar y ordenar",
+    "view_as": "Ver como",
+    "view_grid": "Vista de cuadrícula",
+    "view_list": "Vista de lista",
+    "results_count": {
+      "one": "{{ count }} resultado",
+      "other": "{{ count }} resultados"
+    }
+  },
+  "blog": {
+    "all_articles": "Todos los artículos",
+    "read_more": "Leer más",
+    "tags": "Etiquetas",
+    "comments_count": {
+      "one": "{{ count }} comentario",
+      "other": "{{ count }} comentarios"
+    },
+    "comment_form_title": "Deje un comentario",
+    "comment_form_name": "Nombre",
+    "comment_form_email": "Correo electrónico",
+    "comment_form_body": "Comentario",
+    "comment_form_submit": "Publicar comentario",
+    "comment_success": "Tu comentario se publicó correctamente. ¡Gracias!",
+    "comment_moderated": "Su comentario fue publicado con éxito. Lo publicaremos en breve, ya que nuestro blog está moderado."
+  },
+  "newsletter": {
+    "label": "Correo electrónico",
+    "success": "Gracias por suscribirte.",
+    "submit": "Suscribirse"
+  },
+  "contact": {
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "phone": "Teléfono",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "success": "Gracias por ponerte en contacto con nosotros. Te responderemos pronto."
+  },
+  "customers": {
+    "login": {
+      "title": "Iniciar sesión",
+      "email": "Correo electrónico",
+      "password": "Contraseña",
+      "submit": "Iniciar sesión"
+    }
+  },
+  "localization": {
+    "country_label": "País/región",
+    "language_label": "Idioma",
+    "update": "Actualizar"
+  },
+  "404": {
+    "title": "Página no encontrada",
+    "not_found": "La página que buscabas no existe. Puede que se haya movido, o que el enlace esté roto.",
+    "back_to_shopping": "Volver a comprar"
+  },
+  "gift_card": {
+    "title": "Tarjeta de regalo",
+    "subtitle": "Aquí tienes tu tarjeta de regalo.",
+    "expired": "Esta tarjeta de regalo ha caducado",
+    "expires_on_html": "Vence el {{ date }}",
+    "code_label": "Código de la tarjeta regalo",
+    "copy_code": "Copiar código",
+    "copied": "Copiado",
+    "use_at_checkout": "Usa este código al finalizar la compra",
+    "add_to_apple_wallet": "Añadir a Apple Wallet",
+    "shop_link": "Visita la tienda"
+  },
+  "password": {
+    "title": "Próxima apertura",
+    "subtext": "Ingrese la contraseña de la tienda para continuar.",
+    "password_label": "Contraseña",
+    "password_placeholder": "Tu contraseña",
+    "enter": "Introducir",
+    "powered_by": "Esta tienda funcionará con",
+    "admin_link_html": "¿Es usted el dueño de la tienda? {{ link }}",
+    "login": "Inicia sesión aquí"
+  }
+}
