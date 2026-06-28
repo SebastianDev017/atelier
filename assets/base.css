@@ -814,6 +814,12 @@ body[data-hover-swap="false"] .product-card:has(.product-card__hover-img):hover 
 footer a { transition: opacity var(--duration-fast) var(--ease-editorial); }
 footer a:hover { opacity: 0.6; }
 .product-card__quick { display: block; width: 100%; z-index: var(--z-raised); }
+/* The multi-variant quick-add is an <a> that also carries .btn. .product-card__quick's
+   display:block was overriding .btn's flex, so the label top-aligned (min-height) and
+   leaned on text-align alone. Restore the button's own flex centering. The single-variant
+   case keeps the product-form wrapper as a block, so its inner full-width button is
+   unaffected. No padding/letter-spacing/text-indent changes. */
+a.product-card__quick { display: flex; align-items: center; justify-content: center; }
 
 /* Hover mode: quick-add centered in a thin overlay revealed on hover/focus. */
 .product-card__overlay {
