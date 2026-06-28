@@ -4,6 +4,18 @@
   if settings.social_instagram_link != blank or settings.social_facebook_link != blank or settings.social_pinterest_link != blank or settings.social_tiktok_link != blank or settings.social_youtube_link != blank
     assign has_social = true
   endif
+  comment
+    Only renderable when enabled AND the store has more than one country /
+    language to switch between (else the trigger would do nothing).
+  endcomment
+  assign loc_show_country = false
+  if section.settings.show_country_selector and localization.available_countries.size > 1
+    assign loc_show_country = true
+  endif
+  assign loc_show_language = false
+  if section.settings.show_language_selector and localization.available_languages.size > 1
+    assign loc_show_language = true
+  endif
 -%}
 
 <footer
@@ -111,28 +123,51 @@
       </div>
 
       <div class="footer__bottom-right">
-        {%- if section.settings.show_country_selector and localization.available_countries.size > 1 -%}
-          {%- form 'localization', id: 'FooterCountryForm' -%}
-            <div class="footer-localization">
-              <select name="country_code" onchange="this.form.submit()" aria-label="{{ 'localization.country_label' | t }}">
-                {%- for country in localization.available_countries -%}
-                  <option value="{{ country.iso_code }}"{% if country.iso_code == localization.country.iso_code %} selected{% endif %}>{{ country.name }} ({{ country.currency.iso_code }})</option>
-                {%- endfor -%}
-              </select>
-            </div>
-          {%- endform -%}
-        {%- endif -%}
+        {%- comment -%} Custom dropup (not a native <select>, whose OS popup can't open upward,
+          take a z-index, or style its option highlight). Enhanced by <localization-dropdown>
+          in theme.js, which toggles each .localization-selector__btn's panel. {%- endcomment -%}
+        {%- if loc_show_country or loc_show_language -%}
+          <localization-dropdown class="footer-localization">
+            {%- if loc_show_country -%}
+              {%- form 'localization', id: 'FooterCountryForm' -%}
+                <div class="footer-localization__field">
+                  <button type="button" class="footer-localization__btn" data-localization-trigger aria-haspopup="true" aria-expanded="false" aria-controls="FooterCountryList-{{ section.id }}">
+                    {{ localization.country.iso_code }} ({{ localization.country.currency.iso_code }})
+                    <svg class="footer-localization__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <ul id="FooterCountryList-{{ section.id }}" class="footer-localization__list" aria-label="{{ 'localization.country_label' | t }}" hidden>
+                    {%- for country in localization.available_countries -%}
+                      <li>
+                        <button type="submit" name="country_code" value="{{ country.iso_code }}" class="footer-localization__option{% if country.iso_code == localization.country.iso_code %} is-active{% endif %}"{% if country.iso_code == localization.country.iso_code %} aria-current="true"{% endif %}>
+                          {{ country.name }} ({{ country.currency.iso_code }})
+                        </button>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endform -%}
+            {%- endif -%}
 
-        {%- if section.settings.show_language_selector and localization.available_languages.size > 1 -%}
-          {%- form 'localization', id: 'FooterLanguageForm' -%}
-            <div class="footer-localization">
-              <select name="locale_code" onchange="this.form.submit()" aria-label="{{ 'localization.language_label' | t }}">
-                {%- for language in localization.available_languages -%}
-                  <option value="{{ language.iso_code }}"{% if language.iso_code == localization.language.iso_code %} selected{% endif %}>{{ language.endonym_name }}</option>
-                {%- endfor -%}
-              </select>
-            </div>
-          {%- endform -%}
+            {%- if loc_show_language -%}
+              {%- form 'localization', id: 'FooterLanguageForm' -%}
+                <div class="footer-localization__field">
+                  <button type="button" class="footer-localization__btn" data-localization-trigger aria-haspopup="true" aria-expanded="false" aria-controls="FooterLanguageList-{{ section.id }}">
+                    {{ localization.language.endonym_name }}
+                    <svg class="footer-localization__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+                  </button>
+                  <ul id="FooterLanguageList-{{ section.id }}" class="footer-localization__list" aria-label="{{ 'localization.language_label' | t }}" hidden>
+                    {%- for language in localization.available_languages -%}
+                      <li>
+                        <button type="submit" name="locale_code" value="{{ language.iso_code }}" class="footer-localization__option{% if language.iso_code == localization.language.iso_code %} is-active{% endif %}"{% if language.iso_code == localization.language.iso_code %} aria-current="true"{% endif %}>
+                          {{ language.endonym_name }}
+                        </button>
+                      </li>
+                    {%- endfor -%}
+                  </ul>
+                </div>
+              {%- endform -%}
+            {%- endif -%}
+          </localization-dropdown>
         {%- endif -%}
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
@@ -201,22 +236,14 @@
   .footer__payment { display: flex; align-items: center; gap: var(--space-2); flex-wrap: wrap; }
   .footer__payment-icon { width: 2.2rem; height: auto; }
 
-  /* Native localization selectors (country / language) */
-  .footer-localization { position: relative; display: inline-block; }
-  .footer-localization::after {
-    content: '';
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 8px;
-    height: 5px;
-    background-color: currentColor;
-    clip-path: polygon(0 0, 100% 0, 50% 100%);
-    pointer-events: none;
-    opacity: 0.6;
-  }
-  .footer-localization select {
+  /* Localization dropup (custom — a native <select> popup can't open upward,
+     take a z-index, or restyle its blue option highlight). */
+  .footer-localization { display: inline-flex; align-items: center; gap: var(--space-3); }
+  .footer-localization__field { position: relative; }
+  .footer-localization__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
     background: transparent;
     border: 1px solid currentColor;
     border-radius: 0;
@@ -225,13 +252,55 @@
     font-size: 11px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    padding: 0.4rem 2.5rem 0.4rem 0.75rem;
-    appearance: none;
-    -webkit-appearance: none;
+    padding: 0.4rem 0.75rem;
+    cursor: pointer;
     opacity: 0.7;
     transition: opacity var(--duration-fast) var(--ease-editorial);
   }
-  .footer-localization select:hover { opacity: 1; }
+  .footer-localization__btn:hover,
+  .footer-localization__btn[aria-expanded="true"] { opacity: 1; }
+  .footer-localization__chevron { width: 12px; height: 12px; transition: transform var(--duration-fast) var(--ease-editorial); }
+  /* Chevron points up when open, since the panel opens upward. */
+  .footer-localization__btn[aria-expanded="true"] .footer-localization__chevron { transform: rotate(180deg); }
+  .footer-localization__list {
+    position: absolute;
+    /* Opens UPWARD (dropup): the selector lives at the bottom of the page. */
+    bottom: calc(100% + 0.5rem);
+    right: 0;
+    left: auto;
+    min-width: 12rem;
+    max-height: 60vh;
+    overflow-y: auto;
+    margin: 0;
+    padding: var(--space-2) 0;
+    list-style: none;
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    box-shadow: 0 -10px 28px rgba(0, 0, 0, 0.22);
+    /* Above footer content AND the fixed scroll-to-top button (z-index 500),
+       so it is never clipped or hidden behind them. */
+    z-index: 600;
+  }
+  .footer-localization__list[hidden] { display: none; }
+  .footer-localization__option {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0.5rem 1rem;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.04em;
+    color: var(--color-text);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
+  }
+  /* Theme-styled hover/active states — no native browser-blue highlight. */
+  .footer-localization__option:hover,
+  .footer-localization__option:focus-visible { background-color: color-mix(in srgb, var(--color-text) 12%, transparent); outline: none; }
+  .footer-localization__option.is-active,
+  .footer-localization__option[aria-current="true"] { background-color: color-mix(in srgb, var(--color-text) 16%, transparent); font-weight: 600; }
 {% endstylesheet %}
 
 {% schema %}

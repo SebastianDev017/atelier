@@ -491,7 +491,7 @@
 
     LocalizationDropdown.prototype.connectedCallback = function () {
       var self = this;
-      this.btns = Array.prototype.slice.call(this.querySelectorAll('.localization-selector__btn'));
+      this.btns = Array.prototype.slice.call(this.querySelectorAll('[data-localization-trigger]'));
       this.onDocClick = this.onDocClick.bind(this);
       this.onKeydown = this.onKeydown.bind(this);
       this.btns.forEach(function (btn) {

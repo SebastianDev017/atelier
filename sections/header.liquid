@@ -44,7 +44,7 @@
         {%- if loc_show_country -%}
           {%- form 'localization', id: country_form_id -%}
             <div class="localization-selector">
-              <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ country_list_id }}">
+              <button type="button" class="localization-selector__btn" data-localization-trigger aria-haspopup="true" aria-expanded="false" aria-controls="{{ country_list_id }}">
                 {{ localization.country.iso_code }}
                 <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
@@ -64,7 +64,7 @@
         {%- if loc_show_language -%}
           {%- form 'localization', id: language_form_id -%}
             <div class="localization-selector">
-              <button type="button" class="localization-selector__btn" aria-haspopup="true" aria-expanded="false" aria-controls="{{ language_list_id }}">
+              <button type="button" class="localization-selector__btn" data-localization-trigger aria-haspopup="true" aria-expanded="false" aria-controls="{{ language_list_id }}">
                 {{ localization.language.iso_code | upcase }}
                 <svg class="icon icon--chevron-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
               </button>
@@ -122,6 +122,22 @@
   >
     {% render 'icon', name: 'menu' %}
   </button>
+
+  {%- comment -%}
+    Mobile-only cart trigger, fixed to the top-RIGHT corner (mirrors the menu
+    toggle top-left). Outside the sliding panel so it stays put while the panel
+    translates off-canvas. Opens the cart drawer via the shared [data-cart-toggle]
+    handler; the badge updates through [data-cart-count] like the in-drawer cart.
+  {%- endcomment -%}
+  <a
+    class="sidebar__cart-toggle header__icon-btn"
+    href="{{ routes.cart_url }}"
+    data-cart-toggle
+    aria-label="{{ 'general.cart' | t }}"
+  >
+    {% render 'icon', name: 'cart' %}
+    <span class="sidebar__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count aria-hidden="true">{{ cart.item_count }}</span>
+  </a>
 
   <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
     <div class="sidebar__head">
@@ -452,6 +468,7 @@
 
   /* ---------- Mobile trigger + close (hidden on desktop) ---------- */
   .sidebar__toggle,
+  .sidebar__cart-toggle,
   .sidebar__close { display: none; }
 
   /* ---------- Search full-screen takeover ----------
@@ -521,6 +538,17 @@
       z-index: var(--z-header);
       /* Use the scheme-resolved tokens (which carry fallbacks) so the button
          keeps a solid background even when the brand color settings are nil. */
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      box-shadow: 0 0 0 1px var(--color-border);
+    }
+    /* Cart trigger mirrors the menu toggle, pinned to the opposite (right) corner. */
+    .sidebar__cart-toggle {
+      display: inline-flex;
+      position: fixed;
+      top: var(--space-3);
+      right: var(--space-3);
+      z-index: var(--z-header);
       background-color: var(--color-bg);
       color: var(--color-text);
       box-shadow: 0 0 0 1px var(--color-border);
