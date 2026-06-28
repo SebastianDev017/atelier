@@ -171,7 +171,12 @@
 {% stylesheet %}
   .featured-product { padding-block: var(--pt, var(--space-24)) var(--pb, var(--space-24)); }
   .featured-product__empty { text-align: center; color: var(--color-muted); padding-block: var(--space-16); }
-  .featured-product__grid { display: grid; grid-template-columns: 55% 45%; gap: var(--space-12); align-items: start; }
+  /* fr tracks (not 55%/45%) subtract the gap before dividing, so columns + gap
+     never exceed the inner width. minmax(0, …) + min-width:0 lets each column
+     shrink to fit instead of forcing a grid blowout from wide content. */
+  .featured-product__grid { display: grid; grid-template-columns: minmax(0, 55fr) minmax(0, 45fr); gap: var(--space-12); align-items: start; }
+  .featured-product__media,
+  .featured-product__content { min-width: 0; }
 
   .fp__main { overflow: hidden; aspect-ratio: 3 / 4; background: var(--color-media); }
   .fp__main-img { width: 100%; height: 100%; object-fit: cover; display: block; }
