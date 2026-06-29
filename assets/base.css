@@ -244,7 +244,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Customizable muted / label color from theme settings */
-.eyebrow, .label, .caption, .nav-numeral { color: var(--color-muted, #766356); }
+.eyebrow, .label, .caption { color: var(--color-muted, #766356); }
 
 .lead { font-size: var(--text-md); line-height: var(--leading-relaxed); }
 

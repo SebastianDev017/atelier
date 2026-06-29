@@ -1,24 +1,21 @@
 {%- comment -%}
-  Renders the sidebar navigation as a numbered index. Each top-level menu
-  item becomes a Roman-numeral section with an uppercase category label;
+  Renders the sidebar navigation as an index. Each top-level menu
+  item becomes an uppercase category label;
   its child links list vertically beneath it (always visible — no
-  disclosure). Flat menus simply render as a numbered list of links.
+  disclosure). Flat menus simply render as a list of links.
   The active link carries aria-current="page".
 
   @param {object} menu - the link_list to render
   @param {string} section_id - reserved for unique ids
 {%- endcomment -%}
-{%- assign romans = 'I,II,III,IV,V,VI,VII,VIII,IX,X,XI,XII,XIII,XIV,XV,XVI' | split: ',' -%}
 <ul class="sidebar-nav__list">
   {%- for link in menu.links -%}
-    {%- assign roman = romans[forloop.index0] | default: forloop.index -%}
     <li class="sidebar-nav__group">
       <a
         class="nav-link"
         href="{{ link.url }}"
         {% if link.current %}aria-current="page"{% endif %}
       >
-        <span class="nav-numeral" aria-hidden="true">{{ roman }}</span>
         <span class="nav-link__text">{{ link.title | escape }}</span>
       </a>
       {%- if link.links.size > 0 -%}

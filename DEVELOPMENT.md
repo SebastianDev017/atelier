@@ -98,7 +98,7 @@ Connected but NOT used for Atelier: Figma, Canva, Gamma, Gmail, Google Calendar,
 - `snippets/css-variables.liquid` — bridges settings → CSS vars (colors with blank-checks, fonts via `font_face`, widths, cursor size, image radius/border). Uses `<style>` (not `{% stylesheet %}`) for Liquid CSS.
 - Section CSS in `{% stylesheet %}`; per-instance values via inline `<style>` on `#shopify-section-{{ section.id }}`.
 - JS — framework-free Web Components in `theme.js` (window.Atelier helpers, ScrollAnimator, `<quantity-input>`, `<header-component>`, CursorComponent, ScrollTopButton, NotifyMe, Lenis smooth-scroll), `cart.js` (`<cart-drawer>`/`<product-form>`/`<cart-page>`), `product.js` (`<product-info>` variant swap), `search.js` (`<predictive-search>`).
-- Layout — vertical left **sidebar** nav (Roman-numeral index) via `header-group`; `site-layout` grid (`--sidebar-width` 1fr), collapses to an off-canvas drawer ≤768px.
+- Layout — vertical left **sidebar** nav (uppercase index) via `header-group`; `site-layout` grid (`--sidebar-width` 1fr), collapses to an off-canvas drawer ≤768px.
 
 ## 7. Build method (proven)
 
