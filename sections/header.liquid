@@ -517,14 +517,14 @@
   @media (min-width: 769px) {
     .sidebar--bordered { border-right: 1px solid var(--color-border); }
 
-    /* Center only the nav menu block within the sidebar. Logo, language
-       selector, dividers and the bottom icon row are left untouched. The
-       symmetric nav padding keeps the centered items clear of the panel's
-       right edge so the scroll gutter sits flush, never over content. */
-    .sidebar__nav { padding-right: var(--space-4); }
-    .sidebar-nav__list { align-items: center; text-align: center; }
-    .sidebar-nav__sub { align-items: center; padding-left: 0; }
-    .sidebar-nav__sublink { align-items: center; }
+    /* Center the whole nav block (its left line + left-aligned items) as one
+       unit by shrinking it to its content width and centering it in the panel.
+       Keep it vertically compact (flex:0) so the block and its line stop
+       stretching down into the empty space below the last item. Item text
+       stays left-aligned; logo, language selector, dividers and the bottom
+       icon row are untouched. */
+    .sidebar__nav { flex: 0 0 auto; align-self: center; }
+    .sidebar-nav__sub { padding-left: 0; }
   }
 
   /* ---------- Mobile: off-canvas drawer ---------- */
