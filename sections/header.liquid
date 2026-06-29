@@ -441,6 +441,16 @@
     padding: 0.5rem 0;
     z-index: 100;
   }
+  /* When the selector sits at the TOP of the sidebar (a direct child of the
+     panel, not inside the foot), the upward dropup is clipped by the top edge of
+     the sidebar/viewport — open it DOWNWARD instead so every option and the full
+     border stay visible. When it lives at the bottom (inside the foot) it keeps
+     opening upward. The footer selector uses .footer-localization__list and is
+     unaffected. */
+  .sidebar__panel > localization-dropdown .localization-selector__list {
+    top: calc(100% + 0.5rem);
+    bottom: auto;
+  }
   .localization-selector__list[hidden] { display: none; }
   .localization-selector__option {
     display: block;
