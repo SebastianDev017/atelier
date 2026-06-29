@@ -122,8 +122,8 @@
       "settings": {
         "heading": "Featured pieces",
         "collection": "living",
-        "products_count": 6,
-        "card_aspect": "portrait",
+        "products_count": 8,
+        "card_aspect": "square",
         "color_scheme": "cream",
         "padding_top": 96,
         "padding_bottom": 96
