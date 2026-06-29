@@ -245,9 +245,9 @@
   .sidebar__panel {
     display: flex;
     flex-direction: column;
-    gap: var(--space-8);
+    gap: var(--space-6);
     min-height: 100svh;
-    padding: var(--sidebar-pad, 28px);
+    padding: 20px var(--sidebar-pad, 28px);
     background-color: var(--color-bg);
   }
 
@@ -290,7 +290,7 @@
   }
 
   /* ---------- Sidebar index navigation ---------- */
-  .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-6); }
+  .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-5); }
   .nav-link {
     display: inline-flex;
     flex-direction: column;
@@ -328,7 +328,7 @@
     justify-content: center;
     align-items: flex-start;
     gap: 2px;
-    min-height: 44px;
+    min-height: 32px;
     font-family: var(--font-body);
     font-size: var(--text-sm);
     color: var(--color-muted);
@@ -516,6 +516,15 @@
      right border spans the full height. */
   @media (min-width: 769px) {
     .sidebar--bordered { border-right: 1px solid var(--color-border); }
+
+    /* Center only the nav menu block within the sidebar. Logo, language
+       selector, dividers and the bottom icon row are left untouched. The
+       symmetric nav padding keeps the centered items clear of the panel's
+       right edge so the scroll gutter sits flush, never over content. */
+    .sidebar__nav { padding-right: var(--space-4); }
+    .sidebar-nav__list { align-items: center; text-align: center; }
+    .sidebar-nav__sub { align-items: center; padding-left: 0; }
+    .sidebar-nav__sublink { align-items: center; }
   }
 
   /* ---------- Mobile: off-canvas drawer ---------- */
