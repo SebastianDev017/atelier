@@ -18,8 +18,8 @@
         "show_search": true,
         "show_account": true,
         "show_border": true,
-        "show_country_selector": true,
-        "show_language_selector": true,
+        "show_country_selector": false,
+        "show_language_selector": false,
         "localization_position": "top",
         "color_scheme": "cream"
       }
