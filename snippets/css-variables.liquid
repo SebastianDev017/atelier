@@ -86,7 +86,15 @@
     --h1-scale: {{ settings.h1_scale | default: 100 | divided_by: 100.0 }};
     --h2-scale: {{ settings.h2_scale | default: 100 | divided_by: 100.0 }};
     --h3-scale: {{ settings.h3_scale | default: 100 | divided_by: 100.0 }};
-    --heading-letter-spacing: {{ settings.letter_spacing_headings | default: -2 | times: 0.01 }}em;
+    {%- comment -%}
+      Emitted only when the merchant has moved this off its default (-2). The
+      heading classes below carry their own designed tracking as the var's
+      fallback, so emitting it unconditionally would flatten the whole type
+      scale to a single value.
+    {%- endcomment -%}
+    {%- if settings.letter_spacing_headings != -2 -%}
+      --heading-letter-spacing: {{ settings.letter_spacing_headings | times: 0.01 }}em;
+    {%- endif -%}
 
     --color-link: {% if settings.color_link != blank %}{{ settings.color_link }}{% else %}#2C1810{% endif %};
     /* Fallback darkened from #A0826D (3.33:1 on cream) to meet 4.5:1 body-text contrast. */
