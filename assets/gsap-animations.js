@@ -171,6 +171,24 @@
     if (trust) tl.from(trust, { opacity: 0 }, 0.8);
   }
 
+  /* Hero scroll cue — a 2px vertical breath, faded out once the reader has
+     clearly started scrolling. The cue lives inside the hero and is absolutely
+     positioned, so it scrolls away on its own; the fade is polish, which is why
+     nothing breaks if this never runs (reduced motion, or scroll animations
+     switched off). */
+  function initScrollCue() {
+    var cue = document.querySelector('[data-scroll-cue]');
+    if (!cue) return;
+    gsap.to(cue, { y: 2, duration: 1.2, ease: 'sine.inOut', repeat: -1, yoyo: true });
+    var wrap = cue.parentNode;
+    ScrollTrigger.create({
+      trigger: document.body,
+      start: 'top -80px',
+      onEnter: function () { gsap.to(wrap, { opacity: 0, duration: 0.4, overwrite: true }); },
+      onLeaveBack: function () { gsap.to(wrap, { opacity: 0.7, duration: 0.4, overwrite: true }); }
+    });
+  }
+
   /* Brand statement — pinned, scrubbed word-by-word reveal (opacity 0.1 -> 1). */
   function initBrandStatement() {
     if (window.Shopify && window.Shopify.designMode) return;
@@ -263,6 +281,7 @@
        in CSS, so bailing here leaves content shown, never stuck hidden. */
     if (document.body.getAttribute('data-scroll-animations') === 'false') return;
     initHero();
+    initScrollCue();
     initScrollProgress();
     initCursorPan();
     initBrandStatement();

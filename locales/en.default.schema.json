@@ -257,6 +257,10 @@
         "show_edition_number": {
           "label": "Show edition number"
         },
+        "show_scroll_cue": {
+          "label": "Show scroll cue",
+          "info": "A small chevron at the bottom of the hero signalling that the page continues below."
+        },
         "color_scheme": {
           "label": "Color scheme",
           "info": "Used as the background when no image is set.",

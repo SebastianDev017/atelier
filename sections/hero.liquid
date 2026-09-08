@@ -132,6 +132,21 @@
       {{ hero_content }}
     </div>
   {%- endif -%}
+
+  {%- comment -%}
+    The hero fills exactly 100dvh at every common viewport height, so nothing of
+    the next section peeks and the page reads as a complete, standalone landing
+    page. This is the only cue that content continues below.
+
+    Decorative, not a control: the page already scrolls, and a second tab stop
+    that only does what the wheel does adds nothing. pointer-events: none keeps
+    it from ever intercepting a click meant for the CTA above it.
+  {%- endcomment -%}
+  {%- if section.settings.show_scroll_cue -%}
+    <div class="hero__scroll-cue" aria-hidden="true">
+      <span class="hero__scroll-cue-icon" data-scroll-cue>{% render 'icon', name: 'chevron-down' %}</span>
+    </div>
+  {%- endif -%}
 </section>
 
 {% stylesheet %}
@@ -230,6 +245,31 @@
   .hero--fullbleed .hero__cta.btn--outline { background-color: transparent; border-color: var(--color-overlay-text); color: var(--color-overlay-text); }
   .hero--fullbleed .hero__cta.btn--outline:hover { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--hero-cta-ink, var(--color-text)); }
   .hero--fullbleed .hero__cta.link-underline { color: var(--color-overlay-text); }
+
+  /* ---- Scroll cue ----
+     Full-width flex row rather than a centred `transform: translateX(-50%)`:
+     GSAP animates y on the inner span, and a transform on the parent would be
+     overwritten wholesale by the tween. */
+  .hero__scroll-cue {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: var(--space-6);
+    z-index: var(--z-sticky);
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+    color: var(--color-overlay-text);
+    opacity: 0.7;
+  }
+  .hero--split .hero__scroll-cue { color: var(--color-text); }
+  .hero__scroll-cue-icon { display: flex; }
+  .hero__scroll-cue-icon .icon { width: 20px; height: 20px; }
+  /* Static and hidden under reduced motion: gsap-animations.js bails there, so
+     an un-animated chevron would sit at the fold doing nothing. */
+  @media (prefers-reduced-motion: reduce) {
+    .hero__scroll-cue { display: none; }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -316,6 +356,7 @@
     { "type": "url", "id": "cta_secondary_url", "label": "t:sections.hero.settings.cta_secondary_url.label" },
     { "type": "header", "content": "t:sections.hero.settings.header__5.content" },
     { "type": "checkbox", "id": "show_edition_number", "label": "t:sections.hero.settings.show_edition_number.label", "default": true },
+    { "type": "checkbox", "id": "show_scroll_cue", "label": "t:sections.hero.settings.show_scroll_cue.label", "info": "t:sections.hero.settings.show_scroll_cue.info", "default": true },
     {
       "type": "select", "id": "color_scheme", "label": "t:sections.hero.settings.color_scheme.label", "info": "t:sections.hero.settings.color_scheme.info",
       "options": [

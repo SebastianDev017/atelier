@@ -257,6 +257,10 @@
         "show_edition_number": {
           "label": "Afficher le numéro d'édition"
         },
+        "show_scroll_cue": {
+          "label": "Afficher l’indicateur de défilement",
+          "info": "Un petit chevron en bas du hero indiquant que la page continue plus bas."
+        },
         "color_scheme": {
           "label": "Palette de couleurs",
           "info": "Utilisée comme arrière-plan lorsqu'aucune image n'est définie.",

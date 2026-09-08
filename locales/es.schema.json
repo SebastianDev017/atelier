@@ -257,6 +257,10 @@
         "show_edition_number": {
           "label": "Mostrar número de edición"
         },
+        "show_scroll_cue": {
+          "label": "Mostrar indicador de desplazamiento",
+          "info": "Un pequeño galón en la parte inferior del hero que indica que la página continúa más abajo."
+        },
         "color_scheme": {
           "label": "Combinación de colores",
           "info": "Se usa como fondo cuando no se ha definido ninguna imagen.",

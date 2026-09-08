@@ -257,6 +257,10 @@
         "show_edition_number": {
           "label": "Editionsnummer anzeigen"
         },
+        "show_scroll_cue": {
+          "label": "Scroll-Hinweis anzeigen",
+          "info": "Ein kleiner Pfeil am unteren Rand des Heros, der zeigt, dass die Seite weitergeht."
+        },
         "color_scheme": {
           "label": "Farbschema",
           "info": "Wird als Hintergrund verwendet, wenn kein Bild festgelegt ist.",

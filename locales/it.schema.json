@@ -257,6 +257,10 @@
         "show_edition_number": {
           "label": "Mostra numero di edizione"
         },
+        "show_scroll_cue": {
+          "label": "Mostra indicatore di scorrimento",
+          "info": "Un piccolo chevron in fondo all’hero che indica che la pagina prosegue."
+        },
         "color_scheme": {
           "label": "Combinazione di colori",
           "info": "Utilizzata come sfondo quando non è impostata alcuna immagine.",
