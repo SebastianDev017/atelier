@@ -1681,11 +1681,20 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 /* Card variant — vertical, used in the cart-drawer horizontal strip. Kept
    compact (narrow card + short 4:3 image) so the upsell reads as a secondary
    suggestion strip, not a second storefront. */
-.bundle__item--card { flex: 0 0 104px; flex-direction: column; align-items: stretch; gap: var(--space-1, 0.25rem); }
+/* Cards share the track rather than taking a fixed 104px. At the drawer's
+   narrowest (375px viewport -> 305px track) three 104px cards plus their gaps
+   needed 336px, so the third card was sliced off with no scroll affordance --
+   the track hides its scrollbar, so it read as a broken render, not a scroller.
+   max-width keeps a lone upsell card-sized instead of stretching the track. */
+.bundle__item--card { flex: 1 1 0; min-width: 0; max-width: 132px; flex-direction: column; align-items: stretch; gap: var(--space-1, 0.25rem); }
 .bundle__item--card .bundle__item-link { flex-direction: column; align-items: flex-start; gap: var(--space-1, 0.25rem); }
 .bundle__item--card .bundle__item-img { width: 100%; height: auto; aspect-ratio: 4 / 3; }
 .bundle__item--card .bundle__item-title { font-size: var(--text-xs); white-space: normal; display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; }
-.bundle__item--card .bundle__item-foot { justify-content: space-between; gap: var(--space-2); }
+/* A sale price stacks (sale over compare-at) once the card is narrow, which left
+   the [+] centred against a two-line price while its neighbours centred against
+   one -- the buttons landed at visibly different heights. Bottom-aligning puts
+   every card's [+] on the same baseline whether the price wraps or not. */
+.bundle__item--card .bundle__item-foot { justify-content: space-between; align-items: flex-end; gap: var(--space-2); }
 .bundle__item--card .bundle__add { width: 26px; height: 26px; }
 .bundle__item--card .bundle__icon-add,
 .bundle__item--card .bundle__icon-added { width: 13px; height: 13px; }
