@@ -42,7 +42,8 @@
     "cart_free_shipping_threshold": 150,
     "cart_show_note": true,
     "enable_view_transitions": true,
-    "enable_scroll_animations": true,
+    "enable_custom_cursor": false,
+    "enable_scroll_animations": false,
     "social_instagram_link": "",
     "social_facebook_link": "",
     "social_pinterest_link": "",
@@ -56,7 +57,8 @@
           "enabled": true
         }
       }
-    }
+    },
+    "content_for_index": []
   },
   "presets": {
     "Side Atelier": {
