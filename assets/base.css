@@ -1263,21 +1263,27 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   top: 0;
   left: 0;
   will-change: transform;
+  /* width/height animate the image ("VIEW") state -- a transform scale would
+     blur the label. The clickable state is a GSAP scale, so transform is left
+     out of this list on purpose; transitioning it would fight the tween. */
   transition:
     width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
     height 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    border-radius 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    opacity 0.2s ease;
 }
 .custom-cursor.is-hovering-image {
   width: calc(var(--cursor-size, 10px) * 5.5);
   height: calc(var(--cursor-size, 10px) * 5.5);
 }
 .custom-cursor.is-hovering-image .custom-cursor__label { opacity: 1; }
-.custom-cursor.is-hovering-btn {
-  width: 40px;
-  height: 2px;
-  border-radius: 0;
-}
+/* Over anything clickable the dot scales to 1.8 (assets/cursor.js, GSAP). It
+   used to morph into a 40x2px rule, which read as a rendering glitch rather
+   than as "this is clickable". Nothing is declared here because the scale is a
+   transform and cursor.js already owns this element's transform. */
+/* Hidden while the pointer is outside the window, and before the first
+   mousemove has told us where it is. Opacity is set from CSS, never inline, so
+   the cart-drawer rule below can still win. */
+.custom-cursor.is-cursor-hidden { opacity: 0; }
 .custom-cursor__label {
   position: absolute;
   inset: 0;

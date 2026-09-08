@@ -95,7 +95,8 @@
       "cart_free_shipping_threshold": 150,
       "cart_show_note": true,
       "enable_scroll_animations": true,
-      "enable_view_transitions": true
+      "enable_view_transitions": true,
+      "enable_custom_cursor": false
     },
     "Annex": {
       "heading_font": "libre_baskerville_n4",
@@ -131,7 +132,8 @@
       "cart_free_shipping_threshold": 150,
       "cart_show_note": true,
       "enable_scroll_animations": true,
-      "enable_view_transitions": true
+      "enable_view_transitions": true,
+      "enable_custom_cursor": false
     },
     "Maison": {
       "heading_font": "playfair_display_n4",
@@ -167,7 +169,8 @@
       "cart_free_shipping_threshold": 150,
       "cart_show_note": true,
       "enable_scroll_animations": true,
-      "enable_view_transitions": true
+      "enable_view_transitions": true,
+      "enable_custom_cursor": false
     }
   }
 }

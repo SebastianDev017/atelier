@@ -97,7 +97,7 @@
     {% section 'search-palette' %}
 
     {%- comment -%} Render unless explicitly disabled: the setting is nil on a fresh/GitHub-synced theme (not in settings_data), and `{% if nil %}` would hide the cursor by default. `!= false` shows it by default while still honouring an explicit off. {%- endcomment -%}
-    {%- if settings.enable_custom_cursor != false -%}{% render 'cursor' %}{%- endif -%}
+    {%- if settings.enable_custom_cursor -%}{% render 'cursor' %}{%- endif -%}
 
     {% render 'scroll-top' %}
 
@@ -134,6 +134,12 @@
       <script src="{{ 'flip.min.js' | asset_url }}" defer></script>
     {%- endif -%}
     <script src="{{ 'gsap-init.js' | asset_url }}" defer></script>
+    {%- comment -%}
+      After gsap-init.js: cursor.js drives the dot with gsap.quickTo, so gsap must
+      already be parsed. Emitted only when the setting is on, so the default
+      install (enable_custom_cursor: false) ships none of it.
+    {%- endcomment -%}
+    {%- if settings.enable_custom_cursor -%}<script src="{{ 'cursor.js' | asset_url }}" defer></script>{%- endif -%}
     <script src="{{ 'gsap-animations.js' | asset_url }}" defer></script>
     <script src="{{ 'search-palette.js' | asset_url }}" defer></script>
     {%- comment -%} Drives the main-collection grid/list toggle. main-collection is a main-* section with no preset, so it can only appear here. {%- endcomment -%}

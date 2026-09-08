@@ -450,38 +450,10 @@
     }, duration);
   }
 
-  /* ---------- Custom cursor ----------
-     Lerp-follow dot that grows to a VIEW badge over images and becomes a
-     short rule over buttons. Shown on all pointer devices; hidden only on
-     touch / coarse pointers (via CSS). Hover detection is delegated at the
-     document level so it works for sections loaded after init too. */
-  function CursorComponent() {
-    this.el = document.getElementById('custom-cursor');
-    if (!this.el) return;
-    if (window.matchMedia('(hover: none)').matches) return;
-    if (document.body.dataset.customCursor === 'false') return;
-    var self = this;
-    this.x = 0; this.y = 0; this.cx = 0; this.cy = 0;
-    this.tick = this.tick.bind(this);
-    document.addEventListener('mousemove', function (e) { self.x = e.clientX; self.y = e.clientY; });
-    document.addEventListener('mouseleave', function () { self.el.style.opacity = '0'; });
-    document.addEventListener('mouseenter', function () { self.el.style.opacity = '1'; });
-    var img = '.product-card__media, .product-card img, .gallery__item, .gallery__item img, .split-media__media, .split-media__media img, .hero__media, .hero__media img, .image-with-text__media, .full-bleed-image, figure, [data-gallery-image]';
-    var btn = 'a[href], button, [role="button"], input, textarea, select, label, summary, .btn, .nav-link, .sidebar-nav__sublink, .product-card__quick-add, .trust-badge, .quantity__button, [data-share-trigger], .breadcrumbs__link, footer a';
-    document.addEventListener('mouseover', function (e) {
-      var isImg = e.target.closest(img);
-      var isBtn = !isImg && e.target.closest(btn);
-      self.el.classList.toggle('is-hovering-image', !!isImg);
-      self.el.classList.toggle('is-hovering-btn', !!isBtn);
-    });
-    this.tick();
-  }
-  CursorComponent.prototype.tick = function () {
-    this.cx += (this.x - this.cx) * 0.12;
-    this.cy += (this.y - this.cy) * 0.12;
-    this.el.style.transform = 'translate(' + (this.cx - this.el.offsetWidth / 2) + 'px, ' + (this.cy - this.el.offsetHeight / 2) + 'px)';
-    requestAnimationFrame(this.tick);
-  };
+  /* The custom cursor moved to assets/cursor.js. theme.js is deferred before
+     gsap.min.js, so gsap.quickTo() -- which now drives the dot on the same
+     ticker as Lenis -- is not defined at this point in the load order. The new
+     file is also emitted only when enable_custom_cursor is on. */
 
   /* ---------- <localization-dropdown> ---------- */
   var LocalizationDropdown = (function () {
@@ -608,7 +580,6 @@
     define('header-component', HeaderComponent);
     define('facet-form', FacetForm);
     define('localization-dropdown', LocalizationDropdown);
-    new CursorComponent();
     new ScrollTopButton();
     document.querySelectorAll('.notify-me').forEach((el) => new NotifyMe(el));
   }
