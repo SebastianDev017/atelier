@@ -43,7 +43,7 @@
     "cart_show_note": true,
     "enable_view_transitions": true,
     "enable_custom_cursor": false,
-    "enable_scroll_animations": false,
+    "enable_scroll_animations": true,
     "social_instagram_link": "",
     "social_facebook_link": "",
     "social_pinterest_link": "",
