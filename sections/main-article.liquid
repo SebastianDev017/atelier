@@ -77,16 +77,20 @@
           <h2 class="h4" data-animate>
             {{ 'blog.comments_count' | t: count: article.comments_count }}
           </h2>
-          <ul class="article__comments-list" role="list">
-            {%- for comment in article.comments -%}
-              <li class="article__comment" data-animate>
-                <div class="rte">{{ comment.content }}</div>
-                <p class="article__comment-meta caption">
-                  {{ comment.author | escape }} · {{ comment.created_at | date: format: 'month_day_year' }}
-                </p>
-              </li>
-            {%- endfor -%}
-          </ul>
+          {%- comment -%} Paginated comments are a Theme Store requirement. {%- endcomment -%}
+          {%- paginate article.comments by 10 -%}
+            <ul class="article__comments-list" role="list">
+              {%- for comment in article.comments -%}
+                <li class="article__comment" data-animate>
+                  <div class="rte">{{ comment.content }}</div>
+                  <p class="article__comment-meta caption">
+                    {{ comment.author | escape }} · {{ comment.created_at | date: format: 'month_day_year' }}
+                  </p>
+                </li>
+              {%- endfor -%}
+            </ul>
+            {% render 'pagination', paginate: paginate %}
+          {%- endpaginate -%}
         {%- endif -%}
 
         {%- form 'new_comment', article -%}

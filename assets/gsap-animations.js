@@ -247,6 +247,12 @@
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    /* enable_scroll_animations used to gate only theme.js's legacy
+       IntersectionObserver reveals, which base.css had already neutered -- so
+       turning it off changed nothing a merchant could see. GSAP owns the
+       reveals now, so the setting has to gate this. Everything starts visible
+       in CSS, so bailing here leaves content shown, never stuck hidden. */
+    if (document.body.getAttribute('data-scroll-animations') === 'false') return;
     initHero();
     initScrollProgress();
     initCursorPan();
@@ -273,6 +279,7 @@
   document.addEventListener('shopify:section:load', function (e) {
     if (!window.gsap || !window.ScrollTrigger) return;
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (document.body.getAttribute('data-scroll-animations') === 'false') return;
     initBlurReveal(e.target);
     ScrollTrigger.refresh();
   });

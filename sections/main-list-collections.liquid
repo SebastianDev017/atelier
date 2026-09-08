@@ -21,6 +21,11 @@
     {%- if collections.size == 0 -%}
       <p class="caption">{{ 'collections.empty' | t }}</p>
     {%- else -%}
+      {%- comment -%}
+        Paginated: an unpaginated `for collection in collections` silently caps
+        at 50, and the Theme Store requires pagination on the collection list.
+      {%- endcomment -%}
+      {%- paginate collections by 24 -%}
       <div class="product-grid">
         {%- for collection in collections -%}
           <a
@@ -71,6 +76,8 @@
           </a>
         {%- endfor -%}
       </div>
+      {% render 'pagination', paginate: paginate %}
+      {%- endpaginate -%}
     {%- endif -%}
   </div>
 </div>
