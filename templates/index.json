@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "shopify://shop_images/house-plant-enjoys-natural-light.jpg",
+        "image": "",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -74,7 +74,7 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
-        "image": "shopify://shop_images/yellow-pillow-bedside-table.jpg",
+        "image": "",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",

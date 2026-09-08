@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "image": "shopify://shop_images/house-plant-enjoys-natural-light.jpg",
+        "image": "",
         "image_height": "90svh",
         "overlay_opacity": 30,
         "overlay_color": "#0a0705",
@@ -81,7 +81,7 @@
     "image_text": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify://shop_images/two-people-surfing-in-blue-choppy-water.jpg",
+        "image": "",
         "image_ratio": "portrait",
         "layout": "image-right",
         "eyebrow": "Our craft",
@@ -100,7 +100,7 @@
     "full_bleed": {
       "type": "full-bleed-image",
       "settings": {
-        "image": "shopify://shop_images/woman-and-two-children-stand-in-a-gold-colored-field.jpg",
+        "image": "",
         "image_height": "large",
         "caption": "",
         "overlay_opacity": 0
@@ -109,7 +109,7 @@
     "split": {
       "type": "split-media",
       "settings": {
-        "image": "shopify://shop_images/women-drinking-tea.jpg",
+        "image": "",
         "media_position": "left",
         "image_ratio": "portrait",
         "eyebrow": "Process",
@@ -173,7 +173,7 @@
         "g1": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/warm-colored-autumn-leaves.jpg",
+            "image": "",
             "caption": "",
             "url": ""
           }
@@ -181,7 +181,7 @@
         "g2": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/long-forest-path.jpg",
+            "image": "",
             "caption": "",
             "url": ""
           }
@@ -189,7 +189,7 @@
         "g3": {
           "type": "image",
           "settings": {
-            "image": "shopify://shop_images/women-drinking-tea.jpg",
+            "image": "",
             "caption": "",
             "url": ""
           }
@@ -222,7 +222,7 @@
             "quote": "A beautifully considered piece that anchors the whole room.",
             "author": "John Dane",
             "role": "Interior designer",
-            "image": "shopify://shop_images/welcome-to-my-business.jpg"
+            "image": ""
           }
         },
         "t2": {
@@ -231,7 +231,7 @@
             "quote": "The quality is immediately obvious — and it only gets better with use.",
             "author": "Patrick Kennedy",
             "role": "Architect",
-            "image": "shopify://shop_images/happy-family.jpg"
+            "image": ""
           }
         },
         "t3": {
@@ -240,7 +240,7 @@
             "quote": "Exactly the kind of object you keep for a lifetime.",
             "author": "Ana Romero",
             "role": "Collector",
-            "image": "shopify://shop_images/woman-in-park-afternoon.jpeg"
+            "image": ""
           }
         }
       },

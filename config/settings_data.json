@@ -9,29 +9,28 @@
  */
 {
   "current": {
-    "heading_font": "libre_baskerville_n4",
-    "body_font": "dm_sans_n4",
-    "heading_scale": 120,
+    "heading_font": "ebgaramond_n4",
+    "body_font": "lora_n4",
+    "heading_scale": 100,
     "body_scale": 100,
-    "uppercase_headings": true,
+    "uppercase_headings": false,
     "uppercase_nav": true,
     "uppercase_buttons": true,
-    "background_color": "#f8f8f6",
-    "text_color": "#111111",
-    "accent_color": "#111111",
-    "border_color": "#ddddd8",
-    "button_color": "#111111",
-    "button_text_color": "#f8f8f6",
-    "button_style": "filled",
-    "color_text_heading": "#111111",
-    "color_text_body": "#333330",
-    "color_text_muted": "#888884",
-    "color_link_hover": "#771313",
-    "page_width": 1320,
+    "background_color": "#FAF7F2",
+    "text_color": "#2C1810",
+    "accent_color": "#A0826D",
+    "border_color": "#E5DDD0",
+    "button_color": "#2C1810",
+    "button_text_color": "#FAF7F2",
+    "button_style": "outlined",
+    "color_text_heading": "#2C1810",
+    "color_text_body": "#5C3D2E",
+    "color_text_muted": "#766356",
+    "page_width": 1200,
     "page_margin": 40,
     "section_spacing": 140,
     "header_height": 64,
-    "sidebar_width": 180,
+    "sidebar_width": 220,
     "input_corner_radius": 0,
     "card_show_secondary_image": true,
     "card_show_vendor": false,
@@ -43,15 +42,13 @@
     "cart_free_shipping_threshold": 150,
     "cart_show_note": true,
     "enable_view_transitions": true,
-    "enable_custom_cursor": false,
     "enable_scroll_animations": true,
-    "social_instagram_link": "#",
-    "social_facebook_link": "#",
-    "social_pinterest_link": "#",
-    "social_tiktok_link": "#",
-    "social_youtube_link": "#",
+    "social_instagram_link": "",
+    "social_facebook_link": "",
+    "social_pinterest_link": "",
+    "social_tiktok_link": "",
+    "social_youtube_link": "",
     "logo_width": 152,
-    "favicon": "shopify://shop_images/logo_luxor.png",
     "sections": {
       "search-palette": {
         "type": "search-palette",
@@ -59,8 +56,7 @@
           "enabled": true
         }
       }
-    },
-    "content_for_index": []
+    }
   },
   "presets": {
     "Side Atelier": {
