@@ -3158,6 +3158,65 @@
     },
     "pickup-availability": {
       "name": "Disponibilidad para recogida"
+    },
+    "complementary-products": {
+      "name": "Productos complementarios",
+      "presets": {
+        "name": "Productos complementarios"
+      },
+      "settings": {
+        "heading": {
+          "label": "Título"
+        },
+        "products_to_show": {
+          "label": "Productos a mostrar"
+        },
+        "quick_add_style": {
+          "label": "Estilo de añadir rápido",
+          "options__1": {
+            "label": "Al pasar el cursor"
+          },
+          "options__2": {
+            "label": "Siempre visible"
+          }
+        },
+        "columns_desktop": {
+          "label": "Columnas en escritorio",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "color_scheme": {
+          "label": "Esquema de color",
+          "options__1": {
+            "label": "Crema"
+          },
+          "options__2": {
+            "label": "Pergamino"
+          },
+          "options__3": {
+            "label": "Lino"
+          },
+          "options__4": {
+            "label": "Blanco"
+          },
+          "options__5": {
+            "label": "Invertido"
+          }
+        },
+        "padding_top": {
+          "label": "Relleno superior"
+        },
+        "padding_bottom": {
+          "label": "Relleno inferior"
+        }
+      }
     }
   },
   "settings_schema": {

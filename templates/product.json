@@ -96,6 +96,9 @@
         "padding_bottom": 64
       }
     },
+    "complementary": {
+      "type": "complementary-products"
+    },
     "related": {
       "type": "related-products",
       "settings": {
@@ -112,6 +115,7 @@
   },
   "order": [
     "main",
+    "complementary",
     "related"
   ]
 }

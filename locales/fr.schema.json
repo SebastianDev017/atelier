@@ -3158,6 +3158,65 @@
     },
     "pickup-availability": {
       "name": "Disponibilité en magasin"
+    },
+    "complementary-products": {
+      "name": "Produits complémentaires",
+      "presets": {
+        "name": "Produits complémentaires"
+      },
+      "settings": {
+        "heading": {
+          "label": "Titre"
+        },
+        "products_to_show": {
+          "label": "Produits à afficher"
+        },
+        "quick_add_style": {
+          "label": "Style d’ajout rapide",
+          "options__1": {
+            "label": "Au survol"
+          },
+          "options__2": {
+            "label": "Toujours visible"
+          }
+        },
+        "columns_desktop": {
+          "label": "Colonnes sur ordinateur",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs",
+          "options__1": {
+            "label": "Crème"
+          },
+          "options__2": {
+            "label": "Parchemin"
+          },
+          "options__3": {
+            "label": "Lin"
+          },
+          "options__4": {
+            "label": "Blanc"
+          },
+          "options__5": {
+            "label": "Inversé"
+          }
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      }
     }
   },
   "settings_schema": {
