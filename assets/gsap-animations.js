@@ -106,10 +106,19 @@
     });
   }
 
-  /* 5. Magnetic buttons (.sidebar__link in the brief = this theme's .nav-link) */
+  /* 5. Magnetic buttons -- standalone CTAs only.
+     Sidebar/nav links used to be in this selector. Magnetic pull on a vertical
+     list of navigation text moves the click target out from under the pointer,
+     which is exactly the "moving weirdly on hover" the review flagged; those
+     links keep their colour + underline hover and nothing positional.
+     Commerce submit buttons (add to cart, buy, checkout) are excluded for the
+     same reason at higher stakes -- the one control a shopper must hit should
+     not drift away from the cursor. They get a flat 1.02 scale in base.css. */
+  var MAGNETIC_EXCLUDE = '[data-add-button], [data-fp-add], [name="checkout"], [data-bundle-add]';
   function initMagneticButtons() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
-    gsap.utils.toArray('.btn, .nav-link').forEach(function (el) {
+    gsap.utils.toArray('.btn').forEach(function (el) {
+      if (el.matches(MAGNETIC_EXCLUDE)) return;
       el.addEventListener('mousemove', function (e) {
         var r = el.getBoundingClientRect();
         var mx = (e.clientX - (r.left + r.width / 2)) * 0.3;

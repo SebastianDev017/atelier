@@ -396,7 +396,10 @@
   }
 
   /* ---------- Logo ---------- */
-  .header__logo { display: inline-flex; align-items: center; line-height: 1; }
+  /* H1 -- the logo is the link home and had no hover state whatsoever. */
+  .header__logo { display: inline-flex; align-items: center; line-height: 1; transition: opacity var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial); }
+  .header__logo:hover { opacity: 0.7; }
+  .header__logo:hover .header__logo-text { color: var(--color-accent-local); }
   .header__logo-text {
     font-family: var(--font-heading);
     font-weight: var(--font-heading-weight);

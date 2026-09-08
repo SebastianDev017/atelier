@@ -506,6 +506,35 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
   border-color: var(--color-button, var(--color-text));
   color: var(--color-button-text, var(--color-bg));
 }
+/* ---- H3: primary commerce buttons ----
+   Add to cart / buy / checkout inherited .btn:hover's letter-spacing expansion
+   (0.15em -> 0.18em), which physically widens the button under the pointer, and
+   initMagneticButtons() pulled them up to 8px toward the cursor with an elastic
+   release. Together that made the single most important control on the page
+   feel evasive. They now take a flat 2% scale and a colour change -- no skew,
+   no pull, no bounce. Attribute selectors so this reaches the main ATC, the
+   sticky-bar ATC, the product-card quick-add and the featured-product ATC
+   without any of them needing a new class. */
+.btn[data-add-button],
+.btn[data-fp-add],
+.btn[name="checkout"] {
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+.btn[data-add-button]:hover,
+.btn[data-fp-add]:hover,
+.btn[name="checkout"]:hover {
+  letter-spacing: var(--tracking-label);
+  transform: scale(1.02);
+}
+.btn[data-add-button]:active,
+.btn[data-fp-add]:active,
+.btn[name="checkout"]:active { transform: scale(0.99); }
+@media (prefers-reduced-motion: reduce) {
+  .btn[data-add-button]:hover,
+  .btn[data-fp-add]:hover,
+  .btn[name="checkout"]:hover { transform: none; }
+}
+
 .btn:active { transform: translateY(1px); }
 .btn[disabled],
 .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
@@ -902,6 +931,9 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .pickup__details { border-top: 1px solid var(--color-border); }
 .pickup__summary { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; cursor: pointer; font-size: var(--text-sm); list-style: none; }
 .pickup__summary::-webkit-details-marker { display: none; }
+/* H1 -- a <summary> is a control; it needs to answer the pointer. */
+.pickup__summary { transition: color var(--duration-fast) var(--ease-editorial); }
+.pickup__summary:hover { color: var(--color-accent-local); }
 .pickup__summary .icon:last-child { margin-inline-start: auto; transition: transform var(--duration-fast) var(--ease-editorial); }
 .pickup__details[open] .pickup__summary .icon:last-child { transform: rotate(180deg); }
 .pickup__body { padding-bottom: var(--space-4); }
@@ -961,7 +993,10 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
   width: 44px;
   height: 100%;
   color: var(--color-text);
+  transition: background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
 }
+/* H1 -- the steppers had no hover state at all, so +/- read as static text. */
+.quantity__button:hover:not(:disabled) { background-color: var(--color-subtle); }
 .quantity__button:disabled { opacity: 0.35; cursor: not-allowed; }
 .quantity__input {
   width: 3ch;
@@ -983,7 +1018,11 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .cart-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .cart-item__details { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
 .cart-item__heading { display: flex; flex-direction: column; gap: 2px; }
-.cart-item__title { font-size: var(--text-base); font-weight: 500; }
+.cart-item__title { font-size: var(--text-base); font-weight: 500; transition: color var(--duration-fast) var(--ease-editorial); }
+/* H1 -- the cart line title is a link to the product; it read as plain text. */
+.cart-item__title:hover { color: var(--color-accent-local); }
+.cart-item__media { transition: opacity var(--duration-fast) var(--ease-editorial); }
+.cart-item__media:hover { opacity: 0.82; }
 .cart-item__variant { font-size: var(--text-sm); color: var(--color-muted); }
 .cart-item__row { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); }
 .cart-item__price { text-align: right; white-space: nowrap; font-family: var(--font-heading); }
@@ -1007,8 +1046,10 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
   font-size: var(--text-sm);
   color: var(--color-muted);
   border-bottom: 1px solid transparent;
+  transition: color var(--duration-fast) var(--ease-editorial), border-color var(--duration-fast) var(--ease-editorial);
 }
-.pagination__item:hover { color: var(--color-text); }
+/* H1 -- the colour change existed but had no transition, so it snapped. */
+.pagination__item:hover { color: var(--color-text); border-bottom-color: var(--color-border-strong); }
 .pagination__item[aria-current="page"] { color: var(--color-text); border-bottom-color: var(--color-text); }
 .pagination__item--disabled { opacity: 0.35; pointer-events: none; }
 
@@ -1016,6 +1057,10 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .facets { display: flex; flex-direction: column; gap: var(--space-1); }
 .facets__group { border-top: 1px solid var(--color-border); }
 .facets__summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) 0; min-height: 44px; font-size: var(--text-sm); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
+/* H1 -- only the chevron moved, and only on [open]; hovering the row itself
+   gave nothing back. */
+.facets__summary { transition: color var(--duration-fast) var(--ease-editorial); }
+.facets__summary:hover { color: var(--color-accent-local); }
 .facets__summary .icon { transition: transform var(--duration-fast) var(--ease-editorial); }
 .facets__group[open] .facets__summary .icon { transform: rotate(180deg); }
 .facets__list { display: flex; flex-direction: column; gap: var(--space-1); padding-bottom: var(--space-4); }
@@ -1647,7 +1692,9 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 .bundle__item { display: flex; align-items: center; gap: var(--space-3); }
 .bundle__item--row { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
 .bundle .bundle__item--row:last-child { border-bottom: 0; }
-.bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; }
+.bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; transition: color var(--duration-fast) var(--ease-editorial); }
+/* H1 -- the whole row is a link to the product but nothing moved on hover. */
+.bundle__item-link:hover .bundle__item-title { color: var(--color-accent-local); }
 .bundle__item-img { width: 60px; height: 60px; object-fit: cover; flex-shrink: 0; background: var(--color-media); border-radius: var(--image-radius, 0); }
 .bundle__item-title {
   font-family: var(--font-heading);

@@ -338,7 +338,13 @@
     font-size: var(--text-sm);
     transition: border-color var(--duration-fast) var(--ease-editorial), background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
   }
+  /* H1 -- an unselected pill had a transition declared but no :hover rule to
+     drive it, so hovering a variant did nothing. The hover deliberately reads
+     as "reachable" (border darkens + faint fill), not as "selected" (solid
+     fill), so the two states stay distinguishable. */
+  .variant-option__value input:not(:checked):not(:disabled) + span:hover { border-color: var(--color-text); background-color: var(--color-subtle); }
   .variant-option__value input:checked + span { border-color: var(--color-text); background-color: var(--color-text); color: var(--color-bg); }
+  .variant-option__value input:checked + span:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); }
   .variant-option__value input:focus-visible + span { outline: 2px solid var(--color-text); outline-offset: 2px; }
   /* Unavailable values: struck through with a dashed edge rather than dimmed,
      so the state is legible without dropping text contrast below 4.5:1. The
@@ -363,6 +369,9 @@
     background-position: center;
     transition: box-shadow var(--duration-fast) var(--ease-editorial);
   }
+  /* Swatches take the same affordance as a ring, one step lighter than the
+     checked ring so hovered and selected never look the same. */
+  .variant-option__value--swatch input:not(:checked):not(:disabled) + .swatch:hover { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-border-strong); }
   .variant-option__value--swatch input:checked + .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); }
   .variant-option__value--swatch input:focus-visible + .swatch { outline: 2px solid var(--color-text); outline-offset: 3px; }
   /* A strikethrough cannot read on a circle, so unavailable swatches take a
@@ -420,7 +429,10 @@
 
   .product__share { display: inline-flex; align-items: center; gap: var(--space-3); }
   .product__collapsible { border-top: 1px solid var(--color-border); }
-  .product__collapsible-summary { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) 0; min-height: 44px; }
+  /* H1 -- accordion rows are controls; only the chevron responded, and only
+     once already open. */
+  .product__collapsible-summary { display: flex; align-items: center; justify-content: space-between; padding: var(--space-4) 0; min-height: 44px; transition: color var(--duration-fast) var(--ease-editorial); }
+  .product__collapsible-summary:hover { color: var(--color-accent-local); }
   .product__collapsible[open] .product__collapsible-summary .icon { transform: rotate(180deg); }
   .product__collapsible-summary .icon { transition: transform var(--duration-fast) var(--ease-editorial); }
   .product__collapsible-body { padding-bottom: var(--space-4); color: var(--color-muted); }
