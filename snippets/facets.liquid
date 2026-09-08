@@ -6,6 +6,7 @@
   @param {object} results - collection or search object
   @param {string} context - 'collection' or 'search'
   @param {boolean} [enable_sorting]
+  @param {boolean} [enable_filtering] - defaults to true when not passed
 {%- endcomment -%}
 {%- liquid
   assign active_count = 0
@@ -48,6 +49,12 @@
       </div>
     {%- endif -%}
 
+    {%- comment -%}
+      enable_filtering is opt-out: callers that do not pass it (search) keep
+      rendering filters. Comparing against false rather than using `default`,
+      which treats false as blank.
+    {%- endcomment -%}
+    {%- unless enable_filtering == false -%}
     {%- for filter in results.filters -%}
       <details class="facets__group" open>
         <summary class="facets__summary">
@@ -109,6 +116,7 @@
         {%- endcase -%}
       </details>
     {%- endfor -%}
+    {%- endunless -%}
 
     <noscript>
       <button type="submit" class="btn btn--small btn--full">{{ 'collections.apply' | t }}</button>

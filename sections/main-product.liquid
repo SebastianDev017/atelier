@@ -324,8 +324,11 @@
      button: espresso fill, zero radius, uppercase 11px mono label (the theme's
      button voice). !important is required to beat Shopify's injected styles. */
   .shopify-payment-button__button--unbranded {
-    background-color: #2C1810 !important;
-    color: #FAF7F2 !important;
+    /* Was #2C1810 / #FAF7F2 hardcoded, so the dynamic-checkout button kept the
+       espresso-on-cream palette while the surrounding panel inverted or used a
+       Studio/Maison scheme. These tokens are already in scope here. */
+    background-color: var(--color-text) !important;
+    color: var(--color-bg) !important;
     border-radius: 0 !important;
     min-height: 48px !important;
     padding: 0.85em 2em !important;

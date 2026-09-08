@@ -15,9 +15,16 @@
 <div class="collection color-scheme--{{ scheme }}">
   <div class="page-width">
     {% render 'breadcrumbs', current: collection.title %}
-    {%- if section.settings.show_title -%}
+    {%- comment -%}
+      show_description used to be nested inside show_title, so with the shipped
+      default (show_title: false) the description toggle did nothing and a
+      merchant had no way to discover why. The two are now independent.
+    {%- endcomment -%}
+    {%- if section.settings.show_title or section.settings.show_description -%}
       <header class="collection__head" data-animate>
-        <h2 class="collection__title h2">{{ collection.title | escape }}</h2>
+        {%- if section.settings.show_title -%}
+          <h2 class="collection__title h2">{{ collection.title | escape }}</h2>
+        {%- endif -%}
         {%- if section.settings.show_description and collection.description != blank -%}
           <div class="collection__description prose">{{ collection.description }}</div>
         {%- endif -%}
@@ -45,7 +52,7 @@
                 {% render 'icon', name: 'filter' %}
                 <span>{{ 'collections.filter_and_sort' | t }}</span>
               </summary>
-              {% render 'facets', results: collection, context: 'collection', enable_sorting: section.settings.enable_sorting %}
+              {% render 'facets', results: collection, context: 'collection', enable_sorting: section.settings.enable_sorting, enable_filtering: section.settings.enable_filtering %}
             </details>
           </aside>
         {%- endif -%}
