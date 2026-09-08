@@ -86,6 +86,15 @@
                         <span class="fp__option-selected" data-fp-option-selected>{{ option.selected_value | escape }}</span>
                       </legend>
                       <div class="fp__option-values">
+                        {%- liquid
+                          # Colour options render swatches; every other option keeps
+                          # the text pill exactly as it was.
+                          assign option_key = option.name | downcase | strip
+                          assign is_color_option = false
+                          if option_key == 'color' or option_key == 'colour'
+                            assign is_color_option = true
+                          endif
+                        -%}
                         {%- for value in option.values -%}
                           {%- liquid
                             # Check availability at THIS option's position (not membership
@@ -99,7 +108,7 @@
                               endif
                             endfor
                           -%}
-                          <label class="fp__pill{% unless value_available %} fp__pill--soldout{% endunless %}">
+                          <label class="fp__pill{% if is_color_option and value.swatch %} fp__pill--swatch{% endif %}{% unless value_available %} fp__pill--soldout{% endunless %}">
                             <input
                               type="radio"
                               name="fp-option-{{ option.position }}-{{ section.id }}"
@@ -107,8 +116,13 @@
                               data-fp-option
                               {% if option.selected_value == value %}checked{% endif %}
                               {% unless value_available %}disabled{% endunless %}
+                              {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
                             >
-                            <span>{{ value | escape }}</span>
+                            {%- if is_color_option and value.swatch -%}
+                              {% render 'swatch', value: value %}
+                            {%- else -%}
+                              <span>{{ value | escape }}</span>
+                            {%- endif -%}
                             {%- unless value_available -%}
                               <span class="visually-hidden">{{ 'products.sold_out' | t }}</span>
                             {%- endunless -%}
@@ -254,6 +268,29 @@
   .fp__pill--soldout input + span { border-style: dashed; text-decoration: line-through; }
   .fp__pill input:disabled { cursor: not-allowed; }
   .fp__pill:has(input:disabled) { cursor: not-allowed; }
+  /* ---- Colour swatches ---- 28px circle inside the pill's 44px hit target. */
+  .fp__pill--swatch { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+  .fp__pill--swatch .swatch {
+    display: block;
+    width: 28px;
+    height: 28px;
+    min-width: 0;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-strong);
+    background-size: cover;
+    background-position: center;
+    transition: box-shadow var(--duration-fast) var(--ease-editorial);
+  }
+  .fp__pill--swatch input:checked + .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); background-color: initial; }
+  .fp__pill--swatch input:focus-visible + .swatch { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  .fp__pill--swatch.fp__pill--soldout .swatch { position: relative; opacity: 0.55; border-style: solid; }
+  .fp__pill--swatch.fp__pill--soldout .swatch::after {
+    content: ""; position: absolute; inset: -1px;
+    background: linear-gradient(to top left, transparent calc(50% - 1px), var(--color-text) calc(50% - 1px), var(--color-text) calc(50% + 1px), transparent calc(50% + 1px));
+    border-radius: 50%;
+  }
+
 
   .fp__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
   .fp__buy { display: flex; flex-direction: column; gap: var(--space-3); }

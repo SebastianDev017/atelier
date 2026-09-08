@@ -90,7 +90,8 @@
       "secure": "Secure checkout"
     },
     "share": "Share",
-    "add_error": "Something went wrong. Please try again."
+    "add_error": "Something went wrong. Please try again.",
+    "available_colors": "Available colors"
   },
   "cart": {
     "title": "Your cart",

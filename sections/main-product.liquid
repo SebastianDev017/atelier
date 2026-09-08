@@ -98,6 +98,14 @@
                         {%- liquid
                           # 0-based index of this option inside variant.options
                           assign opt_index = option.position | minus: 1
+                          # Colour options render swatches; everything else keeps the
+                          # text pill unchanged. Matched case-insensitively, and
+                          # "colour" is accepted alongside "color".
+                          assign option_key = option.name | downcase | strip
+                          assign is_color_option = false
+                          if option_key == 'color' or option_key == 'colour'
+                            assign is_color_option = true
+                          endif
                         -%}
                         {%- for value in option.values -%}
                           {%- liquid
@@ -113,7 +121,7 @@
                               endif
                             endfor
                           -%}
-                          <label class="variant-option__value{% unless value_available %} variant-option__value--unavailable{% endunless %}">
+                          <label class="variant-option__value{% if is_color_option and value.swatch %} variant-option__value--swatch{% endif %}{% unless value_available %} variant-option__value--unavailable{% endunless %}">
                             <input
                               type="radio"
                               name="option-{{ option.position }}"
@@ -121,8 +129,13 @@
                               data-option-input
                               {% if option.selected_value == value %}checked{% endif %}
                               {% unless value_available %}disabled{% endunless %}
+                              {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
                             >
-                            <span>{{ value | escape }}</span>
+                            {%- if is_color_option and value.swatch -%}
+                              {% render 'swatch', value: value %}
+                            {%- else -%}
+                              <span>{{ value | escape }}</span>
+                            {%- endif -%}
                             {%- unless value_available -%}
                               <span class="visually-hidden">{{ 'products.unavailable' | t }}</span>
                             {%- endunless -%}
@@ -304,6 +317,35 @@
      input is genuinely disabled, so it is neither clickable nor focusable. */
   .variant-option__value--unavailable span { border-style: dashed; text-decoration: line-through; }
   .variant-option__value input:disabled { cursor: not-allowed; }
+  /* ---- Colour swatches ----
+     The circle is 28px but the label keeps the 44x44 hit target the text pills
+     have. .swatch overrides the generic `.variant-option__value span` pill rule,
+     which would otherwise give it pill padding and a rectangular border. */
+  .variant-option__value--swatch { display: inline-flex; align-items: center; justify-content: center; min-width: 44px; min-height: 44px; }
+  .variant-option__value--swatch .swatch {
+    display: block;
+    width: 28px;
+    height: 28px;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border-radius: 50%;
+    border: 1px solid var(--color-border-strong);
+    background-size: cover;
+    background-position: center;
+    transition: box-shadow var(--duration-fast) var(--ease-editorial);
+  }
+  .variant-option__value--swatch input:checked + .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); }
+  .variant-option__value--swatch input:focus-visible + .swatch { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  /* A strikethrough cannot read on a circle, so unavailable swatches take a
+     diagonal bar. The visually-hidden "Unavailable" text carries it for AT. */
+  .variant-option__value--swatch.variant-option__value--unavailable .swatch { position: relative; opacity: 0.55; }
+  .variant-option__value--swatch.variant-option__value--unavailable .swatch::after {
+    content: ""; position: absolute; inset: -1px;
+    background: linear-gradient(to top left, transparent calc(50% - 1px), var(--color-text) calc(50% - 1px), var(--color-text) calc(50% + 1px), transparent calc(50% + 1px));
+    border-radius: 50%;
+  }
+
 
   .product__purchase { display: flex; flex-direction: column; gap: var(--space-3); }
   /* Left-aligned, content-width quantity selector (the wrapper used to stretch

@@ -1,0 +1,21 @@
+{%- comment -%}
+  One colour swatch circle for a product option value.
+
+  Uses Shopify's native `product_option_value.swatch` drop, which the merchant
+  populates from the Color option's value settings in admin — no metafield and
+  no name-to-hex map in the theme.
+
+  Callers MUST check `value.swatch` before rendering. A value with no swatch
+  data keeps the theme's existing text pill; this snippet never renders a
+  placeholder, because a wrong colour is worse than a colour name.
+
+  @param {object} value - a product_option_value drop
+{%- endcomment -%}
+{%- liquid
+  assign sw = value.swatch
+-%}
+{%- if sw.image != blank -%}
+  <span class="swatch" style="background-image: url({{ sw.image | image_url: width: 96 }});"></span>
+{%- elsif sw.color != blank -%}
+  <span class="swatch" style="background-color: {{ sw.color }};"></span>
+{%- endif -%}

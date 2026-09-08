@@ -90,7 +90,8 @@
       "secure": "Pagamento sicuro"
     },
     "share": "Condividi",
-    "add_error": "Qualcosa è andato storto. Riprova."
+    "add_error": "Qualcosa è andato storto. Riprova.",
+    "available_colors": "Colori disponibili"
   },
   "cart": {
     "title": "Il tuo carrello",

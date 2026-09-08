@@ -894,6 +894,18 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 }
 .product-card__info { display: flex; flex-direction: column; flex: 1 1 auto; gap: var(--space-1); padding-top: var(--space-4); }
 .product-card__edition { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
+/* Colour preview dots on product cards. Decorative — the accessible colour
+   names sit in an adjacent visually-hidden span. */
+.product-card__swatches { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.25rem; }
+.product-card__swatches .swatch {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 1px solid var(--color-border-strong);
+  background-size: cover;
+  background-position: center;
+}
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
 .product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
 .product-card__title a { display: inline; position: relative; z-index: 2; }

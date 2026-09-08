@@ -90,7 +90,8 @@
       "secure": "Paiement sécurisé"
     },
     "share": "Partager",
-    "add_error": "Une erreur est survenue. Veuillez réessayer."
+    "add_error": "Une erreur est survenue. Veuillez réessayer.",
+    "available_colors": "Couleurs disponibles"
   },
   "cart": {
     "title": "Votre panier",

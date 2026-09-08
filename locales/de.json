@@ -90,7 +90,8 @@
       "secure": "Sicherer Bezahlvorgang"
     },
     "share": "Teilen",
-    "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+    "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+    "available_colors": "Verfügbare Farben"
   },
   "cart": {
     "title": "Ihr Warenkorb",

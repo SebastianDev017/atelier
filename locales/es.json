@@ -90,7 +90,8 @@
       "secure": "Pago seguro"
     },
     "share": "Compartir",
-    "add_error": "Algo salió mal. Inténtalo de nuevo."
+    "add_error": "Algo salió mal. Inténtalo de nuevo.",
+    "available_colors": "Colores disponibles"
   },
   "cart": {
     "title": "Tu carrito",

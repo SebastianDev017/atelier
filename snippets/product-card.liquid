@@ -142,6 +142,45 @@
       </span>
     {%- endif -%}
 
+    {%- comment -%}
+      Colour preview. Decorative on the card: the whole card is already a link,
+      so nesting real controls here would create nested interactive elements.
+      The colour names are exposed to assistive tech as text instead.
+    {%- endcomment -%}
+    {%- liquid
+      assign color_option = nil
+      for opt in product.options_with_values
+        assign opt_key = opt.name | downcase | strip
+        if opt_key == 'color' or opt_key == 'colour'
+          assign color_option = opt
+          break
+        endif
+      endfor
+    -%}
+    {%- if color_option -%}
+      {%- assign swatch_names = '' -%}
+      {%- capture swatch_dots -%}
+        {%- for value in color_option.values -%}
+          {%- if value.swatch -%}
+            {% render 'swatch', value: value %}
+          {%- endif -%}
+        {%- endfor -%}
+      {%- endcapture -%}
+      {%- if swatch_dots != blank -%}
+        {%- for value in color_option.values -%}
+          {%- if value.swatch -%}
+            {%- if swatch_names == '' -%}
+              {%- assign swatch_names = value -%}
+            {%- else -%}
+              {%- assign swatch_names = swatch_names | append: ', ' | append: value -%}
+            {%- endif -%}
+          {%- endif -%}
+        {%- endfor -%}
+        <div class="product-card__swatches" aria-hidden="true">{{ swatch_dots }}</div>
+        <span class="visually-hidden">{{ 'products.available_colors' | t }}: {{ swatch_names | escape }}</span>
+      {%- endif -%}
+    {%- endif -%}
+
     {% render 'price', product: product, show_from: true %}
   </div>
 
