@@ -113,3 +113,39 @@ Connected but NOT used for Side Atelier: Figma, Canva, Gamma, Gmail, Google Cale
 - **Enable GitHub Pages** for the docs/support URL (repo is private → needs a public repo or a paid plan, else `https://sebastiandev017.github.io/atelier/` 404s).
 - **Lighthouse** pass: Performance ≥60 + Accessibility ≥90 across home/product/collection (desktop+mobile), contrast ≥4.5:1, touch targets ≥24px.
 - **Shopify Partner program**: approved Theme Partner, demo store per preset, support, original work.
+
+## JavaScript budget (per template)
+
+`theme-check:all` runs with `AssetSizeJavaScript` disabled -- see the reasoning
+in `.theme-check.yml`. It measures TOTAL compressed JS per page against a
+10,000 byte threshold, and gsap.min.js alone is 28 KB gzipped, so it is
+unreachable rather than a backlog item. Weight is tracked here instead.
+
+GSAP stack, uncompressed, after Phase L:
+
+| Template | Loads | Bytes | vs. before |
+|---|---|---|---|
+| index, product | gsap + ScrollTrigger + SplitText | 123,839 | -25,013 |
+| collection, search | gsap + ScrollTrigger + Flip | 141,605 | -7,247 |
+| cart, page, blog, article, 404, list-collections | gsap + ScrollTrigger | 116,592 | -32,260 |
+
+Which plugin goes where, and why:
+
+- **SplitText** -- `gsap-animations.js` `initSplitText()`, which targets
+  `[data-split]`. That attribute appears in editorial-feature, featured-product,
+  maker-spotlight and related-products.
+- **Flip** -- `theme.js` `FacetForm` (facets render on collection and search) and
+  `collection-view.js` (the collection grid/list toggle). `bundle.js` was checked
+  and uses neither.
+
+Every consumer is guarded (`window.Flip &&` at theme.js:401 and
+collection-view.js:26, `if (!window.SplitText) return` at gsap-animations.js:11),
+so on a template where a plugin is absent the effect degrades to an instant swap
+rather than throwing. **If you add a `[data-split]` section to another template,
+add that template to the SplitText condition in `layout/theme.liquid`** -- the
+line reveal will otherwise silently not run.
+
+Left global on purpose: `featured-product.js`, `bundle.js`, `press-marquee.js`
+and `collection-recs.js` are each 1-3 KB and belong to sections that carry
+presets, so a merchant can place them on any template. Scoping them would trade
+a negligible saving for silent breakage.

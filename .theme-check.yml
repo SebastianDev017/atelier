@@ -1,1 +1,26 @@
-extends: theme-check:recommended
+# Run the full check set, not just `recommended`. Phase P4 compared the two:
+# `all` surfaced exactly one check that `recommended` hides, AssetSizeJavaScript,
+# and every other strict check already passes. Keeping `all` on means future
+# work is held to the same bar Shopify applies at review time.
+extends: theme-check:all
+
+AssetSizeJavaScript:
+  # Disabled deliberately, and NOT because the finding is wrong.
+  #
+  # This check measures TOTAL compressed JavaScript per page load against a
+  # 10,000 byte threshold. gsap.min.js alone is 28,114 bytes gzipped and
+  # scrolltrigger.min.js is 17,841, so the budget is exceeded before any theme
+  # code loads. The only ways to satisfy it are to drop GSAP entirely or to
+  # lazy-load it on interaction -- and the animations it drives are first-paint
+  # scroll reveals, so "import on interaction" does not apply to them.
+  #
+  # It is therefore unreachable for this theme's architecture rather than a
+  # backlog item, and leaving it enabled would mean `shopify theme check` can
+  # never return 0. That matters: the 0-offense gate has caught real defects
+  # (a Liquid syntax error, two out-of-scope CSS classes, a parser-blocking
+  # script, four broken filter chains) and only works if 0 is achievable.
+  #
+  # JS weight is tracked deliberately instead -- see the per-template budget in
+  # DEVELOPMENT.md. Phase L cut 25-32 KB per page by loading SplitText and Flip
+  # only on the templates that use them.
+  enabled: false

@@ -106,15 +106,38 @@
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
     <script src="{{ 'lenis.min.js' | asset_url }}" defer></script>
-    {%- comment -%} GSAP 3.13 motion stack — self-hosted (Theme Store disallows external script CDNs). Deferred scripts execute in order, so gsap-init runs after the libs are defined. {%- endcomment -%}
+    {%- comment -%}
+      GSAP 3.13 motion stack — self-hosted (the Theme Store disallows external
+      script CDNs). Deferred scripts execute in document order, so gsap-init
+      always runs after the libraries it registers.
+
+      The two plugins load only where they are used, rather than on every page:
+
+        SplitText — gsap-animations.js initSplitText, which targets [data-split].
+                    That attribute appears in editorial-feature, featured-product,
+                    maker-spotlight and related-products.
+        Flip      — theme.js FacetForm (facets render on collection and search)
+                    and collection-view.js (the collection grid/list toggle).
+                    bundle.js was checked and uses neither.
+
+      Every consumer is guarded (`window.Flip &&`, `if (!window.SplitText) return`),
+      so on a template where a plugin is absent the effect degrades to an instant
+      swap instead of erroring. A merchant who adds one of the [data-split]
+      sections to another template loses the line reveal, not the content.
+    {%- endcomment -%}
     <script src="{{ 'gsap.min.js' | asset_url }}" defer></script>
     <script src="{{ 'scrolltrigger.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'splittext.min.js' | asset_url }}" defer></script>
-    <script src="{{ 'flip.min.js' | asset_url }}" defer></script>
+    {%- if template.name == 'index' or template.name == 'product' -%}
+      <script src="{{ 'splittext.min.js' | asset_url }}" defer></script>
+    {%- endif -%}
+    {%- if template.name == 'collection' or template.name == 'search' -%}
+      <script src="{{ 'flip.min.js' | asset_url }}" defer></script>
+    {%- endif -%}
     <script src="{{ 'gsap-init.js' | asset_url }}" defer></script>
     <script src="{{ 'gsap-animations.js' | asset_url }}" defer></script>
     <script src="{{ 'search-palette.js' | asset_url }}" defer></script>
-    <script src="{{ 'collection-view.js' | asset_url }}" defer></script>
+    {%- comment -%} Drives the main-collection grid/list toggle. main-collection is a main-* section with no preset, so it can only appear here. {%- endcomment -%}
+    {%- if template.name == 'collection' -%}<script src="{{ 'collection-view.js' | asset_url }}" defer></script>{%- endif -%}
     <script src="{{ 'press-marquee.js' | asset_url }}" defer></script>
     <script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
     <script src="{{ 'featured-product.js' | asset_url }}" defer></script>
