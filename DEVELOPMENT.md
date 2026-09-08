@@ -1,4 +1,4 @@
-# Atelier — Development Reference
+# Side Atelier — Development Reference
 
 Internal reference for building/maintaining the **Side Atelier** Shopify theme.
 Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`); kept in git for the team.
@@ -7,7 +7,7 @@ Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`)
 - **Live theme:** `Side Atelier` → `atelier/main` on `sidebar-atelier.myshopify.com`
 - **Deploy:** every `git push origin main` syncs into the live theme via the GitHub→Shopify integration
 - **Base:** Shopify **skeleton-theme** (OS 2.0 — the only Theme-Store-approved base; never Dawn/Horizon)
-- **Presets:** `Side Atelier` (default) · `Studio` · `Maison`
+- **Presets:** `Side Atelier` (default) · `Annex` · `Maison`
 - **Validation gate:** `shopify theme check` = 0 offenses (extends `theme-check:recommended`)
 
 ---
@@ -21,7 +21,7 @@ Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`)
 | `stitch` | Google Stitch — generated/validated the design system from DESIGN.md (V2/V3) |
 | `context7` | On-demand library docs |
 
-Connected but NOT used for Atelier: Figma, Canva, Gamma, Gmail, Google Calendar, Indeed, ZipRecruiter.
+Connected but NOT used for Side Atelier: Figma, Canva, Gamma, Gmail, Google Calendar, Indeed, ZipRecruiter.
 
 ## 2. Skills & tools
 
@@ -67,7 +67,7 @@ Connected but NOT used for Atelier: Figma, Canva, Gamma, Gmail, Google Calendar,
 - **GSAP** must be ≥3.13 to be free for a sold theme (3.12.5 is grandfathered to the old license requiring paid Business Green) — we removed it entirely (was dead code). **Lenis** is MIT — keep the copyright banner.
 - `AssetSizeJavaScript`: keep each globally-loaded JS file ≤10 KB gzip.
 - Best Practices/Lighthouse: always emit a favicon (fallback inline SVG) so the browser never 404s `/favicon.ico`; images use `image_tag` + `aspect-ratio` + `object-fit: cover`.
-- The packaged ZIP is named from `theme_name` → `Side Atelier-2.0.0.zip`.
+- The packaged ZIP is named from `theme_name` → `Side Atelier-3.4.0.zip`.
 
 ### Tooling & verification
 - The Grep tool (ripgrep, Rust regex) has **no lookahead** — `(?!…)` silently returns no matches; use plain patterns / post-filter.
