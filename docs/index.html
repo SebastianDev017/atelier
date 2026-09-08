@@ -25,6 +25,33 @@
   footer { margin-top: 5rem; padding-top: 2rem; border-top: 1px solid #E5DDD0;
     font-family: sans-serif; font-size: 0.75rem; color: #A0826D;
     letter-spacing: 0.05em; }
+  /* ---- Support form ---- */
+  .field { margin-bottom: 1.25rem; }
+  .field label { display: block; font-family: sans-serif; font-size: 0.75rem;
+    letter-spacing: 0.08em; text-transform: uppercase; color: #5C3D2E;
+    margin-bottom: 0.4rem; }
+  .field .req { color: #A9372C; }
+  .field input, .field textarea {
+    width: 100%; font: inherit; font-size: 1rem; color: #2C1810;
+    background: #FFFDFA; border: 1px solid #B8B0AA; border-radius: 0;
+    padding: 0.7rem 0.8rem; min-height: 44px; }
+  .field input[type="file"] { padding: 0.55rem 0.8rem; font-family: sans-serif;
+    font-size: 0.85rem; }
+  .field textarea { min-height: 9rem; resize: vertical; line-height: 1.6; }
+  .field input:focus-visible, .field textarea:focus-visible {
+    outline: 2px solid #2C1810; outline-offset: 2px; }
+  .field .hint { font-family: sans-serif; font-size: 0.75rem; color: #766356;
+    margin: 0.35rem 0 0; }
+  .btn { font-family: sans-serif; font-size: 0.75rem; letter-spacing: 0.12em;
+    text-transform: uppercase; background: #2C1810; color: #FAF7F2;
+    border: 1px solid #2C1810; padding: 0.9rem 2rem; min-height: 44px;
+    cursor: pointer; }
+  .btn:hover { background: #4A2C1C; border-color: #4A2C1C; }
+  .btn:focus-visible { outline: 2px solid #2C1810; outline-offset: 3px; }
+  .form-status { margin-top: 1.25rem; padding: 1rem 1.25rem; font-size: 0.95rem; }
+  .form-status[hidden] { display: none; }
+  .form-status--ok { background: #EDF3EA; border-left: 3px solid #2E6B4F; color: #2C1810; }
+  .form-status--err { background: #F7ECEA; border-left: 3px solid #A9372C; color: #2C1810; }
 </style>
 </head>
 <body>
@@ -139,10 +166,122 @@ implemented for cart updates, price changes, and form
 feedback.</p>
 
 <h2>Support</h2>
-<p>For questions and support, contact us at
-<a href="mailto:sebas.ruizdigital@gmail.com">
-sebas.ruizdigital@gmail.com</a>.
-We respond within 1 business day.</p>
+<p>Send us the details below and we will reply within 1 business day. You can
+also email <a href="mailto:sebas.ruizdigital@gmail.com">sebas.ruizdigital@gmail.com</a>
+directly.</p>
+
+<form id="SupportForm" novalidate>
+  <div class="field">
+    <label for="sf-name">Name <span class="req" aria-hidden="true">*</span></label>
+    <input type="text" id="sf-name" name="name" autocomplete="name" required>
+  </div>
+
+  <div class="field">
+    <label for="sf-email">Email <span class="req" aria-hidden="true">*</span></label>
+    <input type="email" id="sf-email" name="email" autocomplete="email" required>
+  </div>
+
+  <div class="field">
+    <label for="sf-store">Store URL <span class="req" aria-hidden="true">*</span></label>
+    <input type="url" id="sf-store" name="store_url" placeholder="https://your-store.myshopify.com" required>
+  </div>
+
+  <div class="field">
+    <label for="sf-problem">Problem description <span class="req" aria-hidden="true">*</span></label>
+    <textarea id="sf-problem" name="problem" required></textarea>
+    <p class="hint">What you expected, what happened instead, and the steps to reproduce it.</p>
+  </div>
+
+  <div class="field">
+    <label for="sf-file">Screenshot</label>
+    <input type="file" id="sf-file" name="screenshot" accept="image/*,.pdf">
+    <p class="hint">Optional. PNG, JPG or PDF, up to 10&nbsp;MB.</p>
+  </div>
+
+  <button type="submit" class="btn">Send request</button>
+
+  <p class="form-status form-status--ok" id="sf-ok" role="status" hidden>
+    <strong>Thanks &mdash; your request has been received.</strong><br>
+    We have sent a confirmation to the email address you gave us, and a real
+    person will reply within 1 business day. If you do not hear back, email
+    <a href="mailto:sebas.ruizdigital@gmail.com">sebas.ruizdigital@gmail.com</a>
+    and quote the store URL you entered above.
+  </p>
+  <p class="form-status form-status--err" id="sf-err" role="alert" hidden></p>
+</form>
+
+<script>
+  (function () {
+    /* Set this to the Formspree (or equivalent) endpoint that should receive
+       support requests, and enable its auto-responder so submitters get the
+       confirmation email the success message promises. Until it is set, the
+       form falls back to opening a pre-filled email so it is never a dead end. */
+    var ENDPOINT = '';
+
+    var form = document.getElementById('SupportForm');
+    var ok = document.getElementById('sf-ok');
+    var err = document.getElementById('sf-err');
+    if (!form) return;
+
+    function fail(msg) {
+      ok.hidden = true;
+      err.textContent = msg;
+      err.hidden = false;
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      ok.hidden = true;
+
+      if (!form.checkValidity()) {
+        var firstInvalid = form.querySelector(':invalid');
+        if (firstInvalid) firstInvalid.focus();
+        fail('Please complete the required fields before sending.');
+        return;
+      }
+
+      var data = new FormData(form);
+
+      if (!ENDPOINT) {
+        /* mailto fallback. It cannot carry an attachment, so say so rather than
+           silently dropping the screenshot. */
+        var body = [
+          'Name: ' + (data.get('name') || ''),
+          'Email: ' + (data.get('email') || ''),
+          'Store URL: ' + (data.get('store_url') || ''),
+          '',
+          'Problem:',
+          (data.get('problem') || ''),
+          '',
+          '(If you selected a screenshot, please attach it to this email.)'
+        ].join('\n');
+        window.location.href = 'mailto:sebas.ruizdigital@gmail.com'
+          + '?subject=' + encodeURIComponent('Side Atelier support request')
+          + '&body=' + encodeURIComponent(body);
+        ok.hidden = false;
+        return;
+      }
+
+      var btn = form.querySelector('button[type="submit"]');
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+      fetch(ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+        .then(function (res) { return res.ok ? res : Promise.reject(res); })
+        .then(function () {
+          form.reset();
+          ok.hidden = false;
+          ok.focus && ok.focus();
+        })
+        .catch(function () {
+          fail('Sorry — that did not send. Please email sebas.ruizdigital@gmail.com directly.');
+        })
+        .finally(function () {
+          if (btn) { btn.disabled = false; btn.textContent = 'Send request'; }
+        });
+    });
+  })();
+</script>
 
 <footer>
   Side Atelier Theme v3.4.0 · Sebastián Ruiz ·
