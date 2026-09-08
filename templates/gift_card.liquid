@@ -5,11 +5,16 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <script>document.documentElement.classList.replace('no-js', 'js');</script>
-    {% render 'css-variables' %}
     {%- unless settings.body_font.system? -%}
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+
+    {%- comment -%}
+      css-variables must render after base.css: both declare :root, so the
+      later one wins. Rendering it first let base.css overwrite the settings.
+    {%- endcomment -%}
+    {% render 'css-variables' %}
     <style>
       .gift-card { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: var(--space-16); }
       .gift-card__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
