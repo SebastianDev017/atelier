@@ -36,12 +36,19 @@
   {% endif %}
 
   :root {
+    {%- comment -%}
+      No `| json` here. Shopify's font drop already returns multi-word family
+      names pre-quoted, so json double-wrapped them into "\"EB Garamond\"" --
+      invalid CSS, which silently fell back to the generic family. The bug was
+      masked while base.css won the cascade; it is live now that these
+      declarations do.
+    {%- endcomment -%}
     {% if heading_font.family != blank %}
-      --font-heading: {{ heading_font.family | json }}, {{ heading_font.fallback_families }};
+      --font-heading: {{ heading_font.family }}, {{ heading_font.fallback_families }};
       --font-heading-weight: {{ heading_weight }};
     {% endif %}
     {% if body_font.family != blank %}
-      --font-body: {{ body_font.family | json }}, {{ body_font.fallback_families }};
+      --font-body: {{ body_font.family }}, {{ body_font.fallback_families }};
       --font-body-weight: {{ body_font.weight }};
     {% endif %}
 

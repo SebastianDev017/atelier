@@ -73,6 +73,9 @@
   /* The field has no border and no background, so the ring is the only focus
      affordance it can have. Offset inward so it stays inside the palette. */
   .search-palette__input:focus-visible { outline: 2px solid var(--color-text); outline-offset: -2px; }
+  /* Not a .input, so the shared placeholder rule in base.css does not reach it.
+     Chrome's UA default measured 4.31:1 on the cream ground. */
+  .search-palette__input::placeholder { color: var(--color-muted); opacity: 1; }
   .search-palette__esc {
     font-family: var(--font-mono);
     font-size: 0.625rem;
