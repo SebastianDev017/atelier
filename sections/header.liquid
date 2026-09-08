@@ -319,7 +319,10 @@
   .nav-link__text {
     font-size: 11px;
     letter-spacing: 0.12em;
-    text-transform: uppercase;
+    /* Honour the uppercase_nav setting. --uppercase-nav was declared in
+       css-variables and base.css but read nowhere, so the toggle -- and the
+       Maison preset's uppercase_nav: false -- could never take effect. */
+    text-transform: var(--uppercase-nav, uppercase);
     line-height: 1.2;
   }
 

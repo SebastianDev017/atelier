@@ -86,6 +86,13 @@
     --color-link-hover: {% if settings.color_link_hover != blank %}{{ settings.color_link_hover }}{% else %}#876B58{% endif %};
 
     --animation-speed: {{ speed_mult }};
+    /* Scale the motion tokens by the chosen speed. --animation-speed alone was
+       read nowhere, so the control had no effect at all. Computed in Liquid so
+       the values stay plain durations for anything that parses them. */
+    --duration-fast: {{ 250 | times: speed_mult | round }}ms;
+    --duration-base: {{ 300 | times: speed_mult | round }}ms;
+    --duration-slow: {{ 400 | times: speed_mult | round }}ms;
+    --duration-slower: {{ 600 | times: speed_mult | round }}ms;
     --grain-opacity: {{ settings.grain_opacity | default: 4 | divided_by: 100.0 }};
     --grain-display: {% if settings.enable_grain_texture == false %}none{% else %}block{% endif %};
 

@@ -3322,13 +3322,13 @@
         "animation_speed": {
           "label": "Animation speed",
           "options__1": {
-            "label": "Fast — 0.5× speed"
+            "label": "Fast"
           },
           "options__2": {
-            "label": "Normal — default"
+            "label": "Normal"
           },
           "options__3": {
-            "label": "Slow — 1.5× more deliberate"
+            "label": "Slow"
           }
         },
         "enable_grain_texture": {
