@@ -1820,10 +1820,25 @@
           "label": "Products per page"
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Columns (mobile)"
+          "label": "Columns (mobile)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "enable_filtering": {
           "label": "Enable filtering",
@@ -2356,7 +2371,13 @@
           "label": "Posts per page"
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          }
         },
         "show_image": {
           "label": "Show featured image"
@@ -2426,7 +2447,16 @@
       "name": "Collections list",
       "settings": {
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "show_product_count": {
           "label": "Show product count"
@@ -2550,7 +2580,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Color scheme",
@@ -2605,7 +2644,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Color scheme",
@@ -2901,7 +2949,13 @@
           "label": "Products to show"
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "3"
+          },
+          "options__2": {
+            "label": "4"
+          }
         },
         "fallback_to_recommendations": {
           "label": "Top up from recommendations",

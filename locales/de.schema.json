@@ -1820,10 +1820,25 @@
           "label": "Produkte pro Seite"
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Spalten (Mobil)"
+          "label": "Spalten (Mobil)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "enable_filtering": {
           "label": "Filterung aktivieren",
@@ -2356,7 +2371,13 @@
           "label": "Beiträge pro Seite"
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          }
         },
         "show_image": {
           "label": "Beitragsbild anzeigen"
@@ -2426,7 +2447,16 @@
       "name": "Kategorienliste",
       "settings": {
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "show_product_count": {
           "label": "Produktanzahl anzeigen"
@@ -2550,7 +2580,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -2605,7 +2644,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -2901,7 +2949,13 @@
           "label": "Anzuzeigende Produkte"
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "3"
+          },
+          "options__2": {
+            "label": "4"
+          }
         },
         "fallback_to_recommendations": {
           "label": "Mit Empfehlungen auffüllen",

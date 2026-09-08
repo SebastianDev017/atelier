@@ -1820,10 +1820,25 @@
           "label": "Prodotti per pagina"
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Colonne (mobile)"
+          "label": "Colonne (mobile)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "enable_filtering": {
           "label": "Abilita il filtraggio",
@@ -2356,7 +2371,13 @@
           "label": "Articoli per pagina"
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          }
         },
         "show_image": {
           "label": "Mostra immagine in evidenza"
@@ -2426,7 +2447,16 @@
       "name": "Elenco delle collezioni",
       "settings": {
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "show_product_count": {
           "label": "Mostra numero di prodotti"
@@ -2550,7 +2580,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Combinazione di colori",
@@ -2605,7 +2644,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Combinazione di colori",
@@ -2901,7 +2949,13 @@
           "label": "Prodotti da mostrare"
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "3"
+          },
+          "options__2": {
+            "label": "4"
+          }
         },
         "fallback_to_recommendations": {
           "label": "Completa con i consigli",

@@ -1820,10 +1820,25 @@
           "label": "Productos por página"
         },
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Columnas (móvil)"
+          "label": "Columnas (móvil)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "enable_filtering": {
           "label": "Activar filtrado",
@@ -2356,7 +2371,13 @@
           "label": "Entradas por página"
         },
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          }
         },
         "show_image": {
           "label": "Mostrar imagen destacada"
@@ -2426,7 +2447,16 @@
       "name": "Lista de colecciones",
       "settings": {
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "show_product_count": {
           "label": "Mostrar número de productos"
@@ -2550,7 +2580,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Esquema de color",
@@ -2605,7 +2644,16 @@
           }
         },
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Esquema de color",
@@ -2901,7 +2949,13 @@
           "label": "Productos a mostrar"
         },
         "columns_desktop": {
-          "label": "Columnas (escritorio)"
+          "label": "Columnas (escritorio)",
+          "options__1": {
+            "label": "3"
+          },
+          "options__2": {
+            "label": "4"
+          }
         },
         "fallback_to_recommendations": {
           "label": "Completar con recomendaciones",
