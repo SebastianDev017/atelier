@@ -227,7 +227,9 @@
     "copied": "Copiato",
     "use_at_checkout": "Utilizzi questo codice al momento del pagamento",
     "add_to_apple_wallet": "Aggiungi ad Apple Wallet",
-    "shop_link": "Visita il negozio"
+    "shop_link": "Visita il negozio",
+    "qr_alt": "Codice QR della carta regalo",
+    "qr_help": "Scansiona per riscattare in negozio"
   },
   "password": {
     "title": "Apertura a breve",

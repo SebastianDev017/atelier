@@ -227,7 +227,9 @@
     "copied": "Copied",
     "use_at_checkout": "Use this code at checkout",
     "add_to_apple_wallet": "Add to Apple Wallet",
-    "shop_link": "Visit the store"
+    "shop_link": "Visit the store",
+    "qr_alt": "Gift card QR code",
+    "qr_help": "Scan to redeem in store"
   },
   "password": {
     "title": "Opening soon",

@@ -227,7 +227,9 @@
     "copied": "Copié",
     "use_at_checkout": "Utilisez ce code lors du paiement",
     "add_to_apple_wallet": "Ajouter à Apple Wallet",
-    "shop_link": "Visiter la boutique"
+    "shop_link": "Visiter la boutique",
+    "qr_alt": "QR code de la carte cadeau",
+    "qr_help": "Scannez pour utiliser en magasin"
   },
   "password": {
     "title": "Ouverture prochaine",

@@ -19,7 +19,11 @@
       .gift-card { min-height: 100svh; display: flex; align-items: center; justify-content: center; padding-block: var(--space-16); }
       .gift-card__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-4); }
       .gift-card__amount { font-family: var(--font-heading); margin-block: var(--space-2); }
-      .gift-card__code-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
+.gift-card__qr { display: flex; flex-direction: column; align-items: center; gap: 0.5rem; margin-block: 1.5rem; }
+      .gift-card__qr-canvas { width: 160px; height: 160px; display: inline-block; }
+      .gift-card__qr-canvas img,
+      .gift-card__qr-canvas canvas { display: block; width: 160px; height: 160px; }
+            .gift-card__code-wrap { display: flex; flex-direction: column; align-items: center; gap: var(--space-3); margin-top: var(--space-4); }
       .gift-card__code { font-family: var(--font-heading); font-size: var(--text-2xl); letter-spacing: 0.1em; padding: var(--space-3) var(--space-5); border: 1px dashed var(--color-border-strong); }
       .gift-card__wallet { margin-top: var(--space-2); }
     </style>
@@ -50,6 +54,25 @@
           <p class="caption">{{ 'gift_card.use_at_checkout' | t }}</p>
         </div>
 
+        {%- comment -%}
+          QR of the redemption identifier so the code can be scanned at a POS
+          instead of typed. Rendered client-side from gift_card.qr_identifier by
+          the vendored QRCode.js -- Shopify exposes no QR endpoint. The <noscript>
+          fallback keeps the code itself usable, which is what actually matters.
+        {%- endcomment -%}
+        {%- if gift_card.qr_identifier -%}
+          <div class="gift-card__qr">
+            <div
+              id="GiftCardQr"
+              class="gift-card__qr-canvas"
+              data-qr-identifier="{{ gift_card.qr_identifier }}"
+              role="img"
+              aria-label="{{ 'gift_card.qr_alt' | t }}"
+            ></div>
+            <p class="caption">{{ 'gift_card.qr_help' | t }}</p>
+          </div>
+        {%- endif -%}
+
         {%- if gift_card.pass_url -%}
           <a class="gift-card__wallet" href="{{ gift_card.pass_url }}">
             <img src="{{ 'gift-card/add-to-apple-wallet.svg' | shopify_asset_url }}" alt="{{ 'gift_card.add_to_apple_wallet' | t }}" width="200" height="60">
@@ -59,6 +82,15 @@
         <a class="link-underline" href="{{ shop.url }}">{{ 'gift_card.shop_link' | t }}</a>
       </div>
     </main>
+
+    {%- comment -%}
+      Both deferred so neither blocks the parser. Deferred scripts run in
+      document order, so QRCode is defined before gift-card-qr.js uses it.
+    {%- endcomment -%}
+    {%- if gift_card.qr_identifier -%}
+      <script src="{{ 'qrcode.min.js' | asset_url }}" defer></script>
+      <script src="{{ 'gift-card-qr.js' | asset_url }}" defer></script>
+    {%- endif -%}
 
     <script>
       (function () {
