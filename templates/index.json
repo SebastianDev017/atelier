@@ -13,7 +13,6 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -74,7 +73,6 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
-        "image": "",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",
@@ -123,7 +121,7 @@
         "heading": "Featured pieces",
         "collection": "living",
         "products_count": 8,
-        "card_aspect": "square",
+        "card_aspect": "portrait",
         "color_scheme": "cream",
         "padding_top": 96,
         "padding_bottom": 96

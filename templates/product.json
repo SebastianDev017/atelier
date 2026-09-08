@@ -97,7 +97,8 @@
       }
     },
     "complementary": {
-      "type": "complementary-products"
+      "type": "complementary-products",
+      "settings": {}
     },
     "related": {
       "type": "related-products",
