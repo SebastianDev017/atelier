@@ -82,7 +82,8 @@
     --heading-letter-spacing: {{ settings.letter_spacing_headings | default: -2 | times: 0.01 }}em;
 
     --color-link: {% if settings.color_link != blank %}{{ settings.color_link }}{% else %}#2C1810{% endif %};
-    --color-link-hover: {% if settings.color_link_hover != blank %}{{ settings.color_link_hover }}{% else %}#A0826D{% endif %};
+    /* Fallback darkened from #A0826D (3.33:1 on cream) to meet 4.5:1 body-text contrast. */
+    --color-link-hover: {% if settings.color_link_hover != blank %}{{ settings.color_link_hover }}{% else %}#876B58{% endif %};
 
     --animation-speed: {{ speed_mult }};
     --grain-opacity: {{ settings.grain_opacity | default: 4 | divided_by: 100.0 }};

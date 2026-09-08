@@ -22,7 +22,12 @@
   --color-text: var(--color-foreground, #2C1810);
   --color-accent-local: var(--color-accent, #766356);
   --color-border: var(--color-border-setting, color-mix(in srgb, var(--color-text) 12%, transparent));
-  --color-border-strong: color-mix(in srgb, var(--color-text) 32%, transparent);
+  /* Bumped 32% -> 50%. This token is the only visual boundary of the outline
+     button, the variant option pills and the quantity stepper, so WCAG 1.4.11
+     applies (3:1 for non-text UI). At 32% it measured 2.00:1 on cream; 50%
+     gives 3.23:1. --color-border stays lower: it draws dividers and hairlines,
+     which are decorative and exempt. */
+  --color-border-strong: color-mix(in srgb, var(--color-text) 50%, transparent);
   --color-subtle: color-mix(in srgb, var(--color-text) 6%, transparent);
   --color-sale: #B23A2E;
   --color-overlay-text: var(--color-background, #FAF7F2);
@@ -391,7 +396,9 @@ h1, h2, h3, h4, h5, h6 {
    their dark background). */
 .color-scheme--cream { --color-bg: var(--color-background, #FAF7F2); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
 .color-scheme--parchment { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 93%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
-.color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 86%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
+.color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 86%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356);
+  /* The darker ground drops the shared muted + sale tokens below 4.5:1, so re-derive both. */
+  --color-muted: #6D5B4F; --color-sale: #A9372C; }
 .color-scheme--white { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 30%, var(--color-white)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
 .color-scheme--invert {
   --color-bg: var(--color-foreground, #2C1810);
@@ -408,6 +415,9 @@ h1, h2, h3, h4, h5, h6 {
   /* Re-derive link colors to the light text so prose/rte links stay legible on dark */
   --color-link: var(--color-text);
   --color-link-hover: color-mix(in srgb, var(--color-text) 70%, transparent);
+  /* --color-sale is a fixed light-scheme red (#B23A2E = 2.84:1 on the inverted
+     ground). Lightened here for .price__sale, .field-error and .form-status--error. */
+  --color-sale: #C56B62;
 }
 
 /* Fixed brand-style schemes — apply a complete Studio or Maison palette to a
@@ -425,20 +435,25 @@ h1, h2, h3, h4, h5, h6 {
   --color-button-text: #F8F8F6;
   --color-heading: #111111;
   --color-body: #333330;
-  --color-muted: #888884;
+  /* #888884 measured 3.35:1 on #F8F8F6; muted styles 11-13px body text, so 4.5:1 applies. */
+  --color-muted: #72726F;
 }
 .color-scheme--maison {
   background-color: #F2EDE6;
   color: #1A1208;
   --color-bg: #F2EDE6;
   --color-text: #1A1208;
-  --color-accent-local: #B89A6E;
+  /* #B89A6E measured 2.29:1 on #F2EDE6 and is used as link/hover text and as
+     a button ground with a cream label. Deepened along the same hue to 4.73:1
+     both ways -- still the Maison gold, now legible. */
+  --color-accent-local: #7F6534;
   --color-border: #D8CFBF;
   --color-button: #1A1208;
   --color-button-text: #F2EDE6;
   --color-heading: #1A1208;
   --color-body: #3D3020;
-  --color-muted: #8C7355;
+  /* #8C7355 measured 3.84:1 on #F2EDE6. */
+  --color-muted: #7E684C;
 }
 
 /* Custom-element section wrappers default to display:inline, which ignores
@@ -599,16 +614,19 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
   background: transparent;
   /* currentColor inherits the section's color-scheme text colour, so the
      border always contrasts: espresso on light schemes, cream on dark. */
-  border: 1px solid currentColor;
+  /* opacity used to be 0.6 here, which composites the text as well as the
+     border: value text measured 4.41:1 and the placeholder (0.6 x 0.45 = 0.27
+     effective alpha) measured 1.78:1. Fade the border only, and keep the text
+     at full strength. Several forms use a visually-hidden label plus a
+     placeholder, so the placeholder is sometimes the only visible label. */
+  border: 1px solid color-mix(in srgb, currentColor 60%, transparent);
   border-radius: 0;
   color: inherit;
   font-size: var(--text-base);
-  opacity: 0.6;
-  transition: opacity var(--duration-fast) var(--ease-editorial),
-              border-color var(--duration-fast) var(--ease-editorial);
+  transition: border-color var(--duration-fast) var(--ease-editorial);
 }
 .input::placeholder,
-.textarea::placeholder { color: currentColor; opacity: 0.45; }
+.textarea::placeholder { color: var(--color-muted); opacity: 1; }
 /* Brighten on focus; preserve the keyboard focus-visible ring (a11y) in
    currentColor so it stays visible on any color scheme. */
 .input:focus,
