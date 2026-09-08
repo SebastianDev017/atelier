@@ -1244,6 +1244,11 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor { display: none !important; }
+  /* The dot is hidden but the element stays in the DOM, so the :has() rule
+     above still matches and would leave a reduced-motion user with no
+     pointer at all -- neither the custom dot nor the OS cursor. */
+  body:has(.custom-cursor),
+  body:has(.custom-cursor) * { cursor: auto !important; }
 }
 
 /* ---------- Scroll-to-top button ---------- */
@@ -1376,7 +1381,7 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   background: none;
   border: none;
   color: var(--color-muted, #A0826D);
-  cursor: none;
+  cursor: pointer;
   padding: 0.25rem;
   transition: color 0.2s ease;
 }
@@ -1463,14 +1468,14 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   border-radius: 0;
   accent-color: var(--color-text, #2C1810);
   margin-top: 2px;
-  cursor: none;
+  cursor: pointer;
 }
 
 .notify-me__consent-label {
   font-size: 12px;
   line-height: 1.55;
   color: var(--color-muted, #A0826D);
-  cursor: none;
+  cursor: pointer;
 }
 
 .notify-me__submit {

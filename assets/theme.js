@@ -637,9 +637,18 @@
     var hash = anchor.getAttribute('href');
     if (!hash || hash.length < 2) return;
     var target = document.querySelector(hash);
-    if (target && window.lenis) {
-      e.preventDefault();
-      window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
-    }
+    if (!target) return;
+    /* Under reduced motion, hand the click back to the browser: native hash
+       navigation is unanimated and moves focus correctly on its own. */
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!window.lenis) return;
+    e.preventDefault();
+    window.lenis.scrollTo(target, { offset: -80, duration: 1.2 });
+    /* preventDefault also cancels the browser's focus move, which is the only
+       thing that makes a skip link work. Without this the page scrolls but
+       focus stays on the link, so the next Tab goes straight back into the
+       navigation the user was skipping (WCAG 2.4.1 Bypass Blocks). */
+    if (!target.hasAttribute('tabindex')) target.setAttribute('tabindex', '-1');
+    target.focus({ preventScroll: true });
   });
 })();
