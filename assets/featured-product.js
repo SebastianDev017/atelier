@@ -16,6 +16,7 @@
     var addLabel = root.querySelector('[data-fp-add-label]');
     var priceTarget = root.querySelector('[data-fp-price]');
     var mainImg = root.querySelector('[data-fp-main-img]');
+    var dynamicCheckout = root.querySelector('[data-fp-dynamic-checkout]');
 
     function selectedOptions() {
       return Array.prototype.map.call(root.querySelectorAll('[data-fp-option-group]'), function (g) {
@@ -48,11 +49,17 @@
         addBtn.disabled = !available;
         if (addLabel) addLabel.textContent = available ? addBtn.dataset.addText : addBtn.dataset.soldText;
       }
-      if (idInput && variant) {
-        idInput.value = variant.id;
+      /* Reconcile the hidden id on every change, including the no-match case.
+         Guarding the whole block on `variant` left the previously selected id
+         submittable and enabled while the button already read "Sold out". */
+      if (idInput) {
+        if (variant) idInput.value = variant.id;
         if (available) idInput.removeAttribute('disabled');
         else idInput.setAttribute('disabled', '');
       }
+      /* The dynamic checkout button is only gated on product-level availability
+         server-side, so it has to follow the selected variant here. */
+      if (dynamicCheckout) dynamicCheckout.hidden = !available;
       if (variant && priceTarget && variant.price_html) priceTarget.innerHTML = variant.price_html;
       if (variant && variant.image) {
         setMainImage(variant.image);
@@ -72,7 +79,21 @@
     });
   }
 
-  function boot() { document.querySelectorAll('[data-featured-product]').forEach(init); }
-  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot);
+  function boot(scope) {
+    (scope || document).querySelectorAll('[data-featured-product]').forEach(function (el) {
+      /* Guard against double-binding: boot() can run again for a single section
+         when the theme editor re-renders it. */
+      if (el.dataset.fpBound === 'true') return;
+      el.dataset.fpBound = 'true';
+      init(el);
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { boot(); });
   else boot();
+
+  /* The script tag lives in theme.liquid, not in the section, so it is not
+     re-executed when Shopify re-renders the section. Without this a merchant
+     adding or editing a Featured product in the customizer got dead variant
+     pills and dead thumbnails until a full page reload. */
+  document.addEventListener('shopify:section:load', function (e) { boot(e.target); });
 })();

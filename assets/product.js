@@ -62,12 +62,19 @@
       this.updateSelectedLabels();
       this.updateButtons(variant);
 
+      /* Reconcile the hidden id BEFORE the early return. Bailing out first left
+         the previously selected variant's id submittable and its price on screen
+         while the button already read "Unavailable". */
+      this.idInputs.forEach(function (input) {
+        if (variant) input.value = variant.id;
+        /* A variant that exists but is out of stock must stay disabled. This used
+           to call removeAttribute unconditionally, silently re-enabling it. */
+        if (variant && variant.available) input.removeAttribute('disabled');
+        else input.setAttribute('disabled', '');
+      });
+
       if (!variant) return;
       this.currentVariant = variant;
-      this.idInputs.forEach(function (input) {
-        input.value = variant.id;
-        input.removeAttribute('disabled');
-      });
       if (this.gallery && variant.featured_media && typeof this.gallery.setActiveMedia === 'function') {
         this.gallery.setActiveMedia(variant.featured_media.id);
       }
@@ -101,10 +108,16 @@
 
     ProductInfo.prototype.renderPrice = function (variantId) {
       var self = this;
+      /* Monotonic request id: clicking through options fires one fetch each, and
+         without this the price settled on whichever response happened to land
+         last rather than the one most recently asked for. */
+      var reqId = (this._priceRequestId || 0) + 1;
+      this._priceRequestId = reqId;
       var url = this.productUrl + '?variant=' + variantId + '&section_id=' + this.sectionId;
       fetch(url)
         .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
         .then(function (text) {
+          if (reqId !== self._priceRequestId) return; // superseded
           var doc = new DOMParser().parseFromString(text, 'text/html');
           // Swap per-variant regions: price and low-stock inventory line.
           ['[data-price-target]', '[data-inventory-target]'].forEach(function (sel) {

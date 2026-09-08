@@ -67,43 +67,59 @@
             <p class="fp__desc">{{ fp.description | strip_html | truncate: 200 }}</p>
           {%- endif -%}
 
-          {%- comment -%} Variant pills (outside the form so they aren't submitted). {%- endcomment -%}
-          {%- unless fp.has_only_default_variant -%}
-            <div class="fp__variants">
-              {%- for option in fp.options_with_values -%}
-                <fieldset class="fp__option" data-fp-option-group data-fp-option-position="{{ option.position }}">
-                  <legend class="fp__option-label">
-                    <span>{{ option.name | escape }}</span>
-                    <span class="fp__option-selected" data-fp-option-selected>{{ option.selected_value | escape }}</span>
-                  </legend>
-                  <div class="fp__option-values">
-                    {%- for value in option.values -%}
-                      {%- liquid
-                        # Check availability at THIS option's position (not membership
-                        # anywhere in v.options) to avoid cross-option false positives.
-                        assign opt_index = option.position | minus: 1
-                        assign value_available = false
-                        for v in fp.variants
-                          if v.available and v.options[opt_index] == value
-                            assign value_available = true
-                            break
-                          endif
-                        endfor
-                      -%}
-                      <label class="fp__pill{% unless value_available %} fp__pill--soldout{% endunless %}">
-                        <input type="radio" name="fp-option-{{ option.position }}" value="{{ value | escape }}" data-fp-option {% if option.selected_value == value %}checked{% endif %}>
-                        <span>{{ value | escape }}</span>
-                      </label>
-                    {%- endfor -%}
-                  </div>
-                </fieldset>
-              {%- endfor -%}
-            </div>
-          {%- endunless -%}
-
           <product-form class="fp__form" data-product-form>
             {%- form 'product', fp, id: form_id, novalidate: 'novalidate', class: 'product-form' -%}
               <input type="hidden" name="id" value="{{ fp_variant.id }}" data-fp-variant-id {% unless fp_variant.available %}disabled{% endunless %}>
+
+              {%- comment -%}
+                Variant pills. These live inside the form so the radios have a form
+                owner, and the name is namespaced by section.id: radios group by
+                (form owner, name), so two Featured Product sections on one page
+                previously cleared each other's selection.
+              {%- endcomment -%}
+              {%- unless fp.has_only_default_variant -%}
+                <div class="fp__variants">
+                  {%- for option in fp.options_with_values -%}
+                    <fieldset class="fp__option" data-fp-option-group data-fp-option-position="{{ option.position }}">
+                      <legend class="fp__option-label">
+                        <span>{{ option.name | escape }}</span>
+                        <span class="fp__option-selected" data-fp-option-selected>{{ option.selected_value | escape }}</span>
+                      </legend>
+                      <div class="fp__option-values">
+                        {%- for value in option.values -%}
+                          {%- liquid
+                            # Check availability at THIS option's position (not membership
+                            # anywhere in v.options) to avoid cross-option false positives.
+                            assign opt_index = option.position | minus: 1
+                            assign value_available = false
+                            for v in fp.variants
+                              if v.available and v.options[opt_index] == value
+                                assign value_available = true
+                                break
+                              endif
+                            endfor
+                          -%}
+                          <label class="fp__pill{% unless value_available %} fp__pill--soldout{% endunless %}">
+                            <input
+                              type="radio"
+                              name="fp-option-{{ option.position }}-{{ section.id }}"
+                              value="{{ value | escape }}"
+                              data-fp-option
+                              {% if option.selected_value == value %}checked{% endif %}
+                              {% unless value_available %}disabled{% endunless %}
+                            >
+                            <span>{{ value | escape }}</span>
+                            {%- unless value_available -%}
+                              <span class="visually-hidden">{{ 'products.sold_out' | t }}</span>
+                            {%- endunless -%}
+                          </label>
+                        {%- endfor -%}
+                      </div>
+                    </fieldset>
+                  {%- endfor -%}
+                </div>
+              {%- endunless -%}
+
 
               <div class="fp__quantity">
                 <label class="label" for="fp-qty-{{ section.id }}">{{ 'products.quantity' | t }}</label>
@@ -118,7 +134,14 @@
                 <button type="submit" name="add" class="btn btn--full btn--large" data-fp-add data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-text="{{ 'products.sold_out' | t | escape }}" {% unless fp_variant.available %}disabled{% endunless %}>
                   <span data-fp-add-label>{%- if fp_variant.available -%}{{ 'products.add_to_cart' | t }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}</span>
                 </button>
-                {%- if fp.available -%}{{ form | payment_button }}{%- endif -%}
+                {%- comment -%}
+                  payment_button was gated on fp.available -- product level -- and had
+                  no hook, so it stayed live on a sold-out variant. Wrapped so the JS
+                  can hide it in step with the Add to cart button.
+                {%- endcomment -%}
+                {%- if fp.available -%}
+                  <div class="fp__dynamic-checkout" data-fp-dynamic-checkout {% unless fp_variant.available %}hidden{% endunless %}>{{ form | payment_button }}</div>
+                {%- endif -%}
               </div>
 
               <div class="product-form__error" role="alert" data-form-error data-default-error="{{ 'products.add_error' | t | escape }}" hidden></div>
@@ -212,6 +235,10 @@
   .fp__desc { color: var(--color-muted); max-width: 48ch; }
 
   .fp__variants { display: flex; flex-direction: column; gap: var(--space-4); }
+  /* The variants block now sits inside the form, so the form owns the column
+     rhythm the panel used to provide. */
+  .fp__form { display: flex; flex-direction: column; gap: var(--space-4); }
+  .fp__dynamic-checkout[hidden] { display: none; }
   .fp__option { border: 0; margin: 0; padding: 0; min-width: 0; }
   .fp__option-label { display: flex; gap: var(--space-2); font-size: var(--text-sm); margin-bottom: var(--space-2); padding: 0; }
   .fp__option-selected { color: var(--color-muted); }
@@ -221,7 +248,12 @@
   .fp__pill span { display: inline-flex; align-items: center; justify-content: center; min-width: 2.75rem; padding: 0.5rem 0.9rem; border: 1px solid var(--color-border); font-size: var(--text-sm); transition: border-color var(--duration-fast) var(--ease-editorial), background var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial); }
   .fp__pill input:checked + span { background: var(--color-text); border-color: var(--color-text); color: var(--color-bg); }
   .fp__pill input:focus-visible + span { outline: 2px solid var(--color-accent); outline-offset: 2px; }
-  .fp__pill--soldout span { text-decoration: line-through; opacity: 0.4; }
+  /* Struck through with a dashed edge rather than dimmed: opacity 0.4 measured
+     ~2.46:1, and a strike alone is not announced -- the visually-hidden "Sold out"
+     text in the markup carries that for assistive tech. */
+  .fp__pill--soldout input + span { border-style: dashed; text-decoration: line-through; }
+  .fp__pill input:disabled { cursor: not-allowed; }
+  .fp__pill:has(input:disabled) { cursor: not-allowed; }
 
   .fp__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
   .fp__buy { display: flex; flex-direction: column; gap: var(--space-3); }
