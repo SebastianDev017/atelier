@@ -298,7 +298,10 @@
   }
   /* Theme-styled hover/active states — no native browser-blue highlight. */
   .footer-localization__option:hover,
-  .footer-localization__option:focus-visible { background-color: color-mix(in srgb, var(--color-text) 12%, transparent); outline: none; }
+  .footer-localization__option:focus-visible { background-color: color-mix(in srgb, var(--color-text) 12%, transparent); }
+  /* The 12% tint is also the hover state, so on its own it is not a focus
+     indicator. Keep the global focus ring for keyboard users. */
+  .footer-localization__option:focus-visible { outline: 2px solid var(--color-text); outline-offset: -2px; }
   .footer-localization__option.is-active,
   .footer-localization__option[aria-current="true"] { background-color: color-mix(in srgb, var(--color-text) 16%, transparent); font-weight: 600; }
 {% endstylesheet %}

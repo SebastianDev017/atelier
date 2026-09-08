@@ -359,9 +359,16 @@
     border-top: 1px solid var(--color-border);
     padding-block: var(--space-3);
     transform: translateY(100%);
-    transition: transform var(--duration-base) var(--ease-editorial);
+    /* Off-screen but still focusable would give keyboard users a second,
+       invisible Add to cart button. Hide it from the tab order until shown. */
+    visibility: hidden;
+    transition: transform var(--duration-base) var(--ease-editorial), visibility 0s linear var(--duration-base);
   }
-  .product__sticky.is-visible { transform: translateY(0); }
+  .product__sticky.is-visible {
+    transform: translateY(0);
+    visibility: visible;
+    transition: transform var(--duration-base) var(--ease-editorial), visibility 0s;
+  }
   .product__sticky-inner { display: flex; align-items: center; justify-content: space-between; gap: var(--space-4); }
   .product__sticky-info { display: flex; flex-direction: column; min-width: 0; }
   .product__sticky-title { font-size: var(--text-sm); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }

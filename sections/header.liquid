@@ -578,9 +578,18 @@
       z-index: var(--z-drawer);
       overflow-y: auto;
       transform: translateX(-100%);
-      transition: transform var(--duration-base) var(--ease-editorial);
+      /* Translated off-screen is still focusable: without this a keyboard user
+         tabs through the whole invisible menu before reaching page content. */
+      visibility: hidden;
+      pointer-events: none;
+      transition: transform var(--duration-base) var(--ease-editorial), visibility 0s linear var(--duration-base);
     }
-    .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
+    .sidebar.header--menu-open .sidebar__panel {
+      transform: translateX(0);
+      visibility: visible;
+      pointer-events: auto;
+      transition: transform var(--duration-base) var(--ease-editorial), visibility 0s;
+    }
 
     /* Meet the 44px touch-target minimum in the off-canvas drawer */
     .nav-link,
