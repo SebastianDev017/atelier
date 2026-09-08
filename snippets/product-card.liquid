@@ -27,6 +27,10 @@
   endif
 
   assign primary = product.featured_media
+  # Merchant-set focal point, applied as object-position so a cropped card
+  # keeps the subject in frame instead of always centring.
+  assign primary_focal = primary.preview_image.presentation.focal_point | default: '50% 50%'
+  assign primary_focal = 'object-position: ' | append: primary_focal | append: ';'
 
   assign low_stock = false
   if settings.low_stock_threshold > 0 and variant.inventory_management != blank and variant.inventory_quantity > 0 and variant.inventory_quantity <= settings.low_stock_threshold
@@ -75,12 +79,14 @@
           widths: '200, 300, 400, 500, 600, 700, 800',
           sizes: sizes,
           class: 'product-card__image product-card__primary-img',
+          style: primary_focal,
           alt: primary.alt | default: product.title | escape
       }}
       {%- comment -%} Hover image renders only when a 2nd image exists, so single-image
         cards never fade their primary out (the :has() guards in base.css depend on this).
         The merchant toggle still applies; `!= false` keeps it on by default. {%- endcomment -%}
       {%- if settings.card_show_secondary_image != false and product.images.size > 1 -%}
+        {%- assign hover_focal = product.images[1].presentation.focal_point | default: '50% 50%' -%}
         <img
           class="product-card__hover-img"
           src="{{ product.images[1] | image_url: width: 600 }}"
@@ -88,6 +94,7 @@
           loading="lazy"
           width="600"
           height="800"
+          style="object-position: {{ hover_focal }};"
           aria-hidden="true"
         >
       {%- endif -%}

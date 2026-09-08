@@ -51,6 +51,8 @@
 {%- if has_image -%}
   <div class="collection-banner collection-banner--media color-scheme--invert {{ align_class }}">
     <div class="collection-banner__media" data-animate-scale>
+      {%- assign banner_focal = collection.image.presentation.focal_point | default: '50% 50%' -%}
+      {%- assign banner_focal_style = 'object-position: ' | append: banner_focal | append: ';' -%}
       {{
         collection.image
         | image_url: width: 2200
@@ -60,7 +62,8 @@
           widths: '600, 900, 1200, 1600, 2000, 2200',
           sizes: '100vw',
           alt: image_alt,
-          class: 'collection-banner__image'
+          class: 'collection-banner__image',
+          style: banner_focal_style
       }}
       <span class="collection-banner__overlay" aria-hidden="true"></span>
     </div>

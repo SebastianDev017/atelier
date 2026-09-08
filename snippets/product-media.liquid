@@ -36,6 +36,8 @@
         >
           {%- case media.media_type -%}
             {%- when 'image' -%}
+              {%- assign media_focal = media.preview_image.presentation.focal_point | default: '50% 50%' -%}
+              {%- assign media_focal_style = 'object-position: ' | append: media_focal | append: ';' -%}
               {{
                 media
                 | image_url: width: 1500
@@ -45,7 +47,8 @@
                   widths: '400, 600, 800, 1000, 1200, 1500',
                   sizes: '(min-width: 990px) 50vw, 100vw',
                   alt: media_alt,
-                  class: 'product-media__image'
+                  class: 'product-media__image',
+                  style: media_focal_style
               }}
             {%- when 'video' -%}
               {{ media | video_tag: image_size: '1000x', controls: true, loop: false, class: 'product-media__video' }}
