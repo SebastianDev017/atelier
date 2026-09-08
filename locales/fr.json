@@ -92,7 +92,9 @@
     },
     "share": "Partager",
     "add_error": "Une erreur est survenue. Veuillez réessayer.",
-    "available_colors": "Couleurs disponibles"
+    "available_colors": "Couleurs disponibles",
+    "pickup_check": "Vérifier la disponibilité en magasin",
+    "pickup_none": "Aucun magasin ne propose le retrait pour cet article."
   },
   "cart": {
     "title": "Votre panier",

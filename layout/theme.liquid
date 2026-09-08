@@ -118,6 +118,7 @@
     <script src="{{ 'press-marquee.js' | asset_url }}" defer></script>
     <script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
     <script src="{{ 'featured-product.js' | asset_url }}" defer></script>
+    {%- if template.name == 'product' -%}<script src="{{ 'pickup-availability.js' | asset_url }}" defer></script>{%- endif -%}
     <script src="{{ 'bundle.js' | asset_url }}" defer></script>
     <script src="{{ 'collection-recs.js' | asset_url }}" defer></script>
     {%- if settings.enable_view_transitions -%}<script src="{{ 'page-transitions.js' | asset_url }}" defer></script>{%- endif -%}

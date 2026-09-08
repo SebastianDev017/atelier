@@ -3155,6 +3155,9 @@
       "presets": {
         "name": "Barra de estadísticas"
       }
+    },
+    "pickup-availability": {
+      "name": "Disponibilidad para recogida"
     }
   },
   "settings_schema": {

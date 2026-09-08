@@ -1,0 +1,30 @@
+{%- comment -%}
+  Local pickup disclosure for the product page.
+
+  Renders closed and empty. The list is fetched on demand from
+  sections/pickup-availability.liquid, because variant.store_availabilities is
+  only populated on a variant route -- it cannot be read from the product page.
+  Fetching on open (rather than on load) also keeps it off the critical path.
+
+  @param {object} product - the product being displayed
+  @param {object} variant - the currently selected variant
+{%- endcomment -%}
+{%- if product.available and variant != blank -%}
+  <pickup-availability
+    class="pickup"
+    data-pickup
+    data-variant-id="{{ variant.id }}"
+    data-base-url="{{ shop.url }}{{ routes.root_url | remove_last: '/' }}"
+  >
+    <details class="pickup__details" data-pickup-details>
+      <summary class="pickup__summary">
+        {% render 'icon', name: 'pin' %}
+        <span>{{ 'products.pickup_check' | t }}</span>
+        {% render 'icon', name: 'chevron-down' %}
+      </summary>
+      <div class="pickup__body" data-pickup-body aria-live="polite">
+        <p class="pickup__loading caption" data-pickup-loading>{{ 'general.loading' | t }}</p>
+      </div>
+    </details>
+  </pickup-availability>
+{%- endif -%}

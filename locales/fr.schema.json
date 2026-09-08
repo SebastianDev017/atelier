@@ -3155,6 +3155,9 @@
       "presets": {
         "name": "Barre de statistiques"
       }
+    },
+    "pickup-availability": {
+      "name": "Disponibilité en magasin"
     }
   },
   "settings_schema": {

@@ -82,6 +82,11 @@
         window.history.replaceState({}, '', this.productUrl + '?variant=' + variant.id);
       }
       this.renderPrice(variant.id);
+      /* Broadcast the selection so independent components (local pickup) can
+         react without product.js needing to know they exist. */
+      document.dispatchEvent(new CustomEvent('atelier:variant:change', {
+        detail: { variant: variant, sectionId: this.sectionId }
+      }));
     };
 
     ProductInfo.prototype.updateSelectedLabels = function () {

@@ -894,6 +894,23 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 }
 .product-card__info { display: flex; flex-direction: column; flex: 1 1 auto; gap: var(--space-1); padding-top: var(--space-4); }
 .product-card__edition { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
+/* ---------- Local pickup availability ----------
+   Shared between snippets/pickup-availability.liquid (the disclosure on the PDP)
+   and sections/pickup-availability.liquid (the Section Rendering target that
+   fills it), so these rules have to be global rather than section-scoped. */
+.pickup { display: block; margin-top: var(--space-4); }
+.pickup__details { border-top: 1px solid var(--color-border); }
+.pickup__summary { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; cursor: pointer; font-size: var(--text-sm); list-style: none; }
+.pickup__summary::-webkit-details-marker { display: none; }
+.pickup__summary .icon:last-child { margin-inline-start: auto; transition: transform var(--duration-fast) var(--ease-editorial); }
+.pickup__details[open] .pickup__summary .icon:last-child { transform: rotate(180deg); }
+.pickup__body { padding-bottom: var(--space-4); }
+.pickup__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.pickup__store-name { font-weight: 500; margin: 0; }
+.pickup__store-status { margin: 0; font-size: var(--text-sm); }
+.pickup__store-status--out { color: var(--color-muted); }
+.pickup__store-address { font-style: normal; color: var(--color-muted); margin: 0.25rem 0 0; }
+
 /* Colour preview dots on product cards. Decorative — the accessible colour
    names sit in an adjacent visually-hidden span. */
 .product-card__swatches { display: flex; flex-wrap: wrap; gap: 0.375rem; margin-top: 0.25rem; }

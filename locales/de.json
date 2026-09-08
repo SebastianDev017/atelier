@@ -92,7 +92,9 @@
     },
     "share": "Teilen",
     "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
-    "available_colors": "Verfügbare Farben"
+    "available_colors": "Verfügbare Farben",
+    "pickup_check": "Verfügbarkeit in Filialen prüfen",
+    "pickup_none": "Keine Filiale bietet Abholung für diesen Artikel an."
   },
   "cart": {
     "title": "Ihr Warenkorb",

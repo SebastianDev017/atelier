@@ -163,6 +163,8 @@
                   {%- endfor -%}
                 </div>
               {%- endunless -%}
+              {%- comment -%} R5 — local pickup, directly below the variant selector. {%- endcomment -%}
+              {% render 'pickup-availability', product: product, variant: selected_variant %}
 
             {%- when 'buy_buttons' -%}
               <div class="product__buy-area" {{ block.shopify_attributes }}>

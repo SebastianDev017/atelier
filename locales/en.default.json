@@ -92,7 +92,9 @@
     },
     "share": "Share",
     "add_error": "Something went wrong. Please try again.",
-    "available_colors": "Available colors"
+    "available_colors": "Available colors",
+    "pickup_check": "Check availability at nearby stores",
+    "pickup_none": "No stores offer pickup for this item."
   },
   "cart": {
     "title": "Your cart",

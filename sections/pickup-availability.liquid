@@ -1,0 +1,52 @@
+{%- comment -%}
+  Section Rendering target for local pickup availability.
+
+  Requested by assets/pickup-availability.js as
+  /variants/<id>/?section_id=pickup-availability, which is the documented way to
+  read variant.store_availabilities: the drop is only populated on a variant
+  route, so it cannot be resolved from the product page itself.
+
+  Renders only the list. The disclosure around it lives in
+  snippets/pickup-availability.liquid on the product page.
+{%- endcomment -%}
+{%- liquid
+  assign variant = product.selected_or_first_available_variant
+  assign pickup_locations = variant.store_availabilities | where: 'pick_up_enabled', true
+-%}
+<div data-pickup-list>
+  {%- if pickup_locations.size > 0 -%}
+    <ul class="pickup__list" role="list">
+      {%- for availability in pickup_locations -%}
+        <li class="pickup__store">
+          <p class="pickup__store-name">{{ availability.location.name | escape }}</p>
+          <p class="pickup__store-status{% unless availability.available %} pickup__store-status--out{% endunless %}">
+            {%- if availability.available -%}
+              {{ 'products.pickup_available' | t }}
+              {%- if availability.pick_up_time != blank %}, {{ availability.pick_up_time | escape }}{% endif -%}
+            {%- else -%}
+              {{ 'products.pickup_unavailable' | t }}
+            {%- endif -%}
+          </p>
+          {%- assign addr = availability.location.address -%}
+          {%- if addr != blank -%}
+            <address class="pickup__store-address caption">
+              {{ addr.address1 | escape }}
+              {%- if addr.address2 != blank %}, {{ addr.address2 | escape }}{% endif -%}
+              {%- if addr.city != blank %}<br>{{ addr.city | escape }}{% endif -%}
+              {%- if addr.province_code != blank %}, {{ addr.province_code | escape }}{% endif -%}
+              {%- if addr.zip != blank %} {{ addr.zip | escape }}{% endif -%}
+            </address>
+          {%- endif -%}
+        </li>
+      {%- endfor -%}
+    </ul>
+  {%- else -%}
+    <p class="pickup__empty caption">{{ 'products.pickup_none' | t }}</p>
+  {%- endif -%}
+</div>
+
+{% schema %}
+{
+  "name": "t:sections.pickup-availability.name"
+}
+{% endschema %}

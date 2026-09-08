@@ -3155,6 +3155,9 @@
       "presets": {
         "name": "Stats bar"
       }
+    },
+    "pickup-availability": {
+      "name": "Pickup availability"
     }
   },
   "settings_schema": {
