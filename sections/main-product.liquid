@@ -50,7 +50,24 @@
                 <div data-price-target aria-live="polite">
                   {% render 'price', product: product, variant: selected_variant, class: 'price--large' %}
                 </div>
+                {%- comment -%}
+                  R10 — cart.taxes_included is true when the merchant's prices already
+                  include tax, which changes what the price above means. Shopify
+                  requires it on both product and cart pages.
+                {%- endcomment -%}
+                {%- if cart.taxes_included -%}
+                  <p class="product__taxes caption">{{ 'general.taxes_included' | t }}</p>
+                {%- endif -%}
                 <p class="product__taxes caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
+
+                {%- comment -%}
+                  R6 — Shop Pay Installments. The payment_terms filter renders nothing
+                  at all when the shop has no installments provider, so it needs no
+                  guard of its own.
+                {%- endcomment -%}
+                <div class="product__payment-terms" data-payment-terms>
+                  {{ product.selected_or_first_available_variant.price | payment_terms }}
+                </div>
               </div>
 
             {%- when 'inventory' -%}
@@ -190,6 +207,15 @@
                     {%- if block.settings.show_dynamic_checkout and product.available -%}
                       {{ form | payment_button }}
                     {%- endif -%}
+
+                    {%- comment -%}
+                      R8 — Follow on Shop. login_button renders the Shop follow control
+                      and outputs nothing when the shop is not eligible, so it is safe
+                      to render unconditionally.
+                    {%- endcomment -%}
+                    <div class="product__shop-follow">
+                      {{ shop | login_button: action: 'follow' }}
+                    </div>
 
                     {%- if block.settings.show_shipping_note and block.settings.shipping_note != blank -%}
                       <p class="product__shipping-note caption">{{ block.settings.shipping_note | escape }}</p>
@@ -385,6 +411,10 @@
     background-color: var(--color-accent-local, #766356) !important;
   }
   .product__shipping-note { color: var(--color-muted); margin-top: var(--space-1); text-align: center; }
+  .product__payment-terms:empty { display: none; }
+  .product__payment-terms { margin-top: var(--space-2); }
+  .product__shop-follow:empty { display: none; }
+  .product__shop-follow { margin-top: var(--space-2); }
 
   .product__share { display: inline-flex; align-items: center; gap: var(--space-3); }
   .product__collapsible { border-top: 1px solid var(--color-border); }

@@ -45,10 +45,21 @@
               </div>
             {%- endif -%}
 
+            {%- if cart.taxes_included -%}
+              <p class="caption">{{ 'general.taxes_included' | t }}</p>
+            {%- endif -%}
             <p class="caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
 
             <div class="cart__actions">
               <button type="submit" name="checkout" class="btn btn--full btn--large">{{ 'cart.checkout' | t }}</button>
+              {%- comment -%}
+                R9 — accelerated checkout. Shopify renders and styles these buttons
+                itself; the theme only owns the spacing. Outputs nothing when the
+                shop has no accelerated methods enabled.
+              {%- endcomment -%}
+              <div class="cart__accelerated" data-additional-checkout-buttons>
+                {{ content_for_additional_checkout_buttons }}
+              </div>
               <noscript><button type="submit" name="update" class="btn btn--outline btn--full">{{ 'cart.update' | t }}</button></noscript>
             </div>
 
@@ -81,6 +92,7 @@
   .cart__summary { display: flex; flex-direction: column; gap: var(--space-4); padding: var(--space-6); border: 1px solid var(--color-border); }
   .cart__summary-row { display: flex; align-items: baseline; justify-content: space-between; font-size: var(--text-md); }
   .cart__summary-value { font-family: var(--font-heading); font-size: var(--text-2xl); }
+  .cart__accelerated:empty { display: none; }
   .cart__actions { display: flex; flex-direction: column; gap: var(--space-3); }
   .cart__continue { align-self: flex-start; }
 

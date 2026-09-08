@@ -187,13 +187,23 @@
         {%- endif -%}
 
         {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
-          <a
-            class="header__icon-btn sidebar__account"
-            href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
-            aria-label="{{ 'general.account' | t }}"
-          >
-            {% render 'icon', name: 'account' %}
-          </a>
+          {%- comment -%}
+            <shopify-account> is the platform component: it resolves the logged-in
+            vs logged-out destination itself and picks up customer-account features
+            without the theme tracking them. The inner <a> is the required fallback
+            content, so this still works before the component upgrades. This row is
+            inside .sidebar__panel, which is the off-canvas drawer at <=768px, so
+            one instance serves both the desktop sidebar and the mobile header.
+          {%- endcomment -%}
+          <shopify-account class="sidebar__account-wrap">
+            <a
+              class="header__icon-btn sidebar__account"
+              href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+              aria-label="{{ 'general.account' | t }}"
+            >
+              {% render 'icon', name: 'account' %}
+            </a>
+          </shopify-account>
         {%- endif -%}
 
         <a
@@ -377,6 +387,7 @@
   }
   .sidebar--bordered .sidebar__foot { border-top: 1px solid var(--color-border); }
 
+  .sidebar__account-wrap { display: inline-flex; }
   .sidebar__actions {
     display: flex;
     align-items: center;
