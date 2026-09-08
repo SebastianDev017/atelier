@@ -66,7 +66,7 @@
   </div>
 
   {%- if product.media.size > 1 -%}
-    <div class="product-media__thumbs" role="group" aria-label="{{ product.title | escape }} media">
+    <div class="product-media__thumbs" role="group" aria-label="{{ 'accessibility.product_media' | t }}">
       {%- for media in product.media -%}
         <button
           type="button"

@@ -105,7 +105,7 @@
               {%- render 'icon', name: 'arrow-left' -%}
             </button>
 
-            <div class="testimonials__dots" role="group" aria-label="Choose testimonial" data-dots>
+            <div class="testimonials__dots" role="group" aria-label="{{ 'accessibility.choose_testimonial' | t }}" data-dots>
               {%- for block in section.blocks -%}
                 <button
                   type="button"

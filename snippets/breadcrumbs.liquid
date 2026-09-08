@@ -10,8 +10,8 @@
 {%- liquid
   assign parent = collection | default: product.collections.first
 -%}
-<nav class="breadcrumbs" aria-label="Breadcrumb">
-  <a class="breadcrumbs__link" href="{{ routes.root_url }}">Home</a>
+<nav class="breadcrumbs" aria-label="{{ 'accessibility.breadcrumb' | t }}">
+  <a class="breadcrumbs__link" href="{{ routes.root_url }}">{{ 'general.home' | t }}</a>
   {%- if parent != blank and parent.url != blank -%}
     <span class="breadcrumbs__sep" aria-hidden="true">·</span>
     <a class="breadcrumbs__link" href="{{ parent.url }}">{{ parent.title | escape }}</a>

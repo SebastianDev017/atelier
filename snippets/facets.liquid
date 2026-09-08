@@ -77,7 +77,7 @@
           {%- when 'price_range' -%}
             <div class="facets__price">
               <div class="field">
-                <label class="field__label" for="Filter-{{ filter.label | handle }}-min">Min</label>
+                <label class="field__label" for="Filter-{{ filter.label | handle }}-min">{{ 'collections.filter_min' | t }}</label>
                 <input
                   class="input"
                   type="number"
@@ -92,7 +92,7 @@
               </div>
               <span class="facets__price-sep" aria-hidden="true">–</span>
               <div class="field">
-                <label class="field__label" for="Filter-{{ filter.label | handle }}-max">Max</label>
+                <label class="field__label" for="Filter-{{ filter.label | handle }}-max">{{ 'collections.filter_max' | t }}</label>
                 <input
                   class="input"
                   type="number"

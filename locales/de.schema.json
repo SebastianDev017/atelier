@@ -1343,10 +1343,25 @@
           "label": "Produktanzahl anzeigen"
         },
         "columns_desktop": {
-          "label": "Spalten (Desktop)"
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Spalten (Mobil)"
+          "label": "Spalten (Mobil)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -3139,7 +3154,7 @@
           "label": "Navigation in Großbuchstaben"
         },
         "uppercase_buttons": {
-          "label": "Schaltflächen & Beschriftungen in Großbuchstaben"
+          "label": "Schaltflächen in Großbuchstaben"
         }
       }
     },
@@ -3157,7 +3172,7 @@
           "info": "Wird für Hover-Zustände und Hervorhebungen verwendet."
         },
         "border_color": {
-          "label": "Rahmen & Trennlinien",
+          "label": "Rahmen und Trennlinien",
           "info": "Haarlinien, Kartenränder und Eingabefeldrahmen."
         },
         "button_color": {
@@ -3270,7 +3285,7 @@
       }
     },
     "animations_experience": {
-      "name": "Animationen & Erlebnis",
+      "name": "Animationen und Erlebnis",
       "settings": {
         "enable_smooth_scroll": {
           "label": "Sanftes Scrollen",

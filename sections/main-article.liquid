@@ -28,10 +28,15 @@
       <h1 class="article__title h2" data-animate>{{ article.title | escape }}</h1>
       {%- if show_meta -%}
         <p class="article__meta eyebrow" data-animate data-animate-delay="1">
+          {%- comment -%}
+            Format via the locale's date_formats.month_day_year so the day/month
+            order follows the language, not just the month name.
+          {%- endcomment -%}
+          {%- assign article_date = article.published_at | date: format: 'month_day_year' -%}
           {%- if section.settings.show_date and section.settings.show_author -%}
-            {{ 'blog.article_metadata_html' | t: date: article.published_at | date: '%B %e, %Y', author: article.author }}
+            {{ 'blog.article_metadata_html' | t: date: article_date, author: article.author }}
           {%- elsif section.settings.show_date -%}
-            {{ article.published_at | date: '%B %e, %Y' }}
+            {{ article_date }}
           {%- elsif section.settings.show_author -%}
             {{ article.author | escape }}
           {%- endif -%}
@@ -77,7 +82,7 @@
               <li class="article__comment" data-animate>
                 <div class="rte">{{ comment.content }}</div>
                 <p class="article__comment-meta caption">
-                  {{ comment.author | escape }} · {{ comment.created_at | date: '%B %e, %Y' }}
+                  {{ comment.author | escape }} · {{ comment.created_at | date: format: 'month_day_year' }}
                 </p>
               </li>
             {%- endfor -%}

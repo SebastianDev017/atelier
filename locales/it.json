@@ -47,7 +47,14 @@
     "decrease_quantity": "Riduci la quantità",
     "increase_quantity": "Aumenta la quantità",
     "star_rating_html": "{{ rating }} su {{ scale }} stelle",
-    "selection_help": "Utilizzi i tasti freccia sinistra e destra per navigare"
+    "selection_help": "Utilizzi i tasti freccia sinistra e destra per navigare",
+    "breadcrumb": "Percorso di navigazione",
+    "pagination": "Impaginazione",
+    "payment_methods": "Metodi di pagamento",
+    "product_media": "Contenuti del prodotto",
+    "choose_testimonial": "Scegli una testimonianza",
+    "view": "Vedi",
+    "esc_key": "Esc"
   },
   "products": {
     "add_to_cart": "Aggiungi al carrello",
@@ -82,7 +89,8 @@
       "returns": "Reso entro 30 giorni",
       "secure": "Pagamento sicuro"
     },
-    "share": "Condividi"
+    "share": "Condividi",
+    "add_error": "Qualcosa è andato storto. Riprova."
   },
   "cart": {
     "title": "Il tuo carrello",
@@ -153,7 +161,9 @@
     "results_count": {
       "one": "{{ count }} risultato",
       "other": "{{ count }} risultati"
-    }
+    },
+    "filter_min": "Min",
+    "filter_max": "Max"
   },
   "blog": {
     "all_articles": "Tutti gli articoli",
@@ -224,5 +234,11 @@
     "powered_by": "Questo negozio sarà supportato da",
     "admin_link_html": "È Lei il titolare del negozio? {{ link }}",
     "login": "Acceda qui"
+  },
+  "onboarding": {
+    "product_title": "Titolo del prodotto"
+  },
+  "date_formats": {
+    "month_day_year": "%d %B %Y"
   }
 }

@@ -236,7 +236,9 @@
     ProductForm.prototype.showError = function (message) {
       if (!this.error) return;
       this.error.hidden = false;
-      this.error.textContent = message || 'Something went wrong. Please try again.';
+      /* The fallback is rendered onto the element by Liquid so it is translated;
+         there is no way to reach a `t` filter from here. */
+      this.error.textContent = message || this.error.dataset.defaultError || '';
     };
     ProductForm.prototype.clearError = function () {
       if (!this.error) return;

@@ -47,7 +47,14 @@
     "decrease_quantity": "Disminuir cantidad",
     "increase_quantity": "Aumentar cantidad",
     "star_rating_html": "{{ rating }} de {{ scale }} estrellas",
-    "selection_help": "Usa las teclas de flecha izquierda y derecha para navegar"
+    "selection_help": "Usa las teclas de flecha izquierda y derecha para navegar",
+    "breadcrumb": "Ruta de navegación",
+    "pagination": "Paginación",
+    "payment_methods": "Métodos de pago",
+    "product_media": "Contenido del producto",
+    "choose_testimonial": "Elegir testimonio",
+    "view": "Ver",
+    "esc_key": "Esc"
   },
   "products": {
     "add_to_cart": "Añadir al carrito",
@@ -82,7 +89,8 @@
       "returns": "Devoluciones en 30 días",
       "secure": "Pago seguro"
     },
-    "share": "Compartir"
+    "share": "Compartir",
+    "add_error": "Algo salió mal. Inténtalo de nuevo."
   },
   "cart": {
     "title": "Tu carrito",
@@ -153,7 +161,9 @@
     "results_count": {
       "one": "{{ count }} resultado",
       "other": "{{ count }} resultados"
-    }
+    },
+    "filter_min": "Mín",
+    "filter_max": "Máx"
   },
   "blog": {
     "all_articles": "Todos los artículos",
@@ -224,5 +234,11 @@
     "powered_by": "Esta tienda funcionará con",
     "admin_link_html": "¿Es usted el dueño de la tienda? {{ link }}",
     "login": "Inicia sesión aquí"
+  },
+  "onboarding": {
+    "product_title": "Título del producto"
+  },
+  "date_formats": {
+    "month_day_year": "%d de %B de %Y"
   }
 }

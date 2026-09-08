@@ -121,7 +121,7 @@
                 {%- if fp.available -%}{{ form | payment_button }}{%- endif -%}
               </div>
 
-              <div class="product-form__error" role="alert" data-form-error hidden></div>
+              <div class="product-form__error" role="alert" data-form-error data-default-error="{{ 'products.add_error' | t | escape }}" hidden></div>
             {%- endform -%}
           </product-form>
 
@@ -208,7 +208,7 @@
 
   .fp__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
   .fp__buy { display: flex; flex-direction: column; gap: var(--space-3); }
-  .product-form__error { color: #c0392b; font-size: var(--text-sm); }
+  .product-form__error { color: var(--color-sale); font-size: var(--text-sm); }
   .product-form__error[hidden] { display: none; }
 
   .fp__trust { list-style: none; margin: 0; padding: var(--space-3) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-5); }

@@ -60,7 +60,7 @@
             <div class="blog__body">
               {%- if section.settings.show_date or section.settings.show_author -%}
                 {%- liquid
-                  assign meta_date = article.published_at | date: '%B %e, %Y'
+                  assign meta_date = article.published_at | date: format: 'month_day_year'
                   if section.settings.show_date and section.settings.show_author
                     assign meta = 'blog.article_metadata_html' | t: date: meta_date, author: article.author
                   elsif section.settings.show_date

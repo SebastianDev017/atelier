@@ -47,7 +47,14 @@
     "decrease_quantity": "Decrease quantity",
     "increase_quantity": "Increase quantity",
     "star_rating_html": "{{ rating }} out of {{ scale }} stars",
-    "selection_help": "Use the left and right arrow keys to navigate"
+    "selection_help": "Use the left and right arrow keys to navigate",
+    "breadcrumb": "Breadcrumb",
+    "pagination": "Pagination",
+    "payment_methods": "Payment methods",
+    "product_media": "Product media",
+    "choose_testimonial": "Choose testimonial",
+    "view": "View",
+    "esc_key": "Esc"
   },
   "products": {
     "add_to_cart": "Add to cart",
@@ -82,7 +89,8 @@
       "returns": "30-day returns",
       "secure": "Secure checkout"
     },
-    "share": "Share"
+    "share": "Share",
+    "add_error": "Something went wrong. Please try again."
   },
   "cart": {
     "title": "Your cart",
@@ -153,7 +161,9 @@
     "results_count": {
       "one": "{{ count }} result",
       "other": "{{ count }} results"
-    }
+    },
+    "filter_min": "Min",
+    "filter_max": "Max"
   },
   "blog": {
     "all_articles": "All articles",
@@ -224,5 +234,11 @@
     "powered_by": "This shop will be powered by",
     "admin_link_html": "Are you the store owner? {{ link }}",
     "login": "Log in here"
+  },
+  "onboarding": {
+    "product_title": "Product title"
+  },
+  "date_formats": {
+    "month_day_year": "%B %d, %Y"
   }
 }

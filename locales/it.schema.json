@@ -1343,10 +1343,25 @@
           "label": "Mostra numero di prodotti"
         },
         "columns_desktop": {
-          "label": "Colonne (desktop)"
+          "label": "Colonne (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Colonne (mobile)"
+          "label": "Colonne (mobile)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "color_scheme": {
           "label": "Combinazione di colori",
@@ -3139,7 +3154,7 @@
           "label": "Navigazione in maiuscolo"
         },
         "uppercase_buttons": {
-          "label": "Pulsanti ed etichette in maiuscolo"
+          "label": "Pulsanti in maiuscolo"
         }
       }
     },

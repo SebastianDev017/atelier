@@ -7,10 +7,17 @@
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
   assign heading = section.settings.heading | escape
-  assign label_name = section.settings.label_name | default: 'Name' | escape
-  assign label_email = section.settings.label_email | default: 'Email' | escape
-  assign label_phone = section.settings.label_phone | default: 'Phone' | escape
-  assign label_message = section.settings.label_message | default: 'Message' | escape
+  # Fall back to the translated strings, not English literals. contact.name /
+  # .email / .phone / .message already ship in all five locales.
+  assign t_name = 'contact.name' | t
+  assign t_email = 'contact.email' | t
+  assign t_phone = 'contact.phone' | t
+  assign t_message = 'contact.message' | t
+  assign label_name = section.settings.label_name | default: t_name | escape
+  assign label_email = section.settings.label_email | default: t_email | escape
+  assign label_phone = section.settings.label_phone | default: t_phone | escape
+  assign label_message = section.settings.label_message | default: t_message | escape
+  assign success_fallback = 'contact.success' | t
 -%}
 
 <style>
@@ -36,7 +43,7 @@
     {%- form 'contact', class: 'contact-form__form', data-animate: '' -%}
       {%- if form.posted_successfully? -%}
         <p class="form-status form-status--success" role="status">
-          {{- section.settings.success_message | default: 'Thanks for reaching out. We will reply soon.' | escape -}}
+          {{- section.settings.success_message | default: success_fallback | escape -}}
         </p>
       {%- endif -%}
 

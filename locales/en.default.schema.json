@@ -1343,10 +1343,25 @@
           "label": "Show product count"
         },
         "columns_desktop": {
-          "label": "Columns (desktop)"
+          "label": "Columns (desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "columns_mobile": {
-          "label": "Columns (mobile)"
+          "label": "Columns (mobile)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
         },
         "color_scheme": {
           "label": "Color scheme",
@@ -1604,8 +1619,12 @@
         "display_mode": {
           "label": "Multiple messages",
           "info": "How to display 2+ messages.",
-          "options__1": { "label": "Rotate (fade)" },
-          "options__2": { "label": "Marquee (scroll)" }
+          "options__1": {
+            "label": "Rotate (fade)"
+          },
+          "options__2": {
+            "label": "Marquee (scroll)"
+          }
         },
         "rotate_interval": {
           "label": "Rotate every"
@@ -2709,38 +2728,70 @@
     "search-palette": {
       "name": "Search palette",
       "settings": {
-        "enabled": { "label": "Enable command palette search" }
+        "enabled": {
+          "label": "Enable command palette search"
+        }
       }
     },
     "maker-spotlight": {
       "name": "Maker spotlight",
       "settings": {
-        "image": { "label": "Image" },
+        "image": {
+          "label": "Image"
+        },
         "layout": {
           "label": "Layout",
-          "options__1": { "label": "Image left" },
-          "options__2": { "label": "Image right" }
+          "options__1": {
+            "label": "Image left"
+          },
+          "options__2": {
+            "label": "Image right"
+          }
         },
-        "eyebrow": { "label": "Eyebrow" },
-        "name": { "label": "Maker name" },
-        "quote": { "label": "Quote" },
-        "cta_label": { "label": "Button label" },
-        "cta_url": { "label": "Button link" },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "name": {
+          "label": "Maker name"
+        },
+        "quote": {
+          "label": "Quote"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
         "color_scheme": {
           "label": "Color scheme",
-          "options__1": { "label": "Cream" },
-          "options__2": { "label": "Parchment" },
-          "options__3": { "label": "Linen" },
-          "options__4": { "label": "Invert" }
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "Invert"
+          }
         },
-        "padding_top": { "label": "Top padding" },
-        "padding_bottom": { "label": "Bottom padding" }
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
       },
       "blocks": {
         "material": {
           "name": "Material tag",
           "settings": {
-            "label": { "label": "Tag label" }
+            "label": {
+              "label": "Tag label"
+            }
           }
         }
       }
@@ -2748,24 +2799,44 @@
     "press-marquee": {
       "name": "Press marquee",
       "settings": {
-        "heading": { "label": "Heading" },
-        "speed": { "label": "Scroll duration" },
+        "heading": {
+          "label": "Heading"
+        },
+        "speed": {
+          "label": "Scroll duration"
+        },
         "color_scheme": {
           "label": "Color scheme",
-          "options__1": { "label": "Cream" },
-          "options__2": { "label": "Parchment" },
-          "options__3": { "label": "Linen" },
-          "options__4": { "label": "Invert" }
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "Invert"
+          }
         },
-        "padding_top": { "label": "Top padding" },
-        "padding_bottom": { "label": "Bottom padding" }
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
       },
       "blocks": {
         "quote": {
           "name": "Press quote",
           "settings": {
-            "quote": { "label": "Quote" },
-            "source": { "label": "Source" }
+            "quote": {
+              "label": "Quote"
+            },
+            "source": {
+              "label": "Source"
+            }
           }
         }
       }
@@ -2773,50 +2844,102 @@
     "featured-product": {
       "name": "Featured product",
       "settings": {
-        "product": { "label": "Product" },
-        "heading": { "label": "Eyebrow heading" },
-        "show_vendor": { "label": "Show vendor" },
-        "show_trust_badges": { "label": "Show trust badges" },
-        "header__bundle": { "content": "Bundle upsell" },
-        "show_bundle": { "label": "Show bundle" },
-        "bundle_heading": { "label": "Bundle heading" },
+        "product": {
+          "label": "Product"
+        },
+        "heading": {
+          "label": "Eyebrow heading"
+        },
+        "show_vendor": {
+          "label": "Show vendor"
+        },
+        "show_trust_badges": {
+          "label": "Show trust badges"
+        },
+        "header__bundle": {
+          "content": "Bundle upsell"
+        },
+        "show_bundle": {
+          "label": "Show bundle"
+        },
+        "bundle_heading": {
+          "label": "Bundle heading"
+        },
         "color_scheme": {
           "label": "Color scheme",
-          "options__1": { "label": "Cream" },
-          "options__2": { "label": "Parchment" },
-          "options__3": { "label": "Linen" },
-          "options__4": { "label": "White" },
-          "options__5": { "label": "Inverted" }
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
         },
-        "padding_top": { "label": "Top padding" },
-        "padding_bottom": { "label": "Bottom padding" }
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
       }
     },
     "related-products": {
       "name": "Related products",
       "settings": {
-        "heading": { "label": "Heading" },
-        "products_count": { "label": "Products to show" },
-        "columns_desktop": { "label": "Columns (desktop)" },
+        "heading": {
+          "label": "Heading"
+        },
+        "products_count": {
+          "label": "Products to show"
+        },
+        "columns_desktop": {
+          "label": "Columns (desktop)"
+        },
         "fallback_to_recommendations": {
           "label": "Top up from recommendations",
           "info": "When the collection has too few products, fill the rest with Shopify's product recommendations."
         },
         "quick_add_style": {
           "label": "Add to cart button",
-          "options__1": { "label": "Reveal on hover" },
-          "options__2": { "label": "Always visible below info" }
+          "options__1": {
+            "label": "Reveal on hover"
+          },
+          "options__2": {
+            "label": "Always visible below info"
+          }
         },
         "color_scheme": {
           "label": "Color scheme",
-          "options__1": { "label": "Cream" },
-          "options__2": { "label": "Parchment" },
-          "options__3": { "label": "Linen" },
-          "options__4": { "label": "White" },
-          "options__5": { "label": "Inverted" }
+          "options__1": {
+            "label": "Cream"
+          },
+          "options__2": {
+            "label": "Parchment"
+          },
+          "options__3": {
+            "label": "Linen"
+          },
+          "options__4": {
+            "label": "White"
+          },
+          "options__5": {
+            "label": "Inverted"
+          }
         },
-        "padding_top": { "label": "Top padding" },
-        "padding_bottom": { "label": "Bottom padding" }
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
       }
     },
     "brand-statement": {
@@ -3031,7 +3154,7 @@
           "label": "Uppercase navigation"
         },
         "uppercase_buttons": {
-          "label": "Uppercase buttons & labels"
+          "label": "Uppercase buttons"
         }
       }
     },
@@ -3049,7 +3172,7 @@
           "info": "Used for hover states and emphasis."
         },
         "border_color": {
-          "label": "Borders & dividers",
+          "label": "Borders and dividers",
           "info": "Hairline rules, card edges, and input borders."
         },
         "button_color": {
@@ -3162,7 +3285,7 @@
       }
     },
     "animations_experience": {
-      "name": "Animations & Experience",
+      "name": "Animations and experience",
       "settings": {
         "enable_smooth_scroll": {
           "label": "Smooth scroll",

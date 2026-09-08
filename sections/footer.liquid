@@ -171,7 +171,7 @@
         {%- endif -%}
 
         {%- if section.settings.show_payment_icons and shop.enabled_payment_types.size > 0 -%}
-          <ul class="footer__payment" aria-label="Payment methods">
+          <ul class="footer__payment" aria-label="{{ 'accessibility.payment_methods' | t }}">
             {%- for type in shop.enabled_payment_types -%}
               <li>{{ type | payment_type_svg_tag: class: 'footer__payment-icon' }}</li>
             {%- endfor -%}

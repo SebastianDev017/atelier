@@ -47,7 +47,14 @@
     "decrease_quantity": "Diminuer la quantité",
     "increase_quantity": "Augmenter la quantité",
     "star_rating_html": "{{ rating }} étoiles sur {{ scale }}",
-    "selection_help": "Utilisez les flèches gauche et droite pour naviguer"
+    "selection_help": "Utilisez les flèches gauche et droite pour naviguer",
+    "breadcrumb": "Fil d’Ariane",
+    "pagination": "Pagination",
+    "payment_methods": "Moyens de paiement",
+    "product_media": "Médias du produit",
+    "choose_testimonial": "Choisir un témoignage",
+    "view": "Voir",
+    "esc_key": "Échap"
   },
   "products": {
     "add_to_cart": "Ajouter au panier",
@@ -82,7 +89,8 @@
       "returns": "Retours sous 30 jours",
       "secure": "Paiement sécurisé"
     },
-    "share": "Partager"
+    "share": "Partager",
+    "add_error": "Une erreur est survenue. Veuillez réessayer."
   },
   "cart": {
     "title": "Votre panier",
@@ -153,7 +161,9 @@
     "results_count": {
       "one": "{{ count }} résultat",
       "other": "{{ count }} résultats"
-    }
+    },
+    "filter_min": "Min",
+    "filter_max": "Max"
   },
   "blog": {
     "all_articles": "Tous les articles",
@@ -224,5 +234,11 @@
     "powered_by": "Cette boutique sera propulsée par",
     "admin_link_html": "Vous êtes le propriétaire de la boutique ? {{ link }}",
     "login": "Connectez-vous ici"
+  },
+  "onboarding": {
+    "product_title": "Titre du produit"
+  },
+  "date_formats": {
+    "month_day_year": "%d %B %Y"
   }
 }

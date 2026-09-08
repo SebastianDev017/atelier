@@ -37,7 +37,8 @@
         {%- if gift_card.enabled == false or gift_card.expired -%}
           <p class="gift-card__expired badge badge--sale">{{ 'gift_card.expired' | t }}</p>
         {%- elsif gift_card.expires_on -%}
-          <p class="caption">{{ 'gift_card.expires_on_html' | t: date: gift_card.expires_on | date: '%B %e, %Y' }}</p>
+          {%- assign expires_date = gift_card.expires_on | date: format: 'month_day_year' -%}
+          <p class="caption">{{ 'gift_card.expires_on_html' | t: date: expires_date }}</p>
         {%- endif -%}
 
         <div class="gift-card__code-wrap">

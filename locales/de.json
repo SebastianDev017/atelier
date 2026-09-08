@@ -47,7 +47,14 @@
     "decrease_quantity": "Menge verringern",
     "increase_quantity": "Menge erhöhen",
     "star_rating_html": "{{ rating }} von {{ scale }} Sternen",
-    "selection_help": "Verwenden Sie die linke und rechte Pfeiltaste zur Navigation"
+    "selection_help": "Verwenden Sie die linke und rechte Pfeiltaste zur Navigation",
+    "breadcrumb": "Brotkrümelnavigation",
+    "pagination": "Seitennummerierung",
+    "payment_methods": "Zahlungsarten",
+    "product_media": "Produktmedien",
+    "choose_testimonial": "Kundenstimme wählen",
+    "view": "Ansehen",
+    "esc_key": "Esc"
   },
   "products": {
     "add_to_cart": "In den Warenkorb",
@@ -82,7 +89,8 @@
       "returns": "30 Tage Rückgaberecht",
       "secure": "Sicherer Bezahlvorgang"
     },
-    "share": "Teilen"
+    "share": "Teilen",
+    "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
   },
   "cart": {
     "title": "Ihr Warenkorb",
@@ -153,7 +161,9 @@
     "results_count": {
       "one": "{{ count }} Ergebnis",
       "other": "{{ count }} Ergebnisse"
-    }
+    },
+    "filter_min": "Min",
+    "filter_max": "Max"
   },
   "blog": {
     "all_articles": "Alle Artikel",
@@ -224,5 +234,11 @@
     "powered_by": "Dieser Shop wird betrieben mit",
     "admin_link_html": "Sind Sie der Shop-Inhaber? {{ link }}",
     "login": "Hier anmelden"
+  },
+  "onboarding": {
+    "product_title": "Produkttitel"
+  },
+  "date_formats": {
+    "month_day_year": "%d. %B %Y"
   }
 }

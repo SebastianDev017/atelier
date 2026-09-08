@@ -182,7 +182,7 @@
                       <p class="product__shipping-note caption">{{ block.settings.shipping_note | escape }}</p>
                     {%- endif -%}
 
-                    <div class="product-form__error" role="alert" data-form-error hidden></div>
+                    <div class="product-form__error" role="alert" data-form-error data-default-error="{{ 'products.add_error' | t | escape }}" hidden></div>
                   {%- endform -%}
                 </product-form>
               </div>
