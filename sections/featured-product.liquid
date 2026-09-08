@@ -142,6 +142,23 @@
             </ul>
           {%- endif -%}
 
+          {%- comment -%}
+            App blocks. The section had no blocks array at all, so the editor
+            never offered "Add block" here. Apps typically inject reviews,
+            badges or upsells beside the buy area, so they render after the
+            trust badges and before the bundle.
+          {%- endcomment -%}
+          {%- if section.blocks.size > 0 -%}
+            <div class="fp__app-blocks">
+              {%- for block in section.blocks -%}
+                {%- case block.type -%}
+                  {%- when '@app' -%}
+                    <div class="fp__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+                {%- endcase -%}
+              {%- endfor -%}
+            </div>
+          {%- endif -%}
+
           {%- comment -%} ---- Bundle upsell — shared snippet (single source of truth, same as the product page). ---- {%- endcomment -%}
           {%- if section.settings.show_bundle -%}
             {% render 'bundle', current_product: fp, heading: section.settings.bundle_heading %}
@@ -211,6 +228,8 @@
   .product-form__error { color: var(--color-sale); font-size: var(--text-sm); }
   .product-form__error[hidden] { display: none; }
 
+  .fp__app-blocks { display: flex; flex-direction: column; gap: var(--space-3); }
+  .fp__app-blocks:not(:empty) { margin-top: var(--space-4); }
   .fp__trust { list-style: none; margin: 0; padding: var(--space-3) 0 0; display: flex; flex-wrap: wrap; gap: var(--space-5); }
   .fp__trust-item { display: inline-flex; align-items: center; gap: var(--space-2); font-size: var(--text-xs); color: var(--color-muted); }
   .fp__trust-item svg { flex-shrink: 0; }
@@ -226,6 +245,7 @@
 {
   "name": "t:sections.featured-product.name",
   "tag": "section",
+  "blocks": [{ "type": "@app" }],
   "settings": [
     { "type": "product", "id": "product", "label": "t:sections.featured-product.settings.product.label" },
     { "type": "text", "id": "heading", "label": "t:sections.featured-product.settings.heading.label" },
