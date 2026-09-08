@@ -95,16 +95,37 @@
                         <span class="variant-option__selected" data-option-selected>{{ option.selected_value | escape }}</span>
                       </legend>
                       <div class="variant-option__values">
+                        {%- liquid
+                          # 0-based index of this option inside variant.options
+                          assign opt_index = option.position | minus: 1
+                        -%}
                         {%- for value in option.values -%}
-                          <label class="variant-option__value">
+                          {%- liquid
+                            # A value is unavailable when no purchasable variant
+                            # carries it at this option position. That test does not
+                            # depend on what the other options are set to, so the
+                            # rendered state is always correct.
+                            assign value_available = false
+                            for variant in product.variants
+                              if variant.available and variant.options[opt_index] == value
+                                assign value_available = true
+                                break
+                              endif
+                            endfor
+                          -%}
+                          <label class="variant-option__value{% unless value_available %} variant-option__value--unavailable{% endunless %}">
                             <input
                               type="radio"
                               name="option-{{ option.position }}"
                               value="{{ value | escape }}"
                               data-option-input
                               {% if option.selected_value == value %}checked{% endif %}
+                              {% unless value_available %}disabled{% endunless %}
                             >
                             <span>{{ value | escape }}</span>
+                            {%- unless value_available -%}
+                              <span class="visually-hidden">{{ 'products.unavailable' | t }}</span>
+                            {%- endunless -%}
                           </label>
                         {%- endfor -%}
                       </div>
@@ -278,6 +299,11 @@
   }
   .variant-option__value input:checked + span { border-color: var(--color-text); background-color: var(--color-text); color: var(--color-bg); }
   .variant-option__value input:focus-visible + span { outline: 2px solid var(--color-text); outline-offset: 2px; }
+  /* Unavailable values: struck through with a dashed edge rather than dimmed,
+     so the state is legible without dropping text contrast below 4.5:1. The
+     input is genuinely disabled, so it is neither clickable nor focusable. */
+  .variant-option__value--unavailable span { border-style: dashed; text-decoration: line-through; }
+  .variant-option__value input:disabled { cursor: not-allowed; }
 
   .product__purchase { display: flex; flex-direction: column; gap: var(--space-3); }
   /* Left-aligned, content-width quantity selector (the wrapper used to stretch
@@ -422,7 +448,8 @@
       "settings": [
         { "type": "liquid", "id": "custom_liquid", "label": "t:sections.main-product.blocks.custom_liquid.settings.custom_liquid.label" }
       ]
-    }
+    },
+    { "type": "@app" }
   ],
   "settings": [
     {
