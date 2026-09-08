@@ -154,7 +154,16 @@
     position: relative;
     display: flex;
     width: 100%;
-    min-height: 100dvh;
+    /* 92dvh, not 100dvh. Two reasons, and the second is a hard requirement:
+       1. At 100dvh the hero filled the viewport exactly at 800/900/1080px tall,
+          bleed 0 -- nothing of the next section peeked, so the page read as a
+          complete standalone landing page.
+       2. The hero is not the first thing in the column; the announcement group
+          sits above it. At 100dvh the section therefore ended BELOW the fold
+          (944px tall in a 900px viewport), taking the scroll cue with it -- the
+          cue rendered at y=902 and was never visible.
+       min-height, so content still grows the section on short viewports. */
+    min-height: 92dvh;
     padding-block: var(--pt, 0) var(--pb, 0);
     overflow: hidden;
   }

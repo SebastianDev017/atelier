@@ -341,10 +341,13 @@
   /* H1 -- an unselected pill had a transition declared but no :hover rule to
      drive it, so hovering a variant did nothing. The hover deliberately reads
      as "reachable" (border darkens + faint fill), not as "selected" (solid
-     fill), so the two states stay distinguishable. */
-  .variant-option__value input:not(:checked):not(:disabled) + span:hover { border-color: var(--color-text); background-color: var(--color-subtle); }
+     fill), so the two states stay distinguishable.
+     The hover hangs off the LABEL, not the span: the radio is absolutely
+     positioned over the whole control (opacity 0, inset 0), so it wins the hit
+     test and `span:hover` can never match -- confirmed in the browser. */
+  .variant-option__value:hover input:not(:checked):not(:disabled) + span { border-color: var(--color-text); background-color: var(--color-subtle); }
   .variant-option__value input:checked + span { border-color: var(--color-text); background-color: var(--color-text); color: var(--color-bg); }
-  .variant-option__value input:checked + span:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); }
+  .variant-option__value:hover input:checked + span { background-color: var(--color-accent-local); border-color: var(--color-accent-local); }
   .variant-option__value input:focus-visible + span { outline: 2px solid var(--color-text); outline-offset: 2px; }
   /* Unavailable values: struck through with a dashed edge rather than dimmed,
      so the state is legible without dropping text contrast below 4.5:1. The
@@ -371,7 +374,7 @@
   }
   /* Swatches take the same affordance as a ring, one step lighter than the
      checked ring so hovered and selected never look the same. */
-  .variant-option__value--swatch input:not(:checked):not(:disabled) + .swatch:hover { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-border-strong); }
+  .variant-option__value--swatch:hover input:not(:checked):not(:disabled) + .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-border-strong); }
   .variant-option__value--swatch input:checked + .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); }
   .variant-option__value--swatch input:focus-visible + .swatch { outline: 2px solid var(--color-text); outline-offset: 3px; }
   /* A strikethrough cannot read on a circle, so unavailable swatches take a

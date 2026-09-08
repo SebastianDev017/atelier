@@ -1,5 +1,5 @@
 {
-  "type": "custom",
+  "type": "custom.announcement",
   "name": "Announcement",
   "sections": {
     "announcement_bar": {
