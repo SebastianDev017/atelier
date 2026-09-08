@@ -1809,10 +1809,6 @@
     "main-collection": {
       "name": "Collection",
       "settings": {
-        "show_title": {
-          "label": "Show collection title",
-          "info": "Turn off if you add a Collection banner section above."
-        },
         "show_description": {
           "label": "Show collection description"
         },

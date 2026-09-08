@@ -46,7 +46,19 @@
         <a class="ef__cta btn btn--outline" href="{{ section.settings.cta_url }}">{{ section.settings.cta_label | escape }}</a>
       {%- endif -%}
 
-      {%- if section.settings.show_stats -%}
+      {%- liquid
+        # show_stats on with all three numbers blank emitted an empty <dl> that
+        # still painted its border-top and padding -- a rule floating under the
+        # CTA. Count the real ones first.
+        assign filled_stats = 0
+        for i in (1..3)
+          assign n_key = 'stat_' | append: i | append: '_number'
+          if section.settings[n_key] != blank
+            assign filled_stats = filled_stats | plus: 1
+          endif
+        endfor
+      -%}
+      {%- if section.settings.show_stats and filled_stats > 0 -%}
         <dl class="ef__stats">
           {%- for i in (1..3) -%}
             {%- liquid

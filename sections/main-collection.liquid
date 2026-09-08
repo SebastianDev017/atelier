@@ -16,18 +16,14 @@
   <div class="page-width">
     {% render 'breadcrumbs', current: collection.title %}
     {%- comment -%}
-      show_description used to be nested inside show_title, so with the shipped
-      default (show_title: false) the description toggle did nothing and a
-      merchant had no way to discover why. The two are now independent.
+      No title here. collection-banner already renders the collection title as
+      the page's <h1>; repeating it as an <h2> immediately below gave every
+      collection page two headings for the same thing. The description toggle
+      stays, for merchants who remove the banner section.
     {%- endcomment -%}
-    {%- if section.settings.show_title or section.settings.show_description -%}
+    {%- if section.settings.show_description and collection.description != blank -%}
       <header class="collection__head" data-animate>
-        {%- if section.settings.show_title -%}
-          <h2 class="collection__title h2">{{ collection.title | escape }}</h2>
-        {%- endif -%}
-        {%- if section.settings.show_description and collection.description != blank -%}
-          <div class="collection__description prose">{{ collection.description }}</div>
-        {%- endif -%}
+        <div class="collection__description prose">{{ collection.description }}</div>
       </header>
     {%- endif -%}
 
@@ -126,7 +122,6 @@
   "name": "t:sections.main-collection.name",
   "tag": "section",
   "settings": [
-    { "type": "checkbox", "id": "show_title", "label": "t:sections.main-collection.settings.show_title.label", "info": "t:sections.main-collection.settings.show_title.info", "default": false },
     { "type": "checkbox", "id": "show_description", "label": "t:sections.main-collection.settings.show_description.label", "default": true },
     {
       "type": "range",

@@ -6,6 +6,9 @@
 {%- endcomment -%}
 {%- liquid
   assign show = section.settings.show_announcement
+  # message_count is computed below. An enabled bar with every message blank
+  # still painted a 44px band of --bar-bg containing nothing, so require at
+  # least one real message before rendering anything at all.
   assign blocks = section.blocks
 
   assign message_count = 0
@@ -16,7 +19,7 @@
   endfor
 -%}
 
-{%- if show -%}
+{%- if show and message_count > 0 -%}
   <style>
     #shopify-section-{{ section.id }} {
       --bar-bg: {{ section.settings.bar_color }};

@@ -1809,10 +1809,6 @@
     "main-collection": {
       "name": "Kollektion",
       "settings": {
-        "show_title": {
-          "label": "Kollektionstitel anzeigen",
-          "info": "Deaktivieren Sie dies, wenn Sie oben einen Abschnitt mit einem Kollektionsbanner hinzufügen."
-        },
         "show_description": {
           "label": "Kollektionsbeschreibung anzeigen"
         },

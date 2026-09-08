@@ -1809,10 +1809,6 @@
     "main-collection": {
       "name": "Colección",
       "settings": {
-        "show_title": {
-          "label": "Mostrar título de la colección",
-          "info": "Desactívalo si añades una sección de Banner de colección encima."
-        },
         "show_description": {
           "label": "Mostrar descripción de la colección"
         },

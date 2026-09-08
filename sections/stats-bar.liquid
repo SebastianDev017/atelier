@@ -6,10 +6,20 @@
 {%- endcomment -%}
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
+  # Reserve one track per filled stat. A fixed repeat(4) left dead columns when
+  # a merchant entered fewer than four, squashing them against one edge.
+  assign stats_count = 0
+  for i in (1..4)
+    assign k = 'stat_' | append: i | append: '_number'
+    if section.settings[k] != blank
+      assign stats_count = stats_count | plus: 1
+    endif
+  endfor
+  assign stats_count = stats_count | at_least: 1
 -%}
 
 <style>
-  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; }
+  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --stats-count: {{ stats_count }}; }
 </style>
 
 <div class="section-wrapper color-scheme--{{ scheme }}">
@@ -40,7 +50,7 @@
 {% stylesheet %}
   .stats-bar {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(var(--stats-count, 4), 1fr);
     gap: clamp(1.5rem, 4vw, 3rem);
     padding-block: var(--pt, 80px) var(--pb, 80px);
     margin: 0;

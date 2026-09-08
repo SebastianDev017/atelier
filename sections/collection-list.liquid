@@ -27,6 +27,12 @@
     <div class="product-grid">
       {%- for block in section.blocks -%}
         {%- assign collection = block.settings.collection -%}
+        {%- comment -%}
+          Skip a block with no collection assigned. The preset ships three empty
+          blocks, which previously rendered as cards linking to "#" with the
+          untranslated literal "Collection" as their title.
+        {%- endcomment -%}
+        {%- if collection == blank -%}{%- continue -%}{%- endif -%}
         <a
           class="collection-card"
           href="{{ collection.url | default: '#' }}"

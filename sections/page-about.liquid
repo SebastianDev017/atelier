@@ -113,7 +113,7 @@
 }
 .about-process__steps {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(var(--process-count, 3), 1fr);
   gap: clamp(2rem, 4vw, 4rem);
 }
 .about-process__step-num {
@@ -205,6 +205,9 @@
     {%- endif -%}
 
     {%- assign process_blocks = section.blocks | where: 'type', 'process_step' -%}
+    {%- comment -%} One track per real step, so a 2-step process leaves no dead column. {%- endcomment -%}
+    {%- assign process_count = process_blocks.size | at_least: 1 -%}
+    <style>#shopify-section-{{ section.id }} { --process-count: {{ process_count }}; }</style>
     {%- if process_blocks.size > 0 -%}
       <div class="about-process" data-animate>
         <span class="about-process__heading">{{ section.settings.process_heading | default: 'How we work' }}</span>
