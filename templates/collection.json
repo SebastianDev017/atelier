@@ -29,7 +29,7 @@
       "type": "main-collection",
       "settings": {
         "show_title": false,
-        "show_description": true,
+        "show_description": false,
         "products_per_page": 16,
         "columns_desktop": "3",
         "columns_mobile": "2",

@@ -398,7 +398,8 @@ h1, h2, h3, h4, h5, h6 {
 .color-scheme--parchment { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 93%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
 .color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 86%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356);
   /* The darker ground drops the shared muted + sale tokens below 4.5:1, so re-derive both. */
-  --color-muted: #6D5B4F; --color-sale: #A9372C; }
+  --color-muted: color-mix(in srgb, var(--color-text) 70%, var(--color-bg));
+  --color-sale: color-mix(in srgb, #B23A2E 85%, var(--color-text)); }
 .color-scheme--white { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 30%, var(--color-white)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
 .color-scheme--invert {
   --color-bg: var(--color-foreground, #2C1810);
@@ -415,9 +416,10 @@ h1, h2, h3, h4, h5, h6 {
   /* Re-derive link colors to the light text so prose/rte links stay legible on dark */
   --color-link: var(--color-text);
   --color-link-hover: color-mix(in srgb, var(--color-text) 70%, transparent);
-  /* --color-sale is a fixed light-scheme red (#B23A2E = 2.84:1 on the inverted
-     ground). Lightened here for .price__sale, .field-error and .form-status--error. */
-  --color-sale: #C56B62;
+  /* --color-sale is a fixed light-scheme red and measured 2.84:1 on the inverted
+     ground. Mixed toward --color-text (which is the light colour on this scheme)
+     so it tracks the merchant's palette instead of assuming the cream default. */
+  --color-sale: color-mix(in srgb, #B23A2E 70%, var(--color-text));
 }
 
 /* Fixed brand-style schemes — apply a complete Studio or Maison palette to a
@@ -1198,8 +1200,14 @@ html.lenis, html.lenis body { height: auto; }
    disabling the cursor (no .custom-cursor element) restores native pointers,
    and reset on touch / coarse pointers. (:has survives Shopify minification;
    :is does NOT — so this stays a universal selector, never :is().) */
-body:has(.custom-cursor),
-body:has(.custom-cursor) * { cursor: none !important; }
+/* Scoped to no-preference: under reduced motion the dot is display:none but the
+   element stays in the DOM, so :has() would still match and suppress the pointer.
+   Not applying the rule at all is cleaner than overriding it back -- `cursor: auto`
+   on * would also have stripped the pointer affordance from every link and button. */
+@media (prefers-reduced-motion: no-preference) {
+  body:has(.custom-cursor),
+  body:has(.custom-cursor) * { cursor: none !important; }
+}
 @media (hover: none), (pointer: coarse) {
   body:has(.custom-cursor),
   body:has(.custom-cursor) * { cursor: auto !important; }
@@ -1262,11 +1270,6 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 }
 @media (prefers-reduced-motion: reduce) {
   .custom-cursor { display: none !important; }
-  /* The dot is hidden but the element stays in the DOM, so the :has() rule
-     above still matches and would leave a reduced-motion user with no
-     pointer at all -- neither the custom dot nor the OS cursor. */
-  body:has(.custom-cursor),
-  body:has(.custom-cursor) * { cursor: auto !important; }
 }
 
 /* ---------- Scroll-to-top button ---------- */

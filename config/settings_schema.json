@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Side Atelier",
-    "theme_version": "3.3.0",
+    "theme_version": "3.4.0",
     "theme_author": "Sebastián Ruiz",
     "theme_documentation_url": "https://sebastiandev017.github.io/atelier/",
     "theme_support_url": "https://sebastiandev017.github.io/atelier/"
@@ -206,7 +206,7 @@
         "type": "color",
         "id": "color_link_hover",
         "label": "t:settings_schema.colors.settings.color_link_hover.label",
-        "default": "#A0826D"
+        "default": "#876B58"
       }
     ]
   },

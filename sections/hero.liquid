@@ -139,7 +139,16 @@
     padding-block: var(--pt, 0) var(--pb, 0);
     overflow: hidden;
   }
-  .hero--no-image { background-color: var(--color-bg); }
+  .hero--no-image {
+    background-color: var(--color-bg);
+    /* With no media there is nothing to overlay, and --color-overlay-text is the
+       light-on-photo colour -- it would render cream text on the cream ground at
+       1:1. Swap the pair here so every .hero--fullbleed rule below stays correct
+       without being duplicated: copy takes the scheme's ink, and the filled CTA
+       inverts to match. */
+    --color-overlay-text: var(--color-text);
+    --hero-cta-ink: var(--color-bg);
+  }
 
   /* ---- Full-bleed layout ----
      The media is buffered 12% above and below the section (inset: -12% 0) and the
@@ -212,10 +221,10 @@
   .hero__trust { margin-top: var(--space-1); opacity: 0.8; letter-spacing: var(--tracking-wide); }
 
   /* Buttons over imagery (full-bleed) keep the overlay-text palette */
-  .hero--fullbleed .hero__cta.btn { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--color-foreground); }
-  .hero--fullbleed .hero__cta.btn:hover { background-color: var(--color-accent); border-color: var(--color-accent); color: var(--color-overlay-text); }
+  .hero--fullbleed .hero__cta.btn { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--hero-cta-ink, var(--color-foreground)); }
+  .hero--fullbleed .hero__cta.btn:hover { background-color: var(--color-accent); border-color: var(--color-accent); color: var(--hero-cta-ink, var(--color-overlay-text)); }
   .hero--fullbleed .hero__cta.btn--outline { background-color: transparent; border-color: var(--color-overlay-text); color: var(--color-overlay-text); }
-  .hero--fullbleed .hero__cta.btn--outline:hover { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--color-text); }
+  .hero--fullbleed .hero__cta.btn--outline:hover { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--hero-cta-ink, var(--color-text)); }
   .hero--fullbleed .hero__cta.link-underline { color: var(--color-overlay-text); }
 {% endstylesheet %}
 
