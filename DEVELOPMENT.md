@@ -1,13 +1,13 @@
-# Side Atelier — Development Reference
+# Contour — Development Reference
 
-Internal reference for building/maintaining the **Side Atelier** Shopify theme.
+Internal reference for building/maintaining the **Contour** Shopify theme.
 Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`); kept in git for the team.
 
 - **Repo:** `github.com/SebastianDev017/atelier` (private), branch `main`
-- **Live theme:** `Side Atelier` → `atelier/main` on `sidebar-atelier.myshopify.com`
+- **Live theme:** `Contour` → `atelier/main` on `sidebar-atelier.myshopify.com`
 - **Deploy:** every `git push origin main` syncs into the live theme via the GitHub→Shopify integration
 - **Base:** Shopify **skeleton-theme** (OS 2.0 — the only Theme-Store-approved base; never Dawn/Horizon)
-- **Presets:** `Side Atelier` (default) · `Annex` · `Maison`
+- **Presets:** `Contour` (default) · `Annex` · `Maison`
 - **Validation gate:** `shopify theme check` = 0 offenses (extends `theme-check:recommended`)
 
 ---
@@ -21,7 +21,7 @@ Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`)
 | `stitch` | Google Stitch — generated/validated the design system from DESIGN.md (V2/V3) |
 | `context7` | On-demand library docs |
 
-Connected but NOT used for Side Atelier: Figma, Canva, Gamma, Gmail, Google Calendar, Indeed, ZipRecruiter.
+Connected but NOT used for Contour: Figma, Canva, Gamma, Gmail, Google Calendar, Indeed, ZipRecruiter.
 
 ## 2. Skills & tools
 
@@ -57,7 +57,7 @@ Connected but NOT used for Side Atelier: Figma, Canva, Gamma, Gmail, Google Cale
 - `--font-sans` is aliased to `--font-mono` (the editorial label voice) so label CSS resolves; `--font-heading`/`--font-body` come from the font settings.
 
 ### Deploy & GitHub→Shopify sync
-- **Always `git fetch` + `git rebase origin/main` before pushing.** Shopify writes back "Update from Shopify" commits that can **clobber** developer-owned files (`settings_schema.json` once reset to the Skeleton base; `settings_data.json`/templates get normalized + a `/*…auto-generated…*/` JSONC header). After each rebase, check `settings_schema` `theme_name` is "Side Atelier", not "Skeleton".
+- **Always `git fetch` + `git rebase origin/main` before pushing.** Shopify writes back "Update from Shopify" commits that can **clobber** developer-owned files (`settings_schema.json` once reset to the Skeleton base; `settings_data.json`/templates get normalized + a `/*…auto-generated…*/` JSONC header). After each rebase, check `settings_schema` `theme_name` is "Contour", not "Skeleton".
 - Sync is **slow + uneven** (per-page, ~2–30+ min). A "nudge" commit (touch a stalled file) re-triggers it. Verify a file actually went live by **fetching the served asset URL and grepping its text** — not by reading `document.styleSheets`. To see the home fresh, load `/?preview_theme_id=<id>` (bypasses the full-page cache).
 - Direct `shopify theme push --allow-live` is blocked by the permission classifier — use the git→sync path.
 
@@ -67,7 +67,7 @@ Connected but NOT used for Side Atelier: Figma, Canva, Gamma, Gmail, Google Cale
 - **GSAP** must be ≥3.13 to be free for a sold theme (3.12.5 is grandfathered to the old license requiring paid Business Green) — we removed it entirely (was dead code). **Lenis** is MIT — keep the copyright banner.
 - `AssetSizeJavaScript`: keep each globally-loaded JS file ≤10 KB gzip.
 - Best Practices/Lighthouse: always emit a favicon (fallback inline SVG) so the browser never 404s `/favicon.ico`; images use `image_tag` + `aspect-ratio` + `object-fit: cover`.
-- The packaged ZIP is named from `theme_name` → `Side Atelier-3.5.1.zip`.
+- The packaged ZIP is named from `theme_name` → `Contour-3.5.1.zip`.
 
 ### Tooling & verification
 - The Grep tool (ripgrep, Rust regex) has **no lookahead** — `(?!…)` silently returns no matches; use plain patterns / post-filter.
