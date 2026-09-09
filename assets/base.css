@@ -1431,13 +1431,38 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   z-index: 500;
   opacity: 0;
   transform: translateY(8px);
-  transition: opacity 0.3s ease, transform 0.3s ease, background-color 0.25s ease;
+  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.25s ease;
   pointer-events: none;
 }
 .scroll-top.is-visible {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
+}
+/* ---- F5: yield to the sticky Add to cart bar ----
+   Measured at 1280: the floating button overlapped the bar by 44x41px and
+   elementFromPoint at its centre returned the bar's own "Add to cart" BUTTON --
+   it sat directly on top of the primary commerce control, at z-index 500 vs the
+   bar's 80. At 375 they clear each other by only 4px, which still reads as
+   touching.
+
+   The reviewer suggested embedding a chevron in the bar instead. Measured
+   before deciding, and it does not fit at 375: the bar's inner width is 375px
+   holding a 179px info column and a 132px button with a 16px gap, so 48px is
+   free before the bar's own padding -- and the product title is ALREADY
+   truncated there (scrollWidth 202 vs clientWidth 179). A 40px control would
+   take the info column to ~139px and eat further into the product name, which
+   is the most important text in the bar. Embedding would also have to be
+   desktop-only to be safe, which means two behaviours for one control.
+
+   So the floating button yields instead: it fades out whenever the bar is up
+   and returns when the reader scrolls back above the threshold, at which point
+   the bar is gone and there is nothing to collide with. Both directions use the
+   same 0.2s on the base rule, so the cross-fade is symmetric. */
+body:has(.product__sticky.is-visible) .scroll-top {
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
 }
 .scroll-top:hover { background-color: var(--color-accent-local, #5C3D2E); }
 .scroll-top svg { display: block; flex-shrink: 0; }
