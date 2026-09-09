@@ -113,8 +113,15 @@
      links keep their colour + underline hover and nothing positional.
      Commerce submit buttons (add to cart, buy, checkout) are excluded for the
      same reason at higher stakes -- the one control a shopper must hit should
-     not drift away from the cursor. They get a flat 1.02 scale in base.css. */
-  var MAGNETIC_EXCLUDE = '[data-add-button], [data-fp-add], [name="checkout"], [data-bundle-add]';
+     not drift away from the cursor. They get a flat 1.02 scale in base.css.
+
+     Product-card CTAs are excluded too. Measured on the live store: the
+     "Choose options" button swung from -3.7px to +8.0px (pinned at the +-8 clamp)
+     as the pointer crossed it, while the card's image and title stayed put -- so
+     the button visibly desynced from the card it belongs to. In a grid, a control
+     that drifts out of alignment with its own card reads as broken layout, not as
+     personality. */
+  var MAGNETIC_EXCLUDE = '[data-add-button], [data-fp-add], [name="checkout"], [data-bundle-add], .product-card__quick';
   function initMagneticButtons() {
     if (window.matchMedia('(pointer: coarse)').matches) return;
     gsap.utils.toArray('.btn').forEach(function (el) {

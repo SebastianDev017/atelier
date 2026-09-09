@@ -540,6 +540,27 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
   .btn[name="checkout"]:hover { transform: none; }
 }
 
+/* ---- F1: product-card CTA ----
+   Three things were moving at once on this button and the reviewer saw all of
+   them:
+     1. initMagneticButtons pulled it up to +-8px sideways (now excluded there).
+     2. .btn:hover grew letter-spacing 0.15em -> 0.18em, measured 1.8px -> 2.16px,
+        which widens "CHOOSE OPTIONS" by ~5px inside a fixed-width button.
+     3. .btn's own `transition: transform 0.25s` was animating toward every inline
+        transform GSAP wrote on each mousemove -- two animation systems driving
+        one property, which is what made the motion stutter and jump on release.
+   Holding letter-spacing and dropping transform from the transition leaves only
+   the colour change, which is symmetric by construction: same duration and easing
+   entering and leaving, because it is the same single declaration. */
+.btn.product-card__quick,
+.product-card__quick .btn {
+  transition: background-color var(--duration-fast) var(--ease-editorial),
+              border-color var(--duration-fast) var(--ease-editorial),
+              color var(--duration-fast) var(--ease-editorial);
+}
+.btn.product-card__quick:hover,
+.product-card__quick .btn:hover { letter-spacing: var(--tracking-label); }
+
 .btn:active { transform: translateY(1px); }
 .btn[disabled],
 .btn[aria-disabled="true"] { opacity: 0.45; cursor: not-allowed; pointer-events: none; }
