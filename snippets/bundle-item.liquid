@@ -30,6 +30,14 @@
         data-product-title="{{ bp.title | escape }}"
         {% if bv and bv.available %}data-variant-id="{{ bv.id }}"{% else %}disabled aria-disabled="true"{% endif %}
         aria-label="{{ 'bundle.add' | t: title: bp.title }}"
+        {%- comment -%}
+          Drives the CSS tooltip. Reuses products.add_to_cart, which already
+          exists in all five locales as the short form -- bundle.add is
+          "Add {{ title }} to cart", far too long for a pill. aria-label above
+          stays the accessible name and keeps the product title, so the tooltip
+          is purely a sighted-user affordance and nothing depends on it.
+        {%- endcomment -%}
+        data-tooltip="{{ 'products.add_to_cart' | t | escape }}"
       >
         <svg class="bundle__icon-add" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><line x1="8" y1="2.5" x2="8" y2="13.5"/><line x1="2.5" y1="8" x2="13.5" y2="8"/></svg>
         <svg class="bundle__icon-added" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><polyline points="3 8.5 6.5 12 13 4"/></svg>

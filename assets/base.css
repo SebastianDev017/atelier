@@ -1777,6 +1777,66 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   transition: background var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
 }
 .bundle__add:hover { background: var(--color-text); color: var(--color-bg); }
+
+/* ---- F3: what does [+] do? ----
+   A bare plus could mean add-to-cart, expand, or save-for-later. The button
+   already carries an aria-label ("Add <product> to cart"), so screen readers
+   were never ambiguous -- only sighted users were. This adds the visual half.
+
+   One rule, on the shared bundle-item snippet, so the PDP bundle, the
+   featured-product bundle and the cart-drawer strip all get the identical
+   treatment rather than three implementations.
+
+   Square, not rounded: the theme's zero-radius rule is deliberate, and unlike
+   the loading spinner (round because it spins) nothing about a tooltip needs a
+   curve. Suppressed on disabled buttons -- a sold-out item does not add. */
+.bundle__add { position: relative; }
+.bundle__add::after,
+.bundle__add::before {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.15s var(--ease-editorial), transform 0.15s var(--ease-editorial);
+  z-index: var(--z-sticky);
+}
+.bundle__add::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 9px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  padding: 4px 8px;
+  background-color: var(--color-text);
+  color: var(--color-bg);
+  font-family: var(--font-body);
+  font-size: var(--text-xs);
+  line-height: 1.3;
+  letter-spacing: 0;
+  text-transform: none;
+  white-space: nowrap;
+}
+/* Caret. Sits in the 9px gap the tooltip leaves above the button. */
+.bundle__add::before {
+  content: "";
+  position: absolute;
+  bottom: calc(100% + 4px);
+  left: 50%;
+  transform: translate(-50%, 4px);
+  border: 5px solid transparent;
+  border-top-color: var(--color-text);
+}
+.bundle__add:hover::after,
+.bundle__add:hover::before,
+.bundle__add:focus-visible::after,
+.bundle__add:focus-visible::before {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.bundle__add[disabled]::after,
+.bundle__add[disabled]::before { content: none; }
+@media (prefers-reduced-motion: reduce) {
+  .bundle__add::after,
+  .bundle__add::before { transition: opacity 0.15s linear; transform: translate(-50%, 0); }
+}
 .bundle__add[disabled] { opacity: 0.35; cursor: not-allowed; }
 .bundle__add.is-adding { opacity: 0.6; pointer-events: none; }
 .bundle__add.is-added { background: var(--color-text); color: var(--color-bg); }
