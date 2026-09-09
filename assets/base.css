@@ -189,6 +189,19 @@ button {
 }
 
 input, select, textarea, button { font-family: inherit; }
+/* F4 -- native number spinners.
+   .quantity__input already suppressed these (it has its own -/+ buttons), but
+   every OTHER number input in the theme kept them, and the collection price
+   facets are number inputs. Measured: a MAX value of "2850.00" in the 111px
+   facet field gives scrollWidth 112 vs clientWidth 109, so the last characters
+   render under the spinner arrows -- the value reads as truncated. The arrows
+   are also OS-drawn, so they ignore the theme entirely, which is the other half
+   of "the text boxes look wrong".
+   Suppressed theme-wide for consistency with .select, which already sets
+   appearance: none for the same reason. */
+input[type="number"] { -moz-appearance: textfield; appearance: textfield; }
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button { -webkit-appearance: none; margin: 0; }
 
 :focus-visible {
   outline: 2px solid var(--color-text);
