@@ -52,7 +52,7 @@
       ],
       "settings": {
         "show_wordmark": false,
-        "wordmark_opacity": 10,
+        "wordmark_opacity": 0,
         "wordmark_text": "",
         "padding_top": 32,
         "padding_bottom": 32,
