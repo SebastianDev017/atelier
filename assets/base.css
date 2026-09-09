@@ -485,6 +485,31 @@ cart-page {
   width: 100%;
 }
 
+/* ---------- anim_disable_all: the CSS half ----------
+   AnimSettings is JavaScript, so it cannot touch a CSS @keyframes animation.
+   Six exist in this theme (marquee-scroll, announcement-bar-scroll,
+   loader-letter, reveal-line, btn-spin, dialog-in), and a page with a marquee
+   still scrolling is not a static screenshot. This is what makes the switch
+   actually deliver what its label promises.
+
+   Near-zero duration, NOT `animation: none`. That distinction matters: `none`
+   leaves an element at its PRE-animation state, and for a reveal-type animation
+   (reveal-line masks text and slides away) that state is HIDDEN -- which is
+   precisely the invisible-hero bug class this session is meant to rule out. A
+   0.001s duration runs each animation instantly to its END state, which is the
+   readable one. iteration-count: 1 stops infinite loops from resuming there. */
+body[data-anim-disable-all="true"],
+body[data-anim-disable-all="true"] *,
+body[data-anim-disable-all="true"] *::before,
+body[data-anim-disable-all="true"] *::after {
+  animation-duration: 0.001s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001s !important;
+  transition-delay: 0s !important;
+  scroll-behavior: auto !important;
+}
+
 /* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;

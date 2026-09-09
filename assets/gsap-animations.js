@@ -278,9 +278,25 @@
     });
   }
 
+  /* The counter's number FORMATTING lives inside the tween's onUpdate, so when
+     the tween is skipped the markup keeps Liquid's raw value: "1240" instead of
+     "1.240". Visible, and exactly the sort of thing that spoils a screenshot
+     taken with anim_disable_all on. Write the finished value directly instead. */
+  function settleCounters() {
+    document.querySelectorAll('[data-counter]').forEach(function (el) {
+      var target = parseFloat(el.dataset.counter) || 0;
+      var decimals = el.dataset.counter.indexOf('.') > -1 ? 1 : 0;
+      el.textContent = decimals ? target.toFixed(decimals) : Math.round(target).toLocaleString();
+    });
+  }
+
   function init() {
     if (!window.gsap || !window.ScrollTrigger) return;
-    if (!(window.AnimSettings && window.AnimSettings.scrollAnimations)) return;
+    if (!(window.AnimSettings && window.AnimSettings.scrollAnimations)) {
+      /* Still land every element on its FINISHED state before bailing. */
+      settleCounters();
+      return;
+    }
     /* enable_scroll_animations used to gate only theme.js's legacy
        IntersectionObserver reveals, which base.css had already neutered -- so
        turning it off changed nothing a merchant could see. GSAP owns the
