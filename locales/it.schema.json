@@ -3350,7 +3350,7 @@
         },
         "input_corner_radius": {
           "label": "Raggio degli angoli",
-          "info": "Atelier è progettato per angoli squadrati (0)."
+          "info": "Contour è progettato per angoli squadrati (0)."
         }
       }
     },

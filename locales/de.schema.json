@@ -3350,7 +3350,7 @@
         },
         "input_corner_radius": {
           "label": "Eckenradius",
-          "info": "Atelier ist für quadratische (0) Ecken konzipiert."
+          "info": "Contour ist für quadratische (0) Ecken konzipiert."
         }
       }
     },

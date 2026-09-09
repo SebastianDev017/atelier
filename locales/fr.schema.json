@@ -3350,7 +3350,7 @@
         },
         "input_corner_radius": {
           "label": "Rayon des angles",
-          "info": "Atelier est conçu pour des angles droits (0)."
+          "info": "Contour est conçu pour des angles droits (0)."
         }
       }
     },

@@ -3350,7 +3350,7 @@
         },
         "input_corner_radius": {
           "label": "Corner radius",
-          "info": "Atelier is designed for square (0) corners."
+          "info": "Contour is designed for square (0) corners."
         }
       }
     },

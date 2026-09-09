@@ -3350,7 +3350,7 @@
         },
         "input_corner_radius": {
           "label": "Radio de las esquinas",
-          "info": "Atelier está diseñado con esquinas rectas (0)."
+          "info": "Contour está diseñado con esquinas rectas (0)."
         }
       }
     },
