@@ -41,7 +41,7 @@
     "cart_show_free_shipping_bar": true,
     "cart_free_shipping_threshold": 150,
     "cart_show_note": true,
-    "anim_disable_all": false,
+    "anim_disable_all": true,
     "enable_view_transitions": true,
     "enable_custom_cursor": false,
     "enable_scroll_animations": true,
