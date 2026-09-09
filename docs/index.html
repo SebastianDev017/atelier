@@ -212,11 +212,11 @@ directly.</p>
 
 <script>
   (function () {
-    /* Set this to the Formspree (or equivalent) endpoint that should receive
-       support requests, and enable its auto-responder so submitters get the
-       confirmation email the success message promises. Until it is set, the
-       form falls back to opening a pre-filled email so it is never a dead end. */
-    var ENDPOINT = '';
+    /* Live Formspree endpoint. Its auto-responder has to stay enabled: the
+       success message below promises the submitter a confirmation email, and
+       Formspree is what sends it. */
+    var ENDPOINT = 'https://formspree.io/f/mjyvpjaj';
+    var SUPPORT_EMAIL = 'sebas.ruizdigital@gmail.com';
 
     var form = document.getElementById('SupportForm');
     var ok = document.getElementById('sf-ok');
@@ -243,26 +243,6 @@ directly.</p>
 
       var data = new FormData(form);
 
-      if (!ENDPOINT) {
-        /* mailto fallback. It cannot carry an attachment, so say so rather than
-           silently dropping the screenshot. */
-        var body = [
-          'Name: ' + (data.get('name') || ''),
-          'Email: ' + (data.get('email') || ''),
-          'Store URL: ' + (data.get('store_url') || ''),
-          '',
-          'Problem:',
-          (data.get('problem') || ''),
-          '',
-          '(If you selected a screenshot, please attach it to this email.)'
-        ].join('\n');
-        window.location.href = 'mailto:sebas.ruizdigital@gmail.com'
-          + '?subject=' + encodeURIComponent('Side Atelier support request')
-          + '&body=' + encodeURIComponent(body);
-        ok.hidden = false;
-        return;
-      }
-
       var btn = form.querySelector('button[type="submit"]');
       if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
 
@@ -274,7 +254,30 @@ directly.</p>
           ok.focus && ok.focus();
         })
         .catch(function () {
-          fail('Sorry — that did not send. Please email sebas.ruizdigital@gmail.com directly.');
+          /* The ONLY path that still reaches mailto, and only after the POST
+             above has actually failed. Rendered as a link the reader chooses to
+             click rather than an automatic redirect, so a transient network
+             blip never yanks them out of the page into a mail client. Built
+             with DOM calls, not innerHTML, because the body carries whatever
+             they typed. */
+          fail('Sorry — that did not send. ');
+          var body = [
+            'Name: ' + (data.get('name') || ''),
+            'Email: ' + (data.get('email') || ''),
+            'Store URL: ' + (data.get('store_url') || ''),
+            '',
+            'Problem:',
+            (data.get('problem') || ''),
+            '',
+            '(If you selected a screenshot, please attach it to this email.)'
+          ].join('\n');
+          var link = document.createElement('a');
+          link.href = 'mailto:' + SUPPORT_EMAIL
+            + '?subject=' + encodeURIComponent('Side Atelier support request')
+            + '&body=' + encodeURIComponent(body);
+          link.textContent = 'Send it as an email instead';
+          err.appendChild(link);
+          err.appendChild(document.createTextNode(' — your answers are already filled in.'));
         })
         .finally(function () {
           if (btn) { btn.disabled = false; btn.textContent = 'Send request'; }
