@@ -75,6 +75,7 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
+        "image": "shopify://shop_images/teapot-and-cups-on-side-table_249e36bf-3a1a-493b-b8dd-4cb6d57abbbf.jpg",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",
