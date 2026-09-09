@@ -60,7 +60,7 @@
         "show_policy_links": true,
         "show_country_selector": true,
         "show_language_selector": true,
-        "color_scheme": "invert"
+        "color_scheme": "parchment"
       }
     }
   },
