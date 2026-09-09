@@ -10,7 +10,9 @@
   if (!toggle) return;
 
   var KEY = 'atelier-collection-view';
-  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  /* AnimSettings.ui covers prefers-reduced-motion and anim_disable_all. The
+     layout still SWITCHES when this is true -- only the Flip tween is skipped. */
+  var reduce = !(window.AnimSettings && window.AnimSettings.ui);
 
   function getGrid() { return document.querySelector('[data-product-grid]'); }
 

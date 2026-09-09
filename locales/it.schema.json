@@ -3403,6 +3403,10 @@
     "animations_experience": {
       "name": "Animazioni ed esperienza",
       "settings": {
+        "anim_disable_all": {
+          "label": "Disattiva tutte le animazioni",
+          "info": "Sovrascrive tutte le impostazioni sottostanti. Utile per acquisire screenshot puliti e statici."
+        },
         "enable_smooth_scroll": {
           "label": "Scorrimento fluido",
           "info": "Abilita lo scorrimento fluido Lenis in tutto il sito."

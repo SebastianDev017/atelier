@@ -357,6 +357,13 @@
     "settings": [
       {
         "type": "checkbox",
+        "id": "anim_disable_all",
+        "label": "t:settings_schema.animations_experience.settings.anim_disable_all.label",
+        "info": "t:settings_schema.animations_experience.settings.anim_disable_all.info",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "enable_smooth_scroll",
         "label": "t:settings_schema.animations_experience.settings.enable_smooth_scroll.label",
         "default": true,

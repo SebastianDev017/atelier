@@ -53,7 +53,9 @@
         });
         /* Match the fade-up the at-load cards got (init* already ran before these
            existed). Guarded by reduced-motion like the rest of the motion layer. */
-        if (added.length && window.gsap && window.ScrollTrigger && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        /* Genuinely scroll-triggered, so it maps to scrollAnimations rather
+           than ui -- a merchant who turned scroll reveals off expects this off. */
+        if (added.length && window.gsap && window.ScrollTrigger && window.AnimSettings && window.AnimSettings.scrollAnimations) {
           window.gsap.from(added, { autoAlpha: 0, y: 40, duration: 0.9, ease: 'power3.out', stagger: 0.08 });
           window.ScrollTrigger.refresh();
         }

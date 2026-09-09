@@ -3403,6 +3403,10 @@
     "animations_experience": {
       "name": "Animaciones y experiencia",
       "settings": {
+        "anim_disable_all": {
+          "label": "Desactivar todas las animaciones",
+          "info": "Anula todos los ajustes siguientes. Útil para capturar capturas de pantalla limpias y estáticas."
+        },
         "enable_smooth_scroll": {
           "label": "Desplazamiento suave",
           "info": "Activa el desplazamiento suave de Lenis en todo el sitio."

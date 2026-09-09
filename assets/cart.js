@@ -124,7 +124,8 @@
     /* GSAP line-item stagger on open — additive polish over the CSS panel slide,
        so it degrades gracefully without GSAP and under prefers-reduced-motion. */
     CartDrawer.prototype.animateItems = function () {
-      if (!window.gsap || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      /* AnimSettings.ui covers prefers-reduced-motion and anim_disable_all. */
+      if (!window.gsap || !(window.AnimSettings && window.AnimSettings.ui)) return;
       var items = this.querySelectorAll('[data-cart-item]');
       if (items.length) gsap.from(items, { opacity: 0, y: 14, duration: 0.45, ease: 'power2.out', stagger: 0.06, delay: 0.1 });
     };

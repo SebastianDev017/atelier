@@ -25,8 +25,9 @@
   /* No hover = touch. The CSS hides the dot there too; bailing early also
      avoids binding three document listeners that would never do anything. */
   if (window.matchMedia('(hover: none)').matches) return;
-  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  if (document.body.dataset.customCursor === 'false') return;
+  /* AnimSettings.customCursor folds together the data attribute,
+     prefers-reduced-motion and the anim_disable_all master switch. */
+  if (!(window.AnimSettings && window.AnimSettings.customCursor)) return;
   if (!window.gsap) return;
 
   /* Start hidden and unpositioned. The old version began its follow loop at

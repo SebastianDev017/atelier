@@ -9,7 +9,8 @@
 
   function read() { try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; } }
   function write(list) { try { localStorage.setItem(KEY, JSON.stringify(list)); } catch (e) {} }
-  function reduced() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  /* AnimSettings.ui folds in prefers-reduced-motion AND anim_disable_all. */
+  function reduced() { return !(window.AnimSettings && window.AnimSettings.ui); }
   function esc(s) {
     return String(s == null ? '' : s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];

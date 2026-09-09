@@ -6,7 +6,9 @@
 (function () {
   function init() {
     if (!window.gsap) return;
-    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    /* AnimSettings.ui covers prefers-reduced-motion and anim_disable_all. The
+       track stays laid out and readable; only the loop is skipped. */
+    if (!(window.AnimSettings && window.AnimSettings.ui)) return;
 
     document.querySelectorAll('[data-press-track]').forEach(function (track) {
       var goRight = track.dataset.direction === 'right';

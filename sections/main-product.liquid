@@ -473,6 +473,22 @@
     .product__sticky { left: 0; }
   }
 
+  /* At 375px the bar is 179px of title/price + a 132px button, and "ADD TO CART"
+     wrapped to two lines inside it. The button is NOT widened: F5 established
+     the title is already truncated there (scrollWidth 202 vs clientWidth 179),
+     so taking width from the info column to give it to the button would eat
+     further into the product name. Tightening the label's own tracking buys the
+     room instead -- the type stays at --text-xs, so nothing gets smaller to
+     read. nowrap makes the single line a guarantee rather than a calculation
+     that holds until someone translates the string. */
+  @media (max-width: 480px) {
+    .product__sticky .btn {
+      white-space: nowrap;
+      letter-spacing: 0.06em;
+      padding-inline: var(--space-3);
+    }
+  }
+
   @media (min-width: 990px) {
     .product__grid { grid-template-columns: var(--product-media-width, 55%) 1fr; gap: var(--space-16); }
     .product__media-col { position: relative; }

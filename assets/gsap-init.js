@@ -14,7 +14,11 @@
   /* Smooth scroll (Lenis) — single instance, owned here. Skipped in the theme
      editor (Lenis fights the editor) and when the merchant disables it. */
   var inEditor = !!(window.Shopify && window.Shopify.designMode);
-  var disabled = document.body.dataset.smoothScroll === 'false';
+  /* Routed through AnimSettings so anim_disable_all reaches it -- and so
+     prefers-reduced-motion does too, which this previously ignored entirely:
+     smooth scroll is motion, and a reader who asked for less of it was still
+     getting an eased 1.1s scroll on every wheel tick. */
+  var disabled = !(window.AnimSettings && window.AnimSettings.smoothScroll);
 
   if (window.Lenis && !inEditor && !disabled) {
     var lenis = new window.Lenis({

@@ -3403,6 +3403,10 @@
     "animations_experience": {
       "name": "Animationen und Erlebnis",
       "settings": {
+        "anim_disable_all": {
+          "label": "Alle Animationen deaktivieren",
+          "info": "Überschreibt alle Einstellungen unten. Nützlich für saubere, statische Screenshots."
+        },
         "enable_smooth_scroll": {
           "label": "Sanftes Scrollen",
           "info": "Aktiviert das sanfte Lenis-Scrollen auf der gesamten Website."

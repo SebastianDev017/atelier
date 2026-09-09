@@ -398,7 +398,9 @@
       var grid = results.querySelector('[data-product-grid]');
       var view = grid ? grid.dataset.view : null;
       var newResults = doc.querySelector('.collection__results');
-      var animate = window.Flip && window.gsap && !prefersReduced() && grid;
+      /* AnimSettings.ui covers prefers-reduced-motion and anim_disable_all.
+         prefersReduced() is kept for the other places in this file that use it. */
+      var animate = window.Flip && window.gsap && window.AnimSettings && window.AnimSettings.ui && grid;
       var state = animate ? Flip.getState('[data-product-grid] [data-flip-id]') : null;
 
       if (newResults) results.innerHTML = newResults.innerHTML;

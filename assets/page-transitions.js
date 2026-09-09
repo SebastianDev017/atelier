@@ -13,6 +13,10 @@
  * refreshes ScrollTrigger after a native transition reveals the new page.
  */
 (function () {
+  /* The <script> tag is already gated on settings.enable_view_transitions in
+     theme.liquid, but anim_disable_all has to reach it too -- otherwise the
+     master switch would leave cross-document fades running. */
+  if (!(window.AnimSettings && window.AnimSettings.viewTransitions)) return;
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   var supportsCrossDocVT =

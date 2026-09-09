@@ -68,6 +68,7 @@
     class="template-{{ request.page_type | handle }}"
     data-scroll-animations="{{ settings.enable_scroll_animations }}"
     data-smooth-scroll="{{ settings.enable_smooth_scroll }}"
+    data-anim-disable-all="{{ settings.anim_disable_all }}"
     data-custom-cursor="{{ settings.enable_custom_cursor }}"
     data-hover-swap="{{ settings.enable_hover_image_swap }}"
     data-button-style="{{ settings.button_style }}"
@@ -103,6 +104,13 @@
 
     {% render 'recently-viewed' %}
 
+    {%- comment -%}
+      First script on the page: every other one reads window.AnimSettings to
+      decide whether its motion runs, so it has to exist before any of them.
+      Deferred like the rest, so <body> (and its data-* flags) is parsed by the
+      time this executes.
+    {%- endcomment -%}
+    <script src="{{ 'anim-settings.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
     <script src="{{ 'lenis.min.js' | asset_url }}" defer></script>

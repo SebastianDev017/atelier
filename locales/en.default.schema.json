@@ -3403,6 +3403,10 @@
     "animations_experience": {
       "name": "Animations and experience",
       "settings": {
+        "anim_disable_all": {
+          "label": "Disable all animations",
+          "info": "Overrides every setting below. Useful for capturing clean, static screenshots."
+        },
         "enable_smooth_scroll": {
           "label": "Smooth scroll",
           "info": "Enables Lenis smooth scroll throughout the site."

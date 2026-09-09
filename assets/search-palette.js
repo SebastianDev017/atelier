@@ -24,7 +24,10 @@
     palette.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     if (window.lenis) window.lenis.stop();
-    if (window.gsap) {
+    /* This was the only GSAP call in the theme with no guard whatsoever --
+       not even prefers-reduced-motion. The panel is shown by the aria-hidden
+       flip above regardless, so skipping the tween leaves it fully usable. */
+    if (window.gsap && window.AnimSettings && window.AnimSettings.ui) {
       gsap.fromTo(palette.querySelector('.search-palette__panel'),
         { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'expo.out' });
     }

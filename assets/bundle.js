@@ -5,7 +5,9 @@
  * an instant open/close. (Add-to-cart for the [+] lives in cart.js.)
  */
 (function () {
-  function reduced() { return window.matchMedia('(prefers-reduced-motion: reduce)').matches; }
+  /* AnimSettings.ui folds in prefers-reduced-motion AND anim_disable_all, so
+     this one helper covers every call site below. */
+  function reduced() { return !(window.AnimSettings && window.AnimSettings.ui); }
 
   document.addEventListener('click', function (e) {
     var btn = e.target.closest('[data-bundle-toggle]');
