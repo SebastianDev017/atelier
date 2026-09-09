@@ -588,6 +588,26 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
   border-color: color-mix(in srgb, var(--color-text) 35%, transparent);
   border-top-color: var(--color-text);
 }
+/* F2 -- the state that made Add to cart go blank.
+   The rule above anticipated transparent buttons, but only ones carrying
+   .btn--outline. The GLOBAL button_style: "outlined" setting makes a PLAIN .btn
+   transparent too (see body[data-button-style="outlined"] below) without adding
+   that class, so it kept the filled-button spinner colour: --color-button-text,
+   which is cream. Cream spinner on a transparent button over a cream page, with
+   the label already forced to `color: transparent !important` -- the control
+   rendered as an empty outlined box for the whole fetch. Two of the three
+   presets (Contour, Maison) ship button_style: outlined, so this was the
+   default install, not an edge case. */
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link).is-loading::after {
+  border-color: color-mix(in srgb, var(--color-button, var(--color-text)) 35%, transparent);
+  border-top-color: var(--color-button, var(--color-text));
+}
+/* An outlined button fills on hover, which flips the ground under the spinner.
+   Without this the dark spinner would sit on the dark hover fill. */
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link).is-loading:hover::after {
+  border-color: color-mix(in srgb, var(--color-button-text, var(--color-bg)) 35%, transparent);
+  border-top-color: var(--color-button-text, var(--color-bg));
+}
 @keyframes btn-spin { to { transform: rotate(360deg); } }
 @media (prefers-reduced-motion: reduce) {
   .btn.is-loading::after { animation-duration: 1.4s; }
