@@ -12,7 +12,8 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "layout": "fullbleed",
+        "layout": "split",
+        "image": "shopify://shop_images/mid-century-modern-home-interior.jpg",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -31,6 +32,7 @@
         "cta_secondary_label": "Read our story",
         "cta_secondary_url": "/pages/about",
         "show_edition_number": false,
+        "show_scroll_cue": true,
         "color_scheme": "cream",
         "padding_top": 0,
         "padding_bottom": 0
