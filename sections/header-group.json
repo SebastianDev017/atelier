@@ -21,7 +21,7 @@
         "show_country_selector": true,
         "show_language_selector": true,
         "localization_position": "top",
-        "color_scheme": "cream"
+        "color_scheme": "invert"
       }
     }
   },
