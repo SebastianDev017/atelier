@@ -577,7 +577,21 @@
          keeps a solid background even when the brand color settings are nil. */
       background-color: var(--color-bg);
       color: var(--color-text);
-      box-shadow: 0 0 0 1px var(--color-border);
+      /* Measured at 375px: the button's fill IS --color-bg, so on every light
+         section it sat at 1.01-1.10:1 against its own backdrop, and the 1px
+         --color-border ring (12% ink) was invisible. --color-border-strong
+         (50% ink) puts the control's BOUNDARY at ~3.3:1, which is what WCAG
+         1.4.11 actually asks of a UI component; the fill already clears 5.9:1
+         wherever the backdrop is an image. The soft shadow makes it read as
+         floating rather than painted on.
+
+         Deliberately NOT a translucent fill + backdrop-filter: blur(). The
+         fill is already fully opaque, and 85%-opacity cream over a cream page
+         is still cream -- blurring a flat backdrop changes nothing measurable.
+         The problem was never transparency, it was that two near-identical
+         creams meet with no boundary. */
+      box-shadow: 0 0 0 1px var(--color-border-strong),
+                  0 2px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
     }
     /* Cart trigger mirrors the menu toggle, pinned to the opposite (right) corner. */
     .sidebar__cart-toggle {
@@ -588,7 +602,21 @@
       z-index: var(--z-header);
       background-color: var(--color-bg);
       color: var(--color-text);
-      box-shadow: 0 0 0 1px var(--color-border);
+      /* Measured at 375px: the button's fill IS --color-bg, so on every light
+         section it sat at 1.01-1.10:1 against its own backdrop, and the 1px
+         --color-border ring (12% ink) was invisible. --color-border-strong
+         (50% ink) puts the control's BOUNDARY at ~3.3:1, which is what WCAG
+         1.4.11 actually asks of a UI component; the fill already clears 5.9:1
+         wherever the backdrop is an image. The soft shadow makes it read as
+         floating rather than painted on.
+
+         Deliberately NOT a translucent fill + backdrop-filter: blur(). The
+         fill is already fully opaque, and 85%-opacity cream over a cream page
+         is still cream -- blurring a flat backdrop changes nothing measurable.
+         The problem was never transparency, it was that two near-identical
+         creams meet with no boundary. */
+      box-shadow: 0 0 0 1px var(--color-border-strong),
+                  0 2px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
     }
     .sidebar__close { display: inline-flex; }
 

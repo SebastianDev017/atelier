@@ -172,6 +172,33 @@
     white-space: nowrap;
     transition: opacity var(--duration-base) var(--ease-editorial);
   }
+  /* ---- Mobile: keep clear of the floating menu / cart buttons ----
+     header.liquid pins two 44px buttons at top-left and top-right with a 12px
+     inset, so at a 375px viewport they occupy x 12-56 and x 319-363. The bar's
+     48px inline padding was not enough: the centred message rendered at
+     x 38-337 and lost 18px under each button -- the leading "C" of
+     "Complimentary" was sliced clean off. 68px clears the button plus a 12px
+     gap. A long message now wraps to two lines at narrow widths, which is the
+     honest result when it genuinely does not fit beside two buttons. */
+  @media (max-width: 768px) {
+    .announcement-bar__single,
+    .announcement-bar__rotator { padding-inline: 68px; }
+    /* Padding alone was not enough. .announcement-bar__item is
+       `white-space: nowrap; flex: 0 0 auto`, so it stayed at its 299px
+       max-content width inside a 239px content box -- and a CENTRED flex item
+       that overflows does so equally on both sides, putting the text back at
+       x 38-337, straight under both buttons. It has to be allowed to shrink
+       AND to wrap. Scoped to the single/rotator layouts: the marquee variant
+       reuses this class and must stay nowrap to scroll. */
+    .announcement-bar__single .announcement-bar__item,
+    .announcement-bar__rotator .announcement-bar__item {
+      white-space: normal;
+      flex: 0 1 auto;
+      min-width: 0;
+    }
+    .announcement-bar__slide { white-space: normal; }
+  }
+
   /* Before JS runs (and as the no-JS fallback) show the first message. */
   .announcement-bar__rotator:not(.is-ready) .announcement-bar__slide:first-child,
   .announcement-bar__slide.is-active {
