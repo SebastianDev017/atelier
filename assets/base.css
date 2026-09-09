@@ -55,7 +55,12 @@
   --space-32: 8rem;
 
   /* Fluid type scale */
-  --text-xs: 0.6875rem;   /* 11px — eyebrows / labels */
+  --text-xs: 0.75rem;     /* 12px — eyebrows / labels. Was 11px, which put
+                             five separate controls at the legibility floor:
+                             the variant option label and selected value, the
+                             bundle heading and its see-more button, and the
+                             cart remove link. 12px keeps them a clear step
+                             below the 13px body tier. */
   --text-sm: 0.8125rem;   /* 13px */
   --text-base: clamp(0.95rem, 0.9rem + 0.2vw, 1.0625rem);
   --text-md: 1.125rem;
@@ -730,7 +735,10 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
 .badge {
   display: inline-block;
   font-family: var(--font-sans, sans-serif);
-  font-size: 9px;
+  /* Was 9px -- the only element in the theme under the 11px hard floor, and it
+     carries SALE / SOLD OUT, which a shopper has to be able to read. 11px with
+     the existing 700 weight and 0.18em tracking stays a badge, not a label. */
+  font-size: 11px;
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
@@ -1705,13 +1713,17 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   white-space: nowrap;
 }
 .bundle__item-foot { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
-.bundle__item-price { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); }
+/* A price is content a shopper acts on, so it sits on the 13px body tier
+   rather than the label tier -- still muted and mono, so the upsell stays
+   visually secondary to the main product price. */
+.bundle__item-price { font-family: var(--font-mono); font-size: var(--text-sm); color: var(--color-muted); }
 .bundle__item-price .price__sale,
 .bundle__item-price .price { font-size: inherit; }
 
 .bundle__add {
-  width: 32px;
-  height: 32px;
+  /* 32x32 was under the 40px tap-target floor. */
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   border-radius: 50%;
   border: 1px solid var(--color-text);
@@ -1748,6 +1760,9 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
    one -- the buttons landed at visibly different heights. Bottom-aligning puts
    every card's [+] on the same baseline whether the price wraps or not. */
 .bundle__item--card .bundle__item-foot { justify-content: space-between; align-items: flex-end; gap: var(--space-2); }
-.bundle__item--card .bundle__add { width: 26px; height: 26px; }
+/* The drawer strip variant was 26x26, the smallest control in the theme.
+   40px fits: at a 375px viewport each card is ~94px wide and the price
+   beside it is ~38px, so 38 + 8 gap + 40 = 86px. */
+.bundle__item--card .bundle__add { width: 40px; height: 40px; }
 .bundle__item--card .bundle__icon-add,
-.bundle__item--card .bundle__icon-added { width: 13px; height: 13px; }
+.bundle__item--card .bundle__icon-added { width: 14px; height: 14px; }

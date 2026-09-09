@@ -392,7 +392,9 @@
      full-width as a flex-column item). Scoped to the product page so the shared
      base.css .quantity used by the cart drawer is untouched. */
   .product__quantity { display: flex; align-items: center; gap: 0.75rem; width: fit-content; }
-  .product__quantity .quantity { height: 40px; width: fit-content; }
+  /* 44px, not 40px: the 1px border on each side left the stepper buttons at
+     40x38, just under the tap-target floor. 44 makes them 42 tall. */
+  .product__quantity .quantity { height: 44px; width: fit-content; }
   .product__quantity .quantity__button { width: 40px; flex-shrink: 0; }
   .product__quantity .quantity__input {
     width: 48px;
