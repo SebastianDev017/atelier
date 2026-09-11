@@ -464,6 +464,14 @@
     background-color: var(--color-accent-local, #766356) !important;
   }
   .product__shipping-note { color: var(--color-muted); margin-top: var(--space-1); text-align: center; }
+  /* QW3 -- two commerce texts were below 14px on phones: the low-stock line
+     ("Only 3 left", a 13px caption) and Shopify's "Buy it now", which the rule
+     above forces to 11px. Raised to 14px there; the 12px editorial labels
+     around them are unchanged on purpose. */
+  @media (max-width: 767px) {
+    .product__inventory { font-size: max(var(--text-sm), 14px); }
+    .shopify-payment-button__button--unbranded { font-size: 14px !important; }
+  }
   .product__payment-terms:empty { display: none; }
   .product__payment-terms { margin-top: var(--space-2); }
   .product__shop-follow:empty { display: none; }
