@@ -56,7 +56,9 @@
     "product_media": "Médias du produit",
     "choose_testimonial": "Choisir un témoignage",
     "view": "Voir",
-    "esc_key": "Échap"
+    "esc_key": "Échap",
+    "collapse_sidebar": "Replier la navigation",
+    "expand_sidebar": "Déplier le menu de navigation"
   },
   "products": {
     "add_to_cart": "Ajouter au panier",

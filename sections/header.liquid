@@ -118,6 +118,8 @@
          200) so an open cart still dims the sidebar. */
       z-index: var(--z-header);
     }
+    {%- comment -%} SB3 -- the collapsed rail is exactly one screen tall; the column never scrolls in that state. {%- endcomment -%}
+    html.sidebar-collapsed #shopify-section-{{ section.id }} { overflow-y: hidden; }
   }
 </style>
 
@@ -180,6 +182,50 @@
     </shopify-account>
   {%- endif -%}
 
+  {%- comment -%}
+    SB3 -- the collapsed rail (desktop only). Top to bottom: the favicon (the
+    merchant's, else the theme's own triangle mark -- never the wordmark), a
+    divider, the vertical "MENU" control that expands the sidebar again (the
+    whole middle of the rail is that one button), a divider, then the space the
+    sidebar's own cart / account / search row moves into when collapsed.
+    --rail-actions sizes that space to the icons actually rendered. It comes
+    BEFORE the panel in the DOM so the tab order runs favicon, MENU, cart,
+    account, search -- the order on screen (the panel's hidden parts are
+    skipped while collapsed, and the rail is skipped while expanded).
+  {%- endcomment -%}
+  {%- liquid
+    assign rail_actions = 1
+    if section.settings.show_search
+      assign rail_actions = rail_actions | plus: 1
+    endif
+    if shop.customer_accounts_enabled and section.settings.show_account
+      assign rail_actions = rail_actions | plus: 1
+    endif
+  -%}
+  <div class="sidebar__rail" style="--rail-actions: {{ rail_actions }};" data-sidebar-rail>
+    <a class="sidebar__rail-home" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
+      {%- if settings.favicon != blank -%}
+        {{ settings.favicon | image_url: width: 64, height: 64 | image_tag: class: 'sidebar__rail-mark', width: 24, height: 24, alt: '', loading: 'lazy' }}
+      {%- else -%}
+        <svg class="sidebar__rail-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5 21.5 20h-19z" fill="currentColor"/></svg>
+      {%- endif -%}
+    </a>
+    <span class="sidebar__rail-divider" aria-hidden="true"></span>
+    <button
+      type="button"
+      class="sidebar__rail-menu"
+      data-sidebar-expand
+      aria-expanded="false"
+      aria-controls="SidebarPanel-{{ section.id }}"
+      aria-label="{{ 'accessibility.expand_sidebar' | t }}"
+    >
+      <span class="sidebar__rail-label" aria-hidden="true">{{ 'general.menu' | t }}</span>
+      <span class="sidebar__chevron">{% render 'icon', name: 'chevron-left' %}</span>
+    </button>
+    <span class="sidebar__rail-divider" aria-hidden="true"></span>
+    <span class="sidebar__rail-slot" aria-hidden="true"></span>
+  </div>
+
   <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
     <div class="sidebar__head">
       {% render 'header-logo' %}
@@ -190,6 +236,22 @@
         "/" shortcut through aria-keyshortcuts. This corner now holds the
         collapse toggle.
       {%- endcomment -%}
+      {%- comment -%}
+        SB2 -- collapses the desktop sidebar to the rail below. aria-expanded
+        reports the navigation's state (true while this is visible); theme.js
+        keeps it and the rail's expand control in sync. Desktop only: at <=768px
+        the sidebar is the off-canvas drawer and this is hidden.
+      {%- endcomment -%}
+      <button
+        type="button"
+        class="sidebar__collapse header__icon-btn"
+        data-sidebar-collapse
+        aria-expanded="true"
+        aria-controls="SidebarPanel-{{ section.id }}"
+        aria-label="{{ 'accessibility.collapse_sidebar' | t }}"
+      >
+        <span class="sidebar__chevron">{% render 'icon', name: 'chevron-left' %}</span>
+      </button>
       <button
         type="button"
         class="sidebar__close header__icon-btn"
@@ -210,27 +272,27 @@
     {%- endif -%}
 
     <div class="sidebar__foot">
+      {%- comment -%}
+        SB3 -- cart, account, search: the order the collapsed rail stacks them
+        in, top to bottom. It is the same DOM in both states (this row becomes
+        the rail's icon column), so tab order always matches what is on screen
+        and <shopify-account> is not instantiated a third time.
+      {%- endcomment -%}
       <div class="sidebar__actions">
-        {%- if section.settings.show_search -%}
-          {%- comment -%}
-            Opens the command palette (search-palette.js, [data-search-palette-open])
-            -- the same one "/" opens, which is why it carries aria-keyshortcuts.
-            [data-search-toggle] is the fallback: with the palette section
-            disabled, header-component opens the search takeover below instead.
-          {%- endcomment -%}
-          <button
-            type="button"
-            class="header__icon-btn sidebar__search-btn"
-            data-search-toggle
-            data-search-palette-open
-            aria-keyshortcuts="/"
-            aria-expanded="false"
-            aria-controls="SearchModal-{{ section.id }}"
-            aria-label="{{ 'general.search' | t }}"
-          >
-            {% render 'icon', name: 'search' %}
-          </button>
-        {%- endif -%}
+        <a
+          class="header__icon-btn sidebar__cart"
+          href="{{ routes.cart_url }}"
+          data-cart-toggle
+          aria-label="{{ 'general.cart' | t }}"
+        >
+          {% render 'icon', name: 'cart' %}
+          <span
+            class="sidebar__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}"
+            data-cart-count
+            aria-hidden="true"
+          >{{ cart.item_count }}</span>
+          <span class="visually-hidden" data-cart-count-text aria-live="polite">{{ 'cart.item_count' | t: count: cart.item_count }}</span>
+        </a>
 
         {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
           {%- comment -%}
@@ -259,20 +321,26 @@
           </shopify-account>
         {%- endif -%}
 
-        <a
-          class="header__icon-btn sidebar__cart"
-          href="{{ routes.cart_url }}"
-          data-cart-toggle
-          aria-label="{{ 'general.cart' | t }}"
-        >
-          {% render 'icon', name: 'cart' %}
-          <span
-            class="sidebar__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}"
-            data-cart-count
-            aria-hidden="true"
-          >{{ cart.item_count }}</span>
-          <span class="visually-hidden" data-cart-count-text aria-live="polite">{{ 'cart.item_count' | t: count: cart.item_count }}</span>
-        </a>
+        {%- if section.settings.show_search -%}
+          {%- comment -%}
+            Opens the command palette (search-palette.js, [data-search-palette-open])
+            -- the same one "/" opens, which is why it carries aria-keyshortcuts.
+            [data-search-toggle] is the fallback: with the palette section
+            disabled, header-component opens the search takeover below instead.
+          {%- endcomment -%}
+          <button
+            type="button"
+            class="header__icon-btn sidebar__search-btn"
+            data-search-toggle
+            data-search-palette-open
+            aria-keyshortcuts="/"
+            aria-expanded="false"
+            aria-controls="SearchModal-{{ section.id }}"
+            aria-label="{{ 'general.search' | t }}"
+          >
+            {% render 'icon', name: 'search' %}
+          </button>
+        {%- endif -%}
       </div>
 
       {%- unless section.settings.localization_position == 'top' -%}{{ localization_block }}{%- endunless -%}
@@ -646,6 +714,180 @@
        row are untouched. */
     .sidebar__nav { flex: 0 0 auto; margin-top: auto; margin-bottom: auto; }
     .sidebar__foot { margin-top: 0; }
+  }
+
+  /* ---------- SB2-SB7: retractable sidebar (desktop only) ----------
+     Two classes on <html>, both set before first paint from localStorage
+     (layout/theme.liquid): sidebar-collapsed is what the sidebar LOOKS like
+     (these rules), sidebar-rail is how wide it IS (base.css swaps
+     --sidebar-width to --sidebar-rail-width, and the grid column, the sticky
+     add-to-cart bar and the recently-viewed pill follow). Here: the expanded
+     content fades out, the rail fades in, and the cart / account / search row
+     is repositioned as the rail's icon column.
+     theme.js animates the width (GSAP when AnimSettings.ui allows it) and the
+     chevrons; these fades are plain CSS and go instant under reduced motion
+     (below) and under the anim_disable_all switch (base.css). */
+  .sidebar__collapse,
+  .sidebar__rail { display: none; }
+
+  @media (min-width: 769px) {
+    .sidebar { position: relative; }
+    .sidebar--bordered { --sidebar-border: 1px; }
+    /* The panel keeps its expanded width while the column animates, so the logo
+       and the nav slide under the column's clip edge instead of re-wrapping on
+       every frame. */
+    .sidebar__panel { width: calc(var(--sidebar-width-expanded, var(--sidebar-width)) - var(--sidebar-border, 0px)); }
+
+    /* SB2 -- the toggle takes the head's end corner. Negative margins keep the
+       44px target from making the row taller than the wordmark. */
+    .sidebar__collapse {
+      display: inline-flex;
+      flex: none;
+      margin-block: -10px;
+      margin-inline: auto -12px;
+      color: var(--color-muted);
+    }
+    .sidebar__collapse:hover { color: var(--color-text); }
+    .sidebar__chevron { display: inline-flex; transition: transform 0.3s var(--ease-editorial); }
+    .sidebar__chevron .icon { width: 16px; height: 16px; }
+    html.sidebar-collapsed .sidebar__chevron { transform: rotate(180deg); }
+    /* GSAP owns the rotation while it runs; a CSS transition on the same
+       property would fight it. */
+    html.sidebar-gsap .sidebar__chevron { transition: none; }
+    [dir="rtl"] .sidebar__chevron { scale: -1 1; }
+
+    /* SB3 -- the rail. It sits over the panel's left edge and is exactly one
+       screen tall. */
+    .sidebar__rail {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      z-index: 1;
+      width: var(--sidebar-rail-width, 64px);
+      padding-block: 20px;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.2s var(--ease-editorial), visibility 0s linear 0.2s;
+    }
+    .sidebar__rail-home {
+      display: inline-flex;
+      flex: none;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      color: var(--color-text);
+      transition: opacity var(--duration-fast) var(--ease-editorial);
+    }
+    .sidebar__rail-home:hover { opacity: 0.7; }
+    .sidebar__rail-mark { width: 24px; height: 24px; object-fit: contain; }
+    .sidebar__rail-divider {
+      display: block;
+      flex: none;
+      width: 24px;
+      height: 1px;
+      margin-block: var(--space-4);
+      background-color: var(--color-border);
+    }
+    /* The whole middle of the rail is the one expand control. */
+    .sidebar__rail-menu {
+      display: flex;
+      flex: 1 1 auto;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: var(--space-2);
+      width: 100%;
+      min-height: 96px;
+      padding: 0;
+      background: none;
+      border: 0;
+      color: var(--color-text);
+      cursor: pointer;
+      transition: color var(--duration-fast) var(--ease-editorial);
+    }
+    .sidebar__rail-menu:hover { color: var(--color-accent-local); }
+    .sidebar__rail-menu:focus-visible { outline-offset: -4px; }
+    /* "MENU" is a horizontal string turned a quarter turn with a transform.
+       rotate(90deg) -- a clockwise quarter turn in CSS -- stacks it M-E-N-U
+       from the top; the brief asks for U-N-E-M top to bottom (read upward,
+       like a spine), which is the counter-clockwise turn. The block margins
+       give the turned word the height the transform does not claim in layout. */
+    .sidebar__rail-label {
+      display: block;
+      margin-block: 1.8em;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.24em;
+      line-height: 1;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transform: rotate(-90deg);
+    }
+    .sidebar__rail-slot {
+      display: block;
+      flex: none;
+      height: calc(var(--rail-actions, 3) * 44px + (var(--rail-actions, 3) - 1) * var(--space-2));
+    }
+
+    /* Expanded content: fades back in (a beat after the column starts to grow).
+       Every selector here ends in a class or tag on purpose: html.sidebar-
+       collapsed flips at the start of the motion, and a bare :not() at the end
+       of a selector would make that one class change restyle the whole page. */
+    .sidebar__head,
+    .sidebar__nav,
+    .sidebar__panel > localization-dropdown,
+    .sidebar__foot > localization-dropdown {
+      transition: opacity 0.25s var(--ease-editorial) 0.1s, visibility 0s;
+    }
+
+    /* ---- collapsed ---- */
+    html.sidebar-collapsed .sidebar { height: 100svh; overflow: hidden; }
+    html.sidebar-collapsed .sidebar__rail {
+      opacity: 1;
+      visibility: visible;
+      transition: opacity 0.25s var(--ease-editorial) 0.1s, visibility 0s;
+    }
+    html.sidebar-collapsed .sidebar__head,
+    html.sidebar-collapsed .sidebar__nav,
+    html.sidebar-collapsed .sidebar__panel > localization-dropdown,
+    html.sidebar-collapsed .sidebar__foot > localization-dropdown {
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.15s var(--ease-editorial), visibility 0s linear 0.15s;
+    }
+    html.sidebar-collapsed .sidebar__foot { border-top-color: transparent; }
+    /* The same cart / account / search row, restacked in the rail's slot. */
+    html.sidebar-collapsed .sidebar__actions {
+      position: absolute;
+      z-index: 2;
+      inset-inline-start: 0;
+      bottom: 20px;
+      width: var(--sidebar-rail-width, 64px);
+      flex-direction: column;
+      gap: var(--space-2);
+      margin: 0;
+    }
+    /* The row cannot glide into a column, so it fades in on every toggle. */
+    html.sidebar-animating .sidebar__actions { animation: sidebar-actions-in 0.3s var(--ease-editorial) both; }
+    @keyframes sidebar-actions-in { from { opacity: 0; } to { opacity: 1; } }
+  }
+  @media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+    .sidebar__chevron,
+    .sidebar__rail,
+    html.sidebar-collapsed .sidebar__rail,
+    .sidebar__head,
+    .sidebar__nav,
+    .sidebar__panel > localization-dropdown,
+    .sidebar__foot > localization-dropdown,
+    html.sidebar-collapsed .sidebar__head,
+    html.sidebar-collapsed .sidebar__nav,
+    html.sidebar-collapsed .sidebar__panel > localization-dropdown,
+    html.sidebar-collapsed .sidebar__foot > localization-dropdown { transition: none; }
+    html.sidebar-animating .sidebar__actions { animation: none; }
   }
 
   /* ---------- Mobile: off-canvas drawer ---------- */

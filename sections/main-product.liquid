@@ -327,7 +327,7 @@
 
   {%- comment -%} Floating sticky add-to-cart — appears when the main ATC scrolls out of view (product.js IntersectionObserver). {%- endcomment -%}
   {%- if section.settings.show_floating_atc -%}
-  <div class="product__sticky" data-product-sticky>
+  <div class="product__sticky" data-product-sticky data-follows-sidebar>
     <div class="product__sticky-inner page-width">
       <div class="product__sticky-info">
         <span class="product__sticky-title">{{ product.title | escape }}</span>
@@ -531,6 +531,21 @@
      sidebar is an off-canvas drawer, so the bar spans the full viewport again. */
   @media (max-width: 768px) {
     .product__sticky { left: 0; }
+  }
+  /* SB6 -- when the desktop sidebar collapses or expands, --sidebar-width
+     changes and the bar's left edge follows. With GSAP the variable itself is
+     tweened; on the plain-CSS path the offset transitions with the column. */
+  @media (min-width: 769px) {
+    html.sidebar-animating-css .product__sticky {
+      transition: transform var(--duration-base) var(--ease-editorial), visibility 0s linear var(--duration-base), left 0.35s var(--ease-editorial);
+    }
+    html.sidebar-animating-css .product__sticky.is-visible {
+      transition: transform var(--duration-base) var(--ease-editorial), visibility 0s, left 0.35s var(--ease-editorial);
+    }
+  }
+  @media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+    html.sidebar-animating-css .product__sticky { transition: transform var(--duration-base) var(--ease-editorial), visibility 0s linear var(--duration-base); }
+    html.sidebar-animating-css .product__sticky.is-visible { transition: transform var(--duration-base) var(--ease-editorial), visibility 0s; }
   }
 
   /* At 375px the bar is 179px of title/price + a 132px button, and "ADD TO CART"

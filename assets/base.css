@@ -103,7 +103,9 @@
   --page-margin: 40px;
   --page-width-narrow: 52rem;
   --header-height: 64px;
-  --sidebar-width: 220px;       /* left navigation column (overridden by setting) */
+  --sidebar-width: 220px;       /* left navigation column (overridden by setting; the rail width while collapsed) */
+  --sidebar-width-expanded: 220px; /* the setting's width, whatever the state (overridden by css-variables) */
+  --sidebar-rail-width: 64px;   /* collapsed rail: a 44px target plus 10px either side */
   --sidebar-pad: 28px;          /* inner padding of the sidebar panel */
   --section-spacing: 140px;
   --grid-gutter: clamp(0.75rem, 0.4rem + 1.2vw, 1.75rem);
@@ -339,6 +341,29 @@ h1, h2, h3, h4, h5, h6 {
 @media (max-width: 768px) {
   .site-layout { grid-template-columns: 1fr; }
   .site-main { min-height: 0; }
+}
+
+/* ---------- Retractable sidebar (SB4 / SB6) ----------
+   html.sidebar-rail swaps --sidebar-width itself, so every element that reads
+   it follows: this grid column, the product page's sticky add-to-cart bar
+   (left: var(--sidebar-width)) and the recently-viewed pill below. The class
+   is applied before first paint from localStorage (layout/theme.liquid) and
+   only matters on desktop -- the mobile drawer never reads it.
+
+   Motion: a custom property on <html> is inherited by every element, so
+   changing it restyles the whole page (43ms a frame on the demo homepage,
+   measured). theme.js therefore never animates the variable: with GSAP
+   (AnimSettings.ui) it tweens this grid column and the [data-follows-sidebar]
+   elements' left edges inline, and flips the variable once, after the motion.
+   Without GSAP it flips the variable up front and adds html.sidebar-animating-
+   css, so these plain transitions carry the change; they are instant under
+   reduced motion, and the anim_disable_all rule above cuts them to 0.001s. */
+@media (min-width: 769px) {
+  html.sidebar-rail { --sidebar-width: var(--sidebar-rail-width, 64px); }
+  html.sidebar-animating-css .site-layout { transition: grid-template-columns 0.35s var(--ease-editorial); }
+}
+@media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+  html.sidebar-animating-css .site-layout { transition: none; }
 }
 
 /* ---------- RTL future-proofing ----------
@@ -1840,6 +1865,23 @@ body:has(cart-page) .scroll-top.is-visible {
   .recently-viewed { left: var(--space-3); bottom: var(--space-3); }
   /* Avoid clashing with the product page's floating ATC bar on small screens. */
   .template-product .recently-viewed { display: none; }
+}
+/* SB6 -- on desktop the pill sat at left: 20px UNDER the sidebar (z 80 vs the
+   header's 100): elementFromPoint at its centre returned the sidebar's account
+   icon, so it had never been visible or clickable there. It now starts past the
+   sidebar, whatever its width or state, and steps aside for the product page's
+   sticky bar the way the back-to-top button does. */
+/* No opacity transition here: recently-viewed.js fades the pill in with a GSAP
+   from() tween, and a CSS transition on the same property made GSAP read a
+   mid-transition 0 as its end value -- the pill finished its entrance at
+   opacity 0. Only `left` transitions, and only on the plain-CSS sidebar path. */
+@media (min-width: 769px) {
+  .recently-viewed { left: calc(var(--sidebar-width, 220px) + var(--space-5)); }
+  html.sidebar-animating-css .recently-viewed { transition: left 0.35s var(--ease-editorial); }
+  body:has(.product__sticky.is-visible) .recently-viewed { visibility: hidden; pointer-events: none; }
+}
+@media (min-width: 769px) and (prefers-reduced-motion: reduce) {
+  html.sidebar-animating-css .recently-viewed { transition: none; }
 }
 
 /* ---------- Bundle accordion (snippets/bundle.liquid) ----------

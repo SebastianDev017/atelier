@@ -56,7 +56,9 @@
     "product_media": "Produktmedien",
     "choose_testimonial": "Kundenstimme wählen",
     "view": "Ansehen",
-    "esc_key": "Esc"
+    "esc_key": "Esc",
+    "collapse_sidebar": "Navigation einklappen",
+    "expand_sidebar": "Navigationsmenü ausklappen"
   },
   "products": {
     "add_to_cart": "In den Warenkorb",

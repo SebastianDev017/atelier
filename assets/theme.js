@@ -254,6 +254,138 @@
       this.submenuToggles.forEach((t) => t.addEventListener('click', this.onSubmenuClick));
       this.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', this.closeAll));
       this.initLogoFit();
+      this.initSidebarCollapse();
+    };
+
+    /* ---------- Retractable desktop sidebar (SB2-SB5) ----------
+       Two classes on <html>, both applied before first paint by
+       layout/theme.liquid: sidebar-collapsed is what the sidebar LOOKS like
+       (header.liquid swaps the expanded content for the rail), sidebar-rail is
+       how wide it IS (base.css sets --sidebar-width to the rail width, and the
+       grid column, the sticky add-to-cart bar and the recently-viewed pill all
+       read that variable).
+
+       The width is never animated through the variable: a custom property on
+       <html> is inherited by every element, so each change restyled the whole
+       page (43ms a frame on the demo homepage). With GSAP -- when
+       AnimSettings.ui allows it, which covers anim_disable_all and reduced
+       motion -- the grid column and every [data-follows-sidebar] element's left
+       edge are tweened inline, and sidebar-rail flips once, when the motion has
+       finished. Otherwise sidebar-rail flips up front and base.css's plain
+       transitions carry it. Either way both toggles' aria-expanded stay true to
+       the state, focus moves to whichever toggle is now on screen, and the
+       choice is remembered. */
+    var SIDEBAR_KEY = 'contour-sidebar-collapsed';
+    var desktopQuery = window.matchMedia('(min-width: 769px)');
+
+    HeaderComponent.prototype.initSidebarCollapse = function () {
+      this.collapseBtn = this.querySelector('[data-sidebar-collapse]');
+      this.expandBtn = this.querySelector('[data-sidebar-expand]');
+      if (!this.collapseBtn || !this.expandBtn) return;
+      var self = this;
+      this.onSidebarCollapse = function () { self.setSidebarCollapsed(true); };
+      this.onSidebarExpand = function () { self.setSidebarCollapsed(false); };
+      /* Another tab changed it: follow without animating or stealing focus. */
+      this.onSidebarStorage = function (event) {
+        if (event.key === SIDEBAR_KEY) self.setSidebarCollapsed(event.newValue === '1', { animate: false, persist: false, focus: false });
+      };
+      this.collapseBtn.addEventListener('click', this.onSidebarCollapse);
+      this.expandBtn.addEventListener('click', this.onSidebarExpand);
+      window.addEventListener('storage', this.onSidebarStorage);
+      this.syncSidebarState(document.documentElement.classList.contains('sidebar-collapsed'));
+    };
+
+    HeaderComponent.prototype.syncSidebarState = function (collapsed) {
+      var expanded = String(!collapsed);
+      this.collapseBtn.setAttribute('aria-expanded', expanded);
+      this.expandBtn.setAttribute('aria-expanded', expanded);
+    };
+
+    /* Land the width state on the visual one and drop every inline value the
+       tween wrote, in one go, so the CSS takes over at the same numbers. */
+    HeaderComponent.prototype.settleSidebar = function () {
+      var root = document.documentElement;
+      if (this.sidebarTween) { this.sidebarTween.kill(); this.sidebarTween = null; }
+      clearTimeout(this.sidebarTimer);
+      root.classList.toggle('sidebar-rail', root.classList.contains('sidebar-collapsed'));
+      if (this.sidebarMotion) {
+        this.sidebarMotion.grid.style.removeProperty('grid-template-columns');
+        this.sidebarMotion.followers.forEach(function (f) { f.el.style.removeProperty('left'); });
+        this.sidebarMotion = null;
+      }
+      root.classList.remove('sidebar-animating', 'sidebar-gsap', 'sidebar-animating-css');
+      /* Pinned sections and the horizontal scroller measured the old width. */
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+    };
+
+    HeaderComponent.prototype.setSidebarCollapsed = function (collapsed, opts) {
+      opts = opts || {};
+      var root = document.documentElement;
+      if (root.classList.contains('sidebar-collapsed') === collapsed) return;
+      var animate = opts.animate !== false && desktopQuery.matches;
+      var useGsap = animate && Boolean(window.gsap) && Boolean(window.AnimSettings && window.AnimSettings.ui);
+      var self = this;
+
+      /* The rail is one screen tall; a column scrolled down its long nav would
+         otherwise carry the rail up with it. */
+      var column = this.closest('.shopify-section');
+      if (collapsed && column) column.scrollTop = 0;
+
+      /* Toggled again mid-flight: carry on from wherever the width is now. */
+      var motion = this.sidebarMotion;
+      if (this.sidebarTween) { this.sidebarTween.kill(); this.sidebarTween = null; }
+      clearTimeout(this.sidebarTimer);
+      var styles = getComputedStyle(root);
+      var fromPx = motion ? motion.box.w : parseFloat(styles.getPropertyValue('--sidebar-width'));
+      var toPx = parseFloat(styles.getPropertyValue(collapsed ? '--sidebar-rail-width' : '--sidebar-width-expanded'));
+
+      /* The look changes now (the rules it drives are scoped to the sidebar). */
+      root.classList.toggle('sidebar-collapsed', collapsed);
+      this.syncSidebarState(collapsed);
+      if (opts.persist !== false) {
+        try { localStorage.setItem(SIDEBAR_KEY, collapsed ? '1' : '0'); } catch (e) {}
+      }
+
+      if (useGsap && !isNaN(fromPx) && !isNaN(toPx)) {
+        root.classList.remove('sidebar-animating-css');
+        root.classList.add('sidebar-animating', 'sidebar-gsap');
+        if (!motion) {
+          var grid = document.querySelector('.site-layout');
+          var followers = Array.prototype.slice.call(document.querySelectorAll('[data-follows-sidebar]'))
+            .filter(function (el) { return el.getClientRects().length > 0; })
+            .map(function (el) { return { el: el, offset: parseFloat(getComputedStyle(el).left) - fromPx }; });
+          motion = this.sidebarMotion = { grid: grid, followers: followers, box: { w: fromPx } };
+        }
+        var paint = function () {
+          var w = motion.box.w;
+          if (motion.grid) motion.grid.style.gridTemplateColumns = w + 'px 1fr';
+          motion.followers.forEach(function (f) { f.el.style.left = (w + f.offset) + 'px'; });
+        };
+        paint();
+        this.sidebarTween = gsap.to(motion.box, {
+          w: toPx, duration: 0.35, ease: 'power2.inOut', onUpdate: paint,
+          onComplete: function () { self.sidebarTween = null; self.settleSidebar(); }
+        });
+        gsap.fromTo(this.querySelectorAll('.sidebar__chevron'),
+          { rotation: collapsed ? 0 : 180 },
+          { rotation: collapsed ? 180 : 0, duration: 0.3, ease: 'power2.inOut', clearProps: 'transform' });
+      } else {
+        if (motion) this.settleSidebar();
+        if (animate) {
+          root.classList.add('sidebar-animating', 'sidebar-animating-css');
+          root.classList.toggle('sidebar-rail', collapsed);
+          this.sidebarTimer = setTimeout(function () { self.settleSidebar(); }, 400);
+        } else {
+          this.settleSidebar();
+        }
+      }
+
+      /* The control that was pressed has just been hidden; hand focus to the
+         one that replaced it so a keyboard user is never dropped on <body>. */
+      if (opts.focus !== false) {
+        var target = collapsed ? this.expandBtn : this.collapseBtn;
+        requestAnimationFrame(function () { target.focus({ preventScroll: true }); });
+      }
     };
 
     /* The CSS cap on the text wordmark is an estimate (~0.95em per character);
@@ -289,6 +421,9 @@
 
     HeaderComponent.prototype.disconnectedCallback = function () {
       if (this.logoObserver) this.logoObserver.disconnect();
+      if (this.onSidebarStorage) window.removeEventListener('storage', this.onSidebarStorage);
+      /* Re-rendered mid-toggle (theme editor): never leave a half-way width. */
+      if (this.sidebarTween || this.sidebarMotion) this.settleSidebar();
       window.removeEventListener('scroll', this.onScroll);
       document.removeEventListener('keydown', this.onKeydown);
       document.removeEventListener('click', this.onOutsideClick);

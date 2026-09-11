@@ -12,6 +12,10 @@
     <script>
       document.documentElement.classList.remove('no-js');
       document.documentElement.classList.add('js');
+      /* SB5 -- the retractable sidebar's state, applied before first paint so a
+         collapsed sidebar never flashes open. Desktop CSS reads the class; the
+         mobile drawer ignores it. Same storage pattern as the collection view. */
+      try { if (localStorage.getItem('contour-sidebar-collapsed') === '1') document.documentElement.classList.add('sidebar-collapsed', 'sidebar-rail'); } catch (e) {}
     </script>
     {%- comment -%} <body> carries data-* flags (smooth-scroll, custom-cursor, hover-swap) consumed by theme.js (STEP 4). {%- endcomment -%}
 

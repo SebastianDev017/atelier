@@ -56,7 +56,9 @@
     "product_media": "Product media",
     "choose_testimonial": "Choose testimonial",
     "view": "View",
-    "esc_key": "Esc"
+    "esc_key": "Esc",
+    "collapse_sidebar": "Collapse navigation",
+    "expand_sidebar": "Expand navigation menu"
   },
   "products": {
     "add_to_cart": "Add to cart",
