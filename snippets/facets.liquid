@@ -91,10 +91,11 @@
                   inputmode="decimal"
                   id="Filter-{{ filter.label | handle }}-min"
                   name="{{ filter.min_value.param_name }}"
-                  value="{{ filter.min_value.value | money_without_currency | replace: ',', '' }}"
+                  value="{%- if filter.min_value.value != nil -%}{%- render 'facet-price-value', cents: filter.min_value.value -%}{%- endif -%}"
                   placeholder="0"
                   min="0"
-                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  max="{%- render 'facet-price-value', cents: filter.range_max -%}"
+                  step="0.01"
                 >
               </div>
               <span class="facets__price-sep" aria-hidden="true">–</span>
@@ -106,10 +107,11 @@
                   inputmode="decimal"
                   id="Filter-{{ filter.label | handle }}-max"
                   name="{{ filter.max_value.param_name }}"
-                  value="{{ filter.max_value.value | money_without_currency | replace: ',', '' }}"
-                  placeholder="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  value="{%- if filter.max_value.value != nil -%}{%- render 'facet-price-value', cents: filter.max_value.value -%}{%- endif -%}"
+                  placeholder="{%- render 'facet-price-value', cents: filter.range_max -%}"
                   min="0"
-                  max="{{ filter.range_max | money_without_currency | replace: ',', '' }}"
+                  max="{%- render 'facet-price-value', cents: filter.range_max -%}"
+                  step="0.01"
                 >
               </div>
             </div>

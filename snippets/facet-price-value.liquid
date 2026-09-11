@@ -1,0 +1,25 @@
+{%- comment -%}
+  A price, given in hundredths as Shopify stores it, written as a plain decimal
+  for a price-filter input: 2850 / 245.50. Always "." for decimals and never a
+  thousands separator -- the number input and the filter.v.price.* parameter
+  both need exactly that.
+
+  The filter used to be fed `money_without_currency | replace: ',', ''`, which
+  only works for money formats that happen to use "," for thousands. With
+  "1.234,56" style formats 2.850,00 became "2.85000": the MAX field read 2.85,
+  and after one filter round trip a max of 1500 was re-submitted as 1.50000
+  and silently widened to 150000. Formatting from the number itself removes the
+  dependency on the store's money format.
+
+  @param {number} cents
+{%- endcomment -%}
+{%- liquid
+  assign whole = cents | divided_by: 100
+  assign fraction = cents | modulo: 100
+  if fraction == 0
+    echo whole
+  else
+    assign fraction_digits = fraction | plus: 100 | append: '' | slice: 1, 2
+    echo whole | append: '.' | append: fraction_digits
+  endif
+-%}
