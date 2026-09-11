@@ -1076,6 +1076,35 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
   .product-card--atc-hover .product-card__overlay .product-card__quick,
   .product-card--atc-hover .product-card__overlay product-form,
   .product-card--atc-hover .product-card__overlay .btn { pointer-events: auto; }
+  /* HIGH2 -- "always shown" was only half true: the button got opacity 1 but
+     its OVERLAY stayed at opacity 0, and opacity multiplies -- an invisible,
+     tappable button over the middle of every hover-mode card image (the
+     Related section). For a single-variant product that tap added to cart
+     with nothing on screen. On touch the overlay is now visible, untinted
+     (a permanent tint would dim every photo), and the button sits at the
+     image's bottom edge. The overlay stays pointer-events: none, so the only
+     tap target is the button a shopper can see; the rest of the image still
+     opens the product. */
+  .product-card--atc-hover .product-card__overlay {
+    opacity: 1;
+    background-color: transparent;
+    align-items: flex-end;
+    padding: var(--space-2);
+  }
+  /* Filled over a photo in every preset: an outlined (transparent) button
+     would put espresso text straight onto the image. The chain outranks the
+     outlined-style rule (0,5,1) by specificity, not by source order. */
+  body[data-button-style] .product-card.product-card--atc-hover .product-card__media .product-card__overlay .btn {
+    background-color: var(--color-button, var(--color-text));
+    border-color: var(--color-button, var(--color-text));
+    color: var(--color-button-text, var(--color-bg));
+  }
+  /* ...and its add-to-cart spinner keeps the filled-button colours (F2: the
+     outlined spinner is espresso, which would vanish on this espresso fill). */
+  body[data-button-style] .product-card.product-card--atc-hover .product-card__media .product-card__overlay .btn.is-loading::after {
+    border-color: color-mix(in srgb, var(--color-button-text, var(--color-bg)) 35%, transparent);
+    border-top-color: var(--color-button-text, var(--color-bg));
+  }
 }
 
 /* ---------- Price ---------- */
