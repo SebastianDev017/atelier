@@ -10,32 +10,6 @@
 {
   "type": "custom.announcement",
   "name": "Announcement",
-  "sections": {
-    "announcement_bar": {
-      "type": "announcement-bar",
-      "blocks": {
-        "free_shipping": {
-          "type": "free_shipping",
-          "settings": {
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "free_shipping"
-      ],
-      "settings": {
-        "show_announcement": true,
-        "dismissible": true,
-        "bar_color": "#2c1810",
-        "bar_text_color": "#faf7f2",
-        "display_mode": "rotate",
-        "rotate_interval": 5,
-        "marquee_speed": 40
-      }
-    }
-  },
-  "order": [
-    "announcement_bar"
-  ]
+  "sections": {},
+  "order": []
 }
