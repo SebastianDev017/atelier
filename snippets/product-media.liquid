@@ -136,11 +136,29 @@
      the stage keeps the column width and the image is letterboxed, never cut. */
   .product-media--adapt .product-media__item { width: 100%; aspect-ratio: var(--gallery-ratio, 0.75); max-height: 85vh; }
   .product-media--adapt .product-media__image { object-fit: contain; }
+  /* CRIT2 -- in the single-column layout the photo sits ABOVE the buy box, so its
+     height is the price of reaching Add to cart. Uncapped, a 4:5 photo filled 409px
+     of a 375x812 phone and a 9:16 one 580px, and nothing purchasable was on the first
+     screen. Capped at 40% of the small viewport on phones (50% on tablets). In
+     "Show whole image" mode the photo is still shown WHOLE -- a taller photo is
+     letterboxed inside the capped stage (object-fit: contain), never cut -- so the
+     B4 principle holds; only the stage gets shorter. The explicit width keeps
+     max-height from being carried through aspect-ratio into a narrow column. */
+  @media (max-width: 989px) {
+    .product-media__item { width: 100%; max-height: 50svh; }
+    .product-media--adapt .product-media__item { max-height: 50svh; }
+  }
+  @media (max-width: 767px) {
+    .product-media__item,
+    .product-media--adapt .product-media__item { max-height: 40svh; }
+  }
   .product-media__video { width: 100%; height: 100%; object-fit: contain; background-color: var(--color-black); }
 
   .product-media__thumbs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(64px, 1fr));
+    /* 52px on phones: five thumbnails a row at 375px instead of four, 17px less
+       height between the photo and the title. 750+ keeps 80px. */
+    grid-template-columns: repeat(auto-fill, minmax(52px, 1fr));
     gap: var(--space-2);
   }
   .product-media__thumb {

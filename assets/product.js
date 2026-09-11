@@ -141,17 +141,26 @@
 
     ProductInfo.prototype.initSticky = function () {
       if (!this.sticky || !('IntersectionObserver' in window)) return;
-      var buyArea = this.querySelector('.product__buy-area') || this.querySelector('[data-buy-button]');
+      /* Watch the Add to cart button's own wrapper, not the whole buy area: the
+         quantity row above it peeking into view counted as "in view" and kept the
+         bar hidden while the button itself was still below the fold. */
+      var buyArea = this.querySelector('[data-buy-button]') || this.querySelector('.product__buy-area');
       if (!buyArea) return;
       var self = this;
       this.stickyObserver = new IntersectionObserver(
         function (entries) {
           entries.forEach(function (entry) {
-            var show = !entry.isIntersecting && entry.boundingClientRect.top < 0;
+            /* CRIT2 -- shown whenever the real Add to cart is not FULLY on screen,
+               below the viewport as well as above it. It used to wait until the buy
+               area had scrolled past (top < 0), so on a phone -- where Add to cart
+               starts below the fold -- the first ~600px of scrolling had no way to
+               buy at all. It hides while the real button is wholly in view, so the
+               two are never both on screen. */
+            var show = entry.intersectionRatio < 1;
             self.sticky.classList.toggle('is-visible', show);
           });
         },
-        { threshold: 0 }
+        { threshold: [0, 1] }
       );
       this.stickyObserver.observe(buyArea);
     };

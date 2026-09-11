@@ -18,7 +18,7 @@
 
 <product-info
   class="product section-wrapper color-scheme--{{ scheme }}"
-  style="padding-top: {{ section.settings.padding_top | default: 64 }}px; padding-bottom: {{ section.settings.padding_bottom | default: 64 }}px;"
+  style="--pt: {{ section.settings.padding_top | default: 64 }}px; --pb: {{ section.settings.padding_bottom | default: 64 }}px;"
   data-product-info
   data-section-id="{{ section.id }}"
   data-url="{{ product.url }}"
@@ -317,9 +317,11 @@
 <script src="{{ 'product.js' | asset_url }}" defer></script>
 
 {% stylesheet %}
-  /* Section padding is applied as an inline style on <product-info> so the
-     merchant's padding_top/bottom settings always win (no CSS-var inheritance
-     or cache dependency). */
+  /* Section padding: the merchant's padding_top/bottom arrive as --pt/--pb set
+     inline on <product-info> itself, so they still win without inheritance or a
+     cache dependency -- and a variable (unlike an inline padding) lets the
+     single-column layout scale the top value down (CRIT2, below). */
+  product-info.product { padding-top: var(--pt, 64px); padding-bottom: var(--pb, 64px); }
   .product__grid { display: grid; gap: var(--space-8); align-items: start; }
   /* min-width:0 lets each column shrink to its track instead of growing to fit
      wide min-content (long title word, breadcrumb, variant value), which would
@@ -503,6 +505,24 @@
       letter-spacing: 0.06em;
       padding-inline: var(--space-3);
     }
+  }
+
+  /* CRIT2 -- in the single-column layout the gallery, 64px of padding and a
+     two-line breadcrumb used to fill the whole first phone screen: title, price
+     and Add to cart all sat below 812px on 4 of 5 products. Here the top padding
+     is capped at 16px (a merchant's smaller value still wins), the column gap
+     tightens, the breadcrumb drops its last crumb -- the product name, which the
+     h1 repeats a line later -- so it stays one line, and the vendor tucks up
+     against the title as its eyebrow. The gallery cap lives in
+     snippets/product-media.liquid; the sticky bar in product.js. */
+  @media (max-width: 989px) {
+    product-info.product { padding-top: min(var(--pt, 64px), var(--space-4)); }
+    .product__grid { gap: var(--space-5); }
+    .product__details .breadcrumbs__current,
+    .product__details .breadcrumbs__sep:has(+ .breadcrumbs__current) { display: none; }
+    .product__details .breadcrumbs__link { white-space: nowrap; }
+    .product__details .breadcrumbs + * { margin-top: calc(var(--space-3) * -1); }
+    .product__vendor + .product__title { margin-top: calc(var(--space-2) - var(--space-5)); }
   }
 
   @media (min-width: 990px) {
