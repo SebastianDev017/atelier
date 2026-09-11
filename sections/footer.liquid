@@ -82,7 +82,9 @@
                 {%- if block.settings.text != blank -%}
                   <div class="footer__text prose">{{ block.settings.text }}</div>
                 {%- endif -%}
-                {%- form 'customer', class: 'footer__newsletter' -%}
+                {%- comment -%} Explicit id -- see newsletter.liquid: both forms defaulted to "contact_form". {%- endcomment -%}
+                {%- assign footer_form_id = 'FooterNewsletter-' | append: section.id -%}
+                {%- form 'customer', id: footer_form_id, class: 'footer__newsletter' -%}
                   <input type="hidden" name="contact[tags]" value="newsletter">
                   <label class="visually-hidden" for="FooterEmail-{{ section.id }}">{{ 'newsletter.label' | t }}</label>
                   <div class="footer__newsletter-row">

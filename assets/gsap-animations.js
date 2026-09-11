@@ -39,16 +39,10 @@
      never double-processes. will-change is cleared on complete to drop the layer. */
   function initBlurReveal(scope) {
     var root = scope || document;
-    if (!scope) {
-      var heroHeading = document.querySelector('.hero__heading, .hero h1');
-      if (heroHeading && !heroHeading.dataset.blurDone) {
-        heroHeading.dataset.blurDone = '1';
-        gsap.fromTo(heroHeading,
-          { opacity: 0, filter: 'blur(12px)', y: 10 },
-          { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'power2.out', delay: 0.3,
-            onComplete: function () { heroHeading.style.willChange = 'auto'; } });
-      }
-    }
+    /* Hero headings are revealed by initHero, one timeline per hero instance --
+       this used to reveal only document.querySelector's FIRST hero, so a second
+       hero on the page never animated at all (B2). The loop below still skips
+       anything inside .hero. */
     gsap.utils.toArray(root.querySelectorAll('.shopify-section h1, .shopify-section h2, .shopify-section h3, .section-heading')).forEach(function (el) {
       if (el.dataset.blurDone || el.dataset.splitDone) return;
       /* Skip headings owned by another reveal system or that are utility labels:
@@ -164,18 +158,41 @@
 
   /* Hero entrance timeline — tag in first, then subtext / actions / trust.
      The headline reveals separately via initBlurReveal's hero branch. */
-  function initHero() {
-    var hero = document.querySelector('[data-hero]');
-    if (!hero) return;
-    var tl = gsap.timeline({ defaults: { ease: 'expo.out', duration: 0.9 } });
-    var tag = hero.querySelector('.hero__tag');
-    var sub = hero.querySelector('.hero__subtext');
-    var actions = hero.querySelector('.hero__actions');
-    var trust = hero.querySelector('.hero__trust');
-    if (tag) tl.from(tag, { opacity: 0, y: -10 }, 0);
-    if (sub) tl.from(sub, { opacity: 0, y: 20 }, 0.45);
-    if (actions) tl.from(actions, { opacity: 0, y: 20 }, 0.6);
-    if (trust) tl.from(trust, { opacity: 0 }, 0.8);
+  /* B2 -- every hero instance gets its own entrance, and only the one the reader
+     can actually see on load plays on load. This used to animate
+     document.querySelector's FIRST hero only, so a duplicated hero stayed
+     unanimated; and a hero further down the page must not play on load anyway --
+     it would finish long before anyone scrolled to it. Those play on entering the
+     viewport instead. The choreography (heading blur-to-focus at 0.3s, eyebrow /
+     subtext / actions / trust staggered) is unchanged for the first hero.
+     `scope` lets the theme editor's section:load re-init just the new section;
+     data-hero-bound stops a hero ever being bound twice. */
+  function initHero(scope) {
+    var root = scope || document;
+    var heroes = root.matches && root.matches('[data-hero]') ? [root] : gsap.utils.toArray(root.querySelectorAll('[data-hero]'));
+    heroes.forEach(function (hero) {
+      if (hero.dataset.heroBound) return;
+      hero.dataset.heroBound = '1';
+      var tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out', duration: 0.9 } });
+      var heading = hero.querySelector('.hero__heading, h1');
+      if (heading && !heading.dataset.blurDone) {
+        heading.dataset.blurDone = '1';
+        tl.fromTo(heading,
+          { opacity: 0, filter: 'blur(12px)', y: 10 },
+          { opacity: 1, filter: 'blur(0px)', y: 0, duration: 0.9, ease: 'power2.out',
+            onComplete: function () { heading.style.willChange = 'auto'; } }, 0.3);
+      }
+      var tag = hero.querySelector('.hero__tag');
+      var sub = hero.querySelector('.hero__subtext');
+      var actions = hero.querySelector('.hero__actions');
+      var trust = hero.querySelector('.hero__trust');
+      if (tag) tl.from(tag, { opacity: 0, y: -10 }, 0);
+      if (sub) tl.from(sub, { opacity: 0, y: 20 }, 0.45);
+      if (actions) tl.from(actions, { opacity: 0, y: 20 }, 0.6);
+      if (trust) tl.from(trust, { opacity: 0 }, 0.8);
+      if (hero.getBoundingClientRect().top < window.innerHeight) tl.play();
+      else ScrollTrigger.create({ trigger: hero, start: 'top 80%', once: true, onEnter: function () { tl.play(); } });
+    });
   }
 
   /* Hero scroll cue — a 2px vertical breath, faded out once the reader has
@@ -183,16 +200,24 @@
      positioned, so it scrolls away on its own; the fade is polish, which is why
      nothing breaks if this never runs (reduced motion, or scroll animations
      switched off). */
-  function initScrollCue() {
-    var cue = document.querySelector('[data-scroll-cue]');
-    if (!cue) return;
-    gsap.to(cue, { y: 2, duration: 1.2, ease: 'sine.inOut', repeat: -1, yoyo: true });
-    var wrap = cue.parentNode;
-    ScrollTrigger.create({
-      trigger: document.body,
-      start: 'top -80px',
-      onEnter: function () { gsap.to(wrap, { opacity: 0, duration: 0.4, overwrite: true }); },
-      onLeaveBack: function () { gsap.to(wrap, { opacity: 0.7, duration: 0.4, overwrite: true }); }
+  /* B2 -- one cue per hero. The fade used to key off the PAGE (body top -80px),
+     which is only meaningful for a hero at the very top; each cue now fades once
+     its OWN hero has scrolled 80px up, which is the same moment for the first
+     hero and the right moment for any later one. */
+  function initScrollCue(scope) {
+    var root = scope || document;
+    gsap.utils.toArray(root.querySelectorAll('[data-scroll-cue]')).forEach(function (cue) {
+      if (cue.dataset.cueBound) return;
+      cue.dataset.cueBound = '1';
+      var hero = cue.closest('[data-hero]') || document.body;
+      var wrap = cue.parentNode;
+      gsap.to(cue, { y: 2, duration: 1.2, ease: 'sine.inOut', repeat: -1, yoyo: true });
+      ScrollTrigger.create({
+        trigger: hero,
+        start: 'top+=80 top',
+        onEnter: function () { gsap.to(wrap, { opacity: 0, duration: 0.4, overwrite: true }); },
+        onLeaveBack: function () { gsap.to(wrap, { opacity: 0.7, duration: 0.4, overwrite: true }); }
+      });
     });
   }
 
@@ -334,6 +359,10 @@
     /* AnimSettings.scrollAnimations folds together the data attribute,
        prefers-reduced-motion and the anim_disable_all master switch. */
     initBlurReveal(e.target);
+    /* A hero added or re-rendered in the editor is a new instance; the guards
+       inside make these no-ops for sections that are already bound. */
+    initHero(e.target);
+    initScrollCue(e.target);
     ScrollTrigger.refresh();
   });
 })();
