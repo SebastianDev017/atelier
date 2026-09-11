@@ -14,16 +14,15 @@
     "announcement_bar": {
       "type": "announcement-bar",
       "blocks": {
-        "message_1": {
-          "type": "message",
+        "free_shipping": {
+          "type": "free_shipping",
           "settings": {
-            "text": "Complimentary shipping on orders over $70",
             "url": ""
           }
         }
       },
       "block_order": [
-        "message_1"
+        "free_shipping"
       ],
       "settings": {
         "show_announcement": true,

@@ -1,0 +1,31 @@
+{%- doc -%}
+  The storefront's one free-shipping sentence ("Free shipping over <amount>").
+
+  Every place the theme mentions the free-shipping threshold renders it from
+  here, so they can never disagree with each other or with the cart progress
+  bar: the cart trust row, the product page's shipping note and truck badge,
+  the featured-product badges, the hero trust line and the announcement bar's
+  "Free shipping" message. Before this, four of those carried the amount as
+  typed text, so the demo quoted one amount in the cart and another on every
+  product page.
+
+  Gate and formatting are the cart trust row's: shown only when the progress
+  bar is on and a threshold is set (Theme settings > Cart), the amount entered
+  in store currency and printed through money_without_trailing_zeros. It is
+  formatted BEFORE it is interpolated, so the money filter applies to the value
+  and not to the translated sentence. Renders nothing when there is no
+  threshold, so callers can capture it and test the result for blank.
+
+  @param {string} [key] - Translation key taking an `amount` argument. Defaults to 'cart.trust.free_shipping_html'.
+
+  @example
+  {%- capture claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
+  {%- if claim != blank -%}<span>{{ claim }}</span>{%- endif -%}
+{%- enddoc -%}
+{%- if settings.cart_show_free_shipping_bar and settings.cart_free_shipping_threshold > 0 -%}
+  {%- liquid
+    assign threshold_money = settings.cart_free_shipping_threshold | times: 100 | money_without_trailing_zeros
+    assign claim_key = key | default: 'cart.trust.free_shipping_html'
+  -%}
+  {{- claim_key | t: amount: threshold_money -}}
+{%- endif -%}

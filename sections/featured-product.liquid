@@ -163,11 +163,19 @@
           </product-form>
 
           {%- if section.settings.show_trust_badges -%}
+            {%- comment -%}
+              The shipping badge was a locale string with the amount typed into it --
+              a number no merchant could change. It now states the threshold
+              setting (snippets/free-shipping-claim) and is left out without one.
+            {%- endcomment -%}
+            {%- capture shipping_claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
             <ul class="fp__trust">
-              <li class="fp__trust-item">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="5" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
-                <span>{{ 'products.trust.shipping' | t }}</span>
-              </li>
+              {%- if shipping_claim != blank -%}
+                <li class="fp__trust-item">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="1" y="5" width="13" height="11" rx="1"/><path d="M14 9h4l3 3v4h-7z"/><circle cx="6" cy="18" r="2"/><circle cx="17" cy="18" r="2"/></svg>
+                  <span>{{ shipping_claim }}</span>
+                </li>
+              {%- endif -%}
               <li class="fp__trust-item">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="M3 12a9 9 0 1 1 3 6.7"/><path d="M3 20v-5h5"/></svg>
                 <span>{{ 'products.trust.returns' | t }}</span>

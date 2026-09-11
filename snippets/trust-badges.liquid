@@ -3,6 +3,11 @@
   product page. Editorial style: a small stroke icon + a mono uppercase label,
   laid out as a 2x2 grid. Labels are editable via the block; icons are fixed.
 
+  The truck badge states the free-shipping threshold from the theme setting
+  (snippets/free-shipping-claim), so it always matches the cart. badge_2 is only
+  the merchant's fallback for a store with no threshold; with neither, the badge
+  is left out rather than inventing a shipping promise.
+
   @param {object} [block] - the main-product 'trust_badges' block (for labels + shopify_attributes)
 {%- endcomment -%}
 <ul class="trust-badges"{% if block %} {{ block.shopify_attributes }}{% endif %}>
@@ -10,10 +15,15 @@
     {% render 'icon', name: 'lock' %}
     <span class="trust-badge__label">{{ block.settings.badge_1 | default: 'Secure checkout' | escape }}</span>
   </li>
-  <li class="trust-badge">
-    {% render 'icon', name: 'truck' %}
-    <span class="trust-badge__label">{{ block.settings.badge_2 | default: 'Free shipping over $150' | escape }}</span>
-  </li>
+  {%- capture shipping_claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
+  {%- if shipping_claim != blank or block.settings.badge_2 != blank -%}
+    <li class="trust-badge">
+      {% render 'icon', name: 'truck' %}
+      <span class="trust-badge__label">
+        {%- if shipping_claim != blank -%}{{ shipping_claim }}{%- else -%}{{ block.settings.badge_2 | escape }}{%- endif -%}
+      </span>
+    </li>
+  {%- endif -%}
   <li class="trust-badge">
     {% render 'icon', name: 'return' %}
     <span class="trust-badge__label">{{ block.settings.badge_3 | default: '30-day returns' | escape }}</span>

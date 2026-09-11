@@ -219,7 +219,7 @@
         },
         "trust_line": {
           "label": "Vertrauenszeile",
-          "info": "Kurze Zusicherung, die unter den Schaltflächen angezeigt wird. Verwenden Sie das Zeichen ·, um Elemente zu trennen."
+          "info": "Kurze Zusicherung, die unter den Schaltflächen angezeigt wird. Ihr Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) wird automatisch vorangestellt. Verwenden Sie das Zeichen ·, um Elemente zu trennen."
         },
         "header__3": {
           "content": "Primäre Schaltfläche"
@@ -1653,6 +1653,17 @@
               "label": "Link"
             }
           }
+        },
+        "free_shipping": {
+          "name": "Hinweis auf kostenlosen Versand",
+          "settings": {
+            "paragraph": {
+              "content": "Zeigt „Kostenloser Versand für Bestellungen ab [Ihr Schwellenwert]“ aus Theme-Einstellungen > Warenkorb. Ausgeblendet, wenn kein Schwellenwert festgelegt ist."
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
         }
       },
       "presets": {
@@ -1693,7 +1704,8 @@
               "label": "Versandhinweiszeile anzeigen"
             },
             "shipping_note": {
-              "label": "Versandhinweis"
+              "label": "Versandhinweis",
+              "info": "Wird nach Ihrem Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) angezeigt, der automatisch eingefügt wird."
             }
           }
         },
@@ -1742,7 +1754,8 @@
               "label": "Abzeichen 1"
             },
             "badge_2": {
-              "label": "Abzeichen 2"
+              "label": "Abzeichen 2",
+              "info": "Das Versandabzeichen nennt Ihren Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb). Dieser Text wird nur verwendet, wenn kein Schwellenwert festgelegt ist."
             },
             "badge_3": {
               "label": "Abzeichen 3"
@@ -1785,8 +1798,12 @@
         "media_fit": {
           "label": "Bildanpassung",
           "info": "Ganzes Bild zeigen passt die Galerie an das erste Bild an und schneidet nie ein Foto ab.",
-          "options__1": { "label": "Ganzes Bild zeigen" },
-          "options__2": { "label": "Hochformat zuschneiden (3:4)" }
+          "options__1": {
+            "label": "Ganzes Bild zeigen"
+          },
+          "options__2": {
+            "label": "Hochformat zuschneiden (3:4)"
+          }
         },
         "update_url": {
           "label": "URL bei Variantenwechsel aktualisieren"
@@ -3399,11 +3416,12 @@
           }
         },
         "cart_show_free_shipping_bar": {
-          "label": "Fortschrittsbalken für kostenlosen Versand anzeigen"
+          "label": "Fortschrittsbalken für kostenlosen Versand anzeigen",
+          "info": "Blendet auch alle Hinweise auf kostenlosen Versand im Theme ein oder aus."
         },
         "cart_free_shipping_threshold": {
           "label": "Schwellenwert für kostenlosen Versand",
-          "info": "In Ihrer Shop-Währung, z. B. 150. Leer lassen, um den Balken auszublenden."
+          "info": "In Ihrer Shop-Währung, z. B. 150. Der Warenkorbbalken und alle Hinweise auf kostenlosen Versand im Theme (Produktseiten, hervorgehobenes Produkt, Hero, Ankündigungsleiste) verwenden diesen Wert. Leer lassen, um alle auszublenden."
         },
         "cart_show_note": {
           "label": "Bestellnotizen aktivieren"

@@ -8,7 +8,8 @@
   - Free shipping over X: only when the merchant has set a free-shipping
     threshold, and read from that same setting, so it can never disagree with
     the progress bar. (Whether checkout honours it is the store's shipping
-    configuration.)
+    configuration.) The sentence comes from snippets/free-shipping-claim, the
+    one every other free-shipping mention in the theme uses too.
   - Returns: a link to the store's actual refund policy, and only when one
     exists. No "30-day returns" default.
   - Guarantee: the merchant's own words, only when they write some.
@@ -16,11 +17,11 @@
   no refund policy.
 {%- endcomment -%}
 {%- if settings.cart_show_trust -%}
+  {%- capture shipping_claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
   {%- liquid
     assign show_shipping = false
-    if settings.cart_show_free_shipping_bar and settings.cart_free_shipping_threshold > 0
+    if shipping_claim != blank
       assign show_shipping = true
-      assign threshold_money = settings.cart_free_shipping_threshold | times: 100 | money_without_trailing_zeros
     endif
     assign refund_policy = shop.refund_policy
     assign guarantee = settings.cart_trust_guarantee | strip
@@ -37,7 +38,7 @@
     {%- if show_shipping -%}
       <li class="cart-trust__item">
         {% render 'icon', name: 'truck' %}
-        <span>{{ 'cart.trust.free_shipping_html' | t: amount: threshold_money }}</span>
+        <span>{{ shipping_claim }}</span>
       </li>
     {%- endif -%}
     {%- if refund_policy != blank -%}

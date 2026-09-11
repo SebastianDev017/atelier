@@ -28,7 +28,8 @@
     "copy_link": "Copia link",
     "social_label": "Seguici",
     "recently_viewed": "Visti di recente",
-    "taxes_included": "Tasse incluse"
+    "taxes_included": "Tasse incluse",
+    "free_shipping_announcement_html": "Spedizione gratuita per ordini superiori a {{ amount }}"
   },
   "accessibility": {
     "skip_to_content": "Vai al contenuto",
@@ -86,7 +87,6 @@
     "complete_the_look": "Completi l'ambiente",
     "featured_empty": "Selezioni un prodotto da mettere in evidenza.",
     "trust": {
-      "shipping": "Spedizione gratuita oltre 150 $",
       "returns": "Reso entro 30 giorni",
       "secure": "Pagamento sicuro"
     },

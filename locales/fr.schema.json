@@ -219,7 +219,7 @@
         },
         "trust_line": {
           "label": "Ligne de réassurance",
-          "info": "Court message de réassurance affiché sous les boutons. Utilisez le caractère · pour séparer les éléments."
+          "info": "Court message de réassurance affiché sous les boutons. Votre seuil de livraison offerte (Paramètres du thème > Panier) s’ajoute automatiquement en premier. Utilisez le caractère · pour séparer les éléments."
         },
         "header__3": {
           "content": "Bouton principal"
@@ -1653,6 +1653,17 @@
               "label": "Lien"
             }
           }
+        },
+        "free_shipping": {
+          "name": "Message livraison offerte",
+          "settings": {
+            "paragraph": {
+              "content": "Affiche « Livraison offerte dès [votre seuil] d’achat », depuis Paramètres du thème > Panier. Masqué si aucun seuil n’est défini."
+            },
+            "url": {
+              "label": "Lien"
+            }
+          }
         }
       },
       "presets": {
@@ -1693,7 +1704,8 @@
               "label": "Afficher la ligne de réassurance sur la livraison"
             },
             "shipping_note": {
-              "label": "Note de livraison"
+              "label": "Note de livraison",
+              "info": "Affichée après votre seuil de livraison offerte (Paramètres du thème > Panier), ajouté automatiquement."
             }
           }
         },
@@ -1742,7 +1754,8 @@
               "label": "Badge 1"
             },
             "badge_2": {
-              "label": "Badge 2"
+              "label": "Badge 2",
+              "info": "Le badge livraison indique votre seuil de livraison offerte (Paramètres du thème > Panier). Ce texte n’est utilisé que si aucun seuil n’est défini."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -1785,8 +1798,12 @@
         "media_fit": {
           "label": "Ajustement de l'image",
           "info": "Afficher l'image entière adapte la galerie à la première image et ne coupe jamais une photo.",
-          "options__1": { "label": "Afficher l'image entière" },
-          "options__2": { "label": "Recadrer en portrait (3:4)" }
+          "options__1": {
+            "label": "Afficher l'image entière"
+          },
+          "options__2": {
+            "label": "Recadrer en portrait (3:4)"
+          }
         },
         "update_url": {
           "label": "Mettre à jour l'URL au changement de variante"
@@ -3399,11 +3416,12 @@
           }
         },
         "cart_show_free_shipping_bar": {
-          "label": "Afficher la barre de progression de la livraison gratuite"
+          "label": "Afficher la barre de progression de la livraison gratuite",
+          "info": "Affiche ou masque aussi toutes les mentions de livraison offerte du thème."
         },
         "cart_free_shipping_threshold": {
           "label": "Seuil de livraison gratuite",
-          "info": "Dans la devise de votre boutique, par ex. 150. Laissez vide pour masquer la barre."
+          "info": "Dans la devise de votre boutique, par ex. 150. La barre du panier et toutes les mentions de livraison offerte du thème (pages produit, produit mis en avant, hero, barre d’annonce) utilisent cette valeur. Laissez vide pour toutes les masquer."
         },
         "cart_show_note": {
           "label": "Activer les notes de commande"

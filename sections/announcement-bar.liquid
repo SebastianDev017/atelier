@@ -10,10 +10,20 @@
   # still painted a 44px band of --bar-bg containing nothing, so require at
   # least one real message before rendering anything at all.
   assign blocks = section.blocks
-
+-%}
+{%- comment -%}
+  The "Free shipping" message block states the threshold setting through
+  snippets/free-shipping-claim instead of typed text, so the bar can never quote
+  a different amount from the cart. It is built once here and counts as a message
+  only when there is a threshold to state.
+{%- endcomment -%}
+{%- capture free_shipping_message -%}{% render 'free-shipping-claim', key: 'general.free_shipping_announcement_html' %}{%- endcapture -%}
+{%- liquid
   assign message_count = 0
   for block in blocks
     if block.type == 'message' and block.settings.text != blank
+      assign message_count = message_count | plus: 1
+    elsif block.type == 'free_shipping' and free_shipping_message != blank
       assign message_count = message_count | plus: 1
     endif
   endfor
@@ -37,12 +47,20 @@
       {%- if message_count > 1 and section.settings.display_mode == 'rotate' -%}
         <div class="announcement-bar__rotator page-width" data-announcement-rotator data-interval="{{ section.settings.rotate_interval }}">
           {%- for block in blocks -%}
-            {%- if block.type == 'message' and block.settings.text != blank -%}
+            {%- liquid
+              assign message = ''
+              if block.type == 'message'
+                assign message = block.settings.text | escape
+              elsif block.type == 'free_shipping'
+                assign message = free_shipping_message
+              endif
+            -%}
+            {%- if message != blank -%}
               <span class="announcement-bar__slide" {{ block.shopify_attributes }}>
                 {%- if block.settings.url != blank -%}
-                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ message }}</a>
                 {%- else -%}
-                  {{- block.settings.text | escape -}}
+                  {{- message -}}
                 {%- endif -%}
               </span>
             {%- endif -%}
@@ -52,24 +70,40 @@
         <div class="announcement-bar__marquee">
           <div class="announcement-bar__track" aria-hidden="false">
             {%- for block in blocks -%}
-              {%- if block.type == 'message' and block.settings.text != blank -%}
+              {%- liquid
+                assign message = ''
+                if block.type == 'message'
+                  assign message = block.settings.text | escape
+                elsif block.type == 'free_shipping'
+                  assign message = free_shipping_message
+                endif
+              -%}
+              {%- if message != blank -%}
                 <span class="announcement-bar__item" {{ block.shopify_attributes }}>
                   {%- if block.settings.url != blank -%}
-                    <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                    <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ message }}</a>
                   {%- else -%}
-                    {{- block.settings.text | escape -}}
+                    {{- message -}}
                   {%- endif -%}
                 </span>
               {%- endif -%}
             {%- endfor -%}
             {%- comment -%} Duplicate set for a seamless -50% loop {%- endcomment -%}
             {%- for block in blocks -%}
-              {%- if block.type == 'message' and block.settings.text != blank -%}
+              {%- liquid
+                assign message = ''
+                if block.type == 'message'
+                  assign message = block.settings.text | escape
+                elsif block.type == 'free_shipping'
+                  assign message = free_shipping_message
+                endif
+              -%}
+              {%- if message != blank -%}
                 <span class="announcement-bar__item" aria-hidden="true">
                   {%- if block.settings.url != blank -%}
-                    <a class="announcement-bar__link" href="{{ block.settings.url }}" tabindex="-1">{{ block.settings.text | escape }}</a>
+                    <a class="announcement-bar__link" href="{{ block.settings.url }}" tabindex="-1">{{ message }}</a>
                   {%- else -%}
-                    {{- block.settings.text | escape -}}
+                    {{- message -}}
                   {%- endif -%}
                 </span>
               {%- endif -%}
@@ -79,12 +113,20 @@
       {%- else -%}
         <div class="announcement-bar__single page-width">
           {%- for block in blocks -%}
-            {%- if block.type == 'message' and block.settings.text != blank -%}
+            {%- liquid
+              assign message = ''
+              if block.type == 'message'
+                assign message = block.settings.text | escape
+              elsif block.type == 'free_shipping'
+                assign message = free_shipping_message
+              endif
+            -%}
+            {%- if message != blank -%}
               <span class="announcement-bar__item" {{ block.shopify_attributes }}>
                 {%- if block.settings.url != blank -%}
-                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ block.settings.text | escape }}</a>
+                  <a class="announcement-bar__link" href="{{ block.settings.url }}">{{ message }}</a>
                 {%- else -%}
-                  {{- block.settings.text | escape -}}
+                  {{- message -}}
                 {%- endif -%}
               </span>
             {%- endif -%}
@@ -481,12 +523,28 @@
           "type": "text",
           "id": "text",
           "label": "t:sections.announcement-bar.blocks.message.settings.text.label",
-          "default": "Complimentary shipping on orders over $150"
+          "default": "Welcome to our store"
         },
         {
           "type": "url",
           "id": "url",
           "label": "t:sections.announcement-bar.blocks.message.settings.url.label"
+        }
+      ]
+    },
+    {
+      "type": "free_shipping",
+      "name": "t:sections.announcement-bar.blocks.free_shipping.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "paragraph",
+          "content": "t:sections.announcement-bar.blocks.free_shipping.settings.paragraph.content"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "t:sections.announcement-bar.blocks.free_shipping.settings.url.label"
         }
       ]
     }
@@ -495,7 +553,7 @@
     {
       "name": "t:sections.announcement-bar.presets.name",
       "blocks": [
-        { "type": "message" }
+        { "type": "free_shipping" }
       ]
     }
   ]

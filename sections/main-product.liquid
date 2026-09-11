@@ -238,8 +238,23 @@
                       {{ shop | login_button: action: 'follow' }}
                     </div>
 
-                    {%- if block.settings.show_shipping_note and block.settings.shipping_note != blank -%}
-                      <p class="product__shipping-note caption">{{ block.settings.shipping_note | escape }}</p>
+                    {%- comment -%}
+                      The free-shipping part of this line comes from the threshold
+                      setting (snippets/free-shipping-claim), not from typed text: it
+                      used to be typed into the note itself with a fixed amount, which
+                      contradicted the amount the cart bar showed on the demo. The note
+                      is now only the merchant's own addition ("30-day returns").
+                    {%- endcomment -%}
+                    {%- if block.settings.show_shipping_note -%}
+                      {%- capture shipping_claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
+                      {%- assign shipping_note = block.settings.shipping_note | strip -%}
+                      {%- if shipping_claim != blank or shipping_note != blank -%}
+                        <p class="product__shipping-note caption">
+                          {{- shipping_claim -}}
+                          {%- if shipping_claim != blank and shipping_note != blank %} · {% endif -%}
+                          {{- shipping_note | escape -}}
+                        </p>
+                      {%- endif -%}
                     {%- endif -%}
 
                     <div class="product-form__error" role="alert" data-form-error data-default-error="{{ 'products.add_error' | t | escape }}" hidden></div>
@@ -580,7 +595,7 @@
         { "type": "checkbox", "id": "show_quantity", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_quantity.label", "default": true },
         { "type": "checkbox", "id": "show_dynamic_checkout", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label", "default": true },
         { "type": "checkbox", "id": "show_shipping_note", "label": "t:sections.main-product.blocks.buy_buttons.settings.show_shipping_note.label", "default": true },
-        { "type": "text", "id": "shipping_note", "label": "t:sections.main-product.blocks.buy_buttons.settings.shipping_note.label", "default": "Free shipping over $150 · 30-day returns" }
+        { "type": "text", "id": "shipping_note", "label": "t:sections.main-product.blocks.buy_buttons.settings.shipping_note.label", "info": "t:sections.main-product.blocks.buy_buttons.settings.shipping_note.info", "default": "30-day returns" }
       ]
     },
     {
@@ -607,7 +622,7 @@
       "limit": 1,
       "settings": [
         { "type": "text", "id": "badge_1", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_1.label", "default": "Secure checkout" },
-        { "type": "text", "id": "badge_2", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_2.label", "default": "Free shipping over $150" },
+        { "type": "text", "id": "badge_2", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_2.label", "info": "t:sections.main-product.blocks.trust_badges.settings.badge_2.info" },
         { "type": "text", "id": "badge_3", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_3.label", "default": "30-day returns" },
         { "type": "text", "id": "badge_4", "label": "t:sections.main-product.blocks.trust_badges.settings.badge_4.label", "default": "Made to order" }
       ]

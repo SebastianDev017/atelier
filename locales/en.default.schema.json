@@ -219,7 +219,7 @@
         },
         "trust_line": {
           "label": "Trust line",
-          "info": "Short reassurance shown under the buttons. Use the · character to separate items."
+          "info": "Short reassurance shown under the buttons. Your free-shipping threshold (Theme settings > Cart) is added first, automatically. Use the · character to separate items."
         },
         "header__3": {
           "content": "Primary button"
@@ -1653,6 +1653,17 @@
               "label": "Link"
             }
           }
+        },
+        "free_shipping": {
+          "name": "Free shipping message",
+          "settings": {
+            "paragraph": {
+              "content": "Shows “Complimentary shipping on orders over [your threshold]”, from Theme settings > Cart. Hidden when no threshold is set."
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
         }
       },
       "presets": {
@@ -1693,7 +1704,8 @@
               "label": "Show shipping reassurance line"
             },
             "shipping_note": {
-              "label": "Shipping note"
+              "label": "Shipping note",
+              "info": "Shown after your free-shipping threshold (Theme settings > Cart), which is added automatically."
             }
           }
         },
@@ -1742,7 +1754,8 @@
               "label": "Badge 1"
             },
             "badge_2": {
-              "label": "Badge 2"
+              "label": "Badge 2",
+              "info": "The shipping badge states your free-shipping threshold (Theme settings > Cart). This text is used only when no threshold is set."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -1785,8 +1798,12 @@
         "media_fit": {
           "label": "Image fit",
           "info": "Show whole image sizes the gallery to the first image and never cuts a photo off.",
-          "options__1": { "label": "Show whole image" },
-          "options__2": { "label": "Crop to portrait (3:4)" }
+          "options__1": {
+            "label": "Show whole image"
+          },
+          "options__2": {
+            "label": "Crop to portrait (3:4)"
+          }
         },
         "update_url": {
           "label": "Update URL on variant change"
@@ -3399,11 +3416,12 @@
           }
         },
         "cart_show_free_shipping_bar": {
-          "label": "Show free shipping progress bar"
+          "label": "Show free shipping progress bar",
+          "info": "Also shows or hides every free-shipping mention across the theme."
         },
         "cart_free_shipping_threshold": {
           "label": "Free shipping threshold",
-          "info": "In your store currency, e.g. 150. Leave blank to hide the bar."
+          "info": "In your store currency, e.g. 150. The cart bar and every free-shipping mention in the theme (product pages, featured product, hero, announcement bar) read this one value. Leave blank to hide them all."
         },
         "cart_show_note": {
           "label": "Enable order notes"

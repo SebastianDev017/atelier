@@ -28,7 +28,8 @@
     "copy_link": "Link kopieren",
     "social_label": "Folgen Sie uns",
     "recently_viewed": "Zuletzt angesehen",
-    "taxes_included": "Inklusive Steuern"
+    "taxes_included": "Inklusive Steuern",
+    "free_shipping_announcement_html": "Kostenloser Versand für Bestellungen ab {{ amount }}"
   },
   "accessibility": {
     "skip_to_content": "Zum Inhalt springen",
@@ -86,7 +87,6 @@
     "complete_the_look": "Den Look vervollständigen",
     "featured_empty": "Wählen Sie ein Produkt zum Hervorheben aus.",
     "trust": {
-      "shipping": "Kostenloser Versand ab 150 $",
       "returns": "30 Tage Rückgaberecht",
       "secure": "Sicherer Bezahlvorgang"
     },

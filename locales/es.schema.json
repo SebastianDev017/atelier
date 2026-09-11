@@ -219,7 +219,7 @@
         },
         "trust_line": {
           "label": "Línea de confianza",
-          "info": "Breve mensaje de confianza que se muestra bajo los botones. Usa el carácter · para separar los elementos."
+          "info": "Breve mensaje de confianza que se muestra bajo los botones. Tu umbral de envío gratis (Configuración del tema > Carrito) se añade primero, automáticamente. Usa el carácter · para separar los elementos."
         },
         "header__3": {
           "content": "Botón principal"
@@ -1653,6 +1653,17 @@
               "label": "Enlace"
             }
           }
+        },
+        "free_shipping": {
+          "name": "Mensaje de envío gratis",
+          "settings": {
+            "paragraph": {
+              "content": "Muestra «Envío gratis en pedidos superiores a [tu umbral]», desde Configuración del tema > Carrito. Se oculta si no hay umbral."
+            },
+            "url": {
+              "label": "Enlace"
+            }
+          }
         }
       },
       "presets": {
@@ -1693,7 +1704,8 @@
               "label": "Mostrar línea informativa sobre el envío"
             },
             "shipping_note": {
-              "label": "Nota de envío"
+              "label": "Nota de envío",
+              "info": "Se muestra después de tu umbral de envío gratis (Configuración del tema > Carrito), que se añade automáticamente."
             }
           }
         },
@@ -1742,7 +1754,8 @@
               "label": "Distintivo 1"
             },
             "badge_2": {
-              "label": "Distintivo 2"
+              "label": "Distintivo 2",
+              "info": "El distintivo de envío indica tu umbral de envío gratis (Configuración del tema > Carrito). Este texto solo se usa si no hay umbral."
             },
             "badge_3": {
               "label": "Distintivo 3"
@@ -1785,8 +1798,12 @@
         "media_fit": {
           "label": "Ajuste de imagen",
           "info": "Mostrar imagen completa adapta la galería a la primera imagen y nunca recorta una foto.",
-          "options__1": { "label": "Mostrar imagen completa" },
-          "options__2": { "label": "Recortar a vertical (3:4)" }
+          "options__1": {
+            "label": "Mostrar imagen completa"
+          },
+          "options__2": {
+            "label": "Recortar a vertical (3:4)"
+          }
         },
         "update_url": {
           "label": "Actualizar la URL al cambiar de variante"
@@ -3399,11 +3416,12 @@
           }
         },
         "cart_show_free_shipping_bar": {
-          "label": "Mostrar la barra de progreso de envío gratuito"
+          "label": "Mostrar la barra de progreso de envío gratuito",
+          "info": "También muestra u oculta todas las menciones de envío gratis del tema."
         },
         "cart_free_shipping_threshold": {
           "label": "Umbral de envío gratuito",
-          "info": "En la moneda de tu tienda, por ejemplo 150. Déjalo en blanco para ocultar la barra."
+          "info": "En la moneda de tu tienda, por ejemplo 150. La barra del carrito y todas las menciones de envío gratis del tema (páginas de producto, producto destacado, hero, barra de anuncios) usan este valor. Déjalo en blanco para ocultarlas todas."
         },
         "cart_show_note": {
           "label": "Activar las notas del pedido"

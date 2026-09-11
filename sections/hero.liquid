@@ -106,8 +106,22 @@
       </div>
     {%- endif -%}
 
-    {%- if section.settings.show_trust_bar and section.settings.trust_line != blank -%}
-      <p class="hero__trust caption">{{ section.settings.trust_line | escape }}</p>
+    {%- comment -%}
+      The free-shipping threshold leads the trust line automatically
+      (snippets/free-shipping-claim). It used to be typed into trust_line as
+      "Free shipping over" plus a typed amount, which no longer matched the cart
+      as soon as a merchant changed their threshold. trust_line is now only the rest.
+    {%- endcomment -%}
+    {%- if section.settings.show_trust_bar -%}
+      {%- capture shipping_claim -%}{% render 'free-shipping-claim' %}{%- endcapture -%}
+      {%- assign trust_line = section.settings.trust_line | strip -%}
+      {%- if shipping_claim != blank or trust_line != blank -%}
+        <p class="hero__trust caption">
+          {{- shipping_claim -}}
+          {%- if shipping_claim != blank and trust_line != blank %} · {% endif -%}
+          {{- trust_line | escape -}}
+        </p>
+      {%- endif -%}
     {%- endif -%}
   </div>
 {%- endcapture -%}
@@ -348,7 +362,7 @@
     { "type": "richtext", "id": "subtext", "label": "t:sections.hero.settings.subtext.label" },
     { "type": "header", "content": "t:sections.hero.settings.header__trust.content" },
     { "type": "checkbox", "id": "show_trust_bar", "label": "t:sections.hero.settings.show_trust_bar.label", "default": true },
-    { "type": "text", "id": "trust_line", "label": "t:sections.hero.settings.trust_line.label", "info": "t:sections.hero.settings.trust_line.info", "default": "Free shipping over $150" },
+    { "type": "text", "id": "trust_line", "label": "t:sections.hero.settings.trust_line.label", "info": "t:sections.hero.settings.trust_line.info" },
     { "type": "header", "content": "t:sections.hero.settings.header__3.content" },
     { "type": "text", "id": "cta_label", "label": "t:sections.hero.settings.cta_label.label", "default": "Shop the collection" },
     { "type": "url", "id": "cta_url", "label": "t:sections.hero.settings.cta_url.label" },

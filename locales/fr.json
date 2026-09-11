@@ -28,7 +28,8 @@
     "copy_link": "Copier le lien",
     "social_label": "Suivez-nous",
     "recently_viewed": "Récemment consultés",
-    "taxes_included": "Taxes incluses"
+    "taxes_included": "Taxes incluses",
+    "free_shipping_announcement_html": "Livraison offerte dès {{ amount }} d’achat"
   },
   "accessibility": {
     "skip_to_content": "Aller au contenu",
@@ -86,7 +87,6 @@
     "complete_the_look": "Complétez le décor",
     "featured_empty": "Sélectionnez un produit à mettre en avant.",
     "trust": {
-      "shipping": "Livraison offerte dès 150 $",
       "returns": "Retours sous 30 jours",
       "secure": "Paiement sécurisé"
     },

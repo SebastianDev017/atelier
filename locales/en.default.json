@@ -28,7 +28,8 @@
     "copy_link": "Copy link",
     "social_label": "Follow us",
     "recently_viewed": "Recently viewed",
-    "taxes_included": "Tax included"
+    "taxes_included": "Tax included",
+    "free_shipping_announcement_html": "Complimentary shipping on orders over {{ amount }}"
   },
   "accessibility": {
     "skip_to_content": "Skip to content",
@@ -86,7 +87,6 @@
     "complete_the_look": "Complete the look",
     "featured_empty": "Select a product to feature.",
     "trust": {
-      "shipping": "Free shipping over $150",
       "returns": "30-day returns",
       "secure": "Secure checkout"
     },

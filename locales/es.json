@@ -28,7 +28,8 @@
     "copy_link": "Copiar enlace",
     "social_label": "Síguenos",
     "recently_viewed": "Visto recientemente",
-    "taxes_included": "Impuestos incluidos"
+    "taxes_included": "Impuestos incluidos",
+    "free_shipping_announcement_html": "Envío gratis en pedidos superiores a {{ amount }}"
   },
   "accessibility": {
     "skip_to_content": "Saltar al contenido",
@@ -86,7 +87,6 @@
     "complete_the_look": "Completa el look",
     "featured_empty": "Seleccione un producto para destacar.",
     "trust": {
-      "shipping": "Envío gratis en compras superiores a $150",
       "returns": "Devoluciones en 30 días",
       "secure": "Pago seguro"
     },

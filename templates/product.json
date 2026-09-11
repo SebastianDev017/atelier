@@ -42,7 +42,7 @@
             "show_quantity": true,
             "show_dynamic_checkout": true,
             "show_shipping_note": true,
-            "shipping_note": "Free shipping over $150 · 30-day returns"
+            "shipping_note": "30-day returns"
           }
         },
         "notify-me": {
@@ -53,7 +53,6 @@
           "type": "trust_badges",
           "settings": {
             "badge_1": "Secure checkout",
-            "badge_2": "Free shipping over $150",
             "badge_3": "30-day returns",
             "badge_4": "Made to order"
           }

@@ -219,7 +219,7 @@
         },
         "trust_line": {
           "label": "Riga di rassicurazione",
-          "info": "Breve rassicurazione mostrata sotto i pulsanti. Utilizzi il carattere · per separare gli elementi."
+          "info": "Breve rassicurazione mostrata sotto i pulsanti. La tua soglia di spedizione gratuita (Impostazioni del tema > Carrello) viene aggiunta automaticamente per prima. Utilizzi il carattere · per separare gli elementi."
         },
         "header__3": {
           "content": "Pulsante principale"
@@ -1653,6 +1653,17 @@
               "label": "Link"
             }
           }
+        },
+        "free_shipping": {
+          "name": "Messaggio spedizione gratuita",
+          "settings": {
+            "paragraph": {
+              "content": "Mostra «Spedizione gratuita per ordini superiori a [la tua soglia]», da Impostazioni del tema > Carrello. Nascosto se non è impostata una soglia."
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
         }
       },
       "presets": {
@@ -1693,7 +1704,8 @@
               "label": "Mostra la riga rassicurante sulla spedizione"
             },
             "shipping_note": {
-              "label": "Nota sulla spedizione"
+              "label": "Nota sulla spedizione",
+              "info": "Mostrata dopo la tua soglia di spedizione gratuita (Impostazioni del tema > Carrello), aggiunta automaticamente."
             }
           }
         },
@@ -1742,7 +1754,8 @@
               "label": "Badge 1"
             },
             "badge_2": {
-              "label": "Badge 2"
+              "label": "Badge 2",
+              "info": "Il badge della spedizione indica la tua soglia di spedizione gratuita (Impostazioni del tema > Carrello). Questo testo si usa solo se non è impostata una soglia."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -1785,8 +1798,12 @@
         "media_fit": {
           "label": "Adattamento immagine",
           "info": "Mostra l'immagine intera adatta la galleria alla prima immagine e non taglia mai una foto.",
-          "options__1": { "label": "Mostra l'immagine intera" },
-          "options__2": { "label": "Ritaglia in verticale (3:4)" }
+          "options__1": {
+            "label": "Mostra l'immagine intera"
+          },
+          "options__2": {
+            "label": "Ritaglia in verticale (3:4)"
+          }
         },
         "update_url": {
           "label": "Aggiorna l'URL al cambio di variante"
@@ -3399,11 +3416,12 @@
           }
         },
         "cart_show_free_shipping_bar": {
-          "label": "Mostra la barra di avanzamento per la spedizione gratuita"
+          "label": "Mostra la barra di avanzamento per la spedizione gratuita",
+          "info": "Mostra o nasconde anche tutte le menzioni della spedizione gratuita nel tema."
         },
         "cart_free_shipping_threshold": {
           "label": "Soglia per la spedizione gratuita",
-          "info": "Nella valuta del tuo negozio, ad es. 150. Lascia vuoto per nascondere la barra."
+          "info": "Nella valuta del tuo negozio, ad es. 150. La barra del carrello e tutte le menzioni della spedizione gratuita nel tema (pagine prodotto, prodotto in evidenza, hero, barra degli annunci) usano questo valore. Lascia vuoto per nasconderle tutte."
         },
         "cart_show_note": {
           "label": "Abilita le note d'ordine"
