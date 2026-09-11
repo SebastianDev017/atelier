@@ -1778,6 +1778,12 @@
         "media_width": {
           "label": "Larghezza media (desktop)"
         },
+        "media_fit": {
+          "label": "Adattamento immagine",
+          "info": "Mostra l'immagine intera adatta la galleria alla prima immagine e non taglia mai una foto.",
+          "options__1": { "label": "Mostra l'immagine intera" },
+          "options__2": { "label": "Ritaglia in verticale (3:4)" }
+        },
         "update_url": {
           "label": "Aggiorna l'URL al cambio di variante"
         },

@@ -1778,6 +1778,12 @@
         "media_width": {
           "label": "Media width (desktop)"
         },
+        "media_fit": {
+          "label": "Image fit",
+          "info": "Show whole image sizes the gallery to the first image and never cuts a photo off.",
+          "options__1": { "label": "Show whole image" },
+          "options__2": { "label": "Crop to portrait (3:4)" }
+        },
         "update_url": {
           "label": "Update URL on variant change"
         },

@@ -1778,6 +1778,12 @@
         "media_width": {
           "label": "Ancho del contenido multimedia (escritorio)"
         },
+        "media_fit": {
+          "label": "Ajuste de imagen",
+          "info": "Mostrar imagen completa adapta la galería a la primera imagen y nunca recorta una foto.",
+          "options__1": { "label": "Mostrar imagen completa" },
+          "options__2": { "label": "Recortar a vertical (3:4)" }
+        },
         "update_url": {
           "label": "Actualizar la URL al cambiar de variante"
         },

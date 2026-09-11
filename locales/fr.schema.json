@@ -1778,6 +1778,12 @@
         "media_width": {
           "label": "Largeur du média (ordinateur)"
         },
+        "media_fit": {
+          "label": "Ajustement de l'image",
+          "info": "Afficher l'image entière adapte la galerie à la première image et ne coupe jamais une photo.",
+          "options__1": { "label": "Afficher l'image entière" },
+          "options__2": { "label": "Recadrer en portrait (3:4)" }
+        },
         "update_url": {
           "label": "Mettre à jour l'URL au changement de variante"
         },

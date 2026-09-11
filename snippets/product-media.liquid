@@ -5,8 +5,30 @@
 
   @param {object} product
   @param {object} section
+
+  B4 -- image fit. The stage used to crop EVERY image to 3:4 with object-fit:
+  cover, and the theme has no zoom or lightbox, so a product photo of any other
+  shape could never be seen whole: a 3:2 shot lost half its width, a panorama
+  about 80% (Theme Store: "All product images must be displayed and viewable").
+  "adapt" (default) sizes the stage to the FIRST media's own ratio and shows
+  every image whole (contain). One ratio for the whole stage, not one per image,
+  so switching media never changes the stage height and the thumbnails never
+  jump under the pointer. The ratio is clamped to 1:2 .. 1.6:1 so a freak upload
+  cannot turn the stage into a sliver or a tower; beyond the clamp the image is
+  letterboxed, still whole. "crop" is the old 3:4 fill, with the focal point.
 {%- endcomment -%}
-<product-media-gallery class="product-media" data-product-media>
+{%- liquid
+  assign media_fit = section.settings.media_fit | default: 'adapt'
+  assign gallery_ratio = 0.75
+  if media_fit == 'adapt' and product.media.size > 0
+    assign gallery_ratio = product.media.first.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
+  endif
+-%}
+<product-media-gallery
+  class="product-media product-media--{{ media_fit }}"
+  data-product-media
+  style="--gallery-ratio: {{ gallery_ratio }};"
+>
   <div class="product-media__stage">
     {%- if product.media.size > 0 -%}
       {%- for media in product.media -%}
@@ -36,8 +58,16 @@
         >
           {%- case media.media_type -%}
             {%- when 'image' -%}
-              {%- assign media_focal = media.preview_image.presentation.focal_point | default: '50% 50%' -%}
-              {%- assign media_focal_style = 'object-position: ' | append: media_focal | append: ';' -%}
+              {%- comment -%}
+                The focal point is a crop hint. A whole (contained) image has nothing
+                cropped, and a focal point would only push it off-centre inside its
+                letterbox, so it is applied in crop mode only.
+              {%- endcomment -%}
+              {%- assign media_focal_style = '' -%}
+              {%- if media_fit == 'crop' -%}
+                {%- assign media_focal = media.preview_image.presentation.focal_point | default: '50% 50%' -%}
+                {%- assign media_focal_style = 'object-position: ' | append: media_focal | append: ';' -%}
+              {%- endif -%}
               {{
                 media
                 | image_url: width: 1500
@@ -99,6 +129,13 @@
   .product-media__item { display: none; aspect-ratio: var(--ratio-product); overflow: hidden; background-color: var(--color-subtle); }
   .product-media__item.is-active { display: block; }
   .product-media__image { width: 100%; height: 100%; object-fit: cover; }
+  /* adapt: the stage takes the first image's shape; every image is shown whole.
+     max-height keeps a tall first image inside the viewport. The explicit width
+     matters: without it max-height is carried through aspect-ratio into a max
+     WIDTH, and the stage shrank to a narrow column hugging the left edge. With it
+     the stage keeps the column width and the image is letterboxed, never cut. */
+  .product-media--adapt .product-media__item { width: 100%; aspect-ratio: var(--gallery-ratio, 0.75); max-height: 85vh; }
+  .product-media--adapt .product-media__image { object-fit: contain; }
   .product-media__video { width: 100%; height: 100%; object-fit: contain; background-color: var(--color-black); }
 
   .product-media__thumbs {
