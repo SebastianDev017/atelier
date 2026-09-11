@@ -79,6 +79,19 @@
 
       <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__actions">
         <button type="submit" name="checkout" class="btn btn--primary btn--full btn--large">{{ 'cart.checkout' | t }}</button>
+        {%- comment -%}
+          QW4 -- accelerated checkout (Shop Pay and the wallets) in the drawer too,
+          not only on the cart page: most carts are opened here and never reach
+          /cart. Shopify renders and styles the buttons itself; the Section
+          Rendering refresh of this snippet re-renders them after every cart
+          change (shopify.dev, Accelerated checkout). Stacked vertically for the
+          narrow panel. Outputs nothing when the shop has no accelerated method.
+        {%- endcomment -%}
+        {%- if additional_checkout_buttons -%}
+          <div class="cart-drawer__accelerated additional-checkout-buttons--vertical" data-additional-checkout-buttons>
+            {{ content_for_additional_checkout_buttons }}
+          </div>
+        {%- endif -%}
         <a href="{{ routes.cart_url }}" class="link-underline cart-drawer__view">{{ 'cart.view_cart' | t }}</a>
       </form>
     </div>
