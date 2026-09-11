@@ -12,7 +12,8 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "layout": "split",
+        "layout": "fullbleed",
+        "image": "shopify://shop_images/wooden-figure-on-a-shelf.jpg",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
