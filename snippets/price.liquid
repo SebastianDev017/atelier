@@ -20,7 +20,14 @@
 -%}
 <div class="price{% if on_sale %} price--on-sale{% endif %} {{ class }}" data-price-target>
   {%- if show_from and product.price_varies -%}
-    <span class="price__from">{{ 'products.from_price_html' | t: price: product.price_min | money }}</span>
+    {%- comment -%}
+      Format the price FIRST, then hand the finished string to `t`. Written inline
+      as `'…' | t: price: product.price_min | money`, Liquid applies `money` to the
+      whole translated sentence ("From 32000") -- which is not a number, so every
+      card whose variants differ in price printed "$0,00".
+    {%- endcomment -%}
+    {%- assign price_min_money = product.price_min | money -%}
+    <span class="price__from">{{ 'products.from_price_html' | t: price: price_min_money }}</span>
   {%- else -%}
     {%- if on_sale -%}
       <span class="visually-hidden">{{ 'products.sale_price' | t }}</span>
