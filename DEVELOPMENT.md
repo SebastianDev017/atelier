@@ -67,7 +67,7 @@ Connected but NOT used for Contour: Figma, Canva, Gamma, Gmail, Google Calendar,
 - **GSAP** must be ≥3.13 to be free for a sold theme (3.12.5 is grandfathered to the old license requiring paid Business Green) — we removed it entirely (was dead code). **Lenis** is MIT — keep the copyright banner.
 - `AssetSizeJavaScript`: keep each globally-loaded JS file ≤10 KB gzip.
 - Best Practices/Lighthouse: always emit a favicon (fallback inline SVG) so the browser never 404s `/favicon.ico`; images use `image_tag` + `aspect-ratio` + `object-fit: cover`.
-- The packaged ZIP is named from `theme_name` → `Contour-3.5.5.zip`.
+- The packaged ZIP is named from `theme_name` → `Contour-3.5.6.zip`.
 
 ### Tooling & verification
 - The Grep tool (ripgrep, Rust regex) has **no lookahead** — `(?!…)` silently returns no matches; use plain patterns / post-filter.
