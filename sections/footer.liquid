@@ -102,7 +102,8 @@
                   {%- if form.posted_successfully? -%}
                     <p class="form-status form-status--success" role="status">{{ 'newsletter.success' | t }}</p>
                   {%- elsif form.errors -%}
-                    <p class="form-status form-status--error" role="alert">{{ form.errors | default_errors }}</p>
+                    {%- comment -%} div, not p -- see sections/newsletter.liquid. {%- endcomment -%}
+                    <div class="form-status form-status--error" role="alert">{{ form.errors | default_errors }}</div>
                   {%- endif -%}
                 {%- endform -%}
             {%- endcase -%}

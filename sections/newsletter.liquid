@@ -68,9 +68,10 @@
         </div>
 
         {%- if form.errors -%}
-          <p class="form-status form-status--error" role="alert">
+          {%- comment -%} A <div>, not a <p>: default_errors emits block markup (div.errors > ul > li), and a <p> cannot contain it -- the parser closes the <p> first, leaving this role="alert" box EMPTY and the message outside it, unstyled (B6). {%- endcomment -%}
+          <div class="form-status form-status--error" role="alert">
             {{- form.errors | default_errors -}}
-          </p>
+          </div>
         {%- endif -%}
       {%- endif -%}
     {%- endform -%}

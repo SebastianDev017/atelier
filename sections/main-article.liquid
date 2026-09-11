@@ -107,9 +107,10 @@
           {%- endif -%}
 
           {%- if form.errors -%}
-            <p class="article__form-status form-status form-status--error" role="alert">
+            {%- comment -%} A <div>, not a <p>: default_errors emits block markup (div.errors > ul > li), and a <p> cannot contain it -- the parser closes the <p> first, leaving this role="alert" box EMPTY and the message outside it, unstyled (B6). {%- endcomment -%}
+            <div class="article__form-status form-status form-status--error" role="alert">
               {{ form.errors | default_errors }}
-            </p>
+            </div>
           {%- endif -%}
 
           <div class="article__form-grid">
@@ -214,7 +215,10 @@
     font-family: var(--font-body);
   }
   .article__share-trigger .icon { width: 1rem; height: 1rem; }
-  .article__share-copied { display: block; margin-top: var(--space-2); color: var(--color-muted); }
+  /* :not([hidden]) -- a bare `display: block` here beat the browser's
+     [hidden] { display: none }, so "Link copied" showed on every article before
+     anything was shared (B6). */
+  .article__share-copied:not([hidden]) { display: block; margin-top: var(--space-2); color: var(--color-muted); }
 
   .article__comments {
     display: flex;
@@ -235,13 +239,17 @@
   }
   .article__comment-meta { margin-top: var(--space-2); color: var(--color-muted); }
 
-  .article__form-status { margin-bottom: var(--space-2); }
+  /* The form is the column: heading, status messages, fields and button are
+     spaced by one gap. It used to be a plain block -- the heading sat tight on the
+     first label, and `align-self` on the button below had no flex parent to act in. */
+  .article__comments form { display: flex; flex-direction: column; gap: var(--space-4); }
+  .article__form-status { margin: 0; }
   .article__form-grid {
     display: grid;
     grid-template-columns: 1fr;
     gap: var(--space-4);
   }
-  .article__comments .field { margin-bottom: var(--space-4); }
+  .article__comments .field { margin-bottom: 0; }
   .article__comments .btn { align-self: flex-start; }
 
   @media (min-width: 750px) {
