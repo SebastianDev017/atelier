@@ -19,6 +19,16 @@
 {%- endcomment -%}
 {%- liquid
   assign media_fit = section.settings.media_fit | default: 'adapt'
+
+  # QW1 -- the media shown first, decided ONCE and used by both the stage and the
+  # thumbnail strip. The stage followed the selected variant's image while the
+  # thumbnails highlighted forloop.first, so on load the highlighted thumb and
+  # the big photo disagreed on 3 of 4 multi-photo products until a variant was
+  # clicked.
+  assign active_media_id = product.media.first.id
+  if product.selected_or_first_available_variant.featured_media
+    assign active_media_id = product.selected_or_first_available_variant.featured_media.id
+  endif
   assign gallery_ratio = 0.75
   if media_fit == 'adapt' and product.media.size > 0
     assign gallery_ratio = product.media.first.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
@@ -34,11 +44,7 @@
       {%- for media in product.media -%}
         {%- liquid
           assign is_active = false
-          if product.selected_or_first_available_variant.featured_media
-            if media.id == product.selected_or_first_available_variant.featured_media.id
-              assign is_active = true
-            endif
-          elsif forloop.first
+          if media.id == active_media_id
             assign is_active = true
           endif
 
@@ -103,7 +109,8 @@
       {%- for media in product.media -%}
         <button
           type="button"
-          class="product-media__thumb{% if forloop.first %} is-active{% endif %}"
+          class="product-media__thumb{% if media.id == active_media_id %} is-active{% endif %}"
+          {% if media.id == active_media_id %}aria-current="true"{% endif %}
           data-media-thumb="{{ media.id }}"
           aria-label="{{ media.alt | default: product.title | escape }} — {{ forloop.index }}"
         >
