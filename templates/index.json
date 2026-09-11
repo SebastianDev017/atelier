@@ -13,7 +13,6 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "shopify://shop_images/mid-century-modern-home-interior.jpg",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -58,7 +57,7 @@
         "heading_tag": "h2",
         "heading_size": "lg",
         "subtitle": "A few of our favourites this month.",
-        "collection": "studio-objects",
+        "collection": "frontpage",
         "products_to_show": 8,
         "columns_desktop": "4",
         "columns_mobile": "2",
@@ -75,7 +74,6 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
-        "image": "shopify://shop_images/teapot-and-cups-on-side-table_249e36bf-3a1a-493b-b8dd-4cb6d57abbbf.jpg",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",
