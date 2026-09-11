@@ -116,7 +116,12 @@
     "note": "Nota del pedido",
     "note_placeholder": "Instrucciones especiales para tu pedido",
     "continue_shopping": "Seguir comprando",
-    "bundle_heading": "Combina bien con"
+    "bundle_heading": "Combina bien con",
+    "trust": {
+      "secure_checkout": "Pago seguro",
+      "free_shipping_html": "Envío gratis a partir de {{ amount }}",
+      "returns": "Política de devoluciones"
+    }
   },
   "bundle": {
     "heading": "Finaliza tu compra",

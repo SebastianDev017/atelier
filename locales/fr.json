@@ -116,7 +116,12 @@
     "note": "Note de commande",
     "note_placeholder": "Instructions particulières pour votre commande",
     "continue_shopping": "Continuer mes achats",
-    "bundle_heading": "Se marie à merveille avec"
+    "bundle_heading": "Se marie à merveille avec",
+    "trust": {
+      "secure_checkout": "Paiement sécurisé",
+      "free_shipping_html": "Livraison offerte dès {{ amount }}",
+      "returns": "Politique de retour"
+    }
   },
   "bundle": {
     "heading": "Complétez votre achat",

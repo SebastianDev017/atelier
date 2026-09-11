@@ -116,7 +116,12 @@
     "note": "Bestellnotiz",
     "note_placeholder": "Besondere Hinweise zu Ihrer Bestellung",
     "continue_shopping": "Weiter einkaufen",
-    "bundle_heading": "Passt gut dazu"
+    "bundle_heading": "Passt gut dazu",
+    "trust": {
+      "secure_checkout": "Sicherer Checkout",
+      "free_shipping_html": "Kostenloser Versand ab {{ amount }}",
+      "returns": "Rückgaberichtlinie"
+    }
   },
   "bundle": {
     "heading": "Vervollständigen Sie Ihren Einkauf",

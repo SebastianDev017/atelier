@@ -116,7 +116,12 @@
     "note": "Order note",
     "note_placeholder": "Special instructions for your order",
     "continue_shopping": "Continue shopping",
-    "bundle_heading": "Pairs well with"
+    "bundle_heading": "Pairs well with",
+    "trust": {
+      "secure_checkout": "Secure checkout",
+      "free_shipping_html": "Free shipping over {{ amount }}",
+      "returns": "Returns policy"
+    }
   },
   "bundle": {
     "heading": "Complete your purchase",

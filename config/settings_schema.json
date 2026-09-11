@@ -349,6 +349,19 @@
         "id": "cart_show_note",
         "label": "t:settings_schema.cart.settings.cart_show_note.label",
         "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "cart_show_trust",
+        "label": "t:settings_schema.cart.settings.cart_show_trust.label",
+        "info": "t:settings_schema.cart.settings.cart_show_trust.info",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "cart_trust_guarantee",
+        "label": "t:settings_schema.cart.settings.cart_trust_guarantee.label",
+        "info": "t:settings_schema.cart.settings.cart_trust_guarantee.info"
       }
     ]
   },

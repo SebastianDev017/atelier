@@ -3407,6 +3407,14 @@
         },
         "cart_show_note": {
           "label": "Enable order notes"
+        },
+        "cart_show_trust": {
+          "label": "Show trust row above checkout",
+          "info": "Secure checkout, your free-shipping threshold and a link to your refund policy (when you have one), in the cart drawer and on the cart page."
+        },
+        "cart_trust_guarantee": {
+          "label": "Guarantee text",
+          "info": "Optional, in your own words, e.g. \"2-year warranty\". Shown in the trust row when there is room."
         }
       }
     },

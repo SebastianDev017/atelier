@@ -50,6 +50,8 @@
             {%- endif -%}
             <p class="caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
 
+            {% render 'cart-trust' %}
+
             <div class="cart__actions">
               <button type="submit" name="checkout" class="btn btn--full btn--large">{{ 'cart.checkout' | t }}</button>
               {%- comment -%}

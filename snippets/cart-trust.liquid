@@ -1,0 +1,88 @@
+{%- comment -%}
+  Cart trust row: a compact line of reassurance directly above the checkout
+  button, in the cart drawer and on the cart page. It answers the last "what if"
+  at the moment of paying, which is where it earns its place.
+
+  Every item is true for the store it runs on; the theme never invents a promise:
+  - Secure checkout: always (Shopify's checkout is encrypted and PCI compliant).
+  - Free shipping over X: only when the merchant has set a free-shipping
+    threshold, and read from that same setting, so it can never disagree with
+    the progress bar. (Whether checkout honours it is the store's shipping
+    configuration.)
+  - Returns: a link to the store's actual refund policy, and only when one
+    exists. No "30-day returns" default.
+  - Guarantee: the merchant's own words, only when they write some.
+  At most three items show; the guarantee takes the returns slot when there is
+  no refund policy.
+{%- endcomment -%}
+{%- if settings.cart_show_trust -%}
+  {%- liquid
+    assign show_shipping = false
+    if settings.cart_show_free_shipping_bar and settings.cart_free_shipping_threshold > 0
+      assign show_shipping = true
+      assign threshold_money = settings.cart_free_shipping_threshold | times: 100 | money_without_trailing_zeros
+    endif
+    assign refund_policy = shop.refund_policy
+    assign guarantee = settings.cart_trust_guarantee | strip
+    assign item_count = 1
+    if show_shipping
+      assign item_count = item_count | plus: 1
+    endif
+  -%}
+  <ul class="cart-trust" role="list">
+    <li class="cart-trust__item">
+      {% render 'icon', name: 'lock' %}
+      <span>{{ 'cart.trust.secure_checkout' | t }}</span>
+    </li>
+    {%- if show_shipping -%}
+      <li class="cart-trust__item">
+        {% render 'icon', name: 'truck' %}
+        <span>{{ 'cart.trust.free_shipping_html' | t: amount: threshold_money }}</span>
+      </li>
+    {%- endif -%}
+    {%- if refund_policy != blank -%}
+      <li class="cart-trust__item">
+        {% render 'icon', name: 'return' %}
+        <a class="cart-trust__link" href="{{ refund_policy.url }}">{{ 'cart.trust.returns' | t }}</a>
+      </li>
+      {%- assign item_count = item_count | plus: 1 -%}
+    {%- endif -%}
+    {%- if guarantee != blank and item_count < 3 -%}
+      <li class="cart-trust__item">
+        {% render 'icon', name: 'sparkle' %}
+        <span>{{ guarantee | escape }}</span>
+      </li>
+    {%- endif -%}
+  </ul>
+{%- endif -%}
+
+{% stylesheet %}
+  /* One quiet line of fine print beside the taxes note: muted, the same caption
+     size, icons in the trust-badge stroke style. It wraps rather than truncates,
+     so a long guarantee or a German label never gets cut. */
+  .cart-trust {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2) var(--space-5);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: var(--text-sm);
+    line-height: 1.35;
+    color: var(--color-muted);
+  }
+  .cart-trust__item { display: inline-flex; align-items: center; gap: var(--space-2); min-height: 24px; }
+  .cart-trust__item .icon { width: 1rem; height: 1rem; flex: none; }
+  /* The returns link: underlined so it reads as a link, and padded to a 24px
+     target without making the row taller. */
+  .cart-trust__link {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    padding-block: 4px;
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  .cart-trust__link:hover { color: var(--color-text); }
+{% endstylesheet %}

@@ -3407,6 +3407,14 @@
         },
         "cart_show_note": {
           "label": "Abilita le note d'ordine"
+        },
+        "cart_show_trust": {
+          "label": "Mostra la riga di fiducia sopra il pagamento",
+          "info": "Pagamento sicuro, la tua soglia di spedizione gratuita e un link alla tua politica di rimborso (se ne hai una), nel carrello laterale e nella pagina del carrello."
+        },
+        "cart_trust_guarantee": {
+          "label": "Testo di garanzia",
+          "info": "Facoltativo, con parole tue, ad es. \"Garanzia di 2 anni\". Mostrato nella riga di fiducia se c’è spazio."
         }
       }
     },

@@ -116,7 +116,12 @@
     "note": "Nota dell'ordine",
     "note_placeholder": "Istruzioni speciali per il suo ordine",
     "continue_shopping": "Continua lo shopping",
-    "bundle_heading": "Si abbina bene a"
+    "bundle_heading": "Si abbina bene a",
+    "trust": {
+      "secure_checkout": "Pagamento sicuro",
+      "free_shipping_html": "Spedizione gratuita da {{ amount }}",
+      "returns": "Politica di reso"
+    }
   },
   "bundle": {
     "heading": "Completa il tuo acquisto",

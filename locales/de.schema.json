@@ -3407,6 +3407,14 @@
         },
         "cart_show_note": {
           "label": "Bestellnotizen aktivieren"
+        },
+        "cart_show_trust": {
+          "label": "Vertrauenszeile über dem Checkout anzeigen",
+          "info": "Sicherer Checkout, deine Versandkostenfrei-Grenze und ein Link zu deiner Rückerstattungsrichtlinie (falls vorhanden), im Warenkorb-Drawer und auf der Warenkorbseite."
+        },
+        "cart_trust_guarantee": {
+          "label": "Garantietext",
+          "info": "Optional, in deinen eigenen Worten, z. B. „2 Jahre Garantie“. Wird in der Vertrauenszeile angezeigt, wenn Platz ist."
         }
       }
     },

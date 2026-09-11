@@ -75,6 +75,8 @@
       </div>
       <p class="caption cart-drawer__taxes">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
 
+      {% render 'cart-trust' %}
+
       <form action="{{ routes.cart_url }}" method="post" class="cart-drawer__actions">
         <button type="submit" name="checkout" class="btn btn--full btn--large">{{ 'cart.checkout' | t }}</button>
         <a href="{{ routes.cart_url }}" class="link-underline cart-drawer__view">{{ 'cart.view_cart' | t }}</a>

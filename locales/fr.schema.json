@@ -3407,6 +3407,14 @@
         },
         "cart_show_note": {
           "label": "Activer les notes de commande"
+        },
+        "cart_show_trust": {
+          "label": "Afficher la ligne de confiance au-dessus du paiement",
+          "info": "Paiement sécurisé, votre seuil de livraison offerte et un lien vers votre politique de remboursement (si vous en avez une), dans le panier coulissant et sur la page panier."
+        },
+        "cart_trust_guarantee": {
+          "label": "Texte de garantie",
+          "info": "Facultatif, avec vos propres mots, p. ex. « Garantie 2 ans ». Affiché dans la ligne de confiance s’il reste de la place."
         }
       }
     },
