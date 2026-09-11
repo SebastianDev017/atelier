@@ -542,12 +542,18 @@ body[data-anim-disable-all="true"] *::after {
 }
 .btn:hover { background-color: var(--color-accent-local); border-color: var(--color-accent-local); letter-spacing: 0.18em; }
 /* Global button style (theme setting). Filled = default; outlined makes the
-   default solid button transparent with a border, filling on hover. */
-body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link) {
+   default solid button transparent with a border, filling on hover.
+   HIGH1 -- .btn--primary opts OUT: the one action a page exists for (Checkout)
+   stays the filled primary button in every preset. Under "outlined" -- two of
+   the three presets -- Checkout had rendered as a transparent box, visually no
+   louder than the quantity stepper beside it. Every outlined rule below carries
+   :not(.btn--primary), so the filled look, its hover and its (cream) loading
+   spinner all come from the base .btn rules. */
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.btn--primary) {
   background-color: transparent;
   color: var(--color-button, var(--color-text));
 }
-body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover {
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.btn--primary):hover {
   background-color: var(--color-button, var(--color-text));
   border-color: var(--color-button, var(--color-text));
   color: var(--color-button-text, var(--color-bg));
@@ -639,13 +645,13 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):hover
    rendered as an empty outlined box for the whole fetch. Two of the three
    presets (Contour, Maison) ship button_style: outlined, so this was the
    default install, not an edge case. */
-body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link).is-loading::after {
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.btn--primary).is-loading::after {
   border-color: color-mix(in srgb, var(--color-button, var(--color-text)) 35%, transparent);
   border-top-color: var(--color-button, var(--color-text));
 }
 /* An outlined button fills on hover, which flips the ground under the spinner.
    Without this the dark spinner would sit on the dark hover fill. */
-body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link).is-loading:hover::after {
+body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.btn--primary).is-loading:hover::after {
   border-color: color-mix(in srgb, var(--color-button-text, var(--color-bg)) 35%, transparent);
   border-top-color: var(--color-button-text, var(--color-bg));
 }
@@ -1499,7 +1505,17 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
    and returns when the reader scrolls back above the threshold, at which point
    the bar is gone and there is nothing to collide with. Both directions use the
    same 0.2s on the base rule, so the cross-fade is symmetric. */
-body:has(.product__sticky.is-visible) .scroll-top {
+body:has(.product__sticky.is-visible) .scroll-top,
+/* HIGH1 -- same yield for the cart. With the drawer open, the floating button
+   (z-index 500, above the drawer's 210) sat on the right end of Checkout and
+   took 9% of its tap area at 375px. On the cart page it stands down for the
+   whole page: CSS cannot tell when Checkout scrolls under it, and a cart page
+   is short enough that a back-to-top control has little to do there.
+   Both name .scroll-top.is-visible: `body:has(cart-page) .scroll-top` scores
+   only (0,1,2) and lost to `.scroll-top.is-visible` (0,2,0) -- measured, the
+   button stayed up on /cart. */
+body:has(cart-drawer.is-open) .scroll-top.is-visible,
+body:has(cart-page) .scroll-top.is-visible {
   opacity: 0;
   transform: translateY(8px);
   pointer-events: none;
