@@ -20,7 +20,23 @@
     }}
   </a>
 {%- else -%}
+  {%- comment -%}
+    The text wordmark has to fit a sidebar that can be as narrow as 180px, in
+    any heading font, cased or uppercased by the preset. The longest word decides
+    how small it may need to get (a multi-word name can still wrap between
+    words); header.liquid caps the size against the column width with it, and
+    theme.js trims further only if an unusually wide font still overflows.
+  {%- endcomment -%}
+  {%- liquid
+    assign logo_chars = 1
+    assign logo_words = shop.name | split: ' '
+    for logo_word in logo_words
+      if logo_word.size > logo_chars
+        assign logo_chars = logo_word.size
+      endif
+    endfor
+  -%}
   <a class="header__logo" href="{{ routes.root_url }}">
-    <span class="header__logo-text">{{ shop.name | escape }}</span>
+    <span class="header__logo-text" style="--logo-chars: {{ logo_chars }};" data-logo-fit>{{ shop.name | escape }}</span>
   </a>
 {%- endif -%}

@@ -104,6 +104,12 @@
       top: 0;
       height: 100svh;
       overflow-y: auto;
+      /* overflow-y: auto alone makes overflow-x compute to auto as well, so any
+         sideways overflow in the column -- the Annex wordmark, 30px too wide for
+         its 180px sidebar -- gave the sidebar a horizontal scrollbar, and on
+         classic-scrollbar systems that bar's height then forced a vertical one
+         too. The column scrolls vertically or not at all. */
+      overflow-x: hidden;
       overscroll-behavior: contain;
       /* position:sticky creates a stacking context; without a z-index it sits
          below .site-main (a later grid item), which would trap the fixed
@@ -315,7 +321,15 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: var(--space-3);
+    /* The text wordmark below sizes itself against this row's width (cqi). */
+    container-type: inline-size;
   }
+  /* Only a TEXT wordmark may wrap the row: when it and the search hint cannot
+     share it, the hint drops under the name instead of being pushed out of the
+     column. An image logo keeps the no-wrap row it always had -- it shrinks
+     beside the hint (wrapping let a 320px logo take the whole row and moved the
+     hint down on the demo store). */
+  .sidebar__head:has(.header__logo-text) { flex-wrap: wrap; }
 
   .sidebar__search-hint {
     display: inline-flex;
@@ -468,10 +482,20 @@
   .header__logo { display: inline-flex; align-items: center; line-height: 1; transition: opacity var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial); }
   .header__logo:hover { opacity: 0.7; }
   .header__logo:hover .header__logo-text { color: var(--color-accent-local); }
+  .header__logo { min-width: 0; max-width: 100%; }
   .header__logo-text {
     font-family: var(--font-heading);
     font-weight: var(--font-heading-weight);
-    font-size: var(--text-lg);
+    /* Never wider than its column: at most --text-lg, less when the longest word
+       (--logo-chars) would not fit at ~0.95em per character -- the advance of a
+       wide uppercase serif with this tracking (Libre Baskerville measured 0.91).
+       It only ever shrinks when there is no room, so a 220px sidebar keeps the
+       full size. Annex (180px, uppercase) was 153px wide in a 123px column.
+       Floor 14px: an 18-letter single word would otherwise have been set at 7px.
+       A name that cannot fit even at the floor breaks onto a second line
+       (overflow-wrap: anywhere) rather than being clipped at the column edge. */
+    font-size: max(0.875rem, min(var(--text-lg), calc(100cqi / (var(--logo-chars, 8) * 0.95))));
+    overflow-wrap: anywhere;
     letter-spacing: var(--tracking-wide);
     text-transform: var(--uppercase-headings);
   }

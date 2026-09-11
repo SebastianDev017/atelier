@@ -246,9 +246,42 @@
       if (this.overlay) this.overlay.addEventListener('click', this.closeAll);
       this.submenuToggles.forEach((t) => t.addEventListener('click', this.onSubmenuClick));
       this.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', this.closeAll));
+      this.initLogoFit();
+    };
+
+    /* The CSS cap on the text wordmark is an estimate (~0.95em per character);
+       a merchant's font can be wider still. Once the real font has loaded, and
+       whenever the column changes width, trim the size until the name fits its
+       row. It never grows past the CSS size and stops at the 14px floor; a name
+       that still cannot fit then breaks onto a second line (the CSS
+       overflow-wrap), which is switched off while measuring so shrinking is
+       always tried before breaking. */
+    HeaderComponent.prototype.initLogoFit = function () {
+      var text = this.querySelector('[data-logo-fit]');
+      if (!text) return;
+      var row = text.closest('.sidebar__head') || text.parentElement;
+      var FLOOR = 14;
+      var fit = function () {
+        text.style.fontSize = '';
+        text.style.overflowWrap = 'normal';
+        var size = parseFloat(getComputedStyle(text).fontSize);
+        var avail = row.clientWidth;
+        while (text.scrollWidth > avail + 0.5 && size > FLOOR) {
+          size = Math.max(FLOOR, size - 0.5);
+          text.style.fontSize = size + 'px';
+        }
+        text.style.overflowWrap = '';
+      };
+      fit();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(fit);
+      if ('ResizeObserver' in window) {
+        this.logoObserver = new ResizeObserver(fit);
+        this.logoObserver.observe(row);
+      }
     };
 
     HeaderComponent.prototype.disconnectedCallback = function () {
+      if (this.logoObserver) this.logoObserver.disconnect();
       window.removeEventListener('scroll', this.onScroll);
       document.removeEventListener('keydown', this.onKeydown);
       document.removeEventListener('click', this.onOutsideClick);
