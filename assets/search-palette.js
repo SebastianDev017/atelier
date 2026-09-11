@@ -1,5 +1,5 @@
 /*
- * Command palette search — opens with "/" or the sidebar hint button.
+ * Command palette search — opens with "/" or the sidebar's search icon.
  * Queries Shopify Predictive Search (/search/suggest.json). Arrow keys move the
  * active result, Enter navigates, Escape / backdrop closes. GSAP-animated open
  * with a graceful no-animation fallback.
@@ -20,7 +20,12 @@
     return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.isContentEditable);
   }
 
+  var returnFocus = null;
+
   function open() {
+    /* Remember what opened it, so closing hands focus back to that control
+       (the sidebar search icon) instead of dropping it on <body>. */
+    returnFocus = document.activeElement;
     palette.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
     if (window.lenis) window.lenis.stop();
@@ -42,6 +47,8 @@
     results.innerHTML = emptyHTML;
     items = [];
     activeIndex = -1;
+    if (returnFocus && document.contains(returnFocus) && typeof returnFocus.focus === 'function') returnFocus.focus();
+    returnFocus = null;
   }
 
   function isOpen() { return palette.getAttribute('aria-hidden') === 'false'; }
@@ -96,7 +103,7 @@
     if (e.key === 'Escape' && isOpen()) { close(); return; }
   });
 
-  /* Sidebar / header hint buttons open it. */
+  /* The sidebar search icon (expanded foot and collapsed rail) opens it. */
   document.addEventListener('click', function (e) {
     var trigger = e.target.closest('[data-search-palette-open]');
     if (trigger) { e.preventDefault(); open(); }

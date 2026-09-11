@@ -243,6 +243,13 @@
       document.addEventListener('click', this.onOutsideClick);
       if (this.menuToggle) this.menuToggle.addEventListener('click', this.toggleMenu);
       if (this.searchToggle) this.searchToggle.addEventListener('click', this.toggleSearch);
+      /* The palette is a modal dialog, not a disclosure: describe the icon that
+         way when it opens the palette instead of the takeover. */
+      if (this.searchToggle && document.getElementById('search-palette')) {
+        this.searchToggle.removeAttribute('aria-expanded');
+        this.searchToggle.setAttribute('aria-controls', 'search-palette');
+        this.searchToggle.setAttribute('aria-haspopup', 'dialog');
+      }
       if (this.overlay) this.overlay.addEventListener('click', this.closeAll);
       this.submenuToggles.forEach((t) => t.addEventListener('click', this.onSubmenuClick));
       this.querySelectorAll('[data-menu-close]').forEach((b) => b.addEventListener('click', this.closeAll));
@@ -307,7 +314,11 @@
       this.setState('menu', open);
     };
 
+    /* When the command palette exists, the search icon belongs to it
+       (search-palette.js handles [data-search-palette-open]); the takeover is
+       only the fallback for a store that has switched the palette off. */
     HeaderComponent.prototype.toggleSearch = function () {
+      if (document.getElementById('search-palette')) return;
       var open = !this.classList.contains('header--search-open');
       this.setState('search', open);
     };

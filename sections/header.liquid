@@ -183,16 +183,13 @@
   <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
     <div class="sidebar__head">
       {% render 'header-logo' %}
-      {%- if section.settings.show_search -%}
-        {%- comment -%}
-          A real link, not a button: if the command palette section is disabled
-          (or JS is off) this still reaches /search. search-palette.js calls
-          preventDefault and opens the overlay when it is available.
-        {%- endcomment -%}
-        <a class="sidebar__search-hint" href="{{ routes.search_url }}" data-search-palette-open aria-label="{{ 'search.title' | t }}">
-          {% render 'icon', name: 'search' %}<kbd>/</kbd>
-        </a>
-      {%- endif -%}
+      {%- comment -%}
+        SB1 -- the magnifier + "/" keycap that sat here (one link opening the
+        command palette) is gone: the sidebar's search icon opens the same
+        palette in both the expanded and the collapsed state, and announces the
+        "/" shortcut through aria-keyshortcuts. This corner now holds the
+        collapse toggle.
+      {%- endcomment -%}
       <button
         type="button"
         class="sidebar__close header__icon-btn"
@@ -215,10 +212,18 @@
     <div class="sidebar__foot">
       <div class="sidebar__actions">
         {%- if section.settings.show_search -%}
+          {%- comment -%}
+            Opens the command palette (search-palette.js, [data-search-palette-open])
+            -- the same one "/" opens, which is why it carries aria-keyshortcuts.
+            [data-search-toggle] is the fallback: with the palette section
+            disabled, header-component opens the search takeover below instead.
+          {%- endcomment -%}
           <button
             type="button"
-            class="header__icon-btn"
+            class="header__icon-btn sidebar__search-btn"
             data-search-toggle
+            data-search-palette-open
+            aria-keyshortcuts="/"
             aria-expanded="false"
             aria-controls="SearchModal-{{ section.id }}"
             aria-label="{{ 'general.search' | t }}"
@@ -324,25 +329,12 @@
     /* The text wordmark below sizes itself against this row's width (cqi). */
     container-type: inline-size;
   }
-  /* Only a TEXT wordmark may wrap the row: when it and the search hint cannot
-     share it, the hint drops under the name instead of being pushed out of the
-     column. An image logo keeps the no-wrap row it always had -- it shrinks
-     beside the hint (wrapping let a 320px logo take the whole row and moved the
-     hint down on the demo store). */
+  /* Only a TEXT wordmark may wrap the row: when it and the collapse toggle
+     cannot share it, the toggle drops under the name instead of being pushed
+     out of the column. An image logo keeps the no-wrap row it always had -- it
+     shrinks beside the toggle (wrapping let a 320px logo take the whole row on
+     the demo store). */
   .sidebar__head:has(.header__logo-text) { flex-wrap: wrap; }
-
-  .sidebar__search-hint {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    color: var(--color-muted);
-    font-family: var(--font-mono);
-    font-size: var(--text-xs);
-    transition: color var(--duration-fast) var(--ease-editorial);
-  }
-  .sidebar__search-hint svg { width: 16px; height: 16px; }
-  .sidebar__search-hint kbd { border: 1px solid var(--color-border); padding: 0 5px; line-height: 1.4; }
-  .sidebar__search-hint:hover { color: var(--color-text); }
 
   .sidebar__nav { flex: 1 1 auto; position: relative; padding-left: var(--space-4); }
   /* Real-time scroll-progress line down the nav (GSAP initScrollProgress). */
