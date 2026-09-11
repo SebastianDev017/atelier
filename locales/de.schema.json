@@ -304,6 +304,10 @@
         "show_account": {
           "label": "Konto-Link anzeigen"
         },
+        "customer_account_menu": {
+          "label": "Kundenkonto-Menü",
+          "info": "Links im Kontobereich. Verwende dasselbe Menü wie die Kundenkonten, damit sie übereinstimmen."
+        },
         "show_border": {
           "label": "Trennlinie anzeigen"
         },

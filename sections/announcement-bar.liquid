@@ -180,9 +180,30 @@
      "Complimentary" was sliced clean off. 68px clears the button plus a 12px
      gap. A long message now wraps to two lines at narrow widths, which is the
      honest result when it genuinely does not fit beside two buttons. */
+  /* B5 update: the reserve moved from the message to the whole inner row, and
+     its size now comes from the header (--mobile-triggers-*). Two reasons:
+     - the end side became 120px once the account entry joined the cart there;
+       68px only "worked" because the dismiss button happened to fill the gap,
+       and a non-dismissible bar ran its text under the account button;
+     - the controls sat OUTSIDE the old reserve, at the very edge, so the
+       dismiss button was hidden under the floating cart and could not be
+       tapped on any phone. Reserving on the row puts the message and its
+       controls together in the free middle. Logical properties, so dir="rtl"
+       mirrors it along with the triggers. */
   @media (max-width: 768px) {
+    .announcement-bar__inner {
+      padding-inline-start: var(--mobile-triggers-start, 68px);
+      padding-inline-end: var(--mobile-triggers-end, 68px);
+    }
+    /* min-width: 0 -- a flex item will not shrink below its longest word by
+       default, so at 320px the message box pushed the dismiss button 30px into
+       the account trigger's zone. */
     .announcement-bar__single,
-    .announcement-bar__rotator { padding-inline: 68px; }
+    .announcement-bar__rotator { padding-inline: var(--space-2); min-width: 0; }
+    /* 36px keeps the tap target well above the 24px minimum while leaving the
+       message a little more of the narrow middle. Scoped through the wrapper:
+       the base 44px rule comes later in this file at equal specificity. */
+    .announcement-bar__controls .announcement-bar__control { width: 36px; }
     /* Padding alone was not enough. .announcement-bar__item is
        `white-space: nowrap; flex: 0 0 auto`, so it stayed at its 299px
        max-content width inside a 239px content box -- and a CENTRED flex item
@@ -195,8 +216,17 @@
       white-space: normal;
       flex: 0 1 auto;
       min-width: 0;
+      overflow-wrap: break-word;
+      hyphens: auto;
     }
-    .announcement-bar__slide { white-space: normal; }
+    .announcement-bar__slide { white-space: normal; overflow-wrap: break-word; hyphens: auto; }
+  }
+  /* Below 360px the free middle is ~130px: message + dismiss button no longer
+     fit (measured: five lines with words split mid-word). The dismiss button
+     goes; the message stays readable. The pause control stays at every width --
+     moving content must keep a way to stop it (WCAG 2.2.2). */
+  @media (max-width: 359px) {
+    .announcement-bar__controls [data-announcement-close] { display: none; }
   }
 
   /* Before JS runs (and as the no-JS fallback) show the first message. */

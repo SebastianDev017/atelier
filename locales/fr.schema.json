@@ -304,6 +304,10 @@
         "show_account": {
           "label": "Afficher le lien du compte"
         },
+        "customer_account_menu": {
+          "label": "Menu du compte client",
+          "info": "Liens affichés dans le panneau du compte. Utilisez le même menu que les comptes clients pour rester cohérent."
+        },
         "show_border": {
           "label": "Afficher la ligne de séparation"
         },

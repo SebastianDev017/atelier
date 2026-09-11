@@ -352,6 +352,9 @@ h1, h2, h3, h4, h5, h6 {
 [dir="rtl"] .cart-drawer.is-open .cart-drawer__panel { transform: translateX(0); }
 @media (max-width: 768px) {
   [dir="rtl"] .sidebar__toggle { left: auto; right: var(--space-3); }
+  /* The cart trigger has to swap corners too, or the flipped menu toggle lands
+     on top of it. (The account trigger uses inset-inline-end and mirrors itself.) */
+  [dir="rtl"] .sidebar__cart-toggle { right: auto; left: var(--space-3); }
   [dir="rtl"] .sidebar__panel { left: auto; right: 0; transform: translateX(100%); }
   [dir="rtl"] .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
 }

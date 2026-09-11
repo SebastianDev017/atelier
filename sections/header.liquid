@@ -88,6 +88,16 @@
 {%- comment -%} Sticky + full-height column rules live on the section wrapper (the real grid item of .site-layout), using the raw style-tag pattern every other section uses. {%- endcomment -%}
 <style>
   #shopify-section-{{ section.id }} { grid-column: 1; }
+  {%- comment -%}
+    Width of the top-of-screen zones the floating mobile triggers cover, for the
+    announcement bar to keep its message (and its controls) out of: menu on the
+    inline-start side; cart -- plus the account entry when shown -- on the end.
+    12 inset + 44 button + 12 gap = 68; with the account: 12 + 44 + 8 + 44 + 12.
+  {%- endcomment -%}
+  :root {
+    --mobile-triggers-start: 68px;
+    --mobile-triggers-end: {% if shop.customer_accounts_enabled and section.settings.show_account %}120px{% else %}68px{% endif %};
+  }
   @media (min-width: 769px) {
     #shopify-section-{{ section.id }} {
       position: sticky;
@@ -138,6 +148,31 @@
     {% render 'icon', name: 'cart' %}
     <span class="sidebar__cart-count{% if cart.item_count == 0 %} is-empty{% endif %}" data-cart-count aria-hidden="true">{{ cart.item_count }}</span>
   </a>
+
+  {%- comment -%}
+    B5 -- mobile-only account entry, pinned beside the mobile cart. The Theme
+    Store requires <shopify-account> in the header "visible on both desktop and
+    mobile"; at <=768px the sidebar's own instance lives inside the off-canvas
+    drawer, so on a phone it only appeared after opening the menu. It cannot
+    simply be repositioned: the drawer is transformed, so position: fixed inside
+    it is relative to the drawer, not the viewport. This second instance sits
+    outside the panel like the menu and cart triggers, and CSS shows exactly one
+    of the two at any width.
+  {%- endcomment -%}
+  {%- if shop.customer_accounts_enabled and section.settings.show_account -%}
+    <shopify-account
+      class="sidebar__account-toggle"
+      {% if section.settings.customer_account_menu != blank %}menu="{{ section.settings.customer_account_menu.handle }}"{% endif %}
+    >
+      <a
+        class="header__icon-btn"
+        href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
+        aria-label="{{ 'general.account' | t }}"
+      >
+        {% render 'icon', name: 'account' %}
+      </a>
+    </shopify-account>
+  {%- endif -%}
 
   <div class="sidebar__panel" id="SidebarPanel-{{ section.id }}" data-menu-drawer>
     <div class="sidebar__head">
@@ -194,8 +229,15 @@
             content, so this still works before the component upgrades. This row is
             inside .sidebar__panel, which is the off-canvas drawer at <=768px, so
             one instance serves both the desktop sidebar and the mobile header.
+
+            B5: `menu` is the documented attribute -- it points the account sheet at
+            the same menu customer accounts use, so links a merchant adds there
+            (Orders, Profile, anything else) show in the sheet too.
           {%- endcomment -%}
-          <shopify-account class="sidebar__account-wrap">
+          <shopify-account
+            class="sidebar__account-wrap"
+            {% if section.settings.customer_account_menu != blank %}menu="{{ section.settings.customer_account_menu.handle }}"{% endif %}
+          >
             <a
               class="header__icon-btn sidebar__account"
               href="{% if customer %}{{ routes.account_url }}{% else %}{{ routes.account_login_url }}{% endif %}"
@@ -388,6 +430,32 @@
   .sidebar--bordered .sidebar__foot { border-top: 1px solid var(--color-border); }
 
   .sidebar__account-wrap { display: inline-flex; }
+  /* B5 -- the account sheet (sign in / create account, the email field and its
+     errors, the Orders / Profile links) is Shopify's own UI in a shadow root, so
+     no theme selector reaches it; it rendered white, black, system sans, 12px
+     corners and a navy accent, whatever the theme. These are the documented
+     styling hooks. Page-level colours on purpose (--color-background, not a
+     section scheme's --color-bg): the sheet opens over the page, not inside the
+     sidebar, and a dark sidebar scheme must not turn it dark. The Shop sign-in
+     button inside it is Shop-branded and stays as Shopify draws it. */
+  shopify-account {
+    --shopify-account-color-background: var(--color-background, #FAF7F2);
+    --shopify-account-color-text: var(--color-foreground, #2C1810);
+    --shopify-account-color-accent: var(--color-button, var(--color-foreground, #2C1810));
+    --shopify-account-color-accent-text: var(--color-button-text, var(--color-background, #FAF7F2));
+    /* not derived from color-text: the email field and its label stayed pure black */
+    --shopify-account-color-control-text: var(--color-foreground, #2C1810);
+    --shopify-account-color-text-subdued: var(--color-muted, #766356);
+    --shopify-account-font-body: var(--font-body);
+    --shopify-account-font-body-weight: var(--font-body-weight, 400);
+    --shopify-account-font-heading: var(--font-heading);
+    --shopify-account-font-heading-weight: var(--font-heading-weight, 400);
+    --shopify-account-radius-base: var(--radius-inputs, 0px);
+    --shopify-account-radius-input: var(--radius-inputs, 0px);
+    --shopify-account-radius-button: var(--radius-none, 0);
+    --shopify-account-radius-button-small: var(--radius-none, 0);
+    --shopify-account-radius-dialog: var(--radius-none, 0);
+  }
   .sidebar__actions {
     display: flex;
     align-items: center;
@@ -495,6 +563,7 @@
   /* ---------- Mobile trigger + close (hidden on desktop) ---------- */
   .sidebar__toggle,
   .sidebar__cart-toggle,
+  .sidebar__account-toggle,
   .sidebar__close { display: none; }
 
   /* ---------- Search full-screen takeover ----------
@@ -618,6 +687,25 @@
       box-shadow: 0 0 0 1px var(--color-border-strong),
                   0 2px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
     }
+    /* B5 -- account entry in the mobile bar, left of the cart. Logical
+       inset-inline-end so it mirrors itself under dir="rtl". The drawer's own
+       instance is hidden at this width so a phone never shows two avatars. */
+    .sidebar__account-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      position: fixed;
+      top: var(--space-3);
+      inset-inline-end: calc(var(--space-3) + 44px + var(--space-2));
+      z-index: var(--z-header);
+      width: 44px;
+      height: 44px;
+      background-color: var(--color-bg);
+      color: var(--color-text);
+      box-shadow: 0 0 0 1px var(--color-border-strong),
+                  0 2px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+    }
+    .sidebar__panel .sidebar__account-wrap { display: none; }
     .sidebar__close { display: inline-flex; }
 
     .sidebar__panel {
@@ -671,6 +759,13 @@
       "id": "show_account",
       "label": "t:sections.header.settings.show_account.label",
       "default": true
+    },
+    {
+      "type": "link_list",
+      "id": "customer_account_menu",
+      "label": "t:sections.header.settings.customer_account_menu.label",
+      "info": "t:sections.header.settings.customer_account_menu.info",
+      "default": "customer-account-main-menu"
     },
     {
       "type": "checkbox",

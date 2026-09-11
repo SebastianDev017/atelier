@@ -304,6 +304,10 @@
         "show_account": {
           "label": "Show account link"
         },
+        "customer_account_menu": {
+          "label": "Customer account menu",
+          "info": "Links shown in the account panel. Use the same menu as customer accounts to keep them consistent."
+        },
         "show_border": {
           "label": "Show divider line"
         },
