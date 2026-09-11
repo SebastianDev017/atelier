@@ -1045,6 +1045,18 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
 .product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
 .product-card__title a { display: inline; position: relative; z-index: 2; }
+/* B1 -- merchant names can hold an unbreakable word: a long product name, a
+   German compound, a SKU-like handle. main-product.liquid already set this on
+   the PDP title; product cards and the featured product never did, so a 30-char
+   word spilled up to 75px out of its card on every template and was sliced off
+   at the viewport edge (site-main clips, so it cut rather than scrolled).
+   break-word, not anywhere: it only breaks a word that genuinely cannot fit, and
+   it leaves min-content sizing alone, so no grid track or flex row around these
+   titles can start squeezing ordinary words mid-word. */
+.product-card__title,
+.product-card__vendor,
+.fp__title,
+.fp__vendor { overflow-wrap: break-word; }
 .product-card__info .price { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.02em; }
 .product-card__info .price__unit { font-family: var(--font-mono); font-size: var(--text-xs); }
 .product-card__rating { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font-size: var(--text-sm); }
