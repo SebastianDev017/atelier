@@ -61,12 +61,28 @@
                 <p class="product__taxes caption">{{ 'cart.taxes_and_shipping_at_checkout' | t }}</p>
 
                 {%- comment -%}
-                  R6 — Shop Pay Installments. The payment_terms filter renders nothing
-                  at all when the shop has no installments provider, so it needs no
-                  guard of its own.
+                  R6 — Shop Pay Installments. B3 found this never rendered: it applied
+                  payment_terms to a PRICE, and the filter "requires the form object
+                  from the Liquid product form or cart form" (shopify.dev, Shop Pay
+                  Installments). The price block sits outside the buy-buttons form, so
+                  this follows the documented pattern for that case: a second product
+                  form beside the price, holding a hidden input[name="id"] for the
+                  selected variant.
+
+                  It stays OUTSIDE <product-form>, which finds its form with
+                  querySelector('form') -- nested inside, Add to cart would submit this
+                  one. product.js re-renders [data-payment-terms] from the Section
+                  Rendering response on every variant change, so the banner is rebuilt
+                  for the new variant rather than relying on the web component noticing
+                  a programmatic value change. Renders nothing when the shop has no
+                  installments provider.
                 {%- endcomment -%}
+                {%- assign installments_form_id = 'ProductInstallments-' | append: section.id -%}
                 <div class="product__payment-terms" data-payment-terms>
-                  {{ product.selected_or_first_available_variant.price | payment_terms }}
+                  {%- form 'product', product, id: installments_form_id, class: 'product__installments-form' -%}
+                    <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+                    {{ form | payment_terms }}
+                  {%- endform -%}
                 </div>
               </div>
 

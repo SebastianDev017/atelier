@@ -125,7 +125,10 @@
           if (reqId !== self._priceRequestId) return; // superseded
           var doc = new DOMParser().parseFromString(text, 'text/html');
           // Swap per-variant regions: price and low-stock inventory line.
-          ['[data-price-target]', '[data-inventory-target]'].forEach(function (sel) {
+          /* [data-payment-terms] added in B3: the installments banner is priced per
+             variant, and it was the one variant-dependent block left out of this
+             swap -- after a switch it kept quoting the first variant. */
+          ['[data-price-target]', '[data-inventory-target]', '[data-payment-terms]'].forEach(function (sel) {
             var incoming = doc.querySelectorAll(sel);
             var current = self.querySelectorAll(sel);
             Array.prototype.forEach.call(current, function (node, i) {
