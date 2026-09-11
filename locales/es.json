@@ -29,7 +29,8 @@
     "social_label": "Síguenos",
     "recently_viewed": "Visto recientemente",
     "taxes_included": "Impuestos incluidos",
-    "free_shipping_announcement_html": "Envío gratis en pedidos superiores a {{ amount }}"
+    "free_shipping_announcement_html": "Envío gratis en pedidos superiores a {{ amount }}",
+    "stats_empty": "Añade un número a una cifra para mostrarla aquí. Usa tus propios datos: no se muestra ninguna cifra hasta que la introduzcas."
   },
   "accessibility": {
     "skip_to_content": "Saltar al contenido",

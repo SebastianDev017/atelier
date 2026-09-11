@@ -3,6 +3,13 @@
   (data-counter, handled by initCounters in gsap-animations.js). The number is
   rendered as its final value so reduced-motion / no-JS shows the real figure;
   data-counter holds the comma-stripped numeric for the animation.
+
+  The figures are the merchant's own claims, so none ships with a number: the
+  presets used to install an object count, a star rating and a recycled
+  share on every store, none of them true for the merchant. A figure shows
+  once it has a number; with none the section renders nothing on the
+  storefront and an editor-only hint (the featured-product empty state),
+  rather than an empty band.
 {%- endcomment -%}
 {%- liquid
   assign scheme = section.settings.color_scheme | default: 'cream'
@@ -15,9 +22,17 @@
       assign stats_count = stats_count | plus: 1
     endif
   endfor
+  assign filled_stats = stats_count
   assign stats_count = stats_count | at_least: 1
 -%}
 
+{%- if filled_stats == 0 -%}
+  {%- if request.design_mode -%}
+    <div class="section-wrapper color-scheme--{{ scheme }}">
+      <p class="stats-bar__empty section__inner">{{ 'general.stats_empty' | t }}</p>
+    </div>
+  {%- endif -%}
+{%- else -%}
 <style>
   #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --stats-count: {{ stats_count }}; }
 </style>
@@ -46,6 +61,7 @@
     {%- endfor -%}
   </dl>
 </div>
+{%- endif -%}
 
 {% stylesheet %}
   .stats-bar {
@@ -56,6 +72,7 @@
     margin: 0;
     text-align: center;
   }
+  .stats-bar__empty { margin: 0; padding-block: var(--space-12); text-align: center; color: var(--color-muted); }
   .stat__value { display: flex; align-items: baseline; justify-content: center; gap: 0.05em; margin: 0; }
   .stat__num, .stat__suffix {
     font-family: var(--font-heading);
@@ -84,16 +101,16 @@
   "class": "shopify-section",
   "settings": [
     { "type": "paragraph", "content": "t:sections.stats-bar.settings.paragraph__1.content" },
-    { "type": "text", "id": "stat_1_number", "label": "t:sections.stats-bar.settings.stat_1_number.label", "default": "1240" },
+    { "type": "text", "id": "stat_1_number", "label": "t:sections.stats-bar.settings.stat_1_number.label" },
     { "type": "text", "id": "stat_1_suffix", "label": "t:sections.stats-bar.settings.stat_1_suffix.label", "default": "+" },
     { "type": "text", "id": "stat_1_label", "label": "t:sections.stats-bar.settings.stat_1_label.label", "default": "Objects" },
-    { "type": "text", "id": "stat_2_number", "label": "t:sections.stats-bar.settings.stat_2_number.label", "default": "24" },
+    { "type": "text", "id": "stat_2_number", "label": "t:sections.stats-bar.settings.stat_2_number.label" },
     { "type": "text", "id": "stat_2_suffix", "label": "t:sections.stats-bar.settings.stat_2_suffix.label" },
     { "type": "text", "id": "stat_2_label", "label": "t:sections.stats-bar.settings.stat_2_label.label", "default": "Makers" },
-    { "type": "text", "id": "stat_3_number", "label": "t:sections.stats-bar.settings.stat_3_number.label", "default": "98" },
+    { "type": "text", "id": "stat_3_number", "label": "t:sections.stats-bar.settings.stat_3_number.label" },
     { "type": "text", "id": "stat_3_suffix", "label": "t:sections.stats-bar.settings.stat_3_suffix.label", "default": "%" },
     { "type": "text", "id": "stat_3_label", "label": "t:sections.stats-bar.settings.stat_3_label.label", "default": "Recycled or natural" },
-    { "type": "text", "id": "stat_4_number", "label": "t:sections.stats-bar.settings.stat_4_number.label", "default": "4.9" },
+    { "type": "text", "id": "stat_4_number", "label": "t:sections.stats-bar.settings.stat_4_number.label" },
     { "type": "text", "id": "stat_4_suffix", "label": "t:sections.stats-bar.settings.stat_4_suffix.label" },
     { "type": "text", "id": "stat_4_label", "label": "t:sections.stats-bar.settings.stat_4_label.label", "default": "Average rating" },
     {
