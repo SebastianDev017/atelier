@@ -1,3 +1,12 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
 {
   "type": "custom.announcement",
   "name": "Announcement",
@@ -8,13 +17,26 @@
         "message_1": {
           "type": "message",
           "settings": {
-            "text": "Complimentary shipping on orders over $150"
+            "text": "Complimentary shipping on orders over $70",
+            "url": ""
           }
         }
       },
-      "block_order": ["message_1"],
-      "settings": {}
+      "block_order": [
+        "message_1"
+      ],
+      "settings": {
+        "show_announcement": true,
+        "dismissible": true,
+        "bar_color": "#2c1810",
+        "bar_text_color": "#faf7f2",
+        "display_mode": "rotate",
+        "rotate_interval": 5,
+        "marquee_speed": 40
+      }
     }
   },
-  "order": ["announcement_bar"]
+  "order": [
+    "announcement_bar"
+  ]
 }
