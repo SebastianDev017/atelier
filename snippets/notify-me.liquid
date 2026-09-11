@@ -2,8 +2,10 @@
   Sold-out "Notify me" trigger + <dialog> email capture. Rendered by the
   notify_me block of main-product.liquid, only when the product is unavailable.
 
-  @param {object} product - the sold-out product
+  @param {object} product - the product
   @param {object} block   - the notify_me block (for its settings)
+  @param {object} [variant] - the selected variant; named in the request, and
+    product.js rewrites it when the shopper picks another sold-out variant
 {%- endcomment -%}
 {%- assign notify_form_id = 'notify-form-' | append: product.id -%}
 
@@ -51,8 +53,19 @@
       <p class="notify-me__product-name">{{ product.title | escape }}</p>
 
       {%- form 'contact', id: notify_form_id, class: 'notify-me__form' -%}
+        {%- liquid
+          assign notify_variant_label = ''
+          assign notify_url = shop.url | append: product.url
+          if variant and product.has_only_default_variant == false
+            assign notify_variant_label = ' — ' | append: variant.title
+            assign notify_url = notify_url | append: '?variant=' | append: variant.id
+          endif
+        -%}
         <input type="hidden" name="contact[body]"
-          value="Back-in-stock request for: {{ product.title | escape }} — {{ shop.url }}{{ product.url }}">
+          data-notify-body
+          data-product-title="{{ product.title | escape }}"
+          data-product-url="{{ shop.url }}{{ product.url }}"
+          value="Back-in-stock request for: {{ product.title | escape }}{{ notify_variant_label | escape }} — {{ notify_url }}">
         <input type="hidden" name="contact[tags]" value="back-in-stock,{{ product.handle }}">
 
         <div class="notify-me__field">

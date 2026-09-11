@@ -146,6 +146,10 @@
                             # carries it at this option position. That test does not
                             # depend on what the other options are set to, so the
                             # rendered state is always correct.
+                            # QW2 -- it is MARKED (struck through, "Unavailable" for
+                            # AT) but stays selectable: disabling it made a sold-out
+                            # variant impossible to choose, so its back-in-stock form
+                            # could never appear while any other variant was in stock.
                             assign value_available = false
                             for variant in product.variants
                               if variant.available and variant.options[opt_index] == value
@@ -161,7 +165,6 @@
                               value="{{ value | escape }}"
                               data-option-input
                               {% if option.selected_value == value %}checked{% endif %}
-                              {% unless value_available %}disabled{% endunless %}
                               {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
                             >
                             {%- if is_color_option and value.swatch -%}
@@ -249,11 +252,27 @@
               </div>
 
             {%- when 'notify_me' -%}
-              {%- unless product.available -%}
-                <div {{ block.shopify_attributes }}>
-                  {%- render 'notify-me', product: product, block: block -%}
+              {%- comment -%}
+                QW2 -- rendered whenever ANY variant is sold out, and shown only while
+                the SELECTED variant is. It used to render only for a fully sold-out
+                product, so a sold-out size or colour of a product that was otherwise
+                in stock had no back-in-stock path at all. product.js toggles
+                [data-notify-wrap] on every variant change.
+              {%- endcomment -%}
+              {%- liquid
+                assign has_sold_out = false
+                for v in product.variants
+                  unless v.available
+                    assign has_sold_out = true
+                    break
+                  endunless
+                endfor
+              -%}
+              {%- if has_sold_out -%}
+                <div data-notify-wrap {{ block.shopify_attributes }}{% if selected_variant.available %} hidden{% endif %}>
+                  {%- render 'notify-me', product: product, block: block, variant: selected_variant -%}
                 </div>
-              {%- endunless -%}
+              {%- endif -%}
 
             {%- when 'trust_badges' -%}
               {% render 'trust-badges', block: block %}
@@ -368,8 +387,8 @@
   .variant-option__value:hover input:checked + span { background-color: var(--color-accent-local); border-color: var(--color-accent-local); }
   .variant-option__value input:focus-visible + span { outline: 2px solid var(--color-text); outline-offset: 2px; }
   /* Unavailable values: struck through with a dashed edge rather than dimmed,
-     so the state is legible without dropping text contrast below 4.5:1. The
-     input is genuinely disabled, so it is neither clickable nor focusable. */
+     so the state is legible without dropping text contrast below 4.5:1. QW2:
+     still selectable -- choosing one shows "Sold out" and the notify-me form. */
   .variant-option__value--unavailable span { border-style: dashed; text-decoration: line-through; }
   .variant-option__value input:disabled { cursor: not-allowed; }
   /* ---- Colour swatches ----

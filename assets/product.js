@@ -73,6 +73,18 @@
         else input.setAttribute('disabled', '');
       });
 
+      /* QW2 -- the back-in-stock form follows the SELECTED variant: shown for a
+         sold-out one (even while others are in stock), hidden otherwise, and the
+         request it sends names that exact variant. */
+      var notifyWrap = this.querySelector('[data-notify-wrap]');
+      if (notifyWrap) notifyWrap.hidden = !(variant && !variant.available);
+      var notifyBody = this.querySelector('[data-notify-body]');
+      if (notifyBody && variant) {
+        notifyBody.value = 'Back-in-stock request for: ' + notifyBody.dataset.productTitle +
+          (variant.title && variant.title !== 'Default Title' ? ' — ' + variant.title : '') +
+          ' — ' + notifyBody.dataset.productUrl + '?variant=' + variant.id;
+      }
+
       if (!variant) return;
       this.currentVariant = variant;
       if (this.gallery && variant.featured_media && typeof this.gallery.setActiveMedia === 'function') {
