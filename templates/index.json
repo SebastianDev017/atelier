@@ -12,7 +12,7 @@
     "hero": {
       "type": "hero",
       "settings": {
-        "layout": "fullbleed",
+        "layout": "split",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
