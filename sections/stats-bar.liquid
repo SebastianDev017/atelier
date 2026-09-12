@@ -76,12 +76,16 @@
     align-items: flex-start;
     column-gap: var(--space-8);
     padding-block: var(--pt, 80px) var(--pb, 80px);
-    margin: 0;
+    /* Block only: the <dl> reset must not cancel .section__inner's
+       margin-inline: auto. `margin: 0` did, so wherever the main area is wider
+       than the page width (a collapsed sidebar, wide screens) the row hugged
+       the left edge -- 0px left / 500px right at 1920px. */
+    margin-block: 0;
     text-align: center;
   }
   .stat { flex: 0 1 auto; min-width: 0; }
   .stats-bar:has(.stat:only-child) { justify-content: center; }
-  .stats-bar__empty { margin: 0; padding-block: var(--space-12); text-align: center; color: var(--color-muted); }
+  .stats-bar__empty { margin-block: 0; padding-block: var(--space-12); text-align: center; color: var(--color-muted); }
   .stat__value { display: flex; align-items: baseline; justify-content: center; gap: 0.05em; margin: 0; }
   @media (min-width: 750px) {
     .stat:first-child:not(:only-child) { text-align: start; }
