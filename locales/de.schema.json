@@ -1626,7 +1626,7 @@
         },
         "display_mode": {
           "label": "Mehrere Nachrichten",
-          "info": "Wie 2 oder mehr Nachrichten angezeigt werden.",
+          "info": "Wie 2 oder mehr Nachrichten auf größeren Bildschirmen angezeigt werden. Smartphones zeigen eine feste Nachricht: die Versandkosten-Nachricht, falls vorhanden, sonst die erste.",
           "options__1": {
             "label": "Rotieren (Überblenden)"
           },

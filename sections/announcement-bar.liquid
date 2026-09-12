@@ -2,6 +2,7 @@
   Announcement bar — full-bleed, own colors (not a color scheme).
   One message: centered + static. Multiple messages: seamless CSS marquee
   (rendered twice, translateX(0)->-50%), pause on hover, reduced-motion safe.
+  Phones show one still message on one line instead (see the mobile block).
   Optional dismiss persists in localStorage keyed by section.id. No-JS safe.
 {%- endcomment -%}
 {%- liquid
@@ -18,6 +19,7 @@
   only when there is a threshold to state.
 {%- endcomment -%}
 {%- capture free_shipping_message -%}{% render 'free-shipping-claim', key: 'general.free_shipping_announcement_html' %}{%- endcapture -%}
+{%- capture free_shipping_short -%}{% render 'free-shipping-claim', key: 'general.free_shipping_short_html' %}{%- endcapture -%}
 {%- liquid
   assign message_count = 0
   for block in blocks
@@ -27,6 +29,24 @@
       assign message_count = message_count | plus: 1
     endif
   endfor
+
+  # Phones show one message, still and on one line: the free shipping message
+  # when there is one (in its short form), otherwise the first message.
+  assign mobile_block = null
+  for block in blocks
+    if block.type == 'free_shipping' and free_shipping_message != blank
+      assign mobile_block = block
+      break
+    endif
+  endfor
+  if mobile_block == null
+    for block in blocks
+      if block.type == 'message' and block.settings.text != blank
+        assign mobile_block = block
+        break
+      endif
+    endfor
+  endif
 -%}
 
 {%- if show and message_count > 0 -%}
@@ -134,6 +154,26 @@
         </div>
       {%- endif -%}
 
+      {%- comment -%}
+        Phone copy of the chosen message. The layouts above are hidden at the
+        mobile breakpoint and this is shown instead -- a CSS swap, no script, so
+        the desktop rotation and marquee are untouched.
+      {%- endcomment -%}
+      {%- liquid
+        if mobile_block.type == 'free_shipping'
+          assign mobile_message = free_shipping_short
+        else
+          assign mobile_message = mobile_block.settings.text | escape
+        endif
+      -%}
+      <div class="announcement-bar__mobile">
+        {%- if mobile_block.settings.url != blank -%}
+          <a class="announcement-bar__link announcement-bar__mobile-text" href="{{ mobile_block.settings.url }}">{{ mobile_message }}</a>
+        {%- else -%}
+          <span class="announcement-bar__mobile-text">{{ mobile_message }}</span>
+        {%- endif -%}
+      </div>
+
       {%- if message_count > 1 or section.settings.dismissible -%}
         <div class="announcement-bar__controls">
           {%- if message_count > 1 -%}
@@ -214,63 +254,6 @@
     white-space: nowrap;
     transition: opacity var(--duration-base) var(--ease-editorial);
   }
-  /* ---- Mobile: keep clear of the floating menu / cart buttons ----
-     header.liquid pins two 44px buttons at top-left and top-right with a 12px
-     inset, so at a 375px viewport they occupy x 12-56 and x 319-363. The bar's
-     48px inline padding was not enough: the centred message rendered at
-     x 38-337 and lost 18px under each button -- the leading "C" of
-     "Complimentary" was sliced clean off. 68px clears the button plus a 12px
-     gap. A long message now wraps to two lines at narrow widths, which is the
-     honest result when it genuinely does not fit beside two buttons. */
-  /* B5 update: the reserve moved from the message to the whole inner row, and
-     its size now comes from the header (--mobile-triggers-*). Two reasons:
-     - the end side became 120px once the account entry joined the cart there;
-       68px only "worked" because the dismiss button happened to fill the gap,
-       and a non-dismissible bar ran its text under the account button;
-     - the controls sat OUTSIDE the old reserve, at the very edge, so the
-       dismiss button was hidden under the floating cart and could not be
-       tapped on any phone. Reserving on the row puts the message and its
-       controls together in the free middle. Logical properties, so dir="rtl"
-       mirrors it along with the triggers. */
-  @media (max-width: 768px) {
-    .announcement-bar__inner {
-      padding-inline-start: var(--mobile-triggers-start, 68px);
-      padding-inline-end: var(--mobile-triggers-end, 68px);
-    }
-    /* min-width: 0 -- a flex item will not shrink below its longest word by
-       default, so at 320px the message box pushed the dismiss button 30px into
-       the account trigger's zone. */
-    .announcement-bar__single,
-    .announcement-bar__rotator { padding-inline: var(--space-2); min-width: 0; }
-    /* 36px keeps the tap target well above the 24px minimum while leaving the
-       message a little more of the narrow middle. Scoped through the wrapper:
-       the base 44px rule comes later in this file at equal specificity. */
-    .announcement-bar__controls .announcement-bar__control { width: 36px; }
-    /* Padding alone was not enough. .announcement-bar__item is
-       `white-space: nowrap; flex: 0 0 auto`, so it stayed at its 299px
-       max-content width inside a 239px content box -- and a CENTRED flex item
-       that overflows does so equally on both sides, putting the text back at
-       x 38-337, straight under both buttons. It has to be allowed to shrink
-       AND to wrap. Scoped to the single/rotator layouts: the marquee variant
-       reuses this class and must stay nowrap to scroll. */
-    .announcement-bar__single .announcement-bar__item,
-    .announcement-bar__rotator .announcement-bar__item {
-      white-space: normal;
-      flex: 0 1 auto;
-      min-width: 0;
-      overflow-wrap: break-word;
-      hyphens: auto;
-    }
-    .announcement-bar__slide { white-space: normal; overflow-wrap: break-word; hyphens: auto; }
-  }
-  /* Below 360px the free middle is ~130px: message + dismiss button no longer
-     fit (measured: five lines with words split mid-word). The dismiss button
-     goes; the message stays readable. The pause control stays at every width --
-     moving content must keep a way to stop it (WCAG 2.2.2). */
-  @media (max-width: 359px) {
-    .announcement-bar__controls [data-announcement-close] { display: none; }
-  }
-
   /* Before JS runs (and as the no-JS fallback) show the first message. */
   .announcement-bar__rotator:not(.is-ready) .announcement-bar__slide:first-child,
   .announcement-bar__slide.is-active {
@@ -341,6 +324,46 @@
 
   @media (prefers-reduced-motion: reduce) {
     .announcement-bar__track { animation: none; }
+  }
+
+  /* ---- Mobile: one still message on one line, dismiss on the right edge ----
+     Same breakpoint as the header's floating menu / account / cart buttons.
+     Those buttons used to sit over the bar's corners, so the bar kept its text
+     and controls in the strip between them -- 132px at 320px. The message
+     wrapped to three lines (a 78px bar) and the dismiss button was 36px wide,
+     or hidden below 360px. Now the header moves its buttons below the bar
+     while the bar is on screen (header.liquid), which frees the full width:
+     the message is centred with a 44px inset on both sides and the dismiss
+     button is pinned to the right edge. Nothing moves on a phone, so the pause
+     control is not needed there. */
+  :root { --announcement-bar-height: 44px; }
+  .announcement-bar__mobile { display: none; }
+  @media (max-width: 768px) {
+    .announcement-bar__inner { height: var(--announcement-bar-height); min-height: 0; }
+    .announcement-bar__rotator,
+    .announcement-bar__marquee,
+    .announcement-bar__single { display: none; }
+    .announcement-bar__mobile {
+      display: flex;
+      flex: 1 1 auto;
+      justify-content: center;
+      min-width: 0;
+      padding-inline: 44px;
+    }
+    /* One line whatever the merchant types: a message too long for the width
+       ends in an ellipsis rather than growing the bar. */
+    .announcement-bar__mobile-text {
+      min-width: 0;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .announcement-bar__controls {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-end: 0;
+    }
+    .announcement-bar__controls [data-announcement-toggle] { display: none; }
   }
 {% endstylesheet %}
 

@@ -30,6 +30,7 @@
     "recently_viewed": "Zuletzt angesehen",
     "taxes_included": "Inklusive Steuern",
     "free_shipping_announcement_html": "Kostenloser Versand für Bestellungen ab {{ amount }}",
+    "free_shipping_short_html": "Gratisversand ab {{ amount }}",
     "stats_empty": "Geben Sie einer Kennzahl einen Wert, um sie hier anzuzeigen. Verwenden Sie Ihre eigenen Daten: Keine Kennzahl erscheint, bevor Sie eine eintragen."
   },
   "accessibility": {

@@ -1626,7 +1626,7 @@
         },
         "display_mode": {
           "label": "Messages multiples",
-          "info": "Comment afficher 2 messages ou plus.",
+          "info": "Comment afficher 2 messages ou plus sur les grands écrans. Les mobiles affichent un seul message fixe : celui de la livraison offerte s’il existe, sinon le premier.",
           "options__1": {
             "label": "Rotation (fondu)"
           },

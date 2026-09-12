@@ -1626,7 +1626,7 @@
         },
         "display_mode": {
           "label": "Messaggi multipli",
-          "info": "Come visualizzare 2 o più messaggi.",
+          "info": "Come visualizzare 2 o più messaggi sugli schermi grandi. Gli smartphone mostrano un solo messaggio fisso: quello della spedizione gratuita se presente, altrimenti il primo.",
           "options__1": {
             "label": "Rotazione (dissolvenza)"
           },

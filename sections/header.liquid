@@ -88,16 +88,6 @@
 {%- comment -%} Sticky + full-height column rules live on the section wrapper (the real grid item of .site-layout), using the raw style-tag pattern every other section uses. {%- endcomment -%}
 <style>
   #shopify-section-{{ section.id }} { grid-column: 1; }
-  {%- comment -%}
-    Width of the top-of-screen zones the floating mobile triggers cover, for the
-    announcement bar to keep its message (and its controls) out of: menu on the
-    inline-start side; cart -- plus the account entry when shown -- on the end.
-    12 inset + 44 button + 12 gap = 68; with the account: 12 + 44 + 8 + 44 + 12.
-  {%- endcomment -%}
-  :root {
-    --mobile-triggers-start: 68px;
-    --mobile-triggers-end: {% if shop.customer_accounts_enabled and section.settings.show_account %}120px{% else %}68px{% endif %};
-  }
   @media (min-width: 769px) {
     #shopify-section-{{ section.id }} {
       position: sticky;
@@ -890,6 +880,8 @@
     html.sidebar-animating .sidebar__actions { animation: none; }
   }
 
+  @keyframes sidebar-triggers-clear-bar { to { translate: 0 0; } }
+
   /* ---------- Mobile: off-canvas drawer ---------- */
   @media (max-width: 768px) {
     .sidebar { display: contents; }
@@ -962,6 +954,24 @@
       color: var(--color-text);
       box-shadow: 0 0 0 1px var(--color-border-strong),
                   0 2px 8px color-mix(in srgb, var(--color-text) 12%, transparent);
+    }
+    /* The floating buttons start below the announcement bar, 12px into the
+       first section as they sit with no bar, and ride up with the page until
+       the bar has scrolled away. Over the bar they covered its corners, which
+       left its message 132px at 320px (three lines) and put the dismiss button
+       under the cart. The scroll-linked slide is a scroll-driven animation on
+       translate: no script, no layout. Browsers without scroll timelines keep
+       the buttons one bar-height lower, clear of the bar and still tappable.
+       A dismissed bar is [hidden], so the buttons return to the top. */
+    html:has(.announcement-bar:not([hidden])) :is(.sidebar__toggle, .sidebar__cart-toggle, .sidebar__account-toggle) {
+      translate: 0 var(--announcement-bar-height, 44px);
+    }
+    @supports (animation-timeline: scroll()) {
+      html:has(.announcement-bar:not([hidden])) :is(.sidebar__toggle, .sidebar__cart-toggle, .sidebar__account-toggle) {
+        animation: sidebar-triggers-clear-bar linear both;
+        animation-timeline: scroll(root block);
+        animation-range: 0 var(--announcement-bar-height, 44px);
+      }
     }
     .sidebar__panel .sidebar__account-wrap { display: none; }
     .sidebar__close { display: inline-flex; }

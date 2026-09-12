@@ -30,6 +30,7 @@
     "recently_viewed": "Récemment consultés",
     "taxes_included": "Taxes incluses",
     "free_shipping_announcement_html": "Livraison offerte dès {{ amount }} d’achat",
+    "free_shipping_short_html": "Livraison offerte dès {{ amount }}",
     "stats_empty": "Ajoutez un nombre à un chiffre clé pour l’afficher ici. Utilisez vos propres données : aucun chiffre n’apparaît tant que vous n’en saisissez pas."
   },
   "accessibility": {

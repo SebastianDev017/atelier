@@ -30,6 +30,7 @@
     "recently_viewed": "Recently viewed",
     "taxes_included": "Tax included",
     "free_shipping_announcement_html": "Complimentary shipping on orders over {{ amount }}",
+    "free_shipping_short_html": "Free shipping {{ amount }}+",
     "stats_empty": "Add a number to a figure to show it here. Use your own facts: no figure is shown until you enter one."
   },
   "accessibility": {

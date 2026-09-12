@@ -1626,7 +1626,7 @@
         },
         "display_mode": {
           "label": "Varios mensajes",
-          "info": "Cómo mostrar 2 mensajes o más.",
+          "info": "Cómo mostrar 2 mensajes o más en pantallas grandes. Los móviles muestran un solo mensaje fijo: el de envío gratis si existe; si no, el primero.",
           "options__1": {
             "label": "Rotar (fundido)"
           },

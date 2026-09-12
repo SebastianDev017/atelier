@@ -1626,7 +1626,7 @@
         },
         "display_mode": {
           "label": "Multiple messages",
-          "info": "How to display 2+ messages.",
+          "info": "How to display 2+ messages on larger screens. Phones show one still message: the free shipping message when there is one, otherwise the first.",
           "options__1": {
             "label": "Rotate (fade)"
           },
