@@ -13,17 +13,14 @@
 {%- endcomment -%}
 {%- liquid
   assign scheme = section.settings.color_scheme.id | default: 'background-1'
-  # Reserve one track per filled stat. A fixed repeat(4) left dead columns when
-  # a merchant entered fewer than four, squashing them against one edge.
-  assign stats_count = 0
+  # Only filled figures render; the row lays out whatever count that is.
+  assign filled_stats = 0
   for i in (1..4)
     assign k = 'stat_' | append: i | append: '_number'
     if section.settings[k] != blank
-      assign stats_count = stats_count | plus: 1
+      assign filled_stats = filled_stats | plus: 1
     endif
   endfor
-  assign filled_stats = stats_count
-  assign stats_count = stats_count | at_least: 1
 -%}
 
 {%- if filled_stats == 0 -%}
@@ -34,7 +31,7 @@
   {%- endif -%}
 {%- else -%}
 <style>
-  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; --stats-count: {{ stats_count }}; }
+  #shopify-section-{{ section.id }} { --pt: {{ section.settings.padding_top }}px; --pb: {{ section.settings.padding_bottom }}px; }
 </style>
 
 <div class="section-wrapper color-scheme--{{ scheme }}">
@@ -64,22 +61,41 @@
 {%- endif -%}
 
 {% stylesheet %}
+  /* The row is the section's content box (.section__inner: page width minus the
+     theme gutters), and it sizes the figures too: container-type makes cqi below
+     a share of that box, not of the window. Previously each figure was centred in
+     an equal 1fr column and sized in vw, so the widest figure set the outer
+     margins -- at 1100px "1240+" sat 5px from the left edge and "4.9" 47px+ from
+     the right, and at 900px the first figure outgrew its column. Now the outer
+     figures sit flush on both content edges and the spare width is shared
+     evenly between the figures. */
   .stats-bar {
-    display: grid;
-    grid-template-columns: repeat(var(--stats-count, 4), 1fr);
-    gap: clamp(1.5rem, 4vw, 3rem);
+    container-type: inline-size;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    column-gap: var(--space-8);
     padding-block: var(--pt, 80px) var(--pb, 80px);
     margin: 0;
     text-align: center;
   }
+  .stat { flex: 0 1 auto; min-width: 0; }
+  .stats-bar:has(.stat:only-child) { justify-content: center; }
   .stats-bar__empty { margin: 0; padding-block: var(--space-12); text-align: center; color: var(--color-muted); }
   .stat__value { display: flex; align-items: baseline; justify-content: center; gap: 0.05em; margin: 0; }
+  @media (min-width: 750px) {
+    .stat:first-child:not(:only-child) { text-align: start; }
+    .stat:last-child:not(:only-child) { text-align: end; }
+    .stat:first-child:not(:only-child) .stat__value { justify-content: flex-start; }
+    .stat:last-child:not(:only-child) .stat__value { justify-content: flex-end; }
+  }
   .stat__num, .stat__suffix {
     font-family: var(--font-heading);
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2rem, 7.5cqi, 5rem);
     font-weight: 300;
     line-height: 1;
     letter-spacing: -0.02em;
+    white-space: nowrap;
   }
   .stat__label {
     margin: var(--space-3) 0 0;
@@ -89,8 +105,10 @@
     text-transform: uppercase;
     color: var(--color-muted);
   }
+  /* Phones keep the centred two-by-two grid and its original figure size. */
   @media (max-width: 749px) {
-    .stats-bar { grid-template-columns: repeat(2, 1fr); gap: var(--space-7) var(--space-4); }
+    .stats-bar { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--space-7) var(--space-4); }
+    .stat__num, .stat__suffix { font-size: clamp(2.5rem, 6vw, 5rem); }
   }
 {% endstylesheet %}
 

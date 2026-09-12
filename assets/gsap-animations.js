@@ -143,6 +143,12 @@
     gsap.utils.toArray('[data-counter]').forEach(function (el) {
       var target = parseFloat(el.dataset.counter) || 0;
       var decimals = el.dataset.counter.indexOf('.') > -1 ? 1 : 0;
+      var format = function (v) { return decimals ? v.toFixed(decimals) : Math.round(v).toLocaleString(); };
+      /* The stats bar sizes each figure to its content, so a figure counting up
+         from 0 would widen as it goes and nudge the figures beside it. Reserve
+         the finished figure's width first -- in em, so it scales with the font. */
+      el.textContent = format(target);
+      el.style.minWidth = (el.getBoundingClientRect().width / parseFloat(getComputedStyle(el).fontSize)) + 'em';
       var obj = { val: 0 };
       gsap.to(obj, {
         val: target,
@@ -150,7 +156,7 @@
         ease: 'power2.out',
         scrollTrigger: { trigger: el, start: 'top 85%' },
         onUpdate: function () {
-          el.textContent = decimals ? obj.val.toFixed(decimals) : Math.round(obj.val).toLocaleString();
+          el.textContent = format(obj.val);
         }
       });
     });
