@@ -46,8 +46,8 @@
         "direction": "left",
         "size": "sm",
         "color_scheme": "linen",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "featured": {
@@ -68,8 +68,8 @@
         "view_all_label": "View all products",
         "view_all_style": "link",
         "color_scheme": "cream",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "editorial": {
@@ -90,8 +90,8 @@
         "stat_3_number": "4.9",
         "stat_3_label": "Rating",
         "color_scheme": "cream",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "brand_statement": {
@@ -106,6 +106,15 @@
     },
     "featured_product": {
       "type": "featured-product",
+      "blocks": {
+        "shop_shop_login_button_app_block_gVijV4": {
+          "type": "shopify://apps/shop/blocks/shop-login-button-app-block/7cab7c4a-1dfc-4b7e-8e53-31f104f2fa4e",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "shop_shop_login_button_app_block_gVijV4"
+      ],
       "settings": {
         "product": "cloud-linen-sofa-3-seater",
         "heading": "In focus",
@@ -114,8 +123,8 @@
         "show_bundle": true,
         "bundle_heading": "Complete your purchase",
         "color_scheme": "cream",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "horizontal": {
@@ -126,8 +135,8 @@
         "products_count": 8,
         "card_aspect": "portrait",
         "color_scheme": "cream",
-        "padding_top": 96,
-        "padding_bottom": 96
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "stats": {
@@ -146,8 +155,8 @@
         "stat_4_suffix": "",
         "stat_4_label": "Average rating",
         "color_scheme": "parchment",
-        "padding_top": 80,
-        "padding_bottom": 80
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "featured_2": {
@@ -168,8 +177,8 @@
         "view_all_label": "View all products",
         "view_all_style": "link",
         "color_scheme": "white",
-        "padding_top": 120,
-        "padding_bottom": 120
+        "padding_top": 56,
+        "padding_bottom": 56
       }
     },
     "newsletter": {

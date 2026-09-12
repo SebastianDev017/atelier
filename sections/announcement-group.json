@@ -10,33 +10,6 @@
 {
   "type": "custom.announcement",
   "name": "Announcement",
-  "sections": {
-    "announcement_bar_BpLDLX": {
-      "type": "announcement-bar",
-      "blocks": {
-        "free_shipping_b6AjcF": {
-          "type": "free_shipping",
-          "settings": {
-            "url": ""
-          }
-        }
-      },
-      "block_order": [
-        "free_shipping_b6AjcF"
-      ],
-      "name": "t:sections.announcement-bar.presets.name",
-      "settings": {
-        "show_announcement": true,
-        "dismissible": true,
-        "bar_color": "#2C1810",
-        "bar_text_color": "#FAF7F2",
-        "display_mode": "rotate",
-        "rotate_interval": 5,
-        "marquee_speed": 40
-      }
-    }
-  },
-  "order": [
-    "announcement_bar_BpLDLX"
-  ]
+  "sections": {},
+  "order": []
 }
