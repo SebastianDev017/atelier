@@ -32,7 +32,7 @@
         "cta_secondary_url": "/pages/about-us",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -44,7 +44,7 @@
         "speed": 30,
         "direction": "left",
         "size": "sm",
-        "color_scheme": "linen",
+        "color_scheme": "background-3",
         "padding_top": 48,
         "padding_bottom": 48
       }
@@ -66,7 +66,7 @@
         "show_view_all": true,
         "view_all_label": "View all products",
         "view_all_style": "link",
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -85,7 +85,7 @@
         "stat_1_label": "Objects",
         "stat_2_label": "Makers",
         "stat_3_label": "Rating",
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -97,7 +97,7 @@
         "subheading": "Made in small batches, designed to last a lifetime.",
         "heading_size_vw": 6,
         "heading_size_mobile": 13,
-        "color_scheme": "invert"
+        "color_scheme": "inverse"
       }
     },
     "featured_product": {
@@ -109,7 +109,7 @@
         "show_trust_badges": true,
         "show_bundle": true,
         "bundle_heading": "Complete your purchase",
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 96,
         "padding_bottom": 96
       }
@@ -121,7 +121,7 @@
         "collection": "studio-objects",
         "products_count": 8,
         "card_aspect": "portrait",
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 96,
         "padding_bottom": 96
       }
@@ -137,7 +137,7 @@
         "stat_3_label": "Recycled or natural",
         "stat_4_suffix": "",
         "stat_4_label": "Average rating",
-        "color_scheme": "parchment",
+        "color_scheme": "background-2",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -159,7 +159,7 @@
         "show_view_all": true,
         "view_all_label": "View all products",
         "view_all_style": "link",
-        "color_scheme": "white",
+        "color_scheme": "surface",
         "padding_top": 120,
         "padding_bottom": 120
       }
@@ -173,7 +173,7 @@
         "subtext": "<p>New arrivals, stories, and the occasional offer.</p>",
         "input_placeholder": "Email address",
         "button_label": "Subscribe",
-        "color_scheme": "invert",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }

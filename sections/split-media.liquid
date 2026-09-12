@@ -5,7 +5,7 @@
   BOTH panels so the media panel (which stacks first on mobile) also gets it.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
 
   assign ratio_class = 'media--portrait'
   case section.settings.image_ratio
@@ -248,19 +248,7 @@
       ],
       "default": "outline"
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.split-media.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.split-media.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.split-media.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.split-media.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.split-media.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.split-media.settings.color_scheme.options__5.label" }
-      ],
-      "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.split-media.settings.color_scheme.label", "default": "background-1"},
     {
       "type": "range",
       "id": "padding_top",

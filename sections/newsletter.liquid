@@ -5,7 +5,7 @@
   all component CSS with no Liquid, and data-animate drives global reveal.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'invert'
+  assign scheme = section.settings.color_scheme.id | default: 'inverse'
   assign placeholder = section.settings.input_placeholder | escape
   assign button_label = section.settings.button_label | escape
   assign heading_tag = section.settings.heading_tag | default: 'h2'
@@ -171,19 +171,7 @@
       "label": "t:sections.newsletter.settings.button_label.label",
       "default": "Subscribe"
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.newsletter.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.newsletter.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.newsletter.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.newsletter.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.newsletter.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.newsletter.settings.color_scheme.options__5.label" }
-      ],
-      "default": "invert"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.newsletter.settings.color_scheme.label", "default": "inverse"},
     {
       "type": "range",
       "id": "padding_top",

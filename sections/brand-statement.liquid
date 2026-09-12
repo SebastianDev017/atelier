@@ -5,7 +5,7 @@
   data-no-split keeps the generic SplitText (h2 target) off this heading.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign heading = section.settings.heading | default: 'Considered objects for the modern home'
 -%}
 
@@ -71,16 +71,7 @@
     { "type": "text", "id": "subheading", "label": "t:sections.brand-statement.settings.subheading.label", "default": "Made in small batches, designed to last a lifetime." },
     { "type": "range", "id": "heading_size_vw", "label": "t:sections.brand-statement.settings.heading_size_vw.label", "min": 5, "max": 16, "step": 1, "default": 10, "unit": "vw" },
     { "type": "range", "id": "heading_size_mobile", "label": "t:sections.brand-statement.settings.heading_size_mobile.label", "min": 8, "max": 20, "step": 1, "default": 13, "unit": "vw" },
-    {
-      "type": "select", "id": "color_scheme", "label": "t:sections.brand-statement.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.brand-statement.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.brand-statement.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.brand-statement.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.brand-statement.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.brand-statement.settings.color_scheme.options__5.label" }
-      ], "default": "invert"
-    }
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.brand-statement.settings.color_scheme.label", "default": "inverse"}
   ],
   "presets": [ { "name": "t:sections.brand-statement.presets.name" } ]
 }

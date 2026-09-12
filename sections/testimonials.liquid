@@ -6,7 +6,7 @@
   scroll reveal via data-animate, schema ends with a "presets" array.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign autoplay = section.settings.autoplay
   assign show_images = section.settings.show_images
   assign block_count = section.blocks.size
@@ -539,19 +539,7 @@
       "info": "t:sections.testimonials.settings.pause_label.info",
       "default": "Pause testimonials"
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.testimonials.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.testimonials.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.testimonials.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.testimonials.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.testimonials.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.testimonials.settings.color_scheme.options__5.label" }
-      ],
-      "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.testimonials.settings.color_scheme.label", "default": "background-1"},
     {
       "type": "range",
       "id": "padding_top",

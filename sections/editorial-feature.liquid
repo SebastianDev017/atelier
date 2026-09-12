@@ -4,7 +4,7 @@
   3-stat row. image_position reverses the columns. Mobile: image first, stacked.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign pos = section.settings.image_position | default: 'left'
   assign ef_alt = section.settings.image.alt | escape
   assign has_cta = false
@@ -152,16 +152,7 @@
     { "type": "text", "id": "stat_3_number", "label": "t:sections.editorial-feature.settings.stat_3_number.label" },
     { "type": "text", "id": "stat_3_label", "label": "t:sections.editorial-feature.settings.stat_3_label.label", "default": "Rating" },
     { "type": "header", "content": "t:sections.editorial-feature.settings.header__2.content" },
-    {
-      "type": "select", "id": "color_scheme", "label": "t:sections.editorial-feature.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.editorial-feature.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.editorial-feature.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.editorial-feature.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.editorial-feature.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.editorial-feature.settings.color_scheme.options__5.label" }
-      ], "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.editorial-feature.settings.color_scheme.label", "default": "background-1"},
     { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.editorial-feature.settings.padding_top.label", "default": 120 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.editorial-feature.settings.padding_bottom.label", "default": 120 }
   ],

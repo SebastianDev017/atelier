@@ -5,7 +5,7 @@
   falls back to a simple centered text banner painted by the color scheme.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
 
   assign banner_title = collection.title | default: shop.name
 
@@ -49,7 +49,7 @@
 </style>
 
 {%- if has_image -%}
-  <div class="collection-banner collection-banner--media color-scheme--invert {{ align_class }}">
+  <div class="collection-banner collection-banner--media color-scheme--inverse {{ align_class }}">
     <div class="collection-banner__media" data-animate-scale>
       {%- assign banner_focal = collection.image.presentation.focal_point | default: '50% 50%' -%}
       {%- assign banner_focal_style = 'object-position: ' | append: banner_focal | append: ';' -%}
@@ -255,20 +255,7 @@
       ],
       "default": "center"
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.collection-banner.settings.color_scheme.label",
-      "info": "t:sections.collection-banner.settings.color_scheme.info",
-      "options": [
-        { "value": "cream", "label": "t:sections.collection-banner.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.collection-banner.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.collection-banner.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.collection-banner.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.collection-banner.settings.color_scheme.options__5.label" }
-      ],
-      "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.collection-banner.settings.color_scheme.label", "default": "background-1", "info": "t:sections.collection-banner.settings.color_scheme.info"},
     {
       "type": "range",
       "id": "padding_top",

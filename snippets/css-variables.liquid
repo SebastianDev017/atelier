@@ -53,20 +53,34 @@
     {% endif %}
 
     {%- comment -%}
-      Color settings return a Color drop that the `default` filter does NOT
-      treat as blank, so `| default` leaves the variable empty when the setting
-      is unset (a known Shopify GitHub-sync quirk). An explicit blank check
-      guarantees a concrete hex is always emitted, so these never resolve nil.
+      Page-level palette: the Background scheme (id background-1, else the
+      first scheme). Everything outside a section -- the body, drawers,
+      dialogs, the account sheet -- reads these, so it matches the scheme most
+      sections use. Each value keeps an explicit blank check: a Color drop that
+      is unset is not treated as blank by `| default`.
     {%- endcomment -%}
-    --color-background: {% if settings.background_color != blank %}{{ settings.background_color }}{% else %}#FAF7F2{% endif %};
-    --color-foreground: {% if settings.text_color != blank %}{{ settings.text_color }}{% else %}#2C1810{% endif %};
-    --color-accent: {% if settings.accent_color != blank %}{{ settings.accent_color }}{% else %}#766356{% endif %};
-    --color-heading: {% if settings.color_text_heading != blank %}{{ settings.color_text_heading }}{% else %}#2C1810{% endif %};
-    --color-body: {% if settings.color_text_body != blank %}{{ settings.color_text_body }}{% else %}#5C3D2E{% endif %};
-    --color-muted: {% if settings.color_text_muted != blank %}{{ settings.color_text_muted }}{% else %}#766356{% endif %};
-    {% if settings.border_color != blank %}--color-border-setting: {{ settings.border_color }};{% endif %}
-    {% if settings.button_color != blank %}--color-button: {{ settings.button_color }};{% endif %}
-    {% if settings.button_text_color != blank %}--color-button-text: {{ settings.button_text_color }};{% endif %}
+    {%- liquid
+      assign page_scheme = null
+      for scheme in settings.color_schemes
+        if forloop.first
+          assign page_scheme = scheme
+        endif
+        if scheme.id == 'background-1'
+          assign page_scheme = scheme
+          break
+        endif
+      endfor
+      assign ps = page_scheme.settings
+    -%}
+    --color-background: {% if ps.background != blank %}{{ ps.background }}{% else %}#FAF7F2{% endif %};
+    --color-foreground: {% if ps.text != blank %}{{ ps.text }}{% else %}#2C1810{% endif %};
+    --color-accent: {% if ps.accent != blank %}{{ ps.accent }}{% else %}#766356{% endif %};
+    --color-heading: {% if ps.text != blank %}{{ ps.text }}{% else %}#2C1810{% endif %};
+    --color-body: {% if ps.body != blank %}{{ ps.body }}{% else %}#5C3D2E{% endif %};
+    --color-muted: {% if ps.muted != blank %}{{ ps.muted }}{% else %}#766356{% endif %};
+    {% if ps.border != blank %}--color-border-setting: {{ ps.border }};{% endif %}
+    {% if ps.button != blank %}--color-button: {{ ps.button }};{% endif %}
+    {% if ps.button_label != blank %}--color-button-text: {{ ps.button_label }};{% endif %}
 
     --page-width: {{ settings.page_width }}px;
     --page-margin: {{ settings.page_margin }}px;
@@ -97,9 +111,9 @@
       --heading-letter-spacing: {{ settings.letter_spacing_headings | times: 0.01 }}em;
     {%- endif -%}
 
-    --color-link: {% if settings.color_link != blank %}{{ settings.color_link }}{% else %}#2C1810{% endif %};
-    /* Fallback darkened from #A0826D (3.33:1 on cream) to meet 4.5:1 body-text contrast. */
-    --color-link-hover: {% if settings.color_link_hover != blank %}{{ settings.color_link_hover }}{% else %}#876B58{% endif %};
+    {%- comment -%} Links are the scheme's text; the hover fades toward the ground (same rule as every scheme below). {%- endcomment -%}
+    --color-link: var(--color-foreground);
+    --color-link-hover: color-mix(in srgb, var(--color-foreground) 70%, var(--color-background));
 
     --animation-speed: {{ speed_mult }};
     /* Scale the motion tokens by the chosen speed. --animation-speed alone was
@@ -121,4 +135,63 @@
     --image-radius: {{ settings.image_border_radius | default: 0 }}px;
     --image-border: {% if settings.image_border_enable %}{{ settings.image_border_width | default: 1 }}px solid {% if settings.image_border_color != blank %}{{ settings.image_border_color }}{% else %}#E5DDD0{% endif %}{% else %}none{% endif %};
   }
+
+  {%- comment -%}
+    Color schemes (settings_schema.json > Colors, a color_scheme_group). Every
+    section's color_scheme setting is a scheme id, rendered as
+    .color-scheme--<id>; each preset supplies its own values for the same six
+    ids (background-1, background-2, background-3, surface, inverse,
+    accent-1), so "Change theme style" swaps real colours, not labels.
+
+    Tokens a scheme does not store are derived here, from its own colours,
+    so they always track the scheme they sit in -- --color-border-strong,
+    --color-subtle and --color-media used to be computed once on :root and
+    stayed espresso-based inside the dark scheme. The sale red and the link
+    hover use Liquid's color_brightness to stay legible on any ground:
+    dark grounds mix the red toward the light text, mid-tone grounds (Maison's
+    gold) fall back to the text colour itself, and light grounds keep the red.
+  {%- endcomment -%}
+  {%- for scheme in settings.color_schemes -%}
+    {%- liquid
+      assign s = scheme.settings
+      assign ground = s.background | color_brightness
+      if ground < 110
+        assign sale = '#B23A2E' | color_mix: s.text, 70
+        assign link_hover = s.text | color_mix: s.background, 70
+      elsif ground < 190
+        assign sale = s.text
+        assign link_hover = s.text
+      elsif ground < 225
+        assign sale = '#B23A2E' | color_mix: s.text, 85
+        assign link_hover = s.text | color_mix: s.background, 70
+      else
+        assign sale = '#B23A2E'
+        assign link_hover = s.text | color_mix: s.background, 70
+      endif
+    -%}
+    .color-scheme--{{ scheme.id }} {
+      --color-bg: {{ s.background }};
+      --color-text: {{ s.text }};
+      --color-heading: {{ s.text }};
+      --color-body: {{ s.body }};
+      --color-muted: {{ s.muted }};
+      --color-accent-local: {{ s.accent }};
+      --color-border: {{ s.border }};
+      --color-border-strong: {{ s.text | color_mix: s.background, 50 }};
+      --color-subtle: {{ s.text | color_mix: s.background, 6 }};
+      --color-media: {{ s.text | color_mix: s.background, 5 }};
+      --color-button: {{ s.button }};
+      --color-button-text: {{ s.button_label }};
+      --color-link: {{ s.text }};
+      --color-link-hover: {{ link_hover }};
+      --color-sale: {{ sale }};
+      background-color: var(--color-bg);
+      color: var(--color-text);
+    }
+    {%- if ground < 110 %}
+      {%- comment -%} Dark grounds: badges invert (was .color-scheme--invert only). {%- endcomment %}
+      .color-scheme--{{ scheme.id }} .badge--sale { background-color: var(--color-text); color: var(--color-bg); }
+      .color-scheme--{{ scheme.id }} .badge--stock { background-color: transparent; color: var(--color-text); border-color: var(--color-text); }
+    {%- endif %}
+  {%- endfor %}
 {% endstyle %}

@@ -28,7 +28,7 @@
       "settings": {
         "content_width": "narrow",
         "text_alignment": "center",
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 80,
         "padding_bottom": 80
       }
@@ -36,7 +36,7 @@
     "main": {
       "type": "main-cart",
       "settings": {
-        "color_scheme": "cream",
+        "color_scheme": "background-1",
         "padding_top": 64,
         "padding_bottom": 96
       }

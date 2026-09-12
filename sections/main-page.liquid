@@ -6,7 +6,7 @@
   component CSS with no Liquid, and data-animate drives the global scroll reveal.
 {%- endcomment -%}
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign width_class = ''
   if section.settings.narrow_content
     assign width_class = 'page-width--narrow'
@@ -55,19 +55,7 @@
       "info": "t:sections.main-page.settings.narrow_content.info",
       "default": true
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.main-page.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.main-page.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.main-page.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.main-page.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.main-page.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.main-page.settings.color_scheme.options__5.label" }
-      ],
-      "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.main-page.settings.color_scheme.label", "default": "background-1"},
     {
       "type": "range",
       "id": "padding_top",

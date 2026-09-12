@@ -1,5 +1,5 @@
 {%- liquid
-  assign scheme = section.settings.color_scheme | default: 'cream'
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign columns = section.settings.columns_desktop | default: 3
   assign desktop_vw = 100 | divided_by: columns
   assign image_sizes = '(min-width: 990px) ' | append: desktop_vw | append: 'vw, (min-width: 750px) 33vw, 50vw'
@@ -118,19 +118,7 @@
       "label": "t:sections.main-list-collections.settings.show_product_count.label",
       "default": true
     },
-    {
-      "type": "select",
-      "id": "color_scheme",
-      "label": "t:sections.main-list-collections.settings.color_scheme.label",
-      "options": [
-        { "value": "cream", "label": "t:sections.main-list-collections.settings.color_scheme.options__1.label" },
-        { "value": "parchment", "label": "t:sections.main-list-collections.settings.color_scheme.options__2.label" },
-        { "value": "linen", "label": "t:sections.main-list-collections.settings.color_scheme.options__3.label" },
-        { "value": "white", "label": "t:sections.main-list-collections.settings.color_scheme.options__4.label" },
-        { "value": "invert", "label": "t:sections.main-list-collections.settings.color_scheme.options__5.label" }
-      ],
-      "default": "cream"
-    },
+    {"type": "color_scheme", "id": "color_scheme", "label": "t:sections.main-list-collections.settings.color_scheme.label", "default": "background-1"},
     { "type": "range", "id": "padding_top", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-list-collections.settings.padding_top.label", "default": 64 },
     { "type": "range", "id": "padding_bottom", "min": 0, "max": 160, "step": 4, "unit": "px", "label": "t:sections.main-list-collections.settings.padding_bottom.label", "default": 96 }
   ]

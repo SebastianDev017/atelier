@@ -13,9 +13,10 @@
   --color-white: #ffffff;
   --color-black: #0a0705;
 
-  /* Color model — brand palette comes from css-variables.liquid:
-     --color-background, --color-foreground, --color-accent.
-     Scheme classes set --color-bg / --color-text / --color-accent-local.
+  /* Color model — the page palette comes from css-variables.liquid
+     (--color-background, --color-foreground, --color-accent: the Background
+     color scheme). Scheme classes, generated there from the color_scheme_group,
+     set --color-bg / --color-text / --color-accent-local and the rest.
      Border + muted derive from --color-text lazily, so they adapt
      to whichever scheme is in scope at the point of use. */
   --color-bg: var(--color-background, #FAF7F2);
@@ -426,83 +427,13 @@ h1, h2, h3, h4, h5, h6 {
 }
 .section-header--center { align-items: center; text-align: center; margin-inline: auto; }
 
-/* ---------- Color schemes ---------- */
-.color-scheme--cream,
-.color-scheme--parchment,
-.color-scheme--linen,
-.color-scheme--white,
-.color-scheme--invert {
-  background-color: var(--color-bg);
-  color: var(--color-text);
-}
-/* Every scheme re-derives --color-bg/--color-text from the brand setting
-   vars. Those settings resolve to nil through Shopify's GitHub sync, so each
-   value carries a hardcoded fallback — without it the scheme paints
-   transparent (e.g. the mobile drawer showed through, invert sections lost
-   their dark background). */
-.color-scheme--cream { --color-bg: var(--color-background, #FAF7F2); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
-.color-scheme--parchment { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 93%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
-.color-scheme--linen { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 86%, var(--color-foreground, #2C1810)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356);
-  /* The darker ground drops the shared muted + sale tokens below 4.5:1, so re-derive both. */
-  --color-muted: color-mix(in srgb, var(--color-text) 70%, var(--color-bg));
-  --color-sale: color-mix(in srgb, #B23A2E 85%, var(--color-text)); }
-.color-scheme--white { --color-bg: color-mix(in srgb, var(--color-background, #FAF7F2) 30%, var(--color-white)); --color-text: var(--color-foreground, #2C1810); --color-accent-local: var(--color-accent, #766356); }
-.color-scheme--invert {
-  --color-bg: var(--color-foreground, #2C1810);
-  --color-text: var(--color-background, #FAF7F2);
-  --color-accent-local: var(--color-background, #FAF7F2);
-  /* Re-derive border + reset buttons so fixed light/dark tokens stay legible on the inverted scheme */
-  --color-border: color-mix(in srgb, var(--color-text) 22%, transparent);
-  --color-button: var(--color-background);
-  --color-button-text: var(--color-foreground);
-  /* Flip the customizable type colors so headings/body/muted stay legible on dark */
-  --color-heading: var(--color-text);
-  --color-body: var(--color-text);
-  --color-muted: color-mix(in srgb, var(--color-text) 70%, transparent);
-  /* Re-derive link colors to the light text so prose/rte links stay legible on dark */
-  --color-link: var(--color-text);
-  --color-link-hover: color-mix(in srgb, var(--color-text) 70%, transparent);
-  /* --color-sale is a fixed light-scheme red and measured 2.84:1 on the inverted
-     ground. Mixed toward --color-text (which is the light colour on this scheme)
-     so it tracks the merchant's palette instead of assuming the cream default. */
-  --color-sale: color-mix(in srgb, #B23A2E 70%, var(--color-text));
-}
-
-/* Fixed brand-style schemes — apply a complete Studio or Maison palette to a
-   single section regardless of the active theme style. Self-contained (own
-   background-color/color, no dependence on the --color-background setting var)
-   and carry matching accent/border/button tokens like every scheme above. */
-.color-scheme--studio {
-  background-color: #F8F8F6;
-  color: #111111;
-  --color-bg: #F8F8F6;
-  --color-text: #111111;
-  --color-accent-local: #666660;
-  --color-border: #DDDDD8;
-  --color-button: #111111;
-  --color-button-text: #F8F8F6;
-  --color-heading: #111111;
-  --color-body: #333330;
-  /* #888884 measured 3.35:1 on #F8F8F6; muted styles 11-13px body text, so 4.5:1 applies. */
-  --color-muted: #72726F;
-}
-.color-scheme--maison {
-  background-color: #F2EDE6;
-  color: #1A1208;
-  --color-bg: #F2EDE6;
-  --color-text: #1A1208;
-  /* #B89A6E measured 2.29:1 on #F2EDE6 and is used as link/hover text and as
-     a button ground with a cream label. Deepened along the same hue to 4.73:1
-     both ways -- still the Maison gold, now legible. */
-  --color-accent-local: #7F6534;
-  --color-border: #D8CFBF;
-  --color-button: #1A1208;
-  --color-button-text: #F2EDE6;
-  --color-heading: #1A1208;
-  --color-body: #3D3020;
-  /* #8C7355 measured 3.84:1 on #F2EDE6. */
-  --color-muted: #7E684C;
-}
+/* ---------- Color schemes ----------
+   Generated, not written here: snippets/css-variables.liquid emits one
+   .color-scheme--<id> rule per scheme in the theme's color_scheme_group
+   (settings_schema.json > Colors), from the active preset's values. The
+   hand-written cream / parchment / linen / white / invert classes and the
+   unused fixed studio / maison palettes that lived here are gone -- their
+   colours are now the presets' own scheme values. */
 
 /* Custom-element section wrappers default to display:inline, which ignores
    block padding and paints the color-scheme background only behind inline
@@ -877,16 +808,7 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
   color: var(--color-bg, #FAF7F2);
 }
 
-/* On dark color scheme sections, invert badges */
-.color-scheme--invert .badge--sale {
-  background-color: var(--color-bg, #FAF7F2);
-  color: var(--color-text, #2C1810);
-}
-.color-scheme--invert .badge--stock {
-  background-color: transparent;
-  color: var(--color-bg, #FAF7F2);
-  border-color: var(--color-bg, #FAF7F2);
-}
+/* Dark-ground badge inversion is generated per scheme in css-variables.liquid. */
 
 /* ---------- Product grid ---------- */
 .product-grid {
