@@ -11,8 +11,9 @@
   "current": {
     "heading_font": "libre_baskerville_n4",
     "body_font": "dm_sans_n4",
-    "heading_scale": 120,
-    "body_scale": 100,
+    "heading_scale": 90,
+    "body_scale": 80,
+    "h1_scale": 90,
     "uppercase_headings": true,
     "uppercase_nav": true,
     "uppercase_buttons": true,
