@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "shopify://shop_images/open-plan-mid-century-modern-apartment.jpg",
+        "image": "shopify://shop_images/living-room-bathed-in-natural-light-through-a-window.jpg",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -75,7 +75,7 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
-        "image": "shopify://shop_images/leather-seat-stool.jpg",
+        "image": "shopify://shop_images/office-computer-screen.jpg",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",

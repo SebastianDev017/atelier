@@ -9,20 +9,19 @@
  */
 {
   "current": {
-    "heading_font": "libre_baskerville_n4",
-    "body_font": "dm_sans_n4",
-    "heading_scale": 90,
-    "body_scale": 80,
-    "h1_scale": 90,
-    "uppercase_headings": true,
+    "heading_font": "ebgaramond_n4",
+    "body_font": "lora_n4",
+    "heading_scale": 100,
+    "body_scale": 100,
+    "uppercase_headings": false,
     "uppercase_nav": true,
     "uppercase_buttons": true,
-    "button_style": "filled",
-    "page_width": 1320,
+    "button_style": "outlined",
+    "page_width": 1200,
     "page_margin": 40,
     "section_spacing": 140,
     "header_height": 64,
-    "sidebar_width": 180,
+    "sidebar_width": 220,
     "input_corner_radius": 0,
     "card_show_secondary_image": true,
     "card_show_vendor": false,
@@ -56,74 +55,74 @@
     "color_schemes": {
       "background-1": {
         "settings": {
-          "background": "#f8f8f6",
-          "text": "#111111",
-          "body": "#333330",
-          "muted": "#72726f",
-          "accent": "#111111",
-          "border": "#ddddd8",
-          "button": "#111111",
-          "button_label": "#f8f8f6"
+          "background": "#faf7f2",
+          "text": "#2c1810",
+          "body": "#5c3d2e",
+          "muted": "#766356",
+          "accent": "#a0826d",
+          "border": "#e5ddd0",
+          "button": "#2c1810",
+          "button_label": "#faf7f2"
         }
       },
       "background-2": {
         "settings": {
-          "background": "#e8e8e6",
-          "text": "#111111",
-          "body": "#333330",
-          "muted": "#525251",
-          "accent": "#111111",
-          "border": "#ddddd8",
-          "button": "#111111",
-          "button_label": "#f8f8f6"
+          "background": "#ece7e2",
+          "text": "#2c1810",
+          "body": "#5c3d2e",
+          "muted": "#766356",
+          "accent": "#a0826d",
+          "border": "#e5ddd0",
+          "button": "#2c1810",
+          "button_label": "#faf7f2"
         }
       },
       "background-3": {
         "settings": {
-          "background": "#d8d8d6",
-          "text": "#111111",
-          "body": "#333330",
-          "muted": "#4d4d4c",
-          "accent": "#111111",
-          "border": "#ddddd8",
-          "button": "#111111",
-          "button_label": "#f8f8f6"
+          "background": "#ddd8d2",
+          "text": "#2c1810",
+          "body": "#5c3d2e",
+          "muted": "#61524a",
+          "accent": "#a0826d",
+          "border": "#e5ddd0",
+          "button": "#2c1810",
+          "button_label": "#faf7f2"
         }
       },
       "surface": {
         "settings": {
-          "background": "#fdfdfc",
-          "text": "#111111",
-          "body": "#333330",
-          "muted": "#72726f",
-          "accent": "#111111",
-          "border": "#ddddd8",
-          "button": "#111111",
-          "button_label": "#f8f8f6"
+          "background": "#fefdfb",
+          "text": "#2c1810",
+          "body": "#5c3d2e",
+          "muted": "#766356",
+          "accent": "#a0826d",
+          "border": "#e5ddd0",
+          "button": "#2c1810",
+          "button_label": "#faf7f2"
         }
       },
       "inverse": {
         "settings": {
-          "background": "#111111",
-          "text": "#f8f8f6",
-          "body": "#f8f8f6",
-          "muted": "#b3b3b1",
-          "accent": "#f8f8f6",
-          "border": "#444443",
-          "button": "#f8f8f6",
-          "button_label": "#111111"
+          "background": "#2c1810",
+          "text": "#faf7f2",
+          "body": "#faf7f2",
+          "muted": "#bcb4ae",
+          "accent": "#faf7f2",
+          "border": "#594942",
+          "button": "#faf7f2",
+          "button_label": "#2c1810"
         }
       },
       "accent-1": {
         "settings": {
-          "background": "#111111",
-          "text": "#f8f8f6",
-          "body": "#f8f8f6",
-          "muted": "#b3b3b1",
-          "accent": "#f8f8f6",
-          "border": "#444443",
-          "button": "#f8f8f6",
-          "button_label": "#111111"
+          "background": "#2c1810",
+          "text": "#faf7f2",
+          "body": "#faf7f2",
+          "muted": "#bcb4ae",
+          "accent": "#a0826d",
+          "border": "#594942",
+          "button": "#a0826d",
+          "button_label": "#2c1810"
         }
       }
     }
