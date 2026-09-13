@@ -75,7 +75,6 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
-        "image": "shopify://shop_images/teal-and-grey-washroom.jpg",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",
