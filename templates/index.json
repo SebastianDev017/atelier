@@ -75,6 +75,7 @@
     "editorial": {
       "type": "editorial-feature",
       "settings": {
+        "image": "shopify://shop_images/leather-seat-stool.jpg",
         "image_position": "left",
         "eyebrow": "Our craft",
         "heading": "Made in small batches, designed to last",
