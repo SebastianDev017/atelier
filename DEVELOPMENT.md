@@ -4,8 +4,8 @@ Internal reference for building/maintaining the **Contour** Shopify theme.
 Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`); kept in git for the team.
 
 - **Repo:** `github.com/SebastianDev017/atelier` (private), branch `main`
-- **Demo stores (one per preset, password `1234`):** `contour-ho5kbo9x` → theme `contour/main` #159799967844 · `annex-r0zzjfjf` → `annex/main` #192368509220 · `maison-10oym9w0` → `maison/main` #189394649393. `listings/<preset>/listing.json` points at each. All three themes are currently connected to branch `main`, so they share ONE `config/settings_data.json` (`current`) and one set of templates: an editor save in any store rewrites them for all three.
-- **Deploy:** every `git push origin main` syncs into every theme connected to `main` via the GitHub→Shopify integration
+- **Demo stores (one per preset, password `1234`), one git branch each:** `contour-ho5kbo9x` → branch `main` (theme `contour/main` #159799967844) · `annex-r0zzjfjf` → branch `annex` · `maison-10oym9w0` → branch `maison`. `listings/<preset>/listing.json` points at each store. A branch carries the full codebase plus THAT store's own `config/settings_data.json` `current` and its own `shopify://shop_images/...` picks (homepage hero + editorial, About studio image). Until 2026-09-13 all three themes were connected to `main`, so their editor saves overwrote each other's theme style in one shared `current`; Annex/Maison are reconnected to their branches in Shopify Admin (theme IDs change on reconnect).
+- **Deploy:** `git push origin main` syncs Contour (the theme connected to `main`) via the GitHub→Shopify integration. Annex and Maison get a release only through the merge procedure in §4 “Updating Annex / Maison”.
 - **Base:** Shopify **skeleton-theme** (OS 2.0 — the only Theme-Store-approved base; never Dawn/Horizon)
 - **Presets:** `Contour` (default) · `Annex` · `Maison`
 - **Validation gate:** `shopify theme check` = 0 offenses (extends `theme-check:recommended`)
@@ -60,6 +60,20 @@ Connected but NOT used for Contour: Figma, Canva, Gamma, Gmail, Google Calendar,
 - **Always `git fetch` + `git rebase origin/main` before pushing.** Shopify writes back "Update from Shopify" commits that can **clobber** developer-owned files (`settings_schema.json` once reset to the Skeleton base; `settings_data.json`/templates get normalized + a `/*…auto-generated…*/` JSONC header). After each rebase, check `settings_schema` `theme_name` is "Contour", not "Skeleton".
 - Sync is **slow + uneven** (per-page, ~2–30+ min). A "nudge" commit (touch a stalled file) re-triggers it. Verify a file actually went live by **fetching the served asset URL and grepping its text** — not by reading `document.styleSheets`. To see the home fresh, load `/?preview_theme_id=<id>` (bypasses the full-page cache).
 - Direct `shopify theme push --allow-live` is blocked by the permission classifier — use the git→sync path.
+
+### Updating Annex / Maison (per-store branches)
+Each store's branch owns its **content**: `config/settings_data.json` (`current` = that store's theme style, threshold, logo) and every `templates/*.json` / `sections/*.json` (section settings, and the `shopify://shop_images/...` picks, which only exist in the store that picked them). `main` owns the **code**. A naive merge moves main's content onto the other stores — Contour's theme style and image picks, which render as missing images elsewhere — and it does so with **no conflict** whenever only `main` changed a file, so "resolve the conflicts" is not enough on its own.
+
+To push a code update to Annex or Maison after a Contour release:
+1. Check out the target branch and bring in that store's latest editor saves first:
+   `git fetch origin && git checkout annex && git merge --ff-only origin/annex`
+2. Merge main without committing, then put the branch's own content back — every time, conflict or not:
+   `git merge --no-ff --no-commit main`
+   `git checkout HEAD -- config/settings_data.json 'templates/*.json' 'sections/*.json'`
+   (a JSON template that is NEW in main stays added; only files the branch already had are kept as the branch's).
+3. Only accept main's changes for actual code files: sections/*.liquid, snippets, assets, layout, blocks, locales, `config/settings_schema.json`, `templates/*.liquid`, and `listings/` (preset install homepages and previews are code, not store content). If the release changed **presets** or **renamed setting values** (e.g. 3.7.0's colour-scheme ids), carry that one change into the branch's JSON by hand. Keep its `current` and its image picks.
+4. `shopify theme check` → 0 offenses, `git commit`, `git push origin annex`. Then verify the live store: the right theme style (fonts, sidebar width, palette), no broken or placeholder images on the homepage and About page, and the same threshold. The update is only done once the store is verified.
+Repeat for `maison`. Never merge `annex`/`maison` back into `main`.
 
 ### Packaging, submission & licensing
 - `/listings` ships as **one folder per preset**: `listings/<preset>/{listing.json, preview.png, templates/index.json}`. It IS included in the ZIP; `docs/` (GitHub Pages) is excluded. No stray files in `/listings`.
