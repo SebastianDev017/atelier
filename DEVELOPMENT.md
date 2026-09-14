@@ -4,8 +4,8 @@ Internal reference for building/maintaining the **Contour** Shopify theme.
 Not shipped in the theme ZIP (`shopify theme package` auto-excludes root `*.md`); kept in git for the team.
 
 - **Repo:** `github.com/SebastianDev017/atelier` (private), branch `main`
-- **Live theme:** `Contour` → `atelier/main` (#159799967844) on `contour-ho5kbo9x.myshopify.com` (the demo store for all 3 presets)
-- **Deploy:** every `git push origin main` syncs into the live theme via the GitHub→Shopify integration
+- **Demo stores (one per preset, password `1234`):** `contour-ho5kbo9x` → theme `contour/main` #159799967844 · `annex-r0zzjfjf` → `annex/main` #192368509220 · `maison-10oym9w0` → `maison/main` #189394649393. `listings/<preset>/listing.json` points at each. All three themes are currently connected to branch `main`, so they share ONE `config/settings_data.json` (`current`) and one set of templates: an editor save in any store rewrites them for all three.
+- **Deploy:** every `git push origin main` syncs into every theme connected to `main` via the GitHub→Shopify integration
 - **Base:** Shopify **skeleton-theme** (OS 2.0 — the only Theme-Store-approved base; never Dawn/Horizon)
 - **Presets:** `Contour` (default) · `Annex` · `Maison`
 - **Validation gate:** `shopify theme check` = 0 offenses (extends `theme-check:recommended`)
