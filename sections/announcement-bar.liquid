@@ -60,6 +60,8 @@
 
   <announcement-bar
     class="announcement-bar"
+    role="region"
+    aria-label="{{ 'general.announcement' | t }}"
     data-section-id="{{ section.id }}"
     {% if section.settings.dismissible %}data-dismissible{% endif %}
   >

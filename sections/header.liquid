@@ -113,7 +113,15 @@
   }
 </style>
 
+{%- comment -%}
+  role="banner": the sidebar is the site header -- logo, navigation, the icon
+  rail and the floating mobile triggers. Without it the logo and the cart icons
+  sat outside every landmark (axe: region), since only the <nav> inside was one.
+  The role goes on this element rather than a new wrapper because the logo
+  (.sidebar__head) and the icons (.sidebar__foot) are not siblings.
+{%- endcomment -%}
 <header-component
+  role="banner"
   class="sidebar color-scheme--{{ scheme }}{% if section.settings.show_border %} sidebar--bordered{% endif %}"
 >
   {%- comment -%}

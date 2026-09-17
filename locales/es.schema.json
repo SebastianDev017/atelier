@@ -2135,6 +2135,16 @@
         "heading": {
           "label": "Título"
         },
+        "heading_tag": {
+          "label": "Nivel de encabezado",
+          "info": "El encabezado principal de la página debe ser H1. Usa H2 si la página ya tiene uno.",
+          "options__1": {
+            "label": "H1 (encabezado de página)"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
         "subtext": {
           "label": "Texto secundario"
         },

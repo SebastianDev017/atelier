@@ -45,7 +45,7 @@
                   <div data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
                     {%- case item.object_type -%}
                       {%- when 'product' -%}
-                        {% render 'product-card', product: item, index: forloop.index, quick_add_style: section.settings.quick_add_style %}
+                        {% render 'product-card', product: item, index: forloop.index, heading_tag: 'h2', quick_add_style: section.settings.quick_add_style %}
                       {%- when 'article' -%}
                         <a class="search-result" href="{{ item.url }}">
                           <span class="media media--landscape">

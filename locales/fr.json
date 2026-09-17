@@ -9,6 +9,7 @@
  */
 {
   "general": {
+    "announcement": "Annonce",
     "skip_to_content": "Aller au contenu",
     "menu": "Menu",
     "close": "Fermer",
