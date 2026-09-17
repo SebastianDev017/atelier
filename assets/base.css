@@ -1213,6 +1213,15 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 }
 .skip-link:focus { transform: translateY(0); }
 
+/* <shopify-account> renders its button inside a shadow root, so it keeps the
+   browser's default focus ring instead of the theme's. The component exposes
+   that button as a part, which is the only way to reach it from here. */
+.sidebar__account-wrap::part(signed-out-avatar):focus-visible,
+.sidebar__account-wrap::part(signed-in-avatar):focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 3px;
+}
+
 /* ---------- Scroll reveal ----------
    Only applies when JS is on (html.js). reduced-motion + designMode
    reveal immediately. Sections add data-animate / -scale / -left /
@@ -1538,9 +1547,16 @@ body:has(cart-page) .scroll-top.is-visible {
 }
 
 /* ---------- Section edition numbers ----------
+   The figure is generated content (data-edition -> ::before), not a text node.
+   It is pure ornament -- it states nothing, and it is aria-hidden -- so at 20%
+   opacity it is exempt from the contrast minimum (WCAG 1.4.3 "incidental"),
+   but as a text node axe measured it at 1.3:1 and called it a failure. As
+   generated content the rendering is identical and the decorative intent is
+   expressed in the markup rather than only in a comment.
    Faint monospace counter in each section's top-right. z-index clears the
    hero's layered media. --section-padding-sm/--page-gutter fall back since
    they aren't theme tokens; colour uses the real --color-muted. */
+.edition-number::before { content: attr(data-edition); }
 .edition-number {
   position: absolute;
   top: var(--section-padding-sm, 2.5rem);
@@ -1819,14 +1835,17 @@ body:has(cart-page) .scroll-top.is-visible {
   font-family: var(--font-mono);
   font-size: var(--text-xs);
   letter-spacing: 0.05em;
-  color: var(--color-text);
-  opacity: 0.6;
+  /* --color-muted, not --color-text at 60%: the faded label measured 4.4:1 on
+     cream, just under the 4.5:1 floor for 12px text (axe: color-contrast,
+     serious). Every scheme builds its muted token to clear 4.5:1, so this is
+     safe on all of them, and hover still lifts it to full-strength text. */
+  color: var(--color-muted);
   background: none;
   border: none;
   cursor: pointer;
-  transition: opacity var(--duration-fast) var(--ease-editorial);
+  transition: color var(--duration-fast) var(--ease-editorial);
 }
-.bundle__toggle:hover { opacity: 1; }
+.bundle__toggle:hover { color: var(--color-text); }
 
 /* ---------- Bundle / upsell items (snippets/bundle-item.liquid) ----------
    Shared by the featured-product bundle (row) and the cart-drawer strip (card).

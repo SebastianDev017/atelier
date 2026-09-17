@@ -37,26 +37,33 @@
     },
 
     trapFocus: function (container, elementToFocus) {
-      var elements = Atelier.focusable(container);
-      var first = elements[0];
-      var last = elements[elements.length - 1];
-
       Atelier.removeTrapFocus();
 
       trapHandlers.keydown = function (event) {
         if (event.code !== 'Tab' && event.key !== 'Tab') return;
+        /* Recomputed on every Tab, not captured once when the dialog opened:
+           a dialog's contents change while it is open (search results render,
+           a cart line is removed), and a stale "last element" let Tab walk
+           straight out of the dialog into the page behind it. */
+        var elements = Atelier.focusable(container);
+        if (!elements.length) return;
+        var first = elements[0];
+        var last = elements[elements.length - 1];
+        var inside = container.contains(event.target);
+        if (!inside) { event.preventDefault(); first.focus(); return; }
         if (event.target === last && !event.shiftKey) {
           event.preventDefault();
-          if (first) first.focus();
+          first.focus();
         }
         if ((event.target === container || event.target === first) && event.shiftKey) {
           event.preventDefault();
-          if (last) last.focus();
+          last.focus();
         }
       };
 
       document.addEventListener('keydown', trapHandlers.keydown);
-      (elementToFocus || first || container).focus();
+      var initial = elementToFocus || Atelier.focusable(container)[0] || container;
+      initial.focus();
     },
 
     removeTrapFocus: function (elementToFocus) {

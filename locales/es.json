@@ -137,6 +137,7 @@
     "title": "Buscar",
     "placeholder": "Buscar productos, diario, páginas…",
     "start_typing": "Empiece a escribir para buscar...",
+    "results_label": "Resultados de búsqueda",
     "no_results": "No se encontraron resultados",
     "submit": "Buscar",
     "reset": "Claro",
