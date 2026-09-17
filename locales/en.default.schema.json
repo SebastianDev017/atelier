@@ -2135,6 +2135,16 @@
         "heading": {
           "label": "Heading"
         },
+        "heading_tag": {
+          "label": "Heading level",
+          "info": "The page heading should be H1. Use H2 when the page already has one.",
+          "options__1": {
+            "label": "H1 (page heading)"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
         "subtext": {
           "label": "Subtext"
         },

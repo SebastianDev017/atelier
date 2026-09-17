@@ -2135,6 +2135,16 @@
         "heading": {
           "label": "Überschrift"
         },
+        "heading_tag": {
+          "label": "Überschriftenebene",
+          "info": "Die Hauptüberschrift der Seite sollte H1 sein. H2, wenn die Seite bereits eine hat.",
+          "options__1": {
+            "label": "H1 (Seitenüberschrift)"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
         "subtext": {
           "label": "Untertext"
         },
