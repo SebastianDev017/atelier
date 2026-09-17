@@ -393,6 +393,22 @@
       }
 
       this.initRotator();
+      this.initTriggerFallback();
+    }
+
+    /* header.liquid slides the floating menu / account / cart buttons up as the
+       bar scrolls away, with a scroll-driven animation. Firefox has no scroll
+       timelines, so there the buttons would stay one bar-height low for the
+       whole page. Flag when the bar has left the viewport and let the header
+       lift them; one IntersectionObserver, no scroll handler. */
+    initTriggerFallback() {
+      if (!window.CSS || !CSS.supports || CSS.supports('animation-timeline', 'scroll()')) return;
+      if (typeof IntersectionObserver !== 'function') return;
+      var self = this;
+      this.triggerObserver = new IntersectionObserver(function (entries) {
+        document.documentElement.classList.toggle('announcement-out', !entries[0].isIntersecting && !self.hidden);
+      }, { threshold: 0 });
+      this.triggerObserver.observe(this);
     }
 
     disconnectedCallback() {
@@ -404,6 +420,8 @@
       }
       if (this.stopRotation) this.stopRotation();
       if (this.onVis) document.removeEventListener('visibilitychange', this.onVis);
+      if (this.triggerObserver) this.triggerObserver.disconnect();
+      document.documentElement.classList.remove('announcement-out');
     }
 
     /* Rotating-messages mode: cross-fade slides on an interval. CSS handles the
@@ -461,6 +479,7 @@
 
     dismiss() {
       this.hidden = true;
+      document.documentElement.classList.remove('announcement-out');
       try {
         window.localStorage.setItem(this.storageKey, '1');
       } catch (e) {

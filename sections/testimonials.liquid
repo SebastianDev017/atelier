@@ -22,7 +22,7 @@
 </style>
 
 <div class="testimonials color-scheme--{{ scheme }}">
-  <span class="edition-number" aria-hidden="true">005</span>
+  <span class="edition-number" aria-hidden="true" data-edition="005"></span>
   <div class="testimonials__inner page-width">
     {%- if section.settings.heading != blank -%}
       <{{ heading_tag }} class="testimonials__heading section-heading heading--{{ heading_size }} reveal-lines"><span class="line">{{ section.settings.heading | escape }}</span></{{ heading_tag }}>
