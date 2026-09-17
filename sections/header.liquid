@@ -973,6 +973,19 @@
         animation-range: 0 var(--announcement-bar-height, 44px);
       }
     }
+    /* Firefox has no scroll timelines: the bar's own IntersectionObserver sets
+       .announcement-out once it has scrolled away, and the buttons step up to
+       the same resting position the scroll-linked version ends at. */
+    @supports not (animation-timeline: scroll()) {
+      html.announcement-out:has(.announcement-bar:not([hidden])) :is(.sidebar__toggle, .sidebar__cart-toggle, .sidebar__account-toggle) {
+        translate: 0 0;
+      }
+      @media (prefers-reduced-motion: no-preference) {
+        html:has(.announcement-bar:not([hidden])) :is(.sidebar__toggle, .sidebar__cart-toggle, .sidebar__account-toggle) {
+          transition: translate var(--duration-base) var(--ease-editorial);
+        }
+      }
+    }
     .sidebar__panel .sidebar__account-wrap { display: none; }
     .sidebar__close { display: inline-flex; }
 

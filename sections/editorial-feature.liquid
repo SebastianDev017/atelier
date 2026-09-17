@@ -6,7 +6,13 @@
 {%- liquid
   assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign pos = section.settings.image_position | default: 'left'
-  assign ef_alt = section.settings.image.alt | escape
+  comment
+    Fall back to the heading, as hero and image-with-text do. `image.alt` is nil
+    when the merchant left it blank in Files, and image_tag drops a nil alt
+    entirely -- an <img> with no alt attribute at all, which a screen reader
+    reads out as the file name (axe: image-alt, critical).
+  endcomment
+  assign ef_alt = section.settings.image.alt | default: section.settings.heading | escape
   assign has_cta = false
   if section.settings.cta_label != blank and section.settings.cta_url != blank
     assign has_cta = true

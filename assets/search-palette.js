@@ -37,16 +37,25 @@
         { y: -20, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'expo.out' });
     }
     setTimeout(function () { input.focus(); }, 0);
+    /* role="dialog" aria-modal="true" promises focus stays inside; without a
+       trap, Tab from the last result walked into the page behind the palette.
+       Same helper the cart drawer uses. */
+    if (window.Atelier && Atelier.trapFocus) {
+      setTimeout(function () { Atelier.trapFocus(palette.querySelector('.search-palette__panel'), input); }, 0);
+    }
   }
 
   function close() {
+    clearTimeout(debounceTimer);
     palette.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
     if (window.lenis) window.lenis.start();
     input.value = '';
     results.innerHTML = emptyHTML;
+    setListbox(false);
     items = [];
     activeIndex = -1;
+    if (window.Atelier && Atelier.removeTrapFocus) Atelier.removeTrapFocus();
     if (returnFocus && document.contains(returnFocus) && typeof returnFocus.focus === 'function') returnFocus.focus();
     returnFocus = null;
   }
@@ -69,9 +78,27 @@
     });
   }
 
+  /* The results box is only a listbox while it holds options. Left as a
+     permanent role="listbox" it was an empty listbox with no accessible name
+     whenever the palette was idle -- axe: aria-required-children (critical) and
+     aria-input-field-name (serious). The combobox input tracks the active
+     option through aria-activedescendant. */
+  function setListbox(on) {
+    if (on) results.setAttribute('role', 'listbox');
+    else results.removeAttribute('role');
+    input.setAttribute('aria-expanded', on ? 'true' : 'false');
+    if (!on) input.setAttribute('aria-activedescendant', '');
+  }
+
   function render(products) {
+    /* A response that lands after the palette was closed used to repopulate it:
+       the results box went back to role="listbox" with the combobox marked
+       expanded while nothing was on screen, and the stale list flashed on the
+       next open. */
+    if (!isOpen()) return;
     if (!products.length) {
       results.innerHTML = '<div class="search-palette__no-results">' + escapeHtml(results.dataset.noResults || 'No results') + '</div>';
+      setListbox(false);
       items = [];
       activeIndex = -1;
       return;
@@ -80,20 +107,26 @@
       var img = (p.featured_image && p.featured_image.url) || p.image || '';
       var imgTag = img ? '<img class="search-result-item__img" src="' + img + '" alt="" width="60" height="60" loading="lazy">'
                        : '<span class="search-result-item__img"></span>';
-      return '<a class="search-result-item" role="option" href="' + escapeHtml(p.url) + '" data-index="' + i + '">' +
+      return '<a class="search-result-item" role="option" id="search-result-' + i + '" aria-selected="false" href="' + escapeHtml(p.url) + '" data-index="' + i + '">' +
         imgTag +
         '<span class="search-result-item__title">' + escapeHtml(p.title) + '</span>' +
         (p.price != null ? '<span class="search-result-item__price">' + escapeHtml(p.price) + '</span>' : '') +
         '</a>';
     }).join('');
     items = Array.prototype.slice.call(results.querySelectorAll('.search-result-item'));
+    setListbox(items.length > 0);
     activeIndex = -1;
   }
 
   function setActive(i) {
     if (!items.length) return;
     activeIndex = (i + items.length) % items.length;
-    items.forEach(function (el, idx) { el.classList.toggle('is-active', idx === activeIndex); });
+    items.forEach(function (el, idx) {
+      var on = idx === activeIndex;
+      el.classList.toggle('is-active', on);
+      el.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    input.setAttribute('aria-activedescendant', items[activeIndex].id);
     items[activeIndex].scrollIntoView({ block: 'nearest' });
   }
 
@@ -113,7 +146,7 @@
   input.addEventListener('input', function () {
     var q = input.value.trim();
     clearTimeout(debounceTimer);
-    if (q.length < 2) { results.innerHTML = emptyHTML; items = []; activeIndex = -1; return; }
+    if (q.length < 2) { results.innerHTML = emptyHTML; setListbox(false); items = []; activeIndex = -1; return; }
     debounceTimer = setTimeout(async function () {
       render(await search(q));
     }, 200);

@@ -235,7 +235,11 @@
       var heading = section.querySelector('.brand-statement__heading');
       if (!heading) return;
       var split = new SplitText(heading, { type: 'words', wordsClass: 'bs-word' });
-      gsap.set(split.words, { opacity: 0.1 });
+      /* 0.5, not 0.1: the un-revealed words are real heading text, and at 0.1 they
+         measured 1.3:1 (axe: color-contrast, serious). 0.5 is the lowest start that
+         clears 3:1 -- the large-text minimum -- in all three presets' schemes
+         (3.25:1 worst case), and the word-by-word reveal to 1 still reads. */
+      gsap.set(split.words, { opacity: 0.5 });
       var tl = gsap.timeline({
         scrollTrigger: { trigger: section, start: 'top top', end: '+=100%', pin: true, scrub: 1 }
       });
