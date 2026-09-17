@@ -2135,6 +2135,16 @@
         "heading": {
           "label": "Titre"
         },
+        "heading_tag": {
+          "label": "Niveau de titre",
+          "info": "Le titre principal de la page doit être H1. Utilisez H2 si la page en a déjà un.",
+          "options__1": {
+            "label": "H1 (titre de page)"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
         "subtext": {
           "label": "Sous-texte"
         },

@@ -79,7 +79,10 @@
   >
     {% render 'loader' %}
 
-    <a class="skip-link" href="#main-content">{{ 'general.skip_to_content' | t }}</a>
+    {%- comment -%} Wrapped in a nav landmark: as a bare child of <body> it was the one bit of content outside every landmark (axe: region). Still the first focusable element on the page. {%- endcomment -%}
+    <nav class="skip-nav" aria-label="{{ 'general.skip_to_content' | t }}">
+      <a class="skip-link" href="#main-content">{{ 'general.skip_to_content' | t }}</a>
+    </nav>
 
     <div class="site-layout">
       {% sections 'header-group' %}

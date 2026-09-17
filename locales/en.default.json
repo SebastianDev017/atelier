@@ -9,6 +9,7 @@
  */
 {
   "general": {
+    "announcement": "Announcement",
     "skip_to_content": "Skip to content",
     "menu": "Menu",
     "close": "Close",

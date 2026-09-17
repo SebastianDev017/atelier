@@ -7,6 +7,11 @@
 {%- liquid
   assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign heading = section.settings.heading | escape
+  # The visual size is the .h2 class; this is the semantic level only. The
+  # contact page had no h1 at all (axe: page-has-heading-one), but this
+  # section has a preset and can sit on a page that already has one, so the
+  # level is a setting and only templates/page.contact.json asks for h1.
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
   # Fall back to the translated strings, not English literals. contact.name /
   # .email / .phone / .message already ship in all five locales.
   assign t_name = 'contact.name' | t
@@ -32,7 +37,7 @@
     {%- if heading != blank or section.settings.subtext != blank -%}
       <div class="section-header section-header--center" data-animate>
         {%- if heading != blank -%}
-          <h2 class="contact-form__heading h2">{{ heading }}</h2>
+          <{{ heading_tag }} class="contact-form__heading h2">{{ heading }}</{{ heading_tag }}>
         {%- endif -%}
         {%- if section.settings.subtext != blank -%}
           <div class="contact-form__subtext prose">{{ section.settings.subtext }}</div>
@@ -157,6 +162,17 @@
       "id": "heading",
       "label": "t:sections.contact-form.settings.heading.label",
       "default": "Get in touch"
+    },
+    {
+      "type": "select",
+      "id": "heading_tag",
+      "label": "t:sections.contact-form.settings.heading_tag.label",
+      "info": "t:sections.contact-form.settings.heading_tag.info",
+      "options": [
+        { "value": "h1", "label": "t:sections.contact-form.settings.heading_tag.options__1.label" },
+        { "value": "h2", "label": "t:sections.contact-form.settings.heading_tag.options__2.label" }
+      ],
+      "default": "h2"
     },
     {
       "type": "richtext",
