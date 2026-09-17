@@ -137,6 +137,7 @@
     "title": "Suchen",
     "placeholder": "Produkte, Journal, Seiten durchsuchen…",
     "start_typing": "Tippen Sie, um zu suchen…",
+    "results_label": "Suchergebnisse",
     "no_results": "Keine Ergebnisse gefunden",
     "submit": "Suchen",
     "reset": "Löschen",
