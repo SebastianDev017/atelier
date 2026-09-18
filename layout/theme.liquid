@@ -101,6 +101,7 @@
     {%- if settings.cart_type == 'drawer' -%}
       {% render 'cart-drawer' %}
     {%- endif -%}
+    {%- if settings.card_quick_buy != false -%}{% render 'quick-buy-modal' %}{%- endif -%}
 
     {% section 'search-palette' %}
 
@@ -120,6 +121,9 @@
     <script src="{{ 'anim-settings.js' | asset_url }}" defer></script>
     <script src="{{ 'theme.js' | asset_url }}" defer></script>
     <script src="{{ 'cart.js' | asset_url }}" defer></script>
+    <script src="{{ 'tooltip.js' | asset_url }}" defer></script>
+    <script src="{{ 'product-card.js' | asset_url }}" defer></script>
+    {%- if settings.card_quick_buy != false -%}<script src="{{ 'quick-buy.js' | asset_url }}" defer></script>{%- endif -%}
     <script src="{{ 'lenis.min.js' | asset_url }}" defer></script>
     {%- comment -%}
       GSAP 3.13 motion stack — self-hosted (the Theme Store disallows external

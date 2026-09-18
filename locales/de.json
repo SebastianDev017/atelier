@@ -99,7 +99,12 @@
     "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "available_colors": "Verfügbare Farben",
     "pickup_check": "Verfügbarkeit in Filialen prüfen",
-    "pickup_none": "Keine Filiale bietet Abholung für diesen Artikel an."
+    "pickup_none": "Keine Filiale bietet Abholung für diesen Artikel an.",
+    "quick_buy": "Schnellkauf",
+    "quick_buy_label": "Schnellkauf: {{ title }}",
+    "quick_buy_loading": "Wird geladen…",
+    "quick_buy_error": "Dieses Produkt konnte nicht geladen werden.",
+    "view_full_details": "Alle Produktdetails ansehen"
   },
   "cart": {
     "title": "Ihr Warenkorb",

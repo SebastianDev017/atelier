@@ -99,7 +99,12 @@
     "add_error": "Something went wrong. Please try again.",
     "available_colors": "Available colors",
     "pickup_check": "Check availability at nearby stores",
-    "pickup_none": "No stores offer pickup for this item."
+    "pickup_none": "No stores offer pickup for this item.",
+    "quick_buy": "Quick buy",
+    "quick_buy_label": "Quick buy: {{ title }}",
+    "quick_buy_loading": "Loading…",
+    "quick_buy_error": "This product could not be loaded.",
+    "view_full_details": "View full product details"
   },
   "cart": {
     "title": "Your cart",

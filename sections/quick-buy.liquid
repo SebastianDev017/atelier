@@ -1,0 +1,163 @@
+{%- comment -%}
+  Quick buy -- the product box shown in the quick-buy modal
+  (snippets/quick-buy-modal.liquid, assets/quick-buy.js).
+
+  Not placed on any template: quick-buy.js fetches it through the Section
+  Rendering API from the product's own URL (/products/<handle>?section_id=
+  quick-buy), so `product` is that product. It reuses the featured-product
+  buy box markup and hooks (data-featured-product, data-fp-*), so the same
+  featured-product.js drives variant switching, price and image changes, and
+  the same <product-form> (cart.js) adds to cart and opens the cart drawer.
+{%- endcomment -%}
+{%- liquid
+  assign qb = product
+  assign qb_variant = qb.selected_or_first_available_variant
+  assign form_id = 'QuickBuyForm-' | append: qb.id
+-%}
+{%- if qb -%}
+  <div class="quick-buy__product featured-product" data-featured-product data-quick-buy-product>
+    <div class="quick-buy__grid">
+      <div class="quick-buy__media">
+        <div class="fp__main quick-buy__main">
+          {%- if qb.featured_media -%}
+            <img class="fp__main-img" data-fp-main-img
+              src="{{ qb.featured_media | image_url: width: 1000 }}"
+              srcset="{{ qb.featured_media | image_url: width: 500 }} 500w, {{ qb.featured_media | image_url: width: 800 }} 800w, {{ qb.featured_media | image_url: width: 1000 }} 1000w"
+              sizes="(min-width: 750px) 440px, 90vw"
+              alt="{{ qb.featured_media.alt | default: qb.title | escape }}" width="1000" height="1250">
+          {%- else -%}
+            <span class="fp__main-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
+          {%- endif -%}
+        </div>
+        {%- if qb.media.size > 1 -%}
+          <div class="fp__thumbs quick-buy__thumbs">
+            {%- for media in qb.media limit: 6 -%}
+              <button type="button" class="fp__thumb{% if forloop.first %} is-active{% endif %}" data-fp-thumb="{{ media | image_url: width: 1000 }}" aria-label="{{ qb.title | escape }} — {{ forloop.index }}">
+                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="100" loading="lazy">
+              </button>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="quick-buy__info">
+        {%- if settings.card_show_vendor and qb.vendor != blank -%}
+          <span class="fp__vendor">{{ qb.vendor | escape }}</span>
+        {%- endif -%}
+        <h2 class="fp__title quick-buy__title" id="QuickBuyTitle-{{ qb.id }}">{{ qb.title | escape }}</h2>
+
+        <div class="fp__price" data-fp-price>{% render 'price', product: qb, variant: qb_variant, class: 'price--large' %}</div>
+
+        {%- if qb.description != blank -%}
+          <p class="fp__desc quick-buy__desc">{{ qb.description | strip_html | truncate: 180 }}</p>
+        {%- endif -%}
+        <a class="quick-buy__details link" href="{{ qb_variant.url | default: qb.url }}" data-quick-buy-details>
+          {{- 'products.view_full_details' | t -}}
+          {%- render 'icon', name: 'arrow-right' -%}
+        </a>
+
+        <product-form class="fp__form" data-product-form>
+          {%- form 'product', qb, id: form_id, novalidate: 'novalidate', class: 'product-form' -%}
+            <input type="hidden" name="id" value="{{ qb_variant.id }}" data-fp-variant-id {% unless qb_variant.available %}disabled{% endunless %}>
+
+            {%- unless qb.has_only_default_variant -%}
+              <div class="fp__variants">
+                {%- for option in qb.options_with_values -%}
+                  <fieldset class="fp__option" data-fp-option-group data-fp-option-position="{{ option.position }}">
+                    <legend class="fp__option-label">
+                      <span>{{ option.name | escape }}</span>
+                      <span class="fp__option-selected" data-fp-option-selected>{{ option.selected_value | escape }}</span>
+                    </legend>
+                    <div class="fp__option-values">
+                      {%- liquid
+                        assign option_key = option.name | downcase | strip
+                        assign is_color_option = false
+                        if option_key == 'color' or option_key == 'colour'
+                          assign is_color_option = true
+                        endif
+                      -%}
+                      {%- for value in option.values -%}
+                        {%- liquid
+                          assign opt_index = option.position | minus: 1
+                          assign value_available = false
+                          for v in qb.variants
+                            if v.available and v.options[opt_index] == value
+                              assign value_available = true
+                              break
+                            endif
+                          endfor
+                        -%}
+                        <label class="fp__pill{% if is_color_option and value.swatch %} fp__pill--swatch{% endif %}{% unless value_available %} fp__pill--soldout{% endunless %}">
+                          <input
+                            type="radio"
+                            name="qb-option-{{ option.position }}-{{ qb.id }}"
+                            value="{{ value | escape }}"
+                            data-fp-option
+                            {% if option.selected_value == value %}checked{% endif %}
+                            {% unless value_available %}disabled{% endunless %}
+                            {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
+                          >
+                          {%- if is_color_option and value.swatch -%}
+                            {% render 'swatch', value: value %}
+                          {%- else -%}
+                            <span>{{ value | escape }}</span>
+                          {%- endif -%}
+                          {%- unless value_available -%}
+                            <span class="visually-hidden">{{ 'products.sold_out' | t }}</span>
+                          {%- endunless -%}
+                        </label>
+                      {%- endfor -%}
+                    </div>
+                  </fieldset>
+                {%- endfor -%}
+              </div>
+            {%- endunless -%}
+
+            <div class="fp__quantity">
+              <label class="label" for="qb-qty-{{ qb.id }}">{{ 'products.quantity' | t }}</label>
+              <quantity-input class="quantity">
+                <button type="button" class="quantity__button" data-quantity-action="decrease" aria-label="{{ 'accessibility.decrease_quantity' | t }}">{% render 'icon', name: 'minus' %}</button>
+                <input class="quantity__input" id="qb-qty-{{ qb.id }}" type="number" name="quantity" value="1" min="1" inputmode="numeric">
+                <button type="button" class="quantity__button" data-quantity-action="increase" aria-label="{{ 'accessibility.increase_quantity' | t }}">{% render 'icon', name: 'plus' %}</button>
+              </quantity-input>
+            </div>
+
+            <div class="fp__buy quick-buy__buy" data-buy-button>
+              <button type="submit" name="add" class="btn btn--full btn--large btn--outline" data-add-button data-fp-add data-add-text="{{ 'products.add_to_cart' | t | escape }}" data-sold-text="{{ 'products.sold_out' | t | escape }}" {% unless qb_variant.available %}disabled{% endunless %}>
+                <span data-fp-add-label>{%- if qb_variant.available -%}{{ 'products.add_to_cart' | t }}{%- else -%}{{ 'products.sold_out' | t }}{%- endif -%}</span>
+              </button>
+              {%- if qb.available -%}
+                <div class="fp__dynamic-checkout" data-fp-dynamic-checkout {% unless qb_variant.available %}hidden{% endunless %}>{{ form | payment_button }}</div>
+              {%- endif -%}
+            </div>
+
+            <div class="product-form__error" role="alert" data-form-error data-default-error="{{ 'products.add_error' | t | escape }}" hidden></div>
+          {%- endform -%}
+        </product-form>
+      </div>
+    </div>
+
+    <script type="application/json" data-fp-variants>
+      [
+        {%- for v in qb.variants -%}
+          {%- capture vprice -%}{% render 'price', product: qb, variant: v, class: 'price--large' %}{%- endcapture -%}
+          {
+            "id": {{ v.id }},
+            "available": {{ v.available }},
+            "options": {{ v.options | json }},
+            "url": {{ v.url | json }},
+            "price_html": {{ vprice | json }}{% if v.image %},
+            "image": {{ v.image | image_url: width: 1000 | json }}{% endif %}
+          }{%- unless forloop.last -%},{%- endunless -%}
+        {%- endfor -%}
+      ]
+    </script>
+  </div>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "t:sections.quick-buy.name",
+  "settings": []
+}
+{% endschema %}

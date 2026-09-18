@@ -3254,6 +3254,9 @@
           "label": "Spaziatura inferiore"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Acquisto rapido"
     }
   },
   "settings_schema": {
@@ -3402,6 +3405,10 @@
         },
         "card_quick_add": {
           "label": "Mostra il pulsante di aggiunta rapida"
+        },
+        "card_quick_buy": {
+          "label": "Acquisto rapido",
+          "info": "Un pulsante borsa sulle schede prodotto apre il prodotto in una finestra, con scelta delle varianti e aggiunta al carrello."
         },
         "card_show_rating": {
           "label": "Mostra la valutazione del prodotto",

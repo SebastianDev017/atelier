@@ -221,6 +221,8 @@
             drawer.renderContents(data.sections['cart-drawer']);
             drawer.open();
           }
+          /* Lets the quick-buy modal step aside for the drawer it just opened. */
+          document.dispatchEvent(new CustomEvent('cart:item-added', { detail: { form: self } }));
         })
         .catch(function () { self.showError(''); })
         .finally(function () { self.setLoading(false); });

@@ -301,6 +301,13 @@
       },
       {
         "type": "checkbox",
+        "id": "card_quick_buy",
+        "label": "t:settings_schema.product_cards.settings.card_quick_buy.label",
+        "info": "t:settings_schema.product_cards.settings.card_quick_buy.info",
+        "default": true
+      },
+      {
+        "type": "checkbox",
         "id": "card_show_rating",
         "label": "t:settings_schema.product_cards.settings.card_show_rating.label",
         "info": "t:settings_schema.product_cards.settings.card_show_rating.info",

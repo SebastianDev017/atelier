@@ -3254,6 +3254,9 @@
           "label": "Bottom padding"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Quick buy"
     }
   },
   "settings_schema": {
@@ -3402,6 +3405,10 @@
         },
         "card_quick_add": {
           "label": "Show quick add button"
+        },
+        "card_quick_buy": {
+          "label": "Quick buy",
+          "info": "A bag button on product cards opens the product in a pop-up, with variant selection and add to cart."
         },
         "card_show_rating": {
           "label": "Show product rating",

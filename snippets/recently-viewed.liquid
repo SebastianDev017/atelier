@@ -9,19 +9,61 @@
     if product.featured_image
       assign rv_image = product.featured_image | image_url: width: 200
     endif
+    assign rv_color = nil
+    for opt in product.options_with_values
+      assign opt_key = opt.name | downcase | strip
+      if opt_key == 'color' or opt_key == 'colour'
+        assign rv_color = opt
+        break
+      endif
+    endfor
   -%}
+  {%- comment -%}
+    Colour swatches travel with the snapshot so the panel can render them with
+    the product card's behaviour (hover previews the variant image, click
+    opens that variant): the swatch fill, the variant URL and its image.
+  {%- endcomment -%}
   <script type="application/json" data-rv-current>
     {
       "handle": {{ product.handle | json }},
       "title": {{ product.title | json }},
       "url": {{ product.url | json }},
       "image": {{ rv_image | json }},
-      "price": {{ product.price | money | strip_html | json }}
+      "price": {{ product.price | money | strip_html | json }},
+      "option": {{ rv_color.name | default: '' | json }},
+      "swatches": [
+        {%- if rv_color -%}
+          {%- assign rv_first = true -%}
+          {%- for value in rv_color.values -%}
+            {%- if value.swatch -%}
+              {%- liquid
+                assign sw_fill = ''
+                if value.swatch.image
+                  assign sw_fill = value.swatch.image | image_url: width: 96 | prepend: 'url(' | append: ')'
+                elsif value.swatch.color
+                  assign sw_fill = value.swatch.color | append: ''
+                endif
+                assign sw_url = product.url
+                assign sw_img = ''
+                if value.variant
+                  assign sw_url = value.variant.url
+                  if value.variant.featured_media
+                    assign sw_img = value.variant.featured_media | image_url: width: 200
+                  endif
+                endif
+              -%}
+              {%- unless rv_first -%},{%- endunless -%}
+              { "name": {{ value | json }}, "fill": {{ sw_fill | json }}, "url": {{ sw_url | json }}, "image": {{ sw_img | json }} }
+              {%- assign rv_first = false -%}
+            {%- endif -%}
+          {%- endfor -%}
+        {%- endif -%}
+      ]
     }
   </script>
 {%- endif -%}
 
-<aside class="recently-viewed" data-recently-viewed data-follows-sidebar hidden aria-label="{{ 'general.recently_viewed' | t }}">
+<aside class="recently-viewed" data-recently-viewed data-follows-sidebar hidden aria-label="{{ 'general.recently_viewed' | t }}" data-colors-label="{{ 'products.available_colors' | t | escape }}">
   <button type="button" class="recently-viewed__toggle" data-rv-toggle aria-expanded="false">
     <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">
       <circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path>

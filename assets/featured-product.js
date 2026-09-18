@@ -17,6 +17,8 @@
     var priceTarget = root.querySelector('[data-fp-price]');
     var mainImg = root.querySelector('[data-fp-main-img]');
     var dynamicCheckout = root.querySelector('[data-fp-dynamic-checkout]');
+    /* Quick buy only: "View full product details" follows the selected variant. */
+    var details = root.querySelector('[data-quick-buy-details]');
 
     function selectedOptions() {
       return Array.prototype.map.call(root.querySelectorAll('[data-fp-option-group]'), function (g) {
@@ -61,6 +63,7 @@
          server-side, so it has to follow the selected variant here. */
       if (dynamicCheckout) dynamicCheckout.hidden = !available;
       if (variant && priceTarget && variant.price_html) priceTarget.innerHTML = variant.price_html;
+      if (variant && details && variant.url) details.href = variant.url;
       if (variant && variant.image) {
         setMainImage(variant.image);
         root.querySelectorAll('[data-fp-thumb]').forEach(function (t) { t.classList.remove('is-active'); });
@@ -96,4 +99,6 @@
      adding or editing a Featured product in the customizer got dead variant
      pills and dead thumbnails until a full page reload. */
   document.addEventListener('shopify:section:load', function (e) { boot(e.target); });
+  /* The quick-buy modal injects the same buy box after fetching it. */
+  document.addEventListener('quick-buy:loaded', function (e) { if (e.detail && e.detail.root) boot(e.detail.root.parentNode || e.detail.root); });
 })();
