@@ -3254,6 +3254,9 @@
           "label": "Relleno inferior"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Compra rápida"
     }
   },
   "settings_schema": {
@@ -3402,6 +3405,10 @@
         },
         "card_quick_add": {
           "label": "Mostrar el botón de añadir rápido"
+        },
+        "card_quick_buy": {
+          "label": "Compra rápida",
+          "info": "Un botón de bolsa en las tarjetas de producto abre el producto en una ventana emergente, con selección de variantes y añadir al carrito."
         },
         "card_show_rating": {
           "label": "Mostrar la valoración del producto",

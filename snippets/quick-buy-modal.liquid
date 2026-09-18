@@ -1,0 +1,22 @@
+{%- comment -%}
+  Quick-buy modal shell, rendered once in theme.liquid. assets/quick-buy.js
+  fills it with sections/quick-buy.liquid for the product whose card button
+  ([data-quick-buy]) was pressed. A real dialog: focus moves in and is trapped,
+  Escape / the backdrop / the close button dismiss it, focus returns to the card.
+{%- endcomment -%}
+<div
+  class="quick-buy"
+  data-quick-buy-modal
+  data-loading-text="{{ 'products.quick_buy_loading' | t | escape }}"
+  data-error-text="{{ 'products.quick_buy_error' | t | escape }}"
+  data-details-text="{{ 'products.view_full_details' | t | escape }}"
+  hidden
+>
+  <div class="quick-buy__backdrop" data-quick-buy-close></div>
+  <div class="quick-buy__panel color-scheme--background-1" role="dialog" aria-modal="true" aria-label="{{ 'products.quick_buy' | t | escape }}" tabindex="-1">
+    <button type="button" class="quick-buy__close header__icon-btn" data-quick-buy-close aria-label="{{ 'general.close' | t | escape }}">
+      {%- render 'icon', name: 'close' -%}
+    </button>
+    <div class="quick-buy__content" data-quick-buy-content></div>
+  </div>
+</div>

@@ -99,7 +99,12 @@
     "add_error": "Algo salió mal. Inténtalo de nuevo.",
     "available_colors": "Colores disponibles",
     "pickup_check": "Consultar disponibilidad en tiendas cercanas",
-    "pickup_none": "Ninguna tienda ofrece recogida para este artículo."
+    "pickup_none": "Ninguna tienda ofrece recogida para este artículo.",
+    "quick_buy": "Compra rápida",
+    "quick_buy_label": "Compra rápida: {{ title }}",
+    "quick_buy_loading": "Cargando…",
+    "quick_buy_error": "No se pudo cargar este producto.",
+    "view_full_details": "Ver todos los detalles del producto"
   },
   "cart": {
     "title": "Tu carrito",

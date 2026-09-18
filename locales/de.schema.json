@@ -3254,6 +3254,9 @@
           "label": "Unterer Abstand"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Schnellkauf"
     }
   },
   "settings_schema": {
@@ -3402,6 +3405,10 @@
         },
         "card_quick_add": {
           "label": "Schaltfläche „Schnell hinzufügen“ anzeigen"
+        },
+        "card_quick_buy": {
+          "label": "Schnellkauf",
+          "info": "Ein Taschen-Button auf Produktkarten öffnet das Produkt in einem Pop-up, mit Variantenauswahl und „In den Warenkorb“."
         },
         "card_show_rating": {
           "label": "Produktbewertung anzeigen",

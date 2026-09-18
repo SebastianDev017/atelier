@@ -66,7 +66,7 @@
   {%- endif -%}
 {%- endcapture -%}
 
-<div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card data-reveal>
+<div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card data-swatch-root data-reveal>
   <div class="product-card__media">
     <div class="product-card__pan" data-card-pan>
     {%- if primary -%}
@@ -117,6 +117,26 @@
       {%- endunless -%}
     </div>
 
+    {%- comment -%}
+      Quick buy (assets/quick-buy.js opens the product in a modal). Top-right
+      of the image, above the whole-card link. Revealed on hover / keyboard
+      focus where the device can hover, always shown on touch.
+    {%- endcomment -%}
+    {%- if settings.card_quick_buy != false -%}
+      <div class="product-card__actions">
+        <button
+          type="button"
+          class="product-card__action"
+          data-quick-buy="{{ product.url }}"
+          aria-haspopup="dialog"
+          aria-label="{{ 'products.quick_buy_label' | t: title: product.title | escape }}"
+          data-tooltip="{{ 'products.quick_buy' | t | escape }}"
+        >
+          {%- render 'icon', name: 'bag' -%}
+        </button>
+      </div>
+    {%- endif -%}
+
     {%- comment -%} Hover mode: quick-add centered in an overlay revealed on hover. {%- endcomment -%}
     {%- if quick_add_style != 'always' and quick_add and product.available -%}
       <div class="product-card__overlay">{{ quick_add_html }}</div>
@@ -150,9 +170,11 @@
     {%- endif -%}
 
     {%- comment -%}
-      Colour preview. Decorative on the card: the whole card is already a link,
-      so nesting real controls here would create nested interactive elements.
-      The colour names are exposed to assistive tech as text instead.
+      Colour swatches. Each is a real link to that colour's variant, above the
+      whole-card link (which is a sibling, so nothing is nested). Hovering or
+      focusing one previews the variant's own image on the card
+      (assets/product-card.js); a colour with no image of its own keeps the
+      product image. Only values with swatch data from admin render.
     {%- endcomment -%}
     {%- liquid
       assign color_option = nil
@@ -165,26 +187,34 @@
       endfor
     -%}
     {%- if color_option -%}
-      {%- assign swatch_names = '' -%}
-      {%- capture swatch_dots -%}
+      {%- capture swatch_links -%}
         {%- for value in color_option.values -%}
           {%- if value.swatch -%}
-            {% render 'swatch', value: value %}
+            {%- liquid
+              assign sw_variant = value.variant
+              assign sw_url = product.url
+              assign sw_media = nil
+              if sw_variant
+                assign sw_url = sw_variant.url
+                assign sw_media = sw_variant.featured_media
+              endif
+            -%}
+            <a
+              class="product-card__swatch"
+              href="{{ sw_url }}"
+              aria-label="{{ color_option.name | escape }}: {{ value | escape }}"
+              {%- if sw_media %}
+                data-swatch-image="{{ sw_media | image_url: width: 800 }}"
+                data-swatch-srcset="{{ sw_media | image_url: width: 400 }} 400w, {{ sw_media | image_url: width: 600 }} 600w, {{ sw_media | image_url: width: 800 }} 800w"
+              {%- endif %}
+            >
+              {%- render 'swatch', value: value -%}
+            </a>
           {%- endif -%}
         {%- endfor -%}
       {%- endcapture -%}
-      {%- if swatch_dots != blank -%}
-        {%- for value in color_option.values -%}
-          {%- if value.swatch -%}
-            {%- if swatch_names == '' -%}
-              {%- assign swatch_names = value -%}
-            {%- else -%}
-              {%- assign swatch_names = swatch_names | append: ', ' | append: value -%}
-            {%- endif -%}
-          {%- endif -%}
-        {%- endfor -%}
-        <div class="product-card__swatches" aria-hidden="true">{{ swatch_dots }}</div>
-        <span class="visually-hidden">{{ 'products.available_colors' | t }}: {{ swatch_names | escape }}</span>
+      {%- if swatch_links != blank -%}
+        <div class="product-card__swatches" data-swatch-group role="group" aria-label="{{ 'products.available_colors' | t }}">{{ swatch_links }}</div>
       {%- endif -%}
     {%- endif -%}
 

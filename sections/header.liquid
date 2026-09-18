@@ -736,13 +736,25 @@
        every frame. */
     .sidebar__panel { width: calc(var(--sidebar-width-expanded, var(--sidebar-width)) - var(--sidebar-border, 0px)); }
 
-    /* SB2 -- the toggle takes the head's end corner. Negative margins keep the
-       44px target from making the row taller than the wordmark. */
+    /* SB2 -- the toggle sits beside the store name, in the panel's own end
+       padding, vertically centred on the name. As a flex item it shared the
+       name's row, so a name that filled the column (ANNEX in the 180px sidebar)
+       wrapped the toggle onto a line of its own underneath -- a stray second row
+       under the store name. Out of the flow, the name keeps the whole row and
+       the toggle can never push it. It stays inside the column (the column
+       clips anything that overhangs it) and keeps a 28x44 target. */
+    .sidebar__head { position: relative; }
     .sidebar__collapse {
       display: inline-flex;
-      flex: none;
-      margin-block: -10px;
-      margin-inline: auto -12px;
+      position: absolute;
+      top: 50%;
+      inset-inline-end: calc(-1 * var(--sidebar-pad, 28px));
+      translate: 0 -50%;
+      width: var(--sidebar-pad, 28px);
+      height: 44px;
+      margin: 0;
+      padding: 0;
+      justify-content: center;
       color: var(--color-muted);
     }
     .sidebar__collapse:hover { color: var(--color-text); }

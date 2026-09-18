@@ -41,12 +41,37 @@
 
   var panel = pill.querySelector('[data-rv-panel]');
   var toggle = pill.querySelector('[data-rv-toggle]');
+  var colorsLabel = pill.getAttribute('data-colors-label') || '';
+  /* Swatch fills come from the product page as either a colour value or a
+     url(...) for an image swatch; anything else is dropped rather than
+     written into a style attribute. */
+  function fillStyle(f) {
+    f = String(f || '');
+    if (/^url\(https?:\/\/[^)\s"']+\)$/.test(f) || /^url\(\/\/[^)\s"']+\)$/.test(f)) return 'background-image:' + f;
+    if (/^(#[0-9a-f]{3,8}|rgba?\([\d\s.,%]+\)|hsla?\([\d\s.,%deg]+\))$/i.test(f)) return 'background-color:' + f;
+    return '';
+  }
+  function swatches(x) {
+    if (!x.swatches || !x.swatches.length) return '';
+    return '<div class="product-card__swatches" data-swatch-group role="group" aria-label="' + esc(colorsLabel) + '">' +
+      x.swatches.map(function (s) {
+        return '<a class="product-card__swatch" href="' + esc(s.url) + '" aria-label="' + esc((x.option ? x.option + ': ' : '') + s.name) + '"' +
+          (s.image ? ' data-swatch-image="' + esc(s.image) + '"' : '') + '>' +
+          '<span class="swatch" style="' + esc(fillStyle(s.fill)) + '"></span></a>';
+      }).join('') + '</div>';
+  }
+  /* An item is a div: its swatches are links of their own, and links cannot
+     nest. The image and the title both lead to the product (the image link is
+     a duplicate for pointer users, so it is kept out of the tab order). */
   panel.innerHTML = items.map(function (x) {
-    return '<a class="rv-item" href="' + esc(x.url) + '">' +
-      (x.image ? '<img class="rv-item__img" src="' + esc(x.image) + '" alt="" width="48" height="60" loading="lazy">' : '<span class="rv-item__img"></span>') +
-      '<span class="rv-item__info"><span class="rv-item__title">' + esc(x.title) + '</span>' +
+    return '<div class="rv-item" data-swatch-root>' +
+      '<a class="rv-item__media" href="' + esc(x.url) + '" tabindex="-1" aria-hidden="true">' +
+      (x.image ? '<img class="rv-item__img" data-swatch-target src="' + esc(x.image) + '" alt="" width="48" height="60" loading="lazy">' : '<span class="rv-item__img"></span>') +
+      '</a>' +
+      '<span class="rv-item__info"><a class="rv-item__title" href="' + esc(x.url) + '">' + esc(x.title) + '</a>' +
       (x.price ? '<span class="rv-item__price">' + esc(x.price) + '</span>' : '') +
-      '</span></a>';
+      swatches(x) +
+      '</span></div>';
   }).join('');
 
   pill.hidden = false;
