@@ -15,7 +15,14 @@
   <div class="bundle__item bundle__item--{{ bundle_layout }}">
     <a class="bundle__item-link" href="{{ bp.url }}">
       {%- if bp.featured_image -%}
-        <img class="bundle__item-img" src="{{ bp.featured_image | image_url: width: 120 }}" alt="{{ bp.featured_image.alt | default: bp.title | escape }}" width="60" height="60" loading="lazy">
+        {%- comment -%}
+          alt="" on purpose: the thumbnail sits inside the same link as the
+          product name (.bundle__item-title), so the name already labels the
+          link. Falling back to the title made the link read the name twice on
+          stores whose product images have no alt of their own (axe:
+          image-redundant-alt on the Annex and Maison demos).
+        {%- endcomment -%}
+        <img class="bundle__item-img" src="{{ bp.featured_image | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
       {%- else -%}
         <span class="bundle__item-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
       {%- endif -%}
