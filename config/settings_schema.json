@@ -2,7 +2,7 @@
   {
     "name": "theme_info",
     "theme_name": "Contour",
-    "theme_version": "3.7.3",
+    "theme_version": "3.7.4",
     "theme_author": "Sebastián Ruiz",
     "theme_documentation_url": "https://sebastiandev017.github.io/atelier/",
     "theme_support_url": "https://sebastiandev017.github.io/atelier/"
@@ -297,6 +297,13 @@
         "type": "checkbox",
         "id": "card_quick_add",
         "label": "t:settings_schema.product_cards.settings.card_quick_add.label",
+        "default": true
+      },
+      {
+        "type": "checkbox",
+        "id": "card_quick_buy",
+        "label": "t:settings_schema.product_cards.settings.card_quick_buy.label",
+        "info": "t:settings_schema.product_cards.settings.card_quick_buy.info",
         "default": true
       },
       {

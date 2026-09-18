@@ -99,7 +99,12 @@
     "add_error": "Une erreur est survenue. Veuillez réessayer.",
     "available_colors": "Couleurs disponibles",
     "pickup_check": "Vérifier la disponibilité en magasin",
-    "pickup_none": "Aucun magasin ne propose le retrait pour cet article."
+    "pickup_none": "Aucun magasin ne propose le retrait pour cet article.",
+    "quick_buy": "Achat rapide",
+    "quick_buy_label": "Achat rapide : {{ title }}",
+    "quick_buy_loading": "Chargement…",
+    "quick_buy_error": "Impossible de charger ce produit.",
+    "view_full_details": "Voir tous les détails du produit"
   },
   "cart": {
     "title": "Votre panier",

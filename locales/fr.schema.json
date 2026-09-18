@@ -3254,6 +3254,9 @@
           "label": "Marge inférieure"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Achat rapide"
     }
   },
   "settings_schema": {
@@ -3402,6 +3405,10 @@
         },
         "card_quick_add": {
           "label": "Afficher le bouton d'ajout rapide"
+        },
+        "card_quick_buy": {
+          "label": "Achat rapide",
+          "info": "Un bouton sac sur les cartes produit ouvre le produit dans une fenêtre, avec le choix des variantes et l’ajout au panier."
         },
         "card_show_rating": {
           "label": "Afficher la note du produit",
