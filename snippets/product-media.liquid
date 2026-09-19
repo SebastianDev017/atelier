@@ -48,7 +48,11 @@
             assign is_active = true
           endif
 
-          if forloop.first
+          # The image on screen at load is the LCP element: it gets the eager load
+          # and the high fetch priority. That is the ACTIVE media (the selected
+          # variant's photo since QW1), not necessarily the first one -- keying this
+          # on forloop.first left the visible photo lazy and pushed mobile LCP to ~6s.
+          if is_active
             assign img_loading = 'eager'
             assign img_priority = 'high'
           else
