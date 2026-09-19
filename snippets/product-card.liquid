@@ -69,6 +69,10 @@
 <div class="product-card product-card--atc-{{ quick_add_style }}" data-product-card data-swatch-root data-reveal>
   <div class="product-card__media">
     <div class="product-card__pan" data-card-pan>
+    {%- comment -%} Filters are not allowed inside a filter argument: `alt: x | default: y` applies
+      `default` to the whole image_tag output, so the fallback never ran and an image with no alt
+      text lost the attribute entirely. The alt is resolved first. {%- endcomment -%}
+    {%- assign primary_alt = primary.alt | default: product.title -%}
     {%- if primary -%}
       {{
         primary
@@ -80,7 +84,7 @@
           sizes: sizes,
           class: 'product-card__image product-card__primary-img',
           style: primary_focal,
-          alt: primary.alt | default: product.title | escape
+          alt: primary_alt
       }}
       {%- comment -%} Hover image renders only when a 2nd image exists, so single-image
         cards never fade their primary out (the :has() guards in base.css depend on this).
