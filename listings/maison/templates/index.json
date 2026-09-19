@@ -13,23 +13,24 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "",
+        "image": "shopify://shop_images/maison-hero-studio-shelves.jpg",
         "video_url": "",
-        "overlay_opacity": 40,
+        "overlay_opacity": 35,
         "overlay_color": "#0a0705",
-        "text_position": "center",
+        "text_position": "bottom",
         "text_align": "left",
-        "eyebrow": "New season",
-        "heading": "Considered objects\nfor the modern home",
+        "eyebrow": "Small-batch ceramics",
+        "heading": "Made by hand,\nfired in small batches",
         "heading_tag": "h1",
         "heading_size": "xl",
-        "subtext": "<p>Made in small batches, designed to last a lifetime.</p>",
+        "subtext": "<p>Wheel-thrown tableware, vases and teaware in food-safe glazes, made in our studio.</p>",
         "show_trust_bar": true,
-        "cta_label": "Shop the collection",
-        "cta_url": "/collections/all",
-        "cta_style": "outline",
-        "cta_secondary_label": "Read our story",
-        "cta_secondary_url": "/pages/about-us",
+        "trust_line": "",
+        "cta_label": "Shop tableware",
+        "cta_url": "/collections/tableware",
+        "cta_style": "solid",
+        "cta_secondary_label": "Vases & vessels",
+        "cta_secondary_url": "/collections/vases-vessels",
         "show_edition_number": false,
         "show_scroll_cue": true,
         "color_scheme": "background-1",
@@ -37,140 +38,177 @@
         "padding_bottom": 0
       }
     },
-    "marquee": {
+    "process": {
       "type": "marquee",
       "settings": {
-        "text": "Considered Objects · Artisan Crafted · Made to Last · Objects for the Modern Home ·",
-        "speed": 30,
+        "text": "Wheel-thrown · Small batch · Food-safe glazes · Fired in our studio · Made to be used every day",
+        "speed": 35,
         "direction": "left",
-        "size": "sm",
-        "color_scheme": "background-3",
-        "padding_top": 48,
-        "padding_bottom": 48
+        "size": "md",
+        "color_scheme": "inverse",
+        "padding_top": 40,
+        "padding_bottom": 40
       }
     },
-    "featured": {
+    "potter": {
+      "type": "maker-spotlight",
+      "settings": {
+        "image": "shopify://shop_images/maison-maker-hands.jpg",
+        "layout": "image_left",
+        "eyebrow": "The potter",
+        "name": "Tomás Ferreira",
+        "quote": "<p>“A good mug should feel right before you’ve even looked at it. I throw until my hands agree with my eyes.”</p>",
+        "cta_label": "Inside the studio",
+        "cta_url": "/pages/about-us",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "mat_stoneware": {
+          "type": "material",
+          "settings": {
+            "label": "Stoneware"
+          }
+        },
+        "mat_porcelain": {
+          "type": "material",
+          "settings": {
+            "label": "Porcelain"
+          }
+        },
+        "mat_glaze": {
+          "type": "material",
+          "settings": {
+            "label": "Reactive glazes"
+          }
+        }
+      },
+      "block_order": [
+        "mat_stoneware",
+        "mat_porcelain",
+        "mat_glaze"
+      ]
+    },
+    "tableware": {
       "type": "featured-collection",
       "settings": {
-        "eyebrow": "",
-        "title": "New arrivals",
+        "eyebrow": "Tableware",
+        "title": "For every day, not best",
         "heading_tag": "h2",
         "heading_size": "lg",
-        "subtitle": "A few of our favourites this month.",
-        "collection": "living",
+        "subtitle": "Mugs, bowls and plates that go in the dishwasher and come out looking the same.",
+        "collection": "tableware",
         "products_to_show": 8,
         "columns_desktop": "4",
         "columns_mobile": "2",
         "show_vendor": false,
         "quick_add_style": "always",
         "show_view_all": true,
-        "view_all_label": "View all products",
+        "view_all_label": "All tableware",
         "view_all_style": "link",
         "color_scheme": "background-1",
-        "padding_top": 120,
-        "padding_bottom": 120
-      }
-    },
-    "editorial": {
-      "type": "editorial-feature",
-      "settings": {
-        "image": "",
-        "image_position": "left",
-        "eyebrow": "Our craft",
-        "heading": "Made in small batches, designed to last",
-        "description": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to material honesty.</p>",
-        "cta_label": "About the studio",
-        "cta_url": "/pages/about-us",
-        "show_stats": true,
-        "stat_1_label": "Objects",
-        "stat_2_label": "Makers",
-        "stat_3_label": "Rating",
-        "color_scheme": "background-1",
-        "padding_top": 120,
-        "padding_bottom": 120
-      }
-    },
-    "brand_statement": {
-      "type": "brand-statement",
-      "settings": {
-        "heading": "Considered objects\nfor the modern home",
-        "subheading": "Made in small batches, designed to last a lifetime.",
-        "heading_size_vw": 6,
-        "heading_size_mobile": 13,
-        "color_scheme": "inverse"
-      }
-    },
-    "featured_product": {
-      "type": "featured-product",
-      "settings": {
-        "product": "cloud-linen-sofa-3-seater",
-        "heading": "In focus",
-        "show_vendor": true,
-        "show_trust_badges": true,
-        "show_bundle": true,
-        "bundle_heading": "Complete your purchase",
-        "color_scheme": "background-1",
         "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
-    "horizontal": {
-      "type": "horizontal-scroll",
-      "settings": {
-        "heading": "Featured pieces",
-        "collection": "studio-objects",
-        "products_count": 8,
-        "card_aspect": "portrait",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
-    "stats": {
-      "type": "stats-bar",
-      "settings": {
-        "stat_1_suffix": "+",
-        "stat_1_label": "Objects",
-        "stat_2_suffix": "",
-        "stat_2_label": "Makers",
-        "stat_3_suffix": "%",
-        "stat_3_label": "Recycled or natural",
-        "stat_4_suffix": "",
-        "stat_4_label": "Average rating",
-        "color_scheme": "background-2",
-        "padding_top": 80,
         "padding_bottom": 80
       }
     },
-    "featured_2": {
-      "type": "featured-collection",
+    "featured_piece": {
+      "type": "featured-product",
       "settings": {
-        "eyebrow": "",
-        "title": "New season",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "subtitle": "Just landed in the studio.",
-        "collection": "new-season",
-        "products_to_show": 4,
-        "columns_desktop": "4",
-        "columns_mobile": "1",
+        "product": "tall-bottle-vase",
+        "heading": "From the latest firing",
         "show_vendor": false,
-        "quick_add_style": "hover",
-        "show_view_all": true,
-        "view_all_label": "View all products",
-        "view_all_style": "link",
-        "color_scheme": "surface",
+        "show_trust_badges": true,
+        "show_bundle": true,
+        "bundle_heading": "Style it with",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "process_story": {
+      "type": "editorial-feature",
+      "settings": {
+        "image": "shopify://shop_images/maison-editorial-wheel.jpg",
+        "image_position": "right",
+        "eyebrow": "From clay to kiln",
+        "heading": "Every piece passes through the same two hands",
+        "description": "<p>We throw, trim and glaze each piece ourselves, then fire in small loads so the kiln never rushes. That is why glazes pool a little differently every time, and why a batch, once sold, is gone.</p>",
+        "cta_label": "Read the process",
+        "cta_url": "/pages/about-us",
+        "show_stats": false,
+        "stat_1_number": "",
+        "stat_1_label": "",
+        "stat_2_number": "",
+        "stat_2_label": "",
+        "stat_3_number": "",
+        "stat_3_label": "",
+        "color_scheme": "background-1",
         "padding_top": 120,
         "padding_bottom": 120
       }
+    },
+    "vessels": {
+      "type": "horizontal-scroll",
+      "settings": {
+        "heading": "Vases & vessels",
+        "collection": "vases-vessels",
+        "products_count": 8,
+        "card_aspect": "square",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "shop_by": {
+      "type": "collection-list",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Set the table",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "heading_alignment": "left",
+        "image_ratio": "portrait",
+        "show_product_count": true,
+        "columns_desktop": "3",
+        "columns_mobile": "1",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "c1": {
+          "type": "collection",
+          "settings": {
+            "collection": "tableware"
+          }
+        },
+        "c2": {
+          "type": "collection",
+          "settings": {
+            "collection": "vases-vessels"
+          }
+        },
+        "c3": {
+          "type": "collection",
+          "settings": {
+            "collection": "serving-tea"
+          }
+        }
+      },
+      "block_order": [
+        "c1",
+        "c2",
+        "c3"
+      ]
     },
     "newsletter": {
       "type": "newsletter",
       "settings": {
-        "heading": "Join the list",
+        "heading": "Kiln-opening notes",
         "heading_tag": "h2",
         "heading_size": "lg",
-        "subtext": "<p>New arrivals, stories, and the occasional offer.</p>",
+        "subtext": "<p>A short note when a new firing comes out of the kiln, before it goes on the shop.</p>",
         "input_placeholder": "Email address",
         "button_label": "Subscribe",
         "color_scheme": "inverse",
@@ -181,14 +219,13 @@
   },
   "order": [
     "hero",
-    "marquee",
-    "featured",
-    "editorial",
-    "brand_statement",
-    "featured_product",
-    "horizontal",
-    "stats",
-    "featured_2",
+    "process",
+    "potter",
+    "tableware",
+    "featured_piece",
+    "process_story",
+    "vessels",
+    "shop_by",
     "newsletter"
   ]
 }
