@@ -67,11 +67,66 @@
             {%- comment -%}
               A Color filter (Search & Discovery, set to show swatches) arrives as
               presentation 'swatch' -- or 'image' for image swatches. Each value
-              then shows its colour beside the checkbox and name, from the same
-              swatch data as the product pills. Shopify only lists values some
+              then shows as colour circles (below), from the same swatch data as
+              the product pills. Shopify only lists values some
               product in the current results actually has.
             {%- endcomment -%}
-            <ul class="facets__list{% if filter.presentation == 'swatch' or filter.presentation == 'image' %} facets__list--swatch{% endif %}">
+            {%- liquid
+              assign swatch_filter = false
+              if filter.presentation == 'swatch' or filter.presentation == 'image'
+                assign swatch_filter = true
+              endif
+            -%}
+            {%- if swatch_filter -%}
+              {%- comment -%}
+                Swatch display: one circle per value, in the same 36px icon-button
+                language as the grid/list view toggle. Each circle IS the value's
+                checkbox (transparent, laid over the circle) so the facet form, the
+                keyboard (Tab + Space) and the floating tooltip -- the colour name
+                and count on hover and focus -- all work unchanged. Checked = the
+                ring. A value Shopify gives no swatch data for keeps a text chip of
+                the same height: a guessed colour is worse than a colour name.
+              {%- endcomment -%}
+              <ul class="facets__swatches" role="list">
+                {%- for value in filter.values -%}
+                  {%- liquid
+                    assign value_name = value.label | escape
+                    assign value_text = value.label | append: ' (' | append: value.count | append: ')' | escape
+                    assign has_visual = false
+                    if filter.presentation == 'swatch'
+                      if value.swatch.color != blank or value.swatch.image != blank
+                        assign has_visual = true
+                      endif
+                    elsif value.image != blank
+                      assign has_visual = true
+                    endif
+                  -%}
+                  <li>
+                    <label class="facets__swatch-option{% unless has_visual %} facets__swatch-option--text{% endunless %}{% if value.active %} is-active{% endif %}{% if value.count == 0 and value.active == false %} is-disabled{% endif %}">
+                      <input
+                        type="checkbox"
+                        name="{{ value.param_name }}"
+                        value="{{ value.value }}"
+                        aria-label="{{ value_text }}"
+                        {% if has_visual %}data-tooltip="{{ value_text }}"{% endif %}
+                        {% if value.active %}checked{% endif %}
+                        {% if value.count == 0 and value.active == false %}disabled{% endif %}
+                      >
+                      {%- if has_visual -%}
+                        {%- if filter.presentation == 'image' -%}
+                          {{ value.image | image_url: width: 64 | image_tag: alt: '', class: 'swatch', loading: 'lazy' }}
+                        {%- else -%}
+                          {% render 'swatch', value: value %}
+                        {%- endif -%}
+                      {%- else -%}
+                        <span aria-hidden="true">{{ value_name }}</span>
+                      {%- endif -%}
+                    </label>
+                  </li>
+                {%- endfor -%}
+              </ul>
+            {%- else -%}
+            <ul class="facets__list">
               {%- for value in filter.values -%}
                 <li>
                   <label class="facets__option{% if value.active %} facets__option--active{% endif %}">
@@ -82,16 +137,12 @@
                       {% if value.active %}checked{% endif %}
                       {% if value.count == 0 and value.active == false %}disabled{% endif %}
                     >
-                    {%- if filter.presentation == 'swatch' and value.swatch -%}
-                      <span class="facets__swatch" aria-hidden="true">{% render 'swatch', value: value %}</span>
-                    {%- elsif filter.presentation == 'image' and value.image -%}
-                      <span class="facets__swatch" aria-hidden="true">{{ value.image | image_url: width: 48 | image_tag: alt: '', class: 'swatch', loading: 'lazy' }}</span>
-                    {%- endif -%}
                     <span>{{ value.label | escape }} ({{ value.count }})</span>
                   </label>
                 </li>
               {%- endfor -%}
             </ul>
+            {%- endif -%}
 
           {%- when 'price_range' -%}
             <div class="facets__price">
