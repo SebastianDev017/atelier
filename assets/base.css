@@ -2169,16 +2169,49 @@ body:has(cart-page) .scroll-top.is-visible {
 .product-form__error { color: var(--color-sale); font-size: var(--text-sm); }
 .product-form__error[hidden] { display: none; }
 
-/* Colour filter values: the swatch sits between the checkbox and the name. */
-.facets__swatch { display: inline-flex; flex: none; }
-.facets__swatch .swatch {
-  display: block;
-  width: 18px;
-  height: 18px;
+/* Colour filter values (swatch display): 36px circles in the view-toggle's
+   icon-button language. The checkbox is transparent over the circle, so it is
+   what the pointer and keyboard hit, and it carries the tooltip. */
+.facets__swatches { display: flex; flex-wrap: wrap; gap: var(--space-2); padding-bottom: var(--space-4); }
+.facets__swatch-option {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 36px;
+  height: 36px;
+  border: 1px solid transparent;
   border-radius: 50%;
-  border: 1px solid var(--color-border-strong);
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-editorial);
+}
+.facets__swatch-option input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.facets__swatch-option .swatch {
+  display: block;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 0.12);
   background-size: cover;
   background-position: center;
   object-fit: cover;
+  pointer-events: none;
 }
-.facets__option--active .facets__swatch .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); }
+.facets__swatch-option:hover { border-color: var(--color-border); }
+.facets__swatch-option.is-active,
+.facets__swatch-option:has(input:checked) { border-color: var(--color-text); }
+.facets__swatch-option:has(input:focus-visible) { outline: 2px solid var(--color-text); outline-offset: 2px; }
+.facets__swatch-option.is-disabled { opacity: 0.35; cursor: default; }
+.facets__swatch-option.is-disabled input { cursor: default; }
+/* A value with no swatch data: a text chip of the same height. */
+.facets__swatch-option--text { border-color: var(--color-border); border-radius: 18px; padding-inline: var(--space-3); font-size: var(--text-sm); color: var(--color-muted); }
+.facets__swatch-option--text.is-active,
+.facets__swatch-option--text:has(input:checked) { color: var(--color-text); }

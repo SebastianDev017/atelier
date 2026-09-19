@@ -19,6 +19,7 @@
     <div class="maker__media">
       <div class="maker__media-inner" data-reveal>
         {%- if section.settings.image != blank -%}
+          {%- assign maker_alt = section.settings.image.alt | default: section.settings.name -%}
           {{
             section.settings.image
             | image_url: width: 1200
@@ -27,7 +28,7 @@
               widths: '480, 640, 800, 1000, 1200',
               sizes: '(min-width: 750px) 55vw, 100vw',
               class: 'maker__img',
-              alt: section.settings.image.alt | default: section.settings.name | escape
+              alt: maker_alt
           }}
         {%- else -%}
           <span class="maker__img placeholder">{{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}</span>
