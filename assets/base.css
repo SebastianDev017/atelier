@@ -776,6 +776,15 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
   pointer-events: none;
 }
 
+/* A long badge ("Only 5 left") ran under the 40px quick-buy button in the
+   opposite corner and lost its last word. Reserve the button's column so the
+   badge wraps instead; cards without the button keep the full width. */
+.product-card__media:has(.product-card__actions) .product-card__badges {
+  max-width: calc(100% - 2rem - 40px - 0.75rem);
+}
+.product-card__badges .badge { max-width: 100%; overflow-wrap: anywhere; }
+
+
 .badge {
   display: inline-block;
   font-family: var(--font-sans, sans-serif);
@@ -2164,7 +2173,10 @@ body:has(cart-page) .scroll-top.is-visible {
 }
 
 
-.fp__quantity { display: flex; flex-direction: column; gap: var(--space-2); }
+/* The stepper is content-width: in a column flex it stretched to the whole buy
+   box, leaving a wide empty rule beside the -/+ (same fix as .product__quantity). */
+.fp__quantity { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-2); }
+.fp__quantity .quantity { width: fit-content; }
 .fp__buy { display: flex; flex-direction: column; gap: var(--space-3); }
 .product-form__error { color: var(--color-sale); font-size: var(--text-sm); }
 .product-form__error[hidden] { display: none; }
