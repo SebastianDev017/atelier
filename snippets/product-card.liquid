@@ -73,12 +73,16 @@
       `default` to the whole image_tag output, so the fallback never ran and an image with no alt
       text lost the attribute entirely. The alt is resolved first. {%- endcomment -%}
     {%- assign primary_alt = primary.alt | default: product.title -%}
+    {%- comment -%} decoding: a card image decoding on the main thread as the grid
+      scrolled into view measured 50-166ms frames. Off-thread is right for the eager
+      first card too: its decode is not what the largest paint waits on. {%- endcomment -%}
     {%- if primary -%}
       {{
         primary
         | image_url: width: 800
         | image_tag:
           loading: loading,
+          decoding: 'async',
           fetchpriority: fetchpriority,
           widths: '200, 300, 400, 500, 600, 700, 800',
           sizes: sizes,
@@ -95,7 +99,7 @@
           class="product-card__hover-img"
           src="{{ product.images[1] | image_url: width: 600 }}"
           alt="{{ product.images[1].alt | escape }}"
-          loading="lazy"
+          loading="lazy" decoding="async"
           width="600"
           height="800"
           style="object-position: {{ hover_focal }};"

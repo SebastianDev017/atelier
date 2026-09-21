@@ -21,7 +21,7 @@
                 <li role="option">
                   <a class="predictive__product" href="{{ product.url }}" tabindex="-1">
                     {%- if product.featured_media -%}
-                      {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', widths: '60, 90, 120', sizes: '48px', alt: '' }}
+                      {{ product.featured_media | image_url: width: 120 | image_tag: loading: 'lazy', decoding: 'async', widths: '60, 90, 120', sizes: '48px', alt: '' }}
                     {%- else -%}
                       <span class="placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
                     {%- endif -%}

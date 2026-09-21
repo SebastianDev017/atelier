@@ -114,7 +114,7 @@
                       >
                       {%- if has_visual -%}
                         {%- if filter.presentation == 'image' -%}
-                          {{ value.image | image_url: width: 64 | image_tag: alt: '', class: 'swatch', loading: 'lazy' }}
+                          {{ value.image | image_url: width: 64 | image_tag: alt: '', class: 'swatch', loading: 'lazy', decoding: 'async' }}
                         {%- else -%}
                           {% render 'swatch', value: value %}
                         {%- endif -%}

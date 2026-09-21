@@ -108,7 +108,7 @@
             {%- when 'video' -%}
               {{ media | video_tag: image_size: '1000x', controls: true, loop: false, class: 'product-media__video' }}
             {%- when 'external_video' -%}
-              {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy' }}
+              {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy', decoding: 'async' }}
             {%- when 'model' -%}
               {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
             {%- else -%}
@@ -137,7 +137,7 @@
             media.preview_image
             | image_url: width: 200
             | image_tag:
-              loading: 'lazy',
+              loading: 'lazy', decoding: 'async',
               fetchpriority: 'low',
               widths: '100, 160, 200',
               sizes: '80px',
