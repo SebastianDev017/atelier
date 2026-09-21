@@ -538,9 +538,10 @@
   /* ---------- Logo ---------- */
   /* H1 -- the logo is the link home and had no hover state whatsoever. */
   .header__logo { display: inline-flex; align-items: center; line-height: 1; transition: opacity var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial); }
-  /* Colour alone, like every other hover in the theme: dimming the wordmark
-     as well compounded with the accent and took it to 2.2:1. */
-  .header__logo:hover .header__logo-text { color: var(--color-accent-local); }
+  /* The wordmark keeps its colour on hover and underlines instead: the accent
+     reads 3.3:1 on a light scheme, which is under AA for text this size, and
+     dimming it as well took it to 2.2:1. An image logo has no such constraint. */
+  .header__logo:hover .header__logo-text { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   .header__logo:hover img { opacity: 0.7; }
   .header__logo { min-width: 0; max-width: 100%; }
   .header__logo-text {
