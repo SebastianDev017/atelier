@@ -290,6 +290,10 @@
         "boxes": "Colli",
         "diagram_alt": "Diagramma con larghezza, profondità e altezza misurate"
       }
+    },
+    "horizontal-scroll": {
+      "previous": "Prodotti precedenti",
+      "next": "Prodotti successivi"
     }
   }
 }

@@ -290,6 +290,10 @@
         "boxes": "Boxes",
         "diagram_alt": "Diagram showing the measured width, depth and height"
       }
+    },
+    "horizontal-scroll": {
+      "previous": "Previous products",
+      "next": "Next products"
     }
   }
 }

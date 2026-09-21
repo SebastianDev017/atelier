@@ -290,6 +290,10 @@
         "boxes": "Cajas",
         "diagram_alt": "Diagrama con la anchura, profundidad y altura medidas"
       }
+    },
+    "horizontal-scroll": {
+      "previous": "Productos anteriores",
+      "next": "Productos siguientes"
     }
   }
 }

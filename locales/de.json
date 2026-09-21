@@ -290,6 +290,10 @@
         "boxes": "Pakete",
         "diagram_alt": "Diagramm mit gemessener Breite, Tiefe und Höhe"
       }
+    },
+    "horizontal-scroll": {
+      "previous": "Vorherige Produkte",
+      "next": "Weitere Produkte"
     }
   }
 }

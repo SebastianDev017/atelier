@@ -290,6 +290,10 @@
         "boxes": "Colis",
         "diagram_alt": "Schéma indiquant la largeur, la profondeur et la hauteur mesurées"
       }
+    },
+    "horizontal-scroll": {
+      "previous": "Produits précédents",
+      "next": "Produits suivants"
     }
   }
 }
