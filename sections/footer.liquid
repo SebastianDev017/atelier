@@ -44,7 +44,7 @@
                     assign brand_sizes = block.settings.logo_width | append: 'px'
                     assign brand_style = '--logo-width: ' | append: block.settings.logo_width | append: 'px;'
                   -%}
-                  {{ settings.logo | image_url: width: brand_2x | image_tag: loading: 'lazy', widths: '120, 240, 360', sizes: brand_sizes, alt: brand_alt, class: 'footer__logo', style: brand_style }}
+                  {{ settings.logo | image_url: width: brand_2x | image_tag: loading: 'lazy', decoding: 'async', widths: '120, 240, 360', sizes: brand_sizes, alt: brand_alt, class: 'footer__logo', style: brand_style }}
                 {%- else -%}
                   <span class="footer__brand-name">{{ shop.name | escape }}</span>
                 {%- endif -%}

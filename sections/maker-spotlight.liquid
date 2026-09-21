@@ -24,7 +24,7 @@
             section.settings.image
             | image_url: width: 1200
             | image_tag:
-              loading: 'lazy',
+              loading: 'lazy', decoding: 'async',
               widths: '480, 640, 800, 1000, 1200',
               sizes: '(min-width: 750px) 55vw, 100vw',
               class: 'maker__img',

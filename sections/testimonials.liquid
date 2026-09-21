@@ -69,7 +69,7 @@
                       img
                       | image_url: width: 320
                       | image_tag:
-                        loading: 'lazy',
+                        loading: 'lazy', decoding: 'async',
                         widths: '160, 240, 320, 480',
                         sizes: '120px',
                         alt: img_alt
@@ -230,11 +230,11 @@
     width: 44px;
     height: 44px;
     color: var(--color-text);
-    transition: color var(--duration-fast) var(--ease-editorial),
+    transition: background-color var(--duration-fast) var(--ease-editorial),
                 opacity var(--duration-fast) var(--ease-editorial);
   }
-  .testimonials__arrow:hover {
-    color: var(--color-accent-local);
+  @media (hover: hover) {
+    .testimonials__arrow:hover { background-color: var(--color-subtle); }
   }
   .testimonials__dots {
     display: flex;
@@ -274,10 +274,10 @@
     width: 44px;
     height: 44px;
     color: var(--color-text);
-    transition: color var(--duration-fast) var(--ease-editorial);
+    transition: background-color var(--duration-fast) var(--ease-editorial);
   }
-  .testimonials__toggle:hover {
-    color: var(--color-accent-local);
+  @media (hover: hover) {
+    .testimonials__toggle:hover { background-color: var(--color-subtle); }
   }
   .testimonials__toggle .icon {
     width: var(--space-4);

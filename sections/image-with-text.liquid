@@ -42,7 +42,7 @@
     <div class="image-with-text__media-col">
       <div class="media media--{{ ratio }} image-with-text__media" data-animate-scale>
         {%- if image != blank -%}
-          {{ image | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '375, 550, 750, 900, 1200', sizes: '(min-width: 750px) 42vw, 100vw', alt: img_alt }}
+          {{ image | image_url: width: 1200 | image_tag: loading: 'lazy', decoding: 'async', widths: '375, 550, 750, 900, 1200', sizes: '(min-width: 750px) 42vw, 100vw', alt: img_alt }}
         {%- else -%}
           {{ 'lifestyle-1' | placeholder_svg_tag: 'placeholder' }}
         {%- endif -%}

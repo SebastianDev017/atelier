@@ -35,7 +35,7 @@
               section.settings.image
               | image_url: width: 1800
               | image_tag:
-                loading: 'lazy',
+                loading: 'lazy', decoding: 'async',
                 widths: '600, 900, 1200, 1500, 1800',
                 sizes: '(min-width: 990px) 60vw, 100vw',
                 alt: section.settings.image.alt | default: section.settings.heading,
