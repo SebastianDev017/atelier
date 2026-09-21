@@ -33,7 +33,7 @@
         "cta_secondary_url": "/collections/vases-vessels",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -52,18 +52,6 @@
     },
     "potter": {
       "type": "maker-spotlight",
-      "settings": {
-        "image": "shopify://shop_images/maison-maker-hands.jpg",
-        "layout": "image_left",
-        "eyebrow": "The potter",
-        "name": "Tomás Ferreira",
-        "quote": "<p>“A good mug should feel right before you’ve even looked at it. I throw until my hands agree with my eyes.”</p>",
-        "cta_label": "Inside the studio",
-        "cta_url": "/pages/about-us",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "mat_stoneware": {
           "type": "material",
@@ -88,7 +76,19 @@
         "mat_stoneware",
         "mat_porcelain",
         "mat_glaze"
-      ]
+      ],
+      "settings": {
+        "image": "shopify://shop_images/maison-maker-hands.jpg",
+        "layout": "image_left",
+        "eyebrow": "The potter",
+        "name": "Tomás Ferreira",
+        "quote": "<p>“A good mug should feel right before you’ve even looked at it. I throw until my hands agree with my eyes.”</p>",
+        "cta_label": "Inside the studio",
+        "cta_url": "/pages/about-us",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "tableware": {
       "type": "featured-collection",
@@ -162,20 +162,6 @@
     },
     "shop_by": {
       "type": "collection-list",
-      "settings": {
-        "eyebrow": "",
-        "heading": "Set the table",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "heading_alignment": "left",
-        "image_ratio": "portrait",
-        "show_product_count": true,
-        "columns_desktop": "3",
-        "columns_mobile": "1",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 80
-      },
       "blocks": {
         "c1": {
           "type": "collection",
@@ -200,7 +186,21 @@
         "c1",
         "c2",
         "c3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "Set the table",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "heading_alignment": "left",
+        "image_ratio": "portrait",
+        "show_product_count": true,
+        "columns_desktop": "3",
+        "columns_mobile": "1",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 80
+      }
     },
     "newsletter": {
       "type": "newsletter",
