@@ -330,6 +330,12 @@
                 assign dim_weight = mf[block.settings.key_weight].value | default: mf[block.settings.key_weight]
                 assign dim_assembly = mf[block.settings.key_assembly].value | default: mf[block.settings.key_assembly]
                 assign dim_boxes = mf[block.settings.key_boxes].value | default: mf[block.settings.key_boxes]
+                # The outline belongs to the piece: a catalogue that mixes seating with
+                # casegoods cannot share one, so the product may override the default.
+                assign dim_shape = mf[block.settings.key_silhouette].value | default: mf[block.settings.key_silhouette]
+                if dim_shape != 'seat' and dim_shape != 'box'
+                  assign dim_shape = block.settings.silhouette
+                endif
                 assign has_any = false
                 if dim_w != blank or dim_d != blank or dim_h != blank or dim_weight != blank or dim_assembly != blank or dim_boxes != blank
                   assign has_any = true
@@ -343,7 +349,7 @@
                   </summary>
                   <div class="product__collapsible-body product__dims-body">
                     {%- if dim_w != blank or dim_d != blank or dim_h != blank -%}
-                      {% render 'dimensions-diagram', width: dim_w, depth: dim_d, height: dim_h, silhouette: block.settings.silhouette %}
+                      {% render 'dimensions-diagram', width: dim_w, depth: dim_d, height: dim_h, silhouette: dim_shape %}
                     {%- endif -%}
                     {%- if dim_weight != blank or dim_assembly != blank or dim_boxes != blank -%}
                       <dl class="product__dims-facts">
@@ -911,6 +917,13 @@
           "id": "key_boxes",
           "label": "t:sections.main-product.blocks.dimensions.settings.key_boxes.label",
           "default": "box_count"
+        },
+        {
+          "type": "text",
+          "id": "key_silhouette",
+          "label": "t:sections.main-product.blocks.dimensions.settings.key_silhouette.label",
+          "info": "t:sections.main-product.blocks.dimensions.settings.key_silhouette.info",
+          "default": "silhouette"
         },
         {
           "type": "text",

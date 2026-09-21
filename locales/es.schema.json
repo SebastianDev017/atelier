@@ -2571,6 +2571,10 @@
             },
             "note": {
               "label": "Nota"
+            },
+            "key_silhouette": {
+              "label": "Clave de metacampo de silueta",
+              "info": "Opcional. Un producto cuyo valor sea «seat» o «box» anula el contorno elegido arriba."
             }
           }
         }
