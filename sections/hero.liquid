@@ -260,7 +260,9 @@
   .hero__actions { display: flex; flex-wrap: wrap; gap: var(--space-4); align-items: center; margin-top: var(--space-2); }
   .hero--align-center .hero__actions { justify-content: center; }
   .hero--align-right .hero__actions { justify-content: flex-end; }
-  .hero__trust { margin-top: var(--space-1); opacity: 0.8; letter-spacing: var(--tracking-wide); }
+  /* No opacity: the caption colour is already muted, and dimming it further put
+     the free-shipping line at 3.13:1 on the lightest preset (axe, Annex home). */
+  .hero__trust { margin-top: var(--space-1); letter-spacing: var(--tracking-wide); }
 
   /* Buttons over imagery (full-bleed) keep the overlay-text palette */
   .hero--fullbleed .hero__cta.btn { background-color: var(--color-overlay-text); border-color: var(--color-overlay-text); color: var(--hero-cta-ink, var(--color-foreground)); }
