@@ -262,5 +262,9 @@
   },
   "date_formats": {
     "month_day_year": "%d de %B de %Y"
+  },
+  "tabs": {
+    "view_all": "Ver todo: {{ collection }}",
+    "untitled": "Pestaña"
   }
 }

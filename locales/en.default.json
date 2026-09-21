@@ -262,5 +262,9 @@
   },
   "date_formats": {
     "month_day_year": "%B %d, %Y"
+  },
+  "tabs": {
+    "view_all": "View all {{ collection }}",
+    "untitled": "Tab"
   }
 }
