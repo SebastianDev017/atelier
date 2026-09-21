@@ -1230,6 +1230,64 @@
         }
       }
     },
+    "finish-gallery": {
+      "name": "Ausführungen-Galerie",
+      "settings": {
+        "product": {
+          "label": "Produkt",
+          "info": "Auf einer Produktseite leer lassen, um das angezeigte Produkt zu verwenden."
+        },
+        "option_name": {
+          "label": "Name der Option",
+          "info": "Leer lassen, um die erste Option mit Farbfeldern zu verwenden."
+        },
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "show_option_name": {
+          "label": "Anzahl-Zeile anzeigen"
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Drei"
+          },
+          "options__2": {
+            "label": "Vier"
+          },
+          "options__3": {
+            "label": "Fünf"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Ausführungen-Galerie"
+      }
+    },
     "footer": {
       "name": "Fußzeile",
       "blocks": {
@@ -2468,6 +2526,53 @@
               "label": "Benutzerdefiniertes Liquid"
             }
           }
+        },
+        "dimensions": {
+          "name": "Maße & Aufbau",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "open_by_default": {
+              "label": "Standardmäßig geöffnet"
+            },
+            "silhouette": {
+              "label": "Silhouette",
+              "options__1": {
+                "label": "Kasten"
+              },
+              "options__2": {
+                "label": "Sitzmöbel"
+              }
+            },
+            "paragraph": {
+              "content": "Die Werte stammen aus den Metafeldern des jeweiligen Produkts. Ist ein Metafeld leer, entfällt die Zeile; sind alle leer, entfällt das Panel."
+            },
+            "namespace": {
+              "label": "Metafeld-Namespace"
+            },
+            "key_width": {
+              "label": "Schlüssel für Breite"
+            },
+            "key_depth": {
+              "label": "Schlüssel für Tiefe"
+            },
+            "key_height": {
+              "label": "Schlüssel für Höhe"
+            },
+            "key_weight": {
+              "label": "Schlüssel für Gewicht"
+            },
+            "key_assembly": {
+              "label": "Schlüssel für Aufbauzeit"
+            },
+            "key_boxes": {
+              "label": "Schlüssel für Anzahl Pakete"
+            },
+            "note": {
+              "label": "Hinweis"
+            }
+          }
         }
       },
       "settings": {
@@ -2883,6 +2988,70 @@
         }
       }
     },
+    "process-timeline": {
+      "name": "Prozess-Zeitleiste",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "cta_url": {
+          "label": "Button-Link"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "step": {
+          "name": "Schritt",
+          "settings": {
+            "image": {
+              "label": "Bild"
+            },
+            "label": {
+              "label": "Name des Schritts"
+            },
+            "duration": {
+              "label": "Dauer",
+              "info": "Zum Beispiel: zwei Tage."
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Prozess-Zeitleiste"
+      }
+    },
     "product-recommendations": {
       "name": "Produktempfehlungen",
       "settings": {
@@ -3151,6 +3320,86 @@
         "enabled": {
           "label": "Befehlspaletten-Suche aktivieren"
         }
+      }
+    },
+    "shop-the-set": {
+      "name": "Das Set shoppen",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "text_position": {
+          "label": "Textposition",
+          "options__1": {
+            "label": "Rechts"
+          },
+          "options__2": {
+            "label": "Links"
+          }
+        },
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "cta_url": {
+          "label": "Button-Link"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "hotspot": {
+          "name": "Hotspot",
+          "settings": {
+            "product": {
+              "label": "Produkt"
+            },
+            "note": {
+              "label": "Notiz"
+            },
+            "position_x": {
+              "label": "Horizontale Position"
+            },
+            "position_y": {
+              "label": "Vertikale Position"
+            }
+          }
+        },
+        "caption": {
+          "name": "Geschichte des Sets",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Das Set shoppen"
       }
     },
     "split-media": {
@@ -3626,6 +3875,83 @@
       },
       "presets": {
         "name": "Kundenstimmen"
+      }
+    },
+    "wall-comparison": {
+      "name": "Wandvergleich",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Eine"
+          },
+          "options__2": {
+            "label": "Zwei"
+          }
+        },
+        "show_price": {
+          "label": "Preis anzeigen"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "pair": {
+          "name": "Vergleich",
+          "settings": {
+            "product": {
+              "label": "Produkt"
+            },
+            "heading": {
+              "label": "Überschrift",
+              "info": "Standard ist der Produkttitel."
+            },
+            "image_before": {
+              "label": "Leere Wand"
+            },
+            "image_after": {
+              "label": "Wand mit dem Werk"
+            },
+            "dimensions": {
+              "label": "Maßangabe",
+              "info": "Zum Beispiel: 70 x 100 cm, gerahmt."
+            },
+            "start_position": {
+              "label": "Startposition des Reglers"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Wandvergleich"
       }
     }
   },

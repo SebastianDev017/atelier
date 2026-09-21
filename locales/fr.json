@@ -266,5 +266,30 @@
   "tabs": {
     "view_all": "Voir tout : {{ collection }}",
     "untitled": "Onglet"
+  },
+  "sections": {
+    "wall-comparison": {
+      "slider_label": "Révéler {{ title }} sur le mur",
+      "before_alt": "Le mur avant l'accrochage de l'œuvre",
+      "after_alt": "Le même mur avec {{ title }} accroché"
+    },
+    "shop-the-set": {
+      "pin_label": "{{ number }}. {{ title }}"
+    },
+    "finish-gallery": {
+      "count": "{{ count }} options de {{ option }}",
+      "empty": "Ce produit n'a pas encore d'option avec échantillons : rien ne s'affiche ici dans la boutique."
+    },
+    "main-product": {
+      "dimensions": {
+        "width": "Largeur",
+        "depth": "Profondeur",
+        "height": "Hauteur",
+        "weight": "Poids",
+        "assembly": "Montage",
+        "boxes": "Colis",
+        "diagram_alt": "Schéma indiquant la largeur, la profondeur et la hauteur mesurées"
+      }
+    }
   }
 }

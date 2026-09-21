@@ -1230,6 +1230,64 @@
         }
       }
     },
+    "finish-gallery": {
+      "name": "Galería de acabados",
+      "settings": {
+        "product": {
+          "label": "Producto",
+          "info": "Déjalo vacío en una página de producto para usar el producto que se está viendo."
+        },
+        "option_name": {
+          "label": "Nombre de la opción",
+          "info": "Déjalo vacío para usar la primera opción con muestras."
+        },
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "show_option_name": {
+          "label": "Mostrar la línea de recuento"
+        },
+        "columns_desktop": {
+          "label": "Columnas en escritorio",
+          "options__1": {
+            "label": "Tres"
+          },
+          "options__2": {
+            "label": "Cuatro"
+          },
+          "options__3": {
+            "label": "Cinco"
+          }
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Relleno superior"
+        },
+        "padding_bottom": {
+          "label": "Relleno inferior"
+        }
+      },
+      "presets": {
+        "name": "Galería de acabados"
+      }
+    },
     "footer": {
       "name": "Pie de página",
       "blocks": {
@@ -2468,6 +2526,53 @@
               "label": "Liquid personalizado"
             }
           }
+        },
+        "dimensions": {
+          "name": "Dimensiones y montaje",
+          "settings": {
+            "heading": {
+              "label": "Título"
+            },
+            "open_by_default": {
+              "label": "Abierto por defecto"
+            },
+            "silhouette": {
+              "label": "Silueta",
+              "options__1": {
+                "label": "Caja"
+              },
+              "options__2": {
+                "label": "Asiento"
+              }
+            },
+            "paragraph": {
+              "content": "Los valores vienen de los metacampos de cada producto. Si un metacampo está vacío, esa línea desaparece; si están todos vacíos, desaparece el panel."
+            },
+            "namespace": {
+              "label": "Espacio de nombres del metacampo"
+            },
+            "key_width": {
+              "label": "Clave de anchura"
+            },
+            "key_depth": {
+              "label": "Clave de profundidad"
+            },
+            "key_height": {
+              "label": "Clave de altura"
+            },
+            "key_weight": {
+              "label": "Clave de peso"
+            },
+            "key_assembly": {
+              "label": "Clave de tiempo de montaje"
+            },
+            "key_boxes": {
+              "label": "Clave de número de cajas"
+            },
+            "note": {
+              "label": "Nota"
+            }
+          }
         }
       },
       "settings": {
@@ -2883,6 +2988,70 @@
         }
       }
     },
+    "process-timeline": {
+      "name": "Cronología del proceso",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "subtext": {
+          "label": "Subtexto"
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "cta_url": {
+          "label": "Enlace del botón"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Relleno superior"
+        },
+        "padding_bottom": {
+          "label": "Relleno inferior"
+        }
+      },
+      "blocks": {
+        "step": {
+          "name": "Paso",
+          "settings": {
+            "image": {
+              "label": "Imagen"
+            },
+            "label": {
+              "label": "Nombre del paso"
+            },
+            "duration": {
+              "label": "Duración",
+              "info": "Por ejemplo: dos días."
+            },
+            "text": {
+              "label": "Texto"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Cronología del proceso"
+      }
+    },
     "product-recommendations": {
       "name": "Recomendaciones de productos",
       "settings": {
@@ -3151,6 +3320,86 @@
         "enabled": {
           "label": "Activar la búsqueda por paleta de comandos"
         }
+      }
+    },
+    "shop-the-set": {
+      "name": "Compra el conjunto",
+      "settings": {
+        "image": {
+          "label": "Imagen"
+        },
+        "text_position": {
+          "label": "Posición del texto",
+          "options__1": {
+            "label": "Derecha"
+          },
+          "options__2": {
+            "label": "Izquierda"
+          }
+        },
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "cta_url": {
+          "label": "Enlace del botón"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Relleno superior"
+        },
+        "padding_bottom": {
+          "label": "Relleno inferior"
+        }
+      },
+      "blocks": {
+        "hotspot": {
+          "name": "Punto interactivo",
+          "settings": {
+            "product": {
+              "label": "Producto"
+            },
+            "note": {
+              "label": "Nota"
+            },
+            "position_x": {
+              "label": "Posición horizontal"
+            },
+            "position_y": {
+              "label": "Posición vertical"
+            }
+          }
+        },
+        "caption": {
+          "name": "Historia del conjunto",
+          "settings": {
+            "text": {
+              "label": "Texto"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Compra el conjunto"
       }
     },
     "split-media": {
@@ -3626,6 +3875,83 @@
       },
       "presets": {
         "name": "Testimonios"
+      }
+    },
+    "wall-comparison": {
+      "name": "Comparación en la pared",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "subtext": {
+          "label": "Subtexto"
+        },
+        "columns_desktop": {
+          "label": "Columnas en escritorio",
+          "options__1": {
+            "label": "Una"
+          },
+          "options__2": {
+            "label": "Dos"
+          }
+        },
+        "show_price": {
+          "label": "Mostrar precio"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Relleno superior"
+        },
+        "padding_bottom": {
+          "label": "Relleno inferior"
+        }
+      },
+      "blocks": {
+        "pair": {
+          "name": "Comparación",
+          "settings": {
+            "product": {
+              "label": "Producto"
+            },
+            "heading": {
+              "label": "Título",
+              "info": "Por defecto, el título del producto."
+            },
+            "image_before": {
+              "label": "Pared vacía"
+            },
+            "image_after": {
+              "label": "Pared con la obra"
+            },
+            "dimensions": {
+              "label": "Línea de dimensiones",
+              "info": "Por ejemplo: 70 x 100 cm, enmarcado."
+            },
+            "start_position": {
+              "label": "Posición inicial del control"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Comparación en la pared"
       }
     }
   },

@@ -1230,6 +1230,64 @@
         }
       }
     },
+    "finish-gallery": {
+      "name": "Galleria delle finiture",
+      "settings": {
+        "product": {
+          "label": "Prodotto",
+          "info": "Lascia vuoto in una pagina prodotto per usare il prodotto visualizzato."
+        },
+        "option_name": {
+          "label": "Nome dell'opzione",
+          "info": "Lascia vuoto per usare la prima opzione con campioni."
+        },
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "heading": {
+          "label": "Titolo"
+        },
+        "heading_tag": {
+          "label": "Tag del titolo",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragrafo"
+          }
+        },
+        "show_option_name": {
+          "label": "Mostra la riga del conteggio"
+        },
+        "columns_desktop": {
+          "label": "Colonne su desktop",
+          "options__1": {
+            "label": "Tre"
+          },
+          "options__2": {
+            "label": "Quattro"
+          },
+          "options__3": {
+            "label": "Cinque"
+          }
+        },
+        "color_scheme": {
+          "label": "Combinazione di colori"
+        },
+        "padding_top": {
+          "label": "Spaziatura superiore"
+        },
+        "padding_bottom": {
+          "label": "Spaziatura inferiore"
+        }
+      },
+      "presets": {
+        "name": "Galleria delle finiture"
+      }
+    },
     "footer": {
       "name": "Piè di pagina",
       "blocks": {
@@ -2468,6 +2526,53 @@
               "label": "Liquid personalizzato"
             }
           }
+        },
+        "dimensions": {
+          "name": "Dimensioni e montaggio",
+          "settings": {
+            "heading": {
+              "label": "Titolo"
+            },
+            "open_by_default": {
+              "label": "Aperto per impostazione predefinita"
+            },
+            "silhouette": {
+              "label": "Sagoma",
+              "options__1": {
+                "label": "Cassa"
+              },
+              "options__2": {
+                "label": "Seduta"
+              }
+            },
+            "paragraph": {
+              "content": "I valori provengono dai metacampi di ciascun prodotto. Un metacampo vuoto nasconde la riga; se sono tutti vuoti, sparisce il pannello."
+            },
+            "namespace": {
+              "label": "Namespace del metacampo"
+            },
+            "key_width": {
+              "label": "Chiave larghezza"
+            },
+            "key_depth": {
+              "label": "Chiave profondità"
+            },
+            "key_height": {
+              "label": "Chiave altezza"
+            },
+            "key_weight": {
+              "label": "Chiave peso"
+            },
+            "key_assembly": {
+              "label": "Chiave tempo di montaggio"
+            },
+            "key_boxes": {
+              "label": "Chiave numero di colli"
+            },
+            "note": {
+              "label": "Nota"
+            }
+          }
         }
       },
       "settings": {
@@ -2883,6 +2988,70 @@
         }
       }
     },
+    "process-timeline": {
+      "name": "Fasi del processo",
+      "settings": {
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "heading": {
+          "label": "Titolo"
+        },
+        "heading_tag": {
+          "label": "Tag del titolo",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragrafo"
+          }
+        },
+        "subtext": {
+          "label": "Sottotesto"
+        },
+        "cta_label": {
+          "label": "Testo del pulsante"
+        },
+        "cta_url": {
+          "label": "Link del pulsante"
+        },
+        "color_scheme": {
+          "label": "Combinazione di colori"
+        },
+        "padding_top": {
+          "label": "Spaziatura superiore"
+        },
+        "padding_bottom": {
+          "label": "Spaziatura inferiore"
+        }
+      },
+      "blocks": {
+        "step": {
+          "name": "Fase",
+          "settings": {
+            "image": {
+              "label": "Immagine"
+            },
+            "label": {
+              "label": "Nome della fase"
+            },
+            "duration": {
+              "label": "Durata",
+              "info": "Ad esempio: due giorni."
+            },
+            "text": {
+              "label": "Testo"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Fasi del processo"
+      }
+    },
     "product-recommendations": {
       "name": "Prodotti consigliati",
       "settings": {
@@ -3151,6 +3320,86 @@
         "enabled": {
           "label": "Abilita la ricerca con palette di comandi"
         }
+      }
+    },
+    "shop-the-set": {
+      "name": "Acquista il set",
+      "settings": {
+        "image": {
+          "label": "Immagine"
+        },
+        "text_position": {
+          "label": "Posizione del testo",
+          "options__1": {
+            "label": "Destra"
+          },
+          "options__2": {
+            "label": "Sinistra"
+          }
+        },
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "heading": {
+          "label": "Titolo"
+        },
+        "heading_tag": {
+          "label": "Tag del titolo",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragrafo"
+          }
+        },
+        "cta_label": {
+          "label": "Testo del pulsante"
+        },
+        "cta_url": {
+          "label": "Link del pulsante"
+        },
+        "color_scheme": {
+          "label": "Combinazione di colori"
+        },
+        "padding_top": {
+          "label": "Spaziatura superiore"
+        },
+        "padding_bottom": {
+          "label": "Spaziatura inferiore"
+        }
+      },
+      "blocks": {
+        "hotspot": {
+          "name": "Punto interattivo",
+          "settings": {
+            "product": {
+              "label": "Prodotto"
+            },
+            "note": {
+              "label": "Nota"
+            },
+            "position_x": {
+              "label": "Posizione orizzontale"
+            },
+            "position_y": {
+              "label": "Posizione verticale"
+            }
+          }
+        },
+        "caption": {
+          "name": "Storia del set",
+          "settings": {
+            "text": {
+              "label": "Testo"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Acquista il set"
       }
     },
     "split-media": {
@@ -3626,6 +3875,83 @@
       },
       "presets": {
         "name": "Testimonianze"
+      }
+    },
+    "wall-comparison": {
+      "name": "Confronto a parete",
+      "settings": {
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "heading": {
+          "label": "Titolo"
+        },
+        "heading_tag": {
+          "label": "Tag del titolo",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragrafo"
+          }
+        },
+        "subtext": {
+          "label": "Sottotesto"
+        },
+        "columns_desktop": {
+          "label": "Colonne su desktop",
+          "options__1": {
+            "label": "Una"
+          },
+          "options__2": {
+            "label": "Due"
+          }
+        },
+        "show_price": {
+          "label": "Mostra prezzo"
+        },
+        "color_scheme": {
+          "label": "Combinazione di colori"
+        },
+        "padding_top": {
+          "label": "Spaziatura superiore"
+        },
+        "padding_bottom": {
+          "label": "Spaziatura inferiore"
+        }
+      },
+      "blocks": {
+        "pair": {
+          "name": "Confronto",
+          "settings": {
+            "product": {
+              "label": "Prodotto"
+            },
+            "heading": {
+              "label": "Titolo",
+              "info": "Per impostazione predefinita, il titolo del prodotto."
+            },
+            "image_before": {
+              "label": "Parete vuota"
+            },
+            "image_after": {
+              "label": "Parete con l'opera"
+            },
+            "dimensions": {
+              "label": "Riga delle dimensioni",
+              "info": "Ad esempio: 70 x 100 cm, incorniciato."
+            },
+            "start_position": {
+              "label": "Posizione iniziale del cursore"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Confronto a parete"
       }
     }
   },

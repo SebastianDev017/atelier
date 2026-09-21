@@ -266,5 +266,30 @@
   "tabs": {
     "view_all": "Vedi tutto: {{ collection }}",
     "untitled": "Scheda"
+  },
+  "sections": {
+    "wall-comparison": {
+      "slider_label": "Mostra {{ title }} sulla parete",
+      "before_alt": "La parete prima che l'opera sia appesa",
+      "after_alt": "La stessa parete con {{ title }} appeso"
+    },
+    "shop-the-set": {
+      "pin_label": "{{ number }}. {{ title }}"
+    },
+    "finish-gallery": {
+      "count": "{{ count }} opzioni di {{ option }}",
+      "empty": "Questo prodotto non ha ancora un'opzione con campioni, quindi qui non viene mostrato nulla nel negozio."
+    },
+    "main-product": {
+      "dimensions": {
+        "width": "Larghezza",
+        "depth": "Profondità",
+        "height": "Altezza",
+        "weight": "Peso",
+        "assembly": "Montaggio",
+        "boxes": "Colli",
+        "diagram_alt": "Diagramma con larghezza, profondità e altezza misurate"
+      }
+    }
   }
 }

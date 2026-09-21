@@ -266,5 +266,30 @@
   "tabs": {
     "view_all": "Alle {{ collection }} anzeigen",
     "untitled": "Tab"
+  },
+  "sections": {
+    "wall-comparison": {
+      "slider_label": "{{ title }} an der Wand einblenden",
+      "before_alt": "Die Wand, bevor das Werk aufgehängt wird",
+      "after_alt": "Dieselbe Wand mit aufgehängtem {{ title }}"
+    },
+    "shop-the-set": {
+      "pin_label": "{{ number }}. {{ title }}"
+    },
+    "finish-gallery": {
+      "count": "{{ count }} Optionen für {{ option }}",
+      "empty": "Dieses Produkt hat noch keine Option mit Farbfeldern, daher wird hier im Shop nichts angezeigt."
+    },
+    "main-product": {
+      "dimensions": {
+        "width": "Breite",
+        "depth": "Tiefe",
+        "height": "Höhe",
+        "weight": "Gewicht",
+        "assembly": "Aufbau",
+        "boxes": "Pakete",
+        "diagram_alt": "Diagramm mit gemessener Breite, Tiefe und Höhe"
+      }
+    }
   }
 }

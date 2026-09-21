@@ -1,0 +1,74 @@
+{%- comment -%}
+  Dimension diagram — a flat silhouette of the piece with a labelled line per
+  measurement. Deliberately not a render: the job is to answer "will it fit",
+  and a line with a number on it answers that faster than a picture of a sofa.
+
+  Every value comes from the product's own metafields; a measurement left empty
+  in admin simply has no line. With nothing filled in, the caller renders
+  nothing at all.
+
+  @param {string} width - measurement text, already formatted by the merchant
+  @param {string} depth
+  @param {string} height
+  @param {string} silhouette - 'box' or 'seat'
+{%- endcomment -%}
+<div class="dims-diagram">
+  <svg
+    class="dims-diagram__svg"
+    viewBox="0 0 320 210"
+    role="img"
+    aria-label="{{ 'sections.main-product.dimensions.diagram_alt' | t }}"
+    focusable="false"
+  >
+    {%- if silhouette == 'seat' -%}
+      {%- comment -%} A seat profile: back, seat, legs. {%- endcomment -%}
+      <path class="dims-diagram__shape" d="M60 150 L60 60 Q60 50 70 50 L96 50 Q106 50 106 60 L106 120 L246 120 Q258 120 258 132 L258 150" />
+      <path class="dims-diagram__shape" d="M70 150 L70 178 M246 150 L246 178" />
+      <path class="dims-diagram__shape" d="M60 150 L258 150" />
+    {%- else -%}
+      {%- comment -%} A box: front face plus a shallow top to read as depth. {%- endcomment -%}
+      <path class="dims-diagram__shape" d="M60 70 L230 70 L230 178 L60 178 Z" />
+      <path class="dims-diagram__shape" d="M60 70 L100 42 L270 42 L230 70 M230 178 L270 150 L270 42" />
+    {%- endif -%}
+
+    {%- if width != blank -%}
+      <g class="dims-diagram__dim">
+        <path class="dims-diagram__rule" d="M60 196 L230 196" />
+        <path class="dims-diagram__tick" d="M60 190 L60 202 M230 190 L230 202" />
+      </g>
+    {%- endif -%}
+    {%- if height != blank -%}
+      <g class="dims-diagram__dim">
+        <path class="dims-diagram__rule" d="M42 70 L42 178" />
+        <path class="dims-diagram__tick" d="M36 70 L48 70 M36 178 L48 178" />
+      </g>
+    {%- endif -%}
+    {%- if depth != blank -%}
+      <g class="dims-diagram__dim">
+        <path class="dims-diagram__rule" d="M240 34 L280 12" />
+        <path class="dims-diagram__tick" d="M236 28 L244 40 M276 6 L284 18" />
+      </g>
+    {%- endif -%}
+  </svg>
+
+  <dl class="dims-diagram__values">
+    {%- if width != blank -%}
+      <div class="dims-diagram__row">
+        <dt>{{ 'sections.main-product.dimensions.width' | t }}</dt>
+        <dd>{{ width | escape }}</dd>
+      </div>
+    {%- endif -%}
+    {%- if depth != blank -%}
+      <div class="dims-diagram__row">
+        <dt>{{ 'sections.main-product.dimensions.depth' | t }}</dt>
+        <dd>{{ depth | escape }}</dd>
+      </div>
+    {%- endif -%}
+    {%- if height != blank -%}
+      <div class="dims-diagram__row">
+        <dt>{{ 'sections.main-product.dimensions.height' | t }}</dt>
+        <dd>{{ height | escape }}</dd>
+      </div>
+    {%- endif -%}
+  </dl>
+</div>

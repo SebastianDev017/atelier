@@ -266,5 +266,30 @@
   "tabs": {
     "view_all": "Ver todo: {{ collection }}",
     "untitled": "Pestaña"
+  },
+  "sections": {
+    "wall-comparison": {
+      "slider_label": "Mostrar {{ title }} en la pared",
+      "before_alt": "La pared antes de colgar la obra",
+      "after_alt": "La misma pared con {{ title }} colgado"
+    },
+    "shop-the-set": {
+      "pin_label": "{{ number }}. {{ title }}"
+    },
+    "finish-gallery": {
+      "count": "{{ count }} opciones de {{ option }}",
+      "empty": "Este producto aún no tiene ninguna opción con muestras, así que aquí no se muestra nada en la tienda."
+    },
+    "main-product": {
+      "dimensions": {
+        "width": "Anchura",
+        "depth": "Profundidad",
+        "height": "Altura",
+        "weight": "Peso",
+        "assembly": "Montaje",
+        "boxes": "Cajas",
+        "diagram_alt": "Diagrama con la anchura, profundidad y altura medidas"
+      }
+    }
   }
 }

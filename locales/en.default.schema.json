@@ -1230,6 +1230,64 @@
         }
       }
     },
+    "finish-gallery": {
+      "name": "Finish gallery",
+      "settings": {
+        "product": {
+          "label": "Product",
+          "info": "Leave empty on a product page to use the product being viewed."
+        },
+        "option_name": {
+          "label": "Option name",
+          "info": "Leave empty to use the first option that has swatches."
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "show_option_name": {
+          "label": "Show the count line"
+        },
+        "columns_desktop": {
+          "label": "Columns on desktop",
+          "options__1": {
+            "label": "Three"
+          },
+          "options__2": {
+            "label": "Four"
+          },
+          "options__3": {
+            "label": "Five"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Finish gallery"
+      }
+    },
     "footer": {
       "name": "Footer",
       "blocks": {
@@ -2468,6 +2526,53 @@
               "label": "Custom liquid"
             }
           }
+        },
+        "dimensions": {
+          "name": "Dimensions & assembly",
+          "settings": {
+            "heading": {
+              "label": "Heading"
+            },
+            "open_by_default": {
+              "label": "Open by default"
+            },
+            "silhouette": {
+              "label": "Silhouette",
+              "options__1": {
+                "label": "Box"
+              },
+              "options__2": {
+                "label": "Seat"
+              }
+            },
+            "paragraph": {
+              "content": "Values come from each product's metafields, so every product shows its own. Leave a product's metafield empty and that line disappears; leave them all empty and the panel does."
+            },
+            "namespace": {
+              "label": "Metafield namespace"
+            },
+            "key_width": {
+              "label": "Width key"
+            },
+            "key_depth": {
+              "label": "Depth key"
+            },
+            "key_height": {
+              "label": "Height key"
+            },
+            "key_weight": {
+              "label": "Weight key"
+            },
+            "key_assembly": {
+              "label": "Assembly time key"
+            },
+            "key_boxes": {
+              "label": "Box count key"
+            },
+            "note": {
+              "label": "Note"
+            }
+          }
         }
       },
       "settings": {
@@ -2883,6 +2988,70 @@
         }
       }
     },
+    "process-timeline": {
+      "name": "Process timeline",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "subtext": {
+          "label": "Subtext"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "step": {
+          "name": "Step",
+          "settings": {
+            "image": {
+              "label": "Image"
+            },
+            "label": {
+              "label": "Step name"
+            },
+            "duration": {
+              "label": "Duration",
+              "info": "For example: two days."
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Process timeline"
+      }
+    },
     "product-recommendations": {
       "name": "Product recommendations",
       "settings": {
@@ -3151,6 +3320,86 @@
         "enabled": {
           "label": "Enable command palette search"
         }
+      }
+    },
+    "shop-the-set": {
+      "name": "Shop the set",
+      "settings": {
+        "image": {
+          "label": "Image"
+        },
+        "text_position": {
+          "label": "Text position",
+          "options__1": {
+            "label": "Right"
+          },
+          "options__2": {
+            "label": "Left"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "cta_url": {
+          "label": "Button link"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "hotspot": {
+          "name": "Hotspot",
+          "settings": {
+            "product": {
+              "label": "Product"
+            },
+            "note": {
+              "label": "Note"
+            },
+            "position_x": {
+              "label": "Horizontal position"
+            },
+            "position_y": {
+              "label": "Vertical position"
+            }
+          }
+        },
+        "caption": {
+          "name": "Set story",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Shop the set"
       }
     },
     "split-media": {
@@ -3626,6 +3875,83 @@
       },
       "presets": {
         "name": "Testimonials"
+      }
+    },
+    "wall-comparison": {
+      "name": "Wall comparison",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "subtext": {
+          "label": "Subtext"
+        },
+        "columns_desktop": {
+          "label": "Columns on desktop",
+          "options__1": {
+            "label": "One"
+          },
+          "options__2": {
+            "label": "Two"
+          }
+        },
+        "show_price": {
+          "label": "Show price"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "pair": {
+          "name": "Comparison",
+          "settings": {
+            "product": {
+              "label": "Product"
+            },
+            "heading": {
+              "label": "Heading",
+              "info": "Defaults to the product title."
+            },
+            "image_before": {
+              "label": "Empty wall"
+            },
+            "image_after": {
+              "label": "Wall with the work"
+            },
+            "dimensions": {
+              "label": "Dimension line",
+              "info": "For example: 70 x 100 cm, framed."
+            },
+            "start_position": {
+              "label": "Handle start position"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Wall comparison"
       }
     }
   },
