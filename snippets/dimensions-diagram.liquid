@@ -12,6 +12,20 @@
   @param {string} height
   @param {string} silhouette - 'box' or 'seat'
 {%- endcomment -%}
+{%- liquid
+  comment
+    The box is drawn face-on: across is width, the receding edge is depth.
+    The seat is drawn in profile: across is depth, and width is the
+    measurement going into the page.
+  endcomment
+  if silhouette == 'seat'
+    assign rule_across = depth
+    assign rule_back = width
+  else
+    assign rule_across = width
+    assign rule_back = depth
+  endif
+-%}
 <div class="dims-diagram">
   <svg
     class="dims-diagram__svg"
@@ -31,10 +45,15 @@
       <path class="dims-diagram__shape" d="M60 70 L100 42 L270 42 L230 70 M230 178 L270 150 L270 42" />
     {%- endif -%}
 
-    {%- if width != blank -%}
+    {%- if rule_across != blank -%}
       <g class="dims-diagram__dim">
-        <path class="dims-diagram__rule" d="M60 196 L230 196" />
-        <path class="dims-diagram__tick" d="M60 190 L60 202 M230 190 L230 202" />
+        {%- if silhouette == 'seat' -%}
+          <path class="dims-diagram__rule" d="M60 196 L258 196" />
+          <path class="dims-diagram__tick" d="M60 190 L60 202 M258 190 L258 202" />
+        {%- else -%}
+          <path class="dims-diagram__rule" d="M60 196 L230 196" />
+          <path class="dims-diagram__tick" d="M60 190 L60 202 M230 190 L230 202" />
+        {%- endif -%}
       </g>
     {%- endif -%}
     {%- if height != blank -%}
@@ -43,10 +62,16 @@
         <path class="dims-diagram__tick" d="M36 70 L48 70 M36 178 L48 178" />
       </g>
     {%- endif -%}
-    {%- if depth != blank -%}
+    {%- if rule_back != blank -%}
       <g class="dims-diagram__dim">
-        <path class="dims-diagram__rule" d="M240 34 L280 12" />
-        <path class="dims-diagram__tick" d="M236 28 L244 40 M276 6 L284 18" />
+        {%- comment -%} Drawn off the corner the shape recedes from. {%- endcomment -%}
+        {%- if silhouette == 'seat' -%}
+          <path class="dims-diagram__rule" d="M264 44 L300 24" />
+          <path class="dims-diagram__tick" d="M260 38 L268 50 M296 18 L304 30" />
+        {%- else -%}
+          <path class="dims-diagram__rule" d="M236 64 L276 36" />
+          <path class="dims-diagram__tick" d="M232 58 L240 70 M272 30 L280 42" />
+        {%- endif -%}
       </g>
     {%- endif -%}
   </svg>
