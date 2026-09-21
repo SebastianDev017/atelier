@@ -640,9 +640,17 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
   width: 44px;
   height: 44px;
   color: var(--color-text);
-  transition: color var(--duration-fast) var(--ease-editorial);
+  transition: background-color var(--duration-fast) var(--ease-editorial);
 }
-.header__icon-btn:hover { color: var(--color-accent-local); }
+/* The glyph keeps --color-text and the field answers the pointer instead.
+   Recolouring to the accent took the icon to 2.51:1 on Contour's
+   background-3 -- under the 3:1 floor for non-text, and less visible
+   hovered than at rest. Same field tint .quantity__button already uses.
+   (hover: hover) because the sidebar triggers are fixed and a tap would
+   otherwise leave the tint stuck on top of the page. */
+@media (hover: hover) {
+  .header__icon-btn:hover { background-color: var(--color-subtle); }
+}
 
 .btn--link,
 .link-underline {
@@ -1938,6 +1946,15 @@ body:has(cart-page) .scroll-top.is-visible {
   white-space: nowrap;
 }
 .bundle__item-foot { display: flex; align-items: center; gap: var(--space-3); flex-shrink: 0; }
+/* On a 327px row the 60px thumbnail and the 164px price block left the name
+   79px, so "Ceramic Table Lamp" ellipsed to "Ceramic Tabl..." and the
+   suggestion could not be identified. Below the grid breakpoint the price and
+   the add button take their own line and the name gets the width back. */
+@media (max-width: 749px) {
+  .bundle__item:not(.bundle__item--card) { flex-wrap: wrap; }
+  .bundle__item:not(.bundle__item--card) .bundle__item-link { flex: 1 1 100%; }
+  .bundle__item:not(.bundle__item--card) .bundle__item-foot { flex: 1 1 100%; justify-content: space-between; }
+}
 /* A price is content a shopper acts on, so it sits on the 13px body tier
    rather than the label tier -- still muted and mono, so the upsell stays
    visually secondary to the main product price. */

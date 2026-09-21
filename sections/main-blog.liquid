@@ -45,7 +45,7 @@
                       article.image
                       | image_url: width: 1200
                       | image_tag:
-                        loading: 'lazy',
+                        loading: 'lazy', decoding: 'async',
                         widths: '300, 450, 600, 750, 900, 1200',
                         sizes: image_sizes,
                         alt: img_alt

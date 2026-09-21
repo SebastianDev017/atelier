@@ -51,7 +51,7 @@
                           <span class="media media--landscape">
                             {%- if item.image -%}
                               {%- assign item_alt = item.image.alt | default: item.title -%}
-                              {{ item.image | image_url: width: 600 | image_tag: loading: 'lazy', widths: '300, 450, 600', sizes: '(min-width: 750px) 25vw, 50vw', alt: item_alt }}
+                              {{ item.image | image_url: width: 600 | image_tag: loading: 'lazy', decoding: 'async', widths: '300, 450, 600', sizes: '(min-width: 750px) 25vw, 50vw', alt: item_alt }}
                             {%- else -%}
                               {{ 'image' | placeholder_svg_tag: 'placeholder' }}
                             {%- endif -%}
