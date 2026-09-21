@@ -1,0 +1,172 @@
+{%- comment -%}
+  About values / materials — a repeatable grid of short claims. Each block takes
+  an icon from the theme's own set (one stroke weight, no emoji), or a custom
+  image for a material swatch, plus a heading and a line of text.
+
+  Works for either job the name suggests: "what we believe" on an About page,
+  or "what it is made of" on a product story page.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign columns = section.settings.columns_desktop | default: '3'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --values-columns: {{ columns }};
+  }
+</style>
+
+<div class="about-values-s color-scheme--{{ scheme }}">
+  <div class="about-values-s__inner page-width">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank or section.settings.subtext != blank -%}
+      <div class="about-values-s__head about-values-s__head--{{ section.settings.text_alignment }}">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="section-heading heading--lg" data-animate>{{ section.settings.heading | escape }}</{{ heading_tag }}>
+        {%- endif -%}
+        {%- if section.settings.subtext != blank -%}
+          <p class="caption about-values-s__subtext" data-animate data-animate-delay="2">{{ section.settings.subtext | escape }}</p>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      <ul class="about-values-s__grid" role="list">
+        {%- for block in section.blocks -%}
+          <li class="about-value-s" data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}" {{ block.shopify_attributes }}>
+            {%- if block.settings.image != blank -%}
+              <span class="about-value-s__swatch">
+                {{
+                  block.settings.image
+                  | image_url: width: 240
+                  | image_tag: loading: 'lazy', widths: '120, 180, 240', sizes: '72px', alt: block.settings.image.alt | default: block.settings.heading, class: 'about-value-s__swatch-img'
+                }}
+              </span>
+            {%- elsif block.settings.icon != 'none' -%}
+              <span class="about-value-s__icon" aria-hidden="true">
+                {% render 'icon', name: block.settings.icon %}
+              </span>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h3 class="about-value-s__title">{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <p class="about-value-s__text">{{ block.settings.text | escape }}</p>
+            {%- endif -%}
+          </li>
+        {%- endfor -%}
+      </ul>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-values-s { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .about-values-s__head { margin-bottom: clamp(2.5rem, 5vw, 4rem); display: flex; flex-direction: column; gap: var(--space-2); }
+  .about-values-s__head--center { align-items: center; text-align: center; }
+  .about-values-s__subtext { max-width: 60ch; }
+  .about-values-s__head--center .about-values-s__subtext { margin-inline: auto; }
+
+  .about-values-s__grid {
+    display: grid;
+    grid-template-columns: repeat(var(--values-columns, 3), minmax(0, 1fr));
+    gap: clamp(2rem, 4vw, 3.5rem) clamp(2rem, 5vw, 4rem);
+  }
+  .about-value-s { display: flex; flex-direction: column; align-items: flex-start; }
+  .about-value-s__icon { display: inline-flex; color: var(--color-text); margin-bottom: var(--space-4); }
+  .about-value-s__icon .icon { width: 24px; height: 24px; }
+  .about-value-s__swatch { display: block; width: 72px; height: 72px; overflow: hidden; margin-bottom: var(--space-4); border-radius: var(--image-radius, 0); }
+  .about-value-s__swatch-img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .about-value-s__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: var(--text-lg);
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    margin-bottom: var(--space-3);
+  }
+  .about-value-s__text { color: var(--color-muted); font-size: var(--text-sm); line-height: 1.65; max-width: 42ch; }
+
+  @media (max-width: 989px) { .about-values-s__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+  @media (max-width: 599px) { .about-values-s__grid { grid-template-columns: 1fr; } }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.about-values.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.about-values.settings.eyebrow.label" },
+    { "type": "text", "id": "heading", "label": "t:sections.about-values.settings.heading.label", "default": "What we believe" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.about-values.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.about-values.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.about-values.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.about-values.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "text", "id": "subtext", "label": "t:sections.about-values.settings.subtext.label" },
+    {
+      "type": "select", "id": "text_alignment", "label": "t:sections.about-values.settings.text_alignment.label",
+      "options": [
+        { "value": "start", "label": "t:sections.about-values.settings.text_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.about-values.settings.text_alignment.options__2.label" }
+      ],
+      "default": "start"
+    },
+    {
+      "type": "select", "id": "columns_desktop", "label": "t:sections.about-values.settings.columns_desktop.label",
+      "options": [
+        { "value": "2", "label": "t:sections.about-values.settings.columns_desktop.options__1.label" },
+        { "value": "3", "label": "t:sections.about-values.settings.columns_desktop.options__2.label" },
+        { "value": "4", "label": "t:sections.about-values.settings.columns_desktop.options__3.label" }
+      ],
+      "default": "3"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.about-values.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.about-values.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.about-values.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "value",
+      "name": "t:sections.about-values.blocks.value.name",
+      "settings": [
+        {
+          "type": "select", "id": "icon", "label": "t:sections.about-values.blocks.value.settings.icon.label",
+          "info": "t:sections.about-values.blocks.value.settings.icon.info",
+          "options": [
+            { "value": "none", "label": "t:sections.about-values.blocks.value.settings.icon.options__none.label" },
+            { "value": "sparkle", "label": "t:sections.about-values.blocks.value.settings.icon.options__sparkle.label" },
+            { "value": "star", "label": "t:sections.about-values.blocks.value.settings.icon.options__star.label" },
+            { "value": "check", "label": "t:sections.about-values.blocks.value.settings.icon.options__check.label" },
+            { "value": "truck", "label": "t:sections.about-values.blocks.value.settings.icon.options__truck.label" },
+            { "value": "globe", "label": "t:sections.about-values.blocks.value.settings.icon.options__globe.label" },
+            { "value": "return", "label": "t:sections.about-values.blocks.value.settings.icon.options__return.label" },
+            { "value": "lock", "label": "t:sections.about-values.blocks.value.settings.icon.options__lock.label" },
+            { "value": "pin", "label": "t:sections.about-values.blocks.value.settings.icon.options__pin.label" }
+          ],
+          "default": "sparkle"
+        },
+        { "type": "image_picker", "id": "image", "label": "t:sections.about-values.blocks.value.settings.image.label", "info": "t:sections.about-values.blocks.value.settings.image.info" },
+        { "type": "text", "id": "heading", "label": "t:sections.about-values.blocks.value.settings.heading.label", "default": "Considered" },
+        { "type": "textarea", "id": "text", "label": "t:sections.about-values.blocks.value.settings.text.label", "default": "One sentence on what this means in practice, not in principle." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.about-values.presets.name",
+      "blocks": [ { "type": "value" }, { "type": "value" }, { "type": "value" } ]
+    }
+  ]
+}
+{% endschema %}

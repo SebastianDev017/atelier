@@ -40,10 +40,70 @@
         "padding_top": 32,
         "padding_bottom": 96
       }
+    },
+    "story_tabs": {
+      "type": "tabs",
+      "settings": {
+        "eyebrow": "",
+        "heading": "",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "About the editions",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "hover",
+        "color_scheme": "background-1",
+        "padding_top": 64,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "tab_story": {
+          "type": "content",
+          "settings": {
+            "label": "Story",
+            "heading": "Where the work comes from",
+            "text": "<p>Every edition starts as an original in the studio: a painting, a carved block, or a negative. We scan or photograph it at high resolution, proof it against the original under daylight, and only then open the edition.</p><p>When an edition sells through it is closed. We do not reprint it in another size to keep it alive.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        },
+        "tab_materials": {
+          "type": "content",
+          "settings": {
+            "label": "Materials",
+            "heading": "Paper, ink, and the frame around it",
+            "text": "<p>Giclée editions are printed with pigment inks on 310gsm cotton rag; photographs are printed on 310gsm baryta. Both are acid-free and rated to outlast the person who buys them.</p><p>Frames are solid oak, ash or walnut, glazed with museum glass on larger sizes and UV-filtering acrylic where weight matters.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        },
+        "tab_care": {
+          "type": "content",
+          "settings": {
+            "label": "Care",
+            "heading": "Hanging it, and keeping it",
+            "text": "<p>Hang the centre of the work at eye level, around 145cm from the floor, and keep it out of direct sun: no glass stops fading entirely. The hanging kit ships in the box.</p><p>Dust the glass with a dry cloth. If the frame needs more than that, tell us and we will re-glaze it rather than sell you a new one.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_story",
+        "tab_materials",
+        "tab_care"
+      ]
     }
   },
   "order": [
     "banner",
-    "main"
+    "main",
+    "story_tabs"
   ]
 }
