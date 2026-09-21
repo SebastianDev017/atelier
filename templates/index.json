@@ -58,7 +58,7 @@
         "heading_tag": "h2",
         "heading_size": "lg",
         "subtitle": "A few of our favourites this month.",
-        "collection": "living",
+        "collection": "serving-tea",
         "products_to_show": 8,
         "columns_desktop": "4",
         "columns_mobile": "2",
@@ -116,7 +116,7 @@
         "shop_shop_login_button_app_block_gVijV4"
       ],
       "settings": {
-        "product": "cloud-linen-sofa-3-seater",
+        "product": "celadon-pitcher",
         "heading": "In focus",
         "show_vendor": true,
         "show_trust_badges": true,
@@ -131,7 +131,7 @@
       "type": "horizontal-scroll",
       "settings": {
         "heading": "Featured pieces",
-        "collection": "studio-objects",
+        "collection": "tableware",
         "products_count": 8,
         "card_aspect": "portrait",
         "color_scheme": "background-1",
@@ -167,7 +167,7 @@
         "heading_tag": "h2",
         "heading_size": "lg",
         "subtitle": "Just landed in the studio.",
-        "collection": "new-season",
+        "collection": "vases-vessels",
         "products_to_show": 4,
         "columns_desktop": "4",
         "columns_mobile": "1",
