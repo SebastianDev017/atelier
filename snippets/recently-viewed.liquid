@@ -16,6 +16,14 @@
         assign rv_color = opt
         break
       endif
+      if rv_color == nil
+        for opt_value in opt.values
+          if opt_value.swatch
+            assign rv_color = opt
+            break
+          endif
+        endfor
+      endif
     endfor
   -%}
   {%- comment -%}
