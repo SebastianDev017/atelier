@@ -115,6 +115,41 @@ Repeat for `maison`. Never merge `annex`/`maison` back into `main`.
 - JS — framework-free Web Components in `theme.js` (window.Atelier helpers, ScrollAnimator, `<quantity-input>`, `<header-component>`, CursorComponent, ScrollTopButton, NotifyMe, Lenis smooth-scroll), `cart.js` (`<cart-drawer>`/`<product-form>`/`<cart-page>`), `product.js` (`<product-info>` variant swap), `search.js` (`<predictive-search>`).
 - Layout — vertical left **sidebar** nav (uppercase index) via `header-group`; `site-layout` grid (`--sidebar-width` 1fr), collapses to an off-canvas drawer ≤768px.
 
+### 4.0 — sections, and the store data behind them
+
+Nine sections were added, all usable on any page: `tabs`, `about-hero`,
+`about-story`, `about-values`, `about-cta`, `wall-comparison`,
+`process-timeline`, `shop-the-set`, `finish-gallery`. `page-about.liquid`
+was deleted — `templates/page.about.json` is assembled from the About
+sections like any other page. The presets now share only `hero` and
+`newsletter` on the homepage (86% distinct per pair).
+
+Store-side data these depend on, which no amount of reading the theme will
+tell you:
+
+- **Contour** products carry `custom.width` / `depth` / `height` / `weight`
+  / `assembly_time` / `box_count` / `silhouette` (all
+  `single_line_text_field`, definitions created). Every value is lifted from
+  that product's own description; products that state no weight, assembly
+  time or box count have those left unwritten on purpose, so the row stays
+  hidden and the panel disappears entirely on textiles. `silhouette` is
+  `seat` or `box` and overrides the block setting per product — the diagram
+  draws the box face-on (across = width) and the seat in profile
+  (across = depth), so the outline has to follow the piece.
+- **Annex** Files hold `annex-wall-before.jpg` and `annex-wall-after.jpg`:
+  one crop of `leather-seat-stool.jpg`, and the same crop with
+  *Cascade — Photograph* framed onto the wall. The store owns no matched
+  before/after photography and a comparison cannot honestly show anything
+  else. Regenerate with `make_wall_pair.py` if the artwork changes.
+- **Maison**'s timeline is deliberately unphotographed: the store has no
+  glazing or firing photographs, and the section renders the media row only
+  when every step has an image, so two real photographs beside two
+  placeholders is not a state it can reach.
+
+A template naming a file that lives in another preset's store renders the
+onboarding placeholder and looks like a broken section. Check references
+per store, not per repo.
+
 ## 7. Build method (proven)
 
 1. Seed each version from the previous validated tree (robocopy/Copy-Item, excluding `.git`), not a bare skeleton.
