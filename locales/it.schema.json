@@ -2571,6 +2571,10 @@
             },
             "note": {
               "label": "Nota"
+            },
+            "key_silhouette": {
+              "label": "Chiave del metacampo silhouette",
+              "info": "Facoltativo. Un prodotto con valore \"seat\" o \"box\" sostituisce il contorno scelto sopra."
             }
           }
         }

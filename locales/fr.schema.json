@@ -2571,6 +2571,10 @@
             },
             "note": {
               "label": "Note"
+            },
+            "key_silhouette": {
+              "label": "Clé de métachamp de silhouette",
+              "info": "Facultatif. Un produit dont la valeur est « seat » ou « box » remplace le contour choisi ci-dessus."
             }
           }
         }
