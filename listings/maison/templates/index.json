@@ -74,7 +74,7 @@
           "settings": {
             "label": "Tableware",
             "collection": "tableware",
-            "products_to_show": 8,
+            "products_to_show": 4,
             "show_view_all": true
           }
         },
@@ -83,7 +83,7 @@
           "settings": {
             "label": "Vases & vessels",
             "collection": "vases-vessels",
-            "products_to_show": 8,
+            "products_to_show": 4,
             "show_view_all": true
           }
         },
@@ -92,7 +92,7 @@
           "settings": {
             "label": "Serving & tea",
             "collection": "serving-tea",
-            "products_to_show": 8,
+            "products_to_show": 4,
             "show_view_all": true
           }
         }
