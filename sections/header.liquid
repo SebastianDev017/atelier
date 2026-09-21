@@ -427,9 +427,10 @@
     flex-direction: column;
     gap: 2px;
     color: var(--color-text);
-    transition: color var(--duration-fast) var(--ease-editorial);
   }
-  .nav-link:hover { color: var(--color-accent-local); }
+  /* No hover recolour: the ::after bar below already answers the pointer
+     without colour, and the accent is under AA on the light schemes. A
+     second underline on top of the bar would just be two rules. */
   .nav-link::after {
     content: '';
     display: block;
@@ -820,9 +821,8 @@
       border: 0;
       color: var(--color-text);
       cursor: pointer;
-      transition: color var(--duration-fast) var(--ease-editorial);
     }
-    .sidebar__rail-menu:hover { color: var(--color-accent-local); }
+    .sidebar__rail-menu:hover .sidebar__rail-label { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
     .sidebar__rail-menu:focus-visible { outline-offset: -4px; }
     /* "MENU" is a horizontal string turned a quarter turn with a transform.
        rotate(90deg) -- a clockwise quarter turn in CSS -- stacks it M-E-N-U

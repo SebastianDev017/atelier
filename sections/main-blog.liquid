@@ -104,8 +104,7 @@
   .blog__body { display: flex; flex-direction: column; gap: var(--space-3); }
   .blog__meta { margin-bottom: var(--space-1); }
   .blog__article-title { max-width: 28ch; }
-  .blog__article-link { transition: color var(--duration-fast) var(--ease-editorial); }
-  .blog__article-link:hover { color: var(--color-accent-local); }
+  .blog__article-link:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   .blog__excerpt { color: var(--color-muted); line-height: var(--leading-normal); max-width: 56ch; }
   .blog__read-more { margin-top: var(--space-2); }
 {% endstylesheet %}
