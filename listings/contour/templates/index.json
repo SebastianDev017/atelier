@@ -160,7 +160,8 @@
         "heading_tag": "h2",
         "color_scheme": "background-2",
         "padding_top": 96,
-        "padding_bottom": 96
+        "padding_bottom": 96,
+        "show_images": false
       },
       "blocks": {
         "t1": {

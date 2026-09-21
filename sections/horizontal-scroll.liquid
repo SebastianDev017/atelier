@@ -18,8 +18,16 @@
 
 <div class="section-wrapper color-scheme--{{ scheme }}">
   <div class="hs" data-horizontal-scroll>
+    {%- liquid
+      # With a label the section owns a heading and the cards sit under it;
+      # without one the cards are the first headings in the section.
+      assign card_tag = 'h2'
+      if section.settings.heading != blank
+        assign card_tag = 'h3'
+      endif
+    -%}
     {%- if section.settings.heading != blank -%}
-      <div class="hs__head page-width"><span class="hs__eyebrow eyebrow">{{ section.settings.heading | escape }}</span></div>
+      <div class="hs__head page-width"><h2 class="hs__eyebrow eyebrow">{{ section.settings.heading | escape }}</h2></div>
     {%- endif -%}
 
     <div class="hs__viewport" data-hs-viewport>
@@ -38,7 +46,7 @@
                 {%- endif -%}
               </div>
               <div class="hs-card__info">
-                <h3 class="hs-card__title">{{ product.title | escape }}</h3>
+                <{{ card_tag }} class="hs-card__title">{{ product.title | escape }}</{{ card_tag }}>
                 {% render 'price', product: product %}
               </div>
             </a>
@@ -47,7 +55,7 @@
           {%- for i in (1..count) -%}
             <div class="hs-card">
               <div class="hs-card__media">{{ 'product-1' | placeholder_svg_tag: 'hs-card__img placeholder' }}</div>
-              <div class="hs-card__info"><h3 class="hs-card__title">{{ 'onboarding.product_title' | t }}</h3><span class="price">{{ 0 | money }}</span></div>
+              <div class="hs-card__info"><{{ card_tag }} class="hs-card__title">{{ 'onboarding.product_title' | t }}</{{ card_tag }}><span class="price">{{ 0 | money }}</span></div>
             </div>
           {%- endfor -%}
         {%- endif -%}

@@ -139,7 +139,9 @@
   .wall-cmp__subtext { max-width: 60ch; }
   .wall-cmp__grid { display: grid; gap: clamp(2rem, 4vw, 3.5rem); }
   .wall-cmp__grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .wall-cmp__grid--1 { grid-template-columns: minmax(0, 1fr); max-width: 60rem; margin-inline: auto; }
+  /* A single comparison is the point of the section, not a footnote: it gets
+     most of the content width so the wall reads at something like scale. */
+  .wall-cmp__grid--1 { grid-template-columns: minmax(0, 1fr); max-width: 76rem; margin-inline: auto; }
 
   .wall-cmp__stage { position: relative; overflow: hidden; background-color: var(--color-subtle); touch-action: pan-y; }
   .wall-cmp__img { width: 100%; display: block; aspect-ratio: 4 / 3; object-fit: cover; }
