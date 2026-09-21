@@ -33,7 +33,7 @@
           <div class="fp__thumbs quick-buy__thumbs">
             {%- for media in qb.media limit: 6 -%}
               <button type="button" class="fp__thumb{% if forloop.first %} is-active{% endif %}" data-fp-thumb="{{ media | image_url: width: 1000 }}" aria-label="{{ qb.title | escape }} — {{ forloop.index }}">
-                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="100" loading="lazy">
+                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="100" loading="lazy" decoding="async">
               </button>
             {%- endfor -%}
           </div>

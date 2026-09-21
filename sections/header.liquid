@@ -203,7 +203,7 @@
   <div class="sidebar__rail" style="--rail-actions: {{ rail_actions }};" data-sidebar-rail>
     <a class="sidebar__rail-home" href="{{ routes.root_url }}" aria-label="{{ shop.name | escape }}">
       {%- if settings.favicon != blank -%}
-        {{ settings.favicon | image_url: width: 64, height: 64 | image_tag: class: 'sidebar__rail-mark', width: 24, height: 24, alt: '', loading: 'lazy' }}
+        {{ settings.favicon | image_url: width: 64, height: 64 | image_tag: class: 'sidebar__rail-mark', width: 24, height: 24, alt: '', loading: 'lazy', decoding: 'async' }}
       {%- else -%}
         <svg class="sidebar__rail-mark" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 3.5 21.5 20h-19z" fill="currentColor"/></svg>
       {%- endif -%}
@@ -761,7 +761,10 @@
       justify-content: center;
       color: var(--color-muted);
     }
-    .sidebar__collapse:hover { color: var(--color-text); }
+    /* 28x44, out of the flow in the sidebar's end padding: the inherited
+       field tint would read as a stripe down the channel rather than a
+       control, and the colour lift already answers the pointer. */
+    .sidebar__collapse:hover { color: var(--color-text); background-color: transparent; }
     .sidebar__chevron { display: inline-flex; transition: transform 0.3s var(--ease-editorial); }
     .sidebar__chevron .icon { width: 16px; height: 16px; }
     html.sidebar-collapsed .sidebar__chevron { transform: rotate(180deg); }

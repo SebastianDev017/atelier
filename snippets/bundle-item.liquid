@@ -22,7 +22,7 @@
           stores whose product images have no alt of their own (axe:
           image-redundant-alt on the Annex and Maison demos).
         {%- endcomment -%}
-        <img class="bundle__item-img" src="{{ bp.featured_image | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy">
+        <img class="bundle__item-img" src="{{ bp.featured_image | image_url: width: 120 }}" alt="" width="60" height="60" loading="lazy" decoding="async">
       {%- else -%}
         <span class="bundle__item-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
       {%- endif -%}
