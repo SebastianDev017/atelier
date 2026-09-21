@@ -15,14 +15,14 @@
         "layout": "fullbleed",
         "image": "shopify://shop_images/maison-hero-studio-shelves.jpg",
         "video_url": "",
-        "overlay_opacity": 35,
+        "overlay_opacity": 40,
         "overlay_color": "#0a0705",
-        "text_position": "bottom",
+        "text_position": "center",
         "text_align": "left",
         "eyebrow": "Small-batch ceramics",
         "heading": "Made by hand,\nfired in small batches",
         "heading_tag": "h1",
-        "heading_size": "xl",
+        "heading_size": "display",
         "subtext": "<p>Wheel-thrown tableware, vases and teaware in food-safe glazes, made in our studio.</p>",
         "show_trust_bar": true,
         "trust_line": "",
@@ -33,12 +33,12 @@
         "cta_secondary_url": "/collections/vases-vessels",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "inverse",
+        "color_scheme": "background-1",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
-    "process": {
+    "process_words": {
       "type": "marquee",
       "settings": {
         "text": "Wheel-thrown · Small batch · Food-safe glazes · Fired in our studio · Made to be used every day",
@@ -50,90 +50,189 @@
         "padding_bottom": 40
       }
     },
-    "potter": {
-      "type": "maker-spotlight",
+    "shelves": {
+      "type": "tabs",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Straight from the shelf",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "Collections",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      },
       "blocks": {
-        "mat_stoneware": {
-          "type": "material",
+        "tab_table": {
+          "type": "collection",
           "settings": {
-            "label": "Stoneware"
+            "label": "Tableware",
+            "collection": "tableware",
+            "products_to_show": 8,
+            "show_view_all": true
           }
         },
-        "mat_porcelain": {
-          "type": "material",
+        "tab_vases": {
+          "type": "collection",
           "settings": {
-            "label": "Porcelain"
+            "label": "Vases & vessels",
+            "collection": "vases-vessels",
+            "products_to_show": 8,
+            "show_view_all": true
           }
         },
-        "mat_glaze": {
-          "type": "material",
+        "tab_serving": {
+          "type": "collection",
           "settings": {
-            "label": "Reactive glazes"
+            "label": "Serving & tea",
+            "collection": "serving-tea",
+            "products_to_show": 8,
+            "show_view_all": true
           }
         }
       },
       "block_order": [
-        "mat_stoneware",
-        "mat_porcelain",
-        "mat_glaze"
-      ],
+        "tab_table",
+        "tab_vases",
+        "tab_serving"
+      ]
+    },
+    "process": {
+      "type": "process-timeline",
       "settings": {
-        "image": "shopify://shop_images/maison-maker-hands.jpg",
-        "layout": "image_left",
-        "eyebrow": "The potter",
-        "name": "Tomás Ferreira",
-        "quote": "<p>“A good mug should feel right before you’ve even looked at it. I throw until my hands agree with my eyes.”</p>",
+        "eyebrow": "The making",
+        "heading": "From clay to table",
+        "heading_tag": "h2",
+        "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
         "cta_label": "Inside the studio",
         "cta_url": "/pages/about-us",
         "color_scheme": "background-2",
         "padding_top": 96,
         "padding_bottom": 96
-      }
+      },
+      "blocks": {
+        "step_1": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/maison-maker-hands.jpg",
+            "label": "Throwing",
+            "duration": "One day",
+            "text": "Each piece is centred and pulled on the wheel, then left until the clay is firm enough to hold its own shape."
+          }
+        },
+        "step_2": {
+          "type": "step",
+          "settings": {
+            "image": "shopify://shop_images/maison-editorial-wheel.jpg",
+            "label": "Trimming",
+            "duration": "Two days",
+            "text": "The foot is turned and the walls trimmed back. This is where the weight in your hand is decided."
+          }
+        },
+        "step_3": {
+          "type": "step",
+          "settings": {
+            "label": "Glazing",
+            "duration": "One week",
+            "text": "Glazes are mixed in the studio and poured by hand, which is why no two pieces break the same way over an edge."
+          }
+        },
+        "step_4": {
+          "type": "step",
+          "settings": {
+            "label": "Firing",
+            "duration": "Two days",
+            "text": "Fired to 1,260°C and cooled slowly. The kiln is opened the next morning, and some pieces do not make it."
+          }
+        }
+      },
+      "block_order": [
+        "step_1",
+        "step_2",
+        "step_3",
+        "step_4"
+      ]
     },
-    "tableware": {
-      "type": "featured-collection",
+    "the_set": {
+      "type": "shop-the-set",
       "settings": {
-        "eyebrow": "Tableware",
-        "title": "For every day, not best",
+        "image": "shopify://shop_images/maison-hero-studio-shelves.jpg",
+        "text_position": "right",
+        "eyebrow": "Shop the set",
+        "heading": "One table, set for four",
         "heading_tag": "h2",
-        "heading_size": "lg",
-        "subtitle": "Mugs, bowls and plates that go in the dishwasher and come out looking the same.",
-        "collection": "tableware",
-        "products_to_show": 8,
-        "columns_desktop": "4",
-        "columns_mobile": "2",
-        "show_vendor": false,
-        "quick_add_style": "always",
-        "show_view_all": true,
-        "view_all_label": "All tableware",
-        "view_all_style": "link",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 80
-      }
-    },
-    "featured_piece": {
-      "type": "featured-product",
-      "settings": {
-        "product": "tall-bottle-vase",
-        "heading": "From the latest firing",
-        "show_vendor": false,
-        "show_trust_badges": true,
-        "show_bundle": true,
-        "bundle_heading": "Style it with",
+        "cta_label": "All tableware",
+        "cta_url": "/collections/tableware",
         "color_scheme": "background-1",
         "padding_top": 96,
         "padding_bottom": 96
-      }
+      },
+      "blocks": {
+        "caption": {
+          "type": "caption",
+          "settings": {
+            "text": "<p>The pieces we reach for when people come over: plates that stack, bowls deep enough for a second helping, and a jug that pours without dripping.</p>"
+          }
+        },
+        "pin_1": {
+          "type": "hotspot",
+          "settings": {
+            "product": "iron-rim-dinner-plate",
+            "note": "Two sizes",
+            "position_x": 28,
+            "position_y": 62
+          }
+        },
+        "pin_2": {
+          "type": "hotspot",
+          "settings": {
+            "product": "speckled-rice-bowl",
+            "note": "Single or set of four",
+            "position_x": 52,
+            "position_y": 44
+          }
+        },
+        "pin_3": {
+          "type": "hotspot",
+          "settings": {
+            "product": "celadon-pitcher",
+            "note": "1.5L",
+            "position_x": 72,
+            "position_y": 58
+          }
+        },
+        "pin_4": {
+          "type": "hotspot",
+          "settings": {
+            "product": "speckled-morning-mug",
+            "note": "350ml",
+            "position_x": 43,
+            "position_y": 74
+          }
+        }
+      },
+      "block_order": [
+        "caption",
+        "pin_1",
+        "pin_2",
+        "pin_3",
+        "pin_4"
+      ]
     },
-    "process_story": {
+    "glazes": {
       "type": "editorial-feature",
       "settings": {
         "image": "shopify://shop_images/maison-editorial-wheel.jpg",
         "image_position": "right",
-        "eyebrow": "From clay to kiln",
-        "heading": "Every piece passes through the same two hands",
-        "description": "<p>We throw, trim and glaze each piece ourselves, then fire in small loads so the kiln never rushes. That is why glazes pool a little differently every time, and why a batch, once sold, is gone.</p>",
+        "eyebrow": "Glazes",
+        "heading": "Food-safe, lead-free, made here",
+        "description": "<p>Every glaze is mixed in the studio from raw materials, tested on the pieces we use at home first, and fired to vitrification so it will take a dishwasher for years.</p>",
         "cta_label": "Read the process",
         "cta_url": "/pages/about-us",
         "show_stats": false,
@@ -144,62 +243,17 @@
         "stat_3_number": "",
         "stat_3_label": "",
         "color_scheme": "background-1",
-        "padding_top": 120,
-        "padding_bottom": 120
-      }
-    },
-    "vessels": {
-      "type": "horizontal-scroll",
-      "settings": {
-        "heading": "Vases & vessels",
-        "collection": "vases-vessels",
-        "products_count": 8,
-        "card_aspect": "square",
-        "color_scheme": "background-2",
         "padding_top": 96,
         "padding_bottom": 96
       }
     },
-    "shop_by": {
-      "type": "collection-list",
-      "blocks": {
-        "c1": {
-          "type": "collection",
-          "settings": {
-            "collection": "tableware"
-          }
-        },
-        "c2": {
-          "type": "collection",
-          "settings": {
-            "collection": "vases-vessels"
-          }
-        },
-        "c3": {
-          "type": "collection",
-          "settings": {
-            "collection": "serving-tea"
-          }
-        }
-      },
-      "block_order": [
-        "c1",
-        "c2",
-        "c3"
-      ],
+    "kiln": {
+      "type": "full-bleed-image",
       "settings": {
-        "eyebrow": "",
-        "heading": "Set the table",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "heading_alignment": "left",
-        "image_ratio": "portrait",
-        "show_product_count": true,
-        "columns_desktop": "3",
-        "columns_mobile": "1",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 80
+        "image": "shopify://shop_images/maison-maker-hands.jpg",
+        "image_height": "medium",
+        "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
+        "overlay_opacity": 30
       }
     },
     "newsletter": {
@@ -219,13 +273,12 @@
   },
   "order": [
     "hero",
+    "process_words",
+    "shelves",
     "process",
-    "potter",
-    "tableware",
-    "featured_piece",
-    "process_story",
-    "vessels",
-    "shop_by",
+    "the_set",
+    "glazes",
+    "kiln",
     "newsletter"
   ]
 }

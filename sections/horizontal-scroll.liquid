@@ -22,7 +22,7 @@
       <div class="hs__head page-width"><span class="hs__eyebrow eyebrow">{{ section.settings.heading | escape }}</span></div>
     {%- endif -%}
 
-    <div class="hs__viewport">
+    <div class="hs__viewport" data-hs-viewport>
       <div class="hs__track hs__track--{{ aspect }}">
         {%- if products.size > 0 -%}
           {%- for product in products limit: count -%}
@@ -53,11 +53,28 @@
         {%- endif -%}
       </div>
     </div>
+
+    {%- comment -%}
+      Phone-only controls. Desktop pins the rail to vertical scroll, so
+      arrows there would fight the pin; touch already swipes, but nothing
+      told the visitor the rail moves. Hidden from assistive tech because
+      the rail itself is reachable and scrollable without them.
+    {%- endcomment -%}
+    <div class="hs__nav" data-hs-nav hidden>
+      <button type="button" class="hs__arrow" data-hs-prev aria-label="{{ 'sections.horizontal-scroll.previous' | t }}">
+        {%- render 'icon', name: 'arrow-left' -%}
+      </button>
+      <button type="button" class="hs__arrow" data-hs-next aria-label="{{ 'sections.horizontal-scroll.next' | t }}">
+        {%- render 'icon', name: 'arrow-right' -%}
+      </button>
+    </div>
   </div>
 </div>
 
 {% stylesheet %}
   .hs {
+    --hs-inset: max(var(--page-gutter, 1.5rem), calc((100vw - var(--page-width, 90rem)) / 2 + var(--page-gutter, 1.5rem)));
+    position: relative;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -70,7 +87,9 @@
   .hs__track {
     display: flex;
     gap: clamp(1rem, 2vw, 2rem);
-    padding-inline: var(--page-gutter, 1.5rem);
+    /* Lines the first card up with the page-width content above it instead
+       of letting it sit flush against the screen edge. */
+    padding-inline: var(--hs-inset);
     width: max-content;
     will-change: transform;
   }
@@ -99,7 +118,32 @@
     }
     .hs__viewport::-webkit-scrollbar { display: none; }
     .hs-card { flex-basis: 78vw; scroll-snap-align: start; }
+
+    /* Sits under the rail, clear of the cards: an arrow floating over a
+       product photo covers the thing it is asking to be looked at. */
+    .hs__nav { display: flex; gap: var(--space-3); justify-content: flex-end; padding-inline: var(--hs-inset); padding-top: var(--space-5); }
+    .hs__nav[hidden] { display: none; }
   }
+
+  /* Arrows never show above the mobile breakpoint, whatever the script does. */
+  @media (min-width: 768px) { .hs__nav { display: none; } }
+
+  .hs__arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--color-border-strong);
+    background-color: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial), opacity var(--duration-fast) var(--ease-editorial);
+  }
+  .hs__arrow:hover:not(:disabled) { background-color: var(--color-text); color: var(--color-bg); }
+  .hs__arrow:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+  .hs__arrow:disabled { opacity: 0.3; cursor: default; }
+  .hs__arrow .icon { width: 18px; height: 18px; }
 {% endstylesheet %}
 
 {% schema %}

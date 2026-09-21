@@ -1,0 +1,168 @@
+{%- comment -%}
+  About story — chapters of alternating image and text. Each chapter is a block,
+  so a merchant adds as many as the story needs and reorders them by dragging.
+
+  Alternation is automatic (odd chapters lead with the image, even ones with the
+  text) and can be overridden per chapter, which matters when a photograph's
+  subject faces one way and should look into the page rather than off it.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="about-story color-scheme--{{ scheme }}">
+  <div class="about-story__inner page-width">
+    {%- if section.settings.eyebrow != blank or section.settings.heading != blank -%}
+      <div class="about-story__head">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="section-heading heading--lg" data-animate>{{ section.settings.heading | escape }}</{{ heading_tag }}>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+
+    <div class="about-story__chapters">
+      {%- for block in section.blocks -%}
+        {%- liquid
+          assign side = block.settings.image_position
+          if side == 'auto'
+            assign side = 'left'
+            assign remainder = forloop.index | modulo: 2
+            if remainder == 0
+              assign side = 'right'
+            endif
+          endif
+        -%}
+        <article class="about-story__chapter about-story__chapter--{{ side }}" data-animate {{ block.shopify_attributes }}>
+          <div class="about-story__media">
+            {%- if block.settings.image != blank -%}
+              {%- assign chapter_alt = block.settings.image.alt | default: block.settings.heading -%}
+              {{
+                block.settings.image
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  widths: '500, 700, 900, 1100, 1400',
+                  sizes: '(min-width: 990px) 48vw, 100vw',
+                  alt: chapter_alt,
+                  class: 'about-story__img'
+              }}
+            {%- else -%}
+              {{ 'lifestyle-2' | placeholder_svg_tag: 'about-story__img placeholder' }}
+            {%- endif -%}
+            {%- if block.settings.caption != blank -%}
+              <p class="about-story__caption caption">{{ block.settings.caption | escape }}</p>
+            {%- endif -%}
+          </div>
+
+          <div class="about-story__body">
+            {%- if block.settings.kicker != blank -%}
+              <p class="eyebrow about-story__kicker">{{ block.settings.kicker | escape }}</p>
+            {%- endif -%}
+            {%- if block.settings.heading != blank -%}
+              <h3 class="about-story__title">{{ block.settings.heading | escape }}</h3>
+            {%- endif -%}
+            {%- if block.settings.text != blank -%}
+              <div class="about-story__text prose">{{ block.settings.text }}</div>
+            {%- endif -%}
+            {%- if block.settings.cta_label != blank and block.settings.cta_url != blank -%}
+              <a class="link-underline about-story__cta" href="{{ block.settings.cta_url }}">{{ block.settings.cta_label | escape }}</a>
+            {%- endif -%}
+          </div>
+        </article>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-story { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .about-story__head { margin-bottom: clamp(2.5rem, 5vw, 4rem); display: flex; flex-direction: column; gap: var(--space-2); }
+  .about-story__chapters { display: flex; flex-direction: column; gap: clamp(3.5rem, 9vw, 8rem); }
+  .about-story__chapter { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: center; }
+  .about-story__chapter--right .about-story__media { order: 2; }
+  .about-story__img { width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: var(--image-radius, 0); }
+  .about-story__caption { margin-top: var(--space-3); }
+  .about-story__kicker { margin-bottom: var(--space-3); }
+  .about-story__title {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: clamp(1.6rem, 3vw, 2.5rem);
+    line-height: 1.1;
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    text-wrap: balance;
+    margin-bottom: var(--space-5);
+  }
+  .about-story__text { color: var(--color-muted); max-width: 60ch; }
+  .about-story__cta { display: inline-block; margin-top: var(--space-6); }
+
+  @media (max-width: 749px) {
+    .about-story__chapter { grid-template-columns: 1fr; gap: var(--space-6); }
+    .about-story__chapter--right .about-story__media { order: 0; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.about-story.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.about-story.settings.eyebrow.label" },
+    { "type": "text", "id": "heading", "label": "t:sections.about-story.settings.heading.label" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.about-story.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.about-story.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.about-story.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.about-story.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.about-story.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.about-story.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.about-story.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "chapter",
+      "name": "t:sections.about-story.blocks.chapter.name",
+      "settings": [
+        { "type": "image_picker", "id": "image", "label": "t:sections.about-story.blocks.chapter.settings.image.label" },
+        {
+          "type": "select", "id": "image_position", "label": "t:sections.about-story.blocks.chapter.settings.image_position.label",
+          "info": "t:sections.about-story.blocks.chapter.settings.image_position.info",
+          "options": [
+            { "value": "auto", "label": "t:sections.about-story.blocks.chapter.settings.image_position.options__1.label" },
+            { "value": "left", "label": "t:sections.about-story.blocks.chapter.settings.image_position.options__2.label" },
+            { "value": "right", "label": "t:sections.about-story.blocks.chapter.settings.image_position.options__3.label" }
+          ],
+          "default": "auto"
+        },
+        { "type": "text", "id": "caption", "label": "t:sections.about-story.blocks.chapter.settings.caption.label" },
+        { "type": "text", "id": "kicker", "label": "t:sections.about-story.blocks.chapter.settings.kicker.label" },
+        { "type": "text", "id": "heading", "label": "t:sections.about-story.blocks.chapter.settings.heading.label", "default": "A chapter of the story" },
+        { "type": "richtext", "id": "text", "label": "t:sections.about-story.blocks.chapter.settings.text.label", "default": "<p>Tell one part of the story here: where it started, who makes it, what changed along the way. Add a chapter for each part worth telling.</p>" },
+        { "type": "text", "id": "cta_label", "label": "t:sections.about-story.blocks.chapter.settings.cta_label.label" },
+        { "type": "url", "id": "cta_url", "label": "t:sections.about-story.blocks.chapter.settings.cta_url.label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.about-story.presets.name",
+      "blocks": [ { "type": "chapter" }, { "type": "chapter" } ]
+    }
+  ]
+}
+{% endschema %}

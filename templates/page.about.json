@@ -9,69 +9,66 @@
  */
 {
   "sections": {
-    "main": {
-      "type": "page-about",
+    "hero": {
+      "type": "about-hero",
+      "settings": {
+        "layout": "stacked",
+        "image_height": 60,
+        "overlay_opacity": 35,
+        "eyebrow": "Our story",
+        "heading": "",
+        "heading_tag": "h1",
+        "statement": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision, from the materials we choose to the people we partner with.",
+        "color_scheme": "background-1",
+        "padding_top": 0,
+        "padding_bottom": 64
+      }
+    },
+    "story": {
+      "type": "about-story",
+      "settings": {
+        "eyebrow": "The studio",
+        "heading": "How the work gets made",
+        "heading_tag": "h2",
+        "color_scheme": "background-1",
+        "padding_top": 64,
+        "padding_bottom": 96
+      },
       "blocks": {
-        "value-1": {
-          "type": "value",
+        "chapter_1": {
+          "type": "chapter",
           "settings": {
-            "title": "Considered",
-            "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist."
+            "image_position": "auto",
+            "kicker": "Where it starts",
+            "heading": "Made in small batches, designed to last",
+            "text": "<p>Every piece passes through our studio before it reaches you: reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>",
+            "caption": "",
+            "cta_label": "",
+            "cta_url": ""
           }
         },
-        "value-2": {
-          "type": "value",
+        "chapter_2": {
+          "type": "chapter",
           "settings": {
-            "title": "Honest",
-            "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish."
-          }
-        },
-        "value-3": {
-          "type": "value",
-          "settings": {
-            "title": "Lasting",
-            "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs."
-          }
-        },
-        "value-4": {
-          "type": "value",
-          "settings": {
-            "title": "Quiet",
-            "text": "Good objects do not demand attention. They earn it gradually, over years of daily use."
-          }
-        },
-        "step-1": {
-          "type": "process_step",
-          "settings": {
-            "title": "Material",
-            "text": "Every piece begins with the material — its weight, texture, and origin."
-          }
-        },
-        "step-2": {
-          "type": "process_step",
-          "settings": {
-            "title": "Making",
-            "text": "We work with a small group of makers. Each piece passes through human hands at every stage."
-          }
-        },
-        "step-3": {
-          "type": "process_step",
-          "settings": {
-            "title": "Review",
-            "text": "Before anything reaches the collection, it spends time in our studio — used, tested, reconsidered."
+            "image_position": "auto",
+            "kicker": "Who makes it",
+            "heading": "A small group of makers",
+            "text": "<p>We source as close to primary producers as we can, and we visit the people who make our work. When a maker suggests a better way to build something, the design changes.</p>",
+            "caption": "",
+            "cta_label": "",
+            "cta_url": ""
           }
         }
       },
       "block_order": [
-        "value-1",
-        "value-2",
-        "value-3",
-        "value-4",
-        "step-1",
-        "step-2",
-        "step-3"
-      ],
+        "chapter_1",
+        "chapter_2"
+      ]
+    },
+    "values": {
+      "type": "about-values",
       "settings": {
+<<<<<<< HEAD
         "color_scheme": "",
         "eyebrow": "Our story",
         "statement": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision — from the materials we choose to the people we partner with.",
@@ -82,12 +79,142 @@
         "studio_text": "<p>Every piece passes through our studio before it reaches you — reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>",
         "process_heading": "How we work",
         "closing_text": "Objects considered for the modern home, made to last a lifetime.",
+=======
+        "eyebrow": "",
+        "heading": "What we believe",
+        "heading_tag": "h2",
+        "subtext": "",
+        "text_alignment": "start",
+        "columns_desktop": "4",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "value_1": {
+          "type": "value",
+          "settings": {
+            "icon": "sparkle",
+            "heading": "Considered",
+            "text": "Every object begins with a question: is this worth making? We only work with things we believe should exist."
+          }
+        },
+        "value_2": {
+          "type": "value",
+          "settings": {
+            "icon": "check",
+            "heading": "Honest",
+            "text": "Materials are what they appear to be. Processes are visible. Nothing is hidden behind unnecessary finish."
+          }
+        },
+        "value_3": {
+          "type": "value",
+          "settings": {
+            "icon": "return",
+            "heading": "Lasting",
+            "text": "We design for decades, not seasons. If something cannot be repaired, we reconsider whether it belongs."
+          }
+        },
+        "value_4": {
+          "type": "value",
+          "settings": {
+            "icon": "star",
+            "heading": "Quiet",
+            "text": "Good objects do not demand attention. They earn it gradually, over years of daily use."
+          }
+        }
+      },
+      "block_order": [
+        "value_1",
+        "value_2",
+        "value_3",
+        "value_4"
+      ]
+    },
+    "tabs": {
+      "type": "tabs",
+      "settings": {
+        "eyebrow": "",
+        "heading": "How we work",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "How we work",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "hover",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      },
+      "blocks": {
+        "tab_material": {
+          "type": "content",
+          "settings": {
+            "label": "Material",
+            "heading": "It begins with the material",
+            "text": "<p>Every piece begins with the material: its weight, texture, and origin. We source as close to primary producers as possible, and we say where things come from.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        },
+        "tab_making": {
+          "type": "content",
+          "settings": {
+            "label": "Making",
+            "heading": "Through human hands",
+            "text": "<p>We work with a small group of makers. Each piece passes through human hands at every stage, which is why no two are identical and why we would not want them to be.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        },
+        "tab_review": {
+          "type": "content",
+          "settings": {
+            "label": "Review",
+            "heading": "Used before it is sold",
+            "text": "<p>Before anything reaches the collection it spends time in our studio: used, tested, reconsidered. Some pieces never make it past this point.</p>",
+            "image_position": "left",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "tab_material",
+        "tab_making",
+        "tab_review"
+      ]
+    },
+    "closing": {
+      "type": "about-cta",
+      "settings": {
+        "eyebrow": "",
+        "heading": "Objects considered for the modern home, made to last a lifetime.",
+        "heading_tag": "h2",
+        "text": "",
+>>>>>>> main
         "cta_label": "Shop the collection",
-        "cta_url": "/collections/all"
+        "cta_url": "/collections/all",
+        "cta_style": "solid",
+        "cta_secondary_label": "",
+        "cta_secondary_url": "",
+        "overlay_opacity": 45,
+        "color_scheme": "inverse",
+        "padding_top": 128,
+        "padding_bottom": 128
       }
     }
   },
   "order": [
-    "main"
+    "hero",
+    "story",
+    "values",
+    "tabs",
+    "closing"
   ]
 }

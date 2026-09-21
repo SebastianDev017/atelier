@@ -84,6 +84,1547 @@
     }
   },
   "sections": {
+    "about-cta": {
+      "name": "Über uns: Abschluss",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "cta_url": {
+          "label": "Button-Link"
+        },
+        "cta_style": {
+          "label": "Button-Stil",
+          "options__1": {
+            "label": "Gefüllt"
+          },
+          "options__2": {
+            "label": "Umrandet"
+          }
+        },
+        "cta_secondary_label": {
+          "label": "Text des sekundären Links"
+        },
+        "cta_secondary_url": {
+          "label": "Sekundärer Link"
+        },
+        "header__background": {
+          "content": "Hintergrund"
+        },
+        "background_image": {
+          "label": "Hintergrundbild"
+        },
+        "overlay_opacity": {
+          "label": "Deckkraft der Überlagerung"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Über uns: Abschluss"
+      }
+    },
+    "about-hero": {
+      "name": "Über-uns-Hero",
+      "settings": {
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "Überschrift über dem Bild"
+          },
+          "options__2": {
+            "label": "Bild neben Text"
+          }
+        },
+        "image": {
+          "label": "Bild"
+        },
+        "image_height": {
+          "label": "Bildhöhe"
+        },
+        "overlay_opacity": {
+          "label": "Deckkraft der Überlagerung"
+        },
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift",
+          "info": "Standard ist der Seitentitel."
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H1"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
+        "statement": {
+          "label": "Aussage"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Über-uns-Hero"
+      }
+    },
+    "about-story": {
+      "name": "Über uns: Geschichte",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "chapter": {
+          "name": "Kapitel",
+          "settings": {
+            "image": {
+              "label": "Bild"
+            },
+            "image_position": {
+              "label": "Bildposition",
+              "info": "Abwechselnd lässt die Kapitel automatisch im Zickzack laufen.",
+              "options__1": {
+                "label": "Abwechselnd"
+              },
+              "options__2": {
+                "label": "Links"
+              },
+              "options__3": {
+                "label": "Rechts"
+              }
+            },
+            "caption": {
+              "label": "Bildunterschrift"
+            },
+            "kicker": {
+              "label": "Kurzzeile"
+            },
+            "heading": {
+              "label": "Überschrift"
+            },
+            "text": {
+              "label": "Text"
+            },
+            "cta_label": {
+              "label": "Button-Text"
+            },
+            "cta_url": {
+              "label": "Button-Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Über uns: Geschichte"
+      }
+    },
+    "about-values": {
+      "name": "Über uns: Werte",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "text_alignment": {
+          "label": "Ausrichtung",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Mittig"
+          }
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Zwei"
+          },
+          "options__2": {
+            "label": "Drei"
+          },
+          "options__3": {
+            "label": "Vier"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "value": {
+          "name": "Wert",
+          "settings": {
+            "icon": {
+              "label": "Symbol",
+              "info": "Ein Bild unten ersetzt das Symbol.",
+              "options__none": {
+                "label": "Keines"
+              },
+              "options__sparkle": {
+                "label": "Funkeln"
+              },
+              "options__star": {
+                "label": "Stern"
+              },
+              "options__check": {
+                "label": "Häkchen"
+              },
+              "options__truck": {
+                "label": "Lieferung"
+              },
+              "options__globe": {
+                "label": "Globus"
+              },
+              "options__return": {
+                "label": "Rücksendungen"
+              },
+              "options__lock": {
+                "label": "Sicher"
+              },
+              "options__pin": {
+                "label": "Standort"
+              }
+            },
+            "image": {
+              "label": "Bild",
+              "info": "Für ein Materialmuster anstelle eines Symbols."
+            },
+            "heading": {
+              "label": "Überschrift"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Über uns: Werte"
+      }
+    },
+    "announcement-bar": {
+      "name": "Ankündigungsleiste",
+      "settings": {
+        "show_announcement": {
+          "label": "Ankündigungsleiste anzeigen"
+        },
+        "dismissible": {
+          "label": "Käufern das Schließen erlauben",
+          "info": "Fügt eine Schließen-Schaltfläche hinzu. Die Leiste bleibt für diesen Besucher ausgeblendet, bis er seinen Browserspeicher leert."
+        },
+        "bar_color": {
+          "label": "Hintergrund der Leiste"
+        },
+        "bar_text_color": {
+          "label": "Text der Leiste"
+        },
+        "display_mode": {
+          "label": "Mehrere Nachrichten",
+          "info": "Wie 2 oder mehr Nachrichten auf größeren Bildschirmen angezeigt werden. Smartphones zeigen eine feste Nachricht: die Versandkosten-Nachricht, falls vorhanden, sonst die erste.",
+          "options__1": {
+            "label": "Rotieren (Überblenden)"
+          },
+          "options__2": {
+            "label": "Lauftext (Scrollen)"
+          }
+        },
+        "rotate_interval": {
+          "label": "Rotieren alle"
+        },
+        "marquee_speed": {
+          "label": "Scrolldauer",
+          "info": "Wird nur verwendet, wenn mehr als eine Nachricht vorhanden ist. Höher bedeutet langsamer."
+        }
+      },
+      "blocks": {
+        "message": {
+          "name": "Nachricht",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
+        },
+        "free_shipping": {
+          "name": "Hinweis auf kostenlosen Versand",
+          "settings": {
+            "paragraph": {
+              "content": "Zeigt „Kostenloser Versand für Bestellungen ab [Ihr Schwellenwert]“ aus Theme-Einstellungen > Warenkorb. Ausgeblendet, wenn kein Schwellenwert festgelegt ist."
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Ankündigungsleiste"
+      }
+    },
+    "brand-statement": {
+      "name": "Markenbotschaft",
+      "settings": {
+        "heading": {
+          "label": "Überschrift",
+          "info": "Zeilenumbrüche bleiben erhalten."
+        },
+        "subheading": {
+          "label": "Begleitzeile"
+        },
+        "heading_size_vw": {
+          "label": "Überschriftengröße (Desktop)"
+        },
+        "heading_size_mobile": {
+          "label": "Überschriftengröße (Mobil)"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        }
+      },
+      "presets": {
+        "name": "Markenbotschaft"
+      }
+    },
+    "cart-drawer": {
+      "name": "Warenkorb-Schublade"
+    },
+    "collection-banner": {
+      "name": "Kollektionsbanner",
+      "settings": {
+        "heading_tag": {
+          "label": "Überschriftselement",
+          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite (Standard)"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Nebenüberschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftsgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Format"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Format"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "show_collection_image": {
+          "label": "Kollektionsbild anzeigen",
+          "info": "Verwendet das vorgestellte Bild der Kollektion als vollbreiten Hintergrund. Greift auf ein reines Textbanner zurück, wenn kein Bild festgelegt ist."
+        },
+        "banner_height": {
+          "label": "Bannerhöhe",
+          "info": "Gilt nur, wenn ein Kollektionsbild angezeigt wird.",
+          "options__1": {
+            "label": "Klein"
+          },
+          "options__2": {
+            "label": "Mittel"
+          },
+          "options__3": {
+            "label": "Groß"
+          }
+        },
+        "overlay_opacity": {
+          "label": "Overlay-Deckkraft",
+          "info": "Verdunkelt das Bild, damit die Überschrift lesbar bleibt."
+        },
+        "overlay_color": {
+          "label": "Overlay-Farbe"
+        },
+        "show_description": {
+          "label": "Kollektionsbeschreibung anzeigen"
+        },
+        "text_alignment": {
+          "label": "Textausrichtung",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Zentriert"
+          },
+          "options__3": {
+            "label": "Rechts"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "info": "Wird für das reine Textbanner verwendet (wenn kein Bild angezeigt wird).",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Kollektionsbanner"
+      }
+    },
+    "collection-list": {
+      "name": "Kategorienliste",
+      "settings": {
+        "eyebrow": {
+          "label": "Kennzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftselement",
+          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel (Standard)"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Nebenüberschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftsgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Größe"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Größe"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "heading_alignment": {
+          "label": "Ausrichtung der Überschrift",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Zentriert"
+          }
+        },
+        "image_ratio": {
+          "label": "Bildverhältnis",
+          "options__1": {
+            "label": "Quadratisch"
+          },
+          "options__2": {
+            "label": "Hochformat"
+          },
+          "options__3": {
+            "label": "Querformat"
+          }
+        },
+        "show_product_count": {
+          "label": "Produktanzahl anzeigen"
+        },
+        "columns_desktop": {
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "columns_mobile": {
+          "label": "Spalten (Mobil)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Kategorie",
+          "settings": {
+            "collection": {
+              "label": "Kategorie"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kategorienliste"
+      }
+    },
+    "complementary-products": {
+      "name": "Ergänzende Produkte",
+      "presets": {
+        "name": "Ergänzende Produkte"
+      },
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "products_to_show": {
+          "label": "Anzuzeigende Produkte"
+        },
+        "quick_add_style": {
+          "label": "Stil für Schnell-hinzufügen",
+          "options__1": {
+            "label": "Beim Hovern"
+          },
+          "options__2": {
+            "label": "Immer sichtbar"
+          }
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      }
+    },
+    "contact-form": {
+      "name": "Kontaktformular",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftenebene",
+          "info": "Die Hauptüberschrift der Seite sollte H1 sein. H2, wenn die Seite bereits eine hat.",
+          "options__1": {
+            "label": "H1 (Seitenüberschrift)"
+          },
+          "options__2": {
+            "label": "H2"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "header__1": {
+          "content": "Feldbezeichnungen"
+        },
+        "label_name": {
+          "label": "Bezeichnung „Name“"
+        },
+        "label_email": {
+          "label": "Bezeichnung „E-Mail“"
+        },
+        "label_phone": {
+          "label": "Bezeichnung „Telefon“"
+        },
+        "label_message": {
+          "label": "Bezeichnung „Nachricht“"
+        },
+        "header__2": {
+          "content": "Nachrichten"
+        },
+        "success_message": {
+          "label": "Erfolgsmeldung"
+        },
+        "header__3": {
+          "content": "Darstellung"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Kontaktformular"
+      }
+    },
+    "custom-liquid": {
+      "name": "Individuelles Liquid",
+      "settings": {
+        "custom_liquid": {
+          "label": "Individuelles Liquid",
+          "info": "Fügen Sie App-Snippets oder individuellen Code hinzu."
+        },
+        "narrow": {
+          "label": "Schmale Breite"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Individuelles Liquid"
+      }
+    },
+    "editorial-feature": {
+      "name": "Editorial-Feature",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "image_position": {
+          "label": "Bildposition",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Rechts"
+          }
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "description": {
+          "label": "Beschreibung"
+        },
+        "cta_label": {
+          "label": "Schaltflächenbeschriftung"
+        },
+        "cta_url": {
+          "label": "Schaltflächenlink"
+        },
+        "header__1": {
+          "content": "Statistiken"
+        },
+        "show_stats": {
+          "label": "Statistiken anzeigen"
+        },
+        "stat_1_number": {
+          "label": "Statistik 1 Zahl"
+        },
+        "stat_1_label": {
+          "label": "Statistik 1 Bezeichnung"
+        },
+        "stat_2_number": {
+          "label": "Statistik 2 Zahl"
+        },
+        "stat_2_label": {
+          "label": "Statistik 2 Bezeichnung"
+        },
+        "stat_3_number": {
+          "label": "Statistik 3 Zahl"
+        },
+        "stat_3_label": {
+          "label": "Statistik 3 Bezeichnung"
+        },
+        "header__2": {
+          "content": "Erscheinungsbild"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Editorial-Element"
+      }
+    },
+    "editorial-statement": {
+      "name": "Redaktionelles Statement",
+      "settings": {
+        "statement": {
+          "label": "Statement"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Redaktionelles Statement"
+      }
+    },
+    "featured-collection": {
+      "name": "Vorgestellte Kollektion",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile",
+          "info": "Kleine Mono-Beschriftung über der Überschrift."
+        },
+        "title": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftenelement",
+          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel (Standard)"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Kleinere Überschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftengröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß und editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Größe"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Extraklein — Bildunterschrift-Größe"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "subtitle": {
+          "label": "Unterüberschrift"
+        },
+        "collection": {
+          "label": "Kollektion"
+        },
+        "products_to_show": {
+          "label": "Anzuzeigende Produkte"
+        },
+        "columns_desktop": {
+          "label": "Spalten am Desktop",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "columns_mobile": {
+          "label": "Spalten am Mobilgerät",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
+        },
+        "show_vendor": {
+          "label": "Produktanbieter anzeigen"
+        },
+        "quick_add_style": {
+          "label": "Schaltfläche „In den Warenkorb“",
+          "options__1": {
+            "label": "Beim Überfahren einblenden"
+          },
+          "options__2": {
+            "label": "Immer sichtbar"
+          }
+        },
+        "show_view_all": {
+          "label": "Link „Alle anzeigen“ anzeigen"
+        },
+        "view_all_label": {
+          "label": "Beschriftung „Alle anzeigen“"
+        },
+        "view_all_style": {
+          "label": "Stil von „Alle anzeigen“",
+          "options__1": {
+            "label": "Gefüllte Schaltfläche"
+          },
+          "options__2": {
+            "label": "Umrandete Schaltfläche"
+          },
+          "options__3": {
+            "label": "Textlink"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Vorgestellte Kollektion"
+      }
+    },
+    "featured-product": {
+      "name": "Hervorgehobenes Produkt",
+      "settings": {
+        "product": {
+          "label": "Produkt"
+        },
+        "heading": {
+          "label": "Überzeilen-Überschrift"
+        },
+        "show_vendor": {
+          "label": "Anbieter anzeigen"
+        },
+        "show_trust_badges": {
+          "label": "Gütesiegel anzeigen"
+        },
+        "header__bundle": {
+          "content": "Bundle-Upselling"
+        },
+        "show_bundle": {
+          "label": "Bundle anzeigen"
+        },
+        "bundle_heading": {
+          "label": "Bundle-Überschrift"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      }
+    },
+    "finish-gallery": {
+      "name": "Ausführungen-Galerie",
+      "settings": {
+        "product": {
+          "label": "Produkt",
+          "info": "Auf einer Produktseite leer lassen, um das angezeigte Produkt zu verwenden."
+        },
+        "option_name": {
+          "label": "Name der Option",
+          "info": "Leer lassen, um die erste Option mit Farbfeldern zu verwenden."
+        },
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "show_option_name": {
+          "label": "Anzahl-Zeile anzeigen"
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Drei"
+          },
+          "options__2": {
+            "label": "Vier"
+          },
+          "options__3": {
+            "label": "Fünf"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Ausführungen-Galerie"
+      }
+    },
+    "footer": {
+      "name": "Fußzeile",
+      "blocks": {
+        "brand": {
+          "name": "Marke",
+          "settings": {
+            "text": {
+              "label": "Text"
+            },
+            "logo_width": {
+              "label": "Logobreite"
+            },
+            "show_social": {
+              "label": "Social-Media-Symbole anzeigen"
+            }
+          }
+        },
+        "menu": {
+          "name": "Menü",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "menu": {
+              "label": "Menü"
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "newsletter": {
+          "name": "Newsletter",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "settings": {
+        "header__1": {
+          "content": "Wortmarke"
+        },
+        "show_wordmark": {
+          "label": "Große Wortmarke anzeigen"
+        },
+        "wordmark_opacity": {
+          "label": "Deckkraft der Wortmarke"
+        },
+        "wordmark_text": {
+          "label": "Text der Wortmarke",
+          "info": "Leer lassen, um den Shopnamen zu verwenden"
+        },
+        "header__2": {
+          "content": "Abstände"
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        },
+        "show_payment_icons": {
+          "label": "Zahlungssymbole anzeigen"
+        },
+        "show_policy_links": {
+          "label": "Richtlinien-Links anzeigen"
+        },
+        "header__3": {
+          "content": "Lokalisierung"
+        },
+        "show_country_selector": {
+          "label": "Länder-/Regionsauswahl anzeigen"
+        },
+        "show_language_selector": {
+          "label": "Sprachauswahl anzeigen"
+        },
+        "header__4": {
+          "content": "Erscheinungsbild"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        }
+      }
+    },
+    "full-bleed-image": {
+      "name": "Randloses Bild",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "image_height": {
+          "label": "Bildhöhe",
+          "options__1": {
+            "label": "Kompakt (40vh)"
+          },
+          "options__2": {
+            "label": "Mittel (55vh)"
+          },
+          "options__3": {
+            "label": "Groß (70vh)"
+          },
+          "options__4": {
+            "label": "Filmisch (85vh)"
+          }
+        },
+        "caption": {
+          "label": "Bildunterschrift",
+          "info": "Optional. Wird unten links über dem Bild angezeigt."
+        },
+        "overlay_opacity": {
+          "label": "Deckkraft des Overlays"
+        }
+      },
+      "presets": {
+        "name": "Randloses Bild"
+      }
+    },
+    "gallery": {
+      "name": "Galerie",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftselement",
+          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel (Standard)"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Nebenüberschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftsgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Größe"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Größe"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "layout": {
+          "label": "Layout",
+          "options__1": {
+            "label": "2 Spalten"
+          },
+          "options__2": {
+            "label": "3 Spalten"
+          },
+          "options__3": {
+            "label": "4 Spalten"
+          }
+        },
+        "image_ratio": {
+          "label": "Bildverhältnis",
+          "options__1": {
+            "label": "Quadratisch"
+          },
+          "options__2": {
+            "label": "Hochformat"
+          },
+          "options__3": {
+            "label": "Querformat"
+          }
+        },
+        "show_captions": {
+          "label": "Bildunterschriften anzeigen"
+        },
+        "caption_position": {
+          "label": "Position der Bildunterschrift",
+          "options__1": {
+            "label": "Beim Überfahren"
+          },
+          "options__2": {
+            "label": "Unter dem Bild"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "blocks": {
+        "image": {
+          "name": "Bild",
+          "settings": {
+            "image": {
+              "label": "Bild"
+            },
+            "caption": {
+              "label": "Bildunterschrift"
+            },
+            "url": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Galerie"
+      }
+    },
+    "header": {
+      "name": "Kopfzeile",
+      "settings": {
+        "menu": {
+          "label": "Menü",
+          "info": "Übergeordnete Einträge werden zu nummerierten Indexabschnitten; ihre untergeordneten Links erscheinen jeweils darunter."
+        },
+        "show_search": {
+          "label": "Suche anzeigen"
+        },
+        "show_account": {
+          "label": "Konto-Link anzeigen"
+        },
+        "customer_account_menu": {
+          "label": "Kundenkonto-Menü",
+          "info": "Links im Kontobereich. Verwende dasselbe Menü wie die Kundenkonten, damit sie übereinstimmen."
+        },
+        "show_border": {
+          "label": "Trennlinie anzeigen"
+        },
+        "header__1": {
+          "content": "Lokalisierung"
+        },
+        "show_country_selector": {
+          "label": "Länder-/Währungsauswahl anzeigen"
+        },
+        "show_language_selector": {
+          "label": "Sprachauswahl anzeigen"
+        },
+        "localization_position": {
+          "label": "Position der Auswahl",
+          "options__1": {
+            "label": "Unten in der Seitenleiste (unter den Symbolen)"
+          },
+          "options__2": {
+            "label": "Oben in der Seitenleiste (unter dem Logo)"
+          }
+        },
+        "header__2": {
+          "content": "Erscheinungsbild"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        }
+      }
+    },
     "hero": {
       "name": "Hero",
       "settings": {
@@ -291,291 +1832,25 @@
         "name": "Hero"
       }
     },
-    "header": {
-      "name": "Kopfzeile",
+    "horizontal-scroll": {
+      "name": "Horizontales Scrollen",
       "settings": {
-        "menu": {
-          "label": "Menü",
-          "info": "Übergeordnete Einträge werden zu nummerierten Indexabschnitten; ihre untergeordneten Links erscheinen jeweils darunter."
-        },
-        "show_search": {
-          "label": "Suche anzeigen"
-        },
-        "show_account": {
-          "label": "Konto-Link anzeigen"
-        },
-        "customer_account_menu": {
-          "label": "Kundenkonto-Menü",
-          "info": "Links im Kontobereich. Verwende dasselbe Menü wie die Kundenkonten, damit sie übereinstimmen."
-        },
-        "show_border": {
-          "label": "Trennlinie anzeigen"
-        },
-        "header__1": {
-          "content": "Lokalisierung"
-        },
-        "show_country_selector": {
-          "label": "Länder-/Währungsauswahl anzeigen"
-        },
-        "show_language_selector": {
-          "label": "Sprachauswahl anzeigen"
-        },
-        "localization_position": {
-          "label": "Position der Auswahl",
-          "options__1": {
-            "label": "Unten in der Seitenleiste (unter den Symbolen)"
-          },
-          "options__2": {
-            "label": "Oben in der Seitenleiste (unter dem Logo)"
-          }
-        },
-        "header__2": {
-          "content": "Erscheinungsbild"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        }
-      }
-    },
-    "footer": {
-      "name": "Fußzeile",
-      "blocks": {
-        "brand": {
-          "name": "Marke",
-          "settings": {
-            "text": {
-              "label": "Text"
-            },
-            "logo_width": {
-              "label": "Logobreite"
-            },
-            "show_social": {
-              "label": "Social-Media-Symbole anzeigen"
-            }
-          }
-        },
-        "menu": {
-          "name": "Menü",
-          "settings": {
-            "heading": {
-              "label": "Überschrift"
-            },
-            "menu": {
-              "label": "Menü"
-            }
-          }
-        },
-        "text": {
-          "name": "Text",
-          "settings": {
-            "heading": {
-              "label": "Überschrift"
-            },
-            "text": {
-              "label": "Text"
-            }
-          }
-        },
-        "newsletter": {
-          "name": "Newsletter",
-          "settings": {
-            "heading": {
-              "label": "Überschrift"
-            },
-            "text": {
-              "label": "Text"
-            }
-          }
-        }
-      },
-      "settings": {
-        "header__1": {
-          "content": "Wortmarke"
-        },
-        "show_wordmark": {
-          "label": "Große Wortmarke anzeigen"
-        },
-        "wordmark_opacity": {
-          "label": "Deckkraft der Wortmarke"
-        },
-        "wordmark_text": {
-          "label": "Text der Wortmarke",
-          "info": "Leer lassen, um den Shopnamen zu verwenden"
-        },
-        "header__2": {
-          "content": "Abstände"
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        },
-        "show_payment_icons": {
-          "label": "Zahlungssymbole anzeigen"
-        },
-        "show_policy_links": {
-          "label": "Richtlinien-Links anzeigen"
-        },
-        "header__3": {
-          "content": "Lokalisierung"
-        },
-        "show_country_selector": {
-          "label": "Länder-/Regionsauswahl anzeigen"
-        },
-        "show_language_selector": {
-          "label": "Sprachauswahl anzeigen"
-        },
-        "header__4": {
-          "content": "Erscheinungsbild"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        }
-      }
-    },
-    "featured-collection": {
-      "name": "Vorgestellte Kollektion",
-      "settings": {
-        "eyebrow": {
-          "label": "Kurzzeile",
-          "info": "Kleine Mono-Beschriftung über der Überschrift."
-        },
-        "title": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftenelement",
-          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Kleinere Überschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftengröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß und editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Größe"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Extraklein — Bildunterschrift-Größe"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "subtitle": {
-          "label": "Unterüberschrift"
+        "heading": {
+          "label": "Überzeilen-Überschrift"
         },
         "collection": {
-          "label": "Kollektion"
+          "label": "Kategorie"
         },
-        "products_to_show": {
+        "products_count": {
           "label": "Anzuzeigende Produkte"
         },
-        "columns_desktop": {
-          "label": "Spalten am Desktop",
+        "card_aspect": {
+          "label": "Kartenform",
           "options__1": {
-            "label": "2"
+            "label": "Hochformat (2:3)"
           },
           "options__2": {
-            "label": "3"
-          },
-          "options__3": {
-            "label": "4"
-          }
-        },
-        "columns_mobile": {
-          "label": "Spalten am Mobilgerät",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        },
-        "show_vendor": {
-          "label": "Produktanbieter anzeigen"
-        },
-        "quick_add_style": {
-          "label": "Schaltfläche „In den Warenkorb“",
-          "options__1": {
-            "label": "Beim Überfahren einblenden"
-          },
-          "options__2": {
-            "label": "Immer sichtbar"
-          }
-        },
-        "show_view_all": {
-          "label": "Link „Alle anzeigen“ anzeigen"
-        },
-        "view_all_label": {
-          "label": "Beschriftung „Alle anzeigen“"
-        },
-        "view_all_style": {
-          "label": "Stil von „Alle anzeigen“",
-          "options__1": {
-            "label": "Gefüllte Schaltfläche"
-          },
-          "options__2": {
-            "label": "Umrandete Schaltfläche"
-          },
-          "options__3": {
-            "label": "Textlink"
+            "label": "Quadratisch"
           }
         },
         "color_scheme": {
@@ -597,74 +1872,14 @@
           }
         },
         "padding_top": {
-          "label": "Oberer Abstand"
+          "label": "Abstand oben"
         },
         "padding_bottom": {
-          "label": "Unterer Abstand"
+          "label": "Abstand unten"
         }
       },
       "presets": {
-        "name": "Vorgestellte Kollektion"
-      }
-    },
-    "marquee": {
-      "name": "Laufschrift",
-      "settings": {
-        "text": {
-          "label": "Text"
-        },
-        "speed": {
-          "label": "Dauer des Durchlaufs",
-          "info": "Höher ist langsamer."
-        },
-        "direction": {
-          "label": "Richtung",
-          "options__1": {
-            "label": "Links"
-          },
-          "options__2": {
-            "label": "Rechts"
-          }
-        },
-        "size": {
-          "label": "Textgröße",
-          "options__1": {
-            "label": "Klein"
-          },
-          "options__2": {
-            "label": "Mittel"
-          },
-          "options__3": {
-            "label": "Groß"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Laufschrift"
+        "name": "Horizontales Scrollen"
       }
     },
     "image-with-text": {
@@ -795,1449 +2010,6 @@
       },
       "presets": {
         "name": "Bild mit Text"
-      }
-    },
-    "rich-text": {
-      "name": "Rich-Text",
-      "settings": {
-        "content_width": {
-          "label": "Inhaltsbreite",
-          "options__1": {
-            "label": "Schmal"
-          },
-          "options__2": {
-            "label": "Mittel"
-          },
-          "options__3": {
-            "label": "Breit"
-          }
-        },
-        "text_alignment": {
-          "label": "Textausrichtung",
-          "options__1": {
-            "label": "Zentriert"
-          },
-          "options__2": {
-            "label": "Links"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "blocks": {
-        "eyebrow": {
-          "name": "Überschrift-Zusatz",
-          "settings": {
-            "text": {
-              "label": "Text"
-            }
-          }
-        },
-        "heading": {
-          "name": "Überschrift",
-          "settings": {
-            "heading": {
-              "label": "Überschrift"
-            },
-            "heading_tag": {
-              "label": "Überschriftelement",
-              "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
-              "options__1": {
-                "label": "H1 — Haupttitel der Seite"
-              },
-              "options__2": {
-                "label": "H2 — Abschnittstitel (Standard)"
-              },
-              "options__3": {
-                "label": "H3 — Unterabschnitt"
-              },
-              "options__4": {
-                "label": "H4 — Kleinere Überschrift"
-              },
-              "options__5": {
-                "label": "Absatz — keine Überschrift"
-              }
-            },
-            "heading_size": {
-              "label": "Überschriftgröße",
-              "info": "Visuelle Größe, unabhängig vom Element",
-              "options__1": {
-                "label": "Display — übergroß, redaktionell"
-              },
-              "options__2": {
-                "label": "XL — Hero-Maßstab"
-              },
-              "options__3": {
-                "label": "Groß — Abschnittstitel"
-              },
-              "options__4": {
-                "label": "Mittel — Standard"
-              },
-              "options__5": {
-                "label": "Klein — Kartenüberschrift"
-              },
-              "options__6": {
-                "label": "Sehr klein — Bildunterschrift-Maßstab"
-              },
-              "options__7": {
-                "label": "Fließtext — wie der Fließtext"
-              }
-            }
-          }
-        },
-        "text": {
-          "name": "Text",
-          "settings": {
-            "text": {
-              "label": "Text"
-            }
-          }
-        },
-        "button": {
-          "name": "Schaltfläche",
-          "settings": {
-            "label": {
-              "label": "Beschriftung"
-            },
-            "url": {
-              "label": "Link"
-            },
-            "style": {
-              "label": "Stil",
-              "options__1": {
-                "label": "Gefüllt"
-              },
-              "options__2": {
-                "label": "Umrandet"
-              },
-              "options__3": {
-                "label": "Link"
-              }
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Rich-Text"
-      }
-    },
-    "testimonials": {
-      "name": "Kundenstimmen",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftelement",
-          "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Kleinere Überschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, redaktionell"
-          },
-          "options__2": {
-            "label": "XL — Hero-Maßstab"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Kartenüberschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Maßstab"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "autoplay": {
-          "label": "Automatische Wiedergabe"
-        },
-        "autoplay_speed": {
-          "label": "Sekunden zwischen den Folien"
-        },
-        "show_images": {
-          "label": "Bilder anzeigen"
-        },
-        "pause_label": {
-          "label": "Beschriftung der Pause-Schaltfläche",
-          "info": "Barrierefreie Beschriftung für den Wiedergabe- und Pause-Umschalter."
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "blocks": {
-        "testimonial": {
-          "name": "Kundenstimme",
-          "settings": {
-            "quote": {
-              "label": "Zitat"
-            },
-            "author": {
-              "label": "Verfasser"
-            },
-            "role": {
-              "label": "Funktion oder Ort"
-            },
-            "image": {
-              "label": "Bild"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Kundenstimmen"
-      }
-    },
-    "newsletter": {
-      "name": "Newsletter",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftelement",
-          "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Kleinere Überschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Größe"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Größe"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "subtext": {
-          "label": "Untertext"
-        },
-        "input_placeholder": {
-          "label": "E-Mail-Platzhalter"
-        },
-        "button_label": {
-          "label": "Button-Beschriftung"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Newsletter"
-      }
-    },
-    "gallery": {
-      "name": "Galerie",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftselement",
-          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Nebenüberschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftsgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Größe"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Größe"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "layout": {
-          "label": "Layout",
-          "options__1": {
-            "label": "2 Spalten"
-          },
-          "options__2": {
-            "label": "3 Spalten"
-          },
-          "options__3": {
-            "label": "4 Spalten"
-          }
-        },
-        "image_ratio": {
-          "label": "Bildverhältnis",
-          "options__1": {
-            "label": "Quadratisch"
-          },
-          "options__2": {
-            "label": "Hochformat"
-          },
-          "options__3": {
-            "label": "Querformat"
-          }
-        },
-        "show_captions": {
-          "label": "Bildunterschriften anzeigen"
-        },
-        "caption_position": {
-          "label": "Position der Bildunterschrift",
-          "options__1": {
-            "label": "Beim Überfahren"
-          },
-          "options__2": {
-            "label": "Unter dem Bild"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "blocks": {
-        "image": {
-          "name": "Bild",
-          "settings": {
-            "image": {
-              "label": "Bild"
-            },
-            "caption": {
-              "label": "Bildunterschrift"
-            },
-            "url": {
-              "label": "Link"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Galerie"
-      }
-    },
-    "collection-list": {
-      "name": "Kategorienliste",
-      "settings": {
-        "eyebrow": {
-          "label": "Kennzeile"
-        },
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftselement",
-          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Nebenüberschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftsgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Größe"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Größe"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "heading_alignment": {
-          "label": "Ausrichtung der Überschrift",
-          "options__1": {
-            "label": "Links"
-          },
-          "options__2": {
-            "label": "Zentriert"
-          }
-        },
-        "image_ratio": {
-          "label": "Bildverhältnis",
-          "options__1": {
-            "label": "Quadratisch"
-          },
-          "options__2": {
-            "label": "Hochformat"
-          },
-          "options__3": {
-            "label": "Querformat"
-          }
-        },
-        "show_product_count": {
-          "label": "Produktanzahl anzeigen"
-        },
-        "columns_desktop": {
-          "label": "Spalten (Desktop)",
-          "options__1": {
-            "label": "2"
-          },
-          "options__2": {
-            "label": "3"
-          },
-          "options__3": {
-            "label": "4"
-          }
-        },
-        "columns_mobile": {
-          "label": "Spalten (Mobil)",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "blocks": {
-        "collection": {
-          "name": "Kategorie",
-          "settings": {
-            "collection": {
-              "label": "Kategorie"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Kategorienliste"
-      }
-    },
-    "split-media": {
-      "name": "Geteiltes Medium",
-      "settings": {
-        "image": {
-          "label": "Bild"
-        },
-        "media_position": {
-          "label": "Bildposition",
-          "options__1": {
-            "label": "Links"
-          },
-          "options__2": {
-            "label": "Rechts"
-          }
-        },
-        "image_ratio": {
-          "label": "Bildverhältnis",
-          "options__1": {
-            "label": "Hochformat"
-          },
-          "options__2": {
-            "label": "Quadratisch"
-          },
-          "options__3": {
-            "label": "Querformat"
-          },
-          "options__4": {
-            "label": "Breit"
-          }
-        },
-        "eyebrow": {
-          "label": "Kennzeile"
-        },
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftselement",
-          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel (Standard)"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Nebenüberschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftsgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Größe"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Größe"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "text": {
-          "label": "Text"
-        },
-        "cta_label": {
-          "label": "Schaltflächenbeschriftung"
-        },
-        "cta_url": {
-          "label": "Schaltflächenlink"
-        },
-        "cta_style": {
-          "label": "Schaltflächenstil",
-          "options__1": {
-            "label": "Gefüllt"
-          },
-          "options__2": {
-            "label": "Umrandet"
-          },
-          "options__3": {
-            "label": "Link"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Geteilte Medien"
-      }
-    },
-    "editorial-statement": {
-      "name": "Redaktionelles Statement",
-      "settings": {
-        "statement": {
-          "label": "Statement"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Redaktionelles Statement"
-      }
-    },
-    "full-bleed-image": {
-      "name": "Randloses Bild",
-      "settings": {
-        "image": {
-          "label": "Bild"
-        },
-        "image_height": {
-          "label": "Bildhöhe",
-          "options__1": {
-            "label": "Kompakt (40vh)"
-          },
-          "options__2": {
-            "label": "Mittel (55vh)"
-          },
-          "options__3": {
-            "label": "Groß (70vh)"
-          },
-          "options__4": {
-            "label": "Filmisch (85vh)"
-          }
-        },
-        "caption": {
-          "label": "Bildunterschrift",
-          "info": "Optional. Wird unten links über dem Bild angezeigt."
-        },
-        "overlay_opacity": {
-          "label": "Deckkraft des Overlays"
-        }
-      },
-      "presets": {
-        "name": "Randloses Bild"
-      }
-    },
-    "announcement-bar": {
-      "name": "Ankündigungsleiste",
-      "settings": {
-        "show_announcement": {
-          "label": "Ankündigungsleiste anzeigen"
-        },
-        "dismissible": {
-          "label": "Käufern das Schließen erlauben",
-          "info": "Fügt eine Schließen-Schaltfläche hinzu. Die Leiste bleibt für diesen Besucher ausgeblendet, bis er seinen Browserspeicher leert."
-        },
-        "bar_color": {
-          "label": "Hintergrund der Leiste"
-        },
-        "bar_text_color": {
-          "label": "Text der Leiste"
-        },
-        "display_mode": {
-          "label": "Mehrere Nachrichten",
-          "info": "Wie 2 oder mehr Nachrichten auf größeren Bildschirmen angezeigt werden. Smartphones zeigen eine feste Nachricht: die Versandkosten-Nachricht, falls vorhanden, sonst die erste.",
-          "options__1": {
-            "label": "Rotieren (Überblenden)"
-          },
-          "options__2": {
-            "label": "Lauftext (Scrollen)"
-          }
-        },
-        "rotate_interval": {
-          "label": "Rotieren alle"
-        },
-        "marquee_speed": {
-          "label": "Scrolldauer",
-          "info": "Wird nur verwendet, wenn mehr als eine Nachricht vorhanden ist. Höher bedeutet langsamer."
-        }
-      },
-      "blocks": {
-        "message": {
-          "name": "Nachricht",
-          "settings": {
-            "text": {
-              "label": "Text"
-            },
-            "url": {
-              "label": "Link"
-            }
-          }
-        },
-        "free_shipping": {
-          "name": "Hinweis auf kostenlosen Versand",
-          "settings": {
-            "paragraph": {
-              "content": "Zeigt „Kostenloser Versand für Bestellungen ab [Ihr Schwellenwert]“ aus Theme-Einstellungen > Warenkorb. Ausgeblendet, wenn kein Schwellenwert festgelegt ist."
-            },
-            "url": {
-              "label": "Link"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Ankündigungsleiste"
-      }
-    },
-    "main-product": {
-      "name": "Produkt",
-      "blocks": {
-        "vendor": {
-          "name": "Anbieter"
-        },
-        "title": {
-          "name": "Titel"
-        },
-        "rating": {
-          "name": "Bewertung"
-        },
-        "price": {
-          "name": "Preis"
-        },
-        "inventory": {
-          "name": "Lagerbestand"
-        },
-        "variant_picker": {
-          "name": "Variantenauswahl"
-        },
-        "buy_buttons": {
-          "name": "Kaufschaltflächen",
-          "settings": {
-            "show_quantity": {
-              "label": "Mengenauswahl anzeigen"
-            },
-            "show_dynamic_checkout": {
-              "label": "Dynamische Checkout-Schaltflächen anzeigen"
-            },
-            "show_shipping_note": {
-              "label": "Versandhinweiszeile anzeigen"
-            },
-            "shipping_note": {
-              "label": "Versandhinweis",
-              "info": "Wird nach Ihrem Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) angezeigt, der automatisch eingefügt wird."
-            }
-          }
-        },
-        "notify_me": {
-          "name": "Benachrichtigen (ausverkauft)",
-          "settings": {
-            "header__1": {
-              "content": "Schaltfläche"
-            },
-            "trigger_label": {
-              "label": "Schaltflächenbeschriftung"
-            },
-            "header__2": {
-              "content": "Pop-up"
-            },
-            "eyebrow": {
-              "label": "Eyebrow-Text"
-            },
-            "dialog_heading": {
-              "label": "Überschrift"
-            },
-            "description": {
-              "label": "Beschreibung"
-            },
-            "email_label": {
-              "label": "E-Mail-Beschriftung"
-            },
-            "email_placeholder": {
-              "label": "E-Mail-Platzhalter"
-            },
-            "consent_label": {
-              "label": "Einwilligungstext"
-            },
-            "submit_label": {
-              "label": "Absenden-Schaltfläche"
-            },
-            "success_message": {
-              "label": "Erfolgsmeldung"
-            }
-          }
-        },
-        "trust_badges": {
-          "name": "Vertrauensabzeichen",
-          "settings": {
-            "badge_1": {
-              "label": "Abzeichen 1"
-            },
-            "badge_2": {
-              "label": "Abzeichen 2",
-              "info": "Das Versandabzeichen nennt Ihren Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb). Dieser Text wird nur verwendet, wenn kein Schwellenwert festgelegt ist."
-            },
-            "badge_3": {
-              "label": "Abzeichen 3"
-            },
-            "badge_4": {
-              "label": "Abzeichen 4"
-            }
-          }
-        },
-        "description": {
-          "name": "Beschreibung"
-        },
-        "share": {
-          "name": "Teilen"
-        },
-        "collapsible": {
-          "name": "Aufklappbare Zeile",
-          "settings": {
-            "heading": {
-              "label": "Überschrift"
-            },
-            "content": {
-              "label": "Inhalt"
-            }
-          }
-        },
-        "custom_liquid": {
-          "name": "Benutzerdefiniertes Liquid",
-          "settings": {
-            "custom_liquid": {
-              "label": "Benutzerdefiniertes Liquid"
-            }
-          }
-        }
-      },
-      "settings": {
-        "media_width": {
-          "label": "Medienbreite (Desktop)"
-        },
-        "media_fit": {
-          "label": "Bildanpassung",
-          "info": "Ganzes Bild zeigen passt die Galerie an das erste Bild an und schneidet nie ein Foto ab.",
-          "options__1": {
-            "label": "Ganzes Bild zeigen"
-          },
-          "options__2": {
-            "label": "Hochformat zuschneiden (3:4)"
-          }
-        },
-        "update_url": {
-          "label": "URL bei Variantenwechsel aktualisieren"
-        },
-        "show_floating_atc": {
-          "label": "Schwebende Warenkorb-Leiste anzeigen"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      }
-    },
-    "main-collection": {
-      "name": "Kollektion",
-      "settings": {
-        "show_description": {
-          "label": "Kollektionsbeschreibung anzeigen"
-        },
-        "products_per_page": {
-          "label": "Produkte pro Seite"
-        },
-        "columns_desktop": {
-          "label": "Spalten (Desktop)",
-          "options__1": {
-            "label": "2"
-          },
-          "options__2": {
-            "label": "3"
-          },
-          "options__3": {
-            "label": "4"
-          }
-        },
-        "columns_mobile": {
-          "label": "Spalten (Mobil)",
-          "options__1": {
-            "label": "1"
-          },
-          "options__2": {
-            "label": "2"
-          }
-        },
-        "enable_filtering": {
-          "label": "Filterung aktivieren",
-          "info": "Verwalten Sie Filter in Suche & Discovery."
-        },
-        "enable_sorting": {
-          "label": "Sortierung aktivieren"
-        },
-        "quick_add_style": {
-          "label": "Warenkorb-Schaltfläche",
-          "options__1": {
-            "label": "Beim Überfahren einblenden"
-          },
-          "options__2": {
-            "label": "Immer sichtbar"
-          }
-        },
-        "view_default": {
-          "label": "Standardansicht",
-          "options__1": {
-            "label": "Raster"
-          },
-          "options__2": {
-            "label": "Redaktionelle Liste"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      }
-    },
-    "page-about": {
-      "name": "Über-uns-Seite",
-      "settings": {
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          }
-        },
-        "header__1": {
-          "content": "Hero"
-        },
-        "eyebrow": {
-          "label": "Überschriftszeile"
-        },
-        "header__2": {
-          "content": "Eröffnungsstatement"
-        },
-        "statement": {
-          "label": "Statement"
-        },
-        "header__3": {
-          "content": "Werte"
-        },
-        "values_heading": {
-          "label": "Werte-Bezeichnung"
-        },
-        "header__4": {
-          "content": "Studio"
-        },
-        "studio_eyebrow": {
-          "label": "Studio-Überschriftszeile"
-        },
-        "studio_image": {
-          "label": "Studio-Bild"
-        },
-        "studio_title": {
-          "label": "Studio-Überschrift"
-        },
-        "studio_text": {
-          "label": "Studio-Beschreibung"
-        },
-        "header__5": {
-          "content": "Prozess"
-        },
-        "process_heading": {
-          "label": "Prozess-Bezeichnung"
-        },
-        "header__6": {
-          "content": "Abschluss"
-        },
-        "closing_text": {
-          "label": "Abschlussstatement"
-        },
-        "cta_label": {
-          "label": "CTA-Bezeichnung"
-        },
-        "cta_url": {
-          "label": "CTA-Link"
-        }
-      },
-      "blocks": {
-        "value": {
-          "name": "Wert",
-          "settings": {
-            "title": {
-              "label": "Titel"
-            },
-            "text": {
-              "label": "Beschreibung"
-            }
-          }
-        },
-        "process_step": {
-          "name": "Prozessschritt",
-          "settings": {
-            "title": {
-              "label": "Schritttitel"
-            },
-            "text": {
-              "label": "Schrittbeschreibung"
-            }
-          }
-        }
-      },
-      "presets": {
-        "name": "Über-uns-Seite"
-      }
-    },
-    "collection-banner": {
-      "name": "Kollektionsbanner",
-      "settings": {
-        "heading_tag": {
-          "label": "Überschriftselement",
-          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
-          "options__1": {
-            "label": "H1 — Haupttitel der Seite (Standard)"
-          },
-          "options__2": {
-            "label": "H2 — Abschnittstitel"
-          },
-          "options__3": {
-            "label": "H3 — Unterabschnitt"
-          },
-          "options__4": {
-            "label": "H4 — Nebenüberschrift"
-          },
-          "options__5": {
-            "label": "Absatz — keine Überschrift"
-          }
-        },
-        "heading_size": {
-          "label": "Überschriftsgröße",
-          "info": "Visuelle Größe, unabhängig vom Element",
-          "options__1": {
-            "label": "Display — übergroß, editorial"
-          },
-          "options__2": {
-            "label": "XL — Hero-Format"
-          },
-          "options__3": {
-            "label": "Groß — Abschnittstitel"
-          },
-          "options__4": {
-            "label": "Mittel — Standard"
-          },
-          "options__5": {
-            "label": "Klein — Karten-Überschrift"
-          },
-          "options__6": {
-            "label": "Sehr klein — Bildunterschrift-Format"
-          },
-          "options__7": {
-            "label": "Fließtext — wie der Fließtext"
-          }
-        },
-        "show_collection_image": {
-          "label": "Kollektionsbild anzeigen",
-          "info": "Verwendet das vorgestellte Bild der Kollektion als vollbreiten Hintergrund. Greift auf ein reines Textbanner zurück, wenn kein Bild festgelegt ist."
-        },
-        "banner_height": {
-          "label": "Bannerhöhe",
-          "info": "Gilt nur, wenn ein Kollektionsbild angezeigt wird.",
-          "options__1": {
-            "label": "Klein"
-          },
-          "options__2": {
-            "label": "Mittel"
-          },
-          "options__3": {
-            "label": "Groß"
-          }
-        },
-        "overlay_opacity": {
-          "label": "Overlay-Deckkraft",
-          "info": "Verdunkelt das Bild, damit die Überschrift lesbar bleibt."
-        },
-        "overlay_color": {
-          "label": "Overlay-Farbe"
-        },
-        "show_description": {
-          "label": "Kollektionsbeschreibung anzeigen"
-        },
-        "text_alignment": {
-          "label": "Textausrichtung",
-          "options__1": {
-            "label": "Links"
-          },
-          "options__2": {
-            "label": "Zentriert"
-          },
-          "options__3": {
-            "label": "Rechts"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "info": "Wird für das reine Textbanner verwendet (wenn kein Bild angezeigt wird).",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Kollektionsbanner"
-      }
-    },
-    "contact-form": {
-      "name": "Kontaktformular",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "heading_tag": {
-          "label": "Überschriftenebene",
-          "info": "Die Hauptüberschrift der Seite sollte H1 sein. H2, wenn die Seite bereits eine hat.",
-          "options__1": {
-            "label": "H1 (Seitenüberschrift)"
-          },
-          "options__2": {
-            "label": "H2"
-          }
-        },
-        "subtext": {
-          "label": "Untertext"
-        },
-        "header__1": {
-          "content": "Feldbezeichnungen"
-        },
-        "label_name": {
-          "label": "Bezeichnung „Name“"
-        },
-        "label_email": {
-          "label": "Bezeichnung „E-Mail“"
-        },
-        "label_phone": {
-          "label": "Bezeichnung „Telefon“"
-        },
-        "label_message": {
-          "label": "Bezeichnung „Nachricht“"
-        },
-        "header__2": {
-          "content": "Nachrichten"
-        },
-        "success_message": {
-          "label": "Erfolgsmeldung"
-        },
-        "header__3": {
-          "content": "Darstellung"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Kontaktformular"
-      }
-    },
-    "custom-liquid": {
-      "name": "Individuelles Liquid",
-      "settings": {
-        "custom_liquid": {
-          "label": "Individuelles Liquid",
-          "info": "Fügen Sie App-Snippets oder individuellen Code hinzu."
-        },
-        "narrow": {
-          "label": "Schmale Breite"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      },
-      "presets": {
-        "name": "Individuelles Liquid"
       }
     },
     "main-404": {
@@ -2480,6 +2252,84 @@
         }
       }
     },
+    "main-collection": {
+      "name": "Kollektion",
+      "settings": {
+        "show_description": {
+          "label": "Kollektionsbeschreibung anzeigen"
+        },
+        "products_per_page": {
+          "label": "Produkte pro Seite"
+        },
+        "columns_desktop": {
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
+        },
+        "columns_mobile": {
+          "label": "Spalten (Mobil)",
+          "options__1": {
+            "label": "1"
+          },
+          "options__2": {
+            "label": "2"
+          }
+        },
+        "enable_filtering": {
+          "label": "Filterung aktivieren",
+          "info": "Verwalten Sie Filter in Suche & Discovery."
+        },
+        "enable_sorting": {
+          "label": "Sortierung aktivieren"
+        },
+        "quick_add_style": {
+          "label": "Warenkorb-Schaltfläche",
+          "options__1": {
+            "label": "Beim Überfahren einblenden"
+          },
+          "options__2": {
+            "label": "Immer sichtbar"
+          }
+        },
+        "view_default": {
+          "label": "Standardansicht",
+          "options__1": {
+            "label": "Raster"
+          },
+          "options__2": {
+            "label": "Redaktionelle Liste"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      }
+    },
     "main-list-collections": {
       "name": "Kategorienliste",
       "settings": {
@@ -2530,6 +2380,220 @@
         "narrow_content": {
           "label": "Schmale Inhaltsbreite",
           "info": "Begrenzt den Seiteninhalt auf eine angenehme Lesebreite."
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      }
+    },
+    "main-product": {
+      "name": "Produkt",
+      "blocks": {
+        "vendor": {
+          "name": "Anbieter"
+        },
+        "title": {
+          "name": "Titel"
+        },
+        "rating": {
+          "name": "Bewertung"
+        },
+        "price": {
+          "name": "Preis"
+        },
+        "inventory": {
+          "name": "Lagerbestand"
+        },
+        "variant_picker": {
+          "name": "Variantenauswahl"
+        },
+        "buy_buttons": {
+          "name": "Kaufschaltflächen",
+          "settings": {
+            "show_quantity": {
+              "label": "Mengenauswahl anzeigen"
+            },
+            "show_dynamic_checkout": {
+              "label": "Dynamische Checkout-Schaltflächen anzeigen"
+            },
+            "show_shipping_note": {
+              "label": "Versandhinweiszeile anzeigen"
+            },
+            "shipping_note": {
+              "label": "Versandhinweis",
+              "info": "Wird nach Ihrem Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) angezeigt, der automatisch eingefügt wird."
+            }
+          }
+        },
+        "notify_me": {
+          "name": "Benachrichtigen (ausverkauft)",
+          "settings": {
+            "header__1": {
+              "content": "Schaltfläche"
+            },
+            "trigger_label": {
+              "label": "Schaltflächenbeschriftung"
+            },
+            "header__2": {
+              "content": "Pop-up"
+            },
+            "eyebrow": {
+              "label": "Eyebrow-Text"
+            },
+            "dialog_heading": {
+              "label": "Überschrift"
+            },
+            "description": {
+              "label": "Beschreibung"
+            },
+            "email_label": {
+              "label": "E-Mail-Beschriftung"
+            },
+            "email_placeholder": {
+              "label": "E-Mail-Platzhalter"
+            },
+            "consent_label": {
+              "label": "Einwilligungstext"
+            },
+            "submit_label": {
+              "label": "Absenden-Schaltfläche"
+            },
+            "success_message": {
+              "label": "Erfolgsmeldung"
+            }
+          }
+        },
+        "trust_badges": {
+          "name": "Vertrauensabzeichen",
+          "settings": {
+            "badge_1": {
+              "label": "Abzeichen 1"
+            },
+            "badge_2": {
+              "label": "Abzeichen 2",
+              "info": "Das Versandabzeichen nennt Ihren Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb). Dieser Text wird nur verwendet, wenn kein Schwellenwert festgelegt ist."
+            },
+            "badge_3": {
+              "label": "Abzeichen 3"
+            },
+            "badge_4": {
+              "label": "Abzeichen 4"
+            }
+          }
+        },
+        "description": {
+          "name": "Beschreibung"
+        },
+        "share": {
+          "name": "Teilen"
+        },
+        "collapsible": {
+          "name": "Aufklappbare Zeile",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "content": {
+              "label": "Inhalt"
+            }
+          }
+        },
+        "custom_liquid": {
+          "name": "Benutzerdefiniertes Liquid",
+          "settings": {
+            "custom_liquid": {
+              "label": "Benutzerdefiniertes Liquid"
+            }
+          }
+        },
+        "dimensions": {
+          "name": "Maße & Aufbau",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "open_by_default": {
+              "label": "Standardmäßig geöffnet"
+            },
+            "silhouette": {
+              "label": "Silhouette",
+              "options__1": {
+                "label": "Kasten"
+              },
+              "options__2": {
+                "label": "Sitzmöbel"
+              }
+            },
+            "paragraph": {
+              "content": "Die Werte stammen aus den Metafeldern des jeweiligen Produkts. Ist ein Metafeld leer, entfällt die Zeile; sind alle leer, entfällt das Panel."
+            },
+            "namespace": {
+              "label": "Metafeld-Namespace"
+            },
+            "key_width": {
+              "label": "Schlüssel für Breite"
+            },
+            "key_depth": {
+              "label": "Schlüssel für Tiefe"
+            },
+            "key_height": {
+              "label": "Schlüssel für Höhe"
+            },
+            "key_weight": {
+              "label": "Schlüssel für Gewicht"
+            },
+            "key_assembly": {
+              "label": "Schlüssel für Aufbauzeit"
+            },
+            "key_boxes": {
+              "label": "Schlüssel für Anzahl Pakete"
+            },
+            "note": {
+              "label": "Hinweis"
+            }
+          }
+        }
+      },
+      "settings": {
+        "media_width": {
+          "label": "Medienbreite (Desktop)"
+        },
+        "media_fit": {
+          "label": "Bildanpassung",
+          "info": "Ganzes Bild zeigen passt die Galerie an das erste Bild an und schneidet nie ein Foto ab.",
+          "options__1": {
+            "label": "Ganzes Bild zeigen"
+          },
+          "options__2": {
+            "label": "Hochformat zuschneiden (3:4)"
+          }
+        },
+        "update_url": {
+          "label": "URL bei Variantenwechsel aktualisieren"
+        },
+        "show_floating_atc": {
+          "label": "Schwebende Warenkorb-Leiste anzeigen"
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -2651,173 +2715,6 @@
         }
       }
     },
-    "password": {
-      "name": "Passwort",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "subheading": {
-          "label": "Unterüberschrift"
-        }
-      }
-    },
-    "product-recommendations": {
-      "name": "Produktempfehlungen",
-      "settings": {
-        "heading": {
-          "label": "Überschrift"
-        },
-        "products_to_show": {
-          "label": "Anzuzeigende Produkte"
-        },
-        "quick_add_style": {
-          "label": "In-den-Warenkorb-Schaltfläche",
-          "options__1": {
-            "label": "Beim Überfahren einblenden"
-          },
-          "options__2": {
-            "label": "Immer unter den Infos sichtbar"
-          }
-        },
-        "columns_desktop": {
-          "label": "Spalten (Desktop)",
-          "options__1": {
-            "label": "2"
-          },
-          "options__2": {
-            "label": "3"
-          },
-          "options__3": {
-            "label": "4"
-          }
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Oberer Abstand"
-        },
-        "padding_bottom": {
-          "label": "Unterer Abstand"
-        }
-      }
-    },
-    "cart-drawer": {
-      "name": "Warenkorb-Schublade"
-    },
-    "predictive-results": {
-      "name": "Vorausschauende Suchergebnisse"
-    },
-    "editorial-feature": {
-      "name": "Editorial-Feature",
-      "settings": {
-        "image": {
-          "label": "Bild"
-        },
-        "image_position": {
-          "label": "Bildposition",
-          "options__1": {
-            "label": "Links"
-          },
-          "options__2": {
-            "label": "Rechts"
-          }
-        },
-        "eyebrow": {
-          "label": "Eyebrow"
-        },
-        "heading": {
-          "label": "Überschrift"
-        },
-        "description": {
-          "label": "Beschreibung"
-        },
-        "cta_label": {
-          "label": "Schaltflächenbeschriftung"
-        },
-        "cta_url": {
-          "label": "Schaltflächenlink"
-        },
-        "header__1": {
-          "content": "Statistiken"
-        },
-        "show_stats": {
-          "label": "Statistiken anzeigen"
-        },
-        "stat_1_number": {
-          "label": "Statistik 1 Zahl"
-        },
-        "stat_1_label": {
-          "label": "Statistik 1 Bezeichnung"
-        },
-        "stat_2_number": {
-          "label": "Statistik 2 Zahl"
-        },
-        "stat_2_label": {
-          "label": "Statistik 2 Bezeichnung"
-        },
-        "stat_3_number": {
-          "label": "Statistik 3 Zahl"
-        },
-        "stat_3_label": {
-          "label": "Statistik 3 Bezeichnung"
-        },
-        "header__2": {
-          "content": "Erscheinungsbild"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        },
-        "padding_top": {
-          "label": "Abstand oben"
-        },
-        "padding_bottom": {
-          "label": "Abstand unten"
-        }
-      },
-      "presets": {
-        "name": "Editorial-Element"
-      }
-    },
-    "search-palette": {
-      "name": "Suchpalette",
-      "settings": {
-        "enabled": {
-          "label": "Befehlspaletten-Suche aktivieren"
-        }
-      }
-    },
     "maker-spotlight": {
       "name": "Hersteller-Porträt",
       "settings": {
@@ -2881,6 +2778,171 @@
         }
       }
     },
+    "marquee": {
+      "name": "Laufschrift",
+      "settings": {
+        "text": {
+          "label": "Text"
+        },
+        "speed": {
+          "label": "Dauer des Durchlaufs",
+          "info": "Höher ist langsamer."
+        },
+        "direction": {
+          "label": "Richtung",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Rechts"
+          }
+        },
+        "size": {
+          "label": "Textgröße",
+          "options__1": {
+            "label": "Klein"
+          },
+          "options__2": {
+            "label": "Mittel"
+          },
+          "options__3": {
+            "label": "Groß"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Laufschrift"
+      }
+    },
+    "newsletter": {
+      "name": "Newsletter",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftelement",
+          "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel (Standard)"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Kleinere Überschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Größe"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Größe"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "input_placeholder": {
+          "label": "E-Mail-Platzhalter"
+        },
+        "button_label": {
+          "label": "Button-Beschriftung"
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Newsletter"
+      }
+    },
+    "password": {
+      "name": "Passwort",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "subheading": {
+          "label": "Unterüberschrift"
+        }
+      }
+    },
+    "pickup-availability": {
+      "name": "Abholverfügbarkeit"
+    },
+    "predictive-results": {
+      "name": "Vorausschauende Suchergebnisse"
+    },
     "press-marquee": {
       "name": "Presse-Laufband",
       "settings": {
@@ -2926,29 +2988,99 @@
         }
       }
     },
-    "featured-product": {
-      "name": "Hervorgehobenes Produkt",
+    "process-timeline": {
+      "name": "Prozess-Zeitleiste",
       "settings": {
-        "product": {
-          "label": "Produkt"
+        "eyebrow": {
+          "label": "Kurzzeile"
         },
         "heading": {
-          "label": "Überzeilen-Überschrift"
+          "label": "Überschrift"
         },
-        "show_vendor": {
-          "label": "Anbieter anzeigen"
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
         },
-        "show_trust_badges": {
-          "label": "Gütesiegel anzeigen"
+        "subtext": {
+          "label": "Untertext"
         },
-        "header__bundle": {
-          "content": "Bundle-Upselling"
+        "cta_label": {
+          "label": "Button-Text"
         },
-        "show_bundle": {
-          "label": "Bundle anzeigen"
+        "cta_url": {
+          "label": "Button-Link"
         },
-        "bundle_heading": {
-          "label": "Bundle-Überschrift"
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "step": {
+          "name": "Schritt",
+          "settings": {
+            "image": {
+              "label": "Bild"
+            },
+            "label": {
+              "label": "Name des Schritts"
+            },
+            "duration": {
+              "label": "Dauer",
+              "info": "Zum Beispiel: zwei Tage."
+            },
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Prozess-Zeitleiste"
+      }
+    },
+    "product-recommendations": {
+      "name": "Produktempfehlungen",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "products_to_show": {
+          "label": "Anzuzeigende Produkte"
+        },
+        "quick_add_style": {
+          "label": "In-den-Warenkorb-Schaltfläche",
+          "options__1": {
+            "label": "Beim Überfahren einblenden"
+          },
+          "options__2": {
+            "label": "Immer unter den Infos sichtbar"
+          }
+        },
+        "columns_desktop": {
+          "label": "Spalten (Desktop)",
+          "options__1": {
+            "label": "2"
+          },
+          "options__2": {
+            "label": "3"
+          },
+          "options__3": {
+            "label": "4"
+          }
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -2969,12 +3101,15 @@
           }
         },
         "padding_top": {
-          "label": "Abstand oben"
+          "label": "Oberer Abstand"
         },
         "padding_bottom": {
-          "label": "Abstand unten"
+          "label": "Unterer Abstand"
         }
       }
+    },
+    "quick-buy": {
+      "name": "Schnellkauf"
     },
     "related-products": {
       "name": "Verwandte Produkte",
@@ -3033,64 +3168,28 @@
         }
       }
     },
-    "brand-statement": {
-      "name": "Markenbotschaft",
+    "rich-text": {
+      "name": "Rich-Text",
       "settings": {
-        "heading": {
-          "label": "Überschrift",
-          "info": "Zeilenumbrüche bleiben erhalten."
-        },
-        "subheading": {
-          "label": "Begleitzeile"
-        },
-        "heading_size_vw": {
-          "label": "Überschriftengröße (Desktop)"
-        },
-        "heading_size_mobile": {
-          "label": "Überschriftengröße (Mobil)"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
+        "content_width": {
+          "label": "Inhaltsbreite",
           "options__1": {
-            "label": "Creme"
+            "label": "Schmal"
           },
           "options__2": {
-            "label": "Pergament"
+            "label": "Mittel"
           },
           "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
+            "label": "Breit"
           }
-        }
-      },
-      "presets": {
-        "name": "Markenbotschaft"
-      }
-    },
-    "horizontal-scroll": {
-      "name": "Horizontales Scrollen",
-      "settings": {
-        "heading": {
-          "label": "Überzeilen-Überschrift"
         },
-        "collection": {
-          "label": "Kategorie"
-        },
-        "products_count": {
-          "label": "Anzuzeigende Produkte"
-        },
-        "card_aspect": {
-          "label": "Kartenform",
+        "text_alignment": {
+          "label": "Textausrichtung",
           "options__1": {
-            "label": "Hochformat (2:3)"
+            "label": "Zentriert"
           },
           "options__2": {
-            "label": "Quadratisch"
+            "label": "Links"
           }
         },
         "color_scheme": {
@@ -3112,14 +3211,325 @@
           }
         },
         "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "blocks": {
+        "eyebrow": {
+          "name": "Überschrift-Zusatz",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "heading": {
+          "name": "Überschrift",
+          "settings": {
+            "heading": {
+              "label": "Überschrift"
+            },
+            "heading_tag": {
+              "label": "Überschriftelement",
+              "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
+              "options__1": {
+                "label": "H1 — Haupttitel der Seite"
+              },
+              "options__2": {
+                "label": "H2 — Abschnittstitel (Standard)"
+              },
+              "options__3": {
+                "label": "H3 — Unterabschnitt"
+              },
+              "options__4": {
+                "label": "H4 — Kleinere Überschrift"
+              },
+              "options__5": {
+                "label": "Absatz — keine Überschrift"
+              }
+            },
+            "heading_size": {
+              "label": "Überschriftgröße",
+              "info": "Visuelle Größe, unabhängig vom Element",
+              "options__1": {
+                "label": "Display — übergroß, redaktionell"
+              },
+              "options__2": {
+                "label": "XL — Hero-Maßstab"
+              },
+              "options__3": {
+                "label": "Groß — Abschnittstitel"
+              },
+              "options__4": {
+                "label": "Mittel — Standard"
+              },
+              "options__5": {
+                "label": "Klein — Kartenüberschrift"
+              },
+              "options__6": {
+                "label": "Sehr klein — Bildunterschrift-Maßstab"
+              },
+              "options__7": {
+                "label": "Fließtext — wie der Fließtext"
+              }
+            }
+          }
+        },
+        "text": {
+          "name": "Text",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        },
+        "button": {
+          "name": "Schaltfläche",
+          "settings": {
+            "label": {
+              "label": "Beschriftung"
+            },
+            "url": {
+              "label": "Link"
+            },
+            "style": {
+              "label": "Stil",
+              "options__1": {
+                "label": "Gefüllt"
+              },
+              "options__2": {
+                "label": "Umrandet"
+              },
+              "options__3": {
+                "label": "Link"
+              }
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Rich-Text"
+      }
+    },
+    "search-palette": {
+      "name": "Suchpalette",
+      "settings": {
+        "enabled": {
+          "label": "Befehlspaletten-Suche aktivieren"
+        }
+      }
+    },
+    "shop-the-set": {
+      "name": "Das Set shoppen",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "text_position": {
+          "label": "Textposition",
+          "options__1": {
+            "label": "Rechts"
+          },
+          "options__2": {
+            "label": "Links"
+          }
+        },
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "cta_url": {
+          "label": "Button-Link"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
           "label": "Abstand oben"
         },
         "padding_bottom": {
           "label": "Abstand unten"
         }
       },
+      "blocks": {
+        "hotspot": {
+          "name": "Hotspot",
+          "settings": {
+            "product": {
+              "label": "Produkt"
+            },
+            "note": {
+              "label": "Notiz"
+            },
+            "position_x": {
+              "label": "Horizontale Position"
+            },
+            "position_y": {
+              "label": "Vertikale Position"
+            }
+          }
+        },
+        "caption": {
+          "name": "Geschichte des Sets",
+          "settings": {
+            "text": {
+              "label": "Text"
+            }
+          }
+        }
+      },
       "presets": {
-        "name": "Horizontales Scrollen"
+        "name": "Das Set shoppen"
+      }
+    },
+    "split-media": {
+      "name": "Geteiltes Medium",
+      "settings": {
+        "image": {
+          "label": "Bild"
+        },
+        "media_position": {
+          "label": "Bildposition",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Rechts"
+          }
+        },
+        "image_ratio": {
+          "label": "Bildverhältnis",
+          "options__1": {
+            "label": "Hochformat"
+          },
+          "options__2": {
+            "label": "Quadratisch"
+          },
+          "options__3": {
+            "label": "Querformat"
+          },
+          "options__4": {
+            "label": "Breit"
+          }
+        },
+        "eyebrow": {
+          "label": "Kennzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftselement",
+          "info": "Wählen Sie das HTML-Tag für SEO und Barrierefreiheit",
+          "options__1": {
+            "label": "H1 — Haupttitel der Seite"
+          },
+          "options__2": {
+            "label": "H2 — Abschnittstitel (Standard)"
+          },
+          "options__3": {
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Nebenüberschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftsgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, editorial"
+          },
+          "options__2": {
+            "label": "XL — Hero-Größe"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Karten-Überschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Größe"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_label": {
+          "label": "Schaltflächenbeschriftung"
+        },
+        "cta_url": {
+          "label": "Schaltflächenlink"
+        },
+        "cta_style": {
+          "label": "Schaltflächenstil",
+          "options__1": {
+            "label": "Gefüllt"
+          },
+          "options__2": {
+            "label": "Umrandet"
+          },
+          "options__3": {
+            "label": "Link"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema",
+          "options__1": {
+            "label": "Creme"
+          },
+          "options__2": {
+            "label": "Pergament"
+          },
+          "options__3": {
+            "label": "Leinen"
+          },
+          "options__4": {
+            "label": "Weiß"
+          },
+          "options__5": {
+            "label": "Invertiert"
+          }
+        },
+        "padding_top": {
+          "label": "Oberer Abstand"
+        },
+        "padding_bottom": {
+          "label": "Unterer Abstand"
+        }
+      },
+      "presets": {
+        "name": "Geteilte Medien"
       }
     },
     "stats-bar": {
@@ -3193,23 +3603,96 @@
         "name": "Statistikleiste"
       }
     },
-    "pickup-availability": {
-      "name": "Abholverfügbarkeit"
-    },
-    "complementary-products": {
-      "name": "Ergänzende Produkte",
-      "presets": {
-        "name": "Ergänzende Produkte"
-      },
+    "tabs": {
+      "name": "Tabs",
       "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
         "heading": {
           "label": "Überschrift"
         },
-        "products_to_show": {
-          "label": "Anzuzeigende Produkte"
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H1"
+          },
+          "options__2": {
+            "label": "H2"
+          },
+          "options__3": {
+            "label": "H3"
+          },
+          "options__4": {
+            "label": "Absatz"
+          }
+        },
+        "heading_size": {
+          "label": "Überschriftgröße",
+          "options__1": {
+            "label": "Sehr groß"
+          },
+          "options__2": {
+            "label": "Groß"
+          },
+          "options__3": {
+            "label": "Mittel"
+          }
+        },
+        "text_alignment": {
+          "label": "Ausrichtung der Überschrift",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Mittig"
+          }
+        },
+        "tab_alignment": {
+          "label": "Ausrichtung der Tabs",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Mittig"
+          },
+          "options__3": {
+            "label": "Rechts"
+          }
+        },
+        "tablist_label": {
+          "label": "Barrierefreier Name",
+          "info": "Wird von Screenreadern vorgelesen, wenn die Überschrift leer ist."
+        },
+        "header__grid": {
+          "content": "Kategorie-Tabs"
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Zwei"
+          },
+          "options__2": {
+            "label": "Drei"
+          },
+          "options__3": {
+            "label": "Vier"
+          }
+        },
+        "columns_mobile": {
+          "label": "Spalten auf Mobilgeräten",
+          "options__1": {
+            "label": "Eins"
+          },
+          "options__2": {
+            "label": "Zwei"
+          }
+        },
+        "show_vendor": {
+          "label": "Anbieter anzeigen"
         },
         "quick_add_style": {
-          "label": "Stil für Schnell-hinzufügen",
+          "label": "Schnelles Hinzufügen",
           "options__1": {
             "label": "Beim Hovern"
           },
@@ -3217,17 +3700,134 @@
             "label": "Immer sichtbar"
           }
         },
-        "columns_desktop": {
-          "label": "Spalten auf dem Desktop",
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "content": {
+          "name": "Inhalts-Tab",
+          "settings": {
+            "label": {
+              "label": "Tab-Beschriftung"
+            },
+            "heading": {
+              "label": "Überschrift"
+            },
+            "text": {
+              "label": "Text"
+            },
+            "image": {
+              "label": "Bild"
+            },
+            "image_position": {
+              "label": "Bildposition",
+              "options__1": {
+                "label": "Links"
+              },
+              "options__2": {
+                "label": "Rechts"
+              }
+            },
+            "cta_label": {
+              "label": "Button-Text"
+            },
+            "cta_url": {
+              "label": "Button-Link"
+            }
+          }
+        },
+        "collection": {
+          "name": "Kategorie-Tab",
+          "settings": {
+            "label": {
+              "label": "Tab-Beschriftung",
+              "info": "Standard ist der Kategorietitel."
+            },
+            "collection": {
+              "label": "Kategorie"
+            },
+            "products_to_show": {
+              "label": "Anzuzeigende Produkte"
+            },
+            "show_view_all": {
+              "label": "„Alle anzeigen“-Link anzeigen"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Tabs"
+      }
+    },
+    "testimonials": {
+      "name": "Kundenstimmen",
+      "settings": {
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriftelement",
+          "info": "Wählen Sie den HTML-Tag für SEO und Barrierefreiheit",
           "options__1": {
-            "label": "2"
+            "label": "H1 — Haupttitel der Seite"
           },
           "options__2": {
-            "label": "3"
+            "label": "H2 — Abschnittstitel (Standard)"
           },
           "options__3": {
-            "label": "4"
+            "label": "H3 — Unterabschnitt"
+          },
+          "options__4": {
+            "label": "H4 — Kleinere Überschrift"
+          },
+          "options__5": {
+            "label": "Absatz — keine Überschrift"
           }
+        },
+        "heading_size": {
+          "label": "Überschriftgröße",
+          "info": "Visuelle Größe, unabhängig vom Element",
+          "options__1": {
+            "label": "Display — übergroß, redaktionell"
+          },
+          "options__2": {
+            "label": "XL — Hero-Maßstab"
+          },
+          "options__3": {
+            "label": "Groß — Abschnittstitel"
+          },
+          "options__4": {
+            "label": "Mittel — Standard"
+          },
+          "options__5": {
+            "label": "Klein — Kartenüberschrift"
+          },
+          "options__6": {
+            "label": "Sehr klein — Bildunterschrift-Maßstab"
+          },
+          "options__7": {
+            "label": "Fließtext — wie der Fließtext"
+          }
+        },
+        "autoplay": {
+          "label": "Automatische Wiedergabe"
+        },
+        "autoplay_speed": {
+          "label": "Sekunden zwischen den Folien"
+        },
+        "show_images": {
+          "label": "Bilder anzeigen"
+        },
+        "pause_label": {
+          "label": "Beschriftung der Pause-Schaltfläche",
+          "info": "Barrierefreie Beschriftung für den Wiedergabe- und Pause-Umschalter."
         },
         "color_scheme": {
           "label": "Farbschema",
@@ -3253,10 +3853,106 @@
         "padding_bottom": {
           "label": "Unterer Abstand"
         }
+      },
+      "blocks": {
+        "testimonial": {
+          "name": "Kundenstimme",
+          "settings": {
+            "quote": {
+              "label": "Zitat"
+            },
+            "author": {
+              "label": "Verfasser"
+            },
+            "role": {
+              "label": "Funktion oder Ort"
+            },
+            "image": {
+              "label": "Bild"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kundenstimmen"
       }
     },
-    "quick-buy": {
-      "name": "Schnellkauf"
+    "wall-comparison": {
+      "name": "Wandvergleich",
+      "settings": {
+        "eyebrow": {
+          "label": "Kurzzeile"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschriften-Tag",
+          "options__1": {
+            "label": "H2"
+          },
+          "options__2": {
+            "label": "H3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "subtext": {
+          "label": "Untertext"
+        },
+        "columns_desktop": {
+          "label": "Spalten auf dem Desktop",
+          "options__1": {
+            "label": "Eine"
+          },
+          "options__2": {
+            "label": "Zwei"
+          }
+        },
+        "show_price": {
+          "label": "Preis anzeigen"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "pair": {
+          "name": "Vergleich",
+          "settings": {
+            "product": {
+              "label": "Produkt"
+            },
+            "heading": {
+              "label": "Überschrift",
+              "info": "Standard ist der Produkttitel."
+            },
+            "image_before": {
+              "label": "Leere Wand"
+            },
+            "image_after": {
+              "label": "Wand mit dem Werk"
+            },
+            "dimensions": {
+              "label": "Maßangabe",
+              "info": "Zum Beispiel: 70 x 100 cm, gerahmt."
+            },
+            "start_position": {
+              "label": "Startposition des Reglers"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Wandvergleich"
+      }
     }
   },
   "settings_schema": {

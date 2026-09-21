@@ -1,0 +1,255 @@
+{%- comment -%}
+  Shop the set — one styled photograph with numbered markers on the pieces in it.
+  A marker opens the existing quick-buy modal (assets/quick-buy.js listens for
+  [data-quick-buy] anywhere on the page), so nothing new is needed to buy.
+
+  The numbered list under the photograph is not a fallback: markers are small
+  targets on a phone and invisible to a screen reader's reading order, so the
+  list carries the same products, the same numbers, and the same quick-buy
+  action in plain reading order. Markers are decorative shortcuts on top of it.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign quick_buy_on = false
+  if settings.card_quick_buy != false
+    assign quick_buy_on = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="sts color-scheme--{{ scheme }}">
+  <div class="sts__inner page-width">
+    <div class="sts__layout sts__layout--{{ section.settings.text_position }}">
+
+      <div class="sts__figure" data-animate>
+        <div class="sts__stage">
+          {%- if section.settings.image != blank -%}
+            {{
+              section.settings.image
+              | image_url: width: 1800
+              | image_tag:
+                loading: 'lazy',
+                widths: '600, 900, 1200, 1500, 1800',
+                sizes: '(min-width: 990px) 60vw, 100vw',
+                alt: section.settings.image.alt | default: section.settings.heading,
+                class: 'sts__img'
+            }}
+          {%- else -%}
+            {{ 'lifestyle-1' | placeholder_svg_tag: 'sts__img placeholder' }}
+          {%- endif -%}
+
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'hotspot' and block.settings.product != blank -%}
+              {%- assign hp = block.settings.product -%}
+              <button
+                type="button"
+                class="sts__pin"
+                style="--x: {{ block.settings.position_x }}%; --y: {{ block.settings.position_y }}%;"
+                {% if quick_buy_on %}
+                  data-quick-buy="{{ hp.url }}"
+                  aria-haspopup="dialog"
+                {% endif %}
+                aria-label="{{ 'sections.shop-the-set.pin_label' | t: number: forloop.index, title: hp.title }}"
+                {{ block.shopify_attributes }}
+              >
+                <span class="sts__pin-num" aria-hidden="true">{{ forloop.index }}</span>
+              </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+      </div>
+
+      <div class="sts__body">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="sts__heading" data-animate>{{ section.settings.heading | escape }}</{{ heading_tag }}>
+        {%- endif -%}
+
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'caption' and block.settings.text != blank -%}
+            <div class="sts__story prose" data-animate {{ block.shopify_attributes }}>{{ block.settings.text }}</div>
+          {%- endif -%}
+        {%- endfor -%}
+
+        <ol class="sts__list" data-animate>
+          {%- for block in section.blocks -%}
+            {%- if block.type == 'hotspot' and block.settings.product != blank -%}
+              {%- assign hp = block.settings.product -%}
+              <li class="sts__item" value="{{ forloop.index }}">
+                <span class="sts__item-num" aria-hidden="true">{{ forloop.index }}</span>
+                <span class="sts__item-info">
+                  <a class="sts__item-title link-underline" href="{{ hp.url }}">{{ hp.title | escape }}</a>
+                  {%- if block.settings.note != blank -%}
+                    <span class="sts__item-note">{{ block.settings.note | escape }}</span>
+                  {%- endif -%}
+                  <span class="sts__item-price">{% render 'price', product: hp %}</span>
+                </span>
+                {%- if quick_buy_on -%}
+                  <button
+                    type="button"
+                    class="sts__item-buy"
+                    data-quick-buy="{{ hp.url }}"
+                    aria-haspopup="dialog"
+                    aria-label="{{ 'products.quick_buy_label' | t: title: hp.title }}"
+                    data-tooltip="{{ 'products.quick_buy' | t | escape }}"
+                  >
+                    {%- render 'icon', name: 'bag' -%}
+                  </button>
+                {%- endif -%}
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ol>
+
+        {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+          <a class="btn btn--outline sts__cta" href="{{ section.settings.cta_url }}" data-animate>{{ section.settings.cta_label | escape }}</a>
+        {%- endif -%}
+      </div>
+
+    </div>
+  </div>
+</div>
+
+{% stylesheet %}
+  .sts { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .sts__layout { display: grid; grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(2rem, 5vw, 4.5rem); align-items: center; }
+  .sts__layout--left .sts__figure { order: 2; }
+
+  .sts__stage { position: relative; }
+  .sts__img { width: 100%; display: block; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--image-radius, 0); }
+
+  .sts__pin {
+    position: absolute;
+    top: var(--y, 50%);
+    inset-inline-start: var(--x, 50%);
+    transform: translate(-50%, -50%);
+    width: 2.25rem;
+    height: 2.25rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    border: 1px solid rgb(255 255 255 / 0.7);
+    background-color: rgb(255 255 255 / 0.92);
+    color: #1a1a1a;
+    cursor: pointer;
+    box-shadow: 0 4px 16px rgb(0 0 0 / 0.25);
+    transition: transform var(--duration-fast) var(--ease-editorial), background-color var(--duration-fast) var(--ease-editorial);
+  }
+  .sts__pin:hover { transform: translate(-50%, -50%) scale(1.12); background-color: #fff; }
+  .sts__pin:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  .sts__pin-num { font-family: var(--font-mono); font-size: 11px; line-height: 1; }
+
+  .sts__body { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-4); }
+  .sts__heading {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    line-height: 1.1;
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    text-wrap: balance;
+  }
+  .sts__story { color: var(--color-muted); max-width: 46ch; }
+
+  .sts__list { list-style: none; width: 100%; display: flex; flex-direction: column; margin-top: var(--space-2); }
+  .sts__item { display: flex; align-items: center; gap: var(--space-4); padding-block: var(--space-4); border-top: 1px solid var(--color-border); }
+  .sts__item:last-child { border-bottom: 1px solid var(--color-border); }
+  .sts__item-num { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); width: 1.5rem; flex: none; }
+  .sts__item-info { display: flex; flex-direction: column; gap: 2px; flex: 1 1 auto; min-width: 0; }
+  .sts__item-title { font-family: var(--font-heading); font-size: var(--text-base); }
+  .sts__item-note { font-size: var(--text-xs); color: var(--color-muted); }
+  .sts__item-price { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); }
+  .sts__item-buy {
+    flex: none;
+    width: 40px;
+    height: 40px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--color-border-strong);
+    background-color: transparent;
+    color: var(--color-text);
+    cursor: pointer;
+    transition: background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
+  }
+  .sts__item-buy:hover { background-color: var(--color-text); color: var(--color-bg); }
+  .sts__item-buy:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+  .sts__item-buy .icon { width: 18px; height: 18px; }
+  .sts__cta { margin-top: var(--space-2); }
+
+  @media (max-width: 989px) {
+    .sts__layout { grid-template-columns: 1fr; }
+    .sts__layout--left .sts__figure { order: 0; }
+    /* Markers stay for orientation but the list is the way to buy on a phone. */
+    .sts__pin { width: 2rem; height: 2rem; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.shop-the-set.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "image_picker", "id": "image", "label": "t:sections.shop-the-set.settings.image.label" },
+    {
+      "type": "select", "id": "text_position", "label": "t:sections.shop-the-set.settings.text_position.label",
+      "options": [
+        { "value": "right", "label": "t:sections.shop-the-set.settings.text_position.options__1.label" },
+        { "value": "left", "label": "t:sections.shop-the-set.settings.text_position.options__2.label" }
+      ],
+      "default": "right"
+    },
+    { "type": "text", "id": "eyebrow", "label": "t:sections.shop-the-set.settings.eyebrow.label" },
+    { "type": "text", "id": "heading", "label": "t:sections.shop-the-set.settings.heading.label", "default": "Shop the set" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.shop-the-set.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.shop-the-set.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.shop-the-set.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.shop-the-set.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "text", "id": "cta_label", "label": "t:sections.shop-the-set.settings.cta_label.label" },
+    { "type": "url", "id": "cta_url", "label": "t:sections.shop-the-set.settings.cta_url.label" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.shop-the-set.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.shop-the-set.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.shop-the-set.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "t:sections.shop-the-set.blocks.hotspot.name",
+      "settings": [
+        { "type": "product", "id": "product", "label": "t:sections.shop-the-set.blocks.hotspot.settings.product.label" },
+        { "type": "text", "id": "note", "label": "t:sections.shop-the-set.blocks.hotspot.settings.note.label" },
+        { "type": "range", "id": "position_x", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "t:sections.shop-the-set.blocks.hotspot.settings.position_x.label", "default": 30 },
+        { "type": "range", "id": "position_y", "min": 0, "max": 100, "step": 1, "unit": "%", "label": "t:sections.shop-the-set.blocks.hotspot.settings.position_y.label", "default": 50 }
+      ]
+    },
+    {
+      "type": "caption",
+      "name": "t:sections.shop-the-set.blocks.caption.name",
+      "limit": 1,
+      "settings": [
+        { "type": "richtext", "id": "text", "label": "t:sections.shop-the-set.blocks.caption.settings.text.label", "default": "<p>The story behind the setting: what it is for, who made it, and why these pieces belong on one table.</p>" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.shop-the-set.presets.name",
+      "blocks": [ { "type": "caption" }, { "type": "hotspot" }, { "type": "hotspot" }, { "type": "hotspot" } ]
+    }
+  ]
+}
+{% endschema %}

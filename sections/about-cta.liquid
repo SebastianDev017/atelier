@@ -1,0 +1,128 @@
+{%- comment -%}
+  About CTA — the closing statement and the one thing to do next. Deliberately
+  a single column with one primary action: a page that ends in three equal
+  buttons ends in none.
+
+  An optional background image turns it into a full-bleed closer; without one it
+  stays a quiet type-only panel in the chosen colour scheme.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'inverse'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign has_image = false
+  if section.settings.background_image != blank
+    assign has_image = true
+  endif
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --about-cta-overlay: {{ section.settings.overlay_opacity | divided_by: 100.0 }};
+  }
+</style>
+
+<div class="about-cta color-scheme--{{ scheme }}{% if has_image %} about-cta--image{% endif %}">
+  {%- if has_image -%}
+    {%- assign cta_alt = section.settings.background_image.alt | default: section.settings.heading -%}
+    {{
+      section.settings.background_image
+      | image_url: width: 2400
+      | image_tag:
+        loading: 'lazy',
+        widths: '600, 900, 1200, 1600, 2000, 2400',
+        sizes: '100vw',
+        alt: cta_alt,
+        class: 'about-cta__bg'
+    }}
+    <div class="about-cta__scrim" aria-hidden="true"></div>
+  {%- endif -%}
+
+  <div class="about-cta__inner page-width" data-animate>
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="eyebrow about-cta__eyebrow">{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <{{ heading_tag }} class="about-cta__heading">{{ section.settings.heading | escape }}</{{ heading_tag }}>
+    {%- endif -%}
+    {%- if section.settings.text != blank -%}
+      <div class="about-cta__text prose">{{ section.settings.text }}</div>
+    {%- endif -%}
+    {%- if section.settings.cta_label != blank and section.settings.cta_url != blank -%}
+      <div class="about-cta__actions">
+        <a class="btn{% if section.settings.cta_style == 'outline' %} btn--outline{% endif %}" href="{{ section.settings.cta_url }}">
+          {{- section.settings.cta_label | escape -}}
+        </a>
+        {%- if section.settings.cta_secondary_label != blank and section.settings.cta_secondary_url != blank -%}
+          <a class="link-underline about-cta__secondary" href="{{ section.settings.cta_secondary_url }}">
+            {{- section.settings.cta_secondary_label | escape -}}
+          </a>
+        {%- endif -%}
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .about-cta { position: relative; padding-block: var(--pt, 128px) var(--pb, 128px); overflow: hidden; }
+  .about-cta__bg { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+  .about-cta__scrim { position: absolute; inset: 0; background-color: rgb(0 0 0 / var(--about-cta-overlay, 0.45)); }
+  .about-cta--image .about-cta__inner { position: relative; color: var(--color-overlay-text, #fff); }
+  .about-cta--image .about-cta__eyebrow { color: inherit; opacity: 0.85; }
+
+  .about-cta__inner { display: flex; flex-direction: column; align-items: center; text-align: center; gap: var(--space-5); }
+  .about-cta__heading {
+    font-family: var(--font-heading);
+    font-weight: var(--font-heading-weight);
+    font-size: clamp(2rem, 4.5vw, 3.75rem);
+    line-height: 1.1;
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    text-wrap: balance;
+    max-width: 22ch;
+  }
+  .about-cta__text { max-width: 55ch; color: inherit; }
+  .about-cta--image .about-cta__text { opacity: 0.9; }
+  .about-cta__actions { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: var(--space-5); margin-top: var(--space-3); }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.about-cta.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.about-cta.settings.eyebrow.label" },
+    { "type": "textarea", "id": "heading", "label": "t:sections.about-cta.settings.heading.label", "default": "Made to be lived with" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.about-cta.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.about-cta.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.about-cta.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.about-cta.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "richtext", "id": "text", "label": "t:sections.about-cta.settings.text.label" },
+    { "type": "text", "id": "cta_label", "label": "t:sections.about-cta.settings.cta_label.label", "default": "Shop the collection" },
+    { "type": "url", "id": "cta_url", "label": "t:sections.about-cta.settings.cta_url.label" },
+    {
+      "type": "select", "id": "cta_style", "label": "t:sections.about-cta.settings.cta_style.label",
+      "options": [
+        { "value": "solid", "label": "t:sections.about-cta.settings.cta_style.options__1.label" },
+        { "value": "outline", "label": "t:sections.about-cta.settings.cta_style.options__2.label" }
+      ],
+      "default": "solid"
+    },
+    { "type": "text", "id": "cta_secondary_label", "label": "t:sections.about-cta.settings.cta_secondary_label.label" },
+    { "type": "url", "id": "cta_secondary_url", "label": "t:sections.about-cta.settings.cta_secondary_url.label" },
+    { "type": "header", "content": "t:sections.about-cta.settings.header__background.content" },
+    { "type": "image_picker", "id": "background_image", "label": "t:sections.about-cta.settings.background_image.label" },
+    { "type": "range", "id": "overlay_opacity", "min": 0, "max": 80, "step": 5, "unit": "%", "label": "t:sections.about-cta.settings.overlay_opacity.label", "default": 45 },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.about-cta.settings.color_scheme.label", "default": "inverse" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 240, "step": 4, "unit": "px", "label": "t:sections.about-cta.settings.padding_top.label", "default": 128 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 240, "step": 4, "unit": "px", "label": "t:sections.about-cta.settings.padding_bottom.label", "default": 128 }
+  ],
+  "presets": [ { "name": "t:sections.about-cta.presets.name" } ]
+}
+{% endschema %}

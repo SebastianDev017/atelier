@@ -262,5 +262,38 @@
   },
   "date_formats": {
     "month_day_year": "%B %d, %Y"
+  },
+  "tabs": {
+    "view_all": "View all {{ collection }}",
+    "untitled": "Tab"
+  },
+  "sections": {
+    "wall-comparison": {
+      "slider_label": "Reveal {{ title }} on the wall",
+      "before_alt": "The wall before the work is hung",
+      "after_alt": "The same wall with {{ title }} hung on it"
+    },
+    "shop-the-set": {
+      "pin_label": "{{ number }}. {{ title }}"
+    },
+    "finish-gallery": {
+      "count": "{{ count }} {{ option }} options",
+      "empty": "This product has no option with swatches yet, so nothing is shown here on the storefront."
+    },
+    "main-product": {
+      "dimensions": {
+        "width": "Width",
+        "depth": "Depth",
+        "height": "Height",
+        "weight": "Weight",
+        "assembly": "Assembly",
+        "boxes": "Boxes",
+        "diagram_alt": "Diagram showing the measured width, depth and height"
+      }
+    },
+    "horizontal-scroll": {
+      "previous": "Previous products",
+      "next": "Next products"
+    }
   }
 }
