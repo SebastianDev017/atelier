@@ -56,9 +56,35 @@
     sync();
   }
 
+  /* Warm the rail's images before it arrives.
+
+     On a desktop the rail is pinned and scrubbed, so its cards cross the
+     viewport horizontally in a couple of seconds: the browser's lazy loading
+     only starts fetching them as they appear, and the decode lands on the
+     main thread mid-scroll. Measured: 0-2 frames of 60-91ms inside the rail,
+     which pre-decoding the page removes entirely.
+
+     decoding="async" already keeps the decode off-thread once the bytes are
+     there; this gets the bytes there early. One viewport of margin, and only
+     when the browser can tell us the rail is coming.
+  */
+  function warm(root) {
+    if (!('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function (entries) {
+      if (!entries.some(function (e) { return e.isIntersecting; })) return;
+      io.disconnect();
+      var imgs = root.querySelectorAll('img[loading="lazy"]');
+      Array.prototype.forEach.call(imgs, function (img) {
+        img.loading = 'eager';
+        if (img.decode) img.decode().catch(function () {});
+      });
+    }, { rootMargin: '100% 0px' });
+    io.observe(root);
+  }
+
   function init(scope) {
     var rails = (scope || document).querySelectorAll('[data-horizontal-scroll]');
-    Array.prototype.forEach.call(rails, setup);
+    Array.prototype.forEach.call(rails, function (rail) { setup(rail); warm(rail); });
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { init(); });
