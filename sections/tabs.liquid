@@ -11,6 +11,18 @@
 {%- liquid
   assign scheme = section.settings.color_scheme.id | default: 'background-1'
   assign heading_tag = section.settings.heading_tag | default: 'h2'
+  # The panels sit one level under the section heading, or take the top
+  # level themselves when the section prints no heading.
+  assign panel_tag = 'h2'
+  if section.settings.heading != blank
+    if heading_tag == 'h1'
+      assign panel_tag = 'h2'
+    elsif heading_tag == 'h2'
+      assign panel_tag = 'h3'
+    elsif heading_tag == 'h3'
+      assign panel_tag = 'h4'
+    endif
+  endif
   assign heading_size = section.settings.heading_size | default: 'lg'
 -%}
 
@@ -101,7 +113,7 @@
                     {%- endif -%}
                     <div class="tabs-content__body">
                       {%- if block.settings.heading != blank -%}
-                        <h3 class="tabs-content__heading">{{ block.settings.heading | escape }}</h3>
+                        <{{ panel_tag }} class="tabs-content__heading">{{ block.settings.heading | escape }}</{{ panel_tag }}>
                       {%- endif -%}
                       {%- if block.settings.text != blank -%}
                         <div class="tabs-content__text prose">{{ block.settings.text }}</div>
@@ -123,7 +135,7 @@
                         {% render 'product-card',
                           product: product,
                           show_vendor: section.settings.show_vendor,
-                          heading_tag: 'h3',
+                          heading_tag: panel_tag,
                           quick_add_style: section.settings.quick_add_style
                         %}
                       {%- endfor -%}
