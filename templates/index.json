@@ -22,7 +22,7 @@
         "eyebrow": "New season",
         "heading": "Considered objects\nfor the modern home",
         "heading_tag": "h1",
-        "heading_size": "display",
+        "heading_size": "xl",
         "subtext": "<p>Furniture and home goods made in small batches, designed to last a lifetime.</p>",
         "show_trust_bar": true,
         "trust_line": "",
@@ -33,27 +33,13 @@
         "cta_secondary_url": "/pages/about-us",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 0,
         "padding_bottom": 0
       }
     },
     "rooms": {
       "type": "collection-list",
-      "settings": {
-        "eyebrow": "Shop by room",
-        "heading": "Where it goes",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "heading_alignment": "left",
-        "image_ratio": "landscape",
-        "show_product_count": true,
-        "columns_desktop": "3",
-        "columns_mobile": "1",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 80
-      },
       "blocks": {
         "room_1": {
           "type": "collection",
@@ -78,7 +64,21 @@
         "room_1",
         "room_2",
         "room_3"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Shop by room",
+        "heading": "Where it goes",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "heading_alignment": "left",
+        "image_ratio": "landscape",
+        "show_product_count": true,
+        "columns_desktop": "3",
+        "columns_mobile": "1",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 80
+      }
     },
     "new_season": {
       "type": "featured-collection",
@@ -122,15 +122,15 @@
       "settings": {
         "image": "shopify://shop_images/home-interior-in-neutral-colors.jpg",
         "media_position": "left",
+        "image_ratio": "portrait",
         "eyebrow": "Made to be repaired",
         "heading": "Built so a scratch is not the end",
+        "heading_tag": "h2",
+        "heading_size": "lg",
         "text": "<p>Solid timber, replaceable covers, hardware you can actually buy again. When something wears, we would rather send a part than a replacement.</p>",
         "cta_label": "How we make things",
         "cta_url": "/pages/about-us",
         "cta_style": "link",
-        "image_ratio": "portrait",
-        "heading_tag": "h2",
-        "heading_size": "lg",
         "color_scheme": "background-1",
         "padding_top": 96,
         "padding_bottom": 96
@@ -144,6 +144,8 @@
         "layout": "image-right",
         "eyebrow": "Delivery",
         "title": "It arrives the way it left the studio",
+        "heading_tag": "h2",
+        "heading_size": "lg",
         "text": "<p>Blanket-wrapped, room of choice, packaging taken away. Assembly time and box count are listed on every product page before you buy.</p>",
         "cta_label": "Shop the collection",
         "cta_url": "/collections/all",
@@ -155,14 +157,6 @@
     },
     "voices": {
       "type": "testimonials",
-      "settings": {
-        "heading": "What people say once it is home",
-        "heading_tag": "h2",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "show_images": false
-      },
       "blocks": {
         "t1": {
           "type": "testimonial",
@@ -193,7 +187,19 @@
         "t1",
         "t2",
         "t3"
-      ]
+      ],
+      "settings": {
+        "heading": "What people say once it is home",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_images": false,
+        "pause_label": "Pause testimonials",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "newsletter": {
       "type": "newsletter",
