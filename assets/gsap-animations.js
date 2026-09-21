@@ -345,7 +345,18 @@
     initCursorPan();
     initBrandStatement();
     initHorizontalScroll();
-    initSplitText();
+    /* Splitting before the webfont arrives measures lines in the fallback and
+       re-wraps when it swaps, which is a layout shift the size of the heading.
+       Wait for the fonts, but never longer than a moment: a heading that never
+       animates is worse than one that shifts. */
+    if (document.fonts && document.fonts.ready) {
+      var splitOnce = false;
+      var runSplit = function () { if (!splitOnce) { splitOnce = true; initSplitText(); } };
+      document.fonts.ready.then(runSplit).catch(runSplit);
+      setTimeout(runSplit, 1500);
+    } else {
+      initSplitText();
+    }
     initBlurReveal();
     initFadeUp();
     initImageReveal();
