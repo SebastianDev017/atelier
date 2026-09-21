@@ -983,9 +983,11 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .pickup__details { border-top: 1px solid var(--color-border); }
 .pickup__summary { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; cursor: pointer; font-size: var(--text-sm); list-style: none; }
 .pickup__summary::-webkit-details-marker { display: none; }
-/* H1 -- a <summary> is a control; it needs to answer the pointer. */
-.pickup__summary { transition: color var(--duration-fast) var(--ease-editorial); }
-.pickup__summary:hover { color: var(--color-accent-local); }
+/* H1 -- a <summary> is a control; it needs to answer the pointer. The label
+   underlines rather than recolouring: the accent is under AA on the light
+   schemes, and the underline goes on the span so it cannot run under the
+   two icons this flex row also holds. */
+.pickup__summary:hover span { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .pickup__summary .icon:last-child { margin-inline-start: auto; transition: transform var(--duration-fast) var(--ease-editorial); }
 .pickup__details[open] .pickup__summary .icon:last-child { transform: rotate(180deg); }
 .pickup__body { padding-bottom: var(--space-4); }
@@ -1171,9 +1173,9 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .cart-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .cart-item__details { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
 .cart-item__heading { display: flex; flex-direction: column; gap: 2px; }
-.cart-item__title { font-size: var(--text-base); font-weight: 500; transition: color var(--duration-fast) var(--ease-editorial); }
+.cart-item__title { font-size: var(--text-base); font-weight: 500; }
 /* H1 -- the cart line title is a link to the product; it read as plain text. */
-.cart-item__title:hover { color: var(--color-accent-local); }
+.cart-item__title:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .cart-item__media { transition: opacity var(--duration-fast) var(--ease-editorial); }
 .cart-item__media:hover { opacity: 0.82; }
 .cart-item__variant { font-size: var(--text-sm); color: var(--color-muted); }
@@ -1212,8 +1214,7 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .facets__summary { display: flex; align-items: center; justify-content: space-between; gap: var(--space-3); padding: var(--space-4) 0; min-height: 44px; font-size: var(--text-sm); letter-spacing: var(--tracking-wide); text-transform: uppercase; }
 /* H1 -- only the chevron moved, and only on [open]; hovering the row itself
    gave nothing back. */
-.facets__summary { transition: color var(--duration-fast) var(--ease-editorial); }
-.facets__summary:hover { color: var(--color-accent-local); }
+.facets__summary:hover span { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .facets__summary .icon { transition: transform var(--duration-fast) var(--ease-editorial); }
 .facets__group[open] .facets__summary .icon { transform: rotate(180deg); }
 .facets__list { display: flex; flex-direction: column; gap: var(--space-1); padding-bottom: var(--space-4); }
@@ -1924,9 +1925,9 @@ body:has(cart-page) .scroll-top.is-visible {
 .bundle__item { display: flex; align-items: center; gap: var(--space-3); }
 .bundle__item--row { padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border); }
 .bundle .bundle__item--row:last-child { border-bottom: 0; }
-.bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; transition: color var(--duration-fast) var(--ease-editorial); }
+.bundle__item-link { display: flex; align-items: center; gap: var(--space-3); flex: 1; min-width: 0; text-decoration: none; color: inherit; }
 /* H1 -- the whole row is a link to the product but nothing moved on hover. */
-.bundle__item-link:hover .bundle__item-title { color: var(--color-accent-local); }
+.bundle__item-link:hover .bundle__item-title { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
 .bundle__item-img { width: 60px; height: 60px; object-fit: cover; flex-shrink: 0; background: var(--color-media); border-radius: var(--image-radius, 0); }
 .bundle__item-title {
   font-family: var(--font-heading);
