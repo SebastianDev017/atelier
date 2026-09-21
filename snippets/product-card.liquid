@@ -181,12 +181,25 @@
       product image. Only values with swatch data from admin render.
     {%- endcomment -%}
     {%- liquid
+      # A colour option is one Shopify gave swatch data to (the merchant linked it
+      # to shopify.color-pattern). Its NAME is the merchant's: Frame, Glaze,
+      # Finish, or "color" in their language, so matching on the name missed
+      # correctly configured stores. Name match stays as the tie-breaker when
+      # several options carry swatches.
       assign color_option = nil
       for opt in product.options_with_values
         assign opt_key = opt.name | downcase | strip
         if opt_key == 'color' or opt_key == 'colour'
           assign color_option = opt
           break
+        endif
+        if color_option == nil
+          for opt_value in opt.values
+            if opt_value.swatch
+              assign color_option = opt
+              break
+            endif
+          endfor
         endif
       endfor
     -%}
