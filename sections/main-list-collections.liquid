@@ -89,10 +89,9 @@
   .list-collections__item .media img { transition: transform var(--duration-slow) var(--ease-editorial); }
   .list-collections__item:hover .media img { transform: scale(1.04); }
   .list-collections__info { display: flex; flex-direction: column; gap: var(--space-1); }
-  .list-collections__name {
-    transition: color var(--duration-fast) var(--ease-editorial);
-  }
-  .list-collections__item:hover .list-collections__name { color: var(--color-accent-local); }
+  /* The card zooms its image on hover, but a collection with no image had
+     only the recolour - and the accent is under AA on the light schemes. */
+  .list-collections__item:hover .list-collections__name { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   .list-collections__count { color: var(--color-muted); }
 {% endstylesheet %}
 
