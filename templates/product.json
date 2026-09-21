@@ -71,6 +71,22 @@
             "heading": "Shipping & returns",
             "content": "<p>Add shipping, returns, or care details here.</p>"
           }
+        },
+        "dimensions": {
+          "type": "dimensions",
+          "settings": {
+            "heading": "Dimensions & assembly",
+            "open_by_default": false,
+            "silhouette": "seat",
+            "namespace": "custom",
+            "key_width": "width",
+            "key_depth": "depth",
+            "key_height": "height",
+            "key_weight": "weight",
+            "key_assembly": "assembly_time",
+            "key_boxes": "box_count",
+            "note": ""
+          }
         }
       },
       "block_order": [
@@ -84,6 +100,7 @@
         "notify-me",
         "trust_badges",
         "description",
+        "dimensions",
         "share",
         "collapsible"
       ],
@@ -111,10 +128,26 @@
         "padding_top": 80,
         "padding_bottom": 80
       }
+    },
+    "finishes": {
+      "type": "finish-gallery",
+      "settings": {
+        "product": "",
+        "option_name": "",
+        "eyebrow": "Finishes",
+        "heading": "Every finish, side by side",
+        "heading_tag": "h2",
+        "show_option_name": true,
+        "columns_desktop": "4",
+        "color_scheme": "background-2",
+        "padding_top": 80,
+        "padding_bottom": 80
+      }
     }
   },
   "order": [
     "main",
+    "finishes",
     "complementary",
     "related"
   ]
