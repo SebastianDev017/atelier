@@ -120,7 +120,7 @@
     "care": {
       "type": "split-media",
       "settings": {
-        "image": "shopify://shop_images/modern-ladder-shelf.jpg",
+        "image": "shopify://shop_images/home-interior-in-neutral-colors.jpg",
         "media_position": "left",
         "eyebrow": "Made to be repaired",
         "heading": "Built so a scratch is not the end",
@@ -139,7 +139,7 @@
     "delivery": {
       "type": "image-with-text",
       "settings": {
-        "image": "shopify://shop_images/open-plan-mid-century-modern-apartment.jpg",
+        "image": "shopify://shop_images/side-table-tea-service.jpg",
         "image_ratio": "landscape",
         "layout": "image-right",
         "eyebrow": "Delivery",

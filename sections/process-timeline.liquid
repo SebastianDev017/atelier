@@ -10,6 +10,18 @@
   assign scheme = section.settings.color_scheme.id | default: 'background-2'
   assign heading_tag = section.settings.heading_tag | default: 'h2'
   assign count = section.blocks.size | at_least: 1
+  comment
+    A step is legible as a number and a label alone, so the photograph row
+    appears only when the process is photographed. Mixing the two leaves
+    onboarding placeholders standing beside real pictures.
+  endcomment
+  assign has_media = false
+  for b in section.blocks
+    if b.settings.image != blank
+      assign has_media = true
+      break
+    endif
+  endfor
 -%}
 
 <style>
@@ -40,22 +52,24 @@
       <ol class="ptl__steps">
         {%- for block in section.blocks -%}
           <li class="ptl__step" data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}" {{ block.shopify_attributes }}>
-            <div class="ptl__media">
-              {%- if block.settings.image != blank -%}
-                {{
-                  block.settings.image
-                  | image_url: width: 900
-                  | image_tag:
-                    loading: 'lazy',
-                    widths: '300, 450, 600, 900',
-                    sizes: '(min-width: 990px) 22vw, 70vw',
-                    alt: block.settings.image.alt | default: block.settings.label,
-                    class: 'ptl__img'
-                }}
-              {%- else -%}
-                {{ 'lifestyle-2' | placeholder_svg_tag: 'ptl__img placeholder' }}
-              {%- endif -%}
-            </div>
+            {%- if has_media -%}
+              <div class="ptl__media media media--square">
+                {%- if block.settings.image != blank -%}
+                  {{
+                    block.settings.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      widths: '300, 450, 600, 900',
+                      sizes: '(min-width: 990px) 22vw, 70vw',
+                      alt: block.settings.image.alt | default: block.settings.label,
+                      class: 'ptl__img'
+                  }}
+                {%- else -%}
+                  {{ 'lifestyle-2' | placeholder_svg_tag: 'placeholder' }}
+                {%- endif -%}
+              </div>
+            {%- endif -%}
             <div class="ptl__marker" aria-hidden="true">
               <span class="ptl__num">{{ forloop.index }}</span>
             </div>
@@ -96,7 +110,12 @@
     counter-reset: none;
   }
   .ptl__step { display: flex; flex-direction: column; position: relative; }
-  .ptl__img { width: 100%; aspect-ratio: 1 / 1; object-fit: cover; display: block; border-radius: var(--image-radius, 0); }
+  /* The ratio lives on the wrapper so a photograph and a placeholder occupy
+     the same box and every step starts its text on the same line. */
+  .ptl__media { border-radius: var(--image-radius, 0); overflow: hidden; }
+
+  /* Unphotographed: the number carries the step, so give it more room. */
+  .ptl__step:not(:has(.ptl__media)) .ptl__marker { padding-block: 0 var(--space-4); }
 
   /* The rule that ties the steps together, drawn from the marker outwards so it
      never crosses the photograph. */
@@ -145,8 +164,8 @@
       column-gap: var(--space-4);
       padding-bottom: var(--space-8);
     }
-    .ptl__media { grid-area: media; }
-    .ptl__img { aspect-ratio: 3 / 2; }
+    .ptl__media { grid-area: media; aspect-ratio: 3 / 2; }
+    .ptl__step:not(:has(.ptl__media)) { grid-template-areas: "marker body"; }
     .ptl__body { grid-area: body; padding-top: var(--space-4); }
     .ptl__marker { grid-area: marker; padding: 0; align-items: flex-start; justify-content: center; }
     .ptl__marker::before,

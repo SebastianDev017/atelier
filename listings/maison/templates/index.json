@@ -120,7 +120,6 @@
         "step_1": {
           "type": "step",
           "settings": {
-            "image": "shopify://shop_images/maison-maker-hands.jpg",
             "label": "Throwing",
             "duration": "One day",
             "text": "Each piece is centred and pulled on the wheel, then left until the clay is firm enough to hold its own shape."
@@ -129,7 +128,6 @@
         "step_2": {
           "type": "step",
           "settings": {
-            "image": "shopify://shop_images/maison-editorial-wheel.jpg",
             "label": "Trimming",
             "duration": "Two days",
             "text": "The foot is turned and the walls trimmed back. This is where the weight in your hand is decided."
@@ -162,7 +160,7 @@
     "the_set": {
       "type": "shop-the-set",
       "settings": {
-        "image": "shopify://shop_images/maison-hero-studio-shelves.jpg",
+        "image": "shopify://shop_images/photo-1694830470387-2e0f234ecaf7_fd206f68-55aa-4b2e-bcf4-03e6ba8ec409.jpg",
         "text_position": "right",
         "eyebrow": "Shop the set",
         "heading": "One table, set for four",
@@ -174,55 +172,55 @@
         "padding_bottom": 96
       },
       "blocks": {
+        "hotspot_1": {
+          "type": "hotspot",
+          "settings": {
+            "product": "wide-serving-bowl",
+            "note": "The deep bowl, for a second helping",
+            "position_x": 46,
+            "position_y": 67
+          }
+        },
+        "hotspot_2": {
+          "type": "hotspot",
+          "settings": {
+            "product": "speckled-rice-bowl",
+            "note": "Stacks flat, sits on any plate",
+            "position_x": 45,
+            "position_y": 51
+          }
+        },
+        "hotspot_3": {
+          "type": "hotspot",
+          "settings": {
+            "product": "cream-jug",
+            "note": "Pours without dripping",
+            "position_x": 81,
+            "position_y": 45
+          }
+        },
+        "hotspot_4": {
+          "type": "hotspot",
+          "settings": {
+            "product": "four-place-table-set",
+            "note": "The whole setting, for four",
+            "position_x": 27,
+            "position_y": 75
+          }
+        },
         "caption": {
           "type": "caption",
           "settings": {
             "text": "<p>The pieces we reach for when people come over: plates that stack, bowls deep enough for a second helping, and a jug that pours without dripping.</p>"
           }
-        },
-        "pin_1": {
-          "type": "hotspot",
-          "settings": {
-            "product": "iron-rim-dinner-plate",
-            "note": "Two sizes",
-            "position_x": 28,
-            "position_y": 62
-          }
-        },
-        "pin_2": {
-          "type": "hotspot",
-          "settings": {
-            "product": "speckled-rice-bowl",
-            "note": "Single or set of four",
-            "position_x": 52,
-            "position_y": 44
-          }
-        },
-        "pin_3": {
-          "type": "hotspot",
-          "settings": {
-            "product": "celadon-pitcher",
-            "note": "1.5L",
-            "position_x": 72,
-            "position_y": 58
-          }
-        },
-        "pin_4": {
-          "type": "hotspot",
-          "settings": {
-            "product": "speckled-morning-mug",
-            "note": "350ml",
-            "position_x": 43,
-            "position_y": 74
-          }
         }
       },
       "block_order": [
-        "caption",
-        "pin_1",
-        "pin_2",
-        "pin_3",
-        "pin_4"
+        "hotspot_1",
+        "hotspot_2",
+        "hotspot_3",
+        "hotspot_4",
+        "caption"
       ]
     },
     "glazes": {

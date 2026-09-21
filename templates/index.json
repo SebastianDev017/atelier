@@ -56,8 +56,8 @@
         "eyebrow": "Scale",
         "heading": "See it on the wall",
         "heading_tag": "h2",
-        "subtext": "Drag to see the same wall with the work in place.",
-        "columns_desktop": "2",
+        "subtext": "Drag the handle to see the same wall with the work hung.",
+        "columns_desktop": "1",
         "show_price": true,
         "color_scheme": "background-2",
         "padding_top": 96,
@@ -67,25 +67,17 @@
         "pair_1": {
           "type": "pair",
           "settings": {
-            "product": "solstice-giclee-print",
+            "product": "cascade-photograph",
             "heading": "",
-            "dimensions": "50 x 70 cm, framed in oak",
-            "start_position": 50
-          }
-        },
-        "pair_2": {
-          "type": "pair",
-          "settings": {
-            "product": "carnival-weather-original",
-            "heading": "",
-            "dimensions": "76 x 102 cm, float-framed",
-            "start_position": 50
+            "image_before": "shopify://shop_images/annex-wall-before.jpg",
+            "image_after": "shopify://shop_images/annex-wall-after.jpg",
+            "dimensions": "50 x 70 cm, framed in oak with a hand-cut mat",
+            "start_position": 45
           }
         }
       },
       "block_order": [
-        "pair_1",
-        "pair_2"
+        "pair_1"
       ]
     },
     "statement": {

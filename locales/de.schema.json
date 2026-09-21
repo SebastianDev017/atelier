@@ -2571,6 +2571,10 @@
             },
             "note": {
               "label": "Hinweis"
+            },
+            "key_silhouette": {
+              "label": "Metafeld-Schlüssel für Silhouette",
+              "info": "Optional. Ein Produkt mit dem Wert „seat“ oder „box“ überschreibt die oben gewählte Kontur."
             }
           }
         }

@@ -2571,6 +2571,10 @@
             },
             "note": {
               "label": "Note"
+            },
+            "key_silhouette": {
+              "label": "Silhouette metafield key",
+              "info": "Optional. A product whose value is \"seat\" or \"box\" overrides the outline chosen above."
             }
           }
         }
