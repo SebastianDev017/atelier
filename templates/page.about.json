@@ -21,7 +21,8 @@
         "statement": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision, from the materials we choose to the people we partner with.",
         "color_scheme": "background-1",
         "padding_top": 0,
-        "padding_bottom": 64
+        "padding_bottom": 64,
+        "image": "shopify://shop_images/maison-editorial-wheel.jpg"
       }
     },
     "story": {
@@ -44,7 +45,8 @@
             "text": "<p>Every piece passes through our studio before it reaches you: reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>",
             "caption": "",
             "cta_label": "",
-            "cta_url": ""
+            "cta_url": "",
+            "image": "shopify://shop_images/maison-maker-hands.jpg"
           }
         },
         "chapter_2": {
@@ -56,7 +58,8 @@
             "text": "<p>We source as close to primary producers as we can, and we visit the people who make our work. When a maker suggests a better way to build something, the design changes.</p>",
             "caption": "",
             "cta_label": "",
-            "cta_url": ""
+            "cta_url": "",
+            "image": "shopify://shop_images/maison-hero-studio-shelves.jpg"
           }
         }
       },
