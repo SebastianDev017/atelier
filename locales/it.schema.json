@@ -1876,6 +1876,12 @@
         },
         "padding_bottom": {
           "label": "Spaziatura inferiore"
+        },
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "subtext": {
+          "label": "Sottotitolo"
         }
       },
       "presets": {

@@ -1876,6 +1876,12 @@
         },
         "padding_bottom": {
           "label": "Bottom padding"
+        },
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "subtext": {
+          "label": "Subheading"
         }
       },
       "presets": {
