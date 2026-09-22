@@ -29,6 +29,7 @@
     --pt: {{ section.settings.padding_top }}px;
     --pb: {{ section.settings.padding_bottom }}px;
     --steps: {{ count }};
+    --ptl-pos: {% case section.settings.marker_alignment %}{% when 'left' %}1.35rem{% when 'right' %}calc(100% - 1.35rem){% else %}50%{% endcase %};
   }
 </style>
 
@@ -128,13 +129,17 @@
     height: 1px;
     background-color: var(--color-border);
   }
-  .ptl__marker::before { inset-inline-start: 0; width: calc(50% - 1.35rem); }
-  .ptl__marker::after { inset-inline-end: 0; width: calc(50% - 1.35rem); }
+  /* Both halves are measured from --ptl-pos, so the rule meets the number
+     wherever the merchant put it and never crosses it. max() keeps the
+     width valid when the number sits hard against either end. */
+  .ptl__marker::before { inset-inline-start: 0; width: max(0px, calc(var(--ptl-pos, 50%) - 1.35rem)); }
+  .ptl__marker::after { inset-inline-start: calc(var(--ptl-pos, 50%) + 1.35rem); inset-inline-end: 0; }
   .ptl__step:first-child .ptl__marker::before,
   .ptl__step:last-child .ptl__marker::after { display: none; }
   .ptl__num {
     position: relative;
-    margin-inline: auto;
+    margin-inline-start: max(0px, calc(var(--ptl-pos, 50%) - 1.125rem));
+    margin-inline-end: auto;
     width: 2.25rem;
     height: 2.25rem;
     display: inline-flex;
@@ -167,7 +172,10 @@
     .ptl__media { grid-area: media; aspect-ratio: 3 / 2; }
     .ptl__step:not(:has(.ptl__media)) { grid-template-areas: "marker body"; }
     .ptl__body { grid-area: body; padding-top: var(--space-4); }
-    .ptl__marker { grid-area: marker; padding: 0; align-items: flex-start; justify-content: center; }
+    /* Stacked against the rail the number is beside the text, not over it,
+       so the alignment setting does not apply here. */
+    .ptl__marker { grid-area: marker; padding: 0; align-items: flex-start; justify-content: center; --ptl-pos: 50%; }
+    .ptl__num { margin-inline: auto; }
     .ptl__marker::before,
     .ptl__marker::after { top: auto; height: auto; width: 1px; inset-inline: 50% auto; }
     .ptl__marker::before { display: none; }
@@ -184,6 +192,16 @@
   "max_blocks": 6,
   "settings": [
     { "type": "text", "id": "eyebrow", "label": "t:sections.process-timeline.settings.eyebrow.label" },
+    {
+      "type": "select", "id": "marker_alignment", "label": "t:sections.process-timeline.settings.marker_alignment.label",
+      "info": "t:sections.process-timeline.settings.marker_alignment.info",
+      "options": [
+        { "value": "left", "label": "t:sections.process-timeline.settings.marker_alignment.options__1.label" },
+        { "value": "center", "label": "t:sections.process-timeline.settings.marker_alignment.options__2.label" },
+        { "value": "right", "label": "t:sections.process-timeline.settings.marker_alignment.options__3.label" }
+      ],
+      "default": "center"
+    },
     { "type": "text", "id": "heading", "label": "t:sections.process-timeline.settings.heading.label", "default": "From clay to table" },
     {
       "type": "select", "id": "heading_tag", "label": "t:sections.process-timeline.settings.heading_tag.label",

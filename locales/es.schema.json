@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Relleno inferior"
+        },
+        "marker_alignment": {
+          "label": "Alineación del número de paso",
+          "info": "Dónde se ubica el número sobre su título. En teléfono los números bajan por un riel y conservan su columna.",
+          "options__1": {
+            "label": "Izquierda"
+          },
+          "options__2": {
+            "label": "Centro"
+          },
+          "options__3": {
+            "label": "Derecha"
+          }
         }
       },
       "blocks": {

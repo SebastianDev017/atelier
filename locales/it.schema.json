@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Spaziatura inferiore"
+        },
+        "marker_alignment": {
+          "label": "Allineamento del numero di passaggio",
+          "info": "Dove si colloca il numero sopra il suo titolo. Su telefono i numeri scorrono lungo una guida e mantengono la loro colonna.",
+          "options__1": {
+            "label": "Sinistra"
+          },
+          "options__2": {
+            "label": "Centro"
+          },
+          "options__3": {
+            "label": "Destra"
+          }
         }
       },
       "blocks": {

@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Abstand unten"
+        },
+        "marker_alignment": {
+          "label": "Ausrichtung der Schrittnummer",
+          "info": "Wo die Nummer über ihrer Überschrift sitzt. Auf dem Telefon laufen die Nummern an einer Schiene entlang und behalten ihre Spalte.",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Mitte"
+          },
+          "options__3": {
+            "label": "Rechts"
+          }
         }
       },
       "blocks": {

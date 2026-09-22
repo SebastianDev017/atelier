@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Bottom padding"
+        },
+        "marker_alignment": {
+          "label": "Step number alignment",
+          "info": "Where the number sits over its heading. Stacked on a phone the numbers run down a rail and keep their own column.",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
         }
       },
       "blocks": {
