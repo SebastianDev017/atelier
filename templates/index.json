@@ -267,6 +267,141 @@
         "padding_top": 96,
         "padding_bottom": 96
       }
+    },
+    "glaze_lib": {
+      "type": "glaze-library",
+      "blocks": {
+        "celadon": {
+          "type": "glaze",
+          "settings": {
+            "name": "Celadon",
+            "color": "#a9bdb0",
+            "note": "Pools green in the throwing rings and goes almost clear on a rim.",
+            "link": "/collections/serving-tea"
+          }
+        },
+        "iron": {
+          "type": "glaze",
+          "settings": {
+            "name": "Iron black",
+            "color": "#23211f",
+            "note": "Breaks rust brown wherever the wall is thin. No two rims match.",
+            "link": "/collections/tableware"
+          }
+        },
+        "speckle": {
+          "type": "glaze",
+          "settings": {
+            "name": "Speckled cream",
+            "color": "#ded4c2",
+            "note": "Iron in the clay comes through the glaze as freckles during the second firing.",
+            "link": "/collections/tableware"
+          }
+        },
+        "ash": {
+          "type": "glaze",
+          "settings": {
+            "name": "Wood ash",
+            "color": "#c9c0ac",
+            "note": "Mixed from the ash of the studio stove, so the batch changes with the winter.",
+            "link": "/collections/vases-vessels"
+          }
+        },
+        "cobalt": {
+          "type": "glaze",
+          "settings": {
+            "name": "Cobalt line",
+            "color": "#3d4f77",
+            "note": "Painted on by hand before the glaze goes over it, one pass, no second chance.",
+            "link": "/collections/tableware"
+          }
+        },
+        "raw": {
+          "type": "glaze",
+          "settings": {
+            "name": "Unglazed",
+            "color": "#b08a6e",
+            "note": "Burnished, not coated. Fine for dry goods and flowers, not for the dishwasher.",
+            "link": "/collections/vases-vessels"
+          }
+        }
+      },
+      "block_order": [
+        "celadon",
+        "iron",
+        "speckle",
+        "ash",
+        "cobalt",
+        "raw"
+      ],
+      "settings": {
+        "eyebrow": "The palette",
+        "heading": "Six glazes, mixed here",
+        "heading_tag": "h2",
+        "text": "<p>Every one is mixed in the studio from raw materials and tested on a whole piece, not a tile. A glaze that crazes in the test gets dropped, not downgraded.</p>",
+        "cta_link": "/collections/all",
+        "cta_label": "Shop every glaze",
+        "columns": 3,
+        "swatch_shape": "square",
+        "show_notes": true,
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "kiln_log": {
+      "type": "kiln-log",
+      "blocks": {
+        "f14": {
+          "type": "entry",
+          "settings": {
+            "date": "Firing 14",
+            "title": "The iron black came out darker than March",
+            "note": "<p>Same recipe, colder week, and the whole batch broke rust at the rim instead of brown. We are keeping it. The next ramen bowls will not look like these.</p>",
+            "status": "Sold out",
+            "image": "shopify://shop_images/photo-1733590634381-b58fce897229_790aba9f-34e2-4867-b646-75fd1e545ea7.jpg",
+            "link": "/products/iron-black-ramen-bowl"
+          }
+        },
+        "f13": {
+          "type": "entry",
+          "settings": {
+            "date": "Firing 13",
+            "title": "Twelve moon vases went in, nine came out",
+            "note": "<p>Three cracked on the cool-down, which is the price of a wall that thin. The nine that made it are the roundest we have thrown.</p>",
+            "status": "Three left",
+            "image": "shopify://shop_images/photo-1612196808214-b8e1d6145a8c_3e17069b-0fab-4a22-9126-26e83aa39099.jpg",
+            "link": "/products/moon-vase"
+          }
+        },
+        "f12": {
+          "type": "entry",
+          "settings": {
+            "date": "Firing 12",
+            "title": "Celadon over the thrown pitchers",
+            "note": "<p>First time this glaze has gone on a pouring lip. It pools in the rings and runs clear at the spout, which turned out to be exactly right.</p>",
+            "status": "In stock",
+            "image": "shopify://shop_images/photo-1641083993161-4240941837e6_e077657d-47b3-4caa-ad51-81f4d0f6fe48.jpg",
+            "link": "/products/celadon-pitcher"
+          }
+        }
+      },
+      "block_order": [
+        "f14",
+        "f13",
+        "f12"
+      ],
+      "settings": {
+        "eyebrow": "From the kiln",
+        "heading": "What came out this month",
+        "heading_tag": "h2",
+        "text": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon, and this is the record of it.",
+        "show_images": true,
+        "image_ratio": "square",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
   "order": [
@@ -276,7 +411,9 @@
     "process",
     "the_set",
     "glazes",
+    "glaze_lib",
     "kiln",
+    "kiln_log",
     "newsletter"
   ]
 }

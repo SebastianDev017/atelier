@@ -297,6 +297,33 @@
     },
     "collection-showcase": {
       "onboarding": "Füge dieser Sektion eine Kategorie hinzu, um sie hier anzuzeigen."
+    },
+    "spec-compare": {
+      "table_label": "Produktvergleich",
+      "row_header": "Merkmal",
+      "no_value": "Keine Angabe",
+      "cta_row": "Links",
+      "onboarding": "Füge dieser Sektion ein Produkt hinzu, um es hier zu vergleichen."
+    },
+    "faq-ledger": {
+      "onboarding": "Füge dieser Sektion eine Frage hinzu, um sie hier zu beantworten."
+    },
+    "overlap-index": {
+      "onboarding": "Füge dieser Sektion einen Eintrag hinzu, um ihn hier zu zeigen."
+    },
+    "kiln-log": {
+      "onboarding": "Füge dieser Sektion einen Eintrag hinzu, um ihn hier festzuhalten."
+    },
+    "video-feature": {
+      "play": "Film abspielen",
+      "player_title": "Video",
+      "onboarding": "Füge dieser Sektion ein Video oder einen Video-Link hinzu."
+    },
+    "frame-preview": {
+      "onboarding": "Füge dieser Sektion einen Rahmen hinzu, um ihn hier zu zeigen."
+    },
+    "glaze-library": {
+      "onboarding": "Füge dieser Sektion eine Glasur hinzu, um sie hier zu zeigen."
     }
   }
 }

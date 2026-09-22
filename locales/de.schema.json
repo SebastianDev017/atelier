@@ -4056,6 +4056,561 @@
       "presets": {
         "name": "Kategorie-Schaufenster"
       }
+    },
+    "spec-compare": {
+      "name": "Daten im Vergleich",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "intro": {
+          "label": "Einleitungstext"
+        },
+        "row_labels": {
+          "label": "Zeilenbezeichnungen",
+          "info": "Eine Bezeichnung pro Zeile. Sie benennen die Zeilen für jedes Produkt in der Tabelle."
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "highlight_label": {
+          "label": "Text der Hervorhebung"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Produkt",
+          "settings": {
+            "product": {
+              "label": "Produkt"
+            },
+            "label": {
+              "label": "Bezeichnung",
+              "info": "Leer lassen, um den Produkttitel zu verwenden."
+            },
+            "image": {
+              "label": "Bild",
+              "info": "Leer lassen, um das Produktbild zu verwenden."
+            },
+            "values": {
+              "label": "Werte",
+              "info": "Ein Wert pro Zeile, in der Reihenfolge der Zeilenbezeichnungen. Eine leere Zeile zeigt einen Gedankenstrich."
+            },
+            "highlight": {
+              "label": "Diese Spalte hervorheben"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Daten im Vergleich"
+      }
+    },
+    "faq-ledger": {
+      "name": "Fragenregister",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "link": {
+          "label": "Link"
+        },
+        "link_label": {
+          "label": "Linktext"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Frage",
+          "settings": {
+            "question": {
+              "label": "Frage"
+            },
+            "answer": {
+              "label": "Antwort"
+            },
+            "open_by_default": {
+              "label": "Standardmäßig geöffnet"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Fragenregister"
+      }
+    },
+    "overlap-index": {
+      "name": "Überlagertes Register",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "image_ratio": {
+          "label": "Bildformat",
+          "options__1": {
+            "label": "Hochformat"
+          },
+          "options__2": {
+            "label": "Quadratisch"
+          },
+          "options__3": {
+            "label": "Querformat"
+          }
+        },
+        "image_scale": {
+          "label": "Bildgröße",
+          "info": "Wie viel des Namensstapels das Bild verdeckt.",
+          "options__1": {
+            "label": "Klein"
+          },
+          "options__2": {
+            "label": "Mittel"
+          },
+          "options__3": {
+            "label": "Groß"
+          }
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Eintrag",
+          "settings": {
+            "label": {
+              "label": "Name"
+            },
+            "image": {
+              "label": "Bild"
+            },
+            "text": {
+              "label": "Beschreibung"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Überlagertes Register"
+      }
+    },
+    "kiln-log": {
+      "name": "Brennbuch",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "show_images": {
+          "label": "Bilder anzeigen"
+        },
+        "image_ratio": {
+          "label": "Bildformat",
+          "options__1": {
+            "label": "Quadratisch"
+          },
+          "options__2": {
+            "label": "Hochformat"
+          },
+          "options__3": {
+            "label": "Querformat"
+          }
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Eintrag",
+          "settings": {
+            "date": {
+              "label": "Datum",
+              "info": "Freier Text, damit er so gelesen wird, wie die Werkstatt ihn schreibt."
+            },
+            "title": {
+              "label": "Titel"
+            },
+            "note": {
+              "label": "Notiz"
+            },
+            "status": {
+              "label": "Status",
+              "info": "Eine kurze Zeile wie „Ausverkauft“ oder „Zwölf Stücke“."
+            },
+            "image": {
+              "label": "Bild"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Brennbuch"
+      }
+    },
+    "video-feature": {
+      "name": "Video-Feature",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "video": {
+          "label": "Video",
+          "info": "Ein von Shopify gehostetes Video. Hat Vorrang vor dem Link unten."
+        },
+        "video_url": {
+          "label": "Video-Link",
+          "info": "Ein YouTube- oder Vimeo-Link. Von dort lädt nichts, bis jemand auf Abspielen drückt."
+        },
+        "poster": {
+          "label": "Vorschaubild",
+          "info": "Wird vor dem Abspielen gezeigt. Wird mit einem YouTube- oder Vimeo-Link verwendet."
+        },
+        "video_ratio": {
+          "label": "Videoformat",
+          "options__1": {
+            "label": "Breitbild"
+          },
+          "options__2": {
+            "label": "Klassisch"
+          },
+          "options__3": {
+            "label": "Quadratisch"
+          },
+          "options__4": {
+            "label": "Hochformat"
+          }
+        },
+        "full_width": {
+          "label": "Video über die volle Breite zeigen"
+        },
+        "autoplay_muted": {
+          "label": "Stumm starten und wiederholen",
+          "info": "Das Video behält seine Steuerelemente und kann pausiert und lauter gestellt werden."
+        },
+        "caption": {
+          "label": "Bildunterschrift"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Video-Feature"
+      }
+    },
+    "frame-preview": {
+      "name": "Rahmenvorschau",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "image": {
+          "label": "Bild des Werks",
+          "info": "Ein Werk, gezeigt in jedem Rahmen unten."
+        },
+        "image_ratio": {
+          "label": "Bildformat",
+          "options__1": {
+            "label": "Hochformat"
+          },
+          "options__2": {
+            "label": "Quadratisch"
+          },
+          "options__3": {
+            "label": "Querformat"
+          }
+        },
+        "media_position": {
+          "label": "Position des Werks",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Rechts"
+          }
+        },
+        "options_label": {
+          "label": "Titel der Optionen"
+        },
+        "cta_link": {
+          "label": "Button-Link"
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "footnote": {
+          "label": "Fußnote",
+          "info": "Weise darauf hin, dass die Rahmen gezeichnet sind und die Optionen zeigen."
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "frame": {
+          "name": "Rahmen",
+          "settings": {
+            "label": {
+              "label": "Name"
+            },
+            "note": {
+              "label": "Notiz",
+              "info": "Eine kurze Zeile, etwa das Material und der Preisunterschied."
+            },
+            "frame_color": {
+              "label": "Rahmenfarbe"
+            },
+            "frame_width": {
+              "label": "Rahmenbreite"
+            },
+            "mat_color": {
+              "label": "Passepartout-Farbe"
+            },
+            "mat_width": {
+              "label": "Passepartout-Breite"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Rahmenvorschau"
+      }
+    },
+    "glaze-library": {
+      "name": "Glasurbibliothek",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_link": {
+          "label": "Button-Link"
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "columns": {
+          "label": "Spalten"
+        },
+        "swatch_shape": {
+          "label": "Form der Farbprobe",
+          "options__1": {
+            "label": "Quadratisch"
+          },
+          "options__2": {
+            "label": "Kreis"
+          }
+        },
+        "show_notes": {
+          "label": "Notizen anzeigen"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "glaze": {
+          "name": "Glasur",
+          "settings": {
+            "name": {
+              "label": "Name"
+            },
+            "color": {
+              "label": "Farbe"
+            },
+            "image": {
+              "label": "Foto",
+              "info": "Ersetzt die Farbe, sobald es gesetzt ist. Für eine Glasur mit Sprenkeln oder Tiefe."
+            },
+            "note": {
+              "label": "Notiz",
+              "info": "Eine Zeile dazu, wie sich die Glasur verhält."
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Glasurbibliothek"
+      }
     }
   },
   "settings_schema": {

@@ -1,0 +1,286 @@
+{%- comment -%}
+  Spec compare — the same measurements for two to four products, in one table.
+
+  Furniture is bought by comparison and the comparison is always the same
+  handful of numbers: how wide, how deep, what it is made of, how long it
+  takes to arrive. A shopper doing that today opens four tabs and scrolls
+  each one. This puts the four answers on one line.
+
+  The merchant names the rows once, at the section, and then fills in that
+  product's answers in the product's own block, one per line, in the same
+  order. Keeping the labels in one place is what makes the columns line up:
+  a row is a row for every product, and a product that has nothing to say in
+  it shows an em dash rather than dropping the row and shifting the ones
+  below it.
+
+  Title, image, price and link are read from the product itself, so a price
+  change or a new photograph reaches the table without anyone editing it.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign labels = section.settings.row_labels | newline_to_br | strip_newlines | split: '<br />'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+  }
+</style>
+
+<div class="speccmp color-scheme--{{ scheme }}">
+  <div class="speccmp__inner page-width">
+    {%- if section.settings.eyebrow != blank -%}
+      <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+    {%- endif -%}
+    {%- if section.settings.heading != blank -%}
+      <{{ heading_tag }} class="section-heading heading--lg speccmp__heading" data-animate>
+        {{ section.settings.heading | escape }}
+      </{{ heading_tag }}>
+    {%- endif -%}
+    {%- if section.settings.intro != blank -%}
+      <p class="lead speccmp__intro" data-animate>{{ section.settings.intro | escape }}</p>
+    {%- endif -%}
+
+    {%- if section.blocks.size > 0 -%}
+      {%- comment -%}
+        The table is wider than a phone and stays a table there: a horizontal
+        scroller with the row labels pinned keeps every number under the name
+        it belongs to. The region takes focus so it can be scrolled from the
+        keyboard as well as by a finger.
+      {%- endcomment -%}
+      <div
+        class="speccmp__scroll"
+        role="region"
+        tabindex="0"
+        aria-label="{{ 'sections.spec-compare.table_label' | t }}"
+        data-animate
+      >
+        <table class="speccmp__table">
+          <caption class="visually-hidden">
+            {{ section.settings.heading | default: section.settings.eyebrow | escape }}
+          </caption>
+          <thead>
+            <tr>
+              <th scope="col" class="speccmp__corner">
+                <span class="visually-hidden">{{ 'sections.spec-compare.row_header' | t }}</span>
+              </th>
+              {%- for block in section.blocks -%}
+                {%- liquid
+                  assign p = block.settings.product
+                  assign name = block.settings.label | default: p.title
+                  assign img = block.settings.image | default: p.featured_media.preview_image
+                -%}
+                <th
+                  scope="col"
+                  class="speccmp__col{% if block.settings.highlight %} is-highlight{% endif %}"
+                  {{ block.shopify_attributes }}
+                >
+                  <a class="speccmp__product" href="{{ p.url | default: '#' }}">
+                    <span class="speccmp__thumb">
+                      {%- if img != blank -%}
+                        {{
+                          img
+                          | image_url: width: 600
+                          | image_tag:
+                            loading: 'lazy',
+                            decoding: 'async',
+                            widths: '200, 300, 400, 600',
+                            sizes: '(min-width: 750px) 22vw, 42vw',
+                            alt: img.alt | default: name,
+                            class: 'speccmp__img'
+                        }}
+                      {%- else -%}
+                        {{ 'product-1' | placeholder_svg_tag: 'speccmp__img placeholder' }}
+                      {%- endif -%}
+                    </span>
+                    <span class="speccmp__name">{{ name | escape }}</span>
+                  </a>
+                  {%- if p != blank -%}
+                    <span class="speccmp__price price">{{ p.price | money }}</span>
+                  {%- endif -%}
+                  {%- if block.settings.highlight and section.settings.highlight_label != blank -%}
+                    <span class="speccmp__flag label">{{ section.settings.highlight_label | escape }}</span>
+                  {%- endif -%}
+                </th>
+              {%- endfor -%}
+            </tr>
+          </thead>
+
+          <tbody>
+            {%- for label in labels -%}
+              {%- assign row_label = label | strip -%}
+              {%- if row_label == blank -%}
+                {%- continue -%}
+              {%- endif -%}
+              <tr>
+                <th scope="row" class="speccmp__rowlabel label">{{ row_label }}</th>
+                {%- for block in section.blocks -%}
+                  {%- liquid
+                    assign cells = block.settings.values | newline_to_br | strip_newlines | split: '<br />'
+                    assign cell = cells[forloop.parentloop.index0] | strip
+                  -%}
+                  <td class="speccmp__cell{% if block.settings.highlight %} is-highlight{% endif %}">
+                    {%- if cell != blank -%}
+                      {{ cell }}
+                    {%- else -%}
+                      <span aria-hidden="true">&mdash;</span>
+                      <span class="visually-hidden">{{ 'sections.spec-compare.no_value' | t }}</span>
+                    {%- endif -%}
+                  </td>
+                {%- endfor -%}
+              </tr>
+            {%- endfor -%}
+          </tbody>
+
+          {%- if section.settings.cta_label != blank -%}
+            <tfoot>
+              <tr>
+                <th scope="row" class="speccmp__rowlabel">
+                  <span class="visually-hidden">{{ 'sections.spec-compare.cta_row' | t }}</span>
+                </th>
+                {%- for block in section.blocks -%}
+                  {%- liquid
+                    assign p = block.settings.product
+                    assign name = block.settings.label | default: p.title
+                  -%}
+                  <td class="speccmp__cell{% if block.settings.highlight %} is-highlight{% endif %}">
+                    <a class="btn btn--outline btn--small" href="{{ p.url | default: '#' }}">
+                      {{ section.settings.cta_label | escape }}
+                      <span class="visually-hidden"> &mdash; {{ name | escape }}</span>
+                    </a>
+                  </td>
+                {%- endfor -%}
+              </tr>
+            </tfoot>
+          {%- endif -%}
+        </table>
+      </div>
+    {%- else -%}
+      <p class="caption">{{ 'sections.spec-compare.onboarding' | t }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .speccmp { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .speccmp__heading { margin-top: var(--space-2); }
+  .speccmp__intro { max-width: 52ch; margin-top: var(--space-3); color: var(--color-muted); }
+
+  /* The only element in the theme allowed to scroll sideways, and it says so
+     to assistive tech rather than trapping the numbers off-screen. */
+  .speccmp__scroll { margin-top: var(--space-8); overflow-x: auto; overscroll-behavior-x: contain; }
+  .speccmp__scroll:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+
+  .speccmp__table { width: 100%; border-collapse: collapse; text-align: start; }
+  .speccmp__table th,
+  .speccmp__table td { vertical-align: top; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
+
+  /* The label column stays put while the answers move under it. */
+  .speccmp__corner,
+  .speccmp__rowlabel {
+    position: sticky;
+    inset-inline-start: 0;
+    z-index: 1;
+    background-color: var(--color-bg);
+    min-width: 9rem;
+    font-weight: 400;
+    text-align: start;
+  }
+  .speccmp__corner { border-bottom-color: transparent; }
+
+  .speccmp__col { min-width: 11rem; text-align: start; font-weight: 400; }
+  .speccmp__product { display: block; text-decoration: none; color: inherit; }
+  .speccmp__thumb { display: block; aspect-ratio: 1 / 1; overflow: hidden; background-color: var(--color-subtle); }
+  .speccmp__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--duration-slow) var(--ease-editorial); }
+  .speccmp__product:hover .speccmp__img { transform: scale(1.03); }
+  .speccmp__name {
+    display: block;
+    margin-top: var(--space-3);
+    font-family: var(--font-heading);
+    font-size: var(--text-lg);
+    line-height: 1.2;
+  }
+  /* Underline, never colour alone: the tint behind a highlighted column is
+     decoration and the hover signal has to survive without it. */
+  .speccmp__product:hover .speccmp__name { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
+  .speccmp__product:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
+  .speccmp__price { display: block; margin-top: var(--space-1); color: var(--color-muted); }
+  .speccmp__flag {
+    display: inline-block;
+    margin-top: var(--space-2);
+    padding: 0.2em 0.6em;
+    border: 1px solid var(--color-border-strong, var(--color-border));
+    color: var(--color-text);
+  }
+
+  .speccmp__cell { font-size: var(--text-sm); line-height: 1.5; }
+  .speccmp__col.is-highlight,
+  .speccmp__cell.is-highlight { background-color: var(--color-subtle); }
+  .speccmp__table tfoot td { border-bottom: 0; }
+  .speccmp__table tfoot .btn { white-space: nowrap; }
+
+  @media (max-width: 749px) {
+    .speccmp__table th,
+    .speccmp__table td { padding: var(--space-3); }
+    .speccmp__name { font-size: var(--text-base); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.spec-compare.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "max_blocks": 4,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.spec-compare.settings.eyebrow.label", "default": "Compare" },
+    { "type": "text", "id": "heading", "label": "t:sections.spec-compare.settings.heading.label", "default": "Which one is yours" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.spec-compare.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.spec-compare.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.spec-compare.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.spec-compare.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "text", "id": "intro", "label": "t:sections.spec-compare.settings.intro.label" },
+    {
+      "type": "textarea", "id": "row_labels",
+      "label": "t:sections.spec-compare.settings.row_labels.label",
+      "info": "t:sections.spec-compare.settings.row_labels.info",
+      "default": "Width\nDepth\nHeight\nMaterial\nSeats\nLead time"
+    },
+    { "type": "text", "id": "cta_label", "label": "t:sections.spec-compare.settings.cta_label.label", "default": "View details" },
+    { "type": "text", "id": "highlight_label", "label": "t:sections.spec-compare.settings.highlight_label.label", "default": "Most chosen" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.spec-compare.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.spec-compare.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.spec-compare.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "product",
+      "name": "t:sections.spec-compare.blocks.product.name",
+      "settings": [
+        { "type": "product", "id": "product", "label": "t:sections.spec-compare.blocks.product.settings.product.label" },
+        { "type": "text", "id": "label", "label": "t:sections.spec-compare.blocks.product.settings.label.label", "info": "t:sections.spec-compare.blocks.product.settings.label.info" },
+        { "type": "image_picker", "id": "image", "label": "t:sections.spec-compare.blocks.product.settings.image.label", "info": "t:sections.spec-compare.blocks.product.settings.image.info" },
+        {
+          "type": "textarea", "id": "values",
+          "label": "t:sections.spec-compare.blocks.product.settings.values.label",
+          "info": "t:sections.spec-compare.blocks.product.settings.values.info"
+        },
+        { "type": "checkbox", "id": "highlight", "label": "t:sections.spec-compare.blocks.product.settings.highlight.label", "default": false }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.spec-compare.presets.name",
+      "blocks": [{ "type": "product" }, { "type": "product" }, { "type": "product" }]
+    }
+  ]
+}
+{% endschema %}

@@ -297,6 +297,33 @@
     },
     "collection-showcase": {
       "onboarding": "Add a collection to this section to show it here."
+    },
+    "spec-compare": {
+      "table_label": "Product comparison",
+      "row_header": "Specification",
+      "no_value": "Not given",
+      "cta_row": "Links",
+      "onboarding": "Add a product to this section to compare it here."
+    },
+    "faq-ledger": {
+      "onboarding": "Add a question to this section to answer it here."
+    },
+    "overlap-index": {
+      "onboarding": "Add an entry to this section to list it here."
+    },
+    "kiln-log": {
+      "onboarding": "Add an entry to this section to log it here."
+    },
+    "video-feature": {
+      "play": "Play the film",
+      "player_title": "Video",
+      "onboarding": "Add a video or a video link to this section."
+    },
+    "frame-preview": {
+      "onboarding": "Add a frame to this section to show it here."
+    },
+    "glaze-library": {
+      "onboarding": "Add a glaze to this section to show it here."
     }
   }
 }

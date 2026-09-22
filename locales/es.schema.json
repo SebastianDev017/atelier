@@ -4056,6 +4056,561 @@
       "presets": {
         "name": "Vitrina de colecciones"
       }
+    },
+    "spec-compare": {
+      "name": "Comparador de fichas",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "intro": {
+          "label": "Texto de introducción"
+        },
+        "row_labels": {
+          "label": "Etiquetas de las filas",
+          "info": "Una etiqueta por línea. Nombran las filas de todos los productos de la tabla."
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "highlight_label": {
+          "label": "Texto del distintivo"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Producto",
+          "settings": {
+            "product": {
+              "label": "Producto"
+            },
+            "label": {
+              "label": "Etiqueta",
+              "info": "Déjalo vacío para usar el título del producto."
+            },
+            "image": {
+              "label": "Imagen",
+              "info": "Déjalo vacío para usar la imagen del producto."
+            },
+            "values": {
+              "label": "Valores",
+              "info": "Un valor por línea, en el mismo orden que las etiquetas de las filas. Deja una línea vacía para mostrar un guion."
+            },
+            "highlight": {
+              "label": "Destacar esta columna"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Comparador de fichas"
+      }
+    },
+    "faq-ledger": {
+      "name": "Libro de preguntas",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "link": {
+          "label": "Enlace"
+        },
+        "link_label": {
+          "label": "Texto del enlace"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Pregunta",
+          "settings": {
+            "question": {
+              "label": "Pregunta"
+            },
+            "answer": {
+              "label": "Respuesta"
+            },
+            "open_by_default": {
+              "label": "Abrir de forma predeterminada"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Libro de preguntas"
+      }
+    },
+    "overlap-index": {
+      "name": "Índice superpuesto",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "image_ratio": {
+          "label": "Proporción de la imagen",
+          "options__1": {
+            "label": "Vertical"
+          },
+          "options__2": {
+            "label": "Cuadrada"
+          },
+          "options__3": {
+            "label": "Horizontal"
+          }
+        },
+        "image_scale": {
+          "label": "Tamaño de la imagen",
+          "info": "Cuánto cubre la imagen del conjunto de nombres.",
+          "options__1": {
+            "label": "Pequeña"
+          },
+          "options__2": {
+            "label": "Mediana"
+          },
+          "options__3": {
+            "label": "Grande"
+          }
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entrada",
+          "settings": {
+            "label": {
+              "label": "Nombre"
+            },
+            "image": {
+              "label": "Imagen"
+            },
+            "text": {
+              "label": "Descripción"
+            },
+            "link": {
+              "label": "Enlace"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Índice superpuesto"
+      }
+    },
+    "kiln-log": {
+      "name": "Diario del horno",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "show_images": {
+          "label": "Mostrar imágenes"
+        },
+        "image_ratio": {
+          "label": "Proporción de la imagen",
+          "options__1": {
+            "label": "Cuadrada"
+          },
+          "options__2": {
+            "label": "Vertical"
+          },
+          "options__3": {
+            "label": "Horizontal"
+          }
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entrada",
+          "settings": {
+            "date": {
+              "label": "Fecha",
+              "info": "Texto libre, para que se lea como lo escribe el taller."
+            },
+            "title": {
+              "label": "Título"
+            },
+            "note": {
+              "label": "Nota"
+            },
+            "status": {
+              "label": "Estado",
+              "info": "Una línea corta como \"Agotado\" o \"Doce piezas\"."
+            },
+            "image": {
+              "label": "Imagen"
+            },
+            "link": {
+              "label": "Enlace"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Diario del horno"
+      }
+    },
+    "video-feature": {
+      "name": "Video destacado",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "video": {
+          "label": "Video",
+          "info": "Un video alojado en Shopify. Tiene prioridad sobre el enlace de abajo."
+        },
+        "video_url": {
+          "label": "Enlace del video",
+          "info": "Un enlace de YouTube o Vimeo. No se carga nada de ellos hasta que alguien pulsa reproducir."
+        },
+        "poster": {
+          "label": "Imagen de portada",
+          "info": "Se muestra antes de reproducir. Se usa con un enlace de YouTube o Vimeo."
+        },
+        "video_ratio": {
+          "label": "Proporción del video",
+          "options__1": {
+            "label": "Panorámica"
+          },
+          "options__2": {
+            "label": "Clásica"
+          },
+          "options__3": {
+            "label": "Cuadrada"
+          },
+          "options__4": {
+            "label": "Vertical"
+          }
+        },
+        "full_width": {
+          "label": "Mostrar el video a todo el ancho"
+        },
+        "autoplay_muted": {
+          "label": "Iniciar sin sonido y en bucle",
+          "info": "El video conserva los controles, así que se puede pausar y activar el sonido."
+        },
+        "caption": {
+          "label": "Pie de foto"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "presets": {
+        "name": "Video destacado"
+      }
+    },
+    "frame-preview": {
+      "name": "Vista del marco",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "image": {
+          "label": "Imagen de la obra",
+          "info": "Una obra, mostrada con cada marco de abajo."
+        },
+        "image_ratio": {
+          "label": "Proporción de la imagen",
+          "options__1": {
+            "label": "Vertical"
+          },
+          "options__2": {
+            "label": "Cuadrada"
+          },
+          "options__3": {
+            "label": "Horizontal"
+          }
+        },
+        "media_position": {
+          "label": "Posición de la obra",
+          "options__1": {
+            "label": "Izquierda"
+          },
+          "options__2": {
+            "label": "Derecha"
+          }
+        },
+        "options_label": {
+          "label": "Título de las opciones"
+        },
+        "cta_link": {
+          "label": "Enlace del botón"
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "footnote": {
+          "label": "Nota al pie",
+          "info": "Indica que los marcos son un dibujo para ilustrar las opciones."
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "frame": {
+          "name": "Marco",
+          "settings": {
+            "label": {
+              "label": "Nombre"
+            },
+            "note": {
+              "label": "Nota",
+              "info": "Una línea corta, como el material y la diferencia de precio."
+            },
+            "frame_color": {
+              "label": "Color del marco"
+            },
+            "frame_width": {
+              "label": "Grosor del marco"
+            },
+            "mat_color": {
+              "label": "Color del paspartú"
+            },
+            "mat_width": {
+              "label": "Ancho del paspartú"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Vista del marco"
+      }
+    },
+    "glaze-library": {
+      "name": "Biblioteca de esmaltes",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "text": {
+          "label": "Texto"
+        },
+        "cta_link": {
+          "label": "Enlace del botón"
+        },
+        "cta_label": {
+          "label": "Texto del botón"
+        },
+        "columns": {
+          "label": "Columnas"
+        },
+        "swatch_shape": {
+          "label": "Forma de la muestra",
+          "options__1": {
+            "label": "Cuadrada"
+          },
+          "options__2": {
+            "label": "Círculo"
+          }
+        },
+        "show_notes": {
+          "label": "Mostrar las notas"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "blocks": {
+        "glaze": {
+          "name": "Esmalte",
+          "settings": {
+            "name": {
+              "label": "Nombre"
+            },
+            "color": {
+              "label": "Color"
+            },
+            "image": {
+              "label": "Foto",
+              "info": "Reemplaza el color cuando la agregas. Úsala para un esmalte con motas o profundidad."
+            },
+            "note": {
+              "label": "Nota",
+              "info": "Una línea sobre cómo se comporta el esmalte."
+            },
+            "link": {
+              "label": "Enlace"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Biblioteca de esmaltes"
+      }
     }
   },
   "settings_schema": {
