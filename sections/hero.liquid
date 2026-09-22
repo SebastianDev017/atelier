@@ -64,14 +64,14 @@
       {%- assign hero_focal = image.presentation.focal_point | default: '50% 50%' -%}
       {%- assign hero_focal_style = 'object-position: ' | append: hero_focal | append: ';' -%}
       {{ image | image_url: width: 2400 | image_tag:
-        loading: 'eager', fetchpriority: 'high',
+        loading: 'eager', decoding: 'async', fetchpriority: 'high',
         widths: '750, 1100, 1500, 2000, 2400',
         sizes: '100vw', alt: hero_alt, class: desktop_class, style: hero_focal_style }}
       {%- if image_mobile != blank -%}
         {%- assign hero_m_focal = image_mobile.presentation.focal_point | default: '50% 50%' -%}
         {%- assign hero_m_focal_style = 'object-position: ' | append: hero_m_focal | append: ';' -%}
         {{ image_mobile | image_url: width: 1100 | image_tag:
-          loading: 'eager', fetchpriority: 'high',
+          loading: 'eager', decoding: 'async', fetchpriority: 'high',
           widths: '450, 750, 1100', sizes: '100vw', alt: hero_alt,
           class: 'hero__image hero__image--mobile', style: hero_m_focal_style }}
       {%- endif -%}
