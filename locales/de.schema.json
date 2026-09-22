@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Abstand unten"
+        },
+        "marker_alignment": {
+          "label": "Ausrichtung der Schrittnummer",
+          "info": "Wo die Nummer über ihrer Überschrift sitzt. Auf dem Telefon laufen die Nummern an einer Schiene entlang und behalten ihre Spalte.",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Mitte"
+          },
+          "options__3": {
+            "label": "Rechts"
+          }
         }
       },
       "blocks": {
@@ -3962,6 +3975,86 @@
       },
       "presets": {
         "name": "Wandvergleich"
+      }
+    },
+    "collection-showcase": {
+      "name": "Kategorie-Schaufenster",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "media_position": {
+          "label": "Bildposition",
+          "options__1": {
+            "label": "Links"
+          },
+          "options__2": {
+            "label": "Rechts"
+          }
+        },
+        "image_ratio": {
+          "label": "Bildformat",
+          "options__1": {
+            "label": "Querformat"
+          },
+          "options__2": {
+            "label": "Quadratisch"
+          },
+          "options__3": {
+            "label": "Hochformat"
+          }
+        },
+        "cta_label": {
+          "label": "Button-Text"
+        },
+        "show_count": {
+          "label": "Produktanzahl anzeigen"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Kategorie",
+          "settings": {
+            "collection": {
+              "label": "Kategorie"
+            },
+            "label": {
+              "label": "Abweichender Name",
+              "info": "Leer lassen, um den Kategorietitel zu verwenden."
+            },
+            "image": {
+              "label": "Bild",
+              "info": "Leer lassen, um das Kategoriebild und danach das neueste Produkt zu verwenden."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kategorie-Schaufenster"
       }
     }
   },

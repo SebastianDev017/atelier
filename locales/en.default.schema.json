@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Bottom padding"
+        },
+        "marker_alignment": {
+          "label": "Step number alignment",
+          "info": "Where the number sits over its heading. Stacked on a phone the numbers run down a rail and keep their own column.",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Center"
+          },
+          "options__3": {
+            "label": "Right"
+          }
         }
       },
       "blocks": {
@@ -3962,6 +3975,86 @@
       },
       "presets": {
         "name": "Wall comparison"
+      }
+    },
+    "collection-showcase": {
+      "name": "Collection showcase",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "media_position": {
+          "label": "Image position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Right"
+          }
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Landscape"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Portrait"
+          }
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "show_count": {
+          "label": "Show product count"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "settings": {
+            "collection": {
+              "label": "Collection"
+            },
+            "label": {
+              "label": "Name override",
+              "info": "Leave empty to use the collection title."
+            },
+            "image": {
+              "label": "Image",
+              "info": "Leave empty to use the collection image, then its most recent product."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Collection showcase"
       }
     }
   },
