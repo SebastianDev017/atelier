@@ -34,7 +34,7 @@
             section.settings.image
             | image_url: width: 2400
             | image_tag:
-              loading: 'eager',
+              loading: 'eager', decoding: 'async',
               fetchpriority: 'high',
               widths: '600, 900, 1200, 1600, 2000, 2400',
               sizes: '100vw',
@@ -76,7 +76,7 @@
               section.settings.image
               | image_url: width: 1400
               | image_tag:
-                loading: 'eager',
+                loading: 'eager', decoding: 'async',
                 fetchpriority: 'high',
                 widths: '500, 700, 900, 1200, 1400',
                 sizes: '(min-width: 990px) 50vw, 100vw',

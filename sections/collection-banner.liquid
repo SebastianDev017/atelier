@@ -57,7 +57,7 @@
         collection.image
         | image_url: width: 2200
         | image_tag:
-          loading: 'eager',
+          loading: 'eager', decoding: 'async',
           fetchpriority: 'high',
           widths: '600, 900, 1200, 1600, 2000, 2200',
           sizes: '100vw',

@@ -29,7 +29,8 @@
     --pt: {{ section.settings.padding_top }}px;
     --pb: {{ section.settings.padding_bottom }}px;
     --steps: {{ count }};
-    --ptl-pos: {% case section.settings.marker_alignment %}{% when 'left' %}1.35rem{% when 'right' %}calc(100% - 1.35rem){% else %}50%{% endcase %};
+    {%- comment -%} 1.125rem is the number's own radius, so left and right sit it flush with the column edge the heading starts from; 1.35rem is that radius plus the gap the connecting rule stops at. {%- endcomment -%}
+    --ptl-pos: {% case section.settings.marker_alignment %}{% when 'left' %}1.125rem{% when 'right' %}calc(100% - 1.125rem){% else %}50%{% endcase %};
   }
 </style>
 
