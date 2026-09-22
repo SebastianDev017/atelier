@@ -123,7 +123,14 @@
               >
                 <span class="colshow__name-text">{{ label | escape }}</span>
                 {%- if section.settings.show_count and coll != blank -%}
-                  <sup class="colshow__count">{{ coll.all_products_count }}</sup>
+                  {%- liquid
+                    assign n = coll.all_products_count
+                    assign n_padded = n
+                    if n < 10
+                      assign n_padded = n | prepend: "0"
+                    endif
+                  -%}
+                  <sup class="colshow__count">{{ n_padded }}</sup>
                 {%- endif -%}
               </a>
             </li>
@@ -149,19 +156,20 @@
   .colshow__frame.is-active { opacity: 1; visibility: visible; }
   .colshow__img { width: 100%; height: 100%; object-fit: cover; display: block; }
 
-  .colshow__overlay { position: absolute; inset-inline: 0; bottom: 0; display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-3); padding: var(--space-6); color: var(--color-overlay-text, #fff); }
+  /* A plate, not a wash. The name takes the scheme's own ink on the scheme's
+     own ground, so it is legible over any photograph the merchant loads, and
+     the picture above it is not dimmed to make room for the words. */
+  .colshow__overlay { position: absolute; inset-inline: 0; bottom: 0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-5); background-color: var(--color-bg); color: var(--color-text); }
   /* A scrim rather than a flat tint: the name sits on photographs of every
      brightness, and a gradient keeps it legible without greying the picture. */
-  .colshow__overlay::before { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgb(0 0 0 / 0.55), rgb(0 0 0 / 0.15) 45%, transparent 70%); pointer-events: none; }
-  .colshow__overlay-name,
-  .colshow__overlay-cta { position: relative; }
-  .colshow__overlay-name { font-family: var(--font-heading); font-size: var(--text-3xl); line-height: 1.05; text-transform: var(--uppercase-headings); }
-  .colshow__overlay-cta { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; display: inline-flex; align-items: center; gap: 0.4rem; }
+  .colshow__overlay-name { color: var(--color-heading, var(--color-text)); }
+  .colshow__overlay-name { font-family: var(--font-heading); font-size: var(--text-xl); line-height: 1.1; }
+  .colshow__overlay-cta { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); display: inline-flex; align-items: center; gap: 0.4rem; }
   .colshow__overlay-cta .icon { width: 12px; height: 12px; }
 
-  .colshow__progress { position: absolute; inset-inline: 0; bottom: var(--space-3); display: flex; justify-content: center; gap: 6px; }
-  .colshow__tick { width: 22px; height: 2px; background-color: rgb(255 255 255 / 0.4); transition: background-color var(--duration-fast) var(--ease-editorial); }
-  .colshow__tick.is-active { background-color: rgb(255 255 255 / 0.95); }
+  .colshow__progress { position: absolute; inset-inline: 0; top: var(--space-3); display: flex; justify-content: center; gap: 6px; z-index: 1; }
+  .colshow__tick { width: 22px; height: 2px; background-color: rgb(255 255 255 / 0.55); box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12); transition: background-color var(--duration-fast) var(--ease-editorial); }
+  .colshow__tick.is-active { background-color: rgb(255 255 255 / 1); }
 
   .colshow__list { display: flex; flex-direction: column; gap: var(--space-3); }
   .colshow__heading { margin-bottom: var(--space-2); }
@@ -188,8 +196,8 @@
     .colshow__inner--media-right .colshow__media { order: 2; }
   }
   @media (max-width: 989px) {
-    .colshow__overlay { padding: var(--space-4); }
-    .colshow__overlay-name { font-size: var(--text-xl); }
+    .colshow__overlay { padding: var(--space-3) var(--space-4); }
+    .colshow__overlay-name { font-size: var(--text-lg); }
   }
 {% endstylesheet %}
 
