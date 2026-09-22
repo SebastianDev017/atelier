@@ -400,10 +400,10 @@
           "info": "Ajoute un bouton de fermeture. La barre reste masquée pour ce visiteur jusqu'à ce qu'il vide le stockage de son navigateur."
         },
         "bar_color": {
-          "label": "Arrière-plan de la barre"
+          "label": "Couleur de fond"
         },
         "bar_text_color": {
-          "label": "Texte de la barre"
+          "label": "Couleur du texte"
         },
         "display_mode": {
           "label": "Messages multiples",
@@ -456,7 +456,7 @@
       "settings": {
         "heading": {
           "label": "Titre",
-          "info": "Les sauts de ligne sont conservés."
+          "info": "Les sauts de ligne apparaissent exactement comme vous les tapez."
         },
         "subheading": {
           "label": "Ligne d'accompagnement"
@@ -541,11 +541,11 @@
           }
         },
         "show_collection_image": {
-          "label": "Afficher l'image de la collection",
+          "label": "Afficher l’image",
           "info": "Utilise l'image à la une de la collection comme arrière-plan pleine largeur. Bascule sur une bannière en texte seul lorsqu'aucune image n'est définie."
         },
         "banner_height": {
-          "label": "Hauteur de la bannière",
+          "label": "Hauteur",
           "info": "Ne s'applique que lorsqu'une image de collection est affichée.",
           "options__1": {
             "label": "Petite"
@@ -565,7 +565,7 @@
           "label": "Couleur de la superposition"
         },
         "show_description": {
-          "label": "Afficher la description de la collection"
+          "label": "Afficher la description"
         },
         "text_alignment": {
           "label": "Alignement du texte",
@@ -1235,7 +1235,7 @@
       "settings": {
         "product": {
           "label": "Produit",
-          "info": "Laissez vide sur une page produit pour utiliser le produit affiché."
+          "info": "Laissez vide sur une page produit pour utiliser le produit de cette page."
         },
         "option_name": {
           "label": "Nom de l'option",
@@ -1407,7 +1407,7 @@
           "label": "Image"
         },
         "image_height": {
-          "label": "Hauteur de l'image",
+          "label": "Hauteur",
           "options__1": {
             "label": "Compacte (40vh)"
           },
@@ -1760,7 +1760,7 @@
         },
         "trust_line": {
           "label": "Ligne de réassurance",
-          "info": "Court message de réassurance affiché sous les boutons. Votre seuil de livraison offerte (Paramètres du thème > Panier) s’ajoute automatiquement en premier. Utilisez le caractère · pour séparer les éléments."
+          "info": "Un court message de réassurance sous les boutons. Le thème place votre seuil de livraison gratuite (Paramètres du thème > Panier) en premier, automatiquement. Séparez les éléments avec le caractère ·."
         },
         "header__3": {
           "content": "Bouton principal"
@@ -2262,7 +2262,7 @@
       "name": "Collection",
       "settings": {
         "show_description": {
-          "label": "Afficher la description de la collection"
+          "label": "Afficher la description"
         },
         "products_per_page": {
           "label": "Produits par page"
@@ -2448,7 +2448,7 @@
             },
             "shipping_note": {
               "label": "Note de livraison",
-              "info": "Affichée après votre seuil de livraison offerte (Paramètres du thème > Panier), ajouté automatiquement."
+              "info": "Suit votre seuil de livraison gratuite (Paramètres du thème > Panier), que le thème ajoute pour vous."
             }
           }
         },
@@ -2498,7 +2498,7 @@
             },
             "badge_2": {
               "label": "Badge 2",
-              "info": "Le badge livraison indique votre seuil de livraison offerte (Paramètres du thème > Panier). Ce texte n’est utilisé que si aucun seuil n’est défini."
+              "info": "Le badge de livraison indique votre seuil de livraison gratuite (Paramètres du thème > Panier). Le thème utilise ce texte uniquement en l’absence de seuil."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -2744,7 +2744,7 @@
           "label": "Surtitre"
         },
         "name": {
-          "label": "Nom de l'artisan"
+          "label": "Nom"
         },
         "quote": {
           "label": "Citation"
@@ -2986,7 +2986,7 @@
       },
       "blocks": {
         "quote": {
-          "name": "Citation presse",
+          "name": "Citation",
           "settings": {
             "quote": {
               "label": "Citation"
@@ -3207,7 +3207,7 @@
           }
         },
         "text_alignment": {
-          "label": "Alignement du texte",
+          "label": "Alignement",
           "options__1": {
             "label": "Centré"
           },
@@ -3341,7 +3341,7 @@
       "name": "Palette de recherche",
       "settings": {
         "enabled": {
-          "label": "Activer la recherche par palette de commandes"
+          "label": "Activer la palette de commandes"
         }
       }
     },
@@ -3413,7 +3413,7 @@
           }
         },
         "caption": {
-          "name": "Histoire de l'ensemble",
+          "name": "Récit",
           "settings": {
             "text": {
               "label": "Texte"
@@ -4389,7 +4389,7 @@
           "info": "Affichée avant la lecture. Utilisée avec un lien YouTube ou Vimeo."
         },
         "video_ratio": {
-          "label": "Format de la vidéo",
+          "label": "Format",
           "options__1": {
             "label": "Panoramique"
           },
@@ -4404,11 +4404,11 @@
           }
         },
         "full_width": {
-          "label": "Afficher la vidéo sur toute la largeur"
+          "label": "Afficher la section sur toute la largeur"
         },
         "autoplay_muted": {
           "label": "Démarrer en sourdine et en boucle",
-          "info": "La vidéo garde ses commandes, elle peut donc être mise en pause et réactivée."
+          "info": "La vidéo garde ses commandes : chacun peut la mettre en pause ou activer le son."
         },
         "caption": {
           "label": "Légende"
@@ -4744,7 +4744,7 @@
         },
         "input_corner_radius": {
           "label": "Rayon des angles",
-          "info": "Contour est conçu pour des angles droits (0)."
+          "info": "Contour attend des angles droits (0)."
         }
       }
     },
@@ -4920,7 +4920,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Sera réduit à 32 x 32 px."
+          "info": "Shopify la réduit à 32 × 32 px."
         }
       }
     }

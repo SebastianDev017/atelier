@@ -6,6 +6,12 @@
  * /variants/<id>/?section_id=pickup-availability on demand and swaps in the
  * result. Fetching on first open rather than on load keeps it off the critical
  * path -- most shoppers never expand it.
+ *
+ * One exception to "on demand": a shop with no pickup-enabled location at all
+ * would otherwise offer a disclosure that opens onto nothing. Because the
+ * answer is only knowable from the variant route, the element probes once when
+ * it comes near the viewport and removes itself if the answer is none. The
+ * probe's result is kept, so opening it afterwards costs no second request.
  */
 (function () {
   if (customElements.get('pickup-availability')) return;
@@ -29,9 +35,20 @@
       });
     }
 
+    /* Ask once, near the viewport: a shop with nowhere to collect from should
+       not be offered a place to collect from. */
+    if ('IntersectionObserver' in window) {
+      var io = new IntersectionObserver(function (entries) {
+        if (!entries.some(function (en) { return en.isIntersecting; })) return;
+        io.disconnect();
+        self.load();
+      }, { rootMargin: '200px 0px' });
+      io.observe(this);
+    }
+
     /* product.js dispatches this after a successful variant match. */
     document.addEventListener('atelier:variant:change', function (e) {
-      if (!e.detail || !e.detail.variant) return;
+      if (!e.detail || !e.detail.variant || !self.isConnected) return;
       self.dataset.variantId = e.detail.variant.id;
       /* Drop the cached render: the new variant may stock differently. */
       self.loadedVariant = null;
@@ -54,7 +71,14 @@
         if (reqId !== self.requestId) return;
         var doc = new DOMParser().parseFromString(text, 'text/html');
         var incoming = doc.querySelector('[data-pickup-list]');
-        if (incoming && self.body) {
+        if (!incoming) return;
+        /* No pickup-enabled location for this variant anywhere: take the
+           disclosure off the page rather than open it onto an apology. */
+        if (!incoming.querySelector('.pickup__store')) {
+          self.remove();
+          return;
+        }
+        if (self.body) {
           self.body.innerHTML = incoming.outerHTML;
           self.loadedVariant = variantId;
         }

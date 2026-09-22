@@ -170,10 +170,22 @@
 
   /* The only element in the theme allowed to scroll sideways, and it says so
      to assistive tech rather than trapping the numbers off-screen. */
-  .speccmp__scroll { margin-top: var(--space-8); overflow-x: auto; overscroll-behavior-x: contain; }
+  /* position:relative is load-bearing. .visually-hidden is absolutely
+     positioned, so without a positioned ancestor here its containing
+     block is the page, not the scroller: it then sits at the table's own
+     coordinates -- past the right of a phone screen -- and overflow on
+     this element does not clip it, because overflow never clips an
+     absolutely positioned descendant of a different containing block.
+     The whole document scrolled sideways by 153px at 390 until this. */
+  .speccmp__scroll { position: relative; margin-top: var(--space-8); overflow-x: auto; overscroll-behavior-x: contain; }
   .speccmp__scroll:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
 
-  .speccmp__table { width: 100%; border-collapse: collapse; text-align: start; }
+  /* separate, not collapse: a sticky cell inside a collapsed-border table
+     is laid out against the document rather than the scroller in Chrome,
+     and the whole page then scrolls sideways by the width the label
+     column sticks out. Spacing is zeroed so the rules still read as one
+     continuous hairline per row. */
+  .speccmp__table { width: 100%; border-collapse: separate; border-spacing: 0; text-align: start; }
   .speccmp__table th,
   .speccmp__table td { vertical-align: top; padding: var(--space-3) var(--space-4); border-bottom: 1px solid var(--color-border); }
 
@@ -206,7 +218,10 @@
      decoration and the hover signal has to survive without it. */
   .speccmp__product:hover .speccmp__name { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
   .speccmp__product:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
-  .speccmp__price { display: block; margin-top: var(--space-1); color: var(--color-muted); }
+  /* Full ink, not muted: on a highlighted column the subtle tint darkens
+     the ground enough that muted type lands at 4.13:1, under AA. A price
+     is not secondary information anyway. */
+  .speccmp__price { display: block; margin-top: var(--space-1); color: var(--color-text); }
   .speccmp__flag {
     display: inline-block;
     margin-top: var(--space-2);

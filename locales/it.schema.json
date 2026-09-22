@@ -400,10 +400,10 @@
           "info": "Aggiunge un pulsante di chiusura. La barra resta nascosta per quel visitatore finché non svuota la memoria del browser."
         },
         "bar_color": {
-          "label": "Sfondo della barra"
+          "label": "Colore di sfondo"
         },
         "bar_text_color": {
-          "label": "Testo della barra"
+          "label": "Colore del testo"
         },
         "display_mode": {
           "label": "Messaggi multipli",
@@ -456,7 +456,7 @@
       "settings": {
         "heading": {
           "label": "Titolo",
-          "info": "Le interruzioni di riga vengono mantenute."
+          "info": "Le interruzioni di riga appaiono esattamente come le scrivi."
         },
         "subheading": {
           "label": "Riga di supporto"
@@ -541,11 +541,11 @@
           }
         },
         "show_collection_image": {
-          "label": "Mostra immagine della collezione",
+          "label": "Mostra l’immagine",
           "info": "Utilizza l'immagine in evidenza della collezione come sfondo a tutta larghezza. In assenza di un'immagine, ripiega su un banner di solo testo."
         },
         "banner_height": {
-          "label": "Altezza del banner",
+          "label": "Altezza",
           "info": "Si applica solo quando viene mostrata un'immagine della collezione.",
           "options__1": {
             "label": "Piccola"
@@ -565,7 +565,7 @@
           "label": "Colore della sovrapposizione"
         },
         "show_description": {
-          "label": "Mostra descrizione della collezione"
+          "label": "Mostra la descrizione"
         },
         "text_alignment": {
           "label": "Allineamento del testo",
@@ -1235,7 +1235,7 @@
       "settings": {
         "product": {
           "label": "Prodotto",
-          "info": "Lascia vuoto in una pagina prodotto per usare il prodotto visualizzato."
+          "info": "Lascia vuoto in una pagina prodotto per usare il prodotto di quella pagina."
         },
         "option_name": {
           "label": "Nome dell'opzione",
@@ -1407,7 +1407,7 @@
           "label": "Immagine"
         },
         "image_height": {
-          "label": "Altezza immagine",
+          "label": "Altezza",
           "options__1": {
             "label": "Compatta (40vh)"
           },
@@ -1760,7 +1760,7 @@
         },
         "trust_line": {
           "label": "Riga di rassicurazione",
-          "info": "Breve rassicurazione mostrata sotto i pulsanti. La tua soglia di spedizione gratuita (Impostazioni del tema > Carrello) viene aggiunta automaticamente per prima. Utilizzi il carattere · per separare gli elementi."
+          "info": "Una breve rassicurazione sotto i pulsanti. Il tema mette per prima la tua soglia di spedizione gratuita (Impostazioni del tema > Carrello), in automatico. Separa gli elementi con il carattere ·."
         },
         "header__3": {
           "content": "Pulsante principale"
@@ -2262,7 +2262,7 @@
       "name": "Collezione",
       "settings": {
         "show_description": {
-          "label": "Mostra la descrizione della collezione"
+          "label": "Mostra la descrizione"
         },
         "products_per_page": {
           "label": "Prodotti per pagina"
@@ -2448,7 +2448,7 @@
             },
             "shipping_note": {
               "label": "Nota sulla spedizione",
-              "info": "Mostrata dopo la tua soglia di spedizione gratuita (Impostazioni del tema > Carrello), aggiunta automaticamente."
+              "info": "Segue la tua soglia per la spedizione gratuita (Impostazioni del tema > Carrello), che il tema aggiunge per te."
             }
           }
         },
@@ -2498,7 +2498,7 @@
             },
             "badge_2": {
               "label": "Badge 2",
-              "info": "Il badge della spedizione indica la tua soglia di spedizione gratuita (Impostazioni del tema > Carrello). Questo testo si usa solo se non è impostata una soglia."
+              "info": "Il badge di spedizione indica la tua soglia per la spedizione gratuita (Impostazioni del tema > Carrello). Il tema usa questo testo solo quando non c’è una soglia."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -2744,7 +2744,7 @@
           "label": "Sopratitolo"
         },
         "name": {
-          "label": "Nome dell'artigiano"
+          "label": "Nome"
         },
         "quote": {
           "label": "Citazione"
@@ -2986,7 +2986,7 @@
       },
       "blocks": {
         "quote": {
-          "name": "Citazione dalla stampa",
+          "name": "Citazione",
           "settings": {
             "quote": {
               "label": "Citazione"
@@ -3207,7 +3207,7 @@
           }
         },
         "text_alignment": {
-          "label": "Allineamento del testo",
+          "label": "Allineamento",
           "options__1": {
             "label": "Centrato"
           },
@@ -3341,7 +3341,7 @@
       "name": "Palette di ricerca",
       "settings": {
         "enabled": {
-          "label": "Abilita la ricerca con palette di comandi"
+          "label": "Attiva la palette dei comandi"
         }
       }
     },
@@ -3413,7 +3413,7 @@
           }
         },
         "caption": {
-          "name": "Storia del set",
+          "name": "Racconto",
           "settings": {
             "text": {
               "label": "Testo"
@@ -4389,7 +4389,7 @@
           "info": "Mostrata prima della riproduzione. Si usa con un link di YouTube o Vimeo."
         },
         "video_ratio": {
-          "label": "Proporzioni del video",
+          "label": "Proporzioni",
           "options__1": {
             "label": "Panoramico"
           },
@@ -4404,11 +4404,11 @@
           }
         },
         "full_width": {
-          "label": "Mostra il video a tutta larghezza"
+          "label": "Mostra la sezione a tutta larghezza"
         },
         "autoplay_muted": {
           "label": "Avvia senza audio e in loop",
-          "info": "Il video mantiene i controlli, quindi si può mettere in pausa e riattivare l’audio."
+          "info": "Il video mantiene i suoi controlli, quindi chiunque può metterlo in pausa o attivare l’audio."
         },
         "caption": {
           "label": "Didascalia"
@@ -4744,7 +4744,7 @@
         },
         "input_corner_radius": {
           "label": "Raggio degli angoli",
-          "info": "Contour è progettato per angoli squadrati (0)."
+          "info": "Contour prevede angoli vivi (0)."
         }
       }
     },
@@ -4920,7 +4920,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Verrà ridimensionato a 32 x 32px."
+          "info": "Shopify la riduce a 32 × 32 px."
         }
       }
     }
