@@ -38,48 +38,6 @@
         "padding_bottom": 0
       }
     },
-    "rooms": {
-      "type": "collection-list",
-      "settings": {
-        "eyebrow": "Shop by room",
-        "heading": "Where it goes",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "heading_alignment": "left",
-        "image_ratio": "landscape",
-        "show_product_count": true,
-        "columns_desktop": "3",
-        "columns_mobile": "1",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 80
-      },
-      "blocks": {
-        "room_1": {
-          "type": "collection",
-          "settings": {
-            "collection": "living"
-          }
-        },
-        "room_2": {
-          "type": "collection",
-          "settings": {
-            "collection": "studio-objects"
-          }
-        },
-        "room_3": {
-          "type": "collection",
-          "settings": {
-            "collection": "new-season"
-          }
-        }
-      },
-      "block_order": [
-        "room_1",
-        "room_2",
-        "room_3"
-      ]
-    },
     "new_season": {
       "type": "featured-collection",
       "settings": {
@@ -99,21 +57,6 @@
         "view_all_style": "link",
         "color_scheme": "background-1",
         "padding_top": 80,
-        "padding_bottom": 96
-      }
-    },
-    "finishes": {
-      "type": "finish-gallery",
-      "settings": {
-        "product": "cloud-linen-sofa-3-seater",
-        "option_name": "",
-        "eyebrow": "Every finish",
-        "heading": "See the colour before you commit",
-        "heading_tag": "h2",
-        "show_option_name": true,
-        "columns_desktop": "4",
-        "color_scheme": "background-2",
-        "padding_top": 96,
         "padding_bottom": 96
       }
     },
@@ -208,13 +151,52 @@
         "padding_top": 96,
         "padding_bottom": 96
       }
+    },
+    "collection_showcase": {
+      "type": "collection-showcase",
+      "settings": {
+        "eyebrow": "Shop by room",
+        "heading": "Where it goes",
+        "heading_tag": "h2",
+        "media_position": "left",
+        "image_ratio": "landscape",
+        "cta_label": "Shop collection",
+        "show_count": true,
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 80
+      },
+      "blocks": {
+        "room_1": {
+          "type": "collection",
+          "settings": {
+            "collection": "living"
+          }
+        },
+        "room_2": {
+          "type": "collection",
+          "settings": {
+            "collection": "studio-objects"
+          }
+        },
+        "room_3": {
+          "type": "collection",
+          "settings": {
+            "collection": "new-season"
+          }
+        }
+      },
+      "block_order": [
+        "room_1",
+        "room_2",
+        "room_3"
+      ]
     }
   },
   "order": [
     "hero",
-    "rooms",
+    "collection_showcase",
     "new_season",
-    "finishes",
     "care",
     "delivery",
     "voices",
