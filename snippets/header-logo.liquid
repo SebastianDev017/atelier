@@ -11,7 +11,7 @@
       settings.logo
       | image_url: width: logo_2x
       | image_tag:
-        loading: 'eager',
+        loading: 'eager', decoding: 'async',
         fetchpriority: 'high',
         widths: '120, 160, 200, 240, 320, 480, 640',
         sizes: logo_sizes,
