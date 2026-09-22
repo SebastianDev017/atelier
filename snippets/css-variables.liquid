@@ -214,10 +214,14 @@
     ships 400 and 700); it lightens the families that do have one.
   {%- endcomment -%}
   {%- if settings.uppercase_headings %}
-    h1, h2,
-    .h0, .h1, .h2,
-    .heading--display, .heading--xl, .heading--lg,
-    .hero__heading.heading--display, .hero__heading.heading--xl {
+    {%- comment -%} Prefixed with html: a section's own {% stylesheet %} compiles
+      into a sheet that loads after this one, so .hero__heading.heading--display
+      would otherwise win at equal specificity and keep its lowercase tracking.
+    {%- endcomment -%}
+    html h1, html h2,
+    html .h0, html .h1, html .h2,
+    html .heading--display, html .heading--xl, html .heading--lg,
+    html .hero__heading.heading--display, html .hero__heading.heading--xl {
       text-transform: uppercase;
       letter-spacing: 0.08em;
       line-height: 1.04;
