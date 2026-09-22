@@ -3963,6 +3963,86 @@
       "presets": {
         "name": "Comparaison murale"
       }
+    },
+    "collection-showcase": {
+      "name": "Vitrine de collections",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "media_position": {
+          "label": "Position de l'image",
+          "options__1": {
+            "label": "Gauche"
+          },
+          "options__2": {
+            "label": "Droite"
+          }
+        },
+        "image_ratio": {
+          "label": "Format de l'image",
+          "options__1": {
+            "label": "Paysage"
+          },
+          "options__2": {
+            "label": "Carré"
+          },
+          "options__3": {
+            "label": "Portrait"
+          }
+        },
+        "cta_label": {
+          "label": "Texte du bouton"
+        },
+        "show_count": {
+          "label": "Afficher le nombre de produits"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collection",
+          "settings": {
+            "collection": {
+              "label": "Collection"
+            },
+            "label": {
+              "label": "Nom personnalisé",
+              "info": "Laissez vide pour utiliser le titre de la collection."
+            },
+            "image": {
+              "label": "Image",
+              "info": "Laissez vide pour utiliser l'image de la collection, puis son produit le plus récent."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Vitrine de collections"
+      }
     }
   },
   "settings_schema": {

@@ -294,6 +294,9 @@
     "horizontal-scroll": {
       "previous": "Vorherige Produkte",
       "next": "Weitere Produkte"
+    },
+    "collection-showcase": {
+      "onboarding": "Füge dieser Sektion eine Kategorie hinzu, um sie hier anzuzeigen."
     }
   }
 }
