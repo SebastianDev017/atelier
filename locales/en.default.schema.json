@@ -400,10 +400,10 @@
           "info": "Adds a close button. The bar stays hidden for that visitor until they clear their browser storage."
         },
         "bar_color": {
-          "label": "Bar background"
+          "label": "Background color"
         },
         "bar_text_color": {
-          "label": "Bar text"
+          "label": "Text color"
         },
         "display_mode": {
           "label": "Multiple messages",
@@ -456,7 +456,7 @@
       "settings": {
         "heading": {
           "label": "Heading",
-          "info": "Line breaks are preserved."
+          "info": "Line breaks show exactly as you type them."
         },
         "subheading": {
           "label": "Supporting line"
@@ -541,11 +541,11 @@
           }
         },
         "show_collection_image": {
-          "label": "Show collection image",
+          "label": "Show image",
           "info": "Uses the collection's featured image as a full-width background. Falls back to a plain text banner when no image is set."
         },
         "banner_height": {
-          "label": "Banner height",
+          "label": "Height",
           "info": "Only applies when a collection image is shown.",
           "options__1": {
             "label": "Small"
@@ -565,7 +565,7 @@
           "label": "Overlay color"
         },
         "show_description": {
-          "label": "Show collection description"
+          "label": "Show description"
         },
         "text_alignment": {
           "label": "Text alignment",
@@ -1235,7 +1235,7 @@
       "settings": {
         "product": {
           "label": "Product",
-          "info": "Leave empty on a product page to use the product being viewed."
+          "info": "Leave empty on a product page to use the product on that page."
         },
         "option_name": {
           "label": "Option name",
@@ -1407,7 +1407,7 @@
           "label": "Image"
         },
         "image_height": {
-          "label": "Image height",
+          "label": "Height",
           "options__1": {
             "label": "Compact (40vh)"
           },
@@ -1760,7 +1760,7 @@
         },
         "trust_line": {
           "label": "Trust line",
-          "info": "Short reassurance shown under the buttons. Your free-shipping threshold (Theme settings > Cart) is added first, automatically. Use the · character to separate items."
+          "info": "A short reassurance under the buttons. The theme puts your free-shipping threshold (Theme settings > Cart) first, automatically. Separate items with the · character."
         },
         "header__3": {
           "content": "Primary button"
@@ -2262,7 +2262,7 @@
       "name": "Collection",
       "settings": {
         "show_description": {
-          "label": "Show collection description"
+          "label": "Show description"
         },
         "products_per_page": {
           "label": "Products per page"
@@ -2448,7 +2448,7 @@
             },
             "shipping_note": {
               "label": "Shipping note",
-              "info": "Shown after your free-shipping threshold (Theme settings > Cart), which is added automatically."
+              "info": "Follows your free-shipping threshold (Theme settings > Cart), which the theme adds for you."
             }
           }
         },
@@ -2498,7 +2498,7 @@
             },
             "badge_2": {
               "label": "Badge 2",
-              "info": "The shipping badge states your free-shipping threshold (Theme settings > Cart). This text is used only when no threshold is set."
+              "info": "The shipping badge states your free-shipping threshold (Theme settings > Cart). The theme uses this text only when no threshold is set."
             },
             "badge_3": {
               "label": "Badge 3"
@@ -2534,7 +2534,7 @@
           }
         },
         "dimensions": {
-          "name": "Dimensions & assembly",
+          "name": "Dimensions and assembly",
           "settings": {
             "heading": {
               "label": "Heading"
@@ -2744,7 +2744,7 @@
           "label": "Eyebrow"
         },
         "name": {
-          "label": "Maker name"
+          "label": "Name"
         },
         "quote": {
           "label": "Quote"
@@ -2986,7 +2986,7 @@
       },
       "blocks": {
         "quote": {
-          "name": "Press quote",
+          "name": "Quote",
           "settings": {
             "quote": {
               "label": "Quote"
@@ -3207,7 +3207,7 @@
           }
         },
         "text_alignment": {
-          "label": "Text alignment",
+          "label": "Alignment",
           "options__1": {
             "label": "Center"
           },
@@ -3341,7 +3341,7 @@
       "name": "Search palette",
       "settings": {
         "enabled": {
-          "label": "Enable command palette search"
+          "label": "Enable the command palette"
         }
       }
     },
@@ -3413,7 +3413,7 @@
           }
         },
         "caption": {
-          "name": "Set story",
+          "name": "Story",
           "settings": {
             "text": {
               "label": "Text"
@@ -4389,7 +4389,7 @@
           "info": "Shown before play starts. Used with a YouTube or Vimeo link."
         },
         "video_ratio": {
-          "label": "Video ratio",
+          "label": "Ratio",
           "options__1": {
             "label": "Widescreen"
           },
@@ -4404,11 +4404,11 @@
           }
         },
         "full_width": {
-          "label": "Make the video full width"
+          "label": "Make the section full width"
         },
         "autoplay_muted": {
           "label": "Start muted and loop",
-          "info": "The video still carries controls, so it can be paused and unmuted."
+          "info": "The video keeps its controls, so anyone can pause it or turn the sound on."
         },
         "caption": {
           "label": "Caption"
@@ -4744,7 +4744,7 @@
         },
         "input_corner_radius": {
           "label": "Corner radius",
-          "info": "Contour is designed for square (0) corners."
+          "info": "Contour expects square (0) corners."
         }
       }
     },
@@ -4920,7 +4920,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Will be scaled down to 32 x 32px."
+          "info": "Shopify scales it down to 32 × 32 px."
         }
       }
     }

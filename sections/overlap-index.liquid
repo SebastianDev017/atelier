@@ -76,13 +76,13 @@
                 when 0
                   assign drift = '0%'
                 when 1
-                  assign drift = '-7%'
+                  assign drift = '-13%'
                 when 2
-                  assign drift = '9%'
+                  assign drift = '15%'
                 when 3
-                  assign drift = '-4%'
+                  assign drift = '-8%'
                 else
-                  assign drift = '5%'
+                  assign drift = '9%'
               endcase
             -%}
             <li
@@ -149,9 +149,10 @@
   .ovidx__names { text-align: center; }
   .ovidx__item { position: relative; }
   .ovidx__name {
+    position: relative;
     display: inline-block;
     font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 6.5vw, 5rem);
+    font-size: clamp(2.4rem, 8.5vw, 7rem);
     line-height: 1.02;
     letter-spacing: var(--heading-letter-spacing, -0.02em);
     color: var(--color-muted);
@@ -174,29 +175,32 @@
 
     /* The pile. The names keep their own flow and the picture is laid over
        the middle of it; only the active name is lifted back out. */
-    .ovidx__stage { display: block; position: relative; min-height: calc(clamp(17rem, 32vw, 26rem) * var(--ovidx-scale, 1) + var(--space-16)); padding-block: var(--space-8); }
-    .ovidx__eyebrow { position: relative; z-index: 3; }
+    .ovidx__stage { display: block; position: relative; min-height: calc(clamp(15rem, 26vw, 22rem) * var(--ovidx-scale, 1) + var(--space-10, 3rem)); padding-block: var(--space-6); }
+    .ovidx__eyebrow, .ovidx__heading { position: relative; z-index: 3; }
     .ovidx__media {
       position: absolute;
       inset-block-start: 50%;
       inset-inline-start: 50%;
       transform: translate(-50%, -50%);
       width: auto;
-      height: calc(clamp(17rem, 32vw, 26rem) * var(--ovidx-scale, 1));
+      height: calc(clamp(15rem, 26vw, 22rem) * var(--ovidx-scale, 1));
       margin-inline: 0;
       z-index: 1;
       pointer-events: none;
     }
-    .ovidx__names { position: relative; z-index: 0; }
+    /* No z-index on the list: it would open a stacking context and trap the
+       active name underneath the picture however high its own z-index went. */
+    .ovidx__names { position: relative; }
     .ovidx__item { transform: translateX(var(--ovidx-drift, 0%)); }
     .ovidx__item.is-active { z-index: 2; }
-    /* The band is the active name's own ground, drawn inside its stacking
-       context: behind the letters, in front of the picture. */
-    .ovidx__item.is-active::before {
+    /* A band of the scheme's own ground, hugging the active name and drawn
+       behind its letters but in front of the picture. That is what makes the
+       name ink on paper rather than ink on a photograph. */
+    .ovidx__item.is-active .ovidx__name::before {
       content: '';
       position: absolute;
-      inset-block: -0.06em;
-      inset-inline: -6%;
+      inset-block: -0.04em;
+      inset-inline: -0.18em;
       background-color: var(--color-bg);
       z-index: -1;
     }

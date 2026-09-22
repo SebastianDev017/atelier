@@ -422,10 +422,14 @@
 
   /* ---------- Sidebar index navigation ---------- */
   .sidebar-nav__list { display: flex; flex-direction: column; gap: var(--space-5); }
+  /* The text is 16px tall and the Theme Store asks for a 24px target, so the
+     box is grown around the text rather than the type being made bigger. */
   .nav-link {
     display: inline-flex;
     flex-direction: column;
+    justify-content: center;
     gap: 2px;
+    min-height: 24px;
     color: var(--color-text);
   }
   /* No hover recolour: the ::after bar below already answers the pointer
@@ -597,6 +601,9 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    /* 10px mono over a 16px line box is a 16px-tall target; the Theme Store
+       minimum is 24, and growing the box costs no layout here. */
+    min-height: 24px;
     font-size: 10px;
     letter-spacing: 0.12em;
     text-transform: uppercase;

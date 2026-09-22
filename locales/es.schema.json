@@ -400,10 +400,10 @@
           "info": "Añade un botón de cierre. La barra permanece oculta para ese visitante hasta que borre el almacenamiento de su navegador."
         },
         "bar_color": {
-          "label": "Fondo de la barra"
+          "label": "Color de fondo"
         },
         "bar_text_color": {
-          "label": "Texto de la barra"
+          "label": "Color del texto"
         },
         "display_mode": {
           "label": "Varios mensajes",
@@ -456,7 +456,7 @@
       "settings": {
         "heading": {
           "label": "Título",
-          "info": "Se conservan los saltos de línea."
+          "info": "Los saltos de línea se ven tal como los escribes."
         },
         "subheading": {
           "label": "Línea de apoyo"
@@ -541,11 +541,11 @@
           }
         },
         "show_collection_image": {
-          "label": "Mostrar imagen de la colección",
+          "label": "Mostrar la imagen",
           "info": "Usa la imagen destacada de la colección como fondo a todo el ancho. Si no hay imagen, muestra un banner de solo texto."
         },
         "banner_height": {
-          "label": "Altura del banner",
+          "label": "Altura",
           "info": "Solo se aplica cuando se muestra una imagen de la colección.",
           "options__1": {
             "label": "Pequeña"
@@ -565,7 +565,7 @@
           "label": "Color de la superposición"
         },
         "show_description": {
-          "label": "Mostrar descripción de la colección"
+          "label": "Mostrar la descripción"
         },
         "text_alignment": {
           "label": "Alineación del texto",
@@ -1235,7 +1235,7 @@
       "settings": {
         "product": {
           "label": "Producto",
-          "info": "Déjalo vacío en una página de producto para usar el producto que se está viendo."
+          "info": "Déjalo vacío en una página de producto para usar el producto de esa página."
         },
         "option_name": {
           "label": "Nombre de la opción",
@@ -1407,7 +1407,7 @@
           "label": "Imagen"
         },
         "image_height": {
-          "label": "Altura de la imagen",
+          "label": "Altura",
           "options__1": {
             "label": "Compacta (40vh)"
           },
@@ -1760,7 +1760,7 @@
         },
         "trust_line": {
           "label": "Línea de confianza",
-          "info": "Breve mensaje de confianza que se muestra bajo los botones. Tu umbral de envío gratis (Configuración del tema > Carrito) se añade primero, automáticamente. Usa el carácter · para separar los elementos."
+          "info": "Un mensaje breve de confianza bajo los botones. El tema coloca primero tu umbral de envío gratis (Configuración del tema > Carrito), de forma automática. Separa los elementos con el carácter ·."
         },
         "header__3": {
           "content": "Botón principal"
@@ -2262,7 +2262,7 @@
       "name": "Colección",
       "settings": {
         "show_description": {
-          "label": "Mostrar descripción de la colección"
+          "label": "Mostrar la descripción"
         },
         "products_per_page": {
           "label": "Productos por página"
@@ -2448,7 +2448,7 @@
             },
             "shipping_note": {
               "label": "Nota de envío",
-              "info": "Se muestra después de tu umbral de envío gratis (Configuración del tema > Carrito), que se añade automáticamente."
+              "info": "Va después de tu umbral de envío gratis (Configuración del tema > Carrito), que el tema agrega por ti."
             }
           }
         },
@@ -2498,7 +2498,7 @@
             },
             "badge_2": {
               "label": "Distintivo 2",
-              "info": "El distintivo de envío indica tu umbral de envío gratis (Configuración del tema > Carrito). Este texto solo se usa si no hay umbral."
+              "info": "El distintivo de envío indica tu umbral de envío gratis (Configuración del tema > Carrito). El tema usa este texto solo cuando no hay umbral."
             },
             "badge_3": {
               "label": "Distintivo 3"
@@ -2744,7 +2744,7 @@
           "label": "Antetítulo"
         },
         "name": {
-          "label": "Nombre del artesano"
+          "label": "Nombre"
         },
         "quote": {
           "label": "Cita"
@@ -2986,7 +2986,7 @@
       },
       "blocks": {
         "quote": {
-          "name": "Cita de prensa",
+          "name": "Cita",
           "settings": {
             "quote": {
               "label": "Cita"
@@ -3207,7 +3207,7 @@
           }
         },
         "text_alignment": {
-          "label": "Alineación del texto",
+          "label": "Alineación",
           "options__1": {
             "label": "Centrado"
           },
@@ -3341,7 +3341,7 @@
       "name": "Paleta de búsqueda",
       "settings": {
         "enabled": {
-          "label": "Activar la búsqueda por paleta de comandos"
+          "label": "Activar la paleta de comandos"
         }
       }
     },
@@ -3413,7 +3413,7 @@
           }
         },
         "caption": {
-          "name": "Historia del conjunto",
+          "name": "Relato",
           "settings": {
             "text": {
               "label": "Texto"
@@ -4389,7 +4389,7 @@
           "info": "Se muestra antes de reproducir. Se usa con un enlace de YouTube o Vimeo."
         },
         "video_ratio": {
-          "label": "Proporción del video",
+          "label": "Proporción",
           "options__1": {
             "label": "Panorámica"
           },
@@ -4404,11 +4404,11 @@
           }
         },
         "full_width": {
-          "label": "Mostrar el video a todo el ancho"
+          "label": "Mostrar la sección a todo el ancho"
         },
         "autoplay_muted": {
           "label": "Iniciar sin sonido y en bucle",
-          "info": "El video conserva los controles, así que se puede pausar y activar el sonido."
+          "info": "El video conserva sus controles, así que cualquiera puede pausarlo o activar el sonido."
         },
         "caption": {
           "label": "Pie de foto"
@@ -4744,7 +4744,7 @@
         },
         "input_corner_radius": {
           "label": "Radio de las esquinas",
-          "info": "Contour está diseñado con esquinas rectas (0)."
+          "info": "Contour está pensado para esquinas rectas (0)."
         }
       }
     },
@@ -4920,7 +4920,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Se reducirá a 32 x 32px."
+          "info": "Shopify la reduce a 32 × 32 px."
         }
       }
     }
