@@ -1876,6 +1876,12 @@
         },
         "padding_bottom": {
           "label": "Marge inférieure"
+        },
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "subtext": {
+          "label": "Sous-titre"
         }
       },
       "presets": {
