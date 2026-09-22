@@ -93,6 +93,8 @@
     --heading-scale: {{ settings.heading_scale | divided_by: 100.0 }};
     --body-scale: {{ settings.body_scale | divided_by: 100.0 }};
 
+    {%- comment -%} Kept for the logo wordmark, which is display type by definition.
+      The headings themselves are handled by the block at the end of this file. {%- endcomment -%}
     --uppercase-headings: {% if settings.uppercase_headings %}uppercase{% else %}none{% endif %};
     --uppercase-nav: {% if settings.uppercase_nav %}uppercase{% else %}none{% endif %};
     --uppercase-buttons: {% if settings.uppercase_buttons %}uppercase{% else %}none{% endif %};
@@ -194,4 +196,32 @@
       .color-scheme--{{ scheme.id }} .badge--stock { background-color: transparent; color: var(--color-text); border-color: var(--color-text); }
     {%- endif %}
   {%- endfor %}
+
+  {%- comment -%}
+    Uppercase headings, at the size uppercase belongs.
+
+    Caps have no ascenders or descenders to separate them, so they need
+    POSITIVE tracking. The heading scale here is tuned for lowercase and runs
+    negative (-0.01 to -0.03em); applying it to caps is what read as careless.
+    At card size it also cost a line - an 18px uppercase product name wrapped
+    in two and broke the grid's baseline.
+
+    So the setting reaches the display tier and carries its own tracking and
+    leading, while card titles and below stay sentence case. Emitted only when
+    the setting is on, so a preset with it off keeps every value it has.
+
+    font-weight 300 is inert on a family with no light face (Libre Baskerville
+    ships 400 and 700); it lightens the families that do have one.
+  {%- endcomment -%}
+  {%- if settings.uppercase_headings %}
+    h1, h2,
+    .h0, .h1, .h2,
+    .heading--display, .heading--xl, .heading--lg,
+    .hero__heading.heading--display, .hero__heading.heading--xl {
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      line-height: 1.04;
+      font-weight: 300;
+    }
+  {%- endif %}
 {% endstyle %}
