@@ -53,7 +53,7 @@
     "shelves": {
       "type": "tabs",
       "settings": {
-        "eyebrow": "",
+        "eyebrow": "Out of the kiln this week",
         "heading": "Straight from the shelf",
         "heading_tag": "h2",
         "heading_size": "lg",
@@ -230,7 +230,7 @@
         "image_position": "right",
         "eyebrow": "Glazes",
         "heading": "Food-safe, lead-free, made here",
-        "description": "<p>Every glaze is mixed in the studio from raw materials, tested on the pieces we use at home first, and fired to vitrification so it will take a dishwasher for years.</p>",
+        "description": "Every glaze is mixed in the studio from raw materials and tested on a whole piece before it goes anywhere near stock. When a batch crazes on the test tile, the batch goes - not the standard.",
         "cta_label": "Read the process",
         "cta_url": "/pages/about-us",
         "show_stats": false,

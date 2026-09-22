@@ -47,7 +47,9 @@
         "card_aspect": "portrait",
         "color_scheme": "background-1",
         "padding_top": 96,
-        "padding_bottom": 96
+        "padding_bottom": 96,
+        "eyebrow": "Editions open now",
+        "subtext": "Each one proofed against the original under daylight, then numbered by hand. When an edition closes we do not reprint it in another size to keep it alive."
       }
     },
     "on_the_wall": {
@@ -56,7 +58,7 @@
         "eyebrow": "Scale",
         "heading": "See it on the wall",
         "heading_tag": "h2",
-        "subtext": "Drag the handle to see the same wall with the work hung.",
+        "subtext": "Fifty by seventy centimetres reads smaller than it sounds. Drag the handle and the same wall tells you the truth before you buy.",
         "columns_desktop": "1",
         "show_price": true,
         "color_scheme": "background-2",
@@ -84,7 +86,7 @@
       "type": "brand-statement",
       "settings": {
         "heading": "Every edition numbered.\nEvery original one of one.",
-        "subheading": "Printed on cotton rag and baryta paper, framed in solid wood.",
+        "subheading": "Printed on cotton rag and baryta, signed on the reverse, and logged against the number you own.",
         "heading_size_vw": 8,
         "heading_size_mobile": 11,
         "color_scheme": "inverse"
@@ -94,7 +96,7 @@
       "type": "featured-product",
       "settings": {
         "product": "graphite-tide-original",
-        "heading": "Work of the month",
+        "heading": "The one we would hang first",
         "show_vendor": false,
         "show_trust_badges": true,
         "show_bundle": true,
