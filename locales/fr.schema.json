@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Marge intérieure inférieure"
+        },
+        "marker_alignment": {
+          "label": "Alignement du numéro d’étape",
+          "info": "Où le numéro se place au-dessus de son titre. Sur téléphone, les numéros suivent un rail et gardent leur colonne.",
+          "options__1": {
+            "label": "Gauche"
+          },
+          "options__2": {
+            "label": "Centre"
+          },
+          "options__3": {
+            "label": "Droite"
+          }
         }
       },
       "blocks": {
