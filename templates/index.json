@@ -22,7 +22,7 @@
         "eyebrow": "Editions & originals",
         "heading": "Art for the walls\nyou live with",
         "heading_tag": "h1",
-        "heading_size": "display",
+        "heading_size": "xl",
         "subtext": "<p>Signed limited editions, one-of-one originals and darkroom photography, framed and ready to hang.</p>",
         "show_trust_bar": true,
         "trust_line": "",
@@ -52,17 +52,6 @@
     },
     "on_the_wall": {
       "type": "wall-comparison",
-      "settings": {
-        "eyebrow": "Scale",
-        "heading": "See it on the wall",
-        "heading_tag": "h2",
-        "subtext": "Drag the handle to see the same wall with the work hung.",
-        "columns_desktop": "1",
-        "show_price": true,
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "pair_1": {
           "type": "pair",
@@ -78,7 +67,18 @@
       },
       "block_order": [
         "pair_1"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Scale",
+        "heading": "See it on the wall",
+        "heading_tag": "h2",
+        "subtext": "Drag the handle to see the same wall with the work hung.",
+        "columns_desktop": "1",
+        "show_price": true,
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "statement": {
       "type": "brand-statement",
@@ -106,18 +106,6 @@
     },
     "artist": {
       "type": "maker-spotlight",
-      "settings": {
-        "image": "shopify://shop_images/annex-maker-studio.jpg",
-        "layout": "image_right",
-        "eyebrow": "In the studio",
-        "name": "Ines Marlowe",
-        "quote": "<p>“I paint until the canvas stops arguing with me. Then I leave it alone for a week and look again.”</p>",
-        "cta_label": "See her originals",
-        "cta_url": "/collections/originals",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "mat_linen": {
           "type": "material",
@@ -142,7 +130,19 @@
         "mat_linen",
         "mat_rag",
         "mat_block"
-      ]
+      ],
+      "settings": {
+        "image": "shopify://shop_images/annex-maker-studio.jpg",
+        "layout": "image_right",
+        "eyebrow": "In the studio",
+        "name": "Ines Marlowe",
+        "quote": "<p>“I paint until the canvas stops arguing with me. Then I leave it alone for a week and look again.”</p>",
+        "cta_label": "See her originals",
+        "cta_url": "/collections/originals",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "hang": {
       "type": "editorial-statement",
