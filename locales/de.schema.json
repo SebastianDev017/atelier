@@ -400,10 +400,10 @@
           "info": "Fügt eine Schließen-Schaltfläche hinzu. Die Leiste bleibt für diesen Besucher ausgeblendet, bis er seinen Browserspeicher leert."
         },
         "bar_color": {
-          "label": "Hintergrund der Leiste"
+          "label": "Hintergrundfarbe"
         },
         "bar_text_color": {
-          "label": "Text der Leiste"
+          "label": "Textfarbe"
         },
         "display_mode": {
           "label": "Mehrere Nachrichten",
@@ -456,7 +456,7 @@
       "settings": {
         "heading": {
           "label": "Überschrift",
-          "info": "Zeilenumbrüche bleiben erhalten."
+          "info": "Zeilenumbrüche erscheinen genau so, wie du sie eingibst."
         },
         "subheading": {
           "label": "Begleitzeile"
@@ -541,11 +541,11 @@
           }
         },
         "show_collection_image": {
-          "label": "Kollektionsbild anzeigen",
+          "label": "Bild anzeigen",
           "info": "Verwendet das vorgestellte Bild der Kollektion als vollbreiten Hintergrund. Greift auf ein reines Textbanner zurück, wenn kein Bild festgelegt ist."
         },
         "banner_height": {
-          "label": "Bannerhöhe",
+          "label": "Höhe",
           "info": "Gilt nur, wenn ein Kollektionsbild angezeigt wird.",
           "options__1": {
             "label": "Klein"
@@ -565,7 +565,7 @@
           "label": "Overlay-Farbe"
         },
         "show_description": {
-          "label": "Kollektionsbeschreibung anzeigen"
+          "label": "Beschreibung anzeigen"
         },
         "text_alignment": {
           "label": "Textausrichtung",
@@ -1235,7 +1235,7 @@
       "settings": {
         "product": {
           "label": "Produkt",
-          "info": "Auf einer Produktseite leer lassen, um das angezeigte Produkt zu verwenden."
+          "info": "Auf einer Produktseite leer lassen, um das Produkt dieser Seite zu verwenden."
         },
         "option_name": {
           "label": "Name der Option",
@@ -1407,7 +1407,7 @@
           "label": "Bild"
         },
         "image_height": {
-          "label": "Bildhöhe",
+          "label": "Höhe",
           "options__1": {
             "label": "Kompakt (40vh)"
           },
@@ -1760,7 +1760,7 @@
         },
         "trust_line": {
           "label": "Vertrauenszeile",
-          "info": "Kurze Zusicherung, die unter den Schaltflächen angezeigt wird. Ihr Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) wird automatisch vorangestellt. Verwenden Sie das Zeichen ·, um Elemente zu trennen."
+          "info": "Eine kurze Zusicherung unter den Schaltflächen. Das Theme stellt deine Grenze für den kostenlosen Versand (Theme-Einstellungen > Warenkorb) automatisch voran. Trenne Elemente mit dem Zeichen ·."
         },
         "header__3": {
           "content": "Primäre Schaltfläche"
@@ -2262,7 +2262,7 @@
       "name": "Kollektion",
       "settings": {
         "show_description": {
-          "label": "Kollektionsbeschreibung anzeigen"
+          "label": "Beschreibung anzeigen"
         },
         "products_per_page": {
           "label": "Produkte pro Seite"
@@ -2448,7 +2448,7 @@
             },
             "shipping_note": {
               "label": "Versandhinweis",
-              "info": "Wird nach Ihrem Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb) angezeigt, der automatisch eingefügt wird."
+              "info": "Folgt deiner Grenze für den kostenlosen Versand (Theme-Einstellungen > Warenkorb), die das Theme für dich einfügt."
             }
           }
         },
@@ -2498,7 +2498,7 @@
             },
             "badge_2": {
               "label": "Abzeichen 2",
-              "info": "Das Versandabzeichen nennt Ihren Schwellenwert für kostenlosen Versand (Theme-Einstellungen > Warenkorb). Dieser Text wird nur verwendet, wenn kein Schwellenwert festgelegt ist."
+              "info": "Das Versand-Badge nennt deine Grenze für den kostenlosen Versand (Theme-Einstellungen > Warenkorb). Das Theme verwendet diesen Text nur, wenn keine Grenze gesetzt ist."
             },
             "badge_3": {
               "label": "Abzeichen 3"
@@ -2534,7 +2534,7 @@
           }
         },
         "dimensions": {
-          "name": "Maße & Aufbau",
+          "name": "Maße und Aufbau",
           "settings": {
             "heading": {
               "label": "Überschrift"
@@ -2744,7 +2744,7 @@
           "label": "Überzeile"
         },
         "name": {
-          "label": "Name des Herstellers"
+          "label": "Name"
         },
         "quote": {
           "label": "Zitat"
@@ -2986,7 +2986,7 @@
       },
       "blocks": {
         "quote": {
-          "name": "Pressezitat",
+          "name": "Zitat",
           "settings": {
             "quote": {
               "label": "Zitat"
@@ -3207,7 +3207,7 @@
           }
         },
         "text_alignment": {
-          "label": "Textausrichtung",
+          "label": "Ausrichtung",
           "options__1": {
             "label": "Zentriert"
           },
@@ -3341,7 +3341,7 @@
       "name": "Suchpalette",
       "settings": {
         "enabled": {
-          "label": "Befehlspaletten-Suche aktivieren"
+          "label": "Befehlspalette aktivieren"
         }
       }
     },
@@ -3413,7 +3413,7 @@
           }
         },
         "caption": {
-          "name": "Geschichte des Sets",
+          "name": "Geschichte",
           "settings": {
             "text": {
               "label": "Text"
@@ -4389,7 +4389,7 @@
           "info": "Wird vor dem Abspielen gezeigt. Wird mit einem YouTube- oder Vimeo-Link verwendet."
         },
         "video_ratio": {
-          "label": "Videoformat",
+          "label": "Format",
           "options__1": {
             "label": "Breitbild"
           },
@@ -4404,11 +4404,11 @@
           }
         },
         "full_width": {
-          "label": "Video über die volle Breite zeigen"
+          "label": "Sektion über die volle Breite zeigen"
         },
         "autoplay_muted": {
           "label": "Stumm starten und wiederholen",
-          "info": "Das Video behält seine Steuerelemente und kann pausiert und lauter gestellt werden."
+          "info": "Das Video behält seine Steuerelemente, sodass es jeder pausieren oder lauter stellen kann."
         },
         "caption": {
           "label": "Bildunterschrift"
@@ -4744,7 +4744,7 @@
         },
         "input_corner_radius": {
           "label": "Eckenradius",
-          "info": "Contour ist für quadratische (0) Ecken konzipiert."
+          "info": "Contour erwartet eckige (0) Ecken."
         }
       }
     },
@@ -4920,7 +4920,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Wird auf 32 x 32px verkleinert."
+          "info": "Shopify verkleinert es auf 32 × 32 px."
         }
       }
     }

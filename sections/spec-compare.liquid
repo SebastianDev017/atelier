@@ -206,7 +206,10 @@
      decoration and the hover signal has to survive without it. */
   .speccmp__product:hover .speccmp__name { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
   .speccmp__product:focus-visible { outline: 2px solid var(--color-text); outline-offset: 3px; }
-  .speccmp__price { display: block; margin-top: var(--space-1); color: var(--color-muted); }
+  /* Full ink, not muted: on a highlighted column the subtle tint darkens
+     the ground enough that muted type lands at 4.13:1, under AA. A price
+     is not secondary information anyway. */
+  .speccmp__price { display: block; margin-top: var(--space-1); color: var(--color-text); }
   .speccmp__flag {
     display: inline-block;
     margin-top: var(--space-2);
