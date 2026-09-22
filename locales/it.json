@@ -297,6 +297,33 @@
     },
     "collection-showcase": {
       "onboarding": "Aggiungi una collezione a questa sezione per mostrarla qui."
+    },
+    "spec-compare": {
+      "table_label": "Confronto dei prodotti",
+      "row_header": "Caratteristica",
+      "no_value": "Non indicato",
+      "cta_row": "Link",
+      "onboarding": "Aggiungi un prodotto a questa sezione per confrontarlo qui."
+    },
+    "faq-ledger": {
+      "onboarding": "Aggiungi una domanda a questa sezione per rispondere qui."
+    },
+    "overlap-index": {
+      "onboarding": "Aggiungi una voce a questa sezione per elencarla qui."
+    },
+    "kiln-log": {
+      "onboarding": "Aggiungi una voce a questa sezione per registrarla qui."
+    },
+    "video-feature": {
+      "play": "Riproduci il film",
+      "player_title": "Video",
+      "onboarding": "Aggiungi un video o un link a un video a questa sezione."
+    },
+    "frame-preview": {
+      "onboarding": "Aggiungi una cornice a questa sezione per mostrarla qui."
+    },
+    "glaze-library": {
+      "onboarding": "Aggiungi uno smalto a questa sezione per mostrarlo qui."
     }
   }
 }

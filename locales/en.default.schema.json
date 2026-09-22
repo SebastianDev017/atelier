@@ -4056,6 +4056,561 @@
       "presets": {
         "name": "Collection showcase"
       }
+    },
+    "spec-compare": {
+      "name": "Spec compare",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "intro": {
+          "label": "Intro text"
+        },
+        "row_labels": {
+          "label": "Row labels",
+          "info": "One label per line. These name the rows for every product in the table."
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "highlight_label": {
+          "label": "Highlight label"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Product",
+          "settings": {
+            "product": {
+              "label": "Product"
+            },
+            "label": {
+              "label": "Label",
+              "info": "Leave empty to use the product title."
+            },
+            "image": {
+              "label": "Image",
+              "info": "Leave empty to use the product image."
+            },
+            "values": {
+              "label": "Values",
+              "info": "One value per line, in the same order as the row labels. Leave a line empty to show a dash."
+            },
+            "highlight": {
+              "label": "Highlight this column"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Spec compare"
+      }
+    },
+    "faq-ledger": {
+      "name": "Question ledger",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "link": {
+          "label": "Link"
+        },
+        "link_label": {
+          "label": "Link label"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": {
+              "label": "Question"
+            },
+            "answer": {
+              "label": "Answer"
+            },
+            "open_by_default": {
+              "label": "Open by default"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Question ledger"
+      }
+    },
+    "overlap-index": {
+      "name": "Overlap index",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Landscape"
+          }
+        },
+        "image_scale": {
+          "label": "Image size",
+          "info": "How much of the stack the picture covers.",
+          "options__1": {
+            "label": "Small"
+          },
+          "options__2": {
+            "label": "Medium"
+          },
+          "options__3": {
+            "label": "Large"
+          }
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entry",
+          "settings": {
+            "label": {
+              "label": "Name"
+            },
+            "image": {
+              "label": "Image"
+            },
+            "text": {
+              "label": "Description"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Overlap index"
+      }
+    },
+    "kiln-log": {
+      "name": "Kiln log",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "show_images": {
+          "label": "Show images"
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Square"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Landscape"
+          }
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entry",
+          "settings": {
+            "date": {
+              "label": "Date",
+              "info": "Free text, so it can read the way the studio writes it."
+            },
+            "title": {
+              "label": "Title"
+            },
+            "note": {
+              "label": "Note"
+            },
+            "status": {
+              "label": "Status",
+              "info": "A short line such as \"Sold out\" or \"Twelve pieces\"."
+            },
+            "image": {
+              "label": "Image"
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Kiln log"
+      }
+    },
+    "video-feature": {
+      "name": "Video feature",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "video": {
+          "label": "Video",
+          "info": "A video hosted by Shopify. Takes priority over the link below."
+        },
+        "video_url": {
+          "label": "Video link",
+          "info": "A YouTube or Vimeo link. Nothing loads from them until someone presses play."
+        },
+        "poster": {
+          "label": "Poster image",
+          "info": "Shown before play starts. Used with a YouTube or Vimeo link."
+        },
+        "video_ratio": {
+          "label": "Video ratio",
+          "options__1": {
+            "label": "Widescreen"
+          },
+          "options__2": {
+            "label": "Classic"
+          },
+          "options__3": {
+            "label": "Square"
+          },
+          "options__4": {
+            "label": "Portrait"
+          }
+        },
+        "full_width": {
+          "label": "Make the video full width"
+        },
+        "autoplay_muted": {
+          "label": "Start muted and loop",
+          "info": "The video still carries controls, so it can be paused and unmuted."
+        },
+        "caption": {
+          "label": "Caption"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Video feature"
+      }
+    },
+    "frame-preview": {
+      "name": "Frame preview",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "image": {
+          "label": "Artwork image",
+          "info": "One work, shown in each frame below."
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Landscape"
+          }
+        },
+        "media_position": {
+          "label": "Artwork position",
+          "options__1": {
+            "label": "Left"
+          },
+          "options__2": {
+            "label": "Right"
+          }
+        },
+        "options_label": {
+          "label": "Options label"
+        },
+        "cta_link": {
+          "label": "Button link"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "footnote": {
+          "label": "Footnote",
+          "info": "Say that the frames are drawn to illustrate the options."
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "frame": {
+          "name": "Frame",
+          "settings": {
+            "label": {
+              "label": "Name"
+            },
+            "note": {
+              "label": "Note",
+              "info": "A short line such as the material and the price difference."
+            },
+            "frame_color": {
+              "label": "Frame color"
+            },
+            "frame_width": {
+              "label": "Frame width"
+            },
+            "mat_color": {
+              "label": "Mat color"
+            },
+            "mat_width": {
+              "label": "Mat width"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Frame preview"
+      }
+    },
+    "glaze-library": {
+      "name": "Glaze library",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "text": {
+          "label": "Text"
+        },
+        "cta_link": {
+          "label": "Button link"
+        },
+        "cta_label": {
+          "label": "Button label"
+        },
+        "columns": {
+          "label": "Columns"
+        },
+        "swatch_shape": {
+          "label": "Swatch shape",
+          "options__1": {
+            "label": "Square"
+          },
+          "options__2": {
+            "label": "Circle"
+          }
+        },
+        "show_notes": {
+          "label": "Show notes"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "blocks": {
+        "glaze": {
+          "name": "Glaze",
+          "settings": {
+            "name": {
+              "label": "Name"
+            },
+            "color": {
+              "label": "Color"
+            },
+            "image": {
+              "label": "Photo",
+              "info": "Takes over the tile when set. Use it for a glaze with speckle or depth."
+            },
+            "note": {
+              "label": "Note",
+              "info": "One line on how the glaze behaves."
+            },
+            "link": {
+              "label": "Link"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Glaze library"
+      }
     }
   },
   "settings_schema": {
