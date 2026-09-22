@@ -15,11 +15,19 @@
     data-pickup
     data-variant-id="{{ variant.id }}"
     data-base-url="{{ shop.url }}{{ routes.root_url | remove_last: '/' }}"
+    data-check-text="{{ 'products.pickup_check' | t | escape }}"
+    data-one-location-text="{{ 'products.pickup_one_location' | t | escape }}"
   >
     <details class="pickup__details" data-pickup-details>
       <summary class="pickup__summary">
         {% render 'icon', name: 'pin' %}
-        <span>{{ 'products.pickup_check' | t }}</span>
+        {%- comment -%}
+          The label depends on how many locations come back, and that is only
+          knowable from the variant route, so it starts as the plural phrasing
+          and the component rewrites it to "View store information" when the
+          answer turns out to be a single store.
+        {%- endcomment -%}
+        <span data-pickup-label>{{ 'products.pickup_check' | t }}</span>
         {% render 'icon', name: 'chevron-down' %}
       </summary>
       <div class="pickup__body" data-pickup-body aria-live="polite">

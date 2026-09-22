@@ -98,13 +98,21 @@
     "share": "Condividi",
     "add_error": "Qualcosa è andato storto. Riprova.",
     "available_colors": "Colori disponibili",
-    "pickup_check": "Verifica la disponibilità nei negozi",
+    "pickup_check": "Verifica la disponibilità in altri negozi",
     "pickup_none": "Nessun negozio offre il ritiro per questo articolo.",
     "quick_buy": "Acquisto rapido",
     "quick_buy_label": "Acquisto rapido: {{ title }}",
     "quick_buy_loading": "Caricamento…",
     "quick_buy_error": "Impossibile caricare questo prodotto.",
-    "view_full_details": "Vedi tutti i dettagli del prodotto"
+    "view_full_details": "Vedi tutti i dettagli del prodotto",
+    "pickup_one_location": "Vedi le informazioni del negozio",
+    "recipient_checkbox": "Voglio inviarlo come regalo",
+    "recipient_email": "E-mail del destinatario",
+    "recipient_name": "Nome del destinatario",
+    "recipient_message": "Messaggio",
+    "recipient_message_limit": "200 caratteri max.",
+    "recipient_send_on": "Invia il",
+    "recipient_send_on_info": "Lascia vuoto per inviare la carta appena l’ordine è pagato."
   },
   "cart": {
     "title": "Il tuo carrello",
@@ -324,6 +332,9 @@
     },
     "glaze-library": {
       "onboarding": "Aggiungi uno smalto a questa sezione per mostrarlo qui."
+    },
+    "blog-posts": {
+      "onboarding": "Scegli un blog con almeno un articolo pubblicato per mostrarlo qui."
     }
   }
 }

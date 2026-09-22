@@ -208,6 +208,14 @@
                 {%- case block.type -%}
                   {%- when '@app' -%}
                     <div class="fp__app-block" {{ block.shopify_attributes }}>{% render block %}</div>
+                  {%- comment -%}
+                    A Custom Liquid block belongs wherever an app block does:
+                    the requirements ask for one "anywhere you'd consider
+                    adding an app block", because it is the insertion point for
+                    the apps that do not ship a block of their own.
+                  {%- endcomment -%}
+                  {%- when 'custom_liquid' -%}
+                    <div class="fp__app-block" {{ block.shopify_attributes }}>{{ block.settings.custom_liquid }}</div>
                 {%- endcase -%}
               {%- endfor -%}
             </div>
@@ -273,7 +281,20 @@
 {
   "name": "t:sections.featured-product.name",
   "tag": "section",
-  "blocks": [{ "type": "@app" }],
+  "blocks": [
+    { "type": "@app" },
+    {
+      "type": "custom_liquid",
+      "name": "t:sections.featured-product.blocks.custom_liquid.name",
+      "settings": [
+        {
+          "type": "liquid",
+          "id": "custom_liquid",
+          "label": "t:sections.featured-product.blocks.custom_liquid.settings.custom_liquid.label"
+        }
+      ]
+    }
+  ],
   "settings": [
     { "type": "product", "id": "product", "label": "t:sections.featured-product.settings.product.label" },
     { "type": "text", "id": "heading", "label": "t:sections.featured-product.settings.heading.label" },

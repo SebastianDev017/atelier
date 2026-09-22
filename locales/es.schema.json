@@ -1228,6 +1228,16 @@
         "padding_bottom": {
           "label": "Margen inferior"
         }
+      },
+      "blocks": {
+        "custom_liquid": {
+          "name": "Liquid personalizado",
+          "settings": {
+            "custom_liquid": {
+              "label": "Código Liquid"
+            }
+          }
+        }
       }
     },
     "finish-gallery": {
@@ -2290,7 +2300,7 @@
         },
         "enable_filtering": {
           "label": "Activar filtrado",
-          "info": "Gestiona los filtros en Búsqueda y descubrimiento."
+          "info": "Administra los filtros en Search and Discovery."
         },
         "enable_sorting": {
           "label": "Activar ordenación"
@@ -4611,6 +4621,77 @@
       "presets": {
         "name": "Biblioteca de esmaltes"
       }
+    },
+    "blog-posts": {
+      "name": "Entradas del blog",
+      "settings": {
+        "eyebrow": {
+          "label": "Antetítulo"
+        },
+        "heading": {
+          "label": "Título"
+        },
+        "heading_tag": {
+          "label": "Etiqueta del título",
+          "options__1": {
+            "label": "Título 2"
+          },
+          "options__2": {
+            "label": "Título 3"
+          },
+          "options__3": {
+            "label": "Párrafo"
+          }
+        },
+        "blog": {
+          "label": "Blog"
+        },
+        "post_count": {
+          "label": "Entradas por mostrar"
+        },
+        "columns": {
+          "label": "Columnas"
+        },
+        "image_ratio": {
+          "label": "Proporción de la imagen",
+          "options__1": {
+            "label": "Horizontal"
+          },
+          "options__2": {
+            "label": "Cuadrada"
+          },
+          "options__3": {
+            "label": "Vertical"
+          }
+        },
+        "show_date": {
+          "label": "Mostrar la fecha"
+        },
+        "show_excerpt": {
+          "label": "Mostrar el resumen"
+        },
+        "show_author": {
+          "label": "Mostrar el autor"
+        },
+        "show_view_all": {
+          "label": "Mostrar un enlace al blog"
+        },
+        "view_all_label": {
+          "label": "Texto del enlace"
+        },
+        "color_scheme": {
+          "label": "Esquema de color"
+        },
+        "padding_top": {
+          "label": "Espaciado superior"
+        },
+        "padding_bottom": {
+          "label": "Espaciado inferior"
+        }
+      },
+      "presets": {
+        "name": "Entradas del blog"
+      }
     }
   },
   "settings_schema": {
@@ -4920,7 +5001,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Shopify la reduce a 32 × 32 px."
+          "info": "Shopify la reduce a 32 x 32px."
         }
       }
     }

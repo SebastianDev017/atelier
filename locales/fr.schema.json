@@ -1228,6 +1228,16 @@
         "padding_bottom": {
           "label": "Marge inférieure"
         }
+      },
+      "blocks": {
+        "custom_liquid": {
+          "name": "Liquid personnalisé",
+          "settings": {
+            "custom_liquid": {
+              "label": "Code Liquid"
+            }
+          }
+        }
       }
     },
     "finish-gallery": {
@@ -2290,7 +2300,7 @@
         },
         "enable_filtering": {
           "label": "Activer le filtrage",
-          "info": "Gérez les filtres dans Recherche et découverte."
+          "info": "Gérez les filtres dans Search and Discovery."
         },
         "enable_sorting": {
           "label": "Activer le tri"
@@ -4611,6 +4621,77 @@
       "presets": {
         "name": "Nuancier d’émaux"
       }
+    },
+    "blog-posts": {
+      "name": "Articles de blog",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "blog": {
+          "label": "Blog"
+        },
+        "post_count": {
+          "label": "Articles à afficher"
+        },
+        "columns": {
+          "label": "Colonnes"
+        },
+        "image_ratio": {
+          "label": "Format de l’image",
+          "options__1": {
+            "label": "Paysage"
+          },
+          "options__2": {
+            "label": "Carré"
+          },
+          "options__3": {
+            "label": "Portrait"
+          }
+        },
+        "show_date": {
+          "label": "Afficher la date"
+        },
+        "show_excerpt": {
+          "label": "Afficher l’extrait"
+        },
+        "show_author": {
+          "label": "Afficher l’auteur"
+        },
+        "show_view_all": {
+          "label": "Afficher un lien vers le blog"
+        },
+        "view_all_label": {
+          "label": "Texte du lien"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "presets": {
+        "name": "Articles de blog"
+      }
     }
   },
   "settings_schema": {
@@ -4920,7 +5001,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Shopify la réduit à 32 × 32 px."
+          "info": "Shopify la réduit à 32 x 32px."
         }
       }
     }

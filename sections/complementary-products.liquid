@@ -49,9 +49,13 @@
 
 {% stylesheet %}
   .complementary { padding-block: var(--pt, var(--space-12)) var(--pb, var(--space-12)); }
-  /* Renders empty until the lazy fetch returns, and stays empty when the shop
-     has no complementary relationships set up -- so it must collapse. */
-  .complementary:empty { display: none; }
+  /* Collapses while empty, but never with display:none. The section always
+     renders empty -- recommendations.performed is false on a first page load --
+     and display:none takes the element out of layout, so the
+     IntersectionObserver that triggers the fetch never fires and the section
+     stays empty forever. Measured on the live theme: 0x0 box, zero fetches.
+     A 1px box is invisible to a reader and still observable. */
+  .complementary:empty { padding-block: 0; min-height: 1px; }
   .complementary .section-header { margin-bottom: var(--space-6); }
 {% endstylesheet %}
 

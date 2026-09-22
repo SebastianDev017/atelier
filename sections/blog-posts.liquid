@@ -1,0 +1,194 @@
+{%- comment -%}
+  Blog posts — the most recent writing, on any page that is not the blog.
+
+  A studio that writes is telling you it is still working, and the argument is
+  wasted if it only lives behind a nav link. This surfaces the newest few
+  articles wherever a merchant wants them.
+
+  Everything comes off the article itself, so a post published tomorrow
+  appears here with nothing edited: the image, the title, the date, and the
+  excerpt Shopify already derives when the author has not written one. Posts
+  without an image keep their place in the grid rather than collapsing it, so
+  a blog where only some posts carry art still reads as a row.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign blog = blogs[section.settings.blog]
+  assign count = section.settings.post_count | default: 3
+
+  # Article titles sit one level below the section heading, so the outline of
+  # the page stays in order however the merchant sets it.
+  case heading_tag
+    when 'h2'
+      assign card_tag = 'h3'
+    when 'h3'
+      assign card_tag = 'h4'
+    else
+      assign card_tag = 'p'
+  endcase
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --bp-cols: {{ section.settings.columns | default: 3 }};
+    --bp-ratio: {% case section.settings.image_ratio %}{% when 'portrait' %}4 / 5{% when 'square' %}1 / 1{% else %}4 / 3{% endcase %};
+  }
+</style>
+
+<div class="blogposts color-scheme--{{ scheme }}">
+  <div class="blogposts__inner page-width">
+    <div class="blogposts__head">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <{{ heading_tag }} class="section-heading heading--lg blogposts__heading" data-animate>
+          {{ section.settings.heading | escape }}
+        </{{ heading_tag }}>
+      {%- endif -%}
+    </div>
+
+    {%- if blog != blank and blog.articles_count > 0 -%}
+      <ul class="blogposts__grid">
+        {%- for article in blog.articles limit: count -%}
+          <li class="blogposts__item" data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
+            <a class="blogposts__card" href="{{ article.url }}">
+              <span class="blogposts__media">
+                {%- if article.image != blank -%}
+                  {{
+                    article.image
+                    | image_url: width: 900
+                    | image_tag:
+                      loading: 'lazy',
+                      decoding: 'async',
+                      widths: '300, 450, 600, 750, 900',
+                      sizes: '(min-width: 990px) 30vw, 90vw',
+                      alt: article.image.alt | default: article.title,
+                      class: 'blogposts__img'
+                  }}
+                {%- else -%}
+                  {{ 'image' | placeholder_svg_tag: 'blogposts__img placeholder' }}
+                {%- endif -%}
+              </span>
+
+              <span class="blogposts__body">
+                {%- if section.settings.show_date -%}
+                  <time class="blogposts__date label" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
+                    {{ article.published_at | date: format: 'date' }}
+                  </time>
+                {%- endif -%}
+
+                <{{ card_tag }} class="blogposts__title">{{ article.title | escape }}</{{ card_tag }}>
+
+                {%- if section.settings.show_excerpt and article.excerpt_or_content != blank -%}
+                  <span class="blogposts__excerpt">
+                    {{ article.excerpt_or_content | strip_html | truncatewords: 22 }}
+                  </span>
+                {%- endif -%}
+
+                {%- if section.settings.show_author and article.author != blank -%}
+                  <span class="blogposts__author label">{{ article.author | escape }}</span>
+                {%- endif -%}
+              </span>
+            </a>
+          </li>
+        {%- endfor -%}
+      </ul>
+
+      {%- if section.settings.show_view_all and blog.articles_count > count -%}
+        <a class="btn btn--link blogposts__all" href="{{ blog.url }}">
+          {{ section.settings.view_all_label | default: blog.title | escape }}
+          {% render 'icon', name: 'arrow-right' %}
+        </a>
+      {%- endif -%}
+    {%- else -%}
+      <p class="caption">{{ 'sections.blog-posts.onboarding' | t }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .blogposts { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .blogposts__heading { margin-top: var(--space-2); }
+
+  .blogposts__grid { display: grid; grid-template-columns: repeat(1, minmax(0, 1fr)); gap: var(--space-8) var(--space-6); margin-top: var(--space-10, 3rem); }
+  .blogposts__card { display: block; text-decoration: none; color: inherit; }
+
+  /* The frame keeps its shape whether or not the post has art, so a blog
+     where only some posts carry an image still reads as a row. */
+  .blogposts__media { display: block; aspect-ratio: var(--bp-ratio, 4 / 3); overflow: hidden; background-color: var(--color-subtle); }
+  .blogposts__img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform var(--duration-slower) var(--ease-editorial); }
+  .blogposts__card:hover .blogposts__img { transform: scale(1.03); }
+
+  .blogposts__body { display: block; margin-top: var(--space-4); }
+  .blogposts__date { display: block; color: var(--color-muted); }
+  .blogposts__title {
+    margin-top: var(--space-2);
+    font-family: var(--font-heading);
+    font-size: var(--text-xl);
+    line-height: 1.2;
+    color: var(--color-heading, var(--color-text));
+  }
+  /* Underline, never a recolour: the accent is under AA on some schemes. */
+  .blogposts__card:hover .blogposts__title { text-decoration: underline; text-underline-offset: 0.16em; text-decoration-thickness: 1px; }
+  .blogposts__card:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+  .blogposts__excerpt { display: block; margin-top: var(--space-3); color: var(--color-muted); line-height: 1.6; }
+  .blogposts__author { display: block; margin-top: var(--space-3); color: var(--color-muted); }
+  .blogposts__all { margin-top: var(--space-8); }
+
+  @media (min-width: 750px) {
+    .blogposts__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 990px) {
+    .blogposts__grid { grid-template-columns: repeat(var(--bp-cols, 3), minmax(0, 1fr)); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .blogposts__img { transition: none; }
+    .blogposts__card:hover .blogposts__img { transform: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.blog-posts.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.blog-posts.settings.eyebrow.label", "default": "From the journal" },
+    { "type": "text", "id": "heading", "label": "t:sections.blog-posts.settings.heading.label", "default": "What we have been writing" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.blog-posts.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.blog-posts.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.blog-posts.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.blog-posts.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    { "type": "blog", "id": "blog", "label": "t:sections.blog-posts.settings.blog.label" },
+    { "type": "range", "id": "post_count", "min": 2, "max": 9, "step": 1, "label": "t:sections.blog-posts.settings.post_count.label", "default": 3 },
+    { "type": "range", "id": "columns", "min": 2, "max": 4, "step": 1, "label": "t:sections.blog-posts.settings.columns.label", "default": 3 },
+    {
+      "type": "select", "id": "image_ratio", "label": "t:sections.blog-posts.settings.image_ratio.label",
+      "options": [
+        { "value": "landscape", "label": "t:sections.blog-posts.settings.image_ratio.options__1.label" },
+        { "value": "square", "label": "t:sections.blog-posts.settings.image_ratio.options__2.label" },
+        { "value": "portrait", "label": "t:sections.blog-posts.settings.image_ratio.options__3.label" }
+      ],
+      "default": "landscape"
+    },
+    { "type": "checkbox", "id": "show_date", "label": "t:sections.blog-posts.settings.show_date.label", "default": true },
+    { "type": "checkbox", "id": "show_excerpt", "label": "t:sections.blog-posts.settings.show_excerpt.label", "default": true },
+    { "type": "checkbox", "id": "show_author", "label": "t:sections.blog-posts.settings.show_author.label", "default": false },
+    { "type": "checkbox", "id": "show_view_all", "label": "t:sections.blog-posts.settings.show_view_all.label", "default": true },
+    { "type": "text", "id": "view_all_label", "label": "t:sections.blog-posts.settings.view_all_label.label", "default": "Read the journal" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.blog-posts.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.blog-posts.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.blog-posts.settings.padding_bottom.label", "default": 96 }
+  ],
+  "presets": [{ "name": "t:sections.blog-posts.presets.name" }]
+}
+{% endschema %}

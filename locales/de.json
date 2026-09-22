@@ -98,13 +98,21 @@
     "share": "Teilen",
     "add_error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
     "available_colors": "Verfügbare Farben",
-    "pickup_check": "Verfügbarkeit in Filialen prüfen",
+    "pickup_check": "Verfügbarkeit in anderen Filialen prüfen",
     "pickup_none": "Keine Filiale bietet Abholung für diesen Artikel an.",
     "quick_buy": "Schnellkauf",
     "quick_buy_label": "Schnellkauf: {{ title }}",
     "quick_buy_loading": "Wird geladen…",
     "quick_buy_error": "Dieses Produkt konnte nicht geladen werden.",
-    "view_full_details": "Alle Produktdetails ansehen"
+    "view_full_details": "Alle Produktdetails ansehen",
+    "pickup_one_location": "Filialinformationen ansehen",
+    "recipient_checkbox": "Ich möchte das als Geschenk verschicken",
+    "recipient_email": "E-Mail der empfangenden Person",
+    "recipient_name": "Name der empfangenden Person",
+    "recipient_message": "Nachricht",
+    "recipient_message_limit": "200 Zeichen max.",
+    "recipient_send_on": "Senden am",
+    "recipient_send_on_info": "Leer lassen, um die Karte zu senden, sobald die Bestellung bezahlt ist."
   },
   "cart": {
     "title": "Ihr Warenkorb",
@@ -324,6 +332,9 @@
     },
     "glaze-library": {
       "onboarding": "Füge dieser Sektion eine Glasur hinzu, um sie hier zu zeigen."
+    },
+    "blog-posts": {
+      "onboarding": "Wähle einen Blog mit mindestens einem veröffentlichten Beitrag, um ihn hier zu zeigen."
     }
   }
 }
