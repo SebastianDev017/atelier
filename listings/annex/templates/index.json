@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "shopify://shop_images/annex-hero-gallery-wall.jpg",
+        "image": "",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -71,8 +71,8 @@
           "settings": {
             "product": "cascade-photograph",
             "heading": "",
-            "image_before": "shopify://shop_images/annex-wall-before.jpg",
-            "image_after": "shopify://shop_images/annex-wall-after.jpg",
+            "image_before": "",
+            "image_after": "",
             "dimensions": "50 x 70 cm, framed in oak with a hand-cut mat",
             "start_position": 45
           }
@@ -109,7 +109,7 @@
     "artist": {
       "type": "maker-spotlight",
       "settings": {
-        "image": "shopify://shop_images/annex-maker-studio.jpg",
+        "image": "",
         "layout": "image_right",
         "eyebrow": "In the studio",
         "name": "Ines Marlowe",
@@ -176,7 +176,7 @@
           "type": "entry",
           "settings": {
             "label": "Editions",
-            "image": "shopify://shop_images/photo-1780672823844-472314bd8096_d9f97605-f501-49c4-88fe-16deafbfe028.jpg",
+            "image": "",
             "text": "Numbered, signed on the reverse, logged against the number you own. When an edition closes it is not reprinted in another size to keep it alive.",
             "link": "/collections/limited-editions"
           }
@@ -185,7 +185,7 @@
           "type": "entry",
           "settings": {
             "label": "Originals",
-            "image": "shopify://shop_images/photo-1578059456805-cd4809a05d70_30571239-9e70-46e6-a845-cb201978b5f3.jpg",
+            "image": "",
             "text": "One of one. Oil, acrylic and mixed media on canvas, linen and panel, sold once and never again.",
             "link": "/collections/originals"
           }
@@ -194,7 +194,7 @@
           "type": "entry",
           "settings": {
             "label": "Photography",
-            "image": "shopify://shop_images/photo-1642714753200-6d6cdb49c323_0235a1cd-b8a1-4261-b525-ca2444c3d062.jpg",
+            "image": "",
             "text": "Darkroom and digital, printed on baryta and proofed against the original under daylight before a single copy ships.",
             "link": "/collections/photography"
           }
@@ -203,7 +203,7 @@
           "type": "entry",
           "settings": {
             "label": "First walls",
-            "image": "shopify://shop_images/photo-1786046655743-751594a64fd4_93250342-9d0c-4031-91a3-a88d4c9bf685.jpg",
+            "image": "",
             "text": "Under two hundred. Where most collections start, and not a lesser work for it: a smaller one, on the same paper.",
             "link": "/collections/all?filter.v.price.lte=200"
           }
@@ -212,7 +212,7 @@
           "type": "entry",
           "settings": {
             "label": "Just hung",
-            "image": "shopify://shop_images/photo-1784006322945-efad2e732845_46dcc17f-aa25-4f52-80dd-859a8e1eebba.jpg",
+            "image": "",
             "text": "The most recent arrivals, in the order they came off the press and out of the studio.",
             "link": "/collections/all?sort_by=created-descending"
           }
@@ -284,7 +284,7 @@
         "heading": "Choose how it hangs",
         "heading_tag": "h2",
         "text": "<p>A print that stays in its tube is not art yet. Every order ships framed, wired and ready for the wall, so the only thing left to decide is the moulding.</p>",
-        "image": "shopify://shop_images/photo-1775923081171-f2aa01448885_6f82ccd1-0be1-4b0c-a813-c96527bb1d5c.jpg",
+        "image": "",
         "image_ratio": "portrait",
         "media_position": "left",
         "options_label": "Frame",

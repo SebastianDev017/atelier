@@ -44,6 +44,7 @@
       <div class="frmprev__frame">
         <div class="frmprev__mat">
           {%- if section.settings.image != blank -%}
+            {%- assign frmprev_alt = section.settings.image.alt | default: section.settings.heading -%}
             {{
               section.settings.image
               | image_url: width: 1200
@@ -52,7 +53,7 @@
                 decoding: 'async',
                 widths: '400, 600, 800, 1000, 1200',
                 sizes: '(min-width: 990px) 45vw, 90vw',
-                alt: section.settings.image.alt | default: section.settings.heading,
+                alt: frmprev_alt,
                 class: 'frmprev__art'
             }}
           {%- else -%}

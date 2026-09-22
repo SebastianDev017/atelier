@@ -80,6 +80,7 @@
                   <a class="speccmp__product" href="{{ p.url | default: '#' }}">
                     <span class="speccmp__thumb">
                       {%- if img != blank -%}
+                        {%- assign speccmp_alt = img.alt | default: name -%}
                         {{
                           img
                           | image_url: width: 600
@@ -88,7 +89,7 @@
                             decoding: 'async',
                             widths: '200, 300, 400, 600',
                             sizes: '(min-width: 750px) 22vw, 42vw',
-                            alt: img.alt | default: name,
+                            alt: speccmp_alt,
                             class: 'speccmp__img'
                         }}
                       {%- else -%}

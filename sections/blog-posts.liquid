@@ -58,6 +58,7 @@
             <a class="blogposts__card" href="{{ article.url }}">
               <span class="blogposts__media">
                 {%- if article.image != blank -%}
+                  {%- assign post_alt = article.image.alt | default: article.title -%}
                   {{
                     article.image
                     | image_url: width: 900
@@ -66,7 +67,7 @@
                       decoding: 'async',
                       widths: '300, 450, 600, 750, 900',
                       sizes: '(min-width: 990px) 30vw, 90vw',
-                      alt: article.image.alt | default: article.title,
+                      alt: post_alt,
                       class: 'blogposts__img'
                   }}
                 {%- else -%}
@@ -127,6 +128,10 @@
   .blogposts__date { display: block; color: var(--color-muted); }
   .blogposts__title {
     margin-top: var(--space-2);
+    /* A single unbroken 30-character title is one of the Theme Store's own
+       test cases, and a heading defaults to overflow-wrap: normal, which lets
+       it run straight out of the card. */
+    overflow-wrap: break-word;
     font-family: var(--font-heading);
     font-size: var(--text-xl);
     line-height: 1.2;

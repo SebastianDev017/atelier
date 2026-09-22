@@ -1073,7 +1073,7 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
   .product-card:focus-within .product-card__action { opacity: 1; }
 }
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
-.product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
+.product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); overflow-wrap: break-word; }
 .product-card__title a { display: inline; position: relative; z-index: 2; }
 /* B1 -- merchant names can hold an unbreakable word: a long product name, a
    German compound, a SKU-like handle. main-product.liquid already set this on

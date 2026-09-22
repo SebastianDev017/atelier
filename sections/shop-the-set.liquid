@@ -31,6 +31,7 @@
       <div class="sts__figure" data-animate>
         <div class="sts__stage">
           {%- if section.settings.image != blank -%}
+            {%- assign sts_alt = section.settings.image.alt | default: section.settings.heading -%}
             {{
               section.settings.image
               | image_url: width: 1800
@@ -38,7 +39,7 @@
                 loading: 'lazy', decoding: 'async',
                 widths: '600, 900, 1200, 1500, 1800',
                 sizes: '(min-width: 990px) 60vw, 100vw',
-                alt: section.settings.image.alt | default: section.settings.heading,
+                alt: sts_alt,
                 class: 'sts__img'
             }}
           {%- else -%}

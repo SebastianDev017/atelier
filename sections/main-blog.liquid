@@ -29,6 +29,65 @@
       <{{ heading_tag }} class="section-heading heading--{{ heading_size }}" data-animate>{{ blog.title | escape }}</{{ heading_tag }}>
     </header>
 
+    {%- if section.settings.show_tag_filter and blog.all_tags.size > 0 -%}
+      {%- comment -%}
+        blog.all_tags, not blog.tags: the second one only knows about the view
+        you are already in, so once a reader filters to one topic the rest of
+        the list would vanish and there would be no way back except the browser
+        button. The "all" link is the way out and is always first.
+      {%- endcomment -%}
+      <nav class="blog__filter" aria-label="{{ 'blog.tags' | t }}" data-animate>
+        <ul class="blog__filter-list" role="list">
+          <li>
+            <a
+              class="blog__filter-item{% if current_tags == blank %} is-current{% endif %}"
+              href="{{ blog.url }}"
+              {% if current_tags == blank %}aria-current="page"{% endif %}
+            >{{ 'blog.all_articles' | t }}</a>
+          </li>
+          {%- for tag in blog.all_tags -%}
+            {%- liquid
+              assign is_current = false
+              if current_tags contains tag
+                assign is_current = true
+              endif
+
+              # The set of tags this link leads to: the current selection with
+              # this one added, or -- if it is already on -- taken back out. A
+              # chip is therefore a toggle, and two topics combine instead of
+              # replacing each other. handleize is applied per tag, never to
+              # the joined string, or the separator would be eaten.
+              assign next_handles = ''
+              for t in current_tags
+                assign t_handle = t | handleize
+                unless is_current and t == tag
+                  assign next_handles = next_handles | append: t_handle | append: '+'
+                endunless
+              endfor
+              unless is_current
+                assign tag_handle = tag | handleize
+                assign next_handles = next_handles | append: tag_handle
+              endunless
+              assign next_handles = next_handles | split: '+' | uniq | join: '+'
+
+              if next_handles == blank
+                assign tag_url = blog.url
+              else
+                assign tag_url = blog.url | append: '/tagged/' | append: next_handles
+              endif
+            -%}
+            <li>
+              <a
+                class="blog__filter-item{% if is_current %} is-current{% endif %}"
+                href="{{ tag_url }}"
+                {% if is_current %}aria-current="page"{% endif %}
+              >{{ tag | escape }}</a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </nav>
+    {%- endif -%}
+
     {%- paginate blog.articles by section.settings.posts_per_page -%}
       <div class="product-grid">
         {%- for article in blog.articles -%}
@@ -58,18 +117,31 @@
             {%- endif -%}
 
             <div class="blog__body">
-              {%- if section.settings.show_date or section.settings.show_author -%}
-                {%- liquid
-                  assign meta_date = article.published_at | date: format: 'month_day_year'
-                  if section.settings.show_date and section.settings.show_author
-                    assign meta = 'blog.article_metadata_html' | t: date: meta_date, author: article.author
-                  elsif section.settings.show_date
-                    assign meta = meta_date
-                  else
-                    assign meta = article.author
-                  endif
-                -%}
-                <p class="blog__meta eyebrow">{{ meta }}</p>
+              {%- liquid
+                assign meta = ''
+                assign meta_date = article.published_at | date: format: 'month_day_year'
+                if section.settings.show_date and section.settings.show_author
+                  assign meta = 'blog.article_metadata_html' | t: date: meta_date, author: article.author
+                elsif section.settings.show_date
+                  assign meta = meta_date
+                elsif section.settings.show_author
+                  assign meta = article.author
+                endif
+              -%}
+              {%- if meta != blank or blog.comments_enabled? -%}
+                {%- comment -%}
+                  The comment count is blog post information the Theme Store
+                  checklist expects to see, so it is not behind a setting -- it
+                  follows blog.comments_enabled?, because a count is only true
+                  information on a blog that actually takes comments.
+                {%- endcomment -%}
+                <p class="blog__meta eyebrow">
+                  {{- meta -}}
+                  {%- if blog.comments_enabled? -%}
+                    {%- if meta != blank %} <span aria-hidden="true">&middot;</span> {% endif -%}
+                    {{ 'blog.comments_count' | t: count: article.comments_count }}
+                  {%- endif -%}
+                </p>
               {%- endif -%}
 
               <h2 class="blog__article-title h4">
@@ -97,13 +169,38 @@
 {% stylesheet %}
   .blog { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
   .blog__head { max-width: 46rem; margin-bottom: var(--space-12); }
+
+  .blog__filter { margin-top: calc(var(--space-12) * -1 + var(--space-6)); margin-bottom: var(--space-10); }
+  /* A long tag list wraps; it never becomes a horizontal rail. A shop with
+     thirty topics gets a few quiet rows, all of them reachable by tab, instead
+     of twenty-six tags hidden off the right edge of a scroller. */
+  .blog__filter-list { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-3); }
+  .blog__filter-item {
+    display: inline-flex;
+    align-items: center;
+    /* 24px is the smallest pointer target the Theme Store accepts. */
+    min-height: 24px;
+    padding: var(--space-1) var(--space-3);
+    border: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-editorial), border-color var(--duration-fast) var(--ease-editorial);
+  }
+  .blog__filter-item:hover { color: var(--color-text); border-color: var(--color-text); }
+  .blog__filter-item.is-current { color: var(--color-bg); background-color: var(--color-text); border-color: var(--color-text); }
+  .blog__filter-item:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .blog__filter-item { transition: none; }
+  }
   .blog__media-link { display: block; }
   .blog__media { margin-bottom: var(--space-5); }
   .blog__media img { transition: transform var(--duration-slow) var(--ease-editorial); }
   .blog__article:hover .blog__media img { transform: scale(1.04); }
   .blog__body { display: flex; flex-direction: column; gap: var(--space-3); }
   .blog__meta { margin-bottom: var(--space-1); }
-  .blog__article-title { max-width: 28ch; }
+  .blog__article-title { max-width: 28ch; overflow-wrap: break-word; }
   .blog__article-link:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
   .blog__excerpt { color: var(--color-muted); line-height: var(--leading-normal); max-width: 56ch; }
   .blog__read-more { margin-top: var(--space-2); }
@@ -163,6 +260,7 @@
       ],
       "default": "3"
     },
+    { "type": "checkbox", "id": "show_tag_filter", "label": "t:sections.main-blog.settings.show_tag_filter.label", "info": "t:sections.main-blog.settings.show_tag_filter.info", "default": true },
     { "type": "checkbox", "id": "show_image", "label": "t:sections.main-blog.settings.show_image.label", "default": true },
     { "type": "checkbox", "id": "show_date", "label": "t:sections.main-blog.settings.show_date.label", "default": true },
     { "type": "checkbox", "id": "show_author", "label": "t:sections.main-blog.settings.show_author.label", "default": false },
