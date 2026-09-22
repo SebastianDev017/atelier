@@ -4056,6 +4056,561 @@
       "presets": {
         "name": "Vitrine de collections"
       }
+    },
+    "spec-compare": {
+      "name": "Comparatif technique",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "intro": {
+          "label": "Texte d’introduction"
+        },
+        "row_labels": {
+          "label": "Libellés des lignes",
+          "info": "Un libellé par ligne. Ils nomment les lignes pour tous les produits du tableau."
+        },
+        "cta_label": {
+          "label": "Texte du bouton"
+        },
+        "highlight_label": {
+          "label": "Texte de la mise en avant"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "product": {
+          "name": "Produit",
+          "settings": {
+            "product": {
+              "label": "Produit"
+            },
+            "label": {
+              "label": "Libellé",
+              "info": "Laissez vide pour utiliser le titre du produit."
+            },
+            "image": {
+              "label": "Image",
+              "info": "Laissez vide pour utiliser l’image du produit."
+            },
+            "values": {
+              "label": "Valeurs",
+              "info": "Une valeur par ligne, dans l’ordre des libellés. Laissez une ligne vide pour afficher un tiret."
+            },
+            "highlight": {
+              "label": "Mettre cette colonne en avant"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Comparatif technique"
+      }
+    },
+    "faq-ledger": {
+      "name": "Registre des questions",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "text": {
+          "label": "Texte"
+        },
+        "link": {
+          "label": "Lien"
+        },
+        "link_label": {
+          "label": "Texte du lien"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "question": {
+          "name": "Question",
+          "settings": {
+            "question": {
+              "label": "Question"
+            },
+            "answer": {
+              "label": "Réponse"
+            },
+            "open_by_default": {
+              "label": "Ouverte par défaut"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Registre des questions"
+      }
+    },
+    "overlap-index": {
+      "name": "Index superposé",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "image_ratio": {
+          "label": "Format de l’image",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Carré"
+          },
+          "options__3": {
+            "label": "Paysage"
+          }
+        },
+        "image_scale": {
+          "label": "Taille de l’image",
+          "info": "La part de la pile de noms que l’image recouvre.",
+          "options__1": {
+            "label": "Petite"
+          },
+          "options__2": {
+            "label": "Moyenne"
+          },
+          "options__3": {
+            "label": "Grande"
+          }
+        },
+        "cta_label": {
+          "label": "Texte du bouton"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entrée",
+          "settings": {
+            "label": {
+              "label": "Nom"
+            },
+            "image": {
+              "label": "Image"
+            },
+            "text": {
+              "label": "Description"
+            },
+            "link": {
+              "label": "Lien"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Index superposé"
+      }
+    },
+    "kiln-log": {
+      "name": "Journal du four",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "text": {
+          "label": "Texte"
+        },
+        "show_images": {
+          "label": "Afficher les images"
+        },
+        "image_ratio": {
+          "label": "Format de l’image",
+          "options__1": {
+            "label": "Carré"
+          },
+          "options__2": {
+            "label": "Portrait"
+          },
+          "options__3": {
+            "label": "Paysage"
+          }
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "entry": {
+          "name": "Entrée",
+          "settings": {
+            "date": {
+              "label": "Date",
+              "info": "Texte libre, pour qu’il se lise comme l’atelier l’écrit."
+            },
+            "title": {
+              "label": "Titre"
+            },
+            "note": {
+              "label": "Note"
+            },
+            "status": {
+              "label": "Statut",
+              "info": "Une courte ligne comme « Épuisé » ou « Douze pièces »."
+            },
+            "image": {
+              "label": "Image"
+            },
+            "link": {
+              "label": "Lien"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Journal du four"
+      }
+    },
+    "video-feature": {
+      "name": "Vidéo à la une",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "text": {
+          "label": "Texte"
+        },
+        "video": {
+          "label": "Vidéo",
+          "info": "Une vidéo hébergée par Shopify. Elle prime sur le lien ci-dessous."
+        },
+        "video_url": {
+          "label": "Lien de la vidéo",
+          "info": "Un lien YouTube ou Vimeo. Rien n’est chargé depuis eux avant une pression sur lecture."
+        },
+        "poster": {
+          "label": "Image d’attente",
+          "info": "Affichée avant la lecture. Utilisée avec un lien YouTube ou Vimeo."
+        },
+        "video_ratio": {
+          "label": "Format de la vidéo",
+          "options__1": {
+            "label": "Panoramique"
+          },
+          "options__2": {
+            "label": "Classique"
+          },
+          "options__3": {
+            "label": "Carré"
+          },
+          "options__4": {
+            "label": "Portrait"
+          }
+        },
+        "full_width": {
+          "label": "Afficher la vidéo sur toute la largeur"
+        },
+        "autoplay_muted": {
+          "label": "Démarrer en sourdine et en boucle",
+          "info": "La vidéo garde ses commandes, elle peut donc être mise en pause et réactivée."
+        },
+        "caption": {
+          "label": "Légende"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "presets": {
+        "name": "Vidéo à la une"
+      }
+    },
+    "frame-preview": {
+      "name": "Aperçu du cadre",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "text": {
+          "label": "Texte"
+        },
+        "image": {
+          "label": "Image de l’œuvre",
+          "info": "Une œuvre, montrée dans chaque cadre ci-dessous."
+        },
+        "image_ratio": {
+          "label": "Format de l’image",
+          "options__1": {
+            "label": "Portrait"
+          },
+          "options__2": {
+            "label": "Carré"
+          },
+          "options__3": {
+            "label": "Paysage"
+          }
+        },
+        "media_position": {
+          "label": "Position de l’œuvre",
+          "options__1": {
+            "label": "Gauche"
+          },
+          "options__2": {
+            "label": "Droite"
+          }
+        },
+        "options_label": {
+          "label": "Titre des options"
+        },
+        "cta_link": {
+          "label": "Lien du bouton"
+        },
+        "cta_label": {
+          "label": "Texte du bouton"
+        },
+        "footnote": {
+          "label": "Note",
+          "info": "Précisez que les cadres sont dessinés pour illustrer les options."
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "frame": {
+          "name": "Cadre",
+          "settings": {
+            "label": {
+              "label": "Nom"
+            },
+            "note": {
+              "label": "Note",
+              "info": "Une courte ligne, par exemple la matière et l’écart de prix."
+            },
+            "frame_color": {
+              "label": "Couleur du cadre"
+            },
+            "frame_width": {
+              "label": "Largeur du cadre"
+            },
+            "mat_color": {
+              "label": "Couleur du passe-partout"
+            },
+            "mat_width": {
+              "label": "Largeur du passe-partout"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Aperçu du cadre"
+      }
+    },
+    "glaze-library": {
+      "name": "Nuancier d’émaux",
+      "settings": {
+        "eyebrow": {
+          "label": "Surtitre"
+        },
+        "heading": {
+          "label": "Titre"
+        },
+        "heading_tag": {
+          "label": "Balise du titre",
+          "options__1": {
+            "label": "Titre 2"
+          },
+          "options__2": {
+            "label": "Titre 3"
+          },
+          "options__3": {
+            "label": "Paragraphe"
+          }
+        },
+        "text": {
+          "label": "Texte"
+        },
+        "cta_link": {
+          "label": "Lien du bouton"
+        },
+        "cta_label": {
+          "label": "Texte du bouton"
+        },
+        "columns": {
+          "label": "Colonnes"
+        },
+        "swatch_shape": {
+          "label": "Forme de l’échantillon",
+          "options__1": {
+            "label": "Carré"
+          },
+          "options__2": {
+            "label": "Cercle"
+          }
+        },
+        "show_notes": {
+          "label": "Afficher les notes"
+        },
+        "color_scheme": {
+          "label": "Palette de couleurs"
+        },
+        "padding_top": {
+          "label": "Marge supérieure"
+        },
+        "padding_bottom": {
+          "label": "Marge inférieure"
+        }
+      },
+      "blocks": {
+        "glaze": {
+          "name": "Émail",
+          "settings": {
+            "name": {
+              "label": "Nom"
+            },
+            "color": {
+              "label": "Couleur"
+            },
+            "image": {
+              "label": "Photo",
+              "info": "Remplace la couleur lorsqu’elle est définie. Pour un émail moucheté ou profond."
+            },
+            "note": {
+              "label": "Note",
+              "info": "Une ligne sur le comportement de l’émail."
+            },
+            "link": {
+              "label": "Lien"
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Nuancier d’émaux"
+      }
     }
   },
   "settings_schema": {

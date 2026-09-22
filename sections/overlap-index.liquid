@@ -1,0 +1,271 @@
+{%- comment -%}
+  Overlap index — a set of names stacked into one another, the one you point
+  at lifted out of the pile with its picture.
+
+  A gallery's index is not a grid. It is a list of names that mean something
+  to the person reading it, and the pleasure is in moving through them. The
+  names here are set large enough to overlap, the picture of the current one
+  sits over the middle of the stack, and the note beside it says what you are
+  looking at.
+
+  Legibility is not left to the overlap. The active name is lifted above the
+  picture and carries a band of the scheme's own ground behind it, so it is
+  read as ink on paper and never as ink on a photograph; its full name and
+  description are also repeated, unobstructed, in the note column. Pointer
+  and keyboard both drive it. With JavaScript absent the first name is active
+  and every name is still an ordinary link.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --ovidx-scale: {% case section.settings.image_scale %}{% when 'small' %}0.8{% when 'large' %}1.2{% else %}1{% endcase %};
+    --ovidx-ratio: {% case section.settings.image_ratio %}{% when 'square' %}1 / 1{% when 'landscape' %}4 / 3{% else %}4 / 5{% endcase %};
+  }
+</style>
+
+<div class="ovidx color-scheme--{{ scheme }}">
+  <div class="ovidx__inner page-width">
+    <div class="ovidx__stage">
+      {%- if section.settings.eyebrow != blank -%}
+        <p class="eyebrow ovidx__eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+      {%- endif -%}
+      {%- if section.settings.heading != blank -%}
+        <{{ heading_tag }} class="section-heading heading--sm ovidx__heading" data-animate>
+          {{ section.settings.heading | escape }}
+        </{{ heading_tag }}>
+      {%- endif -%}
+
+      {%- if section.blocks.size > 0 -%}
+        <div class="ovidx__media" aria-hidden="true">
+          {%- for block in section.blocks -%}
+            {%- assign label = block.settings.label -%}
+            <span class="ovidx__frame{% if forloop.first %} is-active{% endif %}" data-ovidx-frame="{{ forloop.index0 }}">
+              {%- if block.settings.image != blank -%}
+                {{
+                  block.settings.image
+                  | image_url: width: 1000
+                  | image_tag:
+                    loading: 'lazy',
+                    decoding: 'async',
+                    widths: '300, 500, 700, 1000',
+                    sizes: '(min-width: 750px) 34vw, 70vw',
+                    alt: block.settings.image.alt | default: label,
+                    class: 'ovidx__img'
+                }}
+              {%- else -%}
+                {{ 'image' | placeholder_svg_tag: 'ovidx__img placeholder' }}
+              {%- endif -%}
+            </span>
+          {%- endfor -%}
+        </div>
+
+        <ul class="ovidx__names" data-ovidx-names>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              # A repeating set of drifts rather than a straight column: the
+              # stack reads as a pile, and the same block always lands in the
+              # same place, so nothing moves when the page reloads.
+              assign drift_step = forloop.index0 | modulo: 5
+              case drift_step
+                when 0
+                  assign drift = '0%'
+                when 1
+                  assign drift = '-7%'
+                when 2
+                  assign drift = '9%'
+                when 3
+                  assign drift = '-4%'
+                else
+                  assign drift = '5%'
+              endcase
+            -%}
+            <li
+              class="ovidx__item{% if forloop.first %} is-active{% endif %}"
+              style="--ovidx-drift: {{ drift }};"
+              data-ovidx-item="{{ forloop.index0 }}"
+              {{ block.shopify_attributes }}
+            >
+              <a
+                class="ovidx__name"
+                href="{{ block.settings.link | default: '#' }}"
+                data-ovidx-name="{{ forloop.index0 }}"
+              >
+                {{ block.settings.label | escape }}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+
+    {%- if section.blocks.size > 0 -%}
+      <div class="ovidx__notes">
+        {%- for block in section.blocks -%}
+          <div
+            class="ovidx__note{% if forloop.first %} is-active{% endif %}"
+            data-ovidx-note="{{ forloop.index0 }}"
+            {% unless forloop.first %}hidden{% endunless %}
+          >
+            <p class="ovidx__note-name label">{{ block.settings.label | escape }}</p>
+            {%- if block.settings.text != blank -%}
+              <p class="ovidx__note-text">{{ block.settings.text | escape | newline_to_br }}</p>
+            {%- endif -%}
+            {%- if section.settings.cta_label != blank and block.settings.link != blank -%}
+              <a class="ovidx__note-cta link-underline" href="{{ block.settings.link }}" tabindex="-1">
+                {{ section.settings.cta_label | escape }}
+                {% render 'icon', name: 'arrow-right' %}
+              </a>
+            {%- endif -%}
+          </div>
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <p class="caption">{{ 'sections.overlap-index.onboarding' | t }}</p>
+    {%- endif -%}
+  </div>
+</div>
+
+<script src="{{ 'overlap-index.js' | asset_url }}" defer="defer"></script>
+
+{% stylesheet %}
+  .ovidx { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .ovidx__inner { display: grid; gap: clamp(2rem, 4vw, 4rem); }
+  .ovidx__eyebrow, .ovidx__heading { text-align: center; }
+  .ovidx__heading { margin-top: var(--space-2); }
+
+  .ovidx__stage { display: flex; flex-direction: column; gap: var(--space-6); }
+
+  .ovidx__media { width: min(70%, 22rem); margin-inline: auto; aspect-ratio: var(--ovidx-ratio, 4 / 5); position: relative; background-color: var(--color-subtle); }
+  .ovidx__frame { position: absolute; inset: 0; opacity: 0; visibility: hidden; transition: opacity var(--duration-base, 0.4s) var(--ease-editorial); }
+  .ovidx__frame.is-active { opacity: 1; visibility: visible; }
+  .ovidx__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  .ovidx__names { text-align: center; }
+  .ovidx__item { position: relative; }
+  .ovidx__name {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: clamp(2.2rem, 6.5vw, 5rem);
+    line-height: 1.02;
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  /* Ink and italic together. Colour alone fails on some schemes and the slope
+     is readable whatever the palette does. */
+  .ovidx__item.is-active .ovidx__name { color: var(--color-heading, var(--color-text)); font-style: italic; }
+  .ovidx__name:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+
+  .ovidx__notes { align-self: end; }
+  .ovidx__note-name { display: block; color: var(--color-text); }
+  .ovidx__note-text { margin-top: var(--space-2); font-family: var(--font-mono); font-size: var(--text-xs); line-height: 1.7; color: var(--color-muted); }
+  .ovidx__note-cta { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: var(--space-3); font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+  .ovidx__note-cta .icon { width: 12px; height: 12px; }
+
+  @media (min-width: 750px) {
+    .ovidx__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 15rem); align-items: center; }
+
+    /* The pile. The names keep their own flow and the picture is laid over
+       the middle of it; only the active name is lifted back out. */
+    .ovidx__stage { display: block; position: relative; min-height: calc(clamp(17rem, 32vw, 26rem) * var(--ovidx-scale, 1) + var(--space-16)); padding-block: var(--space-8); }
+    .ovidx__eyebrow { position: relative; z-index: 3; }
+    .ovidx__media {
+      position: absolute;
+      inset-block-start: 50%;
+      inset-inline-start: 50%;
+      transform: translate(-50%, -50%);
+      width: auto;
+      height: calc(clamp(17rem, 32vw, 26rem) * var(--ovidx-scale, 1));
+      margin-inline: 0;
+      z-index: 1;
+      pointer-events: none;
+    }
+    .ovidx__names { position: relative; z-index: 0; }
+    .ovidx__item { transform: translateX(var(--ovidx-drift, 0%)); }
+    .ovidx__item.is-active { z-index: 2; }
+    /* The band is the active name's own ground, drawn inside its stacking
+       context: behind the letters, in front of the picture. */
+    .ovidx__item.is-active::before {
+      content: '';
+      position: absolute;
+      inset-block: -0.06em;
+      inset-inline: -6%;
+      background-color: var(--color-bg);
+      z-index: -1;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ovidx__frame { transition: none; }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.overlap-index.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.overlap-index.settings.eyebrow.label", "default": "The index" },
+    { "type": "text", "id": "heading", "label": "t:sections.overlap-index.settings.heading.label" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.overlap-index.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.overlap-index.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.overlap-index.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.overlap-index.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select", "id": "image_ratio", "label": "t:sections.overlap-index.settings.image_ratio.label",
+      "options": [
+        { "value": "portrait", "label": "t:sections.overlap-index.settings.image_ratio.options__1.label" },
+        { "value": "square", "label": "t:sections.overlap-index.settings.image_ratio.options__2.label" },
+        { "value": "landscape", "label": "t:sections.overlap-index.settings.image_ratio.options__3.label" }
+      ],
+      "default": "portrait"
+    },
+    {
+      "type": "select", "id": "image_scale", "label": "t:sections.overlap-index.settings.image_scale.label",
+      "info": "t:sections.overlap-index.settings.image_scale.info",
+      "options": [
+        { "value": "small", "label": "t:sections.overlap-index.settings.image_scale.options__1.label" },
+        { "value": "medium", "label": "t:sections.overlap-index.settings.image_scale.options__2.label" },
+        { "value": "large", "label": "t:sections.overlap-index.settings.image_scale.options__3.label" }
+      ],
+      "default": "medium"
+    },
+    { "type": "text", "id": "cta_label", "label": "t:sections.overlap-index.settings.cta_label.label", "default": "View" },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.overlap-index.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.overlap-index.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.overlap-index.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "entry",
+      "name": "t:sections.overlap-index.blocks.entry.name",
+      "settings": [
+        { "type": "text", "id": "label", "label": "t:sections.overlap-index.blocks.entry.settings.label.label", "default": "Name" },
+        { "type": "image_picker", "id": "image", "label": "t:sections.overlap-index.blocks.entry.settings.image.label" },
+        { "type": "textarea", "id": "text", "label": "t:sections.overlap-index.blocks.entry.settings.text.label" },
+        { "type": "url", "id": "link", "label": "t:sections.overlap-index.blocks.entry.settings.link.label" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.overlap-index.presets.name",
+      "blocks": [{ "type": "entry" }, { "type": "entry" }, { "type": "entry" }, { "type": "entry" }, { "type": "entry" }]
+    }
+  ]
+}
+{% endschema %}

@@ -168,12 +168,141 @@
         "padding_top": 96,
         "padding_bottom": 96
       }
+    },
+    "index": {
+      "type": "overlap-index",
+      "blocks": {
+        "editions": {
+          "type": "entry",
+          "settings": {
+            "label": "Editions",
+            "image": "shopify://shop_images/photo-1780672823844-472314bd8096_d9f97605-f501-49c4-88fe-16deafbfe028.jpg",
+            "text": "Numbered, signed on the reverse, logged against the number you own. When an edition closes it is not reprinted in another size to keep it alive.",
+            "link": "/collections/limited-editions"
+          }
+        },
+        "originals": {
+          "type": "entry",
+          "settings": {
+            "label": "Originals",
+            "image": "shopify://shop_images/photo-1578059456805-cd4809a05d70_30571239-9e70-46e6-a845-cb201978b5f3.jpg",
+            "text": "One of one. Oil, acrylic and mixed media on canvas, linen and panel, sold once and never again.",
+            "link": "/collections/originals"
+          }
+        },
+        "photography": {
+          "type": "entry",
+          "settings": {
+            "label": "Photography",
+            "image": "shopify://shop_images/photo-1642714753200-6d6cdb49c323_0235a1cd-b8a1-4261-b525-ca2444c3d062.jpg",
+            "text": "Darkroom and digital, printed on baryta and proofed against the original under daylight before a single copy ships.",
+            "link": "/collections/photography"
+          }
+        },
+        "first": {
+          "type": "entry",
+          "settings": {
+            "label": "First walls",
+            "image": "shopify://shop_images/photo-1786046655743-751594a64fd4_93250342-9d0c-4031-91a3-a88d4c9bf685.jpg",
+            "text": "Under two hundred. Where most collections start, and not a lesser work for it: a smaller one, on the same paper.",
+            "link": "/collections/all?filter.v.price.lte=200"
+          }
+        },
+        "newest": {
+          "type": "entry",
+          "settings": {
+            "label": "Just hung",
+            "image": "shopify://shop_images/photo-1784006322945-efad2e732845_46dcc17f-aa25-4f52-80dd-859a8e1eebba.jpg",
+            "text": "The most recent arrivals, in the order they came off the press and out of the studio.",
+            "link": "/collections/all?sort_by=created-descending"
+          }
+        }
+      },
+      "block_order": [
+        "editions",
+        "originals",
+        "photography",
+        "first",
+        "newest"
+      ],
+      "settings": {
+        "eyebrow": "The index",
+        "heading": "Five ways in",
+        "heading_tag": "h2",
+        "image_ratio": "portrait",
+        "image_scale": "medium",
+        "cta_label": "View",
+        "color_scheme": "background-1",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "framing": {
+      "type": "frame-preview",
+      "blocks": {
+        "oak": {
+          "type": "frame",
+          "settings": {
+            "label": "White oak",
+            "note": "Twenty millimetre moulding, waxed",
+            "frame_color": "#b08b57",
+            "frame_width": 14,
+            "mat_color": "#f4f1ea",
+            "mat_width": 32
+          }
+        },
+        "black": {
+          "type": "frame",
+          "settings": {
+            "label": "Stained ash",
+            "note": "Eighteen millimetre moulding, matt black",
+            "frame_color": "#1c1a18",
+            "frame_width": 12,
+            "mat_color": "#f4f1ea",
+            "mat_width": 36
+          }
+        },
+        "box": {
+          "type": "frame",
+          "settings": {
+            "label": "Natural box",
+            "note": "Thirty millimetre tray, paper to the edge",
+            "frame_color": "#cbb79a",
+            "frame_width": 22,
+            "mat_color": "#e7e0d3",
+            "mat_width": 8
+          }
+        }
+      },
+      "block_order": [
+        "oak",
+        "black",
+        "box"
+      ],
+      "settings": {
+        "eyebrow": "Framing",
+        "heading": "Choose how it hangs",
+        "heading_tag": "h2",
+        "text": "<p>A print that stays in its tube is not art yet. Every order ships framed, wired and ready for the wall, so the only thing left to decide is the moulding.</p>",
+        "image": "shopify://shop_images/photo-1775923081171-f2aa01448885_6f82ccd1-0be1-4b0c-a813-c96527bb1d5c.jpg",
+        "image_ratio": "portrait",
+        "media_position": "left",
+        "options_label": "Frame",
+        "cta_link": "/collections/limited-editions",
+        "cta_label": "Shop the editions",
+        "footnote": "The frames are drawn here to show the options. What arrives is the moulding named above, cut to the work.",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
   "order": [
     "hero",
     "darkroom",
+    "index",
     "on_the_wall",
+    "framing",
     "statement",
     "featured_work",
     "artist",

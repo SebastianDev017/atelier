@@ -297,6 +297,33 @@
     },
     "collection-showcase": {
       "onboarding": "Ajoutez une collection à cette section pour l’afficher ici."
+    },
+    "spec-compare": {
+      "table_label": "Comparatif des produits",
+      "row_header": "Caractéristique",
+      "no_value": "Non renseigné",
+      "cta_row": "Liens",
+      "onboarding": "Ajoutez un produit à cette section pour le comparer ici."
+    },
+    "faq-ledger": {
+      "onboarding": "Ajoutez une question à cette section pour y répondre ici."
+    },
+    "overlap-index": {
+      "onboarding": "Ajoutez une entrée à cette section pour la lister ici."
+    },
+    "kiln-log": {
+      "onboarding": "Ajoutez une entrée à cette section pour la consigner ici."
+    },
+    "video-feature": {
+      "play": "Lire le film",
+      "player_title": "Vidéo",
+      "onboarding": "Ajoutez une vidéo ou un lien de vidéo à cette section."
+    },
+    "frame-preview": {
+      "onboarding": "Ajoutez un cadre à cette section pour l’afficher ici."
+    },
+    "glaze-library": {
+      "onboarding": "Ajoutez un émail à cette section pour l’afficher ici."
     }
   }
 }

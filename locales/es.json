@@ -297,6 +297,33 @@
     },
     "collection-showcase": {
       "onboarding": "Agrega una colección a esta sección para mostrarla aquí."
+    },
+    "spec-compare": {
+      "table_label": "Comparación de productos",
+      "row_header": "Característica",
+      "no_value": "Sin dato",
+      "cta_row": "Enlaces",
+      "onboarding": "Agrega un producto a esta sección para compararlo aquí."
+    },
+    "faq-ledger": {
+      "onboarding": "Agrega una pregunta a esta sección para responderla aquí."
+    },
+    "overlap-index": {
+      "onboarding": "Agrega una entrada a esta sección para listarla aquí."
+    },
+    "kiln-log": {
+      "onboarding": "Agrega una entrada a esta sección para registrarla aquí."
+    },
+    "video-feature": {
+      "play": "Reproducir el video",
+      "player_title": "Video",
+      "onboarding": "Agrega un video o un enlace de video a esta sección."
+    },
+    "frame-preview": {
+      "onboarding": "Agrega un marco a esta sección para mostrarlo aquí."
+    },
+    "glaze-library": {
+      "onboarding": "Agrega un esmalte a esta sección para mostrarlo aquí."
     }
   }
 }

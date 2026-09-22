@@ -191,15 +191,129 @@
         "room_2",
         "room_3"
       ]
+    },
+    "spec_compare": {
+      "type": "spec-compare",
+      "blocks": {
+        "chair": {
+          "type": "product",
+          "settings": {
+            "product": "velvet-accent-chair",
+            "label": "",
+            "values": "74 cm\n80 cm\n43 cm\n1\nKiln-dried beech\nCotton velvet, removable\n3 weeks",
+            "highlight": true
+          }
+        },
+        "ottoman": {
+          "type": "product",
+          "settings": {
+            "product": "boucle-ottoman-round",
+            "label": "",
+            "values": "60 cm\n60 cm\n42 cm\n\nKiln-dried beech\nBouclé, removable\n3 weeks",
+            "highlight": false
+          }
+        },
+        "sofa": {
+          "type": "product",
+          "settings": {
+            "product": "cloud-linen-sofa-3-seater",
+            "label": "",
+            "values": "232 cm\n96 cm\n44 cm\n3\nKiln-dried beech\nWashed linen, removable\n6 weeks",
+            "highlight": false
+          }
+        }
+      },
+      "block_order": [
+        "chair",
+        "ottoman",
+        "sofa"
+      ],
+      "settings": {
+        "eyebrow": "Compare",
+        "heading": "Three ways to sit",
+        "heading_tag": "h2",
+        "intro": "The same beech frame and the same covers you can unzip and wash. What changes is how much room it asks for.",
+        "row_labels": "Width\nDepth\nSeat height\nSeats\nFrame\nCover\nLead time",
+        "cta_label": "View details",
+        "highlight_label": "Most chosen",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "faq_ledger": {
+      "type": "faq-ledger",
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "When will it arrive?",
+            "answer": "<p>Anything in stock leaves the studio within three working days. Made-to-order pieces carry their lead time on the product page: three weeks for seating, six for the sofas. Once the frame is cut you get a date, not a range.</p>",
+            "open_by_default": true
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Will it fit through my door?",
+            "answer": "<p>Every listing carries width, depth, height and the diagonal of the packed box. If that diagonal is wider than your narrowest doorway, say so before you order and the legs ship separately.</p>",
+            "open_by_default": false
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What happens when something wears out?",
+            "answer": "<p>Covers unzip and wash. Legs, castors, feet and cushion inserts are stocked as parts and sold on their own, for as long as we make the piece. We would rather send a part than a replacement.</p>",
+            "open_by_default": false
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "Is it really solid timber?",
+            "answer": "<p>Where it is, we say so, and where it is not we say that too. Frames are kiln-dried beech. Tops are solid oak, walnut or travertine. Nothing here is veneered board with a hardwood edge.</p>",
+            "open_by_default": false
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "What if the room says no?",
+            "answer": "<p>Thirty days, unused and in its original packaging, and we collect it ourselves. Made-to-order pieces are the exception and every one of them says so before you pay.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ],
+      "settings": {
+        "eyebrow": "Before you order",
+        "heading": "Questions, answered",
+        "heading_tag": "h2",
+        "text": "<p>The five things people write in about, answered the way the studio would answer them.</p>",
+        "link": "/pages/about-us",
+        "link_label": "How we make things",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     }
   },
   "order": [
     "hero",
     "collection_showcase",
     "new_season",
+    "spec_compare",
     "care",
     "delivery",
     "voices",
+    "faq_ledger",
     "newsletter"
   ]
 }
