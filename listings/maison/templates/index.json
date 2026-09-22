@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "shopify://shop_images/maison-hero-studio-shelves.jpg",
+        "image": "",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -160,7 +160,7 @@
     "the_set": {
       "type": "shop-the-set",
       "settings": {
-        "image": "shopify://shop_images/photo-1694830470387-2e0f234ecaf7_fd206f68-55aa-4b2e-bcf4-03e6ba8ec409.jpg",
+        "image": "",
         "text_position": "right",
         "eyebrow": "Shop the set",
         "heading": "One table, set for four",
@@ -226,7 +226,7 @@
     "glazes": {
       "type": "editorial-feature",
       "settings": {
-        "image": "shopify://shop_images/maison-editorial-wheel.jpg",
+        "image": "",
         "image_position": "right",
         "eyebrow": "Glazes",
         "heading": "Food-safe, lead-free, made here",
@@ -248,7 +248,7 @@
     "kiln": {
       "type": "full-bleed-image",
       "settings": {
-        "image": "shopify://shop_images/maison-maker-hands.jpg",
+        "image": "",
         "image_height": "medium",
         "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
         "overlay_opacity": 30
@@ -359,7 +359,7 @@
             "title": "The iron black came out darker than March",
             "note": "<p>Same recipe, colder week, and the whole batch broke rust at the rim instead of brown. We are keeping it. The next ramen bowls will not look like these.</p>",
             "status": "Sold out",
-            "image": "shopify://shop_images/photo-1733590634381-b58fce897229_790aba9f-34e2-4867-b646-75fd1e545ea7.jpg",
+            "image": "",
             "link": "/products/iron-black-ramen-bowl"
           }
         },
@@ -370,7 +370,7 @@
             "title": "Twelve moon vases went in, nine came out",
             "note": "<p>Three cracked on the cool-down, which is the price of a wall that thin. The nine that made it are the roundest we have thrown.</p>",
             "status": "Three left",
-            "image": "shopify://shop_images/photo-1612196808214-b8e1d6145a8c_3e17069b-0fab-4a22-9126-26e83aa39099.jpg",
+            "image": "",
             "link": "/products/moon-vase"
           }
         },
@@ -381,7 +381,7 @@
             "title": "Celadon over the thrown pitchers",
             "note": "<p>First time this glaze has gone on a pouring lip. It pools in the rings and runs clear at the spout, which turned out to be exactly right.</p>",
             "status": "In stock",
-            "image": "shopify://shop_images/photo-1641083993161-4240941837e6_e077657d-47b3-4caa-ad51-81f4d0f6fe48.jpg",
+            "image": "",
             "link": "/products/celadon-pitcher"
           }
         }

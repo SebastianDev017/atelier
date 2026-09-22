@@ -42,10 +42,11 @@
           <li class="about-value-s" data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}" {{ block.shopify_attributes }}>
             {%- if block.settings.image != blank -%}
               <span class="about-value-s__swatch">
+                {%- assign swatch_alt = block.settings.image.alt | default: block.settings.heading -%}
                 {{
                   block.settings.image
                   | image_url: width: 240
-                  | image_tag: loading: 'lazy', decoding: 'async', widths: '120, 180, 240', sizes: '72px', alt: block.settings.image.alt | default: block.settings.heading, class: 'about-value-s__swatch-img'
+                  | image_tag: loading: 'lazy', decoding: 'async', widths: '120, 180, 240', sizes: '72px', alt: swatch_alt, class: 'about-value-s__swatch-img'
                 }}
               </span>
             {%- elsif block.settings.icon != 'none' -%}

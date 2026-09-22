@@ -81,6 +81,7 @@
             {%- if section.settings.show_images -%}
               <div class="kilnlog__media">
                 {%- if block.settings.image != blank -%}
+                  {%- assign kiln_alt = block.settings.image.alt | default: block.settings.title -%}
                   {{
                     block.settings.image
                     | image_url: width: 800
@@ -89,7 +90,7 @@
                       decoding: 'async',
                       widths: '200, 300, 400, 600, 800',
                       sizes: '(min-width: 990px) 14vw, 38vw',
-                      alt: block.settings.image.alt | default: block.settings.title,
+                      alt: kiln_alt,
                       class: 'kilnlog__img'
                   }}
                 {%- endif -%}
