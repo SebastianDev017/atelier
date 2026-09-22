@@ -20,7 +20,7 @@
   <article class="article__inner page-width page-width--narrow">
     {%- if section.settings.show_featured_image and article.image -%}
       <div class="article__media media media--landscape" data-animate-scale>
-        {{ article.image | image_url: width: 1500 | image_tag: loading: 'eager', fetchpriority: 'high', widths: '450, 600, 900, 1200, 1500', sizes: '(min-width: 1000px) 720px, 100vw', alt: featured_alt }}
+        {{ article.image | image_url: width: 1500 | image_tag: loading: 'eager', decoding: 'async', fetchpriority: 'high', widths: '450, 600, 900, 1200, 1500', sizes: '(min-width: 1000px) 720px, 100vw', alt: featured_alt }}
       </div>
     {%- endif -%}
 
