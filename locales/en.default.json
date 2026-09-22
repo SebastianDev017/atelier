@@ -98,13 +98,21 @@
     "share": "Share",
     "add_error": "Something went wrong. Please try again.",
     "available_colors": "Available colors",
-    "pickup_check": "Check availability at nearby stores",
+    "pickup_check": "Check availability at other stores",
     "pickup_none": "No stores offer pickup for this item.",
     "quick_buy": "Quick buy",
     "quick_buy_label": "Quick buy: {{ title }}",
     "quick_buy_loading": "Loading…",
     "quick_buy_error": "This product could not be loaded.",
-    "view_full_details": "View full product details"
+    "view_full_details": "View full product details",
+    "pickup_one_location": "View store information",
+    "recipient_checkbox": "I want to send this as a gift",
+    "recipient_email": "Recipient email",
+    "recipient_name": "Recipient name",
+    "recipient_message": "Message",
+    "recipient_message_limit": "200 characters max",
+    "recipient_send_on": "Send on",
+    "recipient_send_on_info": "Leave empty to send the card as soon as the order is paid."
   },
   "cart": {
     "title": "Your cart",
@@ -324,6 +332,9 @@
     },
     "glaze-library": {
       "onboarding": "Add a glaze to this section to show it here."
+    },
+    "blog-posts": {
+      "onboarding": "Choose a blog with at least one published post to show it here."
     }
   }
 }

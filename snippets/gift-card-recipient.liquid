@@ -1,0 +1,114 @@
+{%- comment -%}
+  Gift card recipient fields.
+
+  A gift card bought for someone else has to be able to reach them. Shopify
+  carries that intent on the line item, as properties the checkout reads, so
+  these are ordinary form fields inside the product form rather than anything
+  the theme has to store or send itself.
+
+  The control flag is the part that is easy to get wrong. It is submitted
+  twice: once as a hidden input with the value `if_present`, and once as the
+  checkbox itself. When the checkbox is off, only the hidden input posts, and
+  Shopify reads `if_present` as "the shopper did not ask for this" and drops
+  the other properties. When it is on, the checkbox value wins. That is why
+  the hidden input must come first in source order and must not be removed.
+
+  After a validation failure Shopify re-renders the page with the submitted
+  values on the form object, so each field reads its own value back from
+  `form.email`, `form.name`, `form.message` and `form.send_on` rather than
+  emptying itself and making the shopper type it all again.
+
+  @param {object} product - the product being displayed; renders nothing unless it is a gift card
+  @param {string} id_suffix - unique per section, so ids stay unique when a product appears twice on a page
+{%- endcomment -%}
+{%- if product.gift_card? -%}
+  {%- liquid
+    assign flag = 'properties[__shopify_send_gift_card_to_recipient]'
+    assign suffix = id_suffix | default: product.id
+  -%}
+  <recipient-form class="recipient" data-recipient-form>
+    {%- comment -%} Order matters: this posts on its own when the box is unchecked. {%- endcomment -%}
+    <input type="hidden" name="{{ flag }}" value="if_present">
+
+    <div class="recipient__toggle">
+      <input
+        class="recipient__checkbox"
+        type="checkbox"
+        id="Recipient-checkbox-{{ suffix }}"
+        name="{{ flag }}"
+        value="on"
+        data-recipient-checkbox
+        aria-controls="Recipient-fields-{{ suffix }}"
+        aria-expanded="false"
+      >
+      <label class="recipient__label" for="Recipient-checkbox-{{ suffix }}">
+        {{ 'products.recipient_checkbox' | t }}
+      </label>
+    </div>
+
+    <div class="recipient__fields" id="Recipient-fields-{{ suffix }}" data-recipient-fields hidden>
+      <div class="field">
+        <label class="label" for="Recipient-email-{{ suffix }}">{{ 'products.recipient_email' | t }}</label>
+        <input
+          class="input"
+          type="email"
+          id="Recipient-email-{{ suffix }}"
+          name="properties[Recipient email]"
+          value="{{ form.email }}"
+          autocomplete="email"
+          placeholder="{{ 'products.recipient_email' | t | escape }}"
+        >
+      </div>
+
+      <div class="field">
+        <label class="label" for="Recipient-name-{{ suffix }}">{{ 'products.recipient_name' | t }}</label>
+        <input
+          class="input"
+          type="text"
+          id="Recipient-name-{{ suffix }}"
+          name="properties[Recipient name]"
+          value="{{ form.name }}"
+          autocomplete="name"
+        >
+      </div>
+
+      <div class="field">
+        <label class="label" for="Recipient-message-{{ suffix }}">{{ 'products.recipient_message' | t }}</label>
+        <textarea
+          class="textarea"
+          id="Recipient-message-{{ suffix }}"
+          name="properties[Message]"
+          rows="3"
+          maxlength="200"
+        >{{ form.message }}</textarea>
+        <p class="caption recipient__hint">{{ 'products.recipient_message_limit' | t }}</p>
+      </div>
+
+      <div class="field">
+        <label class="label" for="Recipient-send-on-{{ suffix }}">{{ 'products.recipient_send_on' | t }}</label>
+        <input
+          class="input"
+          type="date"
+          id="Recipient-send-on-{{ suffix }}"
+          name="properties[Send on]"
+          value="{{ form.send_on }}"
+        >
+        <p class="caption recipient__hint">{{ 'products.recipient_send_on_info' | t }}</p>
+      </div>
+
+      {%- comment -%}
+        Shopify needs the shopper's UTC offset to send on the date they picked
+        in their own timezone rather than the shop's. Filled in by the script.
+      {%- endcomment -%}
+      <input type="hidden" name="properties[__shopify_offset]" value="" data-recipient-offset>
+    </div>
+
+    {%- if form.errors -%}
+      <div class="recipient__errors form-status form-status--error" role="alert">
+        {%- for field in form.errors -%}
+          <p>{{ form.errors.messages[field] }}</p>
+        {%- endfor -%}
+      </div>
+    {%- endif -%}
+  </recipient-form>
+{%- endif -%}

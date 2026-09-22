@@ -8,9 +8,20 @@
 {%- liquid
   assign heading_font = settings.heading_font
   assign body_font = settings.body_font
+  comment
+    The font picker requirement is explicit: "The CSS file loads bold, italic,
+    and bold-italic variants for each font using the font_modify filter." Each
+    font, not just the body one -- a heading set in italic or bold previously
+    had no face to load and the browser synthesised it.
+  endcomment
   assign body_medium = body_font | font_modify: 'weight', '500'
   assign body_semibold = body_font | font_modify: 'weight', '600'
+  assign body_bold = body_font | font_modify: 'weight', 'bold'
   assign body_italic = body_font | font_modify: 'style', 'italic'
+  assign body_bold_italic = body_bold | font_modify: 'style', 'italic'
+  assign heading_bold = heading_font | font_modify: 'weight', 'bold'
+  assign heading_italic = heading_font | font_modify: 'style', 'italic'
+  assign heading_bold_italic = heading_bold | font_modify: 'style', 'italic'
   comment
     Clamp the heading weight into the editorial 300-400 range so a heavier
     font_picker choice can never break the austere identity.
@@ -27,12 +38,17 @@
 {% style %}
   {% if heading_font.family != blank %}
     {{ heading_font | font_face: font_display: 'swap' }}
+    {% if heading_bold %}{{ heading_bold | font_face: font_display: 'swap' }}{% endif %}
+    {% if heading_italic %}{{ heading_italic | font_face: font_display: 'swap' }}{% endif %}
+    {% if heading_bold_italic %}{{ heading_bold_italic | font_face: font_display: 'swap' }}{% endif %}
   {% endif %}
   {% if body_font.family != blank %}
     {{ body_font | font_face: font_display: 'swap' }}
     {% if body_medium %}{{ body_medium | font_face: font_display: 'swap' }}{% endif %}
     {% if body_semibold %}{{ body_semibold | font_face: font_display: 'swap' }}{% endif %}
+    {% if body_bold %}{{ body_bold | font_face: font_display: 'swap' }}{% endif %}
     {% if body_italic %}{{ body_italic | font_face: font_display: 'swap' }}{% endif %}
+    {% if body_bold_italic %}{{ body_bold_italic | font_face: font_display: 'swap' }}{% endif %}
   {% endif %}
 
   :root {

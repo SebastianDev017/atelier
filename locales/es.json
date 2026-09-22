@@ -98,13 +98,21 @@
     "share": "Compartir",
     "add_error": "Algo salió mal. Inténtalo de nuevo.",
     "available_colors": "Colores disponibles",
-    "pickup_check": "Consultar disponibilidad en tiendas cercanas",
+    "pickup_check": "Comprobar disponibilidad en otras tiendas",
     "pickup_none": "Ninguna tienda ofrece recogida para este artículo.",
     "quick_buy": "Compra rápida",
     "quick_buy_label": "Compra rápida: {{ title }}",
     "quick_buy_loading": "Cargando…",
     "quick_buy_error": "No se pudo cargar este producto.",
-    "view_full_details": "Ver todos los detalles del producto"
+    "view_full_details": "Ver todos los detalles del producto",
+    "pickup_one_location": "Ver información de la tienda",
+    "recipient_checkbox": "Quiero enviarlo como regalo",
+    "recipient_email": "Correo del destinatario",
+    "recipient_name": "Nombre del destinatario",
+    "recipient_message": "Mensaje",
+    "recipient_message_limit": "200 caracteres máx.",
+    "recipient_send_on": "Enviar el",
+    "recipient_send_on_info": "Déjalo vacío para enviar la tarjeta en cuanto se pague el pedido."
   },
   "cart": {
     "title": "Tu carrito",
@@ -324,6 +332,9 @@
     },
     "glaze-library": {
       "onboarding": "Agrega un esmalte a esta sección para mostrarlo aquí."
+    },
+    "blog-posts": {
+      "onboarding": "Elige un blog con al menos una entrada publicada para mostrarla aquí."
     }
   }
 }

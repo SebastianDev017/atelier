@@ -98,13 +98,21 @@
     "share": "Partager",
     "add_error": "Une erreur est survenue. Veuillez réessayer.",
     "available_colors": "Couleurs disponibles",
-    "pickup_check": "Vérifier la disponibilité en magasin",
+    "pickup_check": "Vérifier la disponibilité dans d’autres magasins",
     "pickup_none": "Aucun magasin ne propose le retrait pour cet article.",
     "quick_buy": "Achat rapide",
     "quick_buy_label": "Achat rapide : {{ title }}",
     "quick_buy_loading": "Chargement…",
     "quick_buy_error": "Impossible de charger ce produit.",
-    "view_full_details": "Voir tous les détails du produit"
+    "view_full_details": "Voir tous les détails du produit",
+    "pickup_one_location": "Voir les informations du magasin",
+    "recipient_checkbox": "Je souhaite l’envoyer en cadeau",
+    "recipient_email": "E-mail du destinataire",
+    "recipient_name": "Nom du destinataire",
+    "recipient_message": "Message",
+    "recipient_message_limit": "200 caractères max.",
+    "recipient_send_on": "Envoyer le",
+    "recipient_send_on_info": "Laissez vide pour envoyer la carte dès que la commande est payée."
   },
   "cart": {
     "title": "Votre panier",
@@ -324,6 +332,9 @@
     },
     "glaze-library": {
       "onboarding": "Ajoutez un émail à cette section pour l’afficher ici."
+    },
+    "blog-posts": {
+      "onboarding": "Choisissez un blog avec au moins un article publié pour l’afficher ici."
     }
   }
 }

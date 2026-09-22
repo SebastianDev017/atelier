@@ -1228,6 +1228,16 @@
         "padding_bottom": {
           "label": "Bottom padding"
         }
+      },
+      "blocks": {
+        "custom_liquid": {
+          "name": "Custom Liquid",
+          "settings": {
+            "custom_liquid": {
+              "label": "Liquid code"
+            }
+          }
+        }
       }
     },
     "finish-gallery": {
@@ -2290,7 +2300,7 @@
         },
         "enable_filtering": {
           "label": "Enable filtering",
-          "info": "Manage filters in Search & Discovery."
+          "info": "Manage filters in Search and Discovery."
         },
         "enable_sorting": {
           "label": "Enable sorting"
@@ -4611,6 +4621,77 @@
       "presets": {
         "name": "Glaze library"
       }
+    },
+    "blog-posts": {
+      "name": "Blog posts",
+      "settings": {
+        "eyebrow": {
+          "label": "Eyebrow"
+        },
+        "heading": {
+          "label": "Heading"
+        },
+        "heading_tag": {
+          "label": "Heading tag",
+          "options__1": {
+            "label": "Heading 2"
+          },
+          "options__2": {
+            "label": "Heading 3"
+          },
+          "options__3": {
+            "label": "Paragraph"
+          }
+        },
+        "blog": {
+          "label": "Blog"
+        },
+        "post_count": {
+          "label": "Posts to show"
+        },
+        "columns": {
+          "label": "Columns"
+        },
+        "image_ratio": {
+          "label": "Image ratio",
+          "options__1": {
+            "label": "Landscape"
+          },
+          "options__2": {
+            "label": "Square"
+          },
+          "options__3": {
+            "label": "Portrait"
+          }
+        },
+        "show_date": {
+          "label": "Show the date"
+        },
+        "show_excerpt": {
+          "label": "Show the excerpt"
+        },
+        "show_author": {
+          "label": "Show the author"
+        },
+        "show_view_all": {
+          "label": "Show a link to the blog"
+        },
+        "view_all_label": {
+          "label": "Link label"
+        },
+        "color_scheme": {
+          "label": "Color scheme"
+        },
+        "padding_top": {
+          "label": "Top padding"
+        },
+        "padding_bottom": {
+          "label": "Bottom padding"
+        }
+      },
+      "presets": {
+        "name": "Blog posts"
+      }
     }
   },
   "settings_schema": {
@@ -4920,7 +5001,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Shopify scales it down to 32 × 32 px."
+          "info": "Shopify scales it down to 32 x 32px."
         }
       }
     }

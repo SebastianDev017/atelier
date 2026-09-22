@@ -1228,6 +1228,16 @@
         "padding_bottom": {
           "label": "Abstand unten"
         }
+      },
+      "blocks": {
+        "custom_liquid": {
+          "name": "Custom Liquid",
+          "settings": {
+            "custom_liquid": {
+              "label": "Liquid-Code"
+            }
+          }
+        }
       }
     },
     "finish-gallery": {
@@ -2290,7 +2300,7 @@
         },
         "enable_filtering": {
           "label": "Filterung aktivieren",
-          "info": "Verwalten Sie Filter in Suche & Discovery."
+          "info": "Filter in Search and Discovery verwalten."
         },
         "enable_sorting": {
           "label": "Sortierung aktivieren"
@@ -4611,6 +4621,77 @@
       "presets": {
         "name": "Glasurbibliothek"
       }
+    },
+    "blog-posts": {
+      "name": "Blogbeiträge",
+      "settings": {
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "heading": {
+          "label": "Überschrift"
+        },
+        "heading_tag": {
+          "label": "Überschrift-Tag",
+          "options__1": {
+            "label": "Überschrift 2"
+          },
+          "options__2": {
+            "label": "Überschrift 3"
+          },
+          "options__3": {
+            "label": "Absatz"
+          }
+        },
+        "blog": {
+          "label": "Blog"
+        },
+        "post_count": {
+          "label": "Anzuzeigende Beiträge"
+        },
+        "columns": {
+          "label": "Spalten"
+        },
+        "image_ratio": {
+          "label": "Bildformat",
+          "options__1": {
+            "label": "Querformat"
+          },
+          "options__2": {
+            "label": "Quadratisch"
+          },
+          "options__3": {
+            "label": "Hochformat"
+          }
+        },
+        "show_date": {
+          "label": "Datum anzeigen"
+        },
+        "show_excerpt": {
+          "label": "Auszug anzeigen"
+        },
+        "show_author": {
+          "label": "Autor anzeigen"
+        },
+        "show_view_all": {
+          "label": "Link zum Blog anzeigen"
+        },
+        "view_all_label": {
+          "label": "Linktext"
+        },
+        "color_scheme": {
+          "label": "Farbschema"
+        },
+        "padding_top": {
+          "label": "Abstand oben"
+        },
+        "padding_bottom": {
+          "label": "Abstand unten"
+        }
+      },
+      "presets": {
+        "name": "Blogbeiträge"
+      }
     }
   },
   "settings_schema": {
@@ -4920,7 +5001,7 @@
         },
         "favicon": {
           "label": "Favicon",
-          "info": "Shopify verkleinert es auf 32 × 32 px."
+          "info": "Shopify verkleinert es auf 32 x 32px."
         }
       }
     }

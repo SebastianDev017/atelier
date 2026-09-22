@@ -36,10 +36,13 @@
           >
             <div class="media media--product">
               {%- liquid
-                assign collection_image = collection.image
-                if collection_image == blank and collection.products.first != blank
-                  assign collection_image = collection.products.first.featured_image
-                endif
+                # featured_image, not image: the Collection list page
+                # requirement names this property specifically, because it
+                # already falls back to the first product's featured image
+                # when the collection carries no image of its own. Doing that
+                # by hand worked, but it is not the object the rule names and
+                # it missed the case where the first product has no image.
+                assign collection_image = collection.featured_image
                 if forloop.first
                   assign img_loading = 'eager'
                   assign img_priority = 'high'
@@ -47,7 +50,7 @@
                   assign img_loading = 'lazy'
                   assign img_priority = 'auto'
                 endif
-                assign col_alt = collection.image.alt | default: collection.title | escape
+                assign col_alt = collection.featured_image.alt | default: collection.title | escape
               -%}
               {%- if collection_image != blank -%}
                 {{
