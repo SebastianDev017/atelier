@@ -2107,6 +2107,25 @@
     "main-article": {
       "name": "Articolo",
       "settings": {
+        "image_ratio": {
+          "label": "Forma dell'immagine in evidenza",
+          "info": "Originale mantiene le proporzioni di ogni articolo. Le forme fisse ritagliano tutti gli articoli.",
+          "options__1": {
+            "label": "Originale"
+          },
+          "options__2": {
+            "label": "Orizzontale"
+          },
+          "options__3": {
+            "label": "Panoramica"
+          },
+          "options__4": {
+            "label": "Quadrata"
+          },
+          "options__5": {
+            "label": "Verticale"
+          }
+        },
         "show_featured_image": {
           "label": "Mostra immagine in evidenza"
         },
@@ -2203,6 +2222,10 @@
           "options__2": {
             "label": "3"
           }
+        },
+        "show_tag_filter": {
+          "label": "Mostra filtro per argomento",
+          "info": "Collega ogni tag di questo blog a una vista filtrata, con un link «tutti» per tornare indietro."
         },
         "show_image": {
           "label": "Mostra immagine in evidenza"

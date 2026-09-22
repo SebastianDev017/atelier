@@ -41,7 +41,7 @@
     "social_pinterest_link": "",
     "social_tiktok_link": "",
     "social_youtube_link": "",
-    "logo": "shopify://shop_images/Captura_de_pantalla_2026-09-09_172802-Photoroom-Photoroom.png",
+    "logo": "",
     "logo_width": 320,
     "sections": {
       "search-palette": {
@@ -142,7 +142,7 @@
       "page_margin": 40,
       "section_spacing": 140,
       "header_height": 64,
-      "sidebar_width": 220,
+      "sidebar_width": 250,
       "input_corner_radius": 0,
       "card_show_secondary_image": true,
       "card_show_vendor": false,
@@ -234,8 +234,9 @@
     "Annex": {
       "heading_font": "libre_baskerville_n4",
       "body_font": "dm_sans_n4",
-      "heading_scale": 120,
-      "body_scale": 100,
+      "heading_scale": 90,
+      "body_scale": 80,
+      "h1_scale": 90,
       "uppercase_headings": true,
       "uppercase_nav": true,
       "uppercase_buttons": true,

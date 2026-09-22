@@ -47,6 +47,7 @@
             {%- assign label = block.settings.label -%}
             <span class="ovidx__frame{% if forloop.first %} is-active{% endif %}" data-ovidx-frame="{{ forloop.index0 }}">
               {%- if block.settings.image != blank -%}
+                {%- assign ovidx_alt = block.settings.image.alt | default: label -%}
                 {{
                   block.settings.image
                   | image_url: width: 1000
@@ -55,7 +56,7 @@
                     decoding: 'async',
                     widths: '300, 500, 700, 1000',
                     sizes: '(min-width: 750px) 34vw, 70vw',
-                    alt: block.settings.image.alt | default: label,
+                    alt: ovidx_alt,
                     class: 'ovidx__img'
                 }}
               {%- else -%}

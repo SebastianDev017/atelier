@@ -84,6 +84,7 @@
             <a class="finish__link" href="{{ fin_url }}">
               <span class="finish__media">
                 {%- if fin_media != blank -%}
+                  {%- assign finish_alt = fin_media.alt | default: value.name -%}
                   {{
                     fin_media
                     | image_url: width: 900
@@ -91,7 +92,7 @@
                       loading: 'lazy', decoding: 'async',
                       widths: '250, 400, 600, 900',
                       sizes: '(min-width: 990px) 24vw, 45vw',
-                      alt: fin_media.alt | default: value.name,
+                      alt: finish_alt,
                       class: 'finish__img'
                   }}
                 {%- elsif value.swatch.image != blank -%}

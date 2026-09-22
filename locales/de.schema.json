@@ -2107,6 +2107,25 @@
     "main-article": {
       "name": "Artikel",
       "settings": {
+        "image_ratio": {
+          "label": "Form des Beitragsbilds",
+          "info": "Original behält die Proportionen jedes Beitrags. Feste Formen beschneiden alle Beiträge gleich.",
+          "options__1": {
+            "label": "Original"
+          },
+          "options__2": {
+            "label": "Querformat"
+          },
+          "options__3": {
+            "label": "Breitbild"
+          },
+          "options__4": {
+            "label": "Quadratisch"
+          },
+          "options__5": {
+            "label": "Hochformat"
+          }
+        },
         "show_featured_image": {
           "label": "Vorgestelltes Bild anzeigen"
         },
@@ -2203,6 +2222,10 @@
           "options__2": {
             "label": "3"
           }
+        },
+        "show_tag_filter": {
+          "label": "Themenfilter anzeigen",
+          "info": "Verlinkt jedes Tag dieses Blogs mit einer gefilterten Ansicht, mit einem „Alle“-Link zurück."
         },
         "show_image": {
           "label": "Beitragsbild anzeigen"

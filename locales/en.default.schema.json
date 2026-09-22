@@ -2107,6 +2107,25 @@
     "main-article": {
       "name": "Article",
       "settings": {
+        "image_ratio": {
+          "label": "Featured image shape",
+          "info": "Original keeps each post's own proportions. The fixed shapes crop every post to match.",
+          "options__1": {
+            "label": "Original"
+          },
+          "options__2": {
+            "label": "Landscape"
+          },
+          "options__3": {
+            "label": "Wide"
+          },
+          "options__4": {
+            "label": "Square"
+          },
+          "options__5": {
+            "label": "Portrait"
+          }
+        },
         "show_featured_image": {
           "label": "Show featured image"
         },
@@ -2203,6 +2222,10 @@
           "options__2": {
             "label": "3"
           }
+        },
+        "show_tag_filter": {
+          "label": "Show topic filter",
+          "info": "Links every tag used on this blog to a filtered view, with an \"all\" link back."
         },
         "show_image": {
           "label": "Show featured image"
