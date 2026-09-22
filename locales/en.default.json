@@ -294,6 +294,9 @@
     "horizontal-scroll": {
       "previous": "Previous products",
       "next": "Next products"
+    },
+    "collection-showcase": {
+      "onboarding": "Add a collection to this section to show it here."
     }
   }
 }

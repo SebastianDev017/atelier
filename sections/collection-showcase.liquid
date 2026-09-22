@@ -1,0 +1,263 @@
+{%- comment -%}
+  Collection showcase — a list of collections on one side, the hovered one's
+  picture on the other.
+
+  The picture for a collection is resolved in this order:
+    1. the block's own image, when the merchant set one
+    2. the collection's featured image
+    3. the most recently created product in it
+    4. the first product in it
+    5. the onboarding placeholder
+
+  Step 3 sorts by `created_at` rather than trusting the collection's own order,
+  because a collection sorted alphabetically or by best-selling would otherwise
+  hand back whatever happens to sit first. One caveat the merchant cannot see:
+  outside a paginate tag Liquid exposes the first page of a collection, so in a
+  collection of more than fifty products "most recent" means most recent among
+  those. Steps 1 and 2 exist so that is never the only answer available.
+
+  Every frame is in the DOM from the start and swapping only changes which one
+  is visible, so hovering never waits on a network request. Without JavaScript
+  the first frame shows and every name is still a link to its collection.
+{%- endcomment -%}
+{%- liquid
+  assign scheme = section.settings.color_scheme.id | default: 'background-1'
+  assign heading_tag = section.settings.heading_tag | default: 'h2'
+  assign media_side = section.settings.media_position | default: 'left'
+-%}
+
+<style>
+  #shopify-section-{{ section.id }} {
+    --pt: {{ section.settings.padding_top }}px;
+    --pb: {{ section.settings.padding_bottom }}px;
+    --colshow-ratio: {% case section.settings.image_ratio %}{% when 'portrait' %}4 / 5{% when 'square' %}1 / 1{% else %}4 / 3{% endcase %};
+  }
+</style>
+
+<div class="colshow color-scheme--{{ scheme }}">
+  <div class="colshow__inner page-width colshow__inner--media-{{ media_side }}">
+    {%- if section.blocks.size > 0 -%}
+      <div class="colshow__media" data-colshow-media>
+        {%- for block in section.blocks -%}
+          {%- liquid
+            assign coll = block.settings.collection
+            assign label = block.settings.label | default: coll.title
+            assign img = block.settings.image
+            if img == blank
+              assign img = coll.image
+            endif
+            if img == blank and coll.products.size > 0
+              assign newest = coll.products | sort: 'created_at' | last
+              assign img = newest.featured_media.preview_image
+            endif
+            if img == blank and coll.products.size > 0
+              assign img = coll.products.first.featured_media.preview_image
+            endif
+          -%}
+          <a
+            class="colshow__frame{% if forloop.first %} is-active{% endif %}"
+            href="{{ coll.url | default: '#' }}"
+            data-colshow-frame="{{ forloop.index0 }}"
+            tabindex="-1"
+            aria-hidden="true"
+          >
+            {%- if img != blank -%}
+              {{
+                img
+                | image_url: width: 1400
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  widths: '400, 600, 800, 1000, 1200, 1400',
+                  sizes: '(min-width: 990px) 50vw, 100vw',
+                  alt: img.alt | default: label,
+                  class: 'colshow__img'
+              }}
+            {%- else -%}
+              {{ 'collection-1' | placeholder_svg_tag: 'colshow__img placeholder' }}
+            {%- endif -%}
+            <span class="colshow__overlay">
+              <span class="colshow__overlay-name">{{ label | escape }}</span>
+              {%- if section.settings.cta_label != blank -%}
+                <span class="colshow__overlay-cta link-underline">
+                  {{ section.settings.cta_label | escape }}
+                  {% render 'icon', name: 'arrow-right' %}
+                </span>
+              {%- endif -%}
+            </span>
+          </a>
+        {%- endfor -%}
+
+        {%- if section.blocks.size > 1 -%}
+          <div class="colshow__progress" aria-hidden="true">
+            {%- for block in section.blocks -%}
+              <span class="colshow__tick{% if forloop.first %} is-active{% endif %}" data-colshow-tick="{{ forloop.index0 }}"></span>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="colshow__list">
+        {%- if section.settings.eyebrow != blank -%}
+          <p class="eyebrow" data-animate>{{ section.settings.eyebrow | escape }}</p>
+        {%- endif -%}
+        {%- if section.settings.heading != blank -%}
+          <{{ heading_tag }} class="section-heading heading--md colshow__heading" data-animate>
+            {{ section.settings.heading | escape }}
+          </{{ heading_tag }}>
+        {%- endif -%}
+
+        <ul class="colshow__names" data-colshow-names>
+          {%- for block in section.blocks -%}
+            {%- liquid
+              assign coll = block.settings.collection
+              assign label = block.settings.label | default: coll.title
+            -%}
+            <li class="colshow__item" {{ block.shopify_attributes }}>
+              <a
+                class="colshow__name{% if forloop.first %} is-active{% endif %}"
+                href="{{ coll.url | default: '#' }}"
+                data-colshow-name="{{ forloop.index0 }}"
+                data-animate
+                data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}"
+              >
+                <span class="colshow__name-text">{{ label | escape }}</span>
+                {%- if section.settings.show_count and coll != blank -%}
+                  {%- liquid
+                    assign n = coll.all_products_count
+                    assign n_padded = n
+                    if n < 10
+                      assign n_padded = n | prepend: "0"
+                    endif
+                  -%}
+                  <sup class="colshow__count">{{ n_padded }}</sup>
+                {%- endif -%}
+              </a>
+            </li>
+          {%- endfor -%}
+        </ul>
+      </div>
+    {%- else -%}
+      <div class="colshow__list">
+        <p class="caption">{{ 'sections.collection-showcase.onboarding' | t }}</p>
+      </div>
+    {%- endif -%}
+  </div>
+</div>
+
+{% stylesheet %}
+  .colshow { padding-block: var(--pt, 96px) var(--pb, 96px); }
+  .colshow__inner { display: grid; gap: clamp(2rem, 5vw, 5rem); align-items: center; }
+
+  .colshow__media { position: relative; aspect-ratio: var(--colshow-ratio, 4 / 3); overflow: hidden; background-color: var(--color-subtle); }
+  /* Every frame is stacked and present from the start: swapping changes which
+     one is visible, never what has been downloaded. */
+  .colshow__frame { position: absolute; inset: 0; display: block; opacity: 0; visibility: hidden; transition: opacity var(--duration-base, 0.4s) var(--ease-editorial); }
+  .colshow__frame.is-active { opacity: 1; visibility: visible; }
+  .colshow__img { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+  /* A plate, not a wash. The name takes the scheme's own ink on the scheme's
+     own ground, so it is legible over any photograph the merchant loads, and
+     the picture above it is not dimmed to make room for the words. */
+  .colshow__overlay { position: absolute; inset-inline: 0; bottom: 0; display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: var(--space-2) var(--space-4); padding: var(--space-4) var(--space-5); background-color: var(--color-bg); color: var(--color-text); }
+  /* A scrim rather than a flat tint: the name sits on photographs of every
+     brightness, and a gradient keeps it legible without greying the picture. */
+  .colshow__overlay-name { color: var(--color-heading, var(--color-text)); }
+  .colshow__overlay-name { font-family: var(--font-heading); font-size: var(--text-xl); line-height: 1.1; }
+  .colshow__overlay-cta { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); display: inline-flex; align-items: center; gap: 0.4rem; }
+  .colshow__overlay-cta .icon { width: 12px; height: 12px; }
+
+  .colshow__progress { position: absolute; inset-inline: 0; top: var(--space-3); display: flex; justify-content: center; gap: 6px; z-index: 1; }
+  .colshow__tick { width: 22px; height: 2px; background-color: rgb(255 255 255 / 0.55); box-shadow: 0 0 0 1px rgb(0 0 0 / 0.12); transition: background-color var(--duration-fast) var(--ease-editorial); }
+  .colshow__tick.is-active { background-color: rgb(255 255 255 / 1); }
+
+  .colshow__list { display: flex; flex-direction: column; gap: var(--space-3); }
+  .colshow__heading { margin-bottom: var(--space-2); }
+  .colshow__names { display: flex; flex-direction: column; gap: clamp(0.2rem, 1vw, 0.6rem); }
+  .colshow__name {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.5rem;
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 3.4rem);
+    line-height: 1.18;
+    color: var(--color-muted);
+    text-decoration: none;
+    transition: color var(--duration-fast) var(--ease-editorial);
+  }
+  /* The active name is the one whose picture is showing, so it takes the full
+     ink and a rule under it — two signals, neither of them colour alone. */
+  .colshow__name.is-active { color: var(--color-heading, var(--color-text)); text-decoration: underline; text-underline-offset: 0.12em; text-decoration-thickness: 1px; }
+  .colshow__name:focus-visible { outline: 2px solid var(--color-text); outline-offset: 4px; }
+  .colshow__count { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-muted); letter-spacing: var(--tracking-label); }
+
+  @media (min-width: 990px) {
+    .colshow__inner { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+    .colshow__inner--media-right .colshow__media { order: 2; }
+  }
+  @media (max-width: 989px) {
+    .colshow__overlay { padding: var(--space-3) var(--space-4); }
+    .colshow__overlay-name { font-size: var(--text-lg); }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:sections.collection-showcase.name",
+  "tag": "section",
+  "class": "shopify-section",
+  "max_blocks": 8,
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "t:sections.collection-showcase.settings.eyebrow.label", "default": "Get the look" },
+    { "type": "text", "id": "heading", "label": "t:sections.collection-showcase.settings.heading.label" },
+    {
+      "type": "select", "id": "heading_tag", "label": "t:sections.collection-showcase.settings.heading_tag.label",
+      "options": [
+        { "value": "h2", "label": "t:sections.collection-showcase.settings.heading_tag.options__1.label" },
+        { "value": "h3", "label": "t:sections.collection-showcase.settings.heading_tag.options__2.label" },
+        { "value": "p", "label": "t:sections.collection-showcase.settings.heading_tag.options__3.label" }
+      ],
+      "default": "h2"
+    },
+    {
+      "type": "select", "id": "media_position", "label": "t:sections.collection-showcase.settings.media_position.label",
+      "options": [
+        { "value": "left", "label": "t:sections.collection-showcase.settings.media_position.options__1.label" },
+        { "value": "right", "label": "t:sections.collection-showcase.settings.media_position.options__2.label" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select", "id": "image_ratio", "label": "t:sections.collection-showcase.settings.image_ratio.label",
+      "options": [
+        { "value": "landscape", "label": "t:sections.collection-showcase.settings.image_ratio.options__1.label" },
+        { "value": "square", "label": "t:sections.collection-showcase.settings.image_ratio.options__2.label" },
+        { "value": "portrait", "label": "t:sections.collection-showcase.settings.image_ratio.options__3.label" }
+      ],
+      "default": "landscape"
+    },
+    { "type": "text", "id": "cta_label", "label": "t:sections.collection-showcase.settings.cta_label.label", "default": "Shop collection" },
+    { "type": "checkbox", "id": "show_count", "label": "t:sections.collection-showcase.settings.show_count.label", "default": true },
+    { "type": "color_scheme", "id": "color_scheme", "label": "t:sections.collection-showcase.settings.color_scheme.label", "default": "background-1" },
+    { "type": "range", "id": "padding_top", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.collection-showcase.settings.padding_top.label", "default": 96 },
+    { "type": "range", "id": "padding_bottom", "min": 0, "max": 200, "step": 4, "unit": "px", "label": "t:sections.collection-showcase.settings.padding_bottom.label", "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "collection",
+      "name": "t:sections.collection-showcase.blocks.collection.name",
+      "settings": [
+        { "type": "collection", "id": "collection", "label": "t:sections.collection-showcase.blocks.collection.settings.collection.label" },
+        { "type": "text", "id": "label", "label": "t:sections.collection-showcase.blocks.collection.settings.label.label", "info": "t:sections.collection-showcase.blocks.collection.settings.label.info" },
+        { "type": "image_picker", "id": "image", "label": "t:sections.collection-showcase.blocks.collection.settings.image.label", "info": "t:sections.collection-showcase.blocks.collection.settings.image.info" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:sections.collection-showcase.presets.name",
+      "blocks": [{ "type": "collection" }, { "type": "collection" }, { "type": "collection" }]
+    }
+  ]
+}
+{% endschema %}

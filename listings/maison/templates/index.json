@@ -22,7 +22,7 @@
         "eyebrow": "Small-batch ceramics",
         "heading": "Made by hand,\nfired in small batches",
         "heading_tag": "h1",
-        "heading_size": "display",
+        "heading_size": "xl",
         "subtext": "<p>Wheel-thrown tableware, vases and teaware in food-safe glazes, made in our studio.</p>",
         "show_trust_bar": true,
         "trust_line": "",
@@ -33,7 +33,7 @@
         "cta_secondary_url": "/collections/vases-vessels",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 0,
         "padding_bottom": 0
       }

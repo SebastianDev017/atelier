@@ -3036,6 +3036,19 @@
         },
         "padding_bottom": {
           "label": "Spaziatura inferiore"
+        },
+        "marker_alignment": {
+          "label": "Allineamento del numero di passaggio",
+          "info": "Dove si colloca il numero sopra il suo titolo. Su telefono i numeri scorrono lungo una guida e mantengono la loro colonna.",
+          "options__1": {
+            "label": "Sinistra"
+          },
+          "options__2": {
+            "label": "Centro"
+          },
+          "options__3": {
+            "label": "Destra"
+          }
         }
       },
       "blocks": {
@@ -3962,6 +3975,86 @@
       },
       "presets": {
         "name": "Confronto a parete"
+      }
+    },
+    "collection-showcase": {
+      "name": "Vetrina delle collezioni",
+      "settings": {
+        "eyebrow": {
+          "label": "Occhiello"
+        },
+        "heading": {
+          "label": "Titolo"
+        },
+        "heading_tag": {
+          "label": "Tag del titolo",
+          "options__1": {
+            "label": "Titolo 2"
+          },
+          "options__2": {
+            "label": "Titolo 3"
+          },
+          "options__3": {
+            "label": "Paragrafo"
+          }
+        },
+        "media_position": {
+          "label": "Posizione dell'immagine",
+          "options__1": {
+            "label": "Sinistra"
+          },
+          "options__2": {
+            "label": "Destra"
+          }
+        },
+        "image_ratio": {
+          "label": "Proporzioni dell'immagine",
+          "options__1": {
+            "label": "Orizzontale"
+          },
+          "options__2": {
+            "label": "Quadrata"
+          },
+          "options__3": {
+            "label": "Verticale"
+          }
+        },
+        "cta_label": {
+          "label": "Testo del pulsante"
+        },
+        "show_count": {
+          "label": "Mostra il numero di prodotti"
+        },
+        "color_scheme": {
+          "label": "Combinazione di colori"
+        },
+        "padding_top": {
+          "label": "Spaziatura superiore"
+        },
+        "padding_bottom": {
+          "label": "Spaziatura inferiore"
+        }
+      },
+      "blocks": {
+        "collection": {
+          "name": "Collezione",
+          "settings": {
+            "collection": {
+              "label": "Collezione"
+            },
+            "label": {
+              "label": "Nome alternativo",
+              "info": "Lascia vuoto per usare il titolo della collezione."
+            },
+            "image": {
+              "label": "Immagine",
+              "info": "Lascia vuoto per usare l'immagine della collezione e poi il suo prodotto più recente."
+            }
+          }
+        }
+      },
+      "presets": {
+        "name": "Vetrina delle collezioni"
       }
     }
   },
