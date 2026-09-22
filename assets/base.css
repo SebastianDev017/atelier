@@ -223,7 +223,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: var(--font-heading-weight);
   line-height: var(--leading-tight);
   letter-spacing: var(--heading-letter-spacing, var(--tracking-tight));
-  text-transform: var(--uppercase-headings);
+  /* text-transform is NOT set here: uppercase is a display-tier decision and
+     is applied in css-variables.liquid, only when the setting is on. */
   color: var(--color-heading, #2C1810);
 }
 .h0 { font-size: calc(var(--text-6xl) * var(--heading-scale) * var(--h1-scale, 1)); letter-spacing: var(--heading-letter-spacing, -0.02em); }
