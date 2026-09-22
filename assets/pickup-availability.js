@@ -81,6 +81,16 @@
         if (self.body) {
           self.body.innerHTML = incoming.outerHTML;
           self.loadedVariant = variantId;
+          /* One store is not a list to choose from, it is an address, and the
+             label says so. Anything else keeps the plural phrasing. */
+          var label = self.querySelector('[data-pickup-label]');
+          if (label) {
+            var count = incoming.querySelectorAll('.pickup__store').length;
+            var one = self.dataset.oneLocationText;
+            var many = self.dataset.checkText;
+            if (count === 1 && one) label.textContent = one;
+            else if (many) label.textContent = many;
+          }
         }
       })
       .catch(function () {

@@ -206,6 +206,12 @@
                       {% unless selected_variant.available %}disabled{% endunless %}
                     >
 
+                    {%- comment -%}
+                      A gift card has to be able to reach the person it is for.
+                      Renders nothing for every other product.
+                    {%- endcomment -%}
+                    {% render 'gift-card-recipient', product: product, id_suffix: section.id %}
+
                     <div class="product__purchase">
                       {%- if block.settings.show_quantity -%}
                         <div class="product__quantity">
@@ -409,6 +415,9 @@
 </product-info>
 
 <script src="{{ 'product.js' | asset_url }}" defer></script>
+{%- if product.gift_card? -%}
+  <script src="{{ 'recipient-form.js' | asset_url }}" defer="defer"></script>
+{%- endif -%}
 
 {% stylesheet %}
   /* Section padding: the merchant's padding_top/bottom arrive as --pt/--pb set
@@ -515,6 +524,15 @@
     border-right: 1px solid var(--color-border);
   }
   .product-form__error { color: var(--color-sale); font-size: var(--text-sm); margin-top: var(--space-2); }
+
+  /* Gift card recipient */
+  .recipient { display: block; margin-bottom: var(--space-5); }
+  .recipient__toggle { display: flex; align-items: center; gap: var(--space-3); min-height: 24px; }
+  .recipient__checkbox { width: 18px; height: 18px; flex: none; accent-color: var(--color-text); }
+  .recipient__label { cursor: pointer; font-size: var(--text-sm); }
+  .recipient__fields { display: grid; gap: var(--space-4); margin-top: var(--space-4); }
+  .recipient__hint { margin-top: var(--space-1); }
+  .recipient__errors { margin-top: var(--space-3); }
   .shopify-payment-button { margin-top: var(--space-2); }
   /* Match the dynamic-checkout ("Buy it now") button to the editorial Add-to-cart
      button: espresso fill, zero radius, uppercase 11px mono label (the theme's
