@@ -1876,6 +1876,12 @@
         },
         "padding_bottom": {
           "label": "Abstand unten"
+        },
+        "eyebrow": {
+          "label": "Kleine Überschrift"
+        },
+        "subtext": {
+          "label": "Unterzeile"
         }
       },
       "presets": {
