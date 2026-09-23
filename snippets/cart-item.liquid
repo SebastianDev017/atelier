@@ -24,8 +24,15 @@
     <div class="cart-item__row">
       <div class="cart-item__heading">
         <a class="cart-item__title" href="{{ item.url }}">{{ item.product.title | escape }}</a>
+        {%- comment -%}
+          options_with_values, not variant.title: the title is one joined string
+          ("Blue / Large"), while this names each option and its value, which is
+          what a cart line is required to show.
+        {%- endcomment -%}
         {%- unless item.product.has_only_default_variant -%}
-          <p class="cart-item__variant">{{ item.variant.title | escape }}</p>
+          {%- for cart_option in item.options_with_values -%}
+            <p class="cart-item__variant">{{ cart_option.name | escape }}: {{ cart_option.value | escape }}</p>
+          {%- endfor -%}
         {%- endunless -%}
         {%- if item.selling_plan_allocation -%}
           <p class="cart-item__variant">{{ item.selling_plan_allocation.selling_plan.name | escape }}</p>

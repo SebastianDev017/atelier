@@ -391,6 +391,32 @@ h1, h2, h3, h4, h5, h6 {
   [dir="rtl"] .sidebar.header--menu-open .sidebar__panel { transform: translateX(0); }
 }
 
+/* ---------- Long merchant text ---------- */
+/* Cross-component: every title carrying text a merchant or a customer typed,
+   in a box narrow enough for one unbroken word to escape. It belongs to no
+   single component, so it stays here rather than moving with the card. */
+/* B1 -- merchant names can hold an unbreakable word: a long product name, a
+   German compound, a SKU-like handle. main-product.liquid already set this on
+   the PDP title; product cards and the featured product never did, so a 30-char
+   word spilled up to 75px out of its card on every template and was sliced off
+   at the viewport edge (site-main clips, so it cut rather than scrolled).
+   break-word, not anywhere: it only breaks a word that genuinely cannot fit, and
+   it leaves min-content sizing alone, so no grid track or flex row around these
+   titles can start squeezing ordinary words mid-word. */
+.product-card__title,
+.product-card__vendor,
+.fp__title,
+.fp__vendor,
+/* Collection names are merchant text in narrow boxes too. collection-banner's
+   title is capped at 20ch and its media variant clips at overflow:hidden, so a
+   long unbroken name was cut rather than wrapped; the two collection-list
+   surfaces had no protection at all. */
+.collection-card__title,
+.list-collections__name,
+.main-page__title,
+.cart-item__title,
+.cart-item__variant { overflow-wrap: break-word; }
+
 /* ---------- Layout ---------- */
 /* Inner content gutter. Responsive clamp keeps content off the sidebar
    divider on desktop without crushing small screens. .page-width and
@@ -778,70 +804,6 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
 .placeholder { color: color-mix(in srgb, var(--color-text) 12%, transparent); }
 .placeholder svg { width: 100%; height: 100%; }
 
-/* ---------- Badges ---------- */
-.product-card__badges {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  z-index: 3;
-  display: flex;
-  flex-direction: column;
-  gap: 0.35rem;
-  pointer-events: none;
-}
-
-/* A long badge ("Only 5 left") ran under the 40px quick-buy button in the
-   opposite corner and lost its last word. Reserve the button's column so the
-   badge wraps instead; cards without the button keep the full width. */
-.product-card__media:has(.product-card__actions) .product-card__badges {
-  max-width: calc(100% - 2rem - 40px - 0.75rem);
-}
-/* nowrap on .badge was cancelling the wrap the max-width above exists to
-   cause, so at two columns "Only 2 left" was clipped mid-word rather than
-   taking a second line. Scoped to the card: the gift card's badge keeps
-   nowrap. */
-.product-card__badges .badge {
-  max-width: 100%;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  text-align: start;
-}
-
-
-.badge {
-  display: inline-block;
-  font-family: var(--font-sans, sans-serif);
-  /* Was 9px -- the only element in the theme under the 11px hard floor, and it
-     carries SALE / SOLD OUT, which a shopper has to be able to read. 11px with
-     the existing 700 weight and 0.18em tracking stays a badge, not a label. */
-  font-size: 11px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  padding: 4px 8px;
-  border-radius: 0;
-  line-height: 1;
-  white-space: nowrap;
-}
-
-.badge--sale {
-  background-color: var(--color-text, #2C1810);
-  color: var(--color-bg, #FAF7F2);
-}
-
-.badge--stock {
-  background-color: var(--color-bg, #FAF7F2);
-  color: var(--color-text, #2C1810);
-  border: 1px solid var(--color-text, #2C1810);
-}
-
-.badge--sold-out {
-  background-color: var(--color-muted, #A0826D);
-  color: var(--color-bg, #FAF7F2);
-}
-
-/* Dark-ground badge inversion is generated per scheme in css-variables.liquid. */
-
 /* ---------- Product grid ---------- */
 .product-grid {
   display: grid;
@@ -861,310 +823,6 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
    the bottom. Scoped with :has(.product-card) so collection-list / blog grids stay untouched. */
 .product-grid:has(.product-card) { align-items: stretch; }
 .product-grid:has(.product-card) > * { display: flex; flex-direction: column; }
-
-/* ---------- Product card ---------- */
-.product-card { position: relative; display: flex; flex-direction: column; height: 100%; }
-.product-card__media {
-  position: relative;
-  display: block;
-  overflow: hidden;
-  aspect-ratio: var(--ratio-product);
-  background-color: var(--color-media);
-}
-/* Pan wrapper — slightly larger than the media so GSAP cursor-pan (initCursorPan)
-   can translate the images a few px without exposing the media background. The
-   scale-on-hover transforms live on the images inside, so translate (here) and
-   scale (images) never fight over the same element's transform. */
-.product-card__pan {
-  position: absolute;
-  top: -3%;
-  left: -3%;
-  width: 106%;
-  height: 106%;
-  will-change: transform;
-}
-.product-card__image {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: opacity var(--duration-slow) var(--ease-editorial),
-              transform var(--duration-slower) var(--ease-editorial);
-}
-/* Hover image: present only when the product has a 2nd image (see product-card.liquid).
-   The :has() guards mean a single-image card never fades its primary out — no blank flash. */
-.product-card__hover-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  opacity: 0;
-  transform: scale(1.03);
-  /* Match the primary image's tokens so the cross-fade stays in sync (no bg flash). */
-  transition: opacity var(--duration-slow) var(--ease-editorial),
-              transform var(--duration-slower) var(--ease-editorial);
-  pointer-events: none;
-}
-.product-card:has(.product-card__hover-img):hover .product-card__hover-img {
-  opacity: 1;
-  transform: scale(1);
-}
-.product-card:has(.product-card__hover-img):hover .product-card__primary-img {
-  opacity: 0;
-}
-.product-card:not(:has(.product-card__hover-img)) .product-card__primary-img {
-  opacity: 1 !important;
-}
-/* Global toggle (theme setting) can still disable the swap. */
-body[data-hover-swap="false"] .product-card:has(.product-card__hover-img):hover .product-card__hover-img { opacity: 0; transform: scale(1.03); }
-body[data-hover-swap="false"] .product-card:has(.product-card__hover-img):hover .product-card__primary-img { opacity: 1; }
-.product-card:hover .product-card__image--only { transform: scale(1.04); }
-/* Phase 9: single-image cards (no hover swap) gently zoom on hover. */
-.product-card:not(:has(.product-card__hover-img)):hover .product-card__primary-img { transform: scale(1.04); }
-
-/* Editorial media hover — gentle scale (product-card images handled above). */
-.gallery__item img,
-.split-media__media img,
-.image-with-text__media img {
-  transition: transform 0.7s cubic-bezier(0.25, 0.1, 0, 1);
-}
-.gallery__item:hover img,
-.split-media__media:hover img,
-.image-with-text__media:hover img { transform: scale(1.04); }
-
-/* Footer links fade on hover. */
-footer a { transition: opacity var(--duration-fast) var(--ease-editorial); }
-footer a:hover { opacity: 0.6; }
-.product-card__quick { display: block; width: 100%; z-index: var(--z-raised); }
-/* The multi-variant quick-add is an <a> that also carries .btn. .product-card__quick's
-   display:block was overriding .btn's flex, so the label top-aligned (min-height) and
-   leaned on text-align alone. Restore the button's own flex centering. The single-variant
-   case keeps the product-form wrapper as a block, so its inner full-width button is
-   unaffected. No padding/letter-spacing/text-indent changes. */
-a.product-card__quick { display: flex; align-items: center; justify-content: center; }
-
-/* Hover mode: quick-add centered in a thin overlay revealed on hover/focus. */
-.product-card__overlay {
-  position: absolute;
-  inset: 0;
-  z-index: var(--z-raised);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--space-4);
-  background-color: color-mix(in srgb, var(--color-text) 16%, transparent);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity var(--duration-base) var(--ease-editorial);
-}
-.product-card--atc-hover:hover .product-card__overlay,
-.product-card--atc-hover:focus-within .product-card__overlay { opacity: 1; }
-/* The overlay tint stays click-through so the whole-card link (.product-card__title
-   a::after) works under it. The quick-add button captures clicks ONLY while the card
-   is hovered / keyboard-focused — at rest it must NOT intercept center-of-image
-   clicks (that would swallow navigation, or add single-variant products to cart). */
-.product-card__overlay .product-card__quick,
-.product-card__overlay product-form,
-.product-card__overlay .btn { pointer-events: none; }
-.product-card--atc-hover:hover .product-card__overlay .product-card__quick,
-.product-card--atc-hover:hover .product-card__overlay product-form,
-.product-card--atc-hover:hover .product-card__overlay .btn,
-.product-card--atc-hover:focus-within .product-card__overlay .product-card__quick,
-.product-card--atc-hover:focus-within .product-card__overlay product-form,
-.product-card--atc-hover:focus-within .product-card__overlay .btn { pointer-events: auto; }
-.product-card__overlay .product-card__quick,
-.product-card__overlay .btn { width: auto; min-width: min(9rem, 100%); }
-
-
-/* Whole-card click target (snippets/product-card.liquid). A real anchor filling the
-   card — the title's stretched ::after can't be used because the blur-reveal's
-   will-change:filter on the h3 title makes it a containing block (so the ::after
-   only covers the heading). The title link + quick-add sit above this via z-index;
-   cursor-pan resolves the pan via the card, not e.target. */
-.product-card__link { position: absolute; inset: 0; z-index: 1; }
-/* Card titles are excluded from blur-reveal (gsap-animations.js), so drop the
-   will-change the heading baseline would otherwise leave on every card title
-   (it also created a containing block that broke the title's stretched ::after). */
-.js .shopify-section .product-card__title { will-change: auto; }
-
-/* Always mode: full-width button below the info (above the card click overlay). */
-.product-card--atc-always .product-card__quick {
-  position: relative;
-  z-index: 2;
-  margin-top: var(--space-3);
-  opacity: 1;
-  transform: none;
-}
-.product-card__info { display: flex; flex-direction: column; flex: 1 1 auto; gap: var(--space-1); padding-top: var(--space-4); }
-.product-card__edition { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
-/* ---------- Local pickup availability ----------
-   Shared between snippets/pickup-availability.liquid (the disclosure on the PDP)
-   and sections/pickup-availability.liquid (the Section Rendering target that
-   fills it), so these rules have to be global rather than section-scoped. */
-.pickup { display: block; margin-top: var(--space-4); }
-.pickup__details { border-top: 1px solid var(--color-border); }
-.pickup__summary { display: flex; align-items: center; gap: var(--space-2); min-height: 44px; cursor: pointer; font-size: var(--text-sm); list-style: none; }
-.pickup__summary::-webkit-details-marker { display: none; }
-/* H1 -- a <summary> is a control; it needs to answer the pointer. The label
-   underlines rather than recolouring: the accent is under AA on the light
-   schemes, and the underline goes on the span so it cannot run under the
-   two icons this flex row also holds. */
-.pickup__summary:hover span { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
-.pickup__summary .icon:last-child { margin-inline-start: auto; transition: transform var(--duration-fast) var(--ease-editorial); }
-.pickup__details[open] .pickup__summary .icon:last-child { transform: rotate(180deg); }
-.pickup__body { padding-bottom: var(--space-4); }
-.pickup__list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: var(--space-3); }
-.pickup__store-name { font-weight: 500; margin: 0; }
-.pickup__store-status { margin: 0; font-size: var(--text-sm); }
-.pickup__store-status--out { color: var(--color-muted); }
-.pickup__store-address { font-style: normal; color: var(--color-muted); margin: 0.25rem 0 0; }
-
-/* Colour swatches on product cards (and the recently-viewed panel): each one
-   is a link to that colour's variant. 24px targets (WCAG 2.5.8) around the
-   14px dot; they sit above the whole-card link (z-index 1). Hover or focus
-   previews the variant image (assets/product-card.js). */
-.product-card__swatches { position: relative; z-index: 2; display: flex; flex-wrap: wrap; gap: 2px; margin-top: 0.125rem; margin-inline-start: -5px; }
-.product-card__swatch {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  outline: none;
-}
-.product-card__swatches .swatch {
-  display: block;
-  width: 14px;
-  height: 14px;
-  border-radius: 50%;
-  border: 1px solid var(--color-border-strong);
-  background-size: cover;
-  background-position: center;
-  transition: box-shadow var(--duration-fast) var(--ease-editorial);
-}
-/* The ring doubles as the focus indicator: 2px of ground, then 1px of ink. */
-.product-card__swatch:hover .swatch,
-.product-card__swatch:focus-visible .swatch,
-.product-card__swatch.is-active .swatch { box-shadow: 0 0 0 2px var(--color-bg), 0 0 0 3px var(--color-text); }
-/* While a swatch previews its variant, the card shows that image -- not the
-   second product image the hover swap would otherwise fade in. Same
-   specificity as the swap rules above, later in the file, so it wins. */
-.product-card.is-swatch-preview:has(.product-card__hover-img):hover .product-card__hover-img { opacity: 0; }
-.product-card.is-swatch-preview:has(.product-card__hover-img):hover .product-card__primary-img { opacity: 1; }
-
-/* Quick buy, top-right of the card image, above the quick-add overlay. Shown
-   on hover / keyboard focus where the device can hover, always on touch. */
-.product-card__actions {
-  position: absolute;
-  top: 0.75rem;
-  right: 0.75rem;
-  z-index: calc(var(--z-raised) + 1);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-}
-.product-card__action {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  padding: 0;
-  border: 1px solid var(--color-border-strong);
-  background-color: var(--color-bg);
-  color: var(--color-text);
-  cursor: pointer;
-  transition: opacity var(--duration-fast) var(--ease-editorial), background-color var(--duration-fast) var(--ease-editorial), color var(--duration-fast) var(--ease-editorial);
-}
-.product-card__action .icon { width: 18px; height: 18px; }
-.product-card__action:hover { background-color: var(--color-text); color: var(--color-bg); }
-.product-card__action:focus-visible { outline: 2px solid var(--color-text); outline-offset: 2px; }
-@media (hover: hover) {
-  .product-card__action { opacity: 0; }
-  .product-card:hover .product-card__action,
-  .product-card:focus-within .product-card__action { opacity: 1; }
-}
-.product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
-.product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
-.product-card__title a { display: inline; position: relative; z-index: 2; }
-/* B1 -- merchant names can hold an unbreakable word: a long product name, a
-   German compound, a SKU-like handle. main-product.liquid already set this on
-   the PDP title; product cards and the featured product never did, so a 30-char
-   word spilled up to 75px out of its card on every template and was sliced off
-   at the viewport edge (site-main clips, so it cut rather than scrolled).
-   break-word, not anywhere: it only breaks a word that genuinely cannot fit, and
-   it leaves min-content sizing alone, so no grid track or flex row around these
-   titles can start squeezing ordinary words mid-word. */
-.product-card__title,
-.product-card__vendor,
-.fp__title,
-.fp__vendor,
-/* Collection names are merchant text in narrow boxes too. collection-banner's
-   title is capped at 20ch and its media variant clips at overflow:hidden, so a
-   long unbroken name was cut rather than wrapped; the two collection-list
-   surfaces had no protection at all. */
-.collection-card__title,
-.list-collections__name,
-.main-page__title { overflow-wrap: break-word; }
-.product-card__info .price { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.02em; }
-/* QW3 -- on phones the card price is information the shopper acts on, not an
-   editorial label: 13px -> 14px there. (The 12px mono labels -- vendor,
-   badges, breadcrumbs -- stay as they are, deliberately.) */
-@media (max-width: 767px) {
-  .product-card__info .price { font-size: max(var(--text-sm), 14px); }
-}
-.product-card__info .price__unit { font-family: var(--font-mono); font-size: var(--text-xs); }
-.product-card__rating { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font-size: var(--text-sm); }
-
-/* Also below the grid's own breakpoint, not just on a pointer that cannot
-   hover. At two columns the centred pill is 144px of a 165px card: the label
-   wraps and it crowds the badges. Everything this block already does for touch
-   -- bottom-anchored, untinted, filled so it reads over the photo -- is the
-   right answer there too. */
-@media (hover: none), (max-width: 749px) {
-  .product-card--atc-hover .product-card__quick { opacity: 1; transform: none; }
-  /* No hover on touch — the quick-add is always shown, so keep it tappable. */
-  .product-card--atc-hover .product-card__overlay .product-card__quick,
-  .product-card--atc-hover .product-card__overlay product-form,
-  .product-card--atc-hover .product-card__overlay .btn { pointer-events: auto; }
-  /* HIGH2 -- "always shown" was only half true: the button got opacity 1 but
-     its OVERLAY stayed at opacity 0, and opacity multiplies -- an invisible,
-     tappable button over the middle of every hover-mode card image (the
-     Related section). For a single-variant product that tap added to cart
-     with nothing on screen. On touch the overlay is now visible, untinted
-     (a permanent tint would dim every photo), and the button sits at the
-     image's bottom edge. The overlay stays pointer-events: none, so the only
-     tap target is the button a shopper can see; the rest of the image still
-     opens the product. */
-  .product-card--atc-hover .product-card__overlay {
-    opacity: 1;
-    background-color: transparent;
-    align-items: flex-end;
-    padding: var(--space-2);
-  }
-  /* "Choose options" wants about 120px of text. The button's default 1.3em
-     sides leave it 118px in a two-column card, so the label dropped onto a
-     second line and the bar grew to 45px on a 220px picture. 8px sides keep it
-     on one line; .btn--small's 40px minimum height is untouched. */
-  .product-card--atc-hover .product-card__overlay .btn { padding-inline: var(--space-2); }
-  /* Filled over a photo in every preset: an outlined (transparent) button
-     would put espresso text straight onto the image. The chain outranks the
-     outlined-style rule (0,5,1) by specificity, not by source order. */
-  body[data-button-style] .product-card.product-card--atc-hover .product-card__media .product-card__overlay .btn {
-    background-color: var(--color-button, var(--color-text));
-    border-color: var(--color-button, var(--color-text));
-    color: var(--color-button-text, var(--color-bg));
-  }
-  /* ...and its add-to-cart spinner keeps the filled-button colours (F2: the
-     outlined spinner is espresso, which would vanish on this espresso fill). */
-  body[data-button-style] .product-card.product-card--atc-hover .product-card__media .product-card__overlay .btn.is-loading::after {
-    border-color: color-mix(in srgb, var(--color-button-text, var(--color-bg)) 35%, transparent);
-    border-top-color: var(--color-button-text, var(--color-bg));
-  }
-}
 
 /* ---------- Price ---------- */
 .price { display: inline-flex; align-items: baseline; gap: var(--space-2); flex-wrap: wrap; font-family: var(--font-mono); font-size: var(--text-base); letter-spacing: 0.02em; }
@@ -1213,7 +871,10 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .cart-item__media { display: block; width: 100%; aspect-ratio: var(--ratio-product); background-color: var(--color-subtle); overflow: hidden; }
 .cart-item__media img { width: 100%; height: 100%; object-fit: cover; }
 .cart-item__details { display: flex; flex-direction: column; gap: var(--space-2); min-width: 0; }
-.cart-item__heading { display: flex; flex-direction: column; gap: 2px; }
+/* min-width: 0 -- a flex column child defaults to min-width: auto, so a long
+   unbroken product name would push the whole cart line wider than its column
+   instead of wrapping inside it. */
+.cart-item__heading { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
 .cart-item__title { font-size: var(--text-base); font-weight: 500; }
 /* H1 -- the cart line title is a link to the product; it read as plain text. */
 .cart-item__title:hover { text-decoration: underline; text-underline-offset: 0.2em; text-decoration-thickness: 1px; }
@@ -1556,306 +1217,6 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   .custom-cursor { display: none !important; }
 }
 
-/* ---------- Scroll-to-top button ---------- */
-.scroll-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 44px;
-  height: 44px;
-  background-color: var(--color-button, #2C1810);
-  color: var(--color-button-text, #FAF7F2);
-  border: none;
-  border-radius: var(--radius-none);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* Below the overlay layer: at 500 it floated over the open menu drawer, the
-     cart drawer and the quick-buy dialog. Still above page content
-     and the sticky add-to-cart bar (--z-sticky). */
-  z-index: calc(var(--z-overlay) - 1);
-  opacity: 0;
-  transform: translateY(8px);
-  transition: opacity 0.2s ease, transform 0.2s ease, background-color 0.25s ease;
-  pointer-events: none;
-}
-.scroll-top.is-visible {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-/* ---- F5: yield to the sticky Add to cart bar ----
-   Measured at 1280: the floating button overlapped the bar by 44x41px and
-   elementFromPoint at its centre returned the bar's own "Add to cart" BUTTON --
-   it sat directly on top of the primary commerce control, at z-index 500 vs the
-   bar's 80. At 375 they clear each other by only 4px, which still reads as
-   touching.
-
-   The reviewer suggested embedding a chevron in the bar instead. Measured
-   before deciding, and it does not fit at 375: the bar's inner width is 375px
-   holding a 179px info column and a 132px button with a 16px gap, so 48px is
-   free before the bar's own padding -- and the product title is ALREADY
-   truncated there (scrollWidth 202 vs clientWidth 179). A 40px control would
-   take the info column to ~139px and eat further into the product name, which
-   is the most important text in the bar. Embedding would also have to be
-   desktop-only to be safe, which means two behaviours for one control.
-
-   So the floating button yields instead: it fades out whenever the bar is up
-   and returns when the reader scrolls back above the threshold, at which point
-   the bar is gone and there is nothing to collide with. Both directions use the
-   same 0.2s on the base rule, so the cross-fade is symmetric. */
-body:has(.product__sticky.is-visible) .scroll-top,
-/* HIGH1 -- same yield for the cart. With the drawer open, the floating button
-   (z-index 500, above the drawer's 210) sat on the right end of Checkout and
-   took 9% of its tap area at 375px. On the cart page it stands down for the
-   whole page: CSS cannot tell when Checkout scrolls under it, and a cart page
-   is short enough that a back-to-top control has little to do there.
-   Both name .scroll-top.is-visible: `body:has(cart-page) .scroll-top` scores
-   only (0,1,2) and lost to `.scroll-top.is-visible` (0,2,0) -- measured, the
-   button stayed up on /cart. */
-body:has(cart-drawer.is-open) .scroll-top.is-visible,
-body:has(cart-page) .scroll-top.is-visible {
-  opacity: 0;
-  transform: translateY(8px);
-  pointer-events: none;
-}
-.scroll-top:hover { background-color: var(--color-accent-local, #5C3D2E); }
-.scroll-top svg { display: block; flex-shrink: 0; }
-@media (max-width: 768px) {
-  .scroll-top { bottom: 5rem; right: 1rem; width: 40px; height: 40px; }
-}
-
-/* ---------- Text reveal on scroll ----------
-   Heading text masked behind overflow:hidden, slides up when its wrapper
-   gains .is-visible (ScrollAnimator) or via scroll-timeline where supported. */
-.reveal-lines { overflow: hidden; }
-.reveal-lines .line {
-  display: block;
-  transform: none;
-}
-.reveal-lines.is-visible .line { transform: translateY(0); }
-.reveal-lines .line:nth-child(2) { transition-delay: 80ms; }
-.reveal-lines .line:nth-child(3) { transition-delay: 160ms; }
-.reveal-lines .line:nth-child(4) { transition-delay: 240ms; }
-@supports (animation-timeline: scroll()) {
-  .reveal-lines .line {
-    animation: reveal-line linear both;
-    animation-timeline: view();
-    animation-range: entry 0% entry 35%;
-  }
-  .reveal-lines .line:nth-child(2) { animation-range: entry 5% entry 40%; }
-  .reveal-lines .line:nth-child(3) { animation-range: entry 10% entry 45%; }
-}
-@keyframes reveal-line {
-  from { transform: translateY(105%); }
-  to   { transform: translateY(0); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .reveal-lines .line { transform: none; animation: none; }
-}
-
-/* ---------- Section edition numbers ----------
-   The figure is generated content (data-edition -> ::before), not a text node.
-   It is pure ornament -- it states nothing, and it is aria-hidden -- so at 20%
-   opacity it is exempt from the contrast minimum (WCAG 1.4.3 "incidental"),
-   but as a text node axe measured it at 1.3:1 and called it a failure. As
-   generated content the rendering is identical and the decorative intent is
-   expressed in the markup rather than only in a comment.
-   Faint monospace counter in each section's top-right. z-index clears the
-   hero's layered media. --section-padding-sm/--page-gutter fall back since
-   they aren't theme tokens; colour uses the real --color-muted. */
-.edition-number::before { content: attr(data-edition); }
-.edition-number {
-  position: absolute;
-  top: var(--section-padding-sm, 2.5rem);
-  right: var(--page-gutter, 1.5rem);
-  z-index: var(--z-raised, 10);
-  font-size: 10px;
-  font-family: var(--font-mono, monospace);
-  letter-spacing: 0.2em;
-  opacity: 0.2;
-  color: var(--color-muted);
-  user-select: none;
-  pointer-events: none;
-}
-
-/* ---------- Notify me (sold-out dialog) ---------- */
-.notify-me__trigger {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.625rem;
-  width: 100%;
-  justify-content: center;
-}
-
-.notify-me__dialog {
-  position: fixed;
-  inset: 0;
-  margin: auto;
-  width: min(480px, 92vw);
-  max-height: 90vh;
-  overflow-y: auto;
-  border: 1px solid var(--color-border, #E5DDD0);
-  border-radius: 0;
-  background-color: var(--color-bg, #FAF7F2);
-  color: var(--color-text, #2C1810);
-  padding: 0;
-  box-shadow: 0 20px 60px rgba(44, 24, 16, 0.15);
-  z-index: 9999;
-}
-
-.notify-me__dialog::backdrop {
-  background: rgba(44, 24, 16, 0.4);
-  backdrop-filter: blur(2px);
-}
-
-.notify-me__dialog[open] {
-  display: block;
-  animation: dialog-in 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes dialog-in {
-  from { opacity: 0; transform: translateY(12px); }
-  to   { opacity: 1; transform: translateY(0); }
-}
-
-.notify-me__dialog-inner {
-  padding: 2.5rem;
-  position: relative;
-}
-
-.notify-me__close {
-  position: absolute;
-  top: 1.25rem;
-  right: 1.25rem;
-  background: none;
-  border: none;
-  color: var(--color-muted, #A0826D);
-  cursor: pointer;
-  padding: 0.25rem;
-  transition: color 0.2s ease;
-}
-.notify-me__close:hover { color: var(--color-text, #2C1810); }
-
-.notify-me__eyebrow {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--color-muted, #A0826D);
-  font-family: var(--font-sans);
-  margin: 0 0 0.875rem;
-}
-
-.notify-me__heading {
-  font-family: var(--font-heading);
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
-  font-weight: 300;
-  letter-spacing: -0.02em;
-  margin: 0 0 0.875rem;
-}
-
-.notify-me__description {
-  font-size: 14px;
-  line-height: 1.65;
-  color: var(--color-muted, #A0826D);
-  margin: 0 0 0.5rem;
-}
-
-.notify-me__product-name {
-  font-size: 12px;
-  font-weight: 500;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--color-text, #2C1810);
-  margin: 0 0 1.75rem;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border, #E5DDD0);
-}
-
-.notify-me__field {
-  display: flex;
-  flex-direction: column;
-  gap: 0.375rem;
-  margin-bottom: 1rem;
-}
-
-.notify-me__label {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--color-muted, #A0826D);
-  font-family: var(--font-sans);
-}
-
-.notify-me__input {
-  border: 1px solid var(--color-border, #E5DDD0);
-  border-radius: 0;
-  background: transparent;
-  padding: 0.75rem 0.875rem;
-  font-family: var(--font-sans);
-  font-size: 14px;
-  color: var(--color-text, #2C1810);
-  transition: border-color 0.2s ease;
-  width: 100%;
-}
-.notify-me__input:focus {
-  outline: none;
-  border-color: var(--color-text, #2C1810);
-}
-
-.notify-me__consent {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.625rem;
-  margin-bottom: 1.5rem;
-}
-
-.notify-me__checkbox {
-  flex-shrink: 0;
-  width: 16px;
-  height: 16px;
-  border: 1px solid var(--color-border, #E5DDD0);
-  border-radius: 0;
-  accent-color: var(--color-text, #2C1810);
-  margin-top: 2px;
-  cursor: pointer;
-}
-
-.notify-me__consent-label {
-  font-size: 12px;
-  line-height: 1.55;
-  color: var(--color-muted, #A0826D);
-  cursor: pointer;
-}
-
-.notify-me__submit {
-  width: 100%;
-}
-
-.notify-me__success {
-  text-align: center;
-  font-size: 13px;
-  color: var(--color-text, #2C1810);
-  padding: 1rem;
-  border: 1px solid var(--color-border, #E5DDD0);
-  margin-top: 1rem;
-  font-family: var(--font-sans);
-  letter-spacing: 0.04em;
-}
-
-/* ---------- Image radius + border (theme settings → css-variables) ----------
-   Off by default (--image-radius 0, --image-border none); merchants opt in via
-   Theme settings → Images. */
-.product-card__media img,
-.product-card__media .placeholder-svg,
-.gallery__item img,
-.split-media__media img,
-.image-with-text__media img,
-.hero__media img {
-  border-radius: var(--image-radius, 0);
-  border: var(--image-border, none);
-}
-
 /* ---------- Recently-viewed pill (recently-viewed.js) ---------- */
 .recently-viewed {
   position: fixed;
@@ -2090,7 +1451,6 @@ body:has(cart-page) .scroll-top.is-visible {
 .bundle__item--card .bundle__icon-add,
 .bundle__item--card .bundle__icon-added { width: 14px; height: 14px; }
 
-
 /* ---------- Quick buy modal ----------
    snippets/quick-buy-modal.liquid + assets/quick-buy.js. A centred dialog over
    a tinted backdrop; a bottom sheet on phones. Above the sidebar and the cart
@@ -2143,7 +1503,6 @@ body:has(cart-page) .scroll-top.is-visible {
 .quick-buy__details .icon { width: 14px; height: 14px; }
 .quick-buy__buy { display: flex; flex-direction: column; gap: var(--space-3); }
 .quick-buy__status { margin: 0; padding: var(--space-16) var(--space-4); text-align: center; color: var(--color-muted); }
-
 
 @media (max-width: 749px) {
   .quick-buy { padding: 0; align-items: flex-end; }
@@ -2222,7 +1581,6 @@ body:has(cart-page) .scroll-top.is-visible {
   background: linear-gradient(to top left, transparent calc(50% - 1px), var(--color-text) calc(50% - 1px), var(--color-text) calc(50% + 1px), transparent calc(50% + 1px));
   border-radius: 50%;
 }
-
 
 /* The stepper is content-width: in a column flex it stretched to the whole buy
    box, leaving a wide empty rule beside the -/+ (same fix as .product__quantity). */
