@@ -22,7 +22,7 @@
         "color_scheme": "background-1",
         "padding_top": 0,
         "padding_bottom": 64,
-        "image": "shopify://shop_images/side-table-tea-service.jpg"
+        "image": ""
       }
     },
     "story": {
@@ -46,7 +46,7 @@
             "caption": "",
             "cta_label": "",
             "cta_url": "",
-            "image": "shopify://shop_images/home-interior-in-neutral-colors.jpg"
+            "image": ""
           }
         },
         "chapter_2": {
@@ -59,7 +59,7 @@
             "caption": "",
             "cta_label": "",
             "cta_url": "",
-            "image": "shopify://shop_images/wooden-figure-on-a-shelf.jpg"
+            "image": ""
           }
         }
       },

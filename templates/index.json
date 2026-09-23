@@ -13,7 +13,7 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "",
+        "image": "shopify://shop_images/living-room-bathed-in-natural-light-through-a-window.jpg",
         "video_url": "",
         "overlay_opacity": 45,
         "overlay_color": "#0a0705",
@@ -63,7 +63,7 @@
     "care": {
       "type": "split-media",
       "settings": {
-        "image": "",
+        "image": "shopify://shop_images/home-interior-in-neutral-colors.jpg",
         "media_position": "left",
         "image_ratio": "portrait",
         "eyebrow": "Made to be repaired",
@@ -82,7 +82,7 @@
     "delivery": {
       "type": "image-with-text",
       "settings": {
-        "image": "",
+        "image": "shopify://shop_images/side-table-tea-service.jpg",
         "image_ratio": "landscape",
         "layout": "image-right",
         "eyebrow": "The last mile",
