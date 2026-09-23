@@ -1,8 +1,11 @@
 /* ============================================================
    ATELIER — product.js
-   Loaded by main-product and main-article.
+   Loaded globally from layout/theme.liquid: <product-media-gallery> is not
+   product-page-only any more — the featured-product section puts one on the
+   homepage and the quick-buy modal injects one anywhere.
    - <product-info>  : variant selection (client state + price swap)
-   - <product-media-gallery> : thumbnail / variant media switching
+   - <product-media-gallery> : thumbnail / variant media switching, all four
+                       media types, and the Shopify-XR / model-viewer wiring
    - <share-button>  : Web Share API with clipboard fallback
    - <product-recommendations> : lazy-loads related products
    ============================================================ */
@@ -180,6 +183,87 @@
     return ProductInfo;
   })();
 
+  /* ---------- 3D models: Shopify-XR + model-viewer ---------- */
+  /* model_viewer_tag emits <model-viewer>, an element nothing in the theme ever
+     defined. Measured on the live stores before this was written:
+     customElements.get('model-viewer') was false, so a 3D model rendered as an
+     empty box on the product page too — not only on the two surfaces that were
+     missing rich media entirely. Shopify serves the viewer UI and the AR
+     launcher through loadFeatures; both are requested the first time a gallery
+     that actually holds a model connects, so a store with no 3D pays nothing. */
+  var MODEL_VIEWER_CSS = 'https://cdn.shopify.com/shopifycloud/model-viewer-ui/assets/v1.0/model-viewer-ui.css';
+
+  var ProductModels = {
+    queued: [],     /* models waiting for ShopifyXR.addModels */
+    galleries: [],  /* galleries waiting for Shopify.ModelViewerUI */
+    asked: false,
+
+    register: function (gallery) {
+      var source = gallery.querySelector('[data-product-models]');
+      if (!source) return;
+      var models;
+      try { models = JSON.parse(source.textContent); } catch (e) { return; }
+      if (!models || !models.length) return;
+      this.queued = this.queued.concat(models);
+      this.galleries.push(gallery);
+      this.load();
+    },
+
+    load: function () {
+      var self = this;
+      if (!window.Shopify || typeof window.Shopify.loadFeatures !== 'function') return;
+      /* A second gallery (the quick-buy modal, say) arriving after the features
+         are already in flight or done: no second request, just re-run both
+         steps against what is now in the DOM. */
+      if (this.asked) { this.wireXR(); this.enhance(); return; }
+      this.asked = true;
+      this.styles();
+      window.Shopify.loadFeatures([
+        { name: 'shopify-xr', version: '1.0', onLoad: function (errors) { if (!errors) self.wireXR(); } },
+        { name: 'model-viewer-ui', version: '1.0', onLoad: function (errors) { if (!errors) self.enhance(); } }
+      ]);
+    },
+
+    styles: function () {
+      if (document.getElementById('ModelViewerStyle')) return;
+      var link = document.createElement('link');
+      link.id = 'ModelViewerStyle';
+      link.rel = 'stylesheet';
+      link.href = MODEL_VIEWER_CSS;
+      document.head.appendChild(link);
+    },
+
+    /* Shopify's documented guard, and it is load-bearing: window.ShopifyXR is
+       still undefined at the moment loadFeatures reports the script loaded. */
+    wireXR: function () {
+      var self = this;
+      if (!window.ShopifyXR) {
+        document.addEventListener('shopify_xr_initialized', function () { self.wireXR(); }, { once: true });
+        return;
+      }
+      if (this.queued.length) {
+        window.ShopifyXR.addModels(this.queued);
+        this.queued = [];
+      }
+      /* Scans for [data-shopify-xr] and unhides the buttons it can serve. */
+      window.ShopifyXR.setupXRElements();
+    },
+
+    enhance: function () {
+      if (typeof (window.Shopify || {}).ModelViewerUI !== 'function') return;
+      this.galleries.forEach(function (gallery) {
+        Array.prototype.forEach.call(gallery.querySelectorAll('model-viewer'), function (viewer) {
+          if (viewer.dataset.viewerBound === 'true') return;
+          viewer.dataset.viewerBound = 'true';
+          try { new window.Shopify.ModelViewerUI(viewer); }
+          catch (e) { delete viewer.dataset.viewerBound; }
+        });
+      });
+      /* The modal's gallery is thrown away each time it closes; don't hold it. */
+      this.galleries = this.galleries.filter(function (g) { return g.isConnected; });
+    }
+  };
+
   /* ---------- <product-media-gallery> ---------- */
   var ProductMediaGallery = (function () {
     function ProductMediaGallery() { return Reflect.construct(HTMLElement, [], ProductMediaGallery); }
@@ -191,6 +275,10 @@
       this.thumbs = Array.prototype.slice.call(this.querySelectorAll('[data-media-thumb]'));
       this.onThumb = this.onThumb.bind(this);
       this.thumbs.forEach((t) => t.addEventListener('click', this.onThumb));
+      ProductModels.register(this);
+      /* Run once on connect, not only on a switch: it is what keeps the
+         embeds of media nobody has opened from loading in the first place. */
+      this.syncPlayback();
     };
     ProductMediaGallery.prototype.disconnectedCallback = function () {
       this.thumbs.forEach((t) => t.removeEventListener('click', this.onThumb));
@@ -209,8 +297,31 @@
         if (active) t.setAttribute('aria-current', 'true');
         else t.removeAttribute('aria-current');
       });
-      this.querySelectorAll('video').forEach(function (v) {
-        if (!v.closest('.is-active')) v.pause();
+      this.syncPlayback();
+    };
+    /* Only the media on screen may be playing — Shopify's own requirement for
+       a multi-media gallery. A native <video> just pauses. An external video is
+       a YouTube or Vimeo iframe with no API reachable without opting every
+       embed into enablejsapi, so its src is parked in a data attribute while it
+       is off screen and restored when it comes back: playback stops for
+       certain, and an embed nobody has opened is never fetched at all. */
+    ProductMediaGallery.prototype.syncPlayback = function () {
+      this.items.forEach(function (item) {
+        var active = item.classList.contains('is-active');
+        Array.prototype.forEach.call(item.querySelectorAll('video'), function (v) {
+          if (!active) v.pause();
+        });
+        Array.prototype.forEach.call(item.querySelectorAll('iframe'), function (frame) {
+          if (active) {
+            if (frame.dataset.parkedSrc) {
+              frame.setAttribute('src', frame.dataset.parkedSrc);
+              delete frame.dataset.parkedSrc;
+            }
+          } else if (frame.getAttribute('src')) {
+            frame.dataset.parkedSrc = frame.getAttribute('src');
+            frame.removeAttribute('src');
+          }
+        });
       });
     };
     return ProductMediaGallery;

@@ -17,27 +17,13 @@
 {%- if qb -%}
   <div class="quick-buy__product featured-product" data-featured-product data-quick-buy-product>
     <div class="quick-buy__grid">
+      {%- comment -%}
+        Same gallery as the product page and the featured-product section. A
+        quick view is named in §4 alongside them, and it used to show a video or
+        a 3D model as a still.
+      {%- endcomment -%}
       <div class="quick-buy__media">
-        <div class="fp__main quick-buy__main">
-          {%- if qb.featured_media -%}
-            <img class="fp__main-img" data-fp-main-img
-              src="{{ qb.featured_media | image_url: width: 1000 }}"
-              srcset="{{ qb.featured_media | image_url: width: 500 }} 500w, {{ qb.featured_media | image_url: width: 800 }} 800w, {{ qb.featured_media | image_url: width: 1000 }} 1000w"
-              sizes="(min-width: 750px) 440px, 90vw"
-              alt="{{ qb.featured_media.alt | default: qb.title | escape }}" width="1000" height="1250">
-          {%- else -%}
-            <span class="fp__main-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
-          {%- endif -%}
-        </div>
-        {%- if qb.media.size > 1 -%}
-          <div class="fp__thumbs quick-buy__thumbs">
-            {%- for media in qb.media limit: 6 -%}
-              <button type="button" class="fp__thumb{% if forloop.first %} is-active{% endif %}" data-fp-thumb="{{ media | image_url: width: 1000 }}" aria-label="{{ qb.title | escape }} — {{ forloop.index }}">
-                <img src="{{ media | image_url: width: 160 }}" alt="" width="80" height="100" loading="lazy" decoding="async">
-              </button>
-            {%- endfor -%}
-          </div>
-        {%- endif -%}
+        {%- render 'product-media', product: qb, section: section -%}
       </div>
 
       <div class="quick-buy__info">
@@ -155,14 +141,29 @@
             "available": {{ v.available }},
             "options": {{ v.options | json }},
             "url": {{ v.url | json }},
-            "price_html": {{ vprice | json }}{% if v.image %},
-            "image": {{ v.image | image_url: width: 1000 | json }}{% endif %}
+            "price_html": {{ vprice | json }}{% if v.featured_media %},
+            "media_id": {{ v.featured_media.id | json }}{% endif %}
           }{%- unless forloop.last -%},{%- endunless -%}
         {%- endfor -%}
       ]
     </script>
   </div>
 {%- endif -%}
+
+{% stylesheet %}
+  /* The modal panel is capped at min(90svh, 860px), so the gallery has to be
+     capped too or it pushes the buy box behind a scroll. Three classes deep for
+     the same reason as the featured-product rule: it has to beat
+     product-media's own two-class sizing whatever order the bundle lands in.
+     The phone cap is tighter still -- there the panel is a bottom sheet and the
+     photo sits above everything purchasable. */
+  .quick-buy .product-media--adapt .product-media__item { max-height: 56svh; }
+  .quick-buy .product-media__thumbs { grid-template-columns: repeat(auto-fill, minmax(56px, 1fr)); }
+
+  @media (max-width: 749px) {
+    .quick-buy .product-media--adapt .product-media__item { max-height: 38svh; }
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
