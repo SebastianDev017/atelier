@@ -22,7 +22,7 @@
         "eyebrow": "New season",
         "heading": "Considered objects\nfor the modern home",
         "heading_tag": "h1",
-        "heading_size": "display",
+        "heading_size": "xl",
         "subtext": "<p>Furniture and home goods made in small batches, designed to last a lifetime.</p>",
         "show_trust_bar": true,
         "trust_line": "",
@@ -33,7 +33,7 @@
         "cta_secondary_url": "/pages/about-us",
         "show_edition_number": false,
         "show_scroll_cue": true,
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 0,
         "padding_bottom": 0
       }
@@ -87,6 +87,8 @@
         "layout": "image-right",
         "eyebrow": "The last mile",
         "title": "It arrives the way it left the studio",
+        "heading_tag": "h2",
+        "heading_size": "lg",
         "text": "<p>Blanket-wrapped, room of choice, packaging taken away. Assembly time and box count are listed on every product page before you buy.</p>",
         "cta_label": "Shop the collection",
         "cta_url": "/collections/all",
@@ -101,10 +103,14 @@
       "settings": {
         "heading": "What people say once it is home",
         "heading_tag": "h2",
+        "heading_size": "lg",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_images": false,
+        "pause_label": "Pause testimonials",
         "color_scheme": "background-2",
         "padding_top": 96,
-        "padding_bottom": 96,
-        "show_images": false
+        "padding_bottom": 96
       },
       "blocks": {
         "t1": {

@@ -791,7 +791,16 @@ body[data-button-style="outlined"] .btn:not(.btn--outline):not(.btn--link):not(.
 .product-card__media:has(.product-card__actions) .product-card__badges {
   max-width: calc(100% - 2rem - 40px - 0.75rem);
 }
-.product-card__badges .badge { max-width: 100%; overflow-wrap: anywhere; }
+/* nowrap on .badge was cancelling the wrap the max-width above exists to
+   cause, so at two columns "Only 2 left" was clipped mid-word rather than
+   taking a second line. Scoped to the card: the gift card's badge keeps
+   nowrap. */
+.product-card__badges .badge {
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: start;
+}
 
 
 .badge {
@@ -961,7 +970,8 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .product-card--atc-hover:focus-within .product-card__overlay product-form,
 .product-card--atc-hover:focus-within .product-card__overlay .btn { pointer-events: auto; }
 .product-card__overlay .product-card__quick,
-.product-card__overlay .btn { width: auto; min-width: 9rem; }
+.product-card__overlay .btn { width: auto; min-width: min(9rem, 100%); }
+
 
 /* Whole-card click target (snippets/product-card.liquid). A real anchor filling the
    card — the title's stretched ::after can't be used because the blur-reveal's
@@ -1073,7 +1083,7 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
   .product-card:focus-within .product-card__action { opacity: 1; }
 }
 .product-card__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: var(--tracking-label); text-transform: uppercase; color: var(--color-muted); }
-.product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); overflow-wrap: break-word; }
+.product-card__title { font-family: var(--font-heading); font-size: var(--text-lg); font-weight: var(--font-heading-weight); letter-spacing: 0; line-height: var(--leading-snug); }
 .product-card__title a { display: inline; position: relative; z-index: 2; }
 /* B1 -- merchant names can hold an unbreakable word: a long product name, a
    German compound, a SKU-like handle. main-product.liquid already set this on
@@ -1097,7 +1107,12 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .product-card__info .price__unit { font-family: var(--font-mono); font-size: var(--text-xs); }
 .product-card__rating { display: inline-flex; align-items: center; gap: var(--space-1); color: var(--color-muted); font-size: var(--text-sm); }
 
-@media (hover: none) {
+/* Also below the grid's own breakpoint, not just on a pointer that cannot
+   hover. At two columns the centred pill is 144px of a 165px card: the label
+   wraps and it crowds the badges. Everything this block already does for touch
+   -- bottom-anchored, untinted, filled so it reads over the photo -- is the
+   right answer there too. */
+@media (hover: none), (max-width: 749px) {
   .product-card--atc-hover .product-card__quick { opacity: 1; transform: none; }
   /* No hover on touch — the quick-add is always shown, so keep it tappable. */
   .product-card--atc-hover .product-card__overlay .product-card__quick,
@@ -1118,6 +1133,11 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
     align-items: flex-end;
     padding: var(--space-2);
   }
+  /* "Choose options" wants about 120px of text. The button's default 1.3em
+     sides leave it 118px in a two-column card, so the label dropped onto a
+     second line and the bar grew to 45px on a 220px picture. 8px sides keep it
+     on one line; .btn--small's 40px minimum height is untouched. */
+  .product-card--atc-hover .product-card__overlay .btn { padding-inline: var(--space-2); }
   /* Filled over a photo in every preset: an outlined (transparent) button
      would put espresso text straight onto the image. The chain outranks the
      outlined-style rule (0,5,1) by specificity, not by source order. */
