@@ -451,45 +451,6 @@
         "name": "Barra degli annunci"
       }
     },
-    "brand-statement": {
-      "name": "Dichiarazione del brand",
-      "settings": {
-        "heading": {
-          "label": "Titolo",
-          "info": "Le interruzioni di riga appaiono esattamente come le scrivi."
-        },
-        "subheading": {
-          "label": "Riga di supporto"
-        },
-        "heading_size_vw": {
-          "label": "Dimensione del titolo (desktop)"
-        },
-        "heading_size_mobile": {
-          "label": "Dimensione del titolo (mobile)"
-        },
-        "color_scheme": {
-          "label": "Combinazione di colori",
-          "options__1": {
-            "label": "Crema"
-          },
-          "options__2": {
-            "label": "Pergamena"
-          },
-          "options__3": {
-            "label": "Lino"
-          },
-          "options__4": {
-            "label": "Bianco"
-          },
-          "options__5": {
-            "label": "Invertito"
-          }
-        }
-      },
-      "presets": {
-        "name": "Dichiarazione del brand"
-      }
-    },
     "cart-drawer": {
       "name": "Cassetto del carrello"
     },

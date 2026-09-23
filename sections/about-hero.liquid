@@ -12,6 +12,15 @@
   assign heading = section.settings.heading | default: page.title
   assign layout = section.settings.layout | default: 'stacked'
   assign heading_tag = section.settings.heading_tag | default: 'h1'
+
+  # The stacked layout paints its copy in --color-overlay-text, the light-on-photo
+  # colour, over a black scrim. With no image there is no photo to be light on:
+  # the scrim only darkens the scheme's own ground, so cream text landed on cream
+  # at about 2:1. Same failure hero already solved with .hero--no-image.
+  assign has_image = false
+  if section.settings.image != blank
+    assign has_image = true
+  endif
 -%}
 
 <style>
@@ -23,7 +32,7 @@
   }
 </style>
 
-<div class="about-hero-s about-hero-s--{{ layout }} color-scheme--{{ scheme }}">
+<div class="about-hero-s about-hero-s--{{ layout }} color-scheme--{{ scheme }}{% unless has_image %} about-hero-s--no-image{% endunless %}">
   <div class="about-hero-s__inner{% if layout == 'beside' %} page-width{% endif %}">
 
     {%- if layout == 'stacked' -%}
@@ -104,6 +113,12 @@
     grid-area: 1 / 1;
     background: linear-gradient(to top, rgb(0 0 0 / var(--about-hero-overlay, 0.35)), rgb(0 0 0 / calc(var(--about-hero-overlay, 0.35) * 0.35)));
   }
+  /* No image: the copy takes the scheme's own ink and the scrim goes, because
+     there is nothing behind the type but the section's background. The
+     placeholder stays -- it is a 12% outline, so it sits under dark ink without
+     fighting it, and a merchant can still see where the picture belongs. */
+  .about-hero-s--no-image { --color-overlay-text: var(--color-text); }
+  .about-hero-s--no-image .about-hero-s__scrim { display: none; }
   .about-hero-s__over {
     grid-area: 1 / 1;
     align-self: end;
