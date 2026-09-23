@@ -43,7 +43,13 @@
           if title == blank and product != blank
             assign title = product.title
           endif
-          assign before_alt = block.settings.image_before.alt | default: 'sections.wall-comparison.before_alt' | t
+          # t applied after default runs over the merchant's OWN alt text when they
+          # have set one, so "Living room wall" came back as a missing-translation
+          # string. Same shape as after_alt two lines down, which was already right.
+          assign before_alt = block.settings.image_before.alt
+          if before_alt == blank
+            assign before_alt = 'sections.wall-comparison.before_alt' | t
+          endif
           assign after_alt = block.settings.image_after.alt
           if after_alt == blank
             assign after_alt = 'sections.wall-comparison.after_alt' | t: title: title
