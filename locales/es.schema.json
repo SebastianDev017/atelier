@@ -451,45 +451,6 @@
         "name": "Barra de anuncios"
       }
     },
-    "brand-statement": {
-      "name": "Declaración de marca",
-      "settings": {
-        "heading": {
-          "label": "Título",
-          "info": "Los saltos de línea se ven tal como los escribes."
-        },
-        "subheading": {
-          "label": "Línea de apoyo"
-        },
-        "heading_size_vw": {
-          "label": "Tamaño del título (escritorio)"
-        },
-        "heading_size_mobile": {
-          "label": "Tamaño del título (móvil)"
-        },
-        "color_scheme": {
-          "label": "Combinación de colores",
-          "options__1": {
-            "label": "Crema"
-          },
-          "options__2": {
-            "label": "Pergamino"
-          },
-          "options__3": {
-            "label": "Lino"
-          },
-          "options__4": {
-            "label": "Blanco"
-          },
-          "options__5": {
-            "label": "Invertido"
-          }
-        }
-      },
-      "presets": {
-        "name": "Declaración de marca"
-      }
-    },
     "cart-drawer": {
       "name": "Cajón del carrito"
     },

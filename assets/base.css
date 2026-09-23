@@ -244,6 +244,11 @@ h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
   font-weight: var(--font-heading-weight);
   color: var(--color-heading, #2C1810);
+  /* One line, 31 sections: every merchant-set section heading. break-word, not
+     anywhere, so it only breaks a word that genuinely cannot fit and leaves
+     min-content sizing alone. Headings that do NOT carry this class are listed
+     in the grouped rule further down. */
+  overflow-wrap: break-word;
 }
 .heading--display { font-size: calc(var(--text-5xl) * var(--heading-scale) * var(--h1-scale, 1)); line-height: 0.9; letter-spacing: var(--heading-letter-spacing, -0.03em); }
 .heading--xl      { font-size: calc(var(--text-4xl) * var(--heading-scale) * var(--h1-scale, 1)); line-height: 0.92; letter-spacing: var(--heading-letter-spacing, -0.025em); }
@@ -1096,7 +1101,14 @@ a.product-card__quick { display: flex; align-items: center; justify-content: cen
 .product-card__title,
 .product-card__vendor,
 .fp__title,
-.fp__vendor { overflow-wrap: break-word; }
+.fp__vendor,
+/* Collection names are merchant text in narrow boxes too. collection-banner's
+   title is capped at 20ch and its media variant clips at overflow:hidden, so a
+   long unbroken name was cut rather than wrapped; the two collection-list
+   surfaces had no protection at all. */
+.collection-card__title,
+.list-collections__name,
+.main-page__title { overflow-wrap: break-word; }
 .product-card__info .price { font-family: var(--font-mono); font-size: var(--text-sm); letter-spacing: 0.02em; }
 /* QW3 -- on phones the card price is information the shopper acts on, not an
    editorial label: 13px -> 14px there. (The 12px mono labels -- vendor,

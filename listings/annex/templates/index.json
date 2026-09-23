@@ -82,16 +82,6 @@
         "pair_1"
       ]
     },
-    "statement": {
-      "type": "brand-statement",
-      "settings": {
-        "heading": "Every edition numbered.\nEvery original one of one.",
-        "subheading": "Printed on cotton rag and baryta, signed on the reverse, and logged against the number you own.",
-        "heading_size_vw": 8,
-        "heading_size_mobile": 11,
-        "color_scheme": "inverse"
-      }
-    },
     "featured_work": {
       "type": "featured-product",
       "settings": {
@@ -303,7 +293,6 @@
     "index",
     "on_the_wall",
     "framing",
-    "statement",
     "featured_work",
     "artist",
     "hang",
