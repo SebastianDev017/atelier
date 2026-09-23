@@ -335,6 +335,10 @@
     },
     "blog-posts": {
       "onboarding": "Choose a blog with at least one published post to show it here."
+    },
+    "main-blog": {
+      "onboarding": "There are no posts in this blog yet. Published posts will appear here.",
+      "no_results": "No posts match this view."
     }
   }
 }

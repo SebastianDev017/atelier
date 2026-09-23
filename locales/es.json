@@ -335,6 +335,10 @@
     },
     "blog-posts": {
       "onboarding": "Elige un blog con al menos una entrada publicada para mostrarla aquí."
+    },
+    "main-blog": {
+      "onboarding": "Todavía no hay entradas en este blog. Las entradas publicadas aparecerán aquí.",
+      "no_results": "Ninguna entrada coincide con esta vista."
     }
   }
 }
