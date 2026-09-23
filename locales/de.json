@@ -335,6 +335,10 @@
     },
     "blog-posts": {
       "onboarding": "Wähle einen Blog mit mindestens einem veröffentlichten Beitrag, um ihn hier zu zeigen."
+    },
+    "main-blog": {
+      "onboarding": "In diesem Blog gibt es noch keine Beiträge. Veröffentlichte Beiträge erscheinen hier.",
+      "no_results": "Keine Beiträge entsprechen dieser Ansicht."
     }
   }
 }
