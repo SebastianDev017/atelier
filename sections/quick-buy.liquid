@@ -23,7 +23,8 @@
         a 3D model as a still.
       {%- endcomment -%}
       <div class="quick-buy__media">
-        {%- render 'product-media', product: qb, section: section -%}
+        {%- comment -%} 440px: the stage's drawn width in the modal from 990px up (it caps at 980px, two columns). {%- endcomment -%}
+        {%- render 'product-media', product: qb, section: section, desktop_size: '440px' -%}
       </div>
 
       <div class="quick-buy__info">
