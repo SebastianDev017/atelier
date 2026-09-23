@@ -41,130 +41,13 @@
     "darkroom": {
       "type": "horizontal-scroll",
       "settings": {
+        "eyebrow": "Editions open now",
         "heading": "From the darkroom",
+        "subtext": "Each one proofed against the original under daylight, then numbered by hand. When an edition closes we do not reprint it in another size to keep it alive.",
         "collection": "photography",
         "products_count": 8,
         "card_aspect": "portrait",
         "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96,
-        "eyebrow": "Editions open now",
-        "subtext": "Each one proofed against the original under daylight, then numbered by hand. When an edition closes we do not reprint it in another size to keep it alive."
-      }
-    },
-    "on_the_wall": {
-      "type": "wall-comparison",
-      "settings": {
-        "eyebrow": "Scale",
-        "heading": "See it on the wall",
-        "heading_tag": "h2",
-        "subtext": "Fifty by seventy centimetres reads smaller than it sounds. Drag the handle and the same wall tells you the truth before you buy.",
-        "columns_desktop": "1",
-        "show_price": true,
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
-      "blocks": {
-        "pair_1": {
-          "type": "pair",
-          "settings": {
-            "product": "cascade-photograph",
-            "heading": "",
-            "image_before": "shopify://shop_images/annex-wall-before.jpg",
-            "image_after": "shopify://shop_images/annex-wall-after.jpg",
-            "dimensions": "50 x 70 cm, framed in oak with a hand-cut mat",
-            "start_position": 45
-          }
-        }
-      },
-      "block_order": [
-        "pair_1"
-      ]
-    },
-    "statement": {
-      "type": "brand-statement",
-      "settings": {
-        "heading": "Every edition numbered.\nEvery original one of one.",
-        "subheading": "Printed on cotton rag and baryta, signed on the reverse, and logged against the number you own.",
-        "heading_size_vw": 8,
-        "heading_size_mobile": 11,
-        "color_scheme": "inverse"
-      }
-    },
-    "featured_work": {
-      "type": "featured-product",
-      "settings": {
-        "product": "graphite-tide-original",
-        "heading": "The one we would hang first",
-        "show_vendor": false,
-        "show_trust_badges": true,
-        "show_bundle": true,
-        "bundle_heading": "Hang it with",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
-    "artist": {
-      "type": "maker-spotlight",
-      "settings": {
-        "image": "shopify://shop_images/annex-maker-studio.jpg",
-        "layout": "image_right",
-        "eyebrow": "In the studio",
-        "name": "Ines Marlowe",
-        "quote": "<p>“I paint until the canvas stops arguing with me. Then I leave it alone for a week and look again.”</p>",
-        "cta_label": "See her originals",
-        "cta_url": "/collections/originals",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
-      "blocks": {
-        "mat_linen": {
-          "type": "material",
-          "settings": {
-            "label": "Oil on linen"
-          }
-        },
-        "mat_rag": {
-          "type": "material",
-          "settings": {
-            "label": "Cotton rag"
-          }
-        },
-        "mat_block": {
-          "type": "material",
-          "settings": {
-            "label": "Hand-carved blocks"
-          }
-        }
-      },
-      "block_order": [
-        "mat_linen",
-        "mat_rag",
-        "mat_block"
-      ]
-    },
-    "hang": {
-      "type": "editorial-statement",
-      "settings": {
-        "statement": "<p>A print that stays in its tube is not art yet. Every order ships framed, wired and ready for the wall, with the hanging kit in the box.</p>",
-        "color_scheme": "background-1",
-        "padding_top": 120,
-        "padding_bottom": 120
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "First look at new editions",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "subtext": "<p>Subscribers hear about each release a day before it goes live. One email per drop.</p>",
-        "input_placeholder": "Email address",
-        "button_label": "Subscribe",
-        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
@@ -237,6 +120,36 @@
         "padding_bottom": 120
       }
     },
+    "on_the_wall": {
+      "type": "wall-comparison",
+      "blocks": {
+        "pair_1": {
+          "type": "pair",
+          "settings": {
+            "product": "cascade-photograph",
+            "heading": "",
+            "image_before": "shopify://shop_images/annex-wall-before.jpg",
+            "image_after": "shopify://shop_images/annex-wall-after.jpg",
+            "dimensions": "50 x 70 cm, framed in oak with a hand-cut mat",
+            "start_position": 45
+          }
+        }
+      },
+      "block_order": [
+        "pair_1"
+      ],
+      "settings": {
+        "eyebrow": "Scale",
+        "heading": "See it on the wall",
+        "heading_tag": "h2",
+        "subtext": "Fifty by seventy centimetres reads smaller than it sounds. Drag the handle and the same wall tells you the truth before you buy.",
+        "columns_desktop": "1",
+        "show_price": true,
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
     "framing": {
       "type": "frame-preview",
       "blocks": {
@@ -292,6 +205,94 @@
         "cta_label": "Shop the editions",
         "footnote": "The frames are drawn here to show the options. What arrives is the moulding named above, cut to the work.",
         "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "statement": {
+      "type": "brand-statement",
+      "disabled": true,
+      "settings": {
+        "heading": "Every edition numbered.\nEvery original one of one.",
+        "subheading": "Printed on cotton rag and baryta, signed on the reverse, and logged against the number you own.",
+        "heading_size_vw": 8,
+        "heading_size_mobile": 11,
+        "color_scheme": "inverse"
+      }
+    },
+    "featured_work": {
+      "type": "featured-product",
+      "settings": {
+        "product": "graphite-tide-original",
+        "heading": "The one we would hang first",
+        "show_vendor": false,
+        "show_trust_badges": true,
+        "show_bundle": true,
+        "bundle_heading": "Hang it with",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "artist": {
+      "type": "maker-spotlight",
+      "blocks": {
+        "mat_linen": {
+          "type": "material",
+          "settings": {
+            "label": "Oil on linen"
+          }
+        },
+        "mat_rag": {
+          "type": "material",
+          "settings": {
+            "label": "Cotton rag"
+          }
+        },
+        "mat_block": {
+          "type": "material",
+          "settings": {
+            "label": "Hand-carved blocks"
+          }
+        }
+      },
+      "block_order": [
+        "mat_linen",
+        "mat_rag",
+        "mat_block"
+      ],
+      "settings": {
+        "image": "shopify://shop_images/annex-maker-studio.jpg",
+        "layout": "image_right",
+        "eyebrow": "In the studio",
+        "name": "Ines Marlowe",
+        "quote": "<p>“I paint until the canvas stops arguing with me. Then I leave it alone for a week and look again.”</p>",
+        "cta_label": "See her originals",
+        "cta_url": "/collections/originals",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "hang": {
+      "type": "editorial-statement",
+      "settings": {
+        "statement": "<p>A print that stays in its tube is not art yet. Every order ships framed, wired and ready for the wall, with the hanging kit in the box.</p>",
+        "color_scheme": "background-1",
+        "padding_top": 120,
+        "padding_bottom": 120
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "First look at new editions",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtext": "<p>Subscribers hear about each release a day before it goes live. One email per drop.</p>",
+        "input_placeholder": "Email address",
+        "button_label": "Subscribe",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
