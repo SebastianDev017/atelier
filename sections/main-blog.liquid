@@ -89,6 +89,23 @@
     {%- endif -%}
 
     {%- paginate blog.articles by section.settings.posts_per_page -%}
+      {%- comment -%}
+        Two different kinds of nothing. A blog with no posts at all is a fresh
+        install and just needs saying; a view that has filtered or paged down
+        to nothing needs a way back out, because the reader got here on
+        purpose and the tag row alone does not read as an exit.
+      {%- endcomment -%}
+      {%- if blog.articles.size == 0 -%}
+        <div class="blog__empty">
+          {%- if blog.articles_count == 0 -%}
+            <p class="blog__empty-text">{{ 'sections.main-blog.onboarding' | t }}</p>
+          {%- else -%}
+            <p class="blog__empty-text">{{ 'sections.main-blog.no_results' | t }}</p>
+            <a class="btn btn--outline" href="{{ blog.url }}">{{ 'blog.all_articles' | t }}</a>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+
       <div class="product-grid">
         {%- for article in blog.articles -%}
           {%- liquid
@@ -169,6 +186,8 @@
 {% stylesheet %}
   .blog { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
   .blog__head { max-width: 46rem; margin-bottom: var(--space-12); }
+  .blog__empty { display: flex; flex-direction: column; align-items: flex-start; gap: var(--space-5); max-width: 46rem; }
+  .blog__empty-text { color: var(--color-muted); }
 
   .blog__filter { margin-top: calc(var(--space-12) * -1 + var(--space-6)); margin-bottom: var(--space-10); }
   /* A long tag list wraps; it never becomes a horizontal rail. A shop with

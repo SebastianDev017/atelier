@@ -335,6 +335,10 @@
     },
     "blog-posts": {
       "onboarding": "Scegli un blog con almeno un articolo pubblicato per mostrarlo qui."
+    },
+    "main-blog": {
+      "onboarding": "Questo blog non ha ancora articoli. Gli articoli pubblicati appariranno qui.",
+      "no_results": "Nessun articolo corrisponde a questa vista."
     }
   }
 }
