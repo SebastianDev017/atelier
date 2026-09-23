@@ -2108,7 +2108,7 @@
       "name": "Artículo",
       "settings": {
         "image_ratio": {
-          "label": "Forma de la imagen destacada",
+          "label": "Proporción de la imagen",
           "info": "Original conserva las proporciones de cada entrada. Las formas fijas recortan todas por igual.",
           "options__1": {
             "label": "Original"

@@ -2108,7 +2108,7 @@
       "name": "Article",
       "settings": {
         "image_ratio": {
-          "label": "Featured image shape",
+          "label": "Image ratio",
           "info": "Original keeps each post's own proportions. The fixed shapes crop every post to match.",
           "options__1": {
             "label": "Original"

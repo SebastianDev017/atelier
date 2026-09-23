@@ -2108,7 +2108,7 @@
       "name": "Article",
       "settings": {
         "image_ratio": {
-          "label": "Forme de l'image mise en avant",
+          "label": "Format de l’image",
           "info": "Original conserve les proportions de chaque article. Les formes fixes recadrent tous les articles.",
           "options__1": {
             "label": "Original"

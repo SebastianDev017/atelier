@@ -80,7 +80,10 @@
               <a
                 class="blog__filter-item{% if is_current %} is-current{% endif %}"
                 href="{{ tag_url }}"
-                {% if is_current %}aria-current="page"{% endif %}
+                {%- comment -%} "true", not "page": this chip is a toggle, so for an active tag the
+                  href goes to the view WITHOUT it. It is the current item in the set,
+                  which is not a link to the current page. {%- endcomment -%}
+                {% if is_current %}aria-current="true"{% endif %}
               >{{ tag | escape }}</a>
             </li>
           {%- endfor -%}
