@@ -2108,7 +2108,7 @@
       "name": "Artikel",
       "settings": {
         "image_ratio": {
-          "label": "Form des Beitragsbilds",
+          "label": "Bildformat",
           "info": "Original behält die Proportionen jedes Beitrags. Feste Formen beschneiden alle Beiträge gleich.",
           "options__1": {
             "label": "Original"

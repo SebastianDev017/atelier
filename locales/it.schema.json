@@ -2108,7 +2108,7 @@
       "name": "Articolo",
       "settings": {
         "image_ratio": {
-          "label": "Forma dell'immagine in evidenza",
+          "label": "Proporzioni dell’immagine",
           "info": "Originale mantiene le proporzioni di ogni articolo. Le forme fisse ritagliano tutti gli articoli.",
           "options__1": {
             "label": "Originale"
