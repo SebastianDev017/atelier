@@ -9,6 +9,7 @@
       <link rel="preconnect" href="https://fonts.shopifycdn.com" crossorigin>
     {%- endunless -%}
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'base-components.css' | asset_url | stylesheet_tag }}
 
     {%- comment -%}
       css-variables must render after base.css: both declare :root, so the

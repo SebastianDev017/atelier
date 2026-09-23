@@ -21,6 +21,16 @@
   endcase
 
   assign fbi_alt = image.alt | default: section.settings.caption | escape
+
+  # The caption is painted in --color-overlay-text, the light-on-photo colour.
+  # With no image there is no photo under it, only the placeholder on the
+  # scheme's own ground -- 2.26:1 on the Maison install state, which ships with
+  # this section imageless. Same shape as .hero--no-image and
+  # .about-hero-s--no-image: take the scheme's ink and drop the overlay.
+  assign fbi_has_image = false
+  if image != blank
+    assign fbi_has_image = true
+  endif
 -%}
 
 <style>
@@ -30,7 +40,7 @@
   }
 </style>
 
-<div class="full-bleed-image section--full-bleed">
+<div class="full-bleed-image section--full-bleed{% unless fbi_has_image %} full-bleed-image--no-image{% endunless %}">
   <div class="full-bleed-image__media">
     {%- if image != blank -%}
       {{
@@ -49,7 +59,7 @@
       </div>
     {%- endif -%}
 
-    {%- if section.settings.overlay_opacity > 0 -%}
+    {%- if section.settings.overlay_opacity > 0 and fbi_has_image -%}
       <div class="full-bleed-image__overlay" aria-hidden="true"></div>
     {%- endif -%}
 
@@ -80,6 +90,7 @@
     background-color: #0A0705;
     opacity: var(--fbi-overlay, 0);
   }
+  .full-bleed-image--no-image { --color-overlay-text: var(--color-text); }
   .full-bleed-image__caption {
     position: absolute;
     left: var(--page-margin, 1.5rem);

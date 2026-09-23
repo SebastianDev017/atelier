@@ -285,6 +285,69 @@
         "padding_top": 56,
         "padding_bottom": 56
       }
+    },
+    "faq": {
+      "type": "faq-ledger",
+      "settings": {
+        "eyebrow": "Before you buy",
+        "heading": "Editions, framing, and what arrives",
+        "heading_tag": "h2",
+        "text": "<p>The five things collectors write in about, answered here so you do not have to ask.</p>",
+        "link": "/pages/about-us",
+        "link_label": "How we print",
+        "color_scheme": "background-2",
+        "padding_top": 120,
+        "padding_bottom": 120
+      },
+      "blocks": {
+        "q1": {
+          "type": "question",
+          "settings": {
+            "question": "What does “edition of 25” actually mean?",
+            "answer": "<p>Twenty-five prints exist of that image at that size, each numbered on the reverse and logged against your name. When the run closes it is not reprinted at that size.</p>",
+            "open_by_default": true
+          }
+        },
+        "q2": {
+          "type": "question",
+          "settings": {
+            "question": "Do prints arrive framed?",
+            "answer": "<p>Unframed by default, rolled in a rigid tube. Choose a frame in the section above and it ships glazed, backed and ready to hang.</p>",
+            "open_by_default": false
+          }
+        },
+        "q3": {
+          "type": "question",
+          "settings": {
+            "question": "What paper do you print on?",
+            "answer": "<p>Cotton rag for the matte work and baryta for anything with deep blacks. Both are archival and both are named on the product page.</p>",
+            "open_by_default": false
+          }
+        },
+        "q4": {
+          "type": "question",
+          "settings": {
+            "question": "How long does it take?",
+            "answer": "<p>Prints are made to order: five working days in the darkroom, then two to five in transit depending on where you are.</p>",
+            "open_by_default": false
+          }
+        },
+        "q5": {
+          "type": "question",
+          "settings": {
+            "question": "Can I return a print?",
+            "answer": "<p>Within thirty days, unframed and in its tube. Framed work is made to your specification, so it is returnable only if it arrives damaged.</p>",
+            "open_by_default": false
+          }
+        }
+      },
+      "block_order": [
+        "q1",
+        "q2",
+        "q3",
+        "q4",
+        "q5"
+      ]
     }
   },
   "order": [
@@ -293,6 +356,7 @@
     "index",
     "on_the_wall",
     "framing",
+    "faq",
     "featured_work",
     "artist",
     "hang",

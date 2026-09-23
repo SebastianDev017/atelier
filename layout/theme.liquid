@@ -39,6 +39,7 @@
     {%- endif -%}
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
+    {{ 'base-components.css' | asset_url | stylesheet_tag }}
 
     {%- comment -%}
       css-variables MUST render after base.css. Both declare :root, so they
