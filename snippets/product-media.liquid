@@ -5,6 +5,9 @@
 
   @param {object} product
   @param {object} section
+  @param {string} [desktop_size] - the width the stage is drawn at from 990px
+    up, for the image sizes attribute. Defaults to 50vw, the product page's
+    column. The quick-buy modal passes its own fixed width.
 
   B4 -- image fit. The stage used to crop EVERY image to 3:4 with object-fit:
   cover, and the theme has no zoom or lightbox, so a product photo of any other
@@ -29,6 +32,20 @@
   if product.selected_or_first_available_variant.featured_media
     assign active_media_id = product.selected_or_first_available_variant.featured_media.id
   endif
+  # Loading priority follows the section's position, per Shopify's section.index
+  # guidance. On the product page this gallery is the LCP element and loads
+  # eagerly at high priority. The featured-product section renders the same
+  # snippet, and mid-homepage (Annex: section 7 of 10) it is far below the fold
+  # -- there it has to load lazily, at normal priority, or it competes with the
+  # hero. Below the fold is tested as a positive "index > 2" so that nil falls
+  # to the eager side: nil is the theme editor, and the Section Rendering API
+  # that fills the quick-buy modal, where this image is the thing just asked for.
+  assign gallery_below_fold = false
+  if section.index > 2
+    assign gallery_below_fold = true
+  endif
+  assign desktop_size = desktop_size | default: '50vw'
+
   assign gallery_ratio = 0.75
   if media_fit == 'adapt' and product.media.size > 0
     assign gallery_ratio = product.media.first.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
@@ -52,7 +69,7 @@
           # and the high fetch priority. That is the ACTIVE media (the selected
           # variant's photo since QW1), not necessarily the first one -- keying this
           # on forloop.first left the visible photo lazy and pushed mobile LCP to ~6s.
-          if is_active
+          if is_active and gallery_below_fold == false
             assign img_loading = 'eager'
             assign img_priority = 'high'
           else
@@ -88,10 +105,10 @@
                 stage, so there the column width is the answer.
               {%- endcomment -%}
               {%- liquid
-                assign media_sizes = '(min-width: 990px) 50vw, 100vw'
+                assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', 100vw'
                 if media_fit == 'adapt'
                   assign media_ar = media.preview_image.aspect_ratio | default: 1 | round: 3
-                  assign media_sizes = '(min-width: 990px) 50vw, (min-width: 768px) min(100vw, calc(50vh * ' | append: media_ar | append: ')), min(100vw, calc(40vh * ' | append: media_ar | append: '))'
+                  assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', (min-width: 768px) min(100vw, calc(50vh * ' | append: media_ar | append: ')), min(100vw, calc(40vh * ' | append: media_ar | append: '))'
                 endif
               -%}
               {{
