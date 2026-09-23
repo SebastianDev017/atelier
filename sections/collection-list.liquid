@@ -42,9 +42,27 @@
         >
           <span class="media media--{{ section.settings.image_ratio }} collection-card__media">
             {%- if collection.featured_image -%}
-              {%- assign cl_focal = collection.featured_image.presentation.focal_point | default: '50% 50%' -%}
-              {%- assign cl_focal_style = 'object-position: ' | append: cl_focal | append: ';' -%}
-              {{ collection.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', decoding: 'async', widths: '300, 450, 600, 800', sizes: '(min-width: 990px) 30vw, 50vw', style: cl_focal_style, alt: collection.title | escape }}
+              {%- liquid
+                assign cl_focal = collection.featured_image.presentation.focal_point | default: '50% 50%'
+                assign cl_focal_style = 'object-position: ' | append: cl_focal | append: ';'
+                # The alt is hoisted, like every other image_tag in the theme. It was
+                # written inline as "alt: collection.title | escape", where the pipe
+                # closes the argument list -- escape then applied to the <img> STRING
+                # image_tag returns, so the card printed the tag as visible text
+                # instead of showing the picture.
+                assign cl_alt = collection.featured_image.alt | default: collection.title | escape
+              -%}
+              {{
+                collection.featured_image
+                | image_url: width: 800
+                | image_tag:
+                  loading: 'lazy',
+                  decoding: 'async',
+                  widths: '300, 450, 600, 800',
+                  sizes: '(min-width: 990px) 30vw, 50vw',
+                  style: cl_focal_style,
+                  alt: cl_alt
+              }}
             {%- elsif collection.products.first.featured_image -%}
               {{ collection.products.first.featured_image | image_url: width: 800 | image_tag: loading: 'lazy', decoding: 'async', widths: '300, 450, 600, 800', sizes: '(min-width: 990px) 30vw, 50vw', alt: '' }}
             {%- else -%}

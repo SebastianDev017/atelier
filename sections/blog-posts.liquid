@@ -56,7 +56,7 @@
         {%- for article in blog.articles limit: count -%}
           <li class="blogposts__item" data-animate data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}">
             <a class="blogposts__card" href="{{ article.url }}">
-              <span class="blogposts__media">
+              <div class="blogposts__media">
                 {%- if article.image != blank -%}
                   {%- assign post_alt = article.image.alt | default: article.title -%}
                   {{
@@ -73,9 +73,9 @@
                 {%- else -%}
                   {{ 'image' | placeholder_svg_tag: 'blogposts__img placeholder' }}
                 {%- endif -%}
-              </span>
+              </div>
 
-              <span class="blogposts__body">
+              <div class="blogposts__body">
                 {%- if section.settings.show_date -%}
                   <time class="blogposts__date label" datetime="{{ article.published_at | date: '%Y-%m-%d' }}">
                     {{ article.published_at | date: format: 'date' }}
@@ -93,7 +93,7 @@
                 {%- if section.settings.show_author and article.author != blank -%}
                   <span class="blogposts__author label">{{ article.author | escape }}</span>
                 {%- endif -%}
-              </span>
+              </div>
             </a>
           </li>
         {%- endfor -%}
