@@ -451,45 +451,6 @@
         "name": "Ankündigungsleiste"
       }
     },
-    "brand-statement": {
-      "name": "Markenbotschaft",
-      "settings": {
-        "heading": {
-          "label": "Überschrift",
-          "info": "Zeilenumbrüche erscheinen genau so, wie du sie eingibst."
-        },
-        "subheading": {
-          "label": "Begleitzeile"
-        },
-        "heading_size_vw": {
-          "label": "Überschriftengröße (Desktop)"
-        },
-        "heading_size_mobile": {
-          "label": "Überschriftengröße (Mobil)"
-        },
-        "color_scheme": {
-          "label": "Farbschema",
-          "options__1": {
-            "label": "Creme"
-          },
-          "options__2": {
-            "label": "Pergament"
-          },
-          "options__3": {
-            "label": "Leinen"
-          },
-          "options__4": {
-            "label": "Weiß"
-          },
-          "options__5": {
-            "label": "Invertiert"
-          }
-        }
-      },
-      "presets": {
-        "name": "Markenbotschaft"
-      }
-    },
     "cart-drawer": {
       "name": "Warenkorb-Schublade"
     },

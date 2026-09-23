@@ -33,8 +33,7 @@
   /* 1b. Blur-to-focus reveal — section headings sharpen + fade up on scroll.
      The hero heading animates on load (with a delay); all others are scroll-
      triggered. Owns every section heading EXCEPT those handled elsewhere
-     ([data-split] = SplitText, [data-fade-up] = initFadeUp, [data-brand-statement]
-     = initBrandStatement) and chrome (sidebar / cart drawer / sticky bar). Each
+     ([data-split] = SplitText, [data-fade-up] = initFadeUp) and chrome (sidebar / cart drawer / sticky bar). Each
      element gets a one-shot data-blurDone guard so a shopify:section:load re-init
      never double-processes. will-change is cleared on complete to drop the layer. */
   function initBlurReveal(scope) {
@@ -49,7 +48,7 @@
          data-split (SplitText), data-fade-up (initFadeUp), .reveal-lines (CSS
          line-reveal), .eyebrow (small footer/section labels, not display headings). */
       if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up') || el.classList.contains('reveal-lines') || el.classList.contains('eyebrow')) return;
-      if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, [data-brand-statement], .hero, [data-no-split], [data-product-card]')) return;
+      if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, .hero, [data-no-split], [data-product-card]')) return;
       el.dataset.blurDone = '1';
       gsap.fromTo(el,
         { opacity: 0, filter: 'blur(12px)', y: 10 },
@@ -227,27 +226,6 @@
     });
   }
 
-  /* Brand statement — pinned, scrubbed word-by-word reveal (opacity 0.1 -> 1). */
-  function initBrandStatement() {
-    if (window.Shopify && window.Shopify.designMode) return;
-    if (!window.SplitText) return;
-    gsap.utils.toArray('[data-brand-statement]').forEach(function (section) {
-      var heading = section.querySelector('.brand-statement__heading');
-      if (!heading) return;
-      var split = new SplitText(heading, { type: 'words', wordsClass: 'bs-word' });
-      /* 0.5, not 0.1: the un-revealed words are real heading text, and at 0.1 they
-         measured 1.3:1 (axe: color-contrast, serious). 0.5 is the lowest start that
-         clears 3:1 -- the large-text minimum -- in all three presets' schemes
-         (3.25:1 worst case), and the word-by-word reveal to 1 still reads. */
-      gsap.set(split.words, { opacity: 0.5 });
-      var tl = gsap.timeline({
-        scrollTrigger: { trigger: section, start: 'top top', end: '+=100%', pin: true, scrub: 1 }
-      });
-      tl.to(split.words, { opacity: 1, stagger: 0.1, ease: 'none' });
-      var sub = section.querySelector('.brand-statement__sub');
-      if (sub) { gsap.set(sub, { opacity: 0 }); tl.to(sub, { opacity: 1, duration: 0.3 }); }
-    });
-  }
 
   /* Horizontal-scroll rail — desktop only (gsap.matchMedia); mobile uses native
      CSS scroll-snap. Distance is function-based + invalidateOnRefresh = resize-safe. */
@@ -343,7 +321,6 @@
     initScrollCue();
     initScrollProgress();
     initCursorPan();
-    initBrandStatement();
     initHorizontalScroll();
     /* Splitting before the webfont arrives measures lines in the fallback and
        re-wraps when it swaps, which is a layout shift the size of the heading.

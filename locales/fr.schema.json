@@ -451,45 +451,6 @@
         "name": "Barre d'annonce"
       }
     },
-    "brand-statement": {
-      "name": "Manifeste de marque",
-      "settings": {
-        "heading": {
-          "label": "Titre",
-          "info": "Les sauts de ligne apparaissent exactement comme vous les tapez."
-        },
-        "subheading": {
-          "label": "Ligne d'accompagnement"
-        },
-        "heading_size_vw": {
-          "label": "Taille du titre (ordinateur)"
-        },
-        "heading_size_mobile": {
-          "label": "Taille du titre (mobile)"
-        },
-        "color_scheme": {
-          "label": "Palette de couleurs",
-          "options__1": {
-            "label": "Crème"
-          },
-          "options__2": {
-            "label": "Parchemin"
-          },
-          "options__3": {
-            "label": "Lin"
-          },
-          "options__4": {
-            "label": "Blanc"
-          },
-          "options__5": {
-            "label": "Inversé"
-          }
-        }
-      },
-      "presets": {
-        "name": "Manifeste de marque"
-      }
-    },
     "cart-drawer": {
       "name": "Tiroir du panier"
     },

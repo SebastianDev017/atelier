@@ -451,45 +451,6 @@
         "name": "Announcement bar"
       }
     },
-    "brand-statement": {
-      "name": "Brand statement",
-      "settings": {
-        "heading": {
-          "label": "Heading",
-          "info": "Line breaks show exactly as you type them."
-        },
-        "subheading": {
-          "label": "Supporting line"
-        },
-        "heading_size_vw": {
-          "label": "Heading size (desktop)"
-        },
-        "heading_size_mobile": {
-          "label": "Heading size (mobile)"
-        },
-        "color_scheme": {
-          "label": "Color scheme",
-          "options__1": {
-            "label": "Cream"
-          },
-          "options__2": {
-            "label": "Parchment"
-          },
-          "options__3": {
-            "label": "Linen"
-          },
-          "options__4": {
-            "label": "White"
-          },
-          "options__5": {
-            "label": "Inverted"
-          }
-        }
-      },
-      "presets": {
-        "name": "Brand statement"
-      }
-    },
     "cart-drawer": {
       "name": "Cart drawer"
     },
