@@ -65,6 +65,7 @@
         <div
           class="product-media__item{% if is_active %} is-active{% endif %}"
           data-media-id="{{ media.id }}"
+          data-media-type="{{ media.media_type }}"
         >
           {%- case media.media_type -%}
             {%- when 'image' -%}
@@ -111,6 +112,25 @@
               {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy', decoding: 'async' }}
             {%- when 'model' -%}
               {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
+              {%- comment -%}
+                "View in your space". The Shopify-XR library scans the DOM for
+                [data-shopify-xr] and attaches the launcher itself; until it has
+                run and confirmed the device can open AR, data-shopify-xr-hidden
+                keeps the button off the page -- which is why it appears on a
+                phone and not on a desktop. One button per model, inside that
+                model's own slot, so it is only on screen while the model is.
+              {%- endcomment -%}
+              <button
+                type="button"
+                class="product-media__xr"
+                data-shopify-xr
+                data-shopify-model3d-id="{{ media.id }}"
+                data-shopify-title="{{ product.title | escape }}"
+                data-shopify-xr-hidden
+              >
+                {%- render 'icon', name: 'cube' -%}
+                <span>{{ 'products.view_in_space' | t }}</span>
+              </button>
             {%- else -%}
               {{ media | media_tag: image_size: '1000x' }}
           {%- endcase -%}
@@ -122,6 +142,21 @@
       </div>
     {%- endif -%}
   </div>
+
+  {%- liquid
+    assign product_models = product.media | where: 'media_type', 'model'
+  -%}
+  {%- if product_models.size > 0 -%}
+    {%- comment -%}
+      ShopifyXR.addModels() needs the model media objects themselves. product.js
+      reads this when the gallery connects, which is also how the copy injected
+      into the quick-buy modal registers its models -- a <script> inside fetched
+      markup never executes, but a custom element still upgrades.
+    {%- endcomment -%}
+    <script type="application/json" data-product-models>
+      {{ product_models | json }}
+    </script>
+  {%- endif -%}
 
   {%- if product.media.size > 1 -%}
     <div class="product-media__thumbs" role="group" aria-label="{{ 'accessibility.product_media' | t }}">
@@ -153,7 +188,7 @@
 {% stylesheet %}
   .product-media { display: flex; flex-direction: column; gap: var(--space-3); }
   .product-media__stage { position: relative; }
-  .product-media__item { display: none; aspect-ratio: var(--ratio-product); overflow: hidden; background-color: var(--color-subtle); }
+  .product-media__item { display: none; position: relative; aspect-ratio: var(--ratio-product); overflow: hidden; background-color: var(--color-subtle); }
   .product-media__item.is-active { display: block; }
   .product-media__image { width: 100%; height: 100%; object-fit: cover; }
   /* adapt: the stage takes the first image's shape; every image is shown whole.
@@ -180,6 +215,45 @@
     .product-media--adapt .product-media__item { max-height: 40svh; }
   }
   .product-media__video { width: 100%; height: 100%; object-fit: contain; background-color: var(--color-black); }
+  /* external_video_tag returns an iframe and model_viewer_tag a <model-viewer>;
+     neither obeys object-fit, so each fills its slot, and the slot already
+     carries the stage's ratio. */
+  .product-media__item iframe,
+  .product-media__item model-viewer { display: block; width: 100%; height: 100%; border: 0; background-color: var(--color-subtle); }
+  /* Shopify.ModelViewerUI moves the viewer into a wrapper of its own whose CSS
+     is `position: relative; display: inline-block` and nothing else -- measured
+     at 0x0, which collapsed the viewer with it, because Shopify leaves the
+     sizing to the theme. Two classes deep so it outranks that stylesheet, which
+     is injected at runtime and therefore lands after this one. */
+  .product-media__item .shopify-model-viewer-ui { display: block; width: 100%; height: 100%; }
+
+  /* AR. Ships hidden: Shopify-XR removes data-shopify-xr-hidden only on a
+     device that can actually launch AR, so this one rule is the whole
+     show/hide decision -- nothing in the theme guesses at device support. */
+  .product-media__xr[data-shopify-xr-hidden] { display: none; }
+  .product-media__xr {
+    position: absolute;
+    left: 50%;
+    bottom: var(--space-3);
+    transform: translateX(-50%);
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    /* 44px: the tap target minimum every other control in this theme holds to. */
+    min-height: 44px;
+    padding-inline: var(--space-4);
+    border: 1px solid var(--color-text);
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    font-family: var(--font-mono);
+    font-size: var(--text-xs);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .product-media__xr .icon { width: 16px; height: 16px; flex-shrink: 0; }
 
   .product-media__thumbs {
     display: grid;

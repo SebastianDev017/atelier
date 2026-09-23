@@ -1,7 +1,8 @@
 {%- comment -%}
   Featured product — a full buy box (55% media / 45% sticky content) with a bundle
-  upsell beneath the buttons. Self-contained interactivity lives in
-  assets/featured-product.js (variant switching + thumbnail swap) rather than
+  upsell beneath the buttons. The gallery is snippets/product-media.liquid, the
+  same one the product template renders, so image, video, external video and 3D
+  all work here. Variant switching lives in assets/featured-product.js rather than
   product.js, because product.js's price fetch is keyed to the page URL's product
   and would not reflect a section-picked product's variant. Per-variant price HTML
   is pre-rendered server-side so switching is correct + instant.
@@ -28,27 +29,17 @@
     {%- else -%}
       <div class="featured-product__grid">
         {%- comment -%} ---- Media (55%) ---- {%- endcomment -%}
+        {%- comment -%}
+          The product page's own gallery, not a second implementation of it: it
+          is the only place in the theme that renders all four media types, and
+          §4 requires video and 3D here as much as on the product template. It
+          brings its own thumbnails, its own placeholder for a product with no
+          media, and the AR button.
+        {%- endcomment -%}
         <div class="featured-product__media">
-          <div class="fp__main" data-reveal>
-            {%- if fp.featured_media -%}
-              <img class="fp__main-img" data-fp-main-img
-                src="{{ fp.featured_media | image_url: width: 1200 }}"
-                srcset="{{ fp.featured_media | image_url: width: 600 }} 600w, {{ fp.featured_media | image_url: width: 1200 }} 1200w, {{ fp.featured_media | image_url: width: 1600 }} 1600w"
-                sizes="(min-width: 750px) 55vw, 100vw"
-                alt="{{ fp.featured_media.alt | default: fp.title | escape }}" width="1200" height="1500" loading="lazy" decoding="async">
-            {%- else -%}
-              <span class="fp__main-img placeholder">{{ 'product-1' | placeholder_svg_tag: 'placeholder' }}</span>
-            {%- endif -%}
+          <div class="fp__gallery" data-reveal>
+            {%- render 'product-media', product: fp, section: section -%}
           </div>
-          {%- if fp.media.size > 1 -%}
-            <div class="fp__thumbs">
-              {%- for media in fp.media limit: 4 -%}
-                <button type="button" class="fp__thumb{% if forloop.first %} is-active{% endif %}" data-fp-thumb="{{ media | image_url: width: 1200 }}" aria-label="{{ fp.title | escape }} — {{ forloop.index }}">
-                  <img src="{{ media | image_url: width: 200 }}" alt="" width="80" height="100" loading="lazy" decoding="async">
-                </button>
-              {%- endfor -%}
-            </div>
-          {%- endif -%}
         </div>
 
         {%- comment -%} ---- Content (45%, sticky) ---- {%- endcomment -%}
@@ -228,7 +219,7 @@
         </div>
       </div>
 
-      {%- comment -%} Per-variant data for featured-product.js: pre-rendered price HTML + variant image. {%- endcomment -%}
+      {%- comment -%} Per-variant data for featured-product.js: pre-rendered price HTML + the variant's media id, which the gallery switches to. {%- endcomment -%}
       <script type="application/json" data-fp-variants>
         [
           {%- for v in fp.variants -%}
@@ -237,8 +228,8 @@
               "id": {{ v.id }},
               "available": {{ v.available }},
               "options": {{ v.options | json }},
-              "price_html": {{ vprice | json }}{% if v.image %},
-              "image": {{ v.image | image_url: width: 1200 | json }}{% endif %}
+              "price_html": {{ vprice | json }}{% if v.featured_media %},
+              "media_id": {{ v.featured_media.id | json }}{% endif %}
             }{%- unless forloop.last -%},{%- endunless -%}
           {%- endfor -%}
         ]
@@ -263,6 +254,13 @@
   .fp__eyebrow { color: var(--color-muted); }
 
   /* The buy-box rules (.fp__*) live in base.css: the quick-buy modal renders the same box. */
+
+  /* Gallery sizing, replacing the old .fp__main aspect-ratio: the stage belongs
+     to product-media now, so its rules are what has to be reached. Three
+     classes deep on purpose -- product-media's own rules are two, and both sets
+     land in the same bundled stylesheet, whose concatenation order is not
+     something to depend on. Specificity settles it either way. */
+  .featured-product .product-media--adapt .product-media__item { max-height: 78vh; }
 
   .fp__app-blocks { display: flex; flex-direction: column; gap: var(--space-3); }
   .fp__app-blocks:not(:empty) { margin-top: var(--space-4); }

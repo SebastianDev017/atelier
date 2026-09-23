@@ -414,7 +414,7 @@
   {%- endif -%}
 </product-info>
 
-<script src="{{ 'product.js' | asset_url }}" defer></script>
+{%- comment -%} product.js is loaded globally from layout/theme.liquid. {%- endcomment -%}
 {%- if product.gift_card? -%}
   <script src="{{ 'recipient-form.js' | asset_url }}" defer="defer"></script>
 {%- endif -%}

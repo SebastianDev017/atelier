@@ -128,6 +128,14 @@
     <script src="{{ 'horizontal-scroll-nav.js' | asset_url }}" defer></script>
     <script src="{{ 'collection-showcase.js' | asset_url }}" defer></script>
     <script src="{{ 'product-card.js' | asset_url }}" defer></script>
+    {%- comment -%}
+      product.js is global rather than product-page-only: it defines
+      <product-media-gallery>, and the featured-product section puts one on the
+      homepage while the quick-buy modal injects one anywhere. Loaded here, the
+      element is defined before either can appear, and custom elements upgrade
+      injected markup on their own.
+    {%- endcomment -%}
+    <script src="{{ 'product.js' | asset_url }}" defer></script>
     {%- if settings.card_quick_buy != false -%}<script src="{{ 'quick-buy.js' | asset_url }}" defer></script>{%- endif -%}
     <script src="{{ 'lenis.min.js' | asset_url }}" defer></script>
     {%- comment -%}
