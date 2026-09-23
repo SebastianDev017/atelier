@@ -1,6 +1,9 @@
 /*
- * Featured product — variant switching + thumbnail swap for the featured-product
- * section. Deliberately NOT product.js: the price HTML is pre-rendered per variant
+ * Featured product — variant switching for the featured-product section and the
+ * quick-buy modal, which render the same buy box. The media itself belongs to
+ * <product-media-gallery> (product.js); this file only tells it which media the
+ * newly selected variant wants.
+ * Deliberately NOT product.js for the rest: the price HTML is pre-rendered per variant
  * server-side (data-fp-variants), so switching is correct and instant with no fetch
  * (product.js's price fetch is keyed to the page URL's product, which a section-
  * picked product is not). The add-to-cart itself reuses <product-form> (cart.js).
@@ -15,7 +18,7 @@
     var addBtn = root.querySelector('[data-fp-add]');
     var addLabel = root.querySelector('[data-fp-add-label]');
     var priceTarget = root.querySelector('[data-fp-price]');
-    var mainImg = root.querySelector('[data-fp-main-img]');
+    var gallery = root.querySelector('[data-product-media]');
     var dynamicCheckout = root.querySelector('[data-fp-dynamic-checkout]');
     /* Quick buy only: "View full product details" follows the selected variant. */
     var details = root.querySelector('[data-quick-buy-details]');
@@ -27,11 +30,30 @@
       });
     }
 
-    function setMainImage(src) {
-      if (mainImg && mainImg.tagName === 'IMG') {
-        mainImg.removeAttribute('srcset');
-        mainImg.src = src;
+    /* Was setMainImage(src), which swapped one <img>'s src and so could only
+       ever show an image: a variant whose media is a video or a 3D model left
+       the previous photo on screen. The gallery is snippets/product-media now,
+       the same one the product page uses, and it switches by media id across
+       all four types — keeping the thumbnails, the AR button and playback in
+       step, which a src swap could not do. */
+    function setActiveMedia(id) {
+      if (!gallery || id === null || id === undefined) return;
+      if (typeof gallery.setActiveMedia === 'function') {
+        gallery.setActiveMedia(id);
+        return;
       }
+      /* product.js is deferred and the modal injects this markup, so the
+         element may not have upgraded yet. Same toggle it would have done. */
+      var target = String(id);
+      Array.prototype.forEach.call(gallery.querySelectorAll('[data-media-id]'), function (item) {
+        item.classList.toggle('is-active', item.getAttribute('data-media-id') === target);
+      });
+      Array.prototype.forEach.call(gallery.querySelectorAll('[data-media-thumb]'), function (t) {
+        var on = t.getAttribute('data-media-thumb') === target;
+        t.classList.toggle('is-active', on);
+        if (on) t.setAttribute('aria-current', 'true');
+        else t.removeAttribute('aria-current');
+      });
     }
 
     function updateVariant() {
@@ -64,22 +86,15 @@
       if (dynamicCheckout) dynamicCheckout.hidden = !available;
       if (variant && priceTarget && variant.price_html) priceTarget.innerHTML = variant.price_html;
       if (variant && details && variant.url) details.href = variant.url;
-      if (variant && variant.image) {
-        setMainImage(variant.image);
-        root.querySelectorAll('[data-fp-thumb]').forEach(function (t) { t.classList.remove('is-active'); });
-      }
+      if (variant && variant.media_id) setActiveMedia(variant.media_id);
     }
 
     root.addEventListener('change', function (e) {
       if (e.target.closest('[data-fp-option-group]')) updateVariant();
     });
 
-    root.querySelectorAll('[data-fp-thumb]').forEach(function (thumb) {
-      thumb.addEventListener('click', function () {
-        setMainImage(thumb.getAttribute('data-fp-thumb'));
-        root.querySelectorAll('[data-fp-thumb]').forEach(function (t) { t.classList.toggle('is-active', t === thumb); });
-      });
-    });
+    /* No thumbnail handler here any more: <product-media-gallery> binds its own
+       and is the single owner of which media is active. */
   }
 
   function boot(scope) {

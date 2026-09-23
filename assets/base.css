@@ -1492,9 +1492,6 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
 .quick-buy__close { position: absolute; top: var(--space-2); right: var(--space-2); z-index: 2; }
 .quick-buy__product.featured-product { padding-block: 0; }
 .quick-buy__grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(1.5rem, 3vw, 3rem); align-items: start; }
-.quick-buy .quick-buy__main { aspect-ratio: 4 / 5; }
-.quick-buy__thumbs { flex-wrap: wrap; }
-.quick-buy__thumbs .fp__thumb { width: 64px; }
 .quick-buy__info { display: flex; flex-direction: column; gap: var(--space-4); min-width: 0; padding-top: var(--space-6); }
 .quick-buy .quick-buy__title { font-size: calc(var(--text-2xl) * var(--heading-scale)); padding-inline-end: var(--space-8); }
 .quick-buy .quick-buy__desc { font-size: var(--text-sm); color: var(--color-body); max-width: none; }
@@ -1508,7 +1505,6 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   .quick-buy { padding: 0; align-items: flex-end; }
   .quick-buy__panel { width: 100%; max-height: 92svh; }
   .quick-buy__grid { grid-template-columns: minmax(0, 1fr); }
-  .quick-buy .quick-buy__main { aspect-ratio: 1 / 1; }
   .quick-buy__info { padding-top: 0; }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -1519,12 +1515,9 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
    The featured-product section and the quick-buy modal render the same buy
    box (gallery, variant pills and swatches, quantity, add to cart), so its
    rules live here rather than in either section's own stylesheet. */
-.fp__main { overflow: hidden; aspect-ratio: 3 / 4; background: var(--color-media); }
-.fp__main-img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.fp__thumbs { display: flex; gap: var(--space-3); margin-top: var(--space-3); }
-.fp__thumb { width: 72px; aspect-ratio: 4 / 5; padding: 0; border: 1px solid transparent; background: var(--color-media); cursor: pointer; overflow: hidden; transition: border-color var(--duration-fast) var(--ease-editorial); }
-.fp__thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.fp__thumb.is-active { border-color: var(--color-text); }
+/* The gallery these rules used to size is gone: both surfaces render
+   snippets/product-media.liquid now, which brings its own stage, its own
+   thumbnails and their sizing. What stays here is the buy box proper. */
 
 .fp__vendor { font-family: var(--font-mono); font-size: var(--text-xs); letter-spacing: 0.06em; text-transform: uppercase; color: var(--color-muted); }
 .fp__title { margin: 0; font-size: clamp(2rem, 4vw, 3.25rem); font-weight: 300; line-height: 1.04; }
