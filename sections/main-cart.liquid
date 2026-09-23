@@ -56,12 +56,17 @@
               <button type="submit" name="checkout" class="btn btn--primary btn--full btn--large">{{ 'cart.checkout' | t }}</button>
               {%- comment -%}
                 R9 — accelerated checkout. Shopify renders and styles these buttons
-                itself; the theme only owns the spacing. Outputs nothing when the
-                shop has no accelerated methods enabled.
+                itself; the theme only owns the spacing. Gated on
+                additional_checkout_buttons, the way the cart drawer does it: the
+                :empty rule below never matched, because the Liquid left whitespace
+                inside the div, so a shop with no accelerated method got a 0px block
+                and a 12px phantom gap under Checkout.
               {%- endcomment -%}
-              <div class="cart__accelerated" data-additional-checkout-buttons>
-                {{ content_for_additional_checkout_buttons }}
-              </div>
+              {%- if additional_checkout_buttons -%}
+                <div class="cart__accelerated" data-additional-checkout-buttons>
+                  {{ content_for_additional_checkout_buttons }}
+                </div>
+              {%- endif -%}
               <noscript><button type="submit" name="update" class="btn btn--outline btn--full">{{ 'cart.update' | t }}</button></noscript>
             </div>
 
