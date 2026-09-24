@@ -137,7 +137,7 @@
           class="product-card__action"
           data-quick-buy="{{ product.url }}"
           aria-haspopup="dialog"
-          aria-label="{{ 'products.quick_buy_label' | t: title: product.title | escape }}"
+          aria-label="{{ 'products.quick_buy_label' | t: title: product.title }}"
           data-tooltip="{{ 'products.quick_buy' | t | escape }}"
         >
           {%- render 'icon', name: 'bag' -%}

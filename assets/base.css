@@ -1506,6 +1506,10 @@ body:has(.cart-drawer.is-open) * { cursor: auto !important; }
   .quick-buy__panel { width: 100%; max-height: 92svh; }
   .quick-buy__grid { grid-template-columns: minmax(0, 1fr); }
   .quick-buy__info { padding-top: 0; }
+  /* Below 750px the close button sits over the gallery's top-right corner, and
+     a video slot there is black: the dark X fell to ~1.2:1. A solid ground
+     keeps it readable over any media. */
+  .quick-buy__close { background-color: var(--color-bg); }
 }
 @media (prefers-reduced-motion: reduce) {
   .quick-buy__backdrop, .quick-buy__panel { transition: none; transform: none; }

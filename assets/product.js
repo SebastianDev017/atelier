@@ -195,8 +195,12 @@
 
   var ProductModels = {
     queued: [],     /* models waiting for ShopifyXR.addModels */
-    galleries: [],  /* galleries waiting for Shopify.ModelViewerUI */
+    added: {},      /* model ids already handed to ShopifyXR */
+    galleries: [],  /* galleries holding models, dropped once they leave the DOM */
     asked: false,
+    xrWaiting: false,
+    building: false, /* a ModelViewerUI whose shared sprite has not landed yet */
+    waiting: [],     /* viewers queued behind it */
 
     register: function (gallery) {
       var source = gallery.querySelector('[data-product-models]');
@@ -205,7 +209,7 @@
       try { models = JSON.parse(source.textContent); } catch (e) { return; }
       if (!models || !models.length) return;
       this.queued = this.queued.concat(models);
-      this.galleries.push(gallery);
+      if (this.galleries.indexOf(gallery) === -1) this.galleries.push(gallery);
       this.load();
     },
 
@@ -215,12 +219,12 @@
       /* A second gallery (the quick-buy modal, say) arriving after the features
          are already in flight or done: no second request, just re-run both
          steps against what is now in the DOM. */
-      if (this.asked) { this.wireXR(); this.enhance(); return; }
+      if (this.asked) { this.wireXR(); this.enhanceAll(); return; }
       this.asked = true;
       this.styles();
       window.Shopify.loadFeatures([
         { name: 'shopify-xr', version: '1.0', onLoad: function (errors) { if (!errors) self.wireXR(); } },
-        { name: 'model-viewer-ui', version: '1.0', onLoad: function (errors) { if (!errors) self.enhance(); } }
+        { name: 'model-viewer-ui', version: '1.0', onLoad: function (errors) { if (!errors) self.enhanceAll(); } }
       ]);
     },
 
@@ -234,33 +238,75 @@
     },
 
     /* Shopify's documented guard, and it is load-bearing: window.ShopifyXR is
-       still undefined at the moment loadFeatures reports the script loaded. */
+       still undefined at the moment loadFeatures reports the script loaded.
+       One pending listener at most, however many galleries connect first. */
     wireXR: function () {
       var self = this;
       if (!window.ShopifyXR) {
-        document.addEventListener('shopify_xr_initialized', function () { self.wireXR(); }, { once: true });
+        if (this.xrWaiting) return;
+        this.xrWaiting = true;
+        document.addEventListener('shopify_xr_initialized', function () {
+          self.xrWaiting = false;
+          self.wireXR();
+        }, { once: true });
         return;
       }
-      if (this.queued.length) {
-        window.ShopifyXR.addModels(this.queued);
-        this.queued = [];
-      }
-      /* Scans for [data-shopify-xr] and unhides the buttons it can serve. */
+      /* The same product can be registered twice (its page and a quick view of
+         it): each model is handed over once. */
+      var fresh = this.queued.filter(function (m) { return m && m.id && !self.added[m.id]; });
+      fresh.forEach(function (m) { self.added[m.id] = true; });
+      this.queued = [];
+      if (fresh.length) window.ShopifyXR.addModels(fresh);
+      /* Scans for [data-shopify-xr] and unhides the buttons it can serve. It
+         skips elements it has already bound, so re-running it is safe. */
       window.ShopifyXR.setupXRElements();
     },
 
-    enhance: function () {
-      if (typeof (window.Shopify || {}).ModelViewerUI !== 'function') return;
-      this.galleries.forEach(function (gallery) {
-        Array.prototype.forEach.call(gallery.querySelectorAll('model-viewer'), function (viewer) {
-          if (viewer.dataset.viewerBound === 'true') return;
-          viewer.dataset.viewerBound = 'true';
-          try { new window.Shopify.ModelViewerUI(viewer); }
-          catch (e) { delete viewer.dataset.viewerBound; }
-        });
-      });
-      /* The modal's gallery is thrown away each time it closes; don't hold it. */
+    enhanceAll: function () {
+      var self = this;
       this.galleries = this.galleries.filter(function (g) { return g.isConnected; });
+      this.galleries.forEach(function (g) { self.enhanceActive(g); });
+    },
+
+    /* The viewer UI is built for the model on screen, when it first comes on
+       screen (Dawn's pattern), not for every model up front. Building them all
+       in one tick made each instance miss Shopify's own "is the sprite already
+       there?" check -- the sprite lands after an XHR -- so each injected its
+       own copy: 6 duplicate ids with two models. It also means a model nobody
+       opens never pulls in the 3D library at all. */
+    enhanceActive: function (gallery) {
+      var item = gallery.querySelector('[data-media-id].is-active');
+      var viewer = item && item.querySelector('model-viewer');
+      if (viewer) this.enhanceViewer(viewer);
+    },
+
+    enhanceViewer: function (viewer) {
+      var self = this;
+      if (typeof (window.Shopify || {}).ModelViewerUI !== 'function') return;
+      if (viewer.dataset.viewerBound === 'true') return;
+      if (this.building) {
+        if (this.waiting.indexOf(viewer) === -1) this.waiting.push(viewer);
+        return;
+      }
+      viewer.dataset.viewerBound = 'true';
+      this.building = true;
+      try { new window.Shopify.ModelViewerUI(viewer); }
+      catch (e) { delete viewer.dataset.viewerBound; }
+      /* Hold the next construction until the shared sprite exists (2s at most,
+         so a failed sprite request cannot stall the queue). */
+      var tries = 0;
+      (function wait() {
+        if (document.getElementById('sprites-mvui') || ++tries > 20) { self.flush(); return; }
+        setTimeout(wait, 100);
+      })();
+    },
+
+    flush: function () {
+      this.building = false;
+      while (this.waiting.length && !this.building) {
+        var next = this.waiting.shift();
+        if (next.isConnected) this.enhanceViewer(next);
+      }
     }
   };
 
@@ -273,9 +319,13 @@
     ProductMediaGallery.prototype.connectedCallback = function () {
       this.items = Array.prototype.slice.call(this.querySelectorAll('[data-media-id]'));
       this.thumbs = Array.prototype.slice.call(this.querySelectorAll('[data-media-thumb]'));
+      this.xrButton = this.querySelector('[data-product-xr]');
       this.onThumb = this.onThumb.bind(this);
       this.thumbs.forEach((t) => t.addEventListener('click', this.onThumb));
       ProductModels.register(this);
+      /* A model already on screen at load (the first media, or the selected
+         variant's) gets its viewer UI as soon as the library is there. */
+      ProductModels.enhanceActive(this);
       /* Run once on connect, not only on a switch: it is what keeps the
          embeds of media nobody has opened from loading in the first place. */
       this.syncPlayback();
@@ -298,6 +348,18 @@
         else t.removeAttribute('aria-current');
       });
       this.syncPlayback();
+      this.retargetXR(id);
+      ProductModels.enhanceActive(this);
+    };
+    /* The one AR button opens the model on screen, or the first model when
+       something else is showing. Shopify-XR reads data-shopify-model3d-id when
+       the button is pressed, so updating the attribute is all it takes. */
+    ProductMediaGallery.prototype.retargetXR = function (id) {
+      if (!this.xrButton) return;
+      var models = this.items.filter(function (i) { return i.getAttribute('data-media-type') === 'model'; });
+      if (!models.length) return;
+      var onScreen = models.filter(function (i) { return i.getAttribute('data-media-id') === id; })[0];
+      this.xrButton.setAttribute('data-shopify-model3d-id', (onScreen || models[0]).getAttribute('data-media-id'));
     };
     /* Only the media on screen may be playing — Shopify's own requirement for
        a multi-media gallery. A native <video> just pauses. An external video is

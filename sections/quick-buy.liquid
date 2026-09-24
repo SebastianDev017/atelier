@@ -24,7 +24,8 @@
       {%- endcomment -%}
       <div class="quick-buy__media">
         {%- comment -%} 440px: the stage's drawn width in the modal from 990px up (it caps at 980px, two columns). {%- endcomment -%}
-        {%- render 'product-media', product: qb, section: section, desktop_size: '440px' -%}
+        {%- comment -%} lcp: the product just asked for is the modal's main content. {%- endcomment -%}
+        {%- render 'product-media', product: qb, section: section, lcp: true, desktop_size: '440px' -%}
       </div>
 
       <div class="quick-buy__info">
@@ -83,6 +84,7 @@
                             endif
                           endfor
                         -%}
+                        {%- comment -%} Sold-out values stay selectable, as on the product page and in featured-product. {%- endcomment -%}
                         <label class="fp__pill{% if is_color_option and value.swatch %} fp__pill--swatch{% endif %}{% unless value_available %} fp__pill--soldout{% endunless %}">
                           <input
                             type="radio"
@@ -90,7 +92,6 @@
                             value="{{ value | escape }}"
                             data-fp-option
                             {% if option.selected_value == value %}checked{% endif %}
-                            {% unless value_available %}disabled{% endunless %}
                             {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
                           >
                           {%- if is_color_option and value.swatch -%}
@@ -153,9 +154,10 @@
 
 {% stylesheet %}
   /* The modal panel is capped at min(90svh, 860px), so the gallery has to be
-     capped too or it pushes the buy box behind a scroll. Three classes deep for
-     the same reason as the featured-product rule: it has to beat
-     product-media's own two-class sizing whatever order the bundle lands in.
+     capped too or it pushes the buy box behind a scroll. Three classes deep, so
+     it beats product-media's own two-class sizing whatever order the bundle
+     lands in; the featured-product cap is scoped to .featured-product__media,
+     which this box does not have, so nothing ties with it.
      The phone cap is tighter still -- there the panel is a bottom sheet and the
      photo sits above everything purchasable. */
   .quick-buy .product-media--adapt .product-media__item { max-height: 56svh; }
