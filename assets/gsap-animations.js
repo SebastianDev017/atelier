@@ -200,11 +200,12 @@
     });
   }
 
-  /* Hero scroll cue — a 2px vertical breath, faded out once the reader has
-     clearly started scrolling. The cue lives inside the hero and is absolutely
-     positioned, so it scrolls away on its own; the fade is polish, which is why
-     nothing breaks if this never runs (reduced motion, or scroll animations
-     switched off). */
+  /* Hero scroll cue -- faded out once the reader has clearly started
+     scrolling. The cue lives inside the hero and is absolutely positioned, so
+     it scrolls away on its own; the fade is polish, which is why nothing breaks
+     if this never runs (reduced motion, or scroll animations switched off).
+     Its 2px breath is a CSS animation in sections/hero.liquid: as an infinite
+     tween here it wrote the transform from the main thread on every frame. */
   /* B2 -- one cue per hero. The fade used to key off the PAGE (body top -80px),
      which is only meaningful for a hero at the very top; each cue now fades once
      its OWN hero has scrolled 80px up, which is the same moment for the first
@@ -216,7 +217,6 @@
       cue.dataset.cueBound = '1';
       var hero = cue.closest('[data-hero]') || document.body;
       var wrap = cue.parentNode;
-      gsap.to(cue, { y: 2, duration: 1.2, ease: 'sine.inOut', repeat: -1, yoyo: true });
       ScrollTrigger.create({
         trigger: hero,
         start: 'top+=80 top',

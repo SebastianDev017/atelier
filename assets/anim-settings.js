@@ -41,7 +41,8 @@
       viewTransitions: on(d.viewTransitions !== 'false'),
 
       /* Interface motion: cart drawer stagger, search palette open, bundle
-         accordion, Flip re-layouts, recently-viewed, the press marquee.
+         accordion, Flip re-layouts, recently-viewed. (The press marquee is a
+         CSS animation behind the same two gates, in its section.)
          Deliberately NOT given its own merchant toggle -- none of the nine
          existing settings describes it, and inventing a tenth to control a
          drawer's 0.3s fade is more surface than it is worth. It answers to the

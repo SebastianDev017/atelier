@@ -176,7 +176,6 @@
     <script src="{{ 'search-palette.js' | asset_url }}" defer></script>
     {%- comment -%} Drives the main-collection grid/list toggle. main-collection is a main-* section with no preset, so it can only appear here. {%- endcomment -%}
     {%- if template.name == 'collection' -%}<script src="{{ 'collection-view.js' | asset_url }}" defer></script>{%- endif -%}
-    <script src="{{ 'press-marquee.js' | asset_url }}" defer></script>
     <script src="{{ 'recently-viewed.js' | asset_url }}" defer></script>
     <script src="{{ 'featured-product.js' | asset_url }}" defer></script>
     {%- if template.name == 'product' -%}<script src="{{ 'pickup-availability.js' | asset_url }}" defer></script>{%- endif -%}

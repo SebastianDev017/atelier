@@ -1,7 +1,10 @@
 {%- comment -%}
-  Press marquee — two rows of press quotes scrolling in opposite directions.
-  GSAP drives the seamless xPercent loop (assets/press-marquee.js); each row
-  renders its items twice so the wrap is seamless. Pauses on hover.
+  Press marquee: two rows of press quotes scrolling in opposite directions.
+  A CSS animation drives the seamless loop. Each row renders its items twice,
+  so moving the track by half its width wraps without a seam. It pauses on
+  hover. This used to be an infinite GSAP tween, which set the transform from
+  the main thread on every frame for as long as the page was open; a transform
+  keyframe runs on the compositor.
 {%- endcomment -%}
 {%- liquid
   assign scheme = section.settings.color_scheme.id | default: 'background-2'
@@ -12,6 +15,7 @@
   #shopify-section-{{ section.id }} {
     --pt: {{ section.settings.padding_top }}px;
     --pb: {{ section.settings.padding_bottom }}px;
+    --press-speed: {{ speed }}s;
   }
 </style>
 
@@ -32,20 +36,20 @@
   {%- endfor -%}
 {%- endcapture -%}
 
-<div class="press-marquee color-scheme--{{ scheme }}" data-press-marquee>
+<div class="press-marquee color-scheme--{{ scheme }}">
   {%- if section.settings.heading != blank -%}
     <div class="page-width"><h2 class="press-marquee__heading eyebrow" data-fade-up>{{ section.settings.heading | escape }}</h2></div>
   {%- endif -%}
 
   {%- if section.blocks.size > 0 -%}
     <div class="press-marquee__row">
-      <div class="press-marquee__track" data-press-track data-direction="left" data-speed="{{ speed }}">
+      <div class="press-marquee__track" data-direction="left">
         <div class="press-marquee__set">{{ items }}</div>
         <div class="press-marquee__set" aria-hidden="true">{{ items }}</div>
       </div>
     </div>
     <div class="press-marquee__row">
-      <div class="press-marquee__track" data-press-track data-direction="right" data-speed="{{ speed }}">
+      <div class="press-marquee__track" data-direction="right">
         <div class="press-marquee__set">{{ items_rev }}</div>
         <div class="press-marquee__set" aria-hidden="true">{{ items_rev }}</div>
       </div>
@@ -59,6 +63,22 @@
   .press-marquee__row { overflow: hidden; }
   .press-marquee__row + .press-marquee__row { margin-top: var(--space-4); }
   .press-marquee__track { display: flex; width: max-content; will-change: transform; }
+  /* Interface motion, gated like AnimSettings.ui: off under reduced motion and
+     under anim_disable_all. The track stays laid out and readable either way;
+     only the loop is skipped. */
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-anim-disable-all="true"]) .press-marquee__track {
+      animation: press-marquee-loop var(--press-speed, 40s) linear infinite;
+    }
+    body:not([data-anim-disable-all="true"]) .press-marquee__track[data-direction="right"] {
+      animation-direction: reverse;
+    }
+    .press-marquee:hover .press-marquee__track { animation-play-state: paused; }
+  }
+  @keyframes press-marquee-loop {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
   .press-marquee__set { display: flex; flex-shrink: 0; }
   .press-item {
     display: inline-flex;
