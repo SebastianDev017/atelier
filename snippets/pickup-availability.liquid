@@ -1,15 +1,24 @@
 {%- comment -%}
   Local pickup disclosure for the product page.
 
-  Renders closed and empty. The list is fetched on demand from
-  sections/pickup-availability.liquid, because variant.store_availabilities is
-  only populated on a variant route -- it cannot be read from the product page.
-  Fetching on open (rather than on load) also keeps it off the critical path.
+  Whether there is anywhere to collect from is known at render time.
+  store_availabilities is defined for the selected (or first available)
+  variant, which is the one this snippet is given (shopify.dev, variant
+  object). Shopify's pickup guidance is to show the feature only when at least
+  one location has pickup enabled. With none, the element is rendered hidden:
+  it takes no room, so nothing on the page moves, and it stays ready for a
+  variant that can be collected. It used to render visible, ask the variant
+  route, and remove itself, which pulled everything below it up 81px after
+  load.
+
+  The store list itself is fetched on first open from
+  sections/pickup-availability.liquid, which keeps it off the critical path.
 
   @param {object} product - the product being displayed
   @param {object} variant - the currently selected variant
 {%- endcomment -%}
 {%- if product.available and variant != blank -%}
+  {%- assign pickup_locations = variant.store_availabilities | where: 'pick_up_enabled', true -%}
   <pickup-availability
     class="pickup"
     data-pickup
@@ -17,17 +26,25 @@
     data-base-url="{{ shop.url }}{{ routes.root_url | remove_last: '/' }}"
     data-check-text="{{ 'products.pickup_check' | t | escape }}"
     data-one-location-text="{{ 'products.pickup_one_location' | t | escape }}"
+    {% if pickup_locations.size == 0 %}
+      hidden
+    {% endif %}
   >
     <details class="pickup__details" data-pickup-details>
       <summary class="pickup__summary">
         {% render 'icon', name: 'pin' %}
         {%- comment -%}
-          The label depends on how many locations come back, and that is only
-          knowable from the variant route, so it starts as the plural phrasing
-          and the component rewrites it to "View store information" when the
-          answer turns out to be a single store.
+          One store is not a list to choose from, it is an address, and the
+          label says so. The component keeps it right when the variant
+          changes.
         {%- endcomment -%}
-        <span data-pickup-label>{{ 'products.pickup_check' | t }}</span>
+        <span data-pickup-label>
+          {%- if pickup_locations.size == 1 -%}
+            {{ 'products.pickup_one_location' | t }}
+          {%- else -%}
+            {{ 'products.pickup_check' | t }}
+          {%- endif -%}
+        </span>
         {% render 'icon', name: 'chevron-down' %}
       </summary>
       <div class="pickup__body" data-pickup-body aria-live="polite">

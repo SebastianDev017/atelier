@@ -1,17 +1,15 @@
 /*
  * Local pickup availability.
  *
- * variant.store_availabilities is only populated on a variant route, so the list
- * cannot be rendered from the product page itself. This fetches
- * /variants/<id>/?section_id=pickup-availability on demand and swaps in the
- * result. Fetching on first open rather than on load keeps it off the critical
- * path -- most shoppers never expand it.
- *
- * One exception to "on demand": a shop with no pickup-enabled location at all
- * would otherwise offer a disclosure that opens onto nothing. Because the
- * answer is only knowable from the variant route, the element probes once when
- * it comes near the viewport and removes itself if the answer is none. The
- * probe's result is kept, so opening it afterwards costs no second request.
+ * Whether the page's own variant can be collected anywhere is decided in
+ * Liquid (snippets/pickup-availability.liquid). With no pickup location, the
+ * element arrives hidden. This fetches
+ * /variants/<id>/?section_id=pickup-availability for the store list:
+ * - on first open, which keeps it off the critical path, since most shoppers
+ *   never expand it;
+ * - on every variant change, because another variant can be stocked
+ *   elsewhere, and the answer shows or hides the whole disclosure.
+ * Nothing is requested at load, and nothing on the page moves because of it.
  */
 (function () {
   if (customElements.get('pickup-availability')) return;
@@ -35,24 +33,14 @@
       });
     }
 
-    /* Ask once, near the viewport: a shop with nowhere to collect from should
-       not be offered a place to collect from. */
-    if ('IntersectionObserver' in window) {
-      var io = new IntersectionObserver(function (entries) {
-        if (!entries.some(function (en) { return en.isIntersecting; })) return;
-        io.disconnect();
-        self.load();
-      }, { rootMargin: '200px 0px' });
-      io.observe(this);
-    }
-
-    /* product.js dispatches this after a successful variant match. */
+    /* product.js dispatches this after a successful variant match. The new
+       variant may be stocked differently -- or be collectable where the last
+       one was not -- so its answer is fetched now, not on open. */
     document.addEventListener('atelier:variant:change', function (e) {
       if (!e.detail || !e.detail.variant || !self.isConnected) return;
       self.dataset.variantId = e.detail.variant.id;
-      /* Drop the cached render: the new variant may stock differently. */
       self.loadedVariant = null;
-      if (self.details && self.details.open) self.load();
+      self.load();
     });
   };
 
@@ -72,12 +60,16 @@
         var doc = new DOMParser().parseFromString(text, 'text/html');
         var incoming = doc.querySelector('[data-pickup-list]');
         if (!incoming) return;
-        /* No pickup-enabled location for this variant anywhere: take the
-           disclosure off the page rather than open it onto an apology. */
+        /* No pickup-enabled location for this variant anywhere: hide the
+           disclosure rather than open it onto an apology. Hidden, not
+           removed, so a later variant that can be collected brings it back. */
         if (!incoming.querySelector('.pickup__store')) {
-          self.remove();
+          self.loadedVariant = variantId;
+          if (self.details) self.details.open = false;
+          self.hidden = true;
           return;
         }
+        self.hidden = false;
         if (self.body) {
           self.body.innerHTML = incoming.outerHTML;
           self.loadedVariant = variantId;
