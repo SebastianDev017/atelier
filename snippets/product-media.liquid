@@ -112,6 +112,26 @@
           data-media-id="{{ media.id }}"
           data-media-type="{{ media.media_type }}"
         >
+          {%- comment -%}
+            sizes = the width the photo is really drawn at, so a phone does not
+            download a desktop file. Below 990px the stage is capped at 50svh
+            (40svh under 768px) and in adapt mode the photo is contained, so it
+            is drawn at min(column width, cap x its own aspect ratio): a 4:5
+            photo on a phone is ~260px wide, not 100vw. Crop mode fills the
+            stage, so there the column width is the answer. A caller whose
+            stage is not capped like the product page's passes its own. A 3D
+            model's poster sits on the same stage, so it takes the same value.
+          {%- endcomment -%}
+          {%- liquid
+            if sizes != blank
+              assign media_sizes = sizes
+            elsif media_fit == 'adapt'
+              assign media_ar = media.preview_image.aspect_ratio | default: 1 | round: 3
+              assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', (min-width: 768px) min(100vw, calc(50vh * ' | append: media_ar | append: ')), min(100vw, calc(40vh * ' | append: media_ar | append: '))'
+            else
+              assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', 100vw'
+            endif
+          -%}
           {%- case media.media_type -%}
             {%- when 'image' -%}
               {%- comment -%}
@@ -124,25 +144,6 @@
                 {%- assign media_focal = media.preview_image.presentation.focal_point | default: '50% 50%' -%}
                 {%- assign media_focal_style = 'object-position: ' | append: media_focal | append: ';' -%}
               {%- endif -%}
-              {%- comment -%}
-                sizes = the width the photo is really drawn at, so a phone does not
-                download a desktop file. Below 990px the stage is capped at 50svh
-                (40svh under 768px) and in adapt mode the photo is contained, so it
-                is drawn at min(column width, cap x its own aspect ratio): a 4:5
-                photo on a phone is ~260px wide, not 100vw. Crop mode fills the
-                stage, so there the column width is the answer. A caller whose
-                stage is not capped like the product page's passes its own.
-              {%- endcomment -%}
-              {%- liquid
-                if sizes != blank
-                  assign media_sizes = sizes
-                elsif media_fit == 'adapt'
-                  assign media_ar = media.preview_image.aspect_ratio | default: 1 | round: 3
-                  assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', (min-width: 768px) min(100vw, calc(50vh * ' | append: media_ar | append: ')), min(100vw, calc(40vh * ' | append: media_ar | append: '))'
-                else
-                  assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', 100vw'
-                endif
-              -%}
               {{
                 media
                 | image_url: width: 1500
@@ -156,11 +157,47 @@
                   style: media_focal_style
               }}
             {%- when 'video' -%}
-              {{ media | video_tag: image_size: '1000x', controls: true, loop: false, class: 'product-media__video' }}
+              {%- comment -%}
+                preload none, as Dawn does: the poster frame paints either way,
+                and the file loads when the shopper presses play. With the
+                default (metadata) every page carrying a product video fetched
+                its first 50-170 KB at load, inside the LCP window, for a video
+                nobody had opened.
+              {%- endcomment -%}
+              {{ media | video_tag: image_size: '1000x', controls: true, loop: false, preload: 'none', class: 'product-media__video' }}
             {%- when 'external_video' -%}
               {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy' }}
             {%- when 'model' -%}
-              {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
+              {%- comment -%}
+                The viewer is not created until this slot is first opened: the
+                <model-viewer> sits in a <template> and product.js clones it in
+                (Dawn's product-model pattern). Shopify's feature loader fetches
+                the 3D library (~256 KB) for any model-viewer it finds in the
+                page, so a viewer in the markup made every page with a model --
+                the homepage's featured product included -- download it at load,
+                opened or not. Created eagerly it also upgraded in quick views
+                nobody opened, and model-viewer's focus-visible polyfill keeps
+                document listeners that hold each one, so every closed quick view
+                of a 3D product stayed in memory. The model's preview image is the
+                slot's content until the viewer element is really defined: a
+                library that never loads still leaves the product on screen.
+              {%- endcomment -%}
+              <div class="product-media__model" data-model-slot>
+                {{
+                  media.preview_image
+                  | image_url: width: 1000
+                  | image_tag:
+                    loading: img_loading,
+                    fetchpriority: img_priority,
+                    widths: '400, 600, 800, 1000',
+                    sizes: media_sizes,
+                    alt: media_alt,
+                    class: 'product-media__model-poster'
+                }}
+                <template data-model-template>
+                  {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
+                </template>
+              </div>
             {%- else -%}
               {{ media | media_tag: image_size: '1000x' }}
           {%- endcase -%}
@@ -296,12 +333,40 @@
      what makes them win -- the viewer's background included, which Shopify
      sets to white. */
   .product-media__item .shopify-model-viewer-ui { display: block; width: 100%; height: 100%; }
+  /* The deferred model slot. Its preview image fills the stage (whole, like
+     every other image here) until the viewer element is defined -- an
+     undefined <model-viewer> is only an empty box -- then gives way to it.
+     Shopify's viewer UI is built as soon as its own script is there, so it is
+     kept out of sight until then too: otherwise its 3D button sits on the
+     picture doing nothing, for good if the 3D library never loads. The slot
+     is pinned to the item's box rather than given height: 100% -- WebKit
+     resolves a block's percentage height inside an aspect-ratio box against
+     the ratio, not the max-height cap, which made it 63px taller than the
+     stage in Safari and clipped the viewer's controls. */
+  .product-media__model { position: absolute; inset: 0; }
+  .product-media__model:not(.is-viewer-ready) .shopify-model-viewer-ui { visibility: hidden; }
+  .product-media__model-poster {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background-color: var(--color-subtle);
+  }
+  .product-media__model.is-viewer-ready .product-media__model-poster { display: none; }
   .product-media__item .shopify-model-viewer-ui model-viewer { background-color: var(--color-subtle); }
 
   /* AR. Ships hidden: Shopify-XR removes data-shopify-xr-hidden only on a
-     device that can actually launch AR, so this one rule is the whole
-     show/hide decision -- nothing in the theme guesses at device support. */
-  .product-media__xr[data-shopify-xr-hidden] { display: none; }
+     device that can actually launch AR, so nothing in the theme guesses at
+     device support. While hidden it keeps its place on a touch device (Dawn
+     does the same): the reveal comes seconds after load, and taking room only
+     then pushed everything below the stage down 56px on a phone. On a
+     mouse-driven device, where AR never launches, it takes no room at all. */
+  .product-media__xr[data-shopify-xr-hidden] { visibility: hidden; }
+  @media (hover: hover) and (pointer: fine) {
+    .product-media__xr[data-shopify-xr-hidden] { display: none; }
+  }
   .product-media__xr {
     display: flex;
     align-items: center;
