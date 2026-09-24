@@ -239,9 +239,18 @@
                       </div>
                     </div>
 
-                    {%- comment -%} Hide the dynamic "Buy it now" button on sold-out products; the notify_me block takes over. {%- endcomment -%}
+                    {%- comment -%}
+                      "Buy it now" is left out on a product with nothing in stock,
+                      where the notify_me block takes over. On a product with some
+                      stock it is rendered but hidden while the SELECTED variant is
+                      sold out -- product.js toggles it on every switch, as the
+                      featured product and quick buy do -- because it would
+                      otherwise open a checkout for a variant that cannot be bought.
+                    {%- endcomment -%}
                     {%- if block.settings.show_dynamic_checkout and product.available -%}
-                      {{ form | payment_button }}
+                      <div class="product__dynamic-checkout" data-dynamic-checkout {% unless selected_variant.available %}hidden{% endunless %}>
+                        {{- form | payment_button -}}
+                      </div>
                     {%- endif -%}
 
                     {%- comment -%}
@@ -425,6 +434,7 @@
      cache dependency -- and a variable (unlike an inline padding) lets the
      single-column layout scale the top value down (CRIT2, below). */
   product-info.product { padding-top: var(--pt, 64px); padding-bottom: var(--pb, 64px); }
+  .product__dynamic-checkout[hidden] { display: none; }
   .product__grid { display: grid; gap: var(--space-8); align-items: start; }
   /* min-width:0 lets each column shrink to its track instead of growing to fit
      wide min-content (long title word, breadcrumb, variant value), which would
