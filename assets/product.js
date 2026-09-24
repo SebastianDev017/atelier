@@ -124,6 +124,11 @@
         var label = btn.querySelector('[data-add-label]');
         if (label) label.textContent = text;
       });
+      /* "Buy it now" goes with it: live on a sold-out variant, it opened a
+         checkout for something that cannot be bought. */
+      Array.prototype.forEach.call(this.querySelectorAll('[data-dynamic-checkout]'), function (el) {
+        el.hidden = !available;
+      });
     };
 
     ProductInfo.prototype.renderPrice = function (variantId) {
