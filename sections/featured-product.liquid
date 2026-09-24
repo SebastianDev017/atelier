@@ -38,7 +38,13 @@
         {%- endcomment -%}
         <div class="featured-product__media">
           <div class="fp__gallery" data-reveal>
-            {%- render 'product-media', product: fp, section: section -%}
+            {%- comment -%}
+              sizes: the stage is the 55fr column from 750px up and the full
+              width below, and this section does not cap it at 40svh the way
+              the product page does -- so the product page's formula would
+              understate the drawn width on phones and serve a smaller file.
+            {%- endcomment -%}
+            {%- render 'product-media', product: fp, section: section, sizes: '(min-width: 750px) 55vw, 100vw' -%}
           </div>
         </div>
 
@@ -108,6 +114,15 @@
                               endif
                             endfor
                           -%}
+                          {%- comment -%}
+                            A sold-out value stays selectable, as on the product page:
+                            marked sold out (fp__pill--soldout and the hidden label
+                            below), but choosing it still shows that variant's own
+                            media and price. Disabling it meant a shopper could never
+                            see a sold-out variant here. featured-product.js already
+                            handles an unavailable selection: Add to cart disabled,
+                            Buy it now hidden.
+                          {%- endcomment -%}
                           <label class="fp__pill{% if is_color_option and value.swatch %} fp__pill--swatch{% endif %}{% unless value_available %} fp__pill--soldout{% endunless %}">
                             <input
                               type="radio"
@@ -115,7 +130,6 @@
                               value="{{ value | escape }}"
                               data-fp-option
                               {% if option.selected_value == value %}checked{% endif %}
-                              {% unless value_available %}disabled{% endunless %}
                               {% if is_color_option and value.swatch %}aria-label="{{ value | escape }}"{% endif %}
                             >
                             {%- if is_color_option and value.swatch -%}
@@ -257,10 +271,13 @@
 
   /* Gallery sizing, replacing the old .fp__main aspect-ratio: the stage belongs
      to product-media now, so its rules are what has to be reached. Three
-     classes deep on purpose -- product-media's own rules are two, and both sets
-     land in the same bundled stylesheet, whose concatenation order is not
-     something to depend on. Specificity settles it either way. */
-  .featured-product .product-media--adapt .product-media__item { max-height: 78vh; }
+     classes deep, which beats product-media's own two-class rules whatever
+     order the bundled stylesheet concatenates them in. Scoped to
+     .featured-product__media, NOT .featured-product: the quick-buy box carries
+     the featured-product class too, and a rule on that class tied with the
+     quick-buy cap at equal specificity, so the winner came down to bundle
+     order after all. The quick-buy gallery sits in .quick-buy__media. */
+  .featured-product__media .product-media--adapt .product-media__item { max-height: 78vh; }
 
   .fp__app-blocks { display: flex; flex-direction: column; gap: var(--space-3); }
   .fp__app-blocks:not(:empty) { margin-top: var(--space-4); }

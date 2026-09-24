@@ -55,6 +55,10 @@
         .then(function (res) { return res.ok ? res.text() : Promise.reject(); })
         .then(function (text) {
           var doc = new DOMParser().parseFromString(text, 'text/html');
+          /* predictive-results is only ever fetched, never on the page itself,
+             and only a fragment of it is inserted: its stylesheet has to come
+             across from the response (see Atelier.adoptSectionStyles). */
+          if (window.Atelier && window.Atelier.adoptSectionStyles) window.Atelier.adoptSectionStyles(doc);
           var incoming = doc.querySelector('[data-predictive-results]');
           self.results.innerHTML = incoming ? incoming.innerHTML : '';
           self.openResults();

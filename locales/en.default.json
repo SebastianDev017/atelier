@@ -57,6 +57,8 @@
     "pagination": "Pagination",
     "payment_methods": "Payment methods",
     "product_media": "Product media",
+    "media_video": "Video",
+    "media_model": "3D model",
     "choose_testimonial": "Choose testimonial",
     "view": "View",
     "esc_key": "Esc",
