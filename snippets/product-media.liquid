@@ -1,13 +1,22 @@
 {%- comment -%}
   Product media gallery. Main stage with one active media + a thumbnail
   strip. <product-media-gallery> (product.js) switches the active media
-  on thumbnail click and on variant change.
+  on thumbnail click and on variant change. Rendered by the product page, the
+  featured-product section and the quick-buy modal: requirements §4 names all
+  three for rich product media (images, video, external video, 3D).
 
   @param {object} product
   @param {object} section
+  @param {boolean} [lcp] - the gallery is the main content of what was just
+    opened (the product page, the quick-buy modal): its active media always
+    loads eagerly at high priority. Omitted, priority follows the section's
+    position on the page.
   @param {string} [desktop_size] - the width the stage is drawn at from 990px
     up, for the image sizes attribute. Defaults to 50vw, the product page's
     column. The quick-buy modal passes its own fixed width.
+  @param {string} [sizes] - a complete sizes attribute for the images, for a
+    caller whose layout is not the product page's (featured-product). Replaces
+    the product-page formula below entirely.
 
   B4 -- image fit. The stage used to crop EVERY image to 3:4 with object-fit:
   cover, and the theme has no zoom or lightbox, so a product photo of any other
@@ -32,17 +41,24 @@
   if product.selected_or_first_available_variant.featured_media
     assign active_media_id = product.selected_or_first_available_variant.featured_media.id
   endif
-  # Loading priority follows the section's position, per Shopify's section.index
-  # guidance. On the product page this gallery is the LCP element and loads
-  # eagerly at high priority. The featured-product section renders the same
-  # snippet, and mid-homepage (Annex: section 7 of 10) it is far below the fold
-  # -- there it has to load lazily, at normal priority, or it competes with the
-  # hero. Below the fold is tested as a positive "index > 2" so that nil falls
-  # to the eager side: nil is the theme editor, and the Section Rendering API
-  # that fills the quick-buy modal, where this image is the thing just asked for.
-  assign gallery_below_fold = false
-  if section.index > 2
-    assign gallery_below_fold = true
+
+  # Loading priority of the active media. With lcp the gallery is the main
+  # content of what was just opened, so eager at high priority. Otherwise it
+  # follows Shopify's section.index guidance to the letter
+  # (shopify.dev .../performance/use-section-index, "Use case 2"): high priority
+  # only for the first section; lazy from the fourth section on; eager at NORMAL
+  # priority for sections 2 and 3 and for every nil context (the theme editor,
+  # the Section Rendering API). section.index counts per location, so "first" is
+  # only the page's first when the location is the template itself, and the
+  # footer group is below the fold whatever its index says.
+  assign gallery_loading = 'eager'
+  assign gallery_priority = 'auto'
+  if lcp
+    assign gallery_priority = 'high'
+  elsif section.index == 1 and section.location == 'template'
+    assign gallery_priority = 'high'
+  elsif section.index > 3 or section.location == 'footer'
+    assign gallery_loading = 'lazy'
   endif
   assign desktop_size = desktop_size | default: '50vw'
 
@@ -50,6 +66,17 @@
   if media_fit == 'adapt' and product.media.size > 0
     assign gallery_ratio = product.media.first.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
   endif
+
+  # The AR button targets the model on screen, or the first model when the
+  # media on screen is not a model (Shopify's product media guidance).
+  # product.js keeps it pointed at the active model after every switch.
+  assign product_models = product.media | where: 'media_type', 'model'
+  assign xr_model_id = product_models.first.id
+  for model_media in product_models
+    if model_media.id == active_media_id
+      assign xr_model_id = model_media.id
+    endif
+  endfor
 -%}
 <product-media-gallery
   class="product-media product-media--{{ media_fit }}"
@@ -65,13 +92,14 @@
             assign is_active = true
           endif
 
-          # The image on screen at load is the LCP element: it gets the eager load
-          # and the high fetch priority. That is the ACTIVE media (the selected
-          # variant's photo since QW1), not necessarily the first one -- keying this
-          # on forloop.first left the visible photo lazy and pushed mobile LCP to ~6s.
-          if is_active and gallery_below_fold == false
-            assign img_loading = 'eager'
-            assign img_priority = 'high'
+          # The image on screen at load gets the section's loading and priority
+          # (above). That is the ACTIVE media (the selected variant's photo since
+          # QW1), not necessarily the first one -- keying this on forloop.first
+          # left the visible photo lazy and pushed mobile LCP to ~6s. Everything
+          # off screen is lazy.
+          if is_active
+            assign img_loading = gallery_loading
+            assign img_priority = gallery_priority
           else
             assign img_loading = 'lazy'
             assign img_priority = 'auto'
@@ -102,13 +130,17 @@
                 (40svh under 768px) and in adapt mode the photo is contained, so it
                 is drawn at min(column width, cap x its own aspect ratio): a 4:5
                 photo on a phone is ~260px wide, not 100vw. Crop mode fills the
-                stage, so there the column width is the answer.
+                stage, so there the column width is the answer. A caller whose
+                stage is not capped like the product page's passes its own.
               {%- endcomment -%}
               {%- liquid
-                assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', 100vw'
-                if media_fit == 'adapt'
+                if sizes != blank
+                  assign media_sizes = sizes
+                elsif media_fit == 'adapt'
                   assign media_ar = media.preview_image.aspect_ratio | default: 1 | round: 3
                   assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', (min-width: 768px) min(100vw, calc(50vh * ' | append: media_ar | append: ')), min(100vw, calc(40vh * ' | append: media_ar | append: '))'
+                else
+                  assign media_sizes = '(min-width: 990px) ' | append: desktop_size | append: ', 100vw'
                 endif
               -%}
               {{
@@ -126,28 +158,9 @@
             {%- when 'video' -%}
               {{ media | video_tag: image_size: '1000x', controls: true, loop: false, class: 'product-media__video' }}
             {%- when 'external_video' -%}
-              {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy', decoding: 'async' }}
+              {{ media | external_video_tag: class: 'product-media__video', loading: 'lazy' }}
             {%- when 'model' -%}
               {{ media | model_viewer_tag: image_size: '1000x', reveal: 'interaction', toggleable: true }}
-              {%- comment -%}
-                "View in your space". The Shopify-XR library scans the DOM for
-                [data-shopify-xr] and attaches the launcher itself; until it has
-                run and confirmed the device can open AR, data-shopify-xr-hidden
-                keeps the button off the page -- which is why it appears on a
-                phone and not on a desktop. One button per model, inside that
-                model's own slot, so it is only on screen while the model is.
-              {%- endcomment -%}
-              <button
-                type="button"
-                class="product-media__xr"
-                data-shopify-xr
-                data-shopify-model3d-id="{{ media.id }}"
-                data-shopify-title="{{ product.title | escape }}"
-                data-shopify-xr-hidden
-              >
-                {%- render 'icon', name: 'cube' -%}
-                <span>{{ 'products.view_in_space' | t }}</span>
-              </button>
             {%- else -%}
               {{ media | media_tag: image_size: '1000x' }}
           {%- endcase -%}
@@ -160,9 +173,6 @@
     {%- endif -%}
   </div>
 
-  {%- liquid
-    assign product_models = product.media | where: 'media_type', 'model'
-  -%}
   {%- if product_models.size > 0 -%}
     {%- comment -%}
       ShopifyXR.addModels() needs the model media objects themselves. product.js
@@ -173,17 +183,55 @@
     <script type="application/json" data-product-models>
       {{ product_models | json }}
     </script>
+    {%- comment -%}
+      "View in your space". ONE button, below the stage, visible whichever media
+      is showing, as Shopify's product media guidance asks: a shopper on a phone
+      finds AR without first having to find the 3D thumbnail. It opens the model
+      on screen, or the first model otherwise; Shopify-XR reads
+      data-shopify-model3d-id at click time, so product.js retargets it on every
+      switch and "both AR objects" of a two-model product stay reachable. The
+      library also removes data-shopify-xr-hidden only on a device that can
+      launch AR, which is why it shows on a phone and never on a desktop.
+    {%- endcomment -%}
+    <button
+      type="button"
+      class="product-media__xr"
+      data-product-xr
+      data-shopify-xr
+      data-shopify-model3d-id="{{ xr_model_id }}"
+      data-shopify-title="{{ product.title | escape }}"
+      data-shopify-xr-hidden
+    >
+      {%- render 'icon', name: 'cube' -%}
+      <span>{{ 'products.view_in_space' | t }}</span>
+    </button>
   {%- endif -%}
 
   {%- if product.media.size > 1 -%}
     <div class="product-media__thumbs" role="group" aria-label="{{ 'accessibility.product_media' | t }}">
       {%- for media in product.media -%}
+        {%- liquid
+          # A thumbnail says what it opens: a video or 3D model gets a badge and
+          # its type in the accessible name, instead of depending on the merchant
+          # having written it into the alt text.
+          assign thumb_type = ''
+          assign thumb_icon = ''
+          case media.media_type
+            when 'video', 'external_video'
+              assign thumb_type = 'accessibility.media_video' | t
+              assign thumb_icon = 'play'
+            when 'model'
+              assign thumb_type = 'accessibility.media_model' | t
+              assign thumb_icon = 'cube'
+          endcase
+          assign thumb_label = media.alt | default: product.title
+        -%}
         <button
           type="button"
           class="product-media__thumb{% if media.id == active_media_id %} is-active{% endif %}"
           {% if media.id == active_media_id %}aria-current="true"{% endif %}
           data-media-thumb="{{ media.id }}"
-          aria-label="{{ media.alt | default: product.title | escape }} — {{ forloop.index }}"
+          aria-label="{% if thumb_type != '' %}{{ thumb_type | escape }}: {% endif %}{{ thumb_label | escape }} — {{ forloop.index }}"
         >
           {{
             media.preview_image
@@ -196,6 +244,9 @@
               alt: '',
               class: 'product-media__thumb-image'
           }}
+          {%- if thumb_icon != '' -%}
+            <span class="product-media__thumb-badge" aria-hidden="true">{%- render 'icon', name: thumb_icon -%}</span>
+          {%- endif -%}
         </button>
       {%- endfor -%}
     </div>
@@ -240,27 +291,26 @@
   /* Shopify.ModelViewerUI moves the viewer into a wrapper of its own whose CSS
      is `position: relative; display: inline-block` and nothing else -- measured
      at 0x0, which collapsed the viewer with it, because Shopify leaves the
-     sizing to the theme. Two classes deep so it outranks that stylesheet, which
-     is injected at runtime and therefore lands after this one. */
+     sizing to the theme. Its stylesheet is injected at runtime, so it lands
+     after this one: these rules are one class deeper than Shopify's, which is
+     what makes them win -- the viewer's background included, which Shopify
+     sets to white. */
   .product-media__item .shopify-model-viewer-ui { display: block; width: 100%; height: 100%; }
+  .product-media__item .shopify-model-viewer-ui model-viewer { background-color: var(--color-subtle); }
 
   /* AR. Ships hidden: Shopify-XR removes data-shopify-xr-hidden only on a
      device that can actually launch AR, so this one rule is the whole
      show/hide decision -- nothing in the theme guesses at device support. */
   .product-media__xr[data-shopify-xr-hidden] { display: none; }
   .product-media__xr {
-    position: absolute;
-    left: 50%;
-    bottom: var(--space-3);
-    transform: translateX(-50%);
-    z-index: 2;
-    display: inline-flex;
+    display: flex;
     align-items: center;
     justify-content: center;
     gap: var(--space-2);
+    width: 100%;
     /* 44px: the tap target minimum every other control in this theme holds to. */
     min-height: 44px;
-    padding-inline: var(--space-4);
+    padding: var(--space-2) var(--space-4);
     border: 1px solid var(--color-text);
     background-color: var(--color-bg);
     color: var(--color-text);
@@ -280,6 +330,7 @@
     gap: var(--space-2);
   }
   .product-media__thumb {
+    position: relative;
     aspect-ratio: var(--ratio-square);
     overflow: hidden;
     border: 1px solid transparent;
@@ -288,6 +339,22 @@
   }
   .product-media__thumb-image { width: 100%; height: 100%; object-fit: cover; }
   .product-media__thumb.is-active { border-color: var(--color-text); }
+  /* Video / 3D badge. A solid chip rather than an icon laid straight over the
+     photo, so it reads on any preview image, light or dark. */
+  .product-media__thumb-badge {
+    position: absolute;
+    right: 4px;
+    bottom: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+    pointer-events: none;
+  }
+  .product-media__thumb-badge .icon { width: 12px; height: 12px; }
 
   @media (min-width: 750px) {
     .product-media__thumbs { grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); }

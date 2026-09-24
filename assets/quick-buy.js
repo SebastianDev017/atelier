@@ -59,6 +59,10 @@
         var doc = new DOMParser().parseFromString(html, 'text/html');
         var box = doc.querySelector('[data-quick-buy-product]');
         if (!box) throw new Error('no product');
+        /* Only the box is inserted, and quick-buy is never part of the page's
+           own render tree, so its CSS (and the gallery's) can only arrive in the
+           response's <style data-section-stylesheet>. */
+        if (window.Atelier && window.Atelier.adoptSectionStyles) window.Atelier.adoptSectionStyles(doc);
         content.innerHTML = '';
         content.appendChild(document.importNode(box, true));
         var injected = content.querySelector('[data-quick-buy-product]');

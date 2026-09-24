@@ -28,6 +28,31 @@
       return document.getElementById('shopify-section-' + id);
     },
 
+    /* Shopify subsets {% stylesheet %} CSS to each page's render tree
+       (shopify.dev .../performance/stylesheet-subsetting). A section fetched
+       through the Section Rendering API that is not otherwise on the page --
+       the quick-buy box, the predictive search results -- therefore arrives
+       with its CSS in a <style data-section-stylesheet> inside the response,
+       and when only part of that response is inserted, Shopify's docs say the
+       style has to be extracted and inserted too. This does that, once per
+       distinct stylesheet, into <head> so it outlives the fragment. */
+    adoptSectionStyles: function (doc) {
+      if (!doc) return;
+      Array.prototype.forEach.call(doc.querySelectorAll('style[data-section-stylesheet]'), function (style) {
+        var css = style.textContent;
+        if (!css || !css.trim()) return;
+        var already = Array.prototype.some.call(
+          document.head.querySelectorAll('style[data-adopted-section-stylesheet]'),
+          function (s) { return s.textContent === css; }
+        );
+        if (already) return;
+        var copy = document.createElement('style');
+        copy.setAttribute('data-adopted-section-stylesheet', '');
+        copy.textContent = css;
+        document.head.appendChild(copy);
+      });
+    },
+
     focusable: function (container) {
       return Array.prototype.slice
         .call(container.querySelectorAll(FOCUSABLE))
