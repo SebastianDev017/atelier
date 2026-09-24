@@ -268,16 +268,31 @@
       this.galleries.forEach(function (g) { self.enhanceActive(g); });
     },
 
-    /* The viewer UI is built for the model on screen, when it first comes on
-       screen (Dawn's pattern), not for every model up front. Building them all
-       in one tick made each instance miss Shopify's own "is the sprite already
-       there?" check -- the sprite lands after an XHR -- so each injected its
-       own copy: 6 duplicate ids with two models. It also means a model nobody
-       opens never pulls in the 3D library at all. */
+    /* The viewer is created for the model on screen, when it first comes on
+       screen (Dawn's pattern), not for every model up front: it waits in a
+       <template> until then. Shopify's feature loader watches the page for a
+       <model-viewer> and fetches the 3D library when the first one appears,
+       so a model nobody opens never pulls it in. The viewer UI follows the
+       same rule -- building them all in one tick made each instance miss
+       Shopify's own "is the sprite already there?" check (the sprite lands
+       after an XHR), so each injected its own copy: 6 duplicate ids with two
+       models. */
     enhanceActive: function (gallery) {
       var item = gallery.querySelector('[data-media-id].is-active');
-      var viewer = item && item.querySelector('model-viewer');
-      if (viewer) this.enhanceViewer(viewer);
+      var slot = item && item.querySelector('[data-model-slot]');
+      if (!slot) return;
+      var viewer = slot.querySelector('model-viewer');
+      if (!viewer) {
+        var template = slot.querySelector('template[data-model-template]');
+        if (!template) return;
+        slot.appendChild(document.importNode(template.content, true));
+        viewer = slot.querySelector('model-viewer');
+        if (!viewer) return;
+        /* The preview image stays until the element is really defined, so a
+           library that never loads leaves the product on screen. */
+        customElements.whenDefined('model-viewer').then(function () { slot.classList.add('is-viewer-ready'); });
+      }
+      this.enhanceViewer(viewer);
     },
 
     enhanceViewer: function (viewer) {
@@ -332,6 +347,10 @@
     };
     ProductMediaGallery.prototype.disconnectedCallback = function () {
       this.thumbs.forEach((t) => t.removeEventListener('click', this.onThumb));
+      /* Let go of it at once -- the quick-buy modal throws its copy away on
+         every close -- rather than on the next model load. */
+      var i = ProductModels.galleries.indexOf(this);
+      if (i > -1) ProductModels.galleries.splice(i, 1);
     };
     ProductMediaGallery.prototype.onThumb = function (event) {
       this.setActiveMedia(event.currentTarget.getAttribute('data-media-thumb'));
