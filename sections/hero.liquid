@@ -273,8 +273,7 @@
 
   /* ---- Scroll cue ----
      Full-width flex row rather than a centred `transform: translateX(-50%)`:
-     GSAP animates y on the inner span, and a transform on the parent would be
-     overwritten wholesale by the tween. */
+     the inner span carries the breathing transform, so the row needs none. */
   .hero__scroll-cue {
     position: absolute;
     left: 0;
@@ -290,6 +289,22 @@
   .hero--split .hero__scroll-cue { color: var(--color-text); }
   .hero__scroll-cue-icon { display: flex; }
   .hero__scroll-cue-icon .icon { width: 20px; height: 20px; }
+  /* The 2px breath is a CSS animation, not a GSAP tween. An infinite tween
+     writes the transform from the main thread on every frame, forever: on an
+     idle homepage it cost ~100ms of main thread a second (165 style
+     recalculations/s), and kept Lighthouse from ever seeing the page go quiet.
+     A transform keyframe runs on the compositor. Same gates as the rest of the
+     scroll motion (AnimSettings.scrollAnimations): off under reduced motion,
+     where the cue is hidden anyway, with scroll animations switched off, and
+     under anim_disable_all. */
+  @media (prefers-reduced-motion: no-preference) {
+    body:not([data-scroll-animations="false"]):not([data-anim-disable-all="true"]) .hero__scroll-cue-icon {
+      animation: hero-cue-breath 1.2s ease-in-out infinite alternate;
+    }
+  }
+  @keyframes hero-cue-breath {
+    to { transform: translateY(2px); }
+  }
   /* Static and hidden under reduced motion: gsap-animations.js bails there, so
      an un-animated chevron would sit at the fold doing nothing. */
   @media (prefers-reduced-motion: reduce) {
