@@ -153,7 +153,7 @@
         "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
         "cta_label": "Inside the studio",
         "cta_url": "/pages/about-us",
-        "color_scheme": "background-2",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
@@ -241,7 +241,7 @@
         "stat_2_label": "",
         "stat_3_number": "",
         "stat_3_label": "",
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
