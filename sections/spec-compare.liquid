@@ -77,7 +77,11 @@
                   class="speccmp__col{% if block.settings.highlight %} is-highlight{% endif %}"
                   {{ block.shopify_attributes }}
                 >
-                  <a class="speccmp__product" href="{{ p.url | default: '#' }}">
+                  {%- comment -%}
+                    A column with no product chosen yet is not a link: an <a href="#">
+                    is a tab stop that goes nowhere and has no name.
+                  {%- endcomment -%}
+                  {%- if p != blank -%}<a class="speccmp__product" href="{{ p.url }}">{%- else -%}<span class="speccmp__product">{%- endif -%}
                     <span class="speccmp__thumb">
                       {%- if img != blank -%}
                         {%- assign speccmp_alt = img.alt | default: name -%}
@@ -97,7 +101,7 @@
                       {%- endif -%}
                     </span>
                     <span class="speccmp__name">{{ name | escape }}</span>
-                  </a>
+                  {%- if p != blank -%}</a>{%- else -%}</span>{%- endif -%}
                   {%- if p != blank -%}
                     <span class="speccmp__price price">{{ p.price | money }}</span>
                   {%- endif -%}

@@ -40,7 +40,12 @@
       </div>
     {%- endif -%}
 
-    <div class="hs__viewport" data-hs-viewport>
+    {%- comment -%}
+      With products the cards are links, so a keyboard user scrolls the row by
+      tabbing through them. The placeholder cards are not links, so then the
+      viewport itself takes focus and can be scrolled with the arrow keys.
+    {%- endcomment -%}
+    <div class="hs__viewport" data-hs-viewport{% unless products.size > 0 %} tabindex="0" role="region"{% if section.settings.heading != blank %} aria-label="{{ section.settings.heading | escape }}"{% endif %}{% endunless %}>
       <div class="hs__track hs__track--{{ aspect }}">
         {%- if products.size > 0 -%}
           {%- for product in products limit: count -%}
