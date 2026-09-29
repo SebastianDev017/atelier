@@ -453,6 +453,10 @@
        Maison preset's uppercase_nav: false -- could never take effect. */
     text-transform: var(--uppercase-nav, uppercase);
     line-height: 1.2;
+    /* A menu title that is one long word (a brand name, a German compound)
+       would otherwise run out of the sidebar; anywhere also lets the flex
+       item shrink below the word's width. */
+    overflow-wrap: anywhere;
   }
 
   .sidebar-nav__sub {
@@ -472,6 +476,8 @@
     font-size: var(--text-sm);
     color: var(--color-muted);
     transition: color var(--duration-fast) var(--ease-editorial);
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
   /* Underline-on-hover, mirroring the main .nav-link animation. */
   .sidebar-nav__sublink::after {
@@ -487,14 +493,16 @@
   .sidebar-nav__sublink:hover::after,
   .sidebar-nav__sublink[aria-current="page"]::after { width: 100%; }
 
-  /* Level 3 — grandchild links nested under a level-2 link: deeper indent, smaller, fainter. */
+  /* Level 3 — grandchild links nested under a level-2 link: deeper indent and
+     smaller. Not fainter: the muted colour at 85% opacity measured 3.9:1 on
+     the page ground, under the 4.5:1 body-text minimum, so the hierarchy is
+     carried by indent and size alone. */
   .sidebar-nav__sub--level-3 {
     margin-top: 2px;
     padding-left: var(--space-8); /* 32px hierarchy indent relative to parent */
   }
   .sidebar-nav__sublink--level-3 {
     font-size: var(--text-xs);
-    opacity: 0.85;
   }
 
   .sidebar__foot {

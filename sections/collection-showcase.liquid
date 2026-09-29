@@ -115,9 +115,14 @@
               assign label = block.settings.label | default: coll.title
             -%}
             <li class="colshow__item" {{ block.shopify_attributes }}>
-              <a
+              {%- comment -%}
+                A block with no collection chosen yet renders as text, not as an
+                <a href="#">: a link to nowhere, and with no label an unnamed one.
+              {%- endcomment -%}
+              {%- if coll != blank -%}{%- assign colshow_tag = 'a' -%}{%- else -%}{%- assign colshow_tag = 'span' -%}{%- endif -%}
+              <{{ colshow_tag }}
                 class="colshow__name{% if forloop.first %} is-active{% endif %}"
-                href="{{ coll.url | default: '#' }}"
+                {% if coll != blank %}href="{{ coll.url }}"{% endif %}
                 data-colshow-name="{{ forloop.index0 }}"
                 data-animate
                 data-animate-delay="{{ forloop.index | modulo: 5 | plus: 1 }}"
@@ -133,7 +138,7 @@
                   -%}
                   <sup class="colshow__count">{{ n_padded }}</sup>
                 {%- endif -%}
-              </a>
+              </{{ colshow_tag }}>
             </li>
           {%- endfor -%}
         </ul>
