@@ -13,20 +13,52 @@
       "type": "about-hero",
       "settings": {
         "layout": "stacked",
+        "image": "shopify://shop_images/annex-maker-studio.jpg",
         "image_height": 60,
         "overlay_opacity": 35,
         "eyebrow": "Our story",
         "heading": "",
         "heading_tag": "h1",
         "statement": "We believe good objects should be useful, honest, and quietly beautiful. That belief guides every decision, from the materials we choose to the people we partner with.",
-        "color_scheme": "background-1",
+        "color_scheme": "inverse",
         "padding_top": 0,
-        "padding_bottom": 64,
-        "image": "shopify://shop_images/annex-maker-studio.jpg"
+        "padding_bottom": 64
       }
     },
     "story": {
       "type": "about-story",
+      "blocks": {
+        "chapter_1": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/modern-ladder-shelf.jpg",
+            "image_position": "auto",
+            "caption": "",
+            "kicker": "Where it starts",
+            "heading": "Made in small batches, designed to last",
+            "text": "<p>Every piece passes through our studio before it reaches you: reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        },
+        "chapter_2": {
+          "type": "chapter",
+          "settings": {
+            "image": "shopify://shop_images/annex-hero-gallery-wall.jpg",
+            "image_position": "auto",
+            "caption": "",
+            "kicker": "Who makes it",
+            "heading": "A small group of makers",
+            "text": "<p>We source as close to primary producers as we can, and we visit the people who make our work. When a maker suggests a better way to build something, the design changes.</p>",
+            "cta_label": "",
+            "cta_url": ""
+          }
+        }
+      },
+      "block_order": [
+        "chapter_1",
+        "chapter_2"
+      ],
       "settings": {
         "eyebrow": "The studio",
         "heading": "How the work gets made",
@@ -34,53 +66,10 @@
         "color_scheme": "background-1",
         "padding_top": 64,
         "padding_bottom": 96
-      },
-      "blocks": {
-        "chapter_1": {
-          "type": "chapter",
-          "settings": {
-            "image_position": "auto",
-            "kicker": "Where it starts",
-            "heading": "Made in small batches, designed to last",
-            "text": "<p>Every piece passes through our studio before it reaches you: reviewed, refined, considered. We work with a small group of makers who share our commitment to process and material honesty.</p><p>Nothing is rushed. Nothing is mass-produced.</p>",
-            "caption": "",
-            "cta_label": "",
-            "cta_url": "",
-            "image": "shopify://shop_images/modern-ladder-shelf.jpg"
-          }
-        },
-        "chapter_2": {
-          "type": "chapter",
-          "settings": {
-            "image_position": "auto",
-            "kicker": "Who makes it",
-            "heading": "A small group of makers",
-            "text": "<p>We source as close to primary producers as we can, and we visit the people who make our work. When a maker suggests a better way to build something, the design changes.</p>",
-            "caption": "",
-            "cta_label": "",
-            "cta_url": "",
-            "image": "shopify://shop_images/annex-hero-gallery-wall.jpg"
-          }
-        }
-      },
-      "block_order": [
-        "chapter_1",
-        "chapter_2"
-      ]
+      }
     },
     "values": {
       "type": "about-values",
-      "settings": {
-        "eyebrow": "",
-        "heading": "What we believe",
-        "heading_tag": "h2",
-        "subtext": "",
-        "text_alignment": "start",
-        "columns_desktop": "4",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "value_1": {
           "type": "value",
@@ -120,26 +109,21 @@
         "value_2",
         "value_3",
         "value_4"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "What we believe",
+        "heading_tag": "h2",
+        "subtext": "",
+        "text_alignment": "start",
+        "columns_desktop": "4",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "tabs": {
       "type": "tabs",
-      "settings": {
-        "eyebrow": "",
-        "heading": "How we work",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "text_alignment": "start",
-        "tab_alignment": "start",
-        "tablist_label": "How we work",
-        "columns_desktop": "4",
-        "columns_mobile": "2",
-        "show_vendor": false,
-        "quick_add_style": "hover",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "tab_material": {
           "type": "content",
@@ -179,7 +163,23 @@
         "tab_material",
         "tab_making",
         "tab_review"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "",
+        "heading": "How we work",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "How we work",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "hover",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "closing": {
       "type": "about-cta",
