@@ -14,7 +14,7 @@
       "settings": {
         "layout": "stacked",
         "image": "shopify://shop_images/maison-editorial-wheel.jpg",
-        "image_height": 60,
+        "image_height": 40,
         "overlay_opacity": 35,
         "eyebrow": "Our story",
         "heading": "",
