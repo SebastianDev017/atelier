@@ -64,7 +64,10 @@
 
   async function search(query) {
     try {
-      var res = await fetch('/search/suggest.json?q=' + encodeURIComponent(query) +
+      /* Shopify.routes.root carries the locale prefix (/es/ ...), so the
+         suggestions come back in the language the shopper is browsing in. */
+      var root = (window.Shopify && window.Shopify.routes && window.Shopify.routes.root) || '/';
+      var res = await fetch(root + 'search/suggest.json?q=' + encodeURIComponent(query) +
         '&resources[type]=product&resources[limit]=6&resources[options][unavailable_products]=last');
       if (!res.ok) return [];
       var data = await res.json();

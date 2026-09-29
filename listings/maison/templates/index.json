@@ -13,7 +13,6 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "",
         "video_url": "",
         "overlay_opacity": 40,
         "overlay_color": "#0a0705",
@@ -52,22 +51,6 @@
     },
     "shelves": {
       "type": "tabs",
-      "settings": {
-        "eyebrow": "Out of the kiln this week",
-        "heading": "Straight from the shelf",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "text_alignment": "start",
-        "tab_alignment": "start",
-        "tablist_label": "Collections",
-        "columns_desktop": "4",
-        "columns_mobile": "2",
-        "show_vendor": false,
-        "quick_add_style": "always",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "tab_table": {
           "type": "collection",
@@ -101,21 +84,26 @@
         "tab_table",
         "tab_vases",
         "tab_serving"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Out of the kiln this week",
+        "heading": "Straight from the shelf",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "Collections",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "process": {
       "type": "process-timeline",
-      "settings": {
-        "eyebrow": "The making",
-        "heading": "From clay to table",
-        "heading_tag": "h2",
-        "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
-        "cta_label": "Inside the studio",
-        "cta_url": "/pages/about-us",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "step_1": {
           "type": "step",
@@ -155,22 +143,22 @@
         "step_2",
         "step_3",
         "step_4"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "The making",
+        "marker_alignment": "left",
+        "heading": "From clay to table",
+        "heading_tag": "h2",
+        "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
+        "cta_label": "Inside the studio",
+        "cta_url": "/pages/about-us",
+        "color_scheme": "inverse",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "the_set": {
       "type": "shop-the-set",
-      "settings": {
-        "image": "",
-        "text_position": "right",
-        "eyebrow": "Shop the set",
-        "heading": "One table, set for four",
-        "heading_tag": "h2",
-        "cta_label": "All tableware",
-        "cta_url": "/collections/tableware",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "hotspot_1": {
           "type": "hotspot",
@@ -221,12 +209,22 @@
         "hotspot_3",
         "hotspot_4",
         "caption"
-      ]
+      ],
+      "settings": {
+        "text_position": "right",
+        "eyebrow": "Shop the set",
+        "heading": "One table, set for four",
+        "heading_tag": "h2",
+        "cta_label": "All tableware",
+        "cta_url": "/collections/tableware",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "glazes": {
       "type": "editorial-feature",
       "settings": {
-        "image": "",
         "image_position": "right",
         "eyebrow": "Glazes",
         "heading": "Food-safe, lead-free, made here",
@@ -240,29 +238,6 @@
         "stat_2_label": "",
         "stat_3_number": "",
         "stat_3_label": "",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
-    "kiln": {
-      "type": "full-bleed-image",
-      "settings": {
-        "image": "",
-        "image_height": "medium",
-        "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
-        "overlay_opacity": 30
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Kiln-opening notes",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "subtext": "<p>A short note when a new firing comes out of the kiln, before it goes on the shop.</p>",
-        "input_placeholder": "Email address",
-        "button_label": "Subscribe",
         "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
@@ -349,6 +324,14 @@
         "padding_bottom": 96
       }
     },
+    "kiln": {
+      "type": "full-bleed-image",
+      "settings": {
+        "image_height": "medium",
+        "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
+        "overlay_opacity": 30
+      }
+    },
     "kiln_log": {
       "type": "kiln-log",
       "blocks": {
@@ -359,7 +342,6 @@
             "title": "The iron black came out darker than March",
             "note": "<p>Same recipe, colder week, and the whole batch broke rust at the rim instead of brown. We are keeping it. The next ramen bowls will not look like these.</p>",
             "status": "Sold out",
-            "image": "",
             "link": "/products/iron-black-ramen-bowl"
           }
         },
@@ -370,7 +352,6 @@
             "title": "Twelve moon vases went in, nine came out",
             "note": "<p>Three cracked on the cool-down, which is the price of a wall that thin. The nine that made it are the roundest we have thrown.</p>",
             "status": "Three left",
-            "image": "",
             "link": "/products/moon-vase"
           }
         },
@@ -381,7 +362,6 @@
             "title": "Celadon over the thrown pitchers",
             "note": "<p>First time this glaze has gone on a pouring lip. It pools in the rings and runs clear at the spout, which turned out to be exactly right.</p>",
             "status": "In stock",
-            "image": "",
             "link": "/products/celadon-pitcher"
           }
         }
@@ -399,6 +379,20 @@
         "show_images": true,
         "image_ratio": "square",
         "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Kiln-opening notes",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtext": "<p>A short note when a new firing comes out of the kiln, before it goes on the shop.</p>",
+        "input_placeholder": "Email address",
+        "button_label": "Subscribe",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
