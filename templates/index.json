@@ -52,22 +52,6 @@
     },
     "shelves": {
       "type": "tabs",
-      "settings": {
-        "eyebrow": "Out of the kiln this week",
-        "heading": "Straight from the shelf",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "text_alignment": "start",
-        "tab_alignment": "start",
-        "tablist_label": "Collections",
-        "columns_desktop": "4",
-        "columns_mobile": "2",
-        "show_vendor": false,
-        "quick_add_style": "always",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "tab_table": {
           "type": "collection",
@@ -101,21 +85,26 @@
         "tab_table",
         "tab_vases",
         "tab_serving"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "Out of the kiln this week",
+        "heading": "Straight from the shelf",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "text_alignment": "start",
+        "tab_alignment": "start",
+        "tablist_label": "Collections",
+        "columns_desktop": "4",
+        "columns_mobile": "2",
+        "show_vendor": false,
+        "quick_add_style": "always",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "process": {
       "type": "process-timeline",
-      "settings": {
-        "eyebrow": "The making",
-        "heading": "From clay to table",
-        "heading_tag": "h2",
-        "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
-        "cta_label": "Inside the studio",
-        "cta_url": "/pages/about-us",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "step_1": {
           "type": "step",
@@ -155,22 +144,22 @@
         "step_2",
         "step_3",
         "step_4"
-      ]
+      ],
+      "settings": {
+        "eyebrow": "The making",
+        "marker_alignment": "left",
+        "heading": "From clay to table",
+        "heading_tag": "h2",
+        "subtext": "Four stages, three weeks, two hands. Nothing here is poured into a mould.",
+        "cta_label": "Inside the studio",
+        "cta_url": "/pages/about-us",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "the_set": {
       "type": "shop-the-set",
-      "settings": {
-        "image": "shopify://shop_images/photo-1694830470387-2e0f234ecaf7_fd206f68-55aa-4b2e-bcf4-03e6ba8ec409.jpg",
-        "text_position": "right",
-        "eyebrow": "Shop the set",
-        "heading": "One table, set for four",
-        "heading_tag": "h2",
-        "cta_label": "All tableware",
-        "cta_url": "/collections/tableware",
-        "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "hotspot_1": {
           "type": "hotspot",
@@ -221,7 +210,19 @@
         "hotspot_3",
         "hotspot_4",
         "caption"
-      ]
+      ],
+      "settings": {
+        "image": "shopify://shop_images/photo-1694830470387-2e0f234ecaf7_fd206f68-55aa-4b2e-bcf4-03e6ba8ec409.jpg",
+        "text_position": "right",
+        "eyebrow": "Shop the set",
+        "heading": "One table, set for four",
+        "heading_tag": "h2",
+        "cta_label": "All tableware",
+        "cta_url": "/collections/tableware",
+        "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "glazes": {
       "type": "editorial-feature",
@@ -241,29 +242,6 @@
         "stat_3_number": "",
         "stat_3_label": "",
         "color_scheme": "background-1",
-        "padding_top": 96,
-        "padding_bottom": 96
-      }
-    },
-    "kiln": {
-      "type": "full-bleed-image",
-      "settings": {
-        "image": "shopify://shop_images/maison-maker-hands.jpg",
-        "image_height": "medium",
-        "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
-        "overlay_opacity": 30
-      }
-    },
-    "newsletter": {
-      "type": "newsletter",
-      "settings": {
-        "heading": "Kiln-opening notes",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "subtext": "<p>A short note when a new firing comes out of the kiln, before it goes on the shop.</p>",
-        "input_placeholder": "Email address",
-        "button_label": "Subscribe",
-        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
@@ -349,6 +327,15 @@
         "padding_bottom": 96
       }
     },
+    "kiln": {
+      "type": "full-bleed-image",
+      "settings": {
+        "image": "shopify://shop_images/maison-maker-hands.jpg",
+        "image_height": "medium",
+        "caption": "The kiln is opened on Thursdays. Whatever survives goes on the shop the same afternoon.",
+        "overlay_opacity": 30
+      }
+    },
     "kiln_log": {
       "type": "kiln-log",
       "blocks": {
@@ -399,6 +386,20 @@
         "show_images": true,
         "image_ratio": "square",
         "color_scheme": "background-1",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
+    },
+    "newsletter": {
+      "type": "newsletter",
+      "settings": {
+        "heading": "Kiln-opening notes",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "subtext": "<p>A short note when a new firing comes out of the kiln, before it goes on the shop.</p>",
+        "input_placeholder": "Email address",
+        "button_label": "Subscribe",
+        "color_scheme": "inverse",
         "padding_top": 96,
         "padding_bottom": 96
       }
