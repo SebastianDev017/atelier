@@ -64,9 +64,26 @@
             </div>
             {% render 'pagination', paginate: paginate %}
           {%- else -%}
+            {%- liquid
+              comment
+                "No products match these filters" only makes sense when a filter is
+                applied; a collection that is simply empty says so, with no
+                "Clear all" link that would lead back to the same empty page.
+              endcomment
+              assign filters_active = false
+              for filter in collection.filters
+                if filter.active_values.size > 0 or filter.min_value.value != blank or filter.max_value.value != blank
+                  assign filters_active = true
+                endif
+              endfor
+            -%}
             <div class="collection__empty">
-              <p class="h4">{{ 'collections.empty_filters' | t }}</p>
-              <a class="link-underline" href="{{ collection.url }}">{{ 'collections.clear_all' | t }}</a>
+              {%- if filters_active -%}
+                <p class="h4">{{ 'collections.empty_filters' | t }}</p>
+                <a class="link-underline" href="{{ collection.url }}">{{ 'collections.clear_all' | t }}</a>
+              {%- else -%}
+                <p class="h4">{{ 'collections.empty' | t }}</p>
+              {%- endif -%}
             </div>
           {%- endif -%}
         </div>

@@ -13,7 +13,6 @@
       "type": "hero",
       "settings": {
         "layout": "fullbleed",
-        "image": "",
         "video_url": "",
         "overlay_opacity": 45,
         "overlay_color": "#0a0705",
@@ -63,17 +62,16 @@
     "care": {
       "type": "split-media",
       "settings": {
-        "image": "",
         "media_position": "left",
+        "image_ratio": "portrait",
         "eyebrow": "Made to be repaired",
         "heading": "Built so a scratch is not the end",
+        "heading_tag": "h2",
+        "heading_size": "lg",
         "text": "<p>Solid timber, replaceable covers, hardware you can actually buy again. When something wears, we would rather send a part than a replacement.</p>",
         "cta_label": "How we make things",
         "cta_url": "/pages/about-us",
         "cta_style": "link",
-        "image_ratio": "portrait",
-        "heading_tag": "h2",
-        "heading_size": "lg",
         "color_scheme": "background-1",
         "padding_top": 96,
         "padding_bottom": 96
@@ -82,7 +80,6 @@
     "delivery": {
       "type": "image-with-text",
       "settings": {
-        "image": "",
         "image_ratio": "landscape",
         "layout": "image-right",
         "eyebrow": "The last mile",
@@ -100,18 +97,6 @@
     },
     "voices": {
       "type": "testimonials",
-      "settings": {
-        "heading": "What people say once it is home",
-        "heading_tag": "h2",
-        "heading_size": "lg",
-        "autoplay": true,
-        "autoplay_speed": 5,
-        "show_images": false,
-        "pause_label": "Pause testimonials",
-        "color_scheme": "background-2",
-        "padding_top": 96,
-        "padding_bottom": 96
-      },
       "blocks": {
         "t1": {
           "type": "testimonial",
@@ -142,7 +127,19 @@
         "t1",
         "t2",
         "t3"
-      ]
+      ],
+      "settings": {
+        "heading": "What people say once it is home",
+        "heading_tag": "h2",
+        "heading_size": "lg",
+        "autoplay": true,
+        "autoplay_speed": 5,
+        "show_images": false,
+        "pause_label": "Pause testimonials",
+        "color_scheme": "background-2",
+        "padding_top": 96,
+        "padding_bottom": 96
+      }
     },
     "newsletter": {
       "type": "newsletter",
