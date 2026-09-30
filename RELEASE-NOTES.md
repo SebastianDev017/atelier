@@ -27,6 +27,7 @@ Performance and accessibility
 - Images decode off the main thread; the hero and the pinned rail warm their images before they arrive.
 - No infinite animation loops: the scroll cue and the press marquee are CSS.
 - On a phone, a page that is still arriving no longer paints lower down and then jumps to the top, and an announcement bar the visitor closed stays hidden from the first frame.
+- A page with a tabs section no longer scrolls down to it by itself while loading.
 - Touch targets meet 24 x 24 px on every page; a contrast miss in the spec table and a sideways overflow on a 25-section home page were fixed.
 
 Settings and install
