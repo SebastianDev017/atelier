@@ -2585,7 +2585,7 @@
         },
         "media_fit": {
           "label": "Bildanpassung",
-          "info": "Ganzes Bild zeigen passt die Galerie an das erste Bild an und schneidet nie ein Foto ab.",
+          "info": "Ganzes Bild zeigen passt die Galerie an das Foto an, mit dem sie öffnet, und schneidet nie ein Foto ab.",
           "options__1": {
             "label": "Ganzes Bild zeigen"
           },

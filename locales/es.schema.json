@@ -2585,7 +2585,7 @@
         },
         "media_fit": {
           "label": "Ajuste de imagen",
-          "info": "Mostrar imagen completa adapta la galería a la primera imagen y nunca recorta una foto.",
+          "info": "Mostrar imagen completa adapta la galería a la foto con la que se abre y nunca recorta una foto.",
           "options__1": {
             "label": "Mostrar imagen completa"
           },
