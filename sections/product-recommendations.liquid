@@ -35,7 +35,11 @@
 
 {% stylesheet %}
   .recommendations { padding-block: var(--pt, var(--section-spacing)) var(--pb, var(--section-spacing)); }
-  .recommendations:empty { display: none; }
+  /* Collapses while empty, but never with display:none: the fetch is started by
+     an IntersectionObserver on this element, and a display:none box is never
+     observed, so the section would stay empty forever. Same fix as
+     .complementary:empty. */
+  .recommendations:empty { padding-block: 0; min-height: 1px; }
 {% endstylesheet %}
 
 {% schema %}
