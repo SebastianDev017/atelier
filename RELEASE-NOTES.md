@@ -19,12 +19,14 @@ Product page
 - Rich product media (hosted video, YouTube, Vimeo and 3D models) in the product template, the featured product section and quick view; the 3D viewer loads only when a model is opened and the AR button no longer shifts the layout.
 - Pickup availability is decided at render, so the product information never jumps.
 - Buy it now is hidden while the selected variant is sold out.
+- The gallery takes the shape of the photo the page opens on, so a product whose first variant has its own photo never opens letterboxed.
 - Uppercase headings are a display-level decision, and step markers on the process timeline can be aligned by the merchant.
 
 Performance and accessibility
 
 - Images decode off the main thread; the hero and the pinned rail warm their images before they arrive.
 - No infinite animation loops: the scroll cue and the press marquee are CSS.
+- On a phone, a page that is still arriving no longer paints lower down and then jumps to the top, and an announcement bar the visitor closed stays hidden from the first frame.
 - Touch targets meet 24 x 24 px on every page; a contrast miss in the spec table and a sideways overflow on a 25-section home page were fixed.
 
 Settings and install

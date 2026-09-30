@@ -22,8 +22,8 @@
   cover, and the theme has no zoom or lightbox, so a product photo of any other
   shape could never be seen whole: a 3:2 shot lost half its width, a panorama
   about 80% (Theme Store: "All product images must be displayed and viewable").
-  "adapt" (default) sizes the stage to the FIRST media's own ratio and shows
-  every image whole (contain). One ratio for the whole stage, not one per image,
+  "adapt" (default) sizes the stage to the ratio of the media it opens on (the
+  selected variant's image, else the first) and shows every image whole (contain). One ratio for the whole stage, not one per image,
   so switching media never changes the stage height and the thumbnails never
   jump under the pointer. The ratio is clamped to 1:2 .. 1.6:1 so a freak upload
   cannot turn the stage into a sliver or a tower; beyond the clamp the image is
@@ -37,10 +37,11 @@
   # thumbnails highlighted forloop.first, so on load the highlighted thumb and
   # the big photo disagreed on 3 of 4 multi-photo products until a variant was
   # clicked.
-  assign active_media_id = product.media.first.id
+  assign opening_media = product.media.first
   if product.selected_or_first_available_variant.featured_media
-    assign active_media_id = product.selected_or_first_available_variant.featured_media.id
+    assign opening_media = product.selected_or_first_available_variant.featured_media
   endif
+  assign active_media_id = opening_media.id
 
   # Loading priority of the active media. With lcp the gallery is the main
   # content of what was just opened, so eager at high priority. Otherwise it
@@ -62,9 +63,15 @@
   endif
   assign desktop_size = desktop_size | default: '50vw'
 
+  # The adapt stage takes the shape of the media it opens on (opening_media above,
+  # the photo in the stage at first paint), not of product.media.first. They
+  # differ whenever the first variant's image is not media #1, and when their
+  # shapes differ the photo the page opened on was letterboxed: Contour's merino
+  # blanket opened on a portrait photo in a landscape stage, 243px tall instead
+  # of 329 on a phone, with a third of the stage empty.
   assign gallery_ratio = 0.75
   if media_fit == 'adapt' and product.media.size > 0
-    assign gallery_ratio = product.media.first.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
+    assign gallery_ratio = opening_media.preview_image.aspect_ratio | default: 0.75 | at_least: 0.5 | at_most: 1.6
   endif
 
   # The AR button targets the model on screen, or the first model when the

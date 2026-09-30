@@ -49,6 +49,12 @@
          line-reveal), .eyebrow (small footer/section labels, not display headings). */
       if (el.hasAttribute('data-split') || el.hasAttribute('data-fade-up') || el.classList.contains('reveal-lines') || el.classList.contains('eyebrow')) return;
       if (el.closest('.sidebar, [data-sidebar], .cart-drawer, .product__sticky, .hero, [data-no-split], [data-product-card]')) return;
+      /* Nor anything that is not on screen at all: a heading inside a <dialog>
+         (the notify-me dialog of every sold-out product) or a [hidden] wrapper
+         has no box, so its trigger fired at once and the blur tween ran at load
+         for a heading nobody could see -- ~180 style writes per page view. When
+         the dialog opens later its heading is simply there. */
+      if (el.closest('dialog, [hidden]')) return;
       el.dataset.blurDone = '1';
       gsap.fromTo(el,
         { opacity: 0, filter: 'blur(12px)', y: 10 },
