@@ -65,6 +65,17 @@
     data-section-id="{{ section.id }}"
     {% if section.settings.dismissible %}data-dismissible{% endif %}
   >
+    {%- comment -%}
+      A bar the visitor has dismissed is hidden before it is ever painted. The
+      element's own check (isDismissed() below) runs from the deferred section
+      script, after first paint on a slow load, so a returning visitor who had
+      closed the bar saw it painted and then removed: the whole page moved up
+      44px, a 0.053 layout shift on every page view. Same key and same rule as
+      the element; the theme editor always shows the bar.
+    {%- endcomment -%}
+    {%- unless request.design_mode -%}
+      <script>try{if(localStorage.getItem({{ 'announcement-dismissed-' | append: section.id | json }})==='1')document.currentScript.parentElement.hidden=true}catch(e){}</script>
+    {%- endunless -%}
     <div class="announcement-bar__inner">
       {%- if message_count > 1 and section.settings.display_mode == 'rotate' -%}
         <div class="announcement-bar__rotator page-width" data-announcement-rotator data-interval="{{ section.settings.rotate_interval }}">
