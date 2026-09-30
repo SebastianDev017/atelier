@@ -50,10 +50,23 @@
         }
       });
       if (moveFocus) tab.focus();
-      /* A long tab strip scrolls on phones: keep the active tab in view. */
-      if (tab.scrollIntoView) {
-        try { tab.scrollIntoView({ inline: 'nearest', block: 'nearest', behavior: motionOn() ? 'smooth' : 'auto' }); } catch (e) { /* older engines */ }
-      }
+      keepInStrip(tab);
+    }
+
+    /* A long tab strip scrolls sideways on phones: keep the active tab in view
+       by scrolling the strip itself, and only when it overflows. Never
+       scrollIntoView: it scrolls every scrollable ancestor, the page included,
+       so selecting the initial tab at load dragged the page down to any tabs
+       section below the fold, with nobody touching it (Maison home up to 357px,
+       Annex collection up to 2036px, Annex product page up to 1324px). */
+    function keepInStrip(tab) {
+      if (list.scrollWidth <= list.clientWidth) return;
+      var box = list.getBoundingClientRect();
+      var r = tab.getBoundingClientRect();
+      var delta = r.left < box.left ? r.left - box.left : (r.right > box.right ? r.right - box.right : 0);
+      if (!delta) return;
+      if (list.scrollBy) list.scrollBy({ left: delta, behavior: motionOn() ? 'smooth' : 'auto' });
+      else list.scrollLeft += delta;
     }
 
     list.addEventListener('click', function (e) {
