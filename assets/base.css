@@ -345,9 +345,18 @@ h1, h2, h3, h4, h5, h6 {
    (.section__inner / .page-width), not from this wrapper. */
 .site-main > #main-content { flex: 1 0 auto; width: 100%; }
 
+/* One column on phones: the header group's wrapper is row 1 (every mobile header
+   control is position: fixed, so it is 0px tall) and .site-main is row 2. Rows
+   are sized to their content and never stretched to the grid's min-height, and
+   .site-main keeps its own screen-height minimum from above. Stretched auto rows
+   (align-content: normal) shared any leftover height equally: while the page was
+   still arriving, .site-main was shorter than the screen, the empty header row
+   took half the difference, and the first frame painted the page (823 - H) / 2 px
+   low before it jumped to the top when the rest came in. That was a 0.18-0.47
+   layout shift, the 0.425 / 0.225 product-page CLS spikes, hidden from people by
+   the loader but not from CLS. */
 @media (max-width: 768px) {
-  .site-layout { grid-template-columns: 1fr; }
-  .site-main { min-height: 0; }
+  .site-layout { grid-template-columns: 1fr; align-content: start; }
 }
 
 /* ---------- Retractable sidebar (SB4 / SB6) ----------
