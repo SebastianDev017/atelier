@@ -126,7 +126,7 @@
   </div>
 </div>
 
-<script src="{{ 'frame-preview.js' | asset_url }}" defer="defer"></script>
+{% render 'script-after-paint', src: 'frame-preview.js' %}
 
 {% stylesheet %}
   .frmprev { padding-block: var(--pt, 96px) var(--pb, 96px); }

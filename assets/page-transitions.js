@@ -22,26 +22,15 @@
   var supportsCrossDocVT =
     window.CSS && CSS.supports && CSS.supports('selector(::view-transition)');
 
-  /* A native transition is skipped when the next page does not opt in
-     (Shopify's checkout, for one); its promises then reject, and with nobody
-     listening Chrome reports that as an uncaught error on the page being
-     left. Nothing is wrong with the navigation, so the rejections are handled. */
-  function settle(vt) {
-    if (!vt) return;
-    ['ready', 'finished', 'updateCallbackDone'].forEach(function (k) {
-      if (vt[k] && typeof vt[k].catch === 'function') vt[k].catch(function () {});
-    });
-  }
-
-  /* After a native transition reveals the new page, recalc pinned ScrollTriggers. */
-  if (supportsCrossDocVT) {
-    window.addEventListener('pageswap', function (e) { settle(e.viewTransition); });
-    window.addEventListener('pagereveal', function (e) {
-      settle(e.viewTransition);
-      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-    });
-    return;
-  }
+  /* Native transitions need nothing from this file. Their pageswap/pagereveal
+     listeners (which keep a skipped transition's rejected promises from being
+     reported as uncaught errors) live in the inline <head> script of
+     layout/theme.liquid: pagereveal fires at a page's first rendering
+     opportunity, and the theme's scripts now load after the first paint, so a
+     listener registered here would always be too late. The old ScrollTrigger
+     refresh on pagereveal went with it: the motion stack is set up after the
+     reveal, so it measures the revealed page on its own. */
+  if (supportsCrossDocVT) return;
 
   /* Fallback: fade out, then navigate. */
   document.addEventListener('click', function (e) {

@@ -132,7 +132,7 @@
   </div>
 </div>
 
-<script src="{{ 'overlap-index.js' | asset_url }}" defer="defer"></script>
+{% render 'script-after-paint', src: 'overlap-index.js' %}
 
 {% stylesheet %}
   .ovidx { padding-block: var(--pt, 96px) var(--pb, 96px); }
