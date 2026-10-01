@@ -4,6 +4,20 @@
  * Fully gated behind prefers-reduced-motion.
  */
 (function () {
+  /* Content the reader can already see when this file runs is left exactly as
+     painted: no hide-then-reveal. The theme's scripts load after the first
+     contentful paint, so hiding a visible heading, hero image or counter here
+     would flash it out and back in, and when the hidden element is the page's
+     largest (the hero image, a collection title) it would also push Largest
+     Contentful Paint back by the length of the animation -- the pattern
+     Shopify's performance guidance calls out ("Don't hide the LCP image behind
+     animations"). Everything below the fold keeps its scroll reveal. */
+  function onScreen(el) {
+    var r = el.getBoundingClientRect();
+    var vh = window.innerHeight || document.documentElement.clientHeight;
+    return r.bottom > 0 && r.top < vh && (r.width > 0 || r.height > 0);
+  }
+
   /* 1. SplitText line reveal — OPT-IN only ([data-split]). General section
      headings are handled by initBlurReveal (blur-to-focus) so the two never
      double-animate the same node. */
@@ -12,6 +26,7 @@
     gsap.utils.toArray('[data-split]').forEach(function (el) {
       if (el.dataset.splitDone || el.closest('[data-no-split]') || el.hasAttribute('data-no-split')) return;
       el.dataset.splitDone = '1';
+      if (onScreen(el)) return;
       var split = new SplitText(el, { type: 'lines', linesClass: 'split-line' });
       /* Wrap each line in an overflow-hidden mask so the yPercent:110 start is clipped. */
       split.lines.forEach(function (line) {
@@ -56,6 +71,7 @@
          the dialog opens later its heading is simply there. */
       if (el.closest('dialog, [hidden]')) return;
       el.dataset.blurDone = '1';
+      if (onScreen(el)) return;
       gsap.fromTo(el,
         { opacity: 0, filter: 'blur(12px)', y: 10 },
         {
@@ -68,7 +84,7 @@
 
   /* 2. Fade up — staggered on groups via ScrollTrigger.batch (no FOUC: set hidden first) */
   function initFadeUp() {
-    var targets = gsap.utils.toArray('[data-fade-up], .section-text');
+    var targets = gsap.utils.toArray('[data-fade-up], .section-text').filter(function (el) { return !onScreen(el); });
     if (!targets.length) return;
     gsap.set(targets, { autoAlpha: 0, y: 40 });
     ScrollTrigger.batch(targets, {
@@ -82,6 +98,7 @@
   /* 3. Image reveal — clip-path wipe */
   function initImageReveal() {
     gsap.utils.toArray('[data-reveal], .hero__image, .feature__image').forEach(function (el) {
+      if (onScreen(el)) return;
       gsap.fromTo(el,
         { clipPath: 'inset(0 100% 0 0)' },
         {
@@ -154,6 +171,7 @@
          the finished figure's width first -- in em, so it scales with the font. */
       el.textContent = format(target);
       el.style.minWidth = (el.getBoundingClientRect().width / parseFloat(getComputedStyle(el).fontSize)) + 'em';
+      if (onScreen(el)) return;
       var obj = { val: 0 };
       gsap.to(obj, {
         val: target,
@@ -184,6 +202,14 @@
     heroes.forEach(function (hero) {
       if (hero.dataset.heroBound) return;
       hero.dataset.heroBound = '1';
+      /* A hero already on screen is shown as painted (see onScreen): its
+         entrance would hide what the reader is looking at, and its image is
+         usually the page's Largest Contentful Paint. */
+      if (onScreen(hero)) {
+        var shown = hero.querySelector('.hero__heading, h1');
+        if (shown) shown.dataset.blurDone = '1';
+        return;
+      }
       var tl = gsap.timeline({ paused: true, defaults: { ease: 'expo.out', duration: 0.9 } });
       var heading = hero.querySelector('.hero__heading, h1');
       if (heading && !heading.dataset.blurDone) {
@@ -346,6 +372,10 @@
     initParallax();
     initMagneticButtons();
     initCounters();
+    /* ScrollTrigger re-measures every trigger on the window load event, but the
+       theme's scripts now arrive after the first paint, often after load has
+       already fired; measure once more on the next frame in that case. */
+    if (document.readyState === 'complete') requestAnimationFrame(function () { ScrollTrigger.refresh(); });
   }
 
   if (document.readyState === 'loading') {

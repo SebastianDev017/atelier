@@ -1,0 +1,14 @@
+{%- comment -%}
+  Queues a theme script that a section needs, so it loads with the rest of the
+  theme's JavaScript after the first contentful paint (layout/theme.liquid owns
+  the loader). Queued scripts load before the layout's own list, the same
+  relative order the deferred tags had. In the theme editor every script is a
+  plain deferred tag, as before, so editor events always find their listeners.
+
+  @param {string} src - the asset filename, for example 'search.js'
+{%- endcomment -%}
+{%- if request.design_mode -%}
+  <script src="{{ src | asset_url }}" defer></script>
+{%- else -%}
+  <script>(window.ThemeScriptQueue=window.ThemeScriptQueue||[]).push({{ src | asset_url | json }})</script>
+{%- endif -%}

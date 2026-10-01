@@ -142,7 +142,7 @@
   </div>
 </div>
 
-<script src="{{ 'video-feature.js' | asset_url }}" defer="defer"></script>
+{% render 'script-after-paint', src: 'video-feature.js' %}
 
 {% stylesheet %}
   .vidfeat { padding-block: var(--pt, 96px) var(--pb, 96px); }
