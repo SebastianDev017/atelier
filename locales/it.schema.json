@@ -4887,6 +4887,10 @@
           "label": "Transizioni tra le pagine",
           "info": "Dissolvenza tra le pagine tramite l'API View Transitions nei browser supportati."
         },
+        "enable_loading_screen": {
+          "label": "Schermata di caricamento",
+          "info": "Mostra il nome del negozio sulla prima pagina di una visita durante il caricamento. La pagina resta nascosta finché non svanisce, quindi i clienti vedono i contenuti più tardi."
+        },
         "enable_custom_cursor": {
           "label": "Cursore personalizzato",
           "info": "Mostra un cursore editoriale a punto su desktop. Disabilita per il cursore standard."

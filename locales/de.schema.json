@@ -4887,6 +4887,10 @@
           "label": "Seitenübergänge",
           "info": "Überblendung zwischen Seiten mithilfe der View Transitions API in unterstützten Browsern."
         },
+        "enable_loading_screen": {
+          "label": "Ladebildschirm",
+          "info": "Zeigt den Shopnamen über der ersten Seite eines Besuchs, während sie lädt. Die Seite bleibt verdeckt, bis er ausgeblendet ist, daher sehen Kunden Inhalte später."
+        },
         "enable_custom_cursor": {
           "label": "Individueller Cursor",
           "info": "Zeigt einen editorialen Punkt-Cursor auf dem Desktop. Deaktivieren Sie ihn für den Standard-Cursor."

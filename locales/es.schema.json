@@ -4887,6 +4887,10 @@
           "label": "Transiciones entre páginas",
           "info": "Fundido entre páginas mediante la API de View Transitions en los navegadores compatibles."
         },
+        "enable_loading_screen": {
+          "label": "Pantalla de carga",
+          "info": "Muestra el nombre de la tienda sobre la primera página de una visita mientras carga. La página queda oculta hasta que se desvanece, así que los clientes ven el contenido más tarde."
+        },
         "enable_custom_cursor": {
           "label": "Cursor personalizado",
           "info": "Muestra un cursor editorial de punto en ordenador. Desactívalo para usar el cursor estándar."
