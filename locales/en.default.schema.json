@@ -4887,6 +4887,10 @@
           "label": "Page transitions",
           "info": "Fade between pages using the View Transitions API in supported browsers."
         },
+        "enable_loading_screen": {
+          "label": "Loading screen",
+          "info": "Shows the store name over the first page of a visit while it loads. The page stays hidden until it fades, so shoppers see content later."
+        },
         "enable_custom_cursor": {
           "label": "Custom cursor",
           "info": "Shows editorial dot cursor on desktop. Disable for standard cursor."

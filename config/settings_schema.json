@@ -399,6 +399,13 @@
       },
       {
         "type": "checkbox",
+        "id": "enable_loading_screen",
+        "label": "t:settings_schema.animations_experience.settings.enable_loading_screen.label",
+        "info": "t:settings_schema.animations_experience.settings.enable_loading_screen.info",
+        "default": false
+      },
+      {
+        "type": "checkbox",
         "id": "enable_custom_cursor",
         "label": "t:settings_schema.animations_experience.settings.enable_custom_cursor.label",
         "info": "t:settings_schema.animations_experience.settings.enable_custom_cursor.info",

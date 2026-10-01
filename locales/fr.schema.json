@@ -4887,6 +4887,10 @@
           "label": "Transitions entre les pages",
           "info": "Fondu entre les pages grâce à l'API View Transitions dans les navigateurs compatibles."
         },
+        "enable_loading_screen": {
+          "label": "Écran de chargement",
+          "info": "Affiche le nom de la boutique sur la première page d'une visite pendant son chargement. La page reste masquée jusqu'à sa disparition, donc les clients voient le contenu plus tard."
+        },
         "enable_custom_cursor": {
           "label": "Curseur personnalisé",
           "info": "Affiche un curseur point éditorial sur ordinateur. Désactivez pour un curseur standard."

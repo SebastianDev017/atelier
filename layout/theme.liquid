@@ -78,7 +78,18 @@
     data-hover-swap="{{ settings.enable_hover_image_swap }}"
     data-button-style="{{ settings.button_style }}"
   >
-    {% render 'loader' %}
+    {%- comment -%}
+      The first-visit loading screen is opt-in. It covers the whole page until it
+      fades, which Shopify's performance guidance names the single most
+      impactful animation-related LCP issue ("Don't hide the LCP image behind
+      animations"). Measured with Lighthouse mobile on the live product pages:
+      when the HTML arrives quickly, the first paint waited for the loader to
+      fade, 2.43 s against 1.52 s without it. The master animation switch turns
+      it off too.
+    {%- endcomment -%}
+    {%- if settings.enable_loading_screen and settings.anim_disable_all != true -%}
+      {% render 'loader' %}
+    {%- endif -%}
 
     {%- comment -%} Wrapped in a nav landmark: as a bare child of <body> it was the one bit of content outside every landmark (axe: region). Still the first focusable element on the page. {%- endcomment -%}
     <nav class="skip-nav" aria-label="{{ 'general.skip_to_content' | t }}">
