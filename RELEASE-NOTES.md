@@ -29,6 +29,7 @@ Performance and accessibility
 - On a phone, a page that is still arriving no longer paints lower down and then jumps to the top, and an announcement bar the visitor closed stays hidden from the first frame.
 - A page with a tabs section no longer scrolls down to it by itself while loading.
 - The loading screen is a setting (Theme settings > Animations and experience), off by default: it hides the page until it fades, which delays the first paint.
+- The theme's JavaScript loads after the first paint, and content already on screen is never hidden for a reveal animation: the page paints and reaches its largest element sooner, on fast connections above all.
 - Touch targets meet 24 x 24 px on every page; a contrast miss in the spec table and a sideways overflow on a 25-section home page were fixed.
 
 Settings and install

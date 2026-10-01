@@ -425,7 +425,7 @@
 
 {%- comment -%} product.js is loaded globally from layout/theme.liquid. {%- endcomment -%}
 {%- if product.gift_card? -%}
-  <script src="{{ 'recipient-form.js' | asset_url }}" defer="defer"></script>
+  {% render 'script-after-paint', src: 'recipient-form.js' %}
 {%- endif -%}
 
 {% stylesheet %}

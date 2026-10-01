@@ -366,7 +366,7 @@
 </header-component>
 
 {%- if section.settings.show_search -%}
-  <script src="{{ 'search.js' | asset_url }}" defer></script>
+  {% render 'script-after-paint', src: 'search.js' %}
 {%- endif -%}
 
 {% stylesheet %}
